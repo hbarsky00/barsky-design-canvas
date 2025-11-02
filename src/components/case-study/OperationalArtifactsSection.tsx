@@ -29,7 +29,7 @@ const OperationalArtifactsSection: React.FC<OperationalArtifactsSectionProps> = 
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {deliverables.map((deliverable, index) => {
             const Icon = getIconForDeliverable(deliverable);
             
@@ -40,16 +40,16 @@ const OperationalArtifactsSection: React.FC<OperationalArtifactsSectionProps> = 
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white rounded-lg p-6 shadow-sm border border-border/20 hover:shadow-md transition-shadow"
+                className="bg-gradient-to-br from-white via-white to-blue-50/20 rounded-lg p-8 md:p-10 shadow-md hover:shadow-lg border-2 border-border/20 hover:border-blue-300/30 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-blue-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shadow-sm">
+                    <Icon className="w-6 h-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <p className="text-foreground leading-relaxed">{deliverable}</p>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                      <p className="text-foreground leading-relaxed text-base">{deliverable}</p>
                     </div>
                   </div>
                 </div>
@@ -63,10 +63,10 @@ const OperationalArtifactsSection: React.FC<OperationalArtifactsSectionProps> = 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl p-8 text-center"
+          className="mt-12 bg-gradient-to-r from-blue-100 via-cyan-100 to-teal-100 rounded-xl p-10 md:p-12 text-center shadow-md border-2 border-blue-200/50"
         >
-          <h3 className="text-2xl font-semibold text-foreground mb-3">Beyond Pixels</h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h3 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">Beyond Pixels</h3>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             These artifacts enabled teams to launch confidently, support users effectively, and sell the product successfully. Design isn't done until adoption happens.
           </p>
         </motion.div>

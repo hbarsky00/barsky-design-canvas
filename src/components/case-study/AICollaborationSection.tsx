@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Bot, User, TrendingUp, Zap } from "lucide-react";
+import { Bot, User, Zap, CheckCircle2 } from "lucide-react";
 
 interface AICollaborationSectionProps {
   title: string;
@@ -31,21 +31,21 @@ const AICollaborationSection: React.FC<AICollaborationSectionProps> = ({
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 mb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-xl p-8 shadow-sm border border-border/20"
+            className="bg-gradient-to-br from-white via-white to-purple-50/20 rounded-xl p-10 md:p-12 shadow-md hover:shadow-xl border-2 border-border/20 hover:border-purple-300/30 transition-all duration-300 hover:-translate-y-1"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex-shrink-0 w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center">
-                <Bot className="w-7 h-7 text-purple-600" />
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center">
+                <Bot className="w-8 h-8 text-purple-600" />
               </div>
               <h3 className="text-2xl font-semibold text-foreground">AI Handled</h3>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {aiHandled.map((item, index) => (
                 <motion.li
                   key={index}
@@ -55,7 +55,7 @@ const AICollaborationSection: React.FC<AICollaborationSectionProps> = ({
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-start gap-3"
                 >
-                  <span className="text-purple-600 text-xl mt-0.5 flex-shrink-0">•</span>
+                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
                   <span className="text-muted-foreground leading-relaxed">{item}</span>
                 </motion.li>
               ))}
@@ -67,15 +67,15 @@ const AICollaborationSection: React.FC<AICollaborationSectionProps> = ({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-xl p-8 shadow-sm border border-border/20"
+            className="bg-gradient-to-br from-white via-white to-blue-50/20 rounded-xl p-10 md:p-12 shadow-md hover:shadow-xl border-2 border-border/20 hover:border-blue-300/30 transition-all duration-300 hover:-translate-y-1"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
-                <User className="w-7 h-7 text-blue-600" />
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                <User className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-2xl font-semibold text-foreground">Human Refined</h3>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {humanRefined.map((item, index) => (
                 <motion.li
                   key={index}
@@ -85,7 +85,7 @@ const AICollaborationSection: React.FC<AICollaborationSectionProps> = ({
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-start gap-3"
                 >
-                  <span className="text-blue-600 text-xl mt-0.5 flex-shrink-0">•</span>
+                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <span className="text-muted-foreground leading-relaxed">{item}</span>
                 </motion.li>
               ))}
@@ -98,22 +98,22 @@ const AICollaborationSection: React.FC<AICollaborationSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-gradient-to-r from-purple-100 via-blue-100 to-cyan-100 rounded-xl p-8"
+          className="bg-gradient-to-r from-purple-100 via-blue-100 to-cyan-100 rounded-xl p-10 md:p-12 shadow-md border-2 border-purple-200/50"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex-shrink-0 w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
-              <Zap className="w-7 h-7 text-green-600" />
+          <div className="flex items-center gap-4 mb-8">
+            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-green-100 flex items-center justify-center shadow-md">
+              <Zap className="w-8 h-8 text-green-600" />
             </div>
-            <h3 className="text-2xl font-semibold text-foreground">Combined Impact</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">Combined Impact</h3>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white/50 rounded-lg p-6">
-              <p className="text-sm text-muted-foreground mb-2 uppercase tracking-wide">Time Saved</p>
-              <p className="text-3xl font-bold text-foreground">{combinedImpact.timeSaved}</p>
+            <div className="bg-white/70 backdrop-blur-sm rounded-lg p-8 shadow-sm border border-white/50">
+              <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide font-medium">Time Saved</p>
+              <p className="text-4xl md:text-5xl font-bold text-foreground">{combinedImpact.timeSaved}</p>
             </div>
-            <div className="bg-white/50 rounded-lg p-6">
-              <p className="text-sm text-muted-foreground mb-2 uppercase tracking-wide">Quality Improved</p>
-              <p className="text-3xl font-bold text-foreground">{combinedImpact.qualityImproved}</p>
+            <div className="bg-white/70 backdrop-blur-sm rounded-lg p-8 shadow-sm border border-white/50">
+              <p className="text-sm text-muted-foreground mb-3 uppercase tracking-wide font-medium">Quality Improved</p>
+              <p className="text-4xl md:text-5xl font-bold text-foreground">{combinedImpact.qualityImproved}</p>
             </div>
           </div>
         </motion.div>

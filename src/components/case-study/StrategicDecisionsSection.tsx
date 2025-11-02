@@ -29,7 +29,7 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:gap-10 md:grid-cols-2">
           {decisions.map((decision, index) => (
             <motion.div
               key={index}
@@ -37,12 +37,12 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-xl p-8 shadow-sm border border-border/20 hover:shadow-md transition-shadow"
+              className="bg-gradient-to-br from-white via-white to-gray-50/30 rounded-xl p-10 md:p-12 shadow-md hover:shadow-xl border-2 border-border/20 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="space-y-6">
+              <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-green-600" />
+                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
+                    <TrendingUp className="w-7 h-7 text-green-600" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground mb-2 text-lg">Decision</h3>
@@ -51,8 +51,8 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
-                    <TrendingDown className="w-6 h-6 text-orange-600" />
+                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center">
+                    <TrendingDown className="w-7 h-7 text-orange-600" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground mb-2 text-lg">Trade-off</h3>
@@ -60,20 +60,26 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-6">
-                  <div className="flex items-start gap-3 mb-3">
-                    <Target className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <motion.div 
+                  className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-8 border-2 border-blue-100/50 shadow-sm"
+                  initial={{ opacity: 0.8 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="flex items-start gap-3 mb-4">
+                    <Target className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                     <h3 className="font-semibold text-blue-900 text-lg">Impact</h3>
                   </div>
-                  <p className="text-blue-700 leading-relaxed mb-3">{decision.impact}</p>
+                  <p className="text-blue-700 leading-relaxed mb-4">{decision.impact}</p>
                   {decision.metrics && (
-                    <div className="text-3xl font-bold text-blue-900 tracking-tight">{decision.metrics}</div>
+                    <div className="text-4xl md:text-5xl font-bold text-blue-900 tracking-tight">{decision.metrics}</div>
                   )}
-                </div>
+                </motion.div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <Lightbulb className="w-6 h-6 text-yellow-600" />
+                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center">
+                    <Lightbulb className="w-7 h-7 text-yellow-600" />
                   </div>
                   <div className="flex-1">
                     <h3 className="font-semibold text-foreground mb-2 text-lg">Key Takeaway</h3>
