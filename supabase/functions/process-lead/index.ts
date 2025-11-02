@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
+import { encryptLeadData } from '../_shared/encryption.ts';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -54,17 +55,23 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Insert lead into database
+    // Encrypt sensitive fields before storing
+    const encryptedData = await encryptLeadData({
+      email: leadData.email,
+      phone: leadData.phone
+    });
+
+    // Insert lead into database with encrypted sensitive fields
     const { data, error } = await supabase
       .from('leads')
       .insert([{
-        email: leadData.email,
+        email: encryptedData.email,
         name: leadData.name,
         company: leadData.company,
         project_type: leadData.projectType,
         budget_range: leadData.budgetRange,
         project_description: leadData.projectDescription,
-        phone: leadData.phone,
+        phone: encryptedData.phone,
         website: leadData.website,
         lead_source: leadData.leadSource || 'website',
         lead_status: 'new'
