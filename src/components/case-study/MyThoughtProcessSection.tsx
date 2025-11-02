@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "./AnnotatedImage";
 import ProjectVideo from "@/components/project/ProjectVideo";
+import CustomerInputCard from "./CustomerInputCard";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface MyThoughtProcessSectionProps {
@@ -88,10 +89,43 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
             </div>
           )}
 
-          <div className="content-rail-left">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {content}
-            </p>
+          <div className="content-rail-left space-y-6">
+            {content.split('\n\n').map((paragraph, idx) => {
+              // Check if paragraph contains customer input (starts with quote or "Customer:")
+              const isCustomerInput = paragraph.trim().startsWith('"') || paragraph.toLowerCase().includes('customer:') || paragraph.toLowerCase().includes('user said:');
+              
+              if (isCustomerInput) {
+                // Extract quote and context
+                let quote = paragraph;
+                let context = undefined;
+                
+                if (paragraph.toLowerCase().includes('customer:')) {
+                  const parts = paragraph.split(/customer:/i);
+                  quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+                  context = "Customer feedback";
+                } else if (paragraph.toLowerCase().includes('user said:')) {
+                  const parts = paragraph.split(/user said:/i);
+                  quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+                  context = "User feedback";
+                } else {
+                  quote = paragraph.replace(/^["']|["']$/g, '');
+                }
+                
+                return (
+                  <CustomerInputCard
+                    key={idx}
+                    quote={quote}
+                    context={context}
+                  />
+                );
+              }
+              
+              return (
+                <p key={idx} className="text-lg text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              );
+            })}
           </div>
         </motion.div>
       </div>

@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "./AnnotatedImage";
+import CustomerInputCard from "./CustomerInputCard";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
 interface WhatDidntWorkMetric {
@@ -50,10 +51,43 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
       </h2>
       
       {/* Description */}
-      <div className="content-rail-left mb-8">
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          {whatDidntWorkData.content}
-        </p>
+      <div className="content-rail-left mb-8 space-y-6">
+        {whatDidntWorkData.content.split('\n\n').map((paragraph, idx) => {
+          // Check if paragraph contains customer input (starts with quote or "Customer:")
+          const isCustomerInput = paragraph.trim().startsWith('"') || paragraph.toLowerCase().includes('customer:') || paragraph.toLowerCase().includes('user said:');
+          
+          if (isCustomerInput) {
+            // Extract quote and context
+            let quote = paragraph;
+            let context = undefined;
+            
+            if (paragraph.toLowerCase().includes('customer:')) {
+              const parts = paragraph.split(/customer:/i);
+              quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+              context = "Customer feedback";
+            } else if (paragraph.toLowerCase().includes('user said:')) {
+              const parts = paragraph.split(/user said:/i);
+              quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+              context = "User feedback";
+            } else {
+              quote = paragraph.replace(/^["']|["']$/g, '');
+            }
+            
+            return (
+              <CustomerInputCard
+                key={idx}
+                quote={quote}
+                context={context}
+              />
+            );
+          }
+          
+          return (
+            <p key={idx} className="text-lg text-muted-foreground leading-relaxed">
+              {paragraph}
+            </p>
+          );
+        })}
       </div>
 
       {/* Metrics */}

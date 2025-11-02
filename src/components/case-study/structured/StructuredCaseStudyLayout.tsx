@@ -35,6 +35,7 @@ import DistributionDesignSection from "../DistributionDesignSection";
 import OperationalArtifactsSection from "../OperationalArtifactsSection";
 import SystemsBuiltSection from "../SystemsBuiltSection";
 import CustomerVoiceCard from "../CustomerVoiceCard";
+import CustomerInputCard from "../CustomerInputCard";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -437,10 +438,41 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   </h2>
                 </motion.div>
 
-                <div className="max-w-3xl">
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    {caseStudyData.outcomeSection.description}
-                  </p>
+                <div className="max-w-3xl space-y-6">
+                  {caseStudyData.outcomeSection.description.split('\n\n').map((paragraph, idx) => {
+                    const isCustomerInput = paragraph.trim().startsWith('"') || paragraph.toLowerCase().includes('customer:') || paragraph.toLowerCase().includes('user said:');
+                    
+                    if (isCustomerInput) {
+                      let quote = paragraph;
+                      let context = undefined;
+                      
+                      if (paragraph.toLowerCase().includes('customer:')) {
+                        const parts = paragraph.split(/customer:/i);
+                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+                        context = "Customer feedback";
+                      } else if (paragraph.toLowerCase().includes('user said:')) {
+                        const parts = paragraph.split(/user said:/i);
+                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
+                        context = "User feedback";
+                      } else {
+                        quote = paragraph.replace(/^["']|["']$/g, '');
+                      }
+                      
+                      return (
+                        <CustomerInputCard
+                          key={idx}
+                          quote={quote}
+                          context={context}
+                        />
+                      );
+                    }
+                    
+                    return (
+                      <p key={idx} className="text-lg text-muted-foreground leading-relaxed">
+                        {paragraph}
+                      </p>
+                    );
+                  })}
 
                   {/* Metrics */}
                   {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
