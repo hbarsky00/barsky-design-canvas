@@ -45,7 +45,7 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
                     <TrendingUp className="w-6 h-6 text-green-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">What I Chose</h3>
+                    <h3 className="font-semibold text-foreground mb-2 text-lg">Decision</h3>
                     <p className="text-muted-foreground leading-relaxed">{decision.chose}</p>
                   </div>
                 </div>
@@ -55,7 +55,7 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
                     <TrendingDown className="w-6 h-6 text-orange-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">What I Sacrificed</h3>
+                    <h3 className="font-semibold text-foreground mb-2 text-lg">Trade-off</h3>
                     <p className="text-muted-foreground leading-relaxed">{decision.sacrificed}</p>
                   </div>
                 </div>
@@ -76,7 +76,7 @@ const StrategicDecisionsSection: React.FC<StrategicDecisionsSectionProps> = ({ t
                     <Lightbulb className="w-6 h-6 text-yellow-600" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-2 text-lg">Learning</h3>
+                    <h3 className="font-semibold text-foreground mb-2 text-lg">Key Takeaway</h3>
                     <p className="text-muted-foreground italic leading-relaxed">{decision.learning}</p>
                   </div>
                 </div>
