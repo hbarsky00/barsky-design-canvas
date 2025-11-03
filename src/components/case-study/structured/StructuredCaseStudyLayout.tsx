@@ -100,7 +100,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           navigation={navigationItems}
         />
         
-        <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
+        <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)] pb-28 md:pb-0`}>
           <div className="section-container bg-white">
           {/* Unified Hero Section */}
           <UnifiedCaseStudyHero 

@@ -21,7 +21,7 @@ const CustomerInputCard: React.FC<CustomerInputCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={`relative bg-gradient-to-br from-primary/5 via-primary/10 to-accent/5 rounded-xl p-6 border-2 border-primary/20 shadow-sm ${className}`}
+      className={`relative bg-gradient-to-br from-primary/5 via-primary/10 to-accent/5 rounded-xl p-6 md:p-8 border-2 border-primary/20 shadow-md ${className}`}
     >
       <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
         <MessageSquare className="w-5 h-5 text-primary" />
