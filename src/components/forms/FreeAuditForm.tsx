@@ -6,6 +6,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { z } from 'zod';
+
+const auditFormSchema = z.object({
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
+  email: z.string().trim().email('Invalid email address').max(255, 'Email too long'),
+  website: z.string().trim().url('Invalid website URL').max(500, 'Website URL too long').refine(
+    (val) => /^https?:\/\/.+/.test(val),
+    'Website must be a valid HTTP/HTTPS URL'
+  ),
+  company: z.string().trim().max(100, 'Company name too long').optional(),
+  goals: z.string().trim().max(1000, 'Goals too long (max 1000 characters)').optional(),
+  challenges: z.string().trim().max(1000, 'Challenges too long (max 1000 characters)').optional(),
+});
 
 const FreeAuditForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,23 +34,35 @@ const FreeAuditForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Security: Validate with zod schema
+    const validation = auditFormSchema.safeParse(formData);
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: "Validation Error",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
-      // Process lead data through Supabase edge function
-      const leadData = {
-        name: formData.name,
-        email: formData.email,
-        website: formData.website,
-        company: formData.company,
-        project_description: formData.goals,
-        notes: formData.challenges,
-        lead_source: 'free_audit_form',
-        project_type: 'UX Audit'
-      };
-
+      // Process lead data through Supabase edge function with validated data
       const { error } = await supabase.functions.invoke('process-lead', {
-        body: leadData
+        body: {
+          name: validation.data.name,
+          email: validation.data.email,
+          website: validation.data.website,
+          company: validation.data.company || null,
+          project_description: validation.data.goals || null,
+          notes: validation.data.challenges || null,
+          lead_source: 'free_audit_form',
+          project_type: 'UX Audit'
+        }
       });
 
       if (error) {
@@ -59,7 +84,6 @@ const FreeAuditForm: React.FC = () => {
         challenges: ''
       });
     } catch (error) {
-      console.error('Form submission error:', error);
       toast({
         title: "Submission Error",
         description: "Please try again or contact us directly.",
