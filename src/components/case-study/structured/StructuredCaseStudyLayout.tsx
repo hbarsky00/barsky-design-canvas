@@ -37,6 +37,7 @@ import OperationalArtifactsSection from "../OperationalArtifactsSection";
 import SystemsBuiltSection from "../SystemsBuiltSection";
 import CustomerVoiceCard from "../CustomerVoiceCard";
 import CustomerInputCard from "../CustomerInputCard";
+import OutcomeSection from "../OutcomeSection";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -434,92 +435,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* Dynamic Outcome Section */}
           {caseStudyData.outcomeSection && (
-            <section 
-              id="outcome-results" 
-              data-section="outcome-results" 
-              aria-labelledby="outcome-heading" 
-              className="section-snap mb-12 py-6 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
-            >
-              <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
-              
-              {/* Full-width content since no images */}
-              <div className="mb-12">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="mb-6 text-center"
-              >
-                  <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
-                    {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
-                  </div>
-                  <h2 className="text-section-title text-foreground font-display">
-                    {caseStudyData.outcomeSection.title}
-                  </h2>
-                </motion.div>
-
-                <div className="max-w-3xl space-y-6">
-                  {caseStudyData.outcomeSection.description.split('\n\n').map((paragraph, idx) => {
-                    const isCustomerInput = paragraph.trim().startsWith('"') || paragraph.toLowerCase().includes('customer:') || paragraph.toLowerCase().includes('user said:');
-                    
-                    if (isCustomerInput) {
-                      let quote = paragraph;
-                      let context = undefined;
-                      
-                      if (paragraph.toLowerCase().includes('customer:')) {
-                        const parts = paragraph.split(/customer:/i);
-                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
-                        context = "Customer feedback";
-                      } else if (paragraph.toLowerCase().includes('user said:')) {
-                        const parts = paragraph.split(/user said:/i);
-                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
-                        context = "User feedback";
-                      } else {
-                        quote = paragraph.replace(/^["']|["']$/g, '');
-                      }
-                      
-                      return (
-                        <CustomerInputCard
-                          key={idx}
-                          quote={quote}
-                          context={context}
-                        />
-                      );
-                    }
-                    
-                    return (
-                      <p key={idx} className="text-lg text-muted-foreground leading-relaxed">
-                        {paragraph}
-                      </p>
-                    );
-                  })}
-
-                  {/* Metrics */}
-                  {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {caseStudyData.outcomeSection.metrics.map((metric, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="bg-background border border-neutral-200 rounded-2xl p-5"
-                        >
-                          <div className="text-3xl font-semibold text-foreground mb-2">
-                            {metric.value}
-                          </div>
-                          <div className="text-sm text-neutral-700">
-                            {metric.label}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </section>
+            <OutcomeSection
+              title={caseStudyData.outcomeSection.title}
+              description={caseStudyData.outcomeSection.description}
+              eyebrow={caseStudyData.outcomeSection.eyebrow}
+              metrics={caseStudyData.outcomeSection.metrics}
+            />
           )}
 
           {/* Post-Launch Section */}
