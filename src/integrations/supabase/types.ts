@@ -436,14 +436,8 @@ export type Database = {
         }
         Returns: boolean
       }
-      is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      profile_exists: {
-        Args: { profile_id: string }
-        Returns: boolean
-      }
+      is_admin: { Args: never; Returns: boolean }
+      profile_exists: { Args: { profile_id: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
