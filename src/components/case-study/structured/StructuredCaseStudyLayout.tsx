@@ -29,12 +29,6 @@ import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
-import StrategicDecisionsSection from "../StrategicDecisionsSection";
-import AICollaborationSection from "../AICollaborationSection";
-import DistributionDesignSection from "../DistributionDesignSection";
-import OperationalArtifactsSection from "../OperationalArtifactsSection";
-import SystemsBuiltSection from "../SystemsBuiltSection";
-import CustomerVoiceCard from "../CustomerVoiceCard";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -77,11 +71,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
     ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
     ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
-    ...(caseStudyData.strategicDecisions ? [{ label: "Strategic Decisions", anchor: "#strategic-decisions" }] : []),
-    ...(caseStudyData.aiCollaboration ? [{ label: "AI Collaboration", anchor: "#ai-collaboration" }] : []),
-    ...(caseStudyData.distributionDesign ? [{ label: "Growth Design", anchor: "#distribution" }] : []),
-    ...(caseStudyData.operationalArtifacts ? [{ label: "Operational Artifacts", anchor: "#ops" }] : []),
-    ...(caseStudyData.systemsBuilt ? [{ label: "Systems Built", anchor: "#systems" }] : []),
     { label: "More Work", anchor: "#more-work" }
   ];
 
@@ -495,48 +484,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          {/* FOUNDER-LEVEL SECTIONS */}
-          {caseStudyData.strategicDecisions && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <StrategicDecisionsSection title={caseStudyData.strategicDecisions.title} decisions={caseStudyData.strategicDecisions.decisions} />
-            </div>
-          )}
-
-          {caseStudyData.aiCollaboration && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <AICollaborationSection title={caseStudyData.aiCollaboration.title} aiHandled={caseStudyData.aiCollaboration.aiHandled} humanRefined={caseStudyData.aiCollaboration.humanRefined} combinedImpact={caseStudyData.aiCollaboration.combinedImpact} />
-            </div>
-          )}
-
-          {caseStudyData.distributionDesign && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <DistributionDesignSection title={caseStudyData.distributionDesign.title} moments={caseStudyData.distributionDesign.moments} />
-            </div>
-          )}
-
-          {caseStudyData.operationalArtifacts && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <OperationalArtifactsSection title={caseStudyData.operationalArtifacts.title} deliverables={caseStudyData.operationalArtifacts.deliverables} />
-            </div>
-          )}
-
-          {caseStudyData.systemsBuilt && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <SystemsBuiltSection title={caseStudyData.systemsBuilt.title} systems={caseStudyData.systemsBuilt.systems} />
-            </div>
-          )}
-
-          {caseStudyData.customerVoice && (
-            <div className="my-16">
-              <div className="text-center mb-12">
-                <h2 className="text-section-title font-display">Customer Impact</h2>
-                <p className="text-lg text-muted-foreground mt-4">Data + Voice: Proving empathy and impact</p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-8">
-                {caseStudyData.customerVoice.map((voice, index) => <CustomerVoiceCard key={index} {...voice} />)}
-              </div>
-            </div>
-          )}
           
           {/* Related Case Study Section */}
           <section id="more-work" data-section="more-work" aria-labelledby="more-work-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
