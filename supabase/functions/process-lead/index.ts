@@ -6,6 +6,24 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Rate limiting
+const rateLimiter = new Map<string, number[]>();
+
+function checkRateLimit(identifier: string, maxRequests = 3, windowMs = 60000): boolean {
+  const now = Date.now();
+  const requests = rateLimiter.get(identifier) || [];
+  
+  const recentRequests = requests.filter(time => now - time < windowMs);
+  
+  if (recentRequests.length >= maxRequests) {
+    return false;
+  }
+  
+  recentRequests.push(now);
+  rateLimiter.set(identifier, recentRequests);
+  return true;
+}
+
 interface LeadData {
   email: string;
   name: string;
@@ -24,6 +42,15 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Rate limiting check
+    const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('cf-connecting-ip') || 'unknown';
+    if (!checkRateLimit(clientIP, 3, 60000)) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
@@ -47,6 +74,27 @@ const handler = async (req: Request): Promise<Response> => {
     if (!emailRegex.test(leadData.email)) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Length validation
+    if (leadData.name.length > 100 || leadData.email.length > 255) {
+      return new Response(
+        JSON.stringify({ error: 'Input exceeds maximum length' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    if (leadData.projectDescription && leadData.projectDescription.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Project description too long' }),
         { 
           status: 400, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
