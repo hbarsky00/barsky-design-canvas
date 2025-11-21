@@ -1,7 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
-import { RateLimiter } from '../_shared/rateLimiter.ts';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -19,37 +18,13 @@ interface ContactFormData {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Rate limiting
-    const clientIp = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || 'unknown';
-    if (!RateLimiter.checkLimit(clientIp)) {
-      return new Response(
-        JSON.stringify({ error: 'Too many email requests. Please try again later.' }),
-        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
     const formData: ContactFormData = await req.json();
-    
-    // Validation
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      return new Response(
-        JSON.stringify({ error: 'All fields are required' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    if (formData.name.length > 100 || formData.email.length > 255 || 
-        formData.subject.length > 200 || formData.message.length > 5000) {
-      return new Response(
-        JSON.stringify({ error: 'Input exceeds maximum length' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
 
     // Send email to site owner
     const emailToOwner = await resend.emails.send({
@@ -78,10 +53,10 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Emails sent successfully");
+    console.log("Emails sent successfully:", { emailToOwner, emailToSender });
 
     return new Response(
-      JSON.stringify({ success: true }),
+      JSON.stringify({ success: true, message: "Emails sent successfully" }),
       {
         status: 200,
         headers: {
@@ -91,9 +66,13 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
   } catch (error: any) {
-    console.error("Error in send-contact-email function");
+    console.error("Error in send-contact-email function:", error);
     return new Response(
-      JSON.stringify({ error: 'Failed to send email' }),
+      JSON.stringify({ 
+        success: false, 
+        message: "Failed to send email", 
+        error: error.message 
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

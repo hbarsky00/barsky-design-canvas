@@ -31,16 +31,11 @@ export const blogPosts: BlogPost[] = [
     tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
     slug: "finding-first-ux-job-guide",
     content: `
-      <p>The UX job market lie: 'Just make a good portfolio.' Wrong. After surveying 73 designers who got hired in 2024, 87% got their job through strategic positioning, not portfolio quality. Here's what actually works in 2025.</p>
+      <p>Breaking into UX can feel like trying to solve a puzzle with missing pieces. After 15+ years in the field, I've seen countless talented designers struggle not because they lack skills, but because they're approaching the job hunt all wrong.</p>
       
-      <h2 class="text-section-title mt-8 mb-4">The Strategic Trade-Off Nobody Talks About</h2>
+      <h2 class="text-section-title mt-8 mb-4">The Reality Check Nobody Talks About</h2>
       
-      <p>Chose niche specialization over generalist positioning—sacrificed 40% of job opportunities to win 3× more interviews in my target companies.</p>
-      
-      <p>Before repositioning: 4% interview rate from 50 applications<br>
-      After repositioning: 9% interview rate with half the applications</p>
-      
-      <p>The math: Fewer applications × higher conversion = better offers faster. That's not luck—that's strategic positioning.</p>
+      <p>The UX job market isn't what it was five years ago. Companies are more selective, and "entry-level" positions often require 2-3 years of experience. But here's the thing - this creates opportunity for those who know how to stand out.</p>
       
       <h2 class="text-section-title mt-8 mb-4">Your Portfolio is Your Product</h2>
       
@@ -65,14 +60,6 @@ export const blogPosts: BlogPost[] = [
       
       <p>In 2025, UX designers who understand AI integration have a massive advantage. Learn how to prototype with AI tools, understand conversational interfaces, and position yourself as someone who can bridge design and emerging technology.</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">What Worked: Real Data</h2>
-
-      <ul class="list-disc pl-6 mb-4">
-        <li>After restructuring portfolio with trade-off framing: Interview conversion ↑185%</li>
-        <li>After focusing on fintech niche: Average salary offers ↑28%</li>
-        <li>After adding AI-enhanced case study: Client inquiries ↑220%</li>
-      </ul>
-      
       <h2 class="text-2xl font-bold mt-8 mb-4">Your Next Steps:</h2>
       <ul class="list-disc pl-6 mb-4">
         <li>Audit your portfolio using the three-story rule</li>
@@ -94,16 +81,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
     slug: "design-systems-that-get-used",
     content: `
-      <p>Design system lie: 'Build it right and they will use it.' Wrong. After analyzing 15 failed design systems, 80% died not from bad design, but from bad adoption strategy. Here's how to build ones that survive beyond launch week.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Launch Trade-Off That Changed Everything</h2>
-
-      <p>Chose adoption over completeness—shipped 5 core components in Week 1, killed comprehensive library plan.</p>
-
-      <p>Before: 'Complete' system with 40+ components → 15% team adoption, 6-month launch cycle<br>
-      After: 5 components first → 90% adoption, 2-week launch, expanded based on real usage</p>
-
-      <p>That's not cutting corners. That's de-risking by proving value before scaling.</p>
+      <p>I've seen more design systems die in Figma libraries than I care to count. Beautiful, comprehensive, and completely ignored by the teams they were meant to help. Here's how to build one that actually survives in the wild.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">Start Small, Think Big</h2>
       
@@ -136,15 +114,6 @@ export const blogPosts: BlogPost[] = [
       
       <p>Track adoption rates, not just component coverage. Are teams actually using your system? Are design-to-development handoffs smoother? Is visual consistency improving across products?</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">What Success Looks Like (With Numbers)</h2>
-
-      <ul class="list-disc pl-6 mb-4">
-        <li>Design-to-dev handoff time: ↓65% (from 8 hours to 2.8 hours)</li>
-        <li>Visual consistency scores: ↑80% across products</li>
-        <li>Developer satisfaction with design handoff: ↑75%</li>
-        <li>Velocity on new features: +25% after 3 months</li>
-      </ul>
-      
       <h2 class="text-2xl font-bold mt-8 mb-4">The Maintenance Reality</h2>
       
       <p>Plan for maintenance from day one. Design systems aren't "set it and forget it" projects. They require ongoing care, updates, and evangelism. Budget for this or watch your system slowly die.</p>
@@ -163,7 +132,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
     slug: "case-study-writing",
     content: `
-      <p>Case study lie: 'Show your process.' Wrong. After reviewing 200+ UX portfolios, founders don't hire process—they hire de-risking. Here's what they actually want to see.</p>
+      <p>Your portfolio is getting views but no interviews. Sound familiar? After reviewing hundreds of UX portfolios, I've identified the red flags that make hiring managers hit the back button.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #1: The Case Study Novel</h2>
       
@@ -197,16 +166,6 @@ export const blogPosts: BlogPost[] = [
       
       <p>If everything in your portfolio was a massive success, you're either lying or not taking enough risks. Include a project that didn't go perfectly and what you learned.</p>
       
-      <h2 class="text-2xl font-bold mt-8 mb-4">Before/After: Same Project, Different Framing</h2>
-
-      <p><strong>Before (Process-focused):</strong><br>
-      "I conducted user interviews, created personas, and designed wireframes..."</p>
-
-      <p><strong>After (Founder-focused):</strong><br>
-      "Bet on AI semantic search over keyword filtering—sacrificed 4 weeks and added complexity to deliver 85% accuracy. Trade-off: longer sprint. Payoff: 20% ROI, competitors copying our approach 6 months later."</p>
-
-      <p>Same project. First version shows activity. Second version shows strategic thinking that founders pay for.</p>
-      
       <h2 class="text-2xl font-bold mt-8 mb-4">The Fix: The STAR Method</h2>
       
       <p>Structure each case study using:</p>
@@ -232,28 +191,6 @@ export const blogPosts: BlogPost[] = [
     slug: "ai-enhanced-ux-designer-future",
     content: `
       <p>AI isn't going to replace UX designers, but UX designers who understand AI will replace those who don't. Here's how to position yourself for the future of design.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Real AI/Human Collaboration (Not Theory)</h2>
-
-      <p>On a recent healthcare project:</p>
-
-      <p><strong>AI handled:</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Synthesized 47 patient interviews → surfaced 3 core anxiety patterns in 2 hours (vs 3 days manual)</li>
-        <li>Generated 50+ medication reminder copy variants</li>
-        <li>Analyzed 200+ error logs → identified top failure patterns</li>
-      </ul>
-
-      <p><strong>Humans refined:</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Validated themes with 5 follow-up calls, refined into trust-first framework</li>
-        <li>A/B tested top 10 variants, chose empathy tone that reduced anxiety</li>
-        <li>Designed validation rules addressing the 5 highest-cost errors</li>
-      </ul>
-
-      <p><strong>Result:</strong> Research time ↓65%, booking conversion ↑40%, medication adherence ↑60%</p>
-
-      <p>That's not AI replacing designers. That's AI amplifying human insight.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">The AI-UX Intersection</h2>
       
@@ -319,19 +256,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
-      <p>'No budget for research' is the most expensive lie in product. After running $500 of guerrilla research that prevented $50K of rebuild costs on my last fintech project, here's how to get actionable insights without breaking the bank.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Real Example: $500 Research Prevented $50K Disaster</h2>
-
-      <p><strong>The Situation:</strong> Fintech loan app ready to ship, stakeholders confident.</p>
-
-      <p><strong>The Trade-Off:</strong> Chose 5 deep interviews over 50 surface surveys—sacrificed statistical significance to gain actionable insights.</p>
-
-      <p><strong>What We Found:</strong> 4 out of 5 users abandoned at validation step due to unclear error messages. Would have caused 40% drop-off at launch.</p>
-
-      <p><strong>The Fix:</strong> 2-week delay to redesign validation → launched with 65% completion vs projected 32%.</p>
-
-      <p><strong>ROI:</strong> $500 research + 2 weeks delay saved rebuilding post-launch disaster. That's not nice-to-have research—that's risk management.</p>
+      <p>"We don't have budget for user research" is the most expensive sentence in product development. Here's how to get valuable user insights without breaking the bank.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">The Guerrilla Research Toolkit</h2>
       
@@ -425,20 +350,6 @@ export const blogPosts: BlogPost[] = [
     slug: "wireframes-to-wow-visual-hierarchy",
     content: `
       <p>Good visual hierarchy is invisible. Users don't notice it - they just effortlessly flow through your interface. Bad visual hierarchy screams from every pixel. Here's how to master the psychology behind what makes designs feel intuitive.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Visual Hierarchy Isn't Design Theory—It's Business Strategy</h2>
-
-      <p>Every hierarchy choice is a bet on what users should see first. Get it wrong and you're hiding your value proposition. Get it right and conversions improve without changing features.</p>
-
-      <p><strong>Real example:</strong> Redesigned landing page hierarchy for SaaS product:</p>
-
-      <ul class="list-disc pl-6 mb-4">
-        <li>Before: Features-first layout → 2.3% conversion</li>
-        <li>After: Problem-solution-proof hierarchy → 4.1% conversion</li>
-        <li>Changed layout, not content → +78% conversion</li>
-      </ul>
-
-      <p>That's not just making things pretty. That's using visual hierarchy as a strategic lever for business outcomes.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">The Neuroscience of First Impressions</h2>
       

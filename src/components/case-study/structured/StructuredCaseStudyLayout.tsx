@@ -28,7 +28,6 @@ import ProjectContextSection from "../ProjectContextSection";
 import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
-import PrototypeSessionCard from "../PrototypeSessionCard";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
 import StrategicDecisionsSection from "../StrategicDecisionsSection";
 import AICollaborationSection from "../AICollaborationSection";
@@ -36,8 +35,6 @@ import DistributionDesignSection from "../DistributionDesignSection";
 import OperationalArtifactsSection from "../OperationalArtifactsSection";
 import SystemsBuiltSection from "../SystemsBuiltSection";
 import CustomerVoiceCard from "../CustomerVoiceCard";
-import CustomerInputCard from "../CustomerInputCard";
-import OutcomeSection from "../OutcomeSection";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -101,7 +98,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           navigation={navigationItems}
         />
         
-        <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)] pb-28 md:pb-0`}>
+        <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
           <div className="section-container bg-white">
           {/* Unified Hero Section */}
           <UnifiedCaseStudyHero 
@@ -265,30 +262,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </motion.div>
               )}
 
-              <div className="content-rail-left mb-8 space-y-6">
-                {caseStudyData.userTestingSection.description.split('\n\n').map((paragraph, index) => {
-                  const isPrototypeSession = 
-                    paragraph.startsWith('Prototype sessions') ||
-                    paragraph.toLowerCase().includes('prototype testing showed') ||
-                    paragraph.toLowerCase().includes('tested with') ||
-                    paragraph.toLowerCase().includes('testing showed') ||
-                    paragraph.toLowerCase().includes('results:');
-                  
-                  if (isPrototypeSession) {
-                    return (
-                      <PrototypeSessionCard
-                        key={index}
-                        content={paragraph}
-                      />
-                    );
-                  }
-                  
-                  return (
-                    <p key={index} className="text-lg text-muted-foreground leading-relaxed">
-                      {paragraph}
-                    </p>
-                  );
-                })}
+              <div className="content-rail-left mb-8">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {caseStudyData.userTestingSection.description}
+                </p>
               </div>
 
               {/* Display dynamic metrics */}
@@ -435,12 +412,61 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
 
           {/* Dynamic Outcome Section */}
           {caseStudyData.outcomeSection && (
-            <OutcomeSection
-              title={caseStudyData.outcomeSection.title}
-              description={caseStudyData.outcomeSection.description}
-              eyebrow={caseStudyData.outcomeSection.eyebrow}
-              metrics={caseStudyData.outcomeSection.metrics}
-            />
+            <section 
+              id="outcome-results" 
+              data-section="outcome-results" 
+              aria-labelledby="outcome-heading" 
+              className="section-snap mb-12 py-6 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
+            >
+              <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
+              
+              {/* Full-width content since no images */}
+              <div className="mb-12">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="mb-6 text-center"
+              >
+                  <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-eyebrow text-blue-700 header-spacing">
+                    {caseStudyData.outcomeSection.eyebrow || "OUTCOMES & IMPACT"}
+                  </div>
+                  <h2 className="text-section-title text-foreground font-display">
+                    {caseStudyData.outcomeSection.title}
+                  </h2>
+                </motion.div>
+
+                <div className="max-w-3xl">
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    {caseStudyData.outcomeSection.description}
+                  </p>
+
+                  {/* Metrics */}
+                  {caseStudyData.outcomeSection.metrics && caseStudyData.outcomeSection.metrics.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {caseStudyData.outcomeSection.metrics.map((metric, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          className="bg-background border border-neutral-200 rounded-2xl p-5"
+                        >
+                          <div className="text-3xl font-semibold text-foreground mb-2">
+                            {metric.value}
+                          </div>
+                          <div className="text-sm text-neutral-700">
+                            {metric.label}
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
           )}
 
           {/* Post-Launch Section */}

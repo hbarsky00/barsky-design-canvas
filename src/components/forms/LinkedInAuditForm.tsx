@@ -7,19 +7,6 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Linkedin, ArrowRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { z } from 'zod';
-
-const linkedInFormSchema = z.object({
-  name: z.string().trim().min(2).max(100),
-  email: z.string().trim().email().max(255),
-  linkedinUrl: z.string().trim().max(500).refine(
-    (val) => !val || /^https?:\/\/(www\.)?linkedin\.com\/.+/.test(val),
-    'Must be a valid LinkedIn URL'
-  ),
-  industry: z.string().trim().max(100).optional(),
-  goals: z.string().trim().max(1000).optional(),
-  currentChallenges: z.string().trim().max(1000).optional(),
-});
 
 const LinkedInAuditForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -35,35 +22,28 @@ const LinkedInAuditForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const validation = linkedInFormSchema.safeParse(formData);
-    if (!validation.success) {
-      toast({
-        title: "Validation Error",
-        description: validation.error.errors[0].message,
-        variant: "destructive",
-      });
-      return;
-    }
-    
     setIsSubmitting(true);
 
     try {
+      // Process lead data through Supabase edge function
+      const leadData = {
+        name: formData.name,
+        email: formData.email,
+        website: formData.linkedinUrl,
+        project_description: `LinkedIn Profile Optimization - Industry: ${formData.industry}. Goals: ${formData.goals}`,
+        notes: formData.currentChallenges,
+        lead_source: 'linkedin_audit_form',
+        project_type: 'LinkedIn Optimization',
+        budget_range: '$497'
+      };
+
       const { error } = await supabase.functions.invoke('process-lead', {
-        body: {
-          name: validation.data.name,
-          email: validation.data.email,
-          website: validation.data.linkedinUrl,
-          company: validation.data.industry,
-          project_description: validation.data.goals,
-          notes: validation.data.currentChallenges,
-          leadSource: 'linkedin_audit_form',
-          projectType: 'LinkedIn Optimization',
-          budgetRange: '$497'
-        }
+        body: leadData
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
       
       toast({
         title: "LinkedIn Audit Request Submitted!",
@@ -79,6 +59,7 @@ const LinkedInAuditForm: React.FC = () => {
         currentChallenges: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Submission Error",
         description: "Please try again or contact us directly.",

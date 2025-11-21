@@ -7,24 +7,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { rateLimiter, securityMonitor } from '@/utils/securityMonitor';
-import { z } from 'zod';
-
-const contactFormSchema = z.object({
-  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
-  email: z.string().trim().email('Invalid email').max(255, 'Email too long'),
-  company: z.string().trim().max(100, 'Company name too long').optional(),
-  website: z.string().trim().max(500, 'Website URL too long').refine(
-    (val) => !val || /^https?:\/\/.+/.test(val),
-    'Website must be a valid HTTP/HTTPS URL'
-  ).optional(),
-  phone: z.string().trim().max(20, 'Phone too long').refine(
-    (val) => !val || /^[\d\s+()-]+$/.test(val),
-    'Phone contains invalid characters'
-  ).optional(),
-  project_type: z.string().max(100).optional(),
-  budget_range: z.string().max(50).optional(),
-  project_description: z.string().trim().max(2000, 'Description too long (max 2000 characters)').optional(),
-});
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -42,43 +24,37 @@ export const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate with zod
-    const validation = contactFormSchema.safeParse(formData);
-    if (!validation.success) {
-      toast.error(validation.error.errors[0].message);
-      return;
-    }
-    
-    // Rate limiting
-    const clientId = `${formData.email}_contact`;
+    // Rate limiting check
+    const clientId = `${formData.email}_${Date.now()}`;
     if (rateLimiter.isRateLimited(clientId)) {
-      toast.error('Too many submissions. Please wait before trying again.');
-      securityMonitor.logEvent({
-        type: 'suspicious_activity',
-        details: { action: 'rate_limit_exceeded', email: formData.email }
-      });
+      const remaining = rateLimiter.getRemainingAttempts(clientId);
+      toast.error(`Too many submissions. Please wait before trying again. Remaining attempts: ${remaining}`);
       return;
     }
 
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.functions.invoke('process-lead', {
-        body: {
-          name: validation.data.name,
-          email: validation.data.email,
-          company: validation.data.company,
-          website: validation.data.website,
-          phone: validation.data.phone,
-          projectType: validation.data.project_type,
-          budgetRange: validation.data.budget_range,
-          projectDescription: validation.data.project_description,
-          leadSource: 'website'
-        }
-      });
+      const { error } = await supabase
+        .from('leads')
+        .insert([{
+          ...formData,
+          lead_source: 'website'
+        }]);
 
       if (error) {
+        console.error('Error submitting form:', error);
         toast.error('Failed to submit form. Please try again.');
+        
+        // Log suspicious activity if there are repeated errors
+        securityMonitor.logEvent({
+          type: 'suspicious_activity',
+          details: {
+            action: 'form_submission_error',
+            error: error.message,
+            formData: { email: formData.email, name: formData.name }
+          }
+        });
       } else {
         toast.success('Thank you! We\'ll be in touch soon.');
         setFormData({
@@ -93,6 +69,7 @@ export const ContactForm: React.FC = () => {
         });
       }
     } catch (error) {
+      console.error('Unexpected error:', error);
       toast.error('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);

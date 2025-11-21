@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import ProjectVideo from "@/components/project/ProjectVideo";
-import CustomerInputCard from "./CustomerInputCard";
 
 interface KeyInsight {
   number: number;
@@ -135,41 +134,9 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights, video }) => {
                   >
                     {insight.title}
                   </h3>
-                  {insight.description.split('\n\n').map((paragraph, idx) => {
-                    const isCustomerInput = paragraph.trim().startsWith('"') || paragraph.toLowerCase().includes('customer:') || paragraph.toLowerCase().includes('user said:');
-                    
-                    if (isCustomerInput) {
-                      let quote = paragraph;
-                      let context = undefined;
-                      
-                      if (paragraph.toLowerCase().includes('customer:')) {
-                        const parts = paragraph.split(/customer:/i);
-                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
-                        context = "Customer feedback";
-                      } else if (paragraph.toLowerCase().includes('user said:')) {
-                        const parts = paragraph.split(/user said:/i);
-                        quote = parts[1]?.trim().replace(/^["']|["']$/g, '') || paragraph;
-                        context = "User feedback";
-                      } else {
-                        quote = paragraph.replace(/^["']|["']$/g, '');
-                      }
-                      
-                      return (
-                        <CustomerInputCard
-                          key={idx}
-                          quote={quote}
-                          context={context}
-                          className="mt-3"
-                        />
-                      );
-                    }
-                    
-                    return (
-                      <p key={idx} className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                        {paragraph}
-                      </p>
-                    );
-                  })}
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {insight.description}
+                  </p>
                 </div>
               </div>
             </motion.div>

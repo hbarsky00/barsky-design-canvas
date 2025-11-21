@@ -24,8 +24,7 @@ const FloatingButtonGroup: React.FC = () => {
 
   return (
     <motion.div
-      className="fixed bottom-6 right-4 md:bottom-6 md:right-6 z-50 flex items-center gap-3"
-      style={{ bottom: 'calc(env(safe-area-inset-bottom) + 24px)' }}
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ scale: 0, opacity: 0 }}

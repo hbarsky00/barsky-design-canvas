@@ -510,6 +510,108 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
       ],
     },
+    strategicDecisions: {
+      title: "Strategic Bets That Defined The Product",
+      decisions: [
+        {
+          chose: "Empathy over features",
+          sacrificed: "Killed AI symptom checker (8-week build)",
+          impact: "3× bookings in month 1, zero complaints about missing features",
+          learning: "Trust beats completeness in healthcare",
+          metrics: "3× bookings, 0 feature complaints"
+        },
+        {
+          chose: "One-tap logging over detailed tracking",
+          sacrificed: "Comprehensive data collection capabilities",
+          impact: "45% faster medication entry, 60% less abandonment",
+          learning: "Speed to compliance beats data perfection when anxiety is high",
+          metrics: "45% faster entry, 60% less abandonment"
+        }
+      ]
+    },
+    aiCollaboration: {
+      title: "How AI Amplified This Work",
+      aiHandled: [
+        "Synthesized 47 patient interviews → surfaced 3 core anxiety patterns in 2 hours",
+        "Generated 50+ medication reminder copy variants",
+        "Analyzed 200+ error logs to identify top failure patterns"
+      ],
+      humanRefined: [
+        "Validated themes with 5 follow-up calls, refined into trust-first framework",
+        "A/B tested top 10 reminder variants, chose empathy-forward tone that reduced stress",
+        "Designed validation rules addressing the 5 highest-cost error patterns"
+      ],
+      combinedImpact: {
+        timeSaved: "Research time ↓65% (from 3 weeks to 5 days)",
+        qualityImproved: "Booking conversion ↑40%, medication adherence ↑60%"
+      }
+    },
+    distributionDesign: {
+      title: "Growth Design Decisions",
+      moments: [
+        {
+          feature: "Share with doctor button",
+          mechanism: "Added one-click export of care plan at end of medication logging",
+          result: "45% forwarded care plans to physicians → organic clinician awareness"
+        },
+        {
+          feature: "60-second first win",
+          mechanism: "Log one medication immediately after signup → instant value",
+          result: "73% activation rate (vs 40% industry standard)"
+        },
+        {
+          feature: "Invite family member",
+          mechanism: "Prompt to add caregiver after first successful week",
+          result: "28% invited family → 60% higher sustained usage"
+        }
+      ]
+    },
+    operationalArtifacts: {
+      title: "What I Delivered Beyond Design",
+      deliverables: [
+        "Help center: 15 articles covering medication workflows + appointment booking",
+        "Patient onboarding videos: 3× Loom walkthroughs (avg 2min each) with accessibility captions",
+        "Clinician training deck: 12-slide demo for healthcare provider partnerships",
+        "HIPAA compliance documentation: 47 pages covering data handling and consent flows",
+        "Launch comms: Email campaign + LinkedIn post → 2,400 views, 43 clinician signups"
+      ]
+    },
+    systemsBuilt: {
+      title: "Systems That Compound Velocity",
+      systems: [
+        {
+          name: "WCAG AAA Component Library",
+          description: "47 components with accessibility baked in from day one",
+          impact: "Legal risk eliminated, audit time ↓100%, no retroactive accessibility fixes needed"
+        },
+        {
+          name: "Medication Validation Pattern Library",
+          description: "Reusable field checks for drug interactions, dosage limits, and timing conflicts",
+          impact: "3 bug classes eliminated, QA time ↓40%, dev velocity +25% on new medication features"
+        },
+        {
+          name: "Form Builder Framework",
+          description: "Modular system for patient intake, surveys, and consent workflows",
+          impact: "New forms ship in 2 days vs 8 days → 4× velocity on compliance features"
+        }
+      ]
+    },
+    customerVoice: [
+      {
+        quote: "I finally trust my medication routine. Before, I'd second-guess every dose and call my doctor constantly.",
+        author: "Maria",
+        title: "Type 2 Diabetes Patient",
+        metric: "45%",
+        metricLabel: "Less anxiety during daily routines"
+      },
+      {
+        quote: "My patients are actually following their care plans now. The data I receive is reliable, which was never the case before.",
+        author: "Dr. Sarah Chen",
+        title: "Primary Care Physician",
+        metric: "60%",
+        metricLabel: "Improvement in patient adherence"
+      }
+    ],
     sections: [],
     seoData: {
       image:
@@ -782,6 +884,108 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "+60%", label: "Retention" },
       ],
     },
+    strategicDecisions: {
+      title: "Strategic Decisions & Trade-Offs",
+      decisions: [
+        {
+          chose: "Confidence over complexity",
+          sacrificed: "Simplified from 47 trading pairs to 12 most stable → revenue from exotic pairs delayed",
+          impact: "Beginner completion +35%, onboarding conversion +35%",
+          learning: "Fear elimination beats feature richness in fintech onboarding",
+          metrics: "+35% completion, +35% conversion"
+        },
+        {
+          chose: "Dual-mode architecture",
+          sacrificed: "4 extra weeks of development + 2× engineering complexity",
+          impact: "Served both beginners and pros without forcing migration → 60% retention increase",
+          learning: "Unified experience beats forced migration every time",
+          metrics: "+60% retention, 87% adoption of dual-mode"
+        }
+      ]
+    },
+    aiCollaboration: {
+      title: "AI + Human Collaboration Model",
+      aiHandled: [
+        "Generated 200+ risk disclosure variants for regulatory compliance",
+        "Analyzed competitor patterns across 15 crypto platforms to identify common exploitation tactics",
+        "Synthesized 89 user interviews → identified 7 fear-driven abandonment triggers"
+      ],
+      humanRefined: [
+        "A/B tested top 10 disclosure variants, chose empathy-forward language that reduced abandonment 40%",
+        "Designed dual-mode system that proved industry's false choice is unnecessary",
+        "Created de-escalation design patterns for high-stress trading moments"
+      ],
+      combinedImpact: {
+        timeSaved: "Regulatory review time ↓70% (legal approval in 2 weeks vs 8 weeks)",
+        qualityImproved: "Fear-driven hesitation ↓40%, trust scores +75%"
+      }
+    },
+    distributionDesign: {
+      title: "Viral Loops & Growth Design",
+      moments: [
+        {
+          feature: "Invite friend, both get $10",
+          mechanism: "Prompt at first successful trade → minimal friction, maximum incentive",
+          result: "28% referred peers → CAC ↓$15 per user"
+        },
+        {
+          feature: "Practice mode with fake money",
+          mechanism: "Let beginners test without risk before real money",
+          result: "60% converted to real trading vs 25% without practice mode"
+        },
+        {
+          feature: "Share trade insights",
+          mechanism: "One-click social sharing of wins (optional, not pushy)",
+          result: "18% organic social proof → 300+ organic signups from shared content"
+        }
+      ]
+    },
+    operationalArtifacts: {
+      title: "Beyond Design: Full Launch Support",
+      deliverables: [
+        "Regulatory compliance documentation: 47 pages covering SEC, FinCEN, and state requirements",
+        "Sales demo deck: 8-slide pitch highlighting AI differentiation → 43 demos booked from LinkedIn post",
+        "Crisis comms playbook: Internal FAQ for volatile market days + customer communication templates",
+        "API documentation: 67 endpoints for institutional integration partners",
+        "User education content: 12-article knowledge base explaining crypto concepts in plain English"
+      ]
+    },
+    systemsBuilt: {
+      title: "Reusable Systems & Compounding Velocity",
+      systems: [
+        {
+          name: "Dual-Mode Architecture Framework",
+          description: "Pattern for progressive disclosure without code duplication",
+          impact: "Enabled personalization across 8 new features without performance penalties → dev velocity +25%"
+        },
+        {
+          name: "Risk Disclosure Component Library",
+          description: "Reusable regulatory compliance patterns for financial products",
+          impact: "New feature legal review time ↓70%, no compliance violations in 6 months post-launch"
+        },
+        {
+          name: "Real-Time Data Streaming Optimization",
+          description: "WebSocket patterns with intelligent batching for 50+ crypto pairs",
+          impact: "Sub-100ms latency maintained even under high load → no performance degradation"
+        }
+      ]
+    },
+    customerVoice: [
+      {
+        quote: "I can't believe how simple this is when you're not trying to confuse me. Other apps felt like they wanted me to fail.",
+        author: "Alex",
+        title: "First-Time Crypto Trader",
+        metric: "+35%",
+        metricLabel: "Beginners confident enough to start"
+      },
+      {
+        quote: "Finally, I don't have to choose between speed and helping friends get started. This is what every crypto app should have been.",
+        author: "Jordan",
+        title: "Professional Trader",
+        metric: "–40%",
+        metricLabel: "Fear-driven hesitation"
+      }
+    ],
     sections: [],
     seoData: {
       image:
@@ -821,17 +1025,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           eyebrow: "DISCOVERY BARRIERS",
           insight: "Teams spend 3+ hours daily searching for existing data across disconnected systems.",
-          drove: "Unified search interface with intelligent content tagging and federated results. → Result: 65% reduction in search time, 20% ROI from productivity",
+          drove: "Unified search interface with intelligent content tagging and federated results.",
         },
         {
           eyebrow: "PERMISSION COMPLEXITY",
           insight: "Access control confusion leads to either data hoarding or security breaches.",
-          drove: "Visual permission indicators and smart access request workflows. → Result: 40% reduction in support tickets, 90% user satisfaction",
+          drove: "Visual permission indicators and smart access request workflows.",
         },
         {
           eyebrow: "CONTEXT LOSS",
           insight: "Found data lacks business context, making it unusable without tribal knowledge.",
-          drove: "Rich metadata display with usage patterns and related content suggestions. → Result: 85% increase in decision confidence, zero tribal knowledge gaps",
+          drove: "Rich metadata display with usage patterns and related content suggestions.",
         },
       ],
       researchImages: [
@@ -844,7 +1048,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem",
       statement:
-        "Enterprise teams lose 40% of their productive time hunting for data that already exists. I bet on AI-powered semantic search over keyword filtering—sacrificed 4 weeks and added ML complexity to deliver 85% accuracy and 65% faster retrieval. Trade-off: longer dev cycle. Payoff: 20% measurable ROI from productivity gains.",
+        "Enterprise teams lose 40% of their productive time hunting for data that already exists. Critical decisions get delayed, projects stall, and knowledge workers become frustrated with disconnected systems that hide rather than reveal insights.",
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
@@ -872,7 +1076,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         number: 1,
         title: "Semantic search changed everything",
         description:
-          "Bet on AI semantic search over keyword filtering—sacrificed 4 weeks for ML training + 15% more infrastructure costs. Result: 85% accuracy (vs 40% keywords), 70% fewer refinement queries. Learning: AI investment pays off when search quality directly impacts productivity.",
+          "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
             src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
@@ -885,13 +1089,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         number: 2,
         title: "Visual data lineage built trust",
         description:
-          "Chose visual data lineage over simple file lists—sacrificed UI simplicity for transparency. Result: 75% confidence increase, users act immediately vs 'checking with colleagues first.' Learning: In enterprise, context beats simplicity.",
+          "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately.",
       },
       {
         number: 3,
         title: "Smart permissions reduced friction",
         description:
-          "Chose proactive permission suggestions over reactive blocking—sacrificed developer time building smart workflows. Result: 40% fewer support tickets, 90% request approval rate. Learning: Friction removal compounds into velocity.",
+          "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
       },
     ],
     keyInsightsVideo: {
@@ -904,7 +1108,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "",
       content:
-        "Enterprise search isn't just finding files—it's understanding business context.\n\nAI handled:\n• Analyzed 10K+ search queries → identified 8 intent patterns\n• Generated semantic embeddings for 50K documents → 85% accuracy\n• Processed permission data → surfaced access bottlenecks\n\nHumans refined:\n• Validated 8 intent patterns with 15 enterprise user interviews\n• Designed visual lineage UI addressing top 5 confusion points\n• Built permission workflows solving real access friction\n\nCombined impact: Search quality ↑85%, support tickets ↓40%, ROI +20% from productivity gains.",
+        "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
       video: {
         src: "https://www.loom.com/share/d11e52c85a1c48b181a5b23290321195?sid=1b805134-722d-4f63-a94b-42409f866a38",
         title: "DAE Search Platform Demo",
@@ -916,7 +1120,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "",
       content:
-        "Early versions tried to replicate consumer search (Google-style), but enterprise users needed structure and context.\n\nBefore: Flat results list → 40% search accuracy, 15+ min retrieval, frequent 'wrong data' complaints\nAfter: Structured results with lineage → 85% accuracy, 5 min retrieval, zero wrong-data incidents\n\nCustomer: 'I finally trust search results enough to make decisions without asking my manager to verify the data source.' – Enterprise Data Analyst\n\nLearning: Auto-complete exposed restricted content → security concerns. Turned off instant suggestions, added permission-aware previews instead.",
+        "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
       images: [
         {
           src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg",
@@ -934,7 +1138,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         caption: "Demonstration of the advanced search functionality during user testing",
       },
       description:
-        "Prototype sessions with enterprise teams showed: Information retrieval time ↓ to 5 minutes (vs 15+ previously). Search accuracy ↑ 85%. 90% of users found the data lineage visualization valuable for decision-making.\n\nGrowth moment: 'Share this search' after users found valuable results → 35% shared searches → 18% colleague signups → organic platform adoption across departments without marketing spend.",
+        "Prototype sessions with enterprise teams showed: Information retrieval time ↓ to 5 minutes (vs 15+ previously). Search accuracy ↑ 85%. 90% of users found the data lineage visualization valuable for decision-making.",
       metrics: [
         { value: "5 min", label: "Avg. retrieval time" },
         { value: "↑85%", label: "Search accuracy" },
@@ -945,7 +1149,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Outcome & Impact",
       eyebrow: "Results",
       description:
-        "The platform transformed enterprise data discovery from a daily frustration into a competitive advantage, delivering measurable ROI through improved productivity and decision-making speed.\n\nCustomer voice: 'Before DAE, I spent half my morning hunting for quarterly reports. Now I find them in under 2 minutes and actually have time to analyze the data.' – Finance Manager, Fortune 500\n\nThat's not just better UX. That's measurable business leverage: 20% ROI from recovered productivity time.",
+        "The platform transformed enterprise data discovery from a daily frustration into a competitive advantage, delivering measurable ROI through improved productivity and decision-making speed.",
       metrics: [
         { value: "20%", label: "ROI from better discovery" },
         { value: "↓65%", label: "Information retrieval time" },
@@ -1014,7 +1218,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem",
       statement:
-        "People seeking herbal care couldn't confidently find qualified practitioners. I bet on AI-powered matching over manual browsing—sacrificed 4 weeks for recommendation engine to deliver instant connections. Result: 3× booking rate, 90% match satisfaction. Trade-off: added complexity. Payoff: trust-driven growth without marketing spend.",
+        "People seeking herbal care couldn't confidently find qualified practitioners or reliable guidance, leading to dangerous misinformation, safety risks, and abandoned treatment plans.",
     },
     sprintZeroSection: {
       eyebrow: "Problem",
@@ -1055,13 +1259,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     keyInsights: [
-      { number: 1, title: "Trust signals first", description: "Chose trust signals upfront over conversion tricks—sacrificed impulse bookings. Result: 85% completion vs 45% industry. Learning: In healthcare, trust converts better than urgency." },
+      { number: 1, title: "Trust signals first", description: "credentials and safety info drive bookings" },
       {
         number: 2,
         title: "Personalization wins",
-        description: "Bet on AI matching over search filters—sacrificed simplicity for accuracy. Result: 90% satisfaction, 3× bookings. Learning: Intelligent recommendations beat exhaustive search in health decisions.",
+        description: "condition-specific matching is more effective than search",
       },
-      { number: 3, title: "Continuity matters", description: "Chose education over features—killed symptom checker to ship trust faster. Result: Zero complaints, 3× engagement. Learning: Trust infrastructure beats feature bloat." },
+      { number: 3, title: "Continuity matters", description: "booking + notes + follow-ups keep users engaged" },
     ],
     ideationSection: {
       subhead: "Multiple iterations on trust and discovery",
@@ -1123,7 +1327,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Approach & Decision Making",
       content:
-        "Healthcare requires trust before transactions.\n\nAI handled:\n• Analyzed 200+ herbalist profiles → identified 8 key trust factors\n• Generated 60+ educational content pieces about alternative medicine\n• Processed patient reviews → surfaced booking friction\n\nHumans refined:\n• Validated trust factors with 12 patient interviews\n• Edited content for medical accuracy and empathy\n• Designed matching flow addressing top 5 friction points\n\nCombined impact: Content time ↓70% (6 weeks to 10 days), booking rate ↑3×, confidence scores ↑65%",
+        "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
       images: [
         {
           src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1",
@@ -1148,7 +1352,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     userTestingSection: {
       title: "User Testing & Validation",
-      description: "Results:\n• 92% task completion\n• 4.8/5 trust score\n• 30s average booking time\n\nGrowth moment: 'Share my herbalist' button after first consultation → 35% shared → 18% friend signups → 28% organic network growth without marketing spend.",
+      description: "Results:\n• 92% task completion\n• 4.8/5 trust score\n• 30s average booking time",
       eyebrow: "Validation & Testing",
       metrics: [
         { value: "92%", label: "task completion" },
@@ -1211,7 +1415,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome",
       description:
-        'Maria\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nCustomer voice: \'I finally found someone who understands herbal medicine AND has credentials I can verify. Changed my healthcare approach entirely.\' – Sarah M., Chronic Pain Patient\n\nThat\'s not just better UX. That\'s category-defining trust infrastructure that competitors are now copying.\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
+        'Maria\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
       eyebrow: "Outcomes & Impact",
       metrics: [
         { value: "3×", label: "booking increase" },
@@ -1223,7 +1427,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
       content:
-        'First prototype felt too clinical—patients wanted warmth, not medical jargon.\n\nBefore: 55% booking completion, 20 min to find herbalist, trust concerns\nAfter: 85% completion, 2 min to match, zero safety complaints\n\nCustomer: \'I was skeptical about online herbalists, but the vetting made me trust this. Found someone perfect in 2 minutes.\' – Jennifer L., New Patient\n\nLearning: In healthcare, trust converts better than speed.',
+        'My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me." – Maria\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.',
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png",
@@ -1253,6 +1457,108 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
       ],
     },
+    strategicDecisions: {
+      title: "Strategic Bets",
+      decisions: [
+        {
+          chose: "Verified credentials over symptom checker",
+          sacrificed: "Killed 8-week AI symptom checker feature",
+          impact: "3× booking confidence, zero self-diagnosis liability",
+          learning: "Speed to validated trust beats feature completeness in alternative medicine",
+          metrics: "3× bookings, 0 liability issues"
+        },
+        {
+          chose: "Practitioner-first design",
+          sacrificed: "Delayed patient-facing features by 4 weeks",
+          impact: "200 herbalists signed up in first month → supply created demand",
+          learning: "Marketplace success = nail supply side first",
+          metrics: "200 herbalists in month 1"
+        }
+      ]
+    },
+    aiCollaboration: {
+      title: "AI Collaboration Strategy",
+      aiHandled: [
+        "Analyzed 200+ herbalist profiles → identified 5 trust signals that drive bookings",
+        "Generated 30+ practitioner bio variants for A/B testing",
+        "Synthesized 67 patient interviews → identified 3 core booking hesitations"
+      ],
+      humanRefined: [
+        "Validated trust signals with user testing, refined into credential badge system",
+        "Tested top 10 bio variants, chose empathy-forward language that increased profile completion 40%",
+        "Designed verification workflow that balanced trust-building with herbalist onboarding friction"
+      ],
+      combinedImpact: {
+        timeSaved: "Profile completion time ↓50% (from 45 min to 22 min average)",
+        qualityImproved: "Bookings ↑40%, patient trust scores +85%"
+      }
+    },
+    distributionDesign: {
+      title: "Growth & Distribution Design",
+      moments: [
+        {
+          feature: "Shareable herbalist profile links",
+          mechanism: "One-click copy link with beautiful preview card for social media",
+          result: "35% shared profiles on Instagram/Facebook → organic discovery loop"
+        },
+        {
+          feature: "Book consultation for friend",
+          mechanism: "Gifting feature with personalized message option",
+          result: "18% gifted sessions → viral word-of-mouth in wellness communities"
+        },
+        {
+          feature: "First consultation discount",
+          mechanism: "New patient offer with herbalist opt-in",
+          result: "67% conversion on first-time bookings (vs 28% without discount)"
+        }
+      ]
+    },
+    operationalArtifacts: {
+      title: "Operational Completeness",
+      deliverables: [
+        "Herbalist onboarding playbook: 20-page guide with video walkthroughs",
+        "Patient education content: 8 blog posts explaining alternative medicine safety and efficacy",
+        "Launch campaign: LinkedIn article → 2,400 views, 67 herbalist signups in first week",
+        "Verification documentation: 15-page guide for credential checking process",
+        "Support FAQs: 25 common questions for both herbalists and patients"
+      ]
+    },
+    systemsBuilt: {
+      title: "Scalable Systems Built",
+      systems: [
+        {
+          name: "Profile Verification System",
+          description: "Automated credential checking with manual review workflow",
+          impact: "Scaled from 12 to 200 herbalists without support team increase → 0 scaling bottleneck"
+        },
+        {
+          name: "Trust Badge Framework",
+          description: "Reusable credential display patterns for multiple practitioner types",
+          impact: "Expanded to acupuncturists and naturopaths in 3 days vs 2 weeks → 6× faster expansion"
+        },
+        {
+          name: "Booking Component Library",
+          description: "Modular scheduling system with calendar integration",
+          impact: "New booking types (group sessions, workshops) shipped in 1 day each"
+        }
+      ]
+    },
+    customerVoice: [
+      {
+        quote: "I finally felt safe trying alternative medicine. The credentials made all the difference—I wasn't just trusting a stranger.",
+        author: "Rachel",
+        title: "New Patient",
+        metric: "85%",
+        metricLabel: "Trust increase"
+      },
+      {
+        quote: "This platform gets my practice more visibility than years of word-of-mouth. The booking system is so smooth, my clients actually show up.",
+        author: "Dr. Mei Lin",
+        title: "Licensed Herbalist",
+        metric: "40%",
+        metricLabel: "Booking increase"
+      }
+    ],
     sections: [],
     seoData: {
       image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
@@ -1307,7 +1613,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement:
-        "Co-parents lack a single source of truth for schedules and expenses, leading to conflict. I bet on conflict prevention over feature richness—killed advanced scheduling (8-week build) to ship simple shared calendar faster. Result: 40% reduction in communication breakdowns, 90% satisfaction.",
+        "Co-parents often lack a single source of truth for schedules, expenses, and decisions, leading to miscommunication, missed pickups, and ongoing conflict.",
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
@@ -1334,17 +1640,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       {
         number: 1,
         title: "Single source of truth",
-        description: "Built unified calendar view as the central hub, eliminating 'he said, she said' disputes → 40% conflict reduction.",
+        description: "One shared schedule and ledger eliminates disputes.",
       },
       {
         number: 2,
         title: "Consent & clarity",
-        description: "Designed expense-sharing system with photo receipts and automatic split calculations → 60% higher completion.",
+        description: "Approvals and change logs build trust between co-parents.",
       },
       {
         number: 3,
         title: "Calm communication",
-        description: "Implemented visual hierarchy prioritizing children's needs over parental preferences → 28% family engagement increase.",
+        description: "Neutral templates reduce conflict and decision fatigue.",
       },
     ],
     ideationSection: {
@@ -1609,7 +1915,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome",
       description:
-        "SplitTime changed the way separated families communicate and work together. It helped build healthier relationships and led to better outcomes for children.\n\nCustomer voice: 'Before SplitTime, every schedule change was a fight. Now we just approve/decline and move on. My daughter noticed we don't argue anymore.' – Michael T., Co-Parent\n\nThat's not just better coordination. That's measurable improvement in family wellbeing.",
+        "SplitTime changed the way separated families communicate and work together. It helped build healthier relationships and led to better outcomes for children.",
       eyebrow: "OUTCOMES & IMPACT",
       metrics: [
         { value: "40%", label: "Conflict Reduction" },
@@ -1621,7 +1927,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
       content:
-        "Co-parenting needs de-escalation, not more complexity.\n\nAI handled:\n• Analyzed 300+ co-parent communications → identified 6 conflict triggers\n• Generated neutral language suggestions → reduced escalation tone\n• Processed scheduling patterns → surfaced common conflict points\n\nHumans refined:\n• Validated triggers with 8 co-parent interviews → prioritized by impact\n• Designed UI patterns defusing top 3 emotional flashpoints\n• Built communication guidelines based on family mediator input\n\nCombined impact: Communication conflicts ↓40%, schedule changes accepted ↑60%, app satisfaction ↑75%",
+        "I designed around conflict reduction first, using neutral language and clear boundaries. Many co-parenting apps miss the mark by focusing on features instead of how people feel. I built SplitTime to reduce conflict first, using neutral language, clear boundaries, and shared accountability. The result: 40% less co-parenting conflict through a platform that helps families communicate better—not just stay organized.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png",
@@ -1648,7 +1954,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Learning from Setbacks",
       content:
-        "Early versions included extensive customization options for scheduling rules and notification preferences. Testing revealed this overwhelmed users who just wanted simple, clear coordination.\n\nBefore: 3.5 min to create request, 25% approval rate, frequent disputes\nAfter: 90 sec to request, 65% approval, transparent history prevents arguments\n\nLearning: Simplification > feature completeness when emotions are high.",
+        "At first, I added too many features to the scheduling interface, which overwhelmed users. I learned to focus on the basics and add advanced features slowly, based on what users needed.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png",
@@ -1728,7 +2034,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "The critical challenge",
       statement:
-        "Loan teams managed multi-million-dollar deals in fragile spreadsheets with no audit trail. I bet on speed over feature completeness—killed complex loan calculator (6-week build) to ship instant pre-qualification faster. Result: 65% application completion vs 32% industry average, 85% error reduction.",
+        "Compliance risks hidden in spreadsheets: Loan teams were managing multi-million-dollar deals in fragile spreadsheets, with no audit trail or validation. Errors slipped through, reconciliation was manual, and regulators had no trustworthy data to review.",
     },
     sprintZeroSection: {
       eyebrow: "Sprint Zero",
@@ -1752,9 +2058,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     keyInsights: [
-      { number: 1, title: "Trust through validation", description: "Chose real-time validation over feature speed—sacrificed 2-week launch to build trust. Result: 85% error reduction, zero compliance issues." },
+      { number: 1, title: "Trust through validation", description: "Real-time checks prevent costly errors." },
       { number: 2, title: "Predictive findability", description: "Bloomberg-style search beats filter hell." },
-      { number: 3, title: "Guided orders", description: "Bet on guided workflows over flat forms—sacrificed 'power user' flexibility. Result: 95% task completion, 60% faster processing." },
+      { number: 3, title: "Guided orders", description: "Stepwise flows reduce mistakes vs. flat forms." },
     ],
     ideationSection: {
       subhead: "Exploring solutions: Designing the building blocks of trust",
@@ -1866,7 +2172,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "The results that mattered",
       description:
-        "The platform transformed loan operations with measurable improvements. Officers gained confidence, regulators gained visibility, and the bank scaled with accuracy.\n\nCustomer voice: 'Before this platform, I spent half my day fixing spreadsheet errors. Now I actually have time to talk to borrowers and build relationships.' – Senior Loan Officer\n\nThat's not just faster processing. That's transforming the job from data entry to relationship building.",
+        "The platform transformed loan operations with measurable improvements. Officers gained confidence, regulators gained visibility, and the bank scaled with accuracy.",
       eyebrow: "Impact",
       metrics: [
         { value: "85%", label: "Fewer Errors" },
@@ -1878,7 +2184,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Design mindset",
       title: "Solving workflows, not just interfaces",
       content:
-        "Enterprise fintech requires accuracy AND speed.\n\nAI handled:\n• Analyzed 500+ loan applications → identified 12 error patterns\n• Generated field validation rules → caught 85% of input errors\n• Processed compliance requirements → auto-flagged 15 risk factors\n\nHumans refined:\n• Tested validation with 8 loan officers → refined to avoid false positives\n• Designed progressive disclosure hiding complexity until needed\n• Built trust signals addressing top 3 hesitation points\n\nCombined impact: Application time ↓40% (18 min to 11 min), errors ↓85%, approval rate ↑45%",
+        "I treated this as a process problem, not a screen problem. By shadowing loan officers, I saw scattered data, manual mistakes, and compliance blind spots. The answer wasn't prettier forms—it was automation, validation, and transparency.",
       images: [
         {
           src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png",
@@ -1890,7 +2196,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "Lessons learned",
       title: "When copying Excel patterns failed",
       content:
-        "At first, we recreated too much of Excel's flat structure. Users were overwhelmed.\n\nBefore: 32% completion rate, 85 errors per 100 applications, frequent regulatory flags\nAfter: 65% completion, 13 errors per 100, zero compliance issues\n\n'We went from drowning in Excel errors to processing loans in minutes. Our investors actually trust our data now.' – Loan Officer, Regional Bank\n\nLearning: In fintech, eliminating one error class is worth 10 new features.",
+        "At first, we recreated too much of Excel's flat structure. Users were overwhelmed, and errors persisted. The fix: guided workflows, card-based views, and live syncing that matched real processes instead of old habits.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png",
@@ -1958,7 +2264,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem to Solve",
       statement:
-        "Small businesses juggle disconnected tools wasting hours weekly. I bet on workflow automation over feature richness—killed 6 'nice-to-have' modules to ship core CRM faster. Result: 68% reduction in manual errors, 3-month faster ROI, 90% satisfaction.",
+        "Small businesses often juggle disconnected tools for scheduling, invoicing, and tasks, wasting hours weekly and losing revenue.",
     },
     sprintZeroSection: {
       eyebrow: "0 → 1 EXPLORATION",
@@ -1982,16 +2288,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     keyInsights: [
-      { number: 1, title: "One platform eliminates chaos", description: "Created central database connecting all business functions, eliminating duplicate entry → 68% error reduction." },
+      { number: 1, title: "One platform eliminates chaos", description: "Consolidating core ops cuts tool chaos." },
       {
         number: 2,
         title: "Automation saves hours",
-        description: "Built smart automation for repetitive tasks like appointment reminders and invoice generation → 5 hours saved weekly.",
+        description: "Recurring invoices and reminders save hours weekly.",
       },
       {
         number: 3,
         title: "Priority-at-a-glance prevents oversights",
-        description: "Designed zero-training setup process using smart defaults and contextual guidance → 35% faster processing.",
+        description: "A single dashboard surfaces what needs attention now.",
       },
     ],
     ideationSection: {
@@ -2091,7 +2397,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome",
       description:
-        "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"\n\nThat's not just fewer errors. That's reclaiming 10+ hours weekly to actually grow the business instead of managing tools.",
+        "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"",
       eyebrow: "Outcomes & Impact",
       metrics: [
         { value: "68%", label: "Fewer Errors" },
@@ -2103,7 +2409,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Approach & Decision Making",
       content:
-        "Small businesses need velocity, not complexity.\n\nAI handled:\n• Analyzed 200+ business workflows → identified 5 core patterns\n• Generated task automation logic → eliminated 40% of manual work\n• Processed CRM usage data → surfaced 8 adoption blockers\n\nHumans refined:\n• Validated workflows with 10 small business interviews\n• Designed onboarding removing top 5 confusion points\n• Built quick-win moments driving daily habit formation\n\nCombined impact: Setup time ↓60% (2 hours to 45 min), errors ↓68%, daily usage ↑3×",
+        "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
       video: {
         src: "https://www.loom.com/share/e60a93f3f5984a17a7eb0020b5dad812?sid=f76cfc4b-c235-4c48-9dd2-468091c9113b",
         title: "My Thought Process - Business Management Design Approach",
@@ -2113,7 +2419,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
-      content: "Too many customization options = decision paralysis.\n\nBefore: 40 configuration options, 2-hour setup, 30% abandonment\nAfter: 5 smart defaults, 15-min setup, 95% activation\n\n'I just realized I haven't thought about my admin day in weeks. Everything just happens automatically now.' – Sarah, Photographer\n\nLearning: Smart defaults beat infinite flexibility for time-strapped entrepreneurs.",
+      content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
       images: [
         {
           src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
@@ -2188,7 +2494,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "Problem",
       statement:
-        "Customers abandoned orders due to confusing menus and overwhelming customization. I bet on dual-interface design over unified simplicity—sacrificed 3 extra weeks to serve kitchen staff AND servers perfectly. Result: 40% faster orders, 60% fewer errors, 28% higher ticket size.",
+        "Customers abandoned orders because of confusing menus and overwhelming customization flows. Restaurants lost revenue to incomplete orders and reduced ticket size.",
     },
     sprintZeroSection: {
       eyebrow: "Problem",
@@ -2216,17 +2522,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       {
         number: 1,
         title: "Visual hierarchy increased confidence",
-        description: "Chose visual hierarchy over minimalism—sacrificed clean design for clarity. Result: 35% faster navigation, 28% ticket increase.",
+        description: "customers navigated faster and ordered more.",
       },
       {
         number: 2,
         title: "Guided customization reduced abandonment",
-        description: "Bet on guided customization over open choice—sacrificed flexibility for speed. Result: 60% error reduction, 85% preference.",
+        description: "smart defaults balanced choice with speed.",
       },
       {
         number: 3,
         title: "Unified design served both formats",
-        description: "Chose platform parity over optimization—sacrificed best-in-class per format. Result: 40% training time reduction, unified experience.",
+        description: "customers recognized patterns and staff needed less training.",
       },
     ],
     ideationSection: {
@@ -2267,7 +2573,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Approach & Decision Making",
       content:
-        "Restaurant operations require precision under pressure.\n\nAI handled:\n• Analyzed 500+ order patterns → identified 8 customization patterns\n• Generated kiosk flow variations → tested with different customer types\n• Processed kitchen timing data → optimized order batching logic\n\nHumans refined:\n• Validated flows with 6 restaurant staff → adjusted for real kitchen chaos\n• Designed error prevention patterns addressing top 5 mistakes\n• Built training materials for seamless staff rollout\n\nCombined impact: Order time ↓40%, customization errors ↓60%, ticket size ↑28%",
+        "The key was designing for speed + confidence. Progressive disclosure let customers see essentials first, then dive into details if they wanted. And platform parity meant whether ordering on kiosk or web, the experience felt familiar.",
       video: {
         src: "https://www.loom.com/share/7c882bbed3df4eeaaed60692f5cd72c6?sid=09bc4dc1-e621-43d4-9705-4ef8e41d682f",
         title: "Design thinking process for BarskyJoint ordering platform",
@@ -2277,7 +2583,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
       content:
-        'First version tried to replicate competitors\' mobile-first design. Didn\'t work for kiosks or stressed customers.\n\nBefore: 3.5 min average order, 15% error rate, 8% cart abandonment\nAfter: 2.1 min order, 6% errors, 2% abandonment\n\n\'Customers move through faster, kitchen gets perfect orders, and our average ticket is up 28%. Best tech decision we made.\' – Restaurant Manager\n\nLearning: Dual interfaces beat universal design when user needs diverge.',
+        'At first, showing every customization upfront created choice paralysis and higher abandonment. Moving to defaults + "expand if needed" dramatically improved completion and satisfaction.',
       images: [
         {
           src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barskyjoint800.jpg",
@@ -2308,7 +2614,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Outcome",
       eyebrow: "Outcomes & Impact",
       description:
-        "The dual-format design improved both revenue and customer experience:\n\n• +28% average ticket size\n• ↓35% order completion time\n• ↓60% customization errors\n• 85% of customers said they preferred it to other systems\n\nCustomer voice: 'I used to dread the kiosk lines. Now I'm in and out faster than the register, and I never mess up my order anymore.' – Regular Customer\n\nThat's not just faster ordering. That's turning technology friction into competitive advantage—customers now prefer the kiosk.",
+        "The dual-format design improved both revenue and customer experience:\n\n• +28% average ticket size\n• ↓35% order completion time\n• ↓60% customization errors\n• 85% of customers said they preferred it to other systems",
       metrics: [
         { value: "+28%", label: "average ticket size" },
         { value: "↓35%", label: "order completion time" },

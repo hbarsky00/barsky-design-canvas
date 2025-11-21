@@ -35,12 +35,12 @@ const DistributionDesignSection: React.FC<DistributionDesignSectionProps> = ({ t
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gradient-to-br from-white via-white to-pink-50/20 rounded-xl p-10 md:p-12 shadow-md hover:shadow-xl border-2 border-border/20 hover:border-pink-300/30 transition-all duration-300 hover:-translate-y-1"
+              className="bg-white rounded-xl p-8 shadow-sm border border-border/20"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+              <div className="grid md:grid-cols-3 gap-6 items-center">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Share2 className="w-7 h-7 text-blue-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                    <Share2 className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1 text-sm uppercase tracking-wide text-muted-foreground">
@@ -51,8 +51,8 @@ const DistributionDesignSection: React.FC<DistributionDesignSectionProps> = ({ t
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center">
-                    <Users className="w-7 h-7 text-purple-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1 text-sm uppercase tracking-wide text-muted-foreground">
@@ -63,14 +63,14 @@ const DistributionDesignSection: React.FC<DistributionDesignSectionProps> = ({ t
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
-                    <ArrowRight className="w-7 h-7 text-green-600" />
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                    <ArrowRight className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1 text-sm uppercase tracking-wide text-muted-foreground">
                       Result
                     </h3>
-                    <p className="text-xl md:text-2xl font-bold text-green-700">{moment.result}</p>
+                    <p className="text-lg font-semibold text-green-700">{moment.result}</p>
                   </div>
                 </div>
               </div>
