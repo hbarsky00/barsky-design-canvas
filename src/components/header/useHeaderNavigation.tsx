@@ -14,7 +14,6 @@ export const useHeaderNavigation = () => {
   const navLinks = [
     { name: "Case Studies", href: "#case-studies" },
     { name: "About", href: "/about" },
-    { name: "Store", href: "/store" },
     { name: "Blog", href: "/blog" },
     { name: "Contact Me", href: "/contact" },
   ];
