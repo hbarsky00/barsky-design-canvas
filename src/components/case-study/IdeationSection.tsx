@@ -50,6 +50,25 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
           ))}
         </div>
 
+        {/* Wireframe Image - appears after bubbles, before iterations */}
+        {ideationData.wireframeImage && (
+          <div className="mt-12">
+            <figure className="rounded-xl overflow-hidden shadow-lg">
+              <img
+                src={ideationData.wireframeImage.src}
+                alt={ideationData.wireframeImage.alt}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+              {ideationData.wireframeImage.caption && (
+                <figcaption className="text-sm text-muted-foreground text-center py-4 px-6 bg-muted/30">
+                  {ideationData.wireframeImage.caption}
+                </figcaption>
+              )}
+            </figure>
+          </div>
+        )}
+
       </div>
     </section>
   );
