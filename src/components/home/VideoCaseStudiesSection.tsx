@@ -69,19 +69,7 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side"
   },
-  {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
-    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
-    impact: "-85% Manual Entry Errors",
-    url: "/project/investor-loan-app",
-    images: {
-      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      alt: "Investor loan application platform showing analytics dashboard"
-    },
-    layout: "side-by-side"
-  },
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "herbalink",
     tags: ["Blue Sky", "Design Thinking", "GenAI"],

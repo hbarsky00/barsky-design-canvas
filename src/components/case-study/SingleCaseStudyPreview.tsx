@@ -73,19 +73,7 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side",
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
   },
-  {
-    id: "investor-loan-app",
-    tags: ["FinTech", "Analytics", "WebApp"],
-    title: "Redesigning Loans: 85% Fewer Errors, 40% Faster",
-    description: "Transformed a chaotic Excel-based loan process into a streamlined digital platform. Built custom analytics dashboards and automated workflows that scaled operations while dramatically reducing manual errors.",
-    impact: "-85% Manual Entry Errors",
-    url: "/project/investor-loan-app",
-    images: {
-      primary: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png",
-      alt: "Investor loan app showing analytics dashboard and loan management interface"
-    },
-    layout: "side-by-side"
-  }
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
 ];
 
 interface SingleCaseStudyPreviewProps {
