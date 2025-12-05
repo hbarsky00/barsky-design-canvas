@@ -62,14 +62,16 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
   };
 
   return (
-    <div className={`relative inline-block ${className}`}>
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-auto rounded-lg shadow-sm"
-        loading="lazy"
-        decoding="async"
-      />
+    <div className={`relative inline-block group cursor-pointer ${className}`}>
+      <div className="overflow-hidden rounded-lg">
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto shadow-sm transition-transform duration-500 ease-out group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       
       {visibleAnnotations.map((annotation, index) => (
         <div

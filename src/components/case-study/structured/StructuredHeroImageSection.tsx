@@ -55,11 +55,11 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
           {shouldShowPlaceholder ? (
             <PlaceholderImage title="Hero Video" />
           ) : heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full rounded-lg overflow-hidden">
+            <div className="relative w-full rounded-lg overflow-hidden group cursor-pointer">
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
           ) : caseStudyData.heroVideo?.src ? (
