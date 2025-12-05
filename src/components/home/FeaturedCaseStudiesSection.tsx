@@ -41,17 +41,7 @@ const featuredCaseStudies = [
     impact: "+35% confident enough to start trading",
     tags: ["Fintech", "Crypto", "Mobile & Web"]
   },
-  {
-    id: "investor-loan",
-    title: "Investor Loan App",
-    subtitle: "From Financial Intimidation to Investment Confidence",
-    description: "Turned financial intimidation into investment confidence by demystifying complex concepts and making portfolio growth feel achievable. Guided onboarding helped first-time investors trust their decisions and believe they could build wealth through smart investing.",
-    image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-    url: "/project/investor-loan-app",
-    category: "FinTech",
-    impact: "First-time investors confident to start",
-    tags: ["FinTech", "Real Estate", "Automation"]
-  },
+  // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "barskyjoint",
     title: "BarskyJoint",

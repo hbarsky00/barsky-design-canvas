@@ -47,11 +47,7 @@ const InternalLinkingHub: React.FC = () => {
           url: "/case-studies/medication-app",
           description: "Medication management mobile app design"
         },
-        {
-          text: "InvestorConnect - FinTech Platform",
-          url: "/project/investor-loan-app", 
-          description: "Professional trading platform for investors"
-        },
+        // investor-loan-app link hidden
         {
           text: "DataCatalog Pro - Enterprise Tool",
           url: "/case-studies/dae-search",

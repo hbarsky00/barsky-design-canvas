@@ -37,15 +37,7 @@ const allCaseStudies: CaseStudy[] = [
     category: "Restaurant Tech",
     tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "Mobile App"]
   },
-  {
-    id: "investor-loan",
-    title: "Investor Loan App - FinTech Solution",
-    description: "Streamlined loan application platform for real estate investors with automated approval workflows.",
-    image: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-    url: "/project/investor-loan-app",
-    category: "FinTech",
-    tags: ["FinTech", "Real Estate", "Web App", "UX/UI Design"]
-  },
+  // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "business-management",
     title: "Business Management App",
