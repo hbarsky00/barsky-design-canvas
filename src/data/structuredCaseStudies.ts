@@ -64,6 +64,11 @@ export interface IdeationIteration {
 export interface IdeationSection {
   subhead: string;
   bubbles: IdeationBubble[];
+  wireframeImage?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
   iterations: IdeationIteration[];
 }
 
@@ -370,6 +375,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Vitals Tracking", description: "Device sync and manual entry" },
         { title: "Patient Surveys", description: "Progress tracking and insights" },
       ],
+      wireframeImage: {
+        src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
+        alt: "Wireframes showing admin and patient dashboard",
+        caption: "Dual-view wireframes for seamless admin-patient data flow",
+      },
       iterations: [
         {
           label: "Iteration 1",
@@ -413,13 +423,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "60%", label: "Increase in appointment adherence" },
         { value: "3×", label: "Higher patient engagement" },
       ],
-        images: [
-          {
-            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/wireframing.png",
-            alt: "Wireframes showing admin and patient dashboard",
-            caption: "Dual-view wireframes for seamless admin-patient data flow",
-          },
-        ],
+        images: [],
     },
     finalProductSection: {
       title: "The Result",
