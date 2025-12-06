@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blogData';
+import { sanitizeHtml } from '@/utils/htmlSanitizer';
 
 interface InternalLinkEnhancerProps {
   content: string;
@@ -116,10 +117,13 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   
   const enhancedContent = enhanceContentWithLinks(content);
   
+  // Sanitize HTML to prevent XSS attacks
+  const sanitizedContent = sanitizeHtml(enhancedContent);
+  
   return (
     <div 
       className="prose prose-lg max-w-none"
-      dangerouslySetInnerHTML={{ __html: enhancedContent }}
+      dangerouslySetInnerHTML={{ __html: sanitizedContent }}
     />
   );
 };
