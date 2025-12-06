@@ -29,11 +29,20 @@ serve(async (req: Request) => {
       });
     }
 
-    // Optional: Validate a shared secret header
+    // Validate shared secret header - REQUIRED for security
     const secret = req.headers.get("x-rebuild-secret");
     const expectedSecret = Deno.env.get("REBUILD_SECRET");
     
-    if (expectedSecret && secret !== expectedSecret) {
+    // Fail if REBUILD_SECRET is not configured
+    if (!expectedSecret) {
+      console.error("❌ REBUILD_SECRET not configured - endpoint disabled for security");
+      return new Response("Configuration error", { 
+        status: 500,
+        headers: corsHeaders
+      });
+    }
+    
+    if (secret !== expectedSecret) {
       console.warn("⚠️ Invalid rebuild secret");
       return new Response("Unauthorized", { 
         status: 401,
