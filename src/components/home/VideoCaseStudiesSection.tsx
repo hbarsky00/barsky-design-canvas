@@ -59,7 +59,7 @@ const caseStudies: CaseStudy[] = [
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
-    description: "It's 8:47 AM on a Tuesday, and Sarah Chen is already having the day from hell. She meant to send an invoice to TechCorp but accidentally sent it to her yoga studio client instead. Why? She was juggling Calendly, QuickBooks, Asana, and three spreadsheets—mentally fried from switching between tools. That's when I knew small businesses needed one unified platform, not better individual tools.",
+    description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
     impact: "68% Fewer Operation Errors",
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
