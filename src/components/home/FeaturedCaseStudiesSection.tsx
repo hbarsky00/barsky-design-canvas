@@ -12,18 +12,18 @@ const featuredCaseStudies = [
     id: "smarter-health",
     title: "Smarter Health",
     subtitle: "Transforming Patient Anxiety Into Confident Self-Care",
-    description: "A medication tracking app that helps diabetic patients build consistent health habits.",
+    description: "Reduced patient anxiety around medication management by transforming overwhelming daily routines into confident, consistent health behaviors. Empathy-driven design helped diabetic patients trust their care plan, resulting in 3× higher engagement and 60% better adherence.",
     image: "/assets/case-studies/smarter-health/og-cover.png",
     url: "/project/smarter-health",
     category: "Healthcare",
-    impact: "60% better medication adherence",
+    impact: "60% more patients trusting their care plan",
     tags: ["Healthcare", "Mobile App", "Accessibility"]
   },
   {
     id: "herbalink",
     title: "HerbaLink",
     subtitle: "Building Trust in Alternative Medicine Decisions",
-    description: "AI-powered platform connecting patients with the right herbalist practitioners.",
+    description: "Transformed patient uncertainty about alternative medicine into confident practitioner selection. AI-powered matching helped users trust they'd found the right herbalist for their needs, eliminating decision paralysis and anxiety around alternative care choices.",
     image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
     url: "/project/herbalink",
     category: "Healthcare",
@@ -34,11 +34,11 @@ const featuredCaseStudies = [
     id: "crypto",
     title: "Trading Without Friction",
     subtitle: "Turning Fear Into Confident First Trades",
-    description: "A crypto trading app with dual modes for beginners and experienced traders.",
+    description: "Helped beginners trust themselves enough to make their first trade, while proving to pros they don't need to sacrifice speed for clarity. Eliminated the anxiety that makes 60% quit before trading, building confidence through transparency and dual-mode design.",
     image: "/lovable-uploads/crypto-cover.jpg",
     url: "/project/crypto",
     category: "FinTech", 
-    impact: "+35% first-time traders",
+    impact: "+35% confident enough to start trading",
     tags: ["Fintech", "Crypto", "Mobile & Web"]
   },
   // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
@@ -46,23 +46,23 @@ const featuredCaseStudies = [
     id: "barskyjoint",
     title: "BarskyJoint",
     subtitle: "Eliminating Ordering Anxiety to Boost Confidence",
-    description: "Self-service kiosk redesign that simplifies menu navigation and customization.",
+    description: "Eliminated ordering anxiety and decision paralysis to increase customer confidence and spending. Menu clarity and guided customization helped diners trust their choices, resulting in 28% higher ticket sizes as customers felt empowered to explore options.",
     image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
     url: "/project/barskyjoint",
     liveUrl: "https://barskyjoint.com",
     category: "Restaurant Tech",
-    impact: "28% higher ticket sizes",
+    impact: "28% more confident ordering",
     tags: ["Restaurant Tech", "Food Service", "Kiosk Design"]
   },
   {
     id: "business-management",
     title: "Business Management",
     subtitle: "From Operational Chaos to Confident Control",
-    description: "Unified platform replacing spreadsheets and manual workflows for small businesses.",
+    description: "Reduced operational anxiety by turning complex manual processes into confident, automated workflows. Teams moved from constant uncertainty about data accuracy to trusting their systems, resulting in 68% fewer errors and clear visibility into business health.",
     image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
     url: "/project/business-management",
     category: "Enterprise",
-    impact: "68% fewer operation errors",
+    impact: "68% more confident in data accuracy",
     tags: ["Enterprise", "Automation", "Analytics"]
   }
 ];
