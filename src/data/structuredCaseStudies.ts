@@ -851,11 +851,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
       },
     ],
-    keyInsightsVideo: {
-      src: "https://www.loom.com/share/eb5833ead685404880646de2a6692fce?sid=51661533-c61d-4c57-9b47-0ef7f7a03ebc",
-      title: "DAE Search Platform Key Insights",
-      caption: "Key insights and design decisions for the enterprise search platform",
-    },
     // ideationSection removed to hide images
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
