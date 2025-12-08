@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Header from "@/components/Header";
-import MinimalHero from "@/components/hero/MinimalHero";
+import TerminalHero from "@/components/hero/TerminalHero";
 import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
@@ -15,12 +15,13 @@ import LazySection from "@/components/lazy/LazySection";
 import {
   LazyVideoCaseStudiesSection,
   LazyRecentAdventuresSection,
-  LazyContactForm,
   LazySeoFaqSection,
   LazyBlogPreview,
   LazyInternalLinkingEnhancer,
   LazyExitIntentDetector,
-  LazyScrollEngagement
+  LazyScrollEngagement,
+  LazyLabSection,
+  LazyPromptMeContact
 } from "@/components/lazy/LazyComponents";
 import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 
@@ -44,10 +45,10 @@ const HomepageLayout: React.FC = () => {
       <Header />
       
       <main className="space-y-2 md:space-y-6 relative z-10">
-        {/* Keep intro section outside 3D container to prevent displacement */}
+        {/* Terminal Hero - Gen-AI Native */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">
-            <MinimalHero />
+            <TerminalHero />
           </section>
         </SectionTransition>
         
@@ -83,10 +84,20 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
+        {/* The Lab - Gen-AI Experiments */}
         <LazySection>
-          <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+          <SectionTransition variant="fade" delay={0.25} intensity={0.3}>
+            <section id="lab" tabIndex={-1} className="scroll-offset">
+              <LazyLabSection />
+            </section>
+          </SectionTransition>
+        </LazySection>
+        
+        {/* Prompt Me Contact - Chat-style */}
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.3} intensity={0.3}>
             <section id="contact" tabIndex={-1} className="scroll-offset">
-              <LazyContactForm />
+              <LazyPromptMeContact />
             </section>
           </SectionTransition>
         </LazySection>

@@ -9,6 +9,10 @@ export { default as LazyVideoCaseStudiesSection } from '@/components/home/VideoC
 export const LazyRecentAdventuresSection = lazy(() => import('@/components/home/RecentAdventuresSection'));
 export const LazyContactForm = lazy(() => import('@/components/home/ContactForm'));
 
+// Gen-AI Native components
+export const LazyLabSection = lazy(() => import('@/components/lab/LabSection'));
+export const LazyPromptMeContact = lazy(() => import('@/components/contact/PromptMeContact'));
+
 // Lazy load bounce reduction components for better initial load
 export const LazyExitIntentDetector = lazy(() => import('@/components/bounce-reduction/ExitIntentDetector'));
 export const LazyScrollEngagement = lazy(() => import('@/components/bounce-reduction/ScrollEngagement'));
