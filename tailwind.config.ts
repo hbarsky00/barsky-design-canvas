@@ -113,6 +113,16 @@ const config: Config = {
           accent: "hsl(var(--barsky-accent))",
           "accent-light": "hsl(var(--barsky-accent-light))",
         },
+        // Tech Stack colors for Gen-AI First badges
+        tech: {
+          ai: "hsl(var(--tech-ai))",
+          "ai-glow": "hsl(var(--tech-ai-glow))",
+          dev: "hsl(var(--tech-dev))",
+          "dev-glow": "hsl(var(--tech-dev-glow))",
+          design: "hsl(var(--tech-design))",
+          "design-glow": "hsl(var(--tech-design-glow))",
+          "badge-bg": "hsl(var(--tech-badge-bg))",
+        },
       },
       borderRadius: {
         // Material Design 3.0 Shape System

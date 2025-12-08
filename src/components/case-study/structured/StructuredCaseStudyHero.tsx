@@ -8,6 +8,7 @@ import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
 import { getCanonicalUrl } from "@/utils/urlUtils";
+import TechStackDisplay from "@/components/tech-stack/TechStackDisplay";
 
 interface StructuredCaseStudyHeroProps {
   caseStudyData: StructuredCaseStudyData;
@@ -51,6 +52,13 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
                 </Badge>
               ))}
             </div>
+
+            {/* Tech Stack - Gen-AI First */}
+            {caseStudyData.techStack && (
+              <div className="mt-6">
+                <TechStackDisplay techStack={caseStudyData.techStack} variant="full" className="justify-center" />
+              </div>
+            )}
 
             {caseStudyData.projectLink && (
               <div className="hero-cta-wrapper max-w-md mx-auto">

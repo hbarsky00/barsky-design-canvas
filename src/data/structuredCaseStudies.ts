@@ -106,11 +106,18 @@ export interface TechnicalImplementation {
   };
 }
 
+export interface TechStack {
+  aiTools?: string[];
+  devStack?: string[];
+  designTools?: string[];
+}
+
 export interface StructuredCaseStudyData {
   id: string;
   title: string;
   description: string;
   tags: string[];
+  techStack?: TechStack;
   heroVideo?: {
     src: string;
     poster: string;
@@ -269,6 +276,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "Smarter Health: Transforming Patient Anxiety Into Confident Self-Care",
     description: "How empathy-driven design reduced medication anxiety and helped patients trust their care routines",
     tags: ["UX Design", "Healthcare App", "Mobile App Design", "Accessibility"],
+    techStack: {
+      aiTools: ["ChatGPT", "Figma AI"],
+      devStack: ["React Native", "TypeScript"],
+      designTools: ["Figma", "Material Design 3.0"],
+    },
     gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
     heroVideo: {
       src: "/assets/case-studies/smarter-health/hero-video.mp4",
@@ -482,6 +494,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "Trading Without Friction: Helping Users Trust Themselves Enough to Trade",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade",
     tags: ["Fintech", "Crypto", "Product Design", "Dual-Mode UX"],
+    techStack: {
+      aiTools: ["Claude 3.5", "Cursor AI"],
+      devStack: ["React", "TypeScript", "WebSocket"],
+      designTools: ["Figma", "Framer Motion"],
+    },
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
       src: "/lovable-uploads/crypto-hero.mp4",
@@ -760,6 +777,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description:
       "Redesigned an enterprise search platform that transformed how teams discover and access critical business data, reducing information retrieval time by 65% and delivering 20% ROI through improved productivity.",
     tags: ["Enterprise", "Search", "Data Discovery", "B2B", "Productivity"],
+    techStack: {
+      aiTools: ["GPT-4", "Semantic Search AI"],
+      devStack: ["React", "ElasticSearch", "Python"],
+      designTools: ["Figma", "Auto-Layout"],
+    },
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroImage: {
       src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
@@ -922,6 +944,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "HerbaLink: How I Tripled Herbalist Bookings by Solving the Trust Problem",
     description: 'When your health is on the line, "trust me, bro" isn\'t good enough',
     tags: ["Healthcare", "GenAI", "Trust & Safety", "Booking Platform"],
+    techStack: {
+      aiTools: ["ChatGPT", "AI Matching"],
+      devStack: ["React Native", "Node.js"],
+      designTools: ["Figma", "Protopie"],
+    },
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "http://herbalink.live",
     heroVideo: {
@@ -1225,6 +1252,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description:
       "Built a co-parenting app to reduce scheduling conflicts. Early tests showed a 40% decrease in communication breakdowns.",
     tags: ["Blue Sky", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
+    techStack: {
+      aiTools: ["ChatGPT", "Midjourney"],
+      devStack: ["React", "Firebase"],
+      designTools: ["Figma", "Principle"],
+    },
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://splittime.pro",
     heroVideo: {
@@ -1644,6 +1676,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description:
       "How I led a banking platform redesign that replaced Excel and scaled operations with speed, accuracy, and trust.",
     tags: ["FinTech", "Analytics", "WebApp"],
+    techStack: {
+      aiTools: ["ChatGPT", "Synthetic Data Gen"],
+      devStack: ["React", "TypeScript", "PostgreSQL"],
+      designTools: ["Figma", "Excel Analysis"],
+    },
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     heroVideo: {
       src: "investor-loan-demo.mp4",
@@ -1866,6 +1903,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
     description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
     tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
+    techStack: {
+      aiTools: ["ChatGPT", "Midjourney", "Cursor AI"],
+      devStack: ["React", "Next.js", "Supabase"],
+      designTools: ["Figma", "Framer"],
+    },
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
