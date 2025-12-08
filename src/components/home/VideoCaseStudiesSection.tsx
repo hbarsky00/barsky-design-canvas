@@ -1,29 +1,31 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
-import MetricDisplay from "@/components/metrics/MetricDisplay";
-import SpotlightCard from "@/components/effects/SpotlightCard";
+import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useRoomTransition } from "@/hooks/useRoomTransition";
+import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 
 interface CaseStudy {
   id: string;
   tags: string[];
   title: string;
   description: string;
-  metricValue: string;
-  metricLabel: string;
+  impact: string;
   url: string;
   liveUrl?: string;
   images: {
     primary: string;
+    secondary?: string;
     alt: string;
   };
-  metricColor?: 'cyan' | 'purple' | 'green';
+  layout: "side-by-side" | "single-centered" | "web-mobile";
+  video?: string;
 }
 
 const caseStudies: CaseStudy[] = [
@@ -32,58 +34,55 @@ const caseStudies: CaseStudy[] = [
     tags: ["Enterprise", "Search", "Data Discovery"],
     title: "DAE Search Platform: Making Enterprise Data Actually Findable",
     description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
-    metricValue: "20%",
-    metricLabel: "ROI from Better Data Discovery",
+    impact: "20% ROI from Better Data Discovery",
     url: "/project/daesearchproject",
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    metricColor: 'cyan',
+    layout: "side-by-side"
   },
   {
     id: "smarterhealth",
     tags: ["Healthcare", "Mobile App", "UX Design"],
     title: "Smarter Health: Helping Patients Stay on Track",
     description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
-    metricValue: "60%",
-    metricLabel: "Increase in Appointment Adherence",
+    impact: "60% ↑ Appointment Adherence",
     url: "/project/smarterhealth",
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker"
     },
-    metricColor: 'green',
+    layout: "side-by-side"
   },
   {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
     description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
-    metricValue: "68%",
-    metricLabel: "Fewer Operation Errors",
+    impact: "68% Fewer Operation Errors",
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       alt: "Business management warehouse operations and inventory tracking system"
     },
-    metricColor: 'purple',
+    layout: "side-by-side"
   },
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "herbalink",
     tags: ["Blue Sky", "Design Thinking", "GenAI"],
     title: "HerbaLink: 3× More Bookings for Certified Herbalists",
     description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
-    metricValue: "3×",
-    metricLabel: "Increase in Practitioner Bookings",
+    impact: "3× Practitioner Bookings",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
-    metricColor: 'cyan',
+    layout: "side-by-side"
   }
 ];
 
@@ -93,117 +92,266 @@ const CaseStudyCard: React.FC<{
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
   const { triggerRoomTransition } = useRoomTransition();
-  
-  const colors: ('cyan' | 'purple' | 'green')[] = ['cyan', 'purple', 'green'];
-  const color = study.metricColor || colors[index % colors.length];
-  
-  const spotlightColor = color === 'cyan' ? 'hsl(180 100% 50%)' : 
-                         color === 'purple' ? 'hsl(270 100% 65%)' : 'hsl(142 76% 45%)';
+
+  // Check if we need a placeholder for Smarter Health assets
+  const needsPlaceholder = (src?: string) => {
+    return src && src.includes('/assets/case-studies/smarter-health/');
+  };
+
+  const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
+
+  // Debug logging
+  if (study.id === 'smarterhealth') {
+    console.log('🔍 Smarter Health Debug:', {
+      studyId: study.id,
+      video: study.video,
+      primaryImage: study.images.primary,
+      showPlaceholder,
+      needsVideoPlaceholder: needsPlaceholder(study.video),
+      needsImagePlaceholder: needsPlaceholder(study.images.primary)
+    });
+  }
+
+  const renderMedia = () => {
+    if (showPlaceholder) {
+      console.log('📦 Rendering PlaceholderImage for:', study.title);
+      return (
+        <div 
+          onClick={() => triggerRoomTransition(study.url, study.title)}
+          className="block h-full cursor-pointer"
+        >
+          <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
+        </div>
+      );
+    }
+
+    if (study.video) {
+      return (
+        <div 
+          onClick={() => triggerRoomTransition(study.url, study.title)}
+          className="block h-full group cursor-pointer"
+        >
+          <div className="flex justify-center h-full">
+            <video 
+              src={study.video}
+              poster={study.images.primary}
+              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              muted
+              loop
+              playsInline
+              style={{ maxWidth: '625px', height: 'auto' }}
+              onMouseEnter={(e) => e.currentTarget.play()}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+                e.currentTarget.load();
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+    
+    return (
+      <div 
+        onClick={() => triggerRoomTransition(study.url, study.title)}
+        className="block h-full group cursor-pointer"
+      >
+        <div className="flex justify-center h-full">
+          <img 
+            src={study.images.primary} 
+            alt={study.images.alt}
+            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
+            style={{ maxWidth: '625px', height: 'auto' }}
+          />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <motion.div
       id={`case-study-${index + 1}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "100px" }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="case-study-card overflow-hidden relative"
       tabIndex={-1}
     >
-      <SpotlightCard
-        className="rounded-2xl"
-        radius={200}
-        color={spotlightColor}
-        intensity={0.08}
-      >
-        <div 
-          className="p-6 sm:p-8 rounded-2xl border border-terminal-border-dim/30 
-                     backdrop-blur-sm transition-all duration-300"
-          style={{
-            background: `
-              linear-gradient(135deg, hsl(var(--terminal-surface) / 0.8) 0%, hsl(var(--terminal-bg) / 0.6) 100%)
-            `,
-          }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-            {/* Content side - Metric First */}
-            <div className="order-2 lg:order-1 space-y-5">
-              {/* Big Neon Metric */}
-              <MetricDisplay
-                value={study.metricValue}
-                label={study.metricLabel}
-                size="lg"
-                color={color}
-              />
-              
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {study.tags.map((tag) => (
-                  <Badge 
-                    key={tag} 
-                    variant="outline" 
-                    className="text-xs font-mono bg-terminal-surface/50 border-terminal-border-dim/50 
-                               text-muted-foreground hover:border-neon-cyan/30"
-                  >
-                    #{tag}
-                  </Badge>
-                ))}
-              </div>
-              
-              {/* Title */}
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold text-foreground leading-tight">
-                {study.title}
-              </h3>
-              
-              {/* Description */}
-              <p className="text-muted-foreground text-base leading-relaxed">
-                {study.description}
-              </p>
-              
-              {/* CTAs */}
-              <div className="flex flex-wrap gap-3 pt-2">
-                <Button
-                  onClick={() => triggerRoomTransition(study.url, study.title)}
-                  className="bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan-glow hover:to-neon-purple-glow 
-                             text-terminal-bg font-semibold px-6"
-                >
-                  View Case Study
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                
-                {study.liveUrl && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="border-terminal-border-dim/50 hover:border-neon-cyan/50 hover:bg-terminal-surface/50"
-                  >
-                    <a href={study.liveUrl} target="_blank" rel="noopener noreferrer">
-                      View Live
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </div>
-            
-            {/* Image side */}
-            <div 
-              className="order-1 lg:order-2 cursor-pointer group"
+      {/* Mobile Layout: Stacked with Premium Background */}
+      <div className="lg:hidden py-8 relative overflow-hidden"
+           style={{
+             background: `
+               linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+               radial-gradient(circle at 50% 0%, hsl(231 92% 98% / 0.5) 0%, transparent 50%)
+             `,
+             border: "1px solid hsl(220 20% 92%)",
+             borderRadius: "24px",
+             backdropFilter: "blur(8px)"
+           }}>
+        {/* Image Section - Full Width on Mobile */}
+        <div className="relative py-4 min-h-[200px] flex items-center justify-center">
+          <div className="w-full max-w-[625px] flex justify-center">
+            {renderMedia()}
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="p-6 space-y-4">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {study.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                #{tag}
+              </Badge>
+            ))}
+          </div>
+
+          {/* Title */}
+          <AnimatedText
+            text={study.title}
+            tag="h3"
+            className="heading-subsection text-gray-900 leading-tight break-words"
+            type="word"
+            animation="slide"
+            delay={300}
+            staggerChildren={0.05}
+          />
+
+          {/* Description */}
+          <p className="text-gray-600 text-lg leading-relaxed break-words">
+            {study.description}
+          </p>
+
+          {/* Impact Metrics */}
+          <div className="text-impact-metric-md">
+            {study.impact}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-row gap-3 pt-2">
+            <Button 
+              variant="case-study" 
+              className="flex-1"
               onClick={() => triggerRoomTransition(study.url, study.title)}
             >
-              <div className="relative rounded-xl overflow-hidden border border-terminal-border-dim/20">
-                <img
-                  src={study.images.primary}
-                  alt={study.images.alt}
-                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  style={{ maxWidth: '625px' }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-terminal-bg/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              View Case Study
+            </Button>
+            {study.liveUrl && (
+              <Button asChild variant="outline" className="flex-1">
+                <a 
+                  href={study.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  View Live
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout: Full-width background */}
+      <div className="hidden lg:block">
+        {/* Full-width Premium Background wrapper */}
+        <div className="w-screen relative left-1/2 -ml-[50vw] py-8 lg:py-10 overflow-hidden"
+             style={{
+               background: `
+                 linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+                 radial-gradient(circle at 20% 50%, hsl(231 92% 98% / 0.3) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 50%, hsl(263 85% 98% / 0.2) 0%, transparent 50%)
+               `,
+               borderTop: "1px solid hsl(220 20% 92%)",
+               borderBottom: "1px solid hsl(220 20% 92%)",
+             }}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            {/* Desktop content grid */}
+            <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
+                            [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
+                            2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
+              
+              {/* Images Section */}
+              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
+                   style={{ marginRight: '-24px' }}>
+                <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
+                  {renderMedia()}
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
+                   style={{ 
+                     paddingLeft: '24px',
+                     paddingRight: '24px',
+                     wordWrap: 'break-word',
+                     whiteSpace: 'normal'
+                   }}>
+                <div className="w-full max-w-[600px] space-y-3 break-words">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {study.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <AnimatedText
+                    text={study.title}
+                    tag="h3"
+                    className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
+                    type="word"
+                    animation="slide"
+                    delay={300}
+                    staggerChildren={0.05}
+                  />
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
+                    {study.description}
+                  </p>
+
+                  {/* Impact Metrics */}
+                  <div className="text-impact-metric-md mb-4">
+                    {study.impact}
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button 
+                      variant="case-study" 
+                      className="flex-1 sm:flex-none"
+                      onClick={() => triggerRoomTransition(study.url, study.title)}
+                    >
+                      View Case Study
+                    </Button>
+                    {study.liveUrl && (
+                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
+                        <a 
+                          href={study.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          View Live
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </SpotlightCard>
+      </div>
     </motion.div>
   );
 });
@@ -211,25 +359,30 @@ const CaseStudyCard: React.FC<{
 const VideoCaseStudiesSection: React.FC = () => {
   return (
     <section 
-      className="py-16 md:py-24 relative overflow-hidden" 
+      className="py-12 md:py-16 relative overflow-hidden" 
       tabIndex={-1}
       style={{
         background: `
-          radial-gradient(circle at 10% 20%, hsl(var(--neon-cyan) / 0.03) 0%, transparent 40%),
-          radial-gradient(circle at 90% 80%, hsl(var(--neon-purple) / 0.03) 0%, transparent 40%),
-          linear-gradient(180deg, hsl(var(--terminal-bg)) 0%, hsl(220 25% 8%) 100%)
+          radial-gradient(circle at 10% 20%, hsl(231 92% 98% / 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 90% 80%, hsl(263 85% 98% / 0.3) 0%, transparent 50%),
+          linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 99%) 100%)
         `
       }}
     >
-      {/* Grid overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(hsl(var(--neon-cyan) / 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--neon-cyan) / 0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
+      {/* Premium Background Elements */}
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        animate={{
+          background: [
+            "radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 60% 20%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
       
@@ -240,17 +393,17 @@ const VideoCaseStudiesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "50px" }}
           transition={{ duration: 0.4 }}
-          className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
-            Case Studies That Drive{' '}
-            <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-              Results
-            </span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real projects. Measurable outcomes. See how I transform business challenges into digital solutions.
-          </p>
+          <SectionHeader
+            as="h2"
+            title="Case Studies That Drive Results"
+            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
+            subtitleClassName="max-w-4xl mx-auto"
+            titleAnimation="elastic"
+            subtitleAnimation="fade"
+            titleDelay={0}
+            subtitleDelay={0.3}
+          />
         </motion.div>
 
         {/* Case Studies Grid */}

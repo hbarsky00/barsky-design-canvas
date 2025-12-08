@@ -208,26 +208,6 @@
   --tech-design: 25 95% 53%;      /* Orange for Design Tools */
   --tech-design-glow: 25 100% 60%;
   --tech-badge-bg: 220 20% 10%;   /* Dark background for badges */
-  
-  /* Gen-AI Native / Cyber Terminal Theme */
-  --terminal-bg: 220 25% 6%;
-  --terminal-surface: 220 20% 10%;
-  --terminal-border: 180 100% 50%;
-  --terminal-border-dim: 180 60% 30%;
-  --neon-cyan: 180 100% 50%;
-  --neon-cyan-glow: 180 100% 60%;
-  --neon-purple: 270 100% 65%;
-  --neon-purple-glow: 270 100% 75%;
-  --neon-green: 142 76% 45%;
-  --chat-input-bg: 220 20% 8%;
-  --prompt-text: 220 15% 55%;
-  --typing-cursor: 180 100% 50%;
-  
-  /* Spotlight/Glow Effects */
-  --spotlight-color: 180 100% 50%;
-  --spotlight-radius: 150px;
-  --card-glow: 0 0 30px hsl(180 100% 50% / 0.15);
-  --card-glow-hover: 0 0 50px hsl(180 100% 50% / 0.25);
 
   /* Legacy 3D Effects */
   --shadow-elevation: var(--md-sys-elevation-level2);

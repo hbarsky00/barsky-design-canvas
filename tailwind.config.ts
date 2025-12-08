@@ -123,23 +123,6 @@ const config: Config = {
           "design-glow": "hsl(var(--tech-design-glow))",
           "badge-bg": "hsl(var(--tech-badge-bg))",
         },
-        // Gen-AI Native / Cyber Terminal Colors
-        terminal: {
-          bg: "hsl(var(--terminal-bg))",
-          surface: "hsl(var(--terminal-surface))",
-          border: "hsl(var(--terminal-border))",
-          "border-dim": "hsl(var(--terminal-border-dim))",
-        },
-        neon: {
-          cyan: "hsl(var(--neon-cyan))",
-          "cyan-glow": "hsl(var(--neon-cyan-glow))",
-          purple: "hsl(var(--neon-purple))",
-          "purple-glow": "hsl(var(--neon-purple-glow))",
-          green: "hsl(var(--neon-green))",
-        },
-        chat: {
-          "input-bg": "hsl(var(--chat-input-bg))",
-        },
       },
       borderRadius: {
         // Material Design 3.0 Shape System
@@ -317,29 +300,6 @@ const config: Config = {
             transform: "translateY(0%) rotateX(0deg)",
           },
         },
-        // Gen-AI Native Animations
-        "typing-cursor": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-        "neon-pulse": {
-          "0%, 100%": { 
-            opacity: "1",
-            textShadow: "0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan))",
-          },
-          "50%": { 
-            opacity: "0.8",
-            textShadow: "0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan))",
-          },
-        },
-        "spotlight-move": {
-          "0%": { backgroundPosition: "0% 0%" },
-          "100%": { backgroundPosition: "100% 100%" },
-        },
-        "card-glow": {
-          "0%, 100%": { boxShadow: "var(--card-glow)" },
-          "50%": { boxShadow: "var(--card-glow-hover)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -362,11 +322,6 @@ const config: Config = {
         "glass-float": "glass-float 3s ease-in-out infinite",
         "ripple": "ripple 0.6s ease-out",
         "text-reveal": "text-reveal 0.8s var(--ease-out-expo)",
-        // Gen-AI Native Animations
-        "typing-cursor": "typing-cursor 1s step-end infinite",
-        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
-        "spotlight-move": "spotlight-move 3s ease-in-out infinite",
-        "card-glow": "card-glow 3s ease-in-out infinite",
       },
     },
   },
