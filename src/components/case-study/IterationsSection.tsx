@@ -3,10 +3,14 @@ import { IdeationIteration } from "@/data/structuredCaseStudies";
 import MaximizableImage from "../project/MaximizableImage";
 
 interface IterationsSectionProps {
-  iterations: IdeationIteration[];
+  iterations?: IdeationIteration[];
 }
 
 const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => {
+  // Return null if no iterations provided
+  if (!iterations || iterations.length === 0) {
+    return null;
+  }
   return (
     <section 
       className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] py-4"
