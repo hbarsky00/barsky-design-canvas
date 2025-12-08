@@ -38,7 +38,7 @@ const TechStackDisplay: React.FC<TechStackDisplayProps> = ({
 
   if (variant === "compact") {
     return (
-      <div className={cn("flex flex-wrap gap-1.5", className)}>
+      <div className={cn("flex flex-wrap gap-2", className)}>
         {renderBadges(aiTools, "ai")}
         {renderBadges(devStack, "dev")}
         {renderBadges(designTools, "design")}

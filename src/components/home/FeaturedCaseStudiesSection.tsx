@@ -177,7 +177,10 @@ const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study
 
           {/* Tech Stack - Gen-AI First */}
           {study.techStack && (
-            <div className="mb-4">
+            <div className="mb-4 pt-2 border-t border-gray-100">
+              <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                Built With
+              </div>
               <TechStackDisplay techStack={study.techStack} variant="compact" />
             </div>
           )}
