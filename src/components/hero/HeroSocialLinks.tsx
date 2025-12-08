@@ -21,8 +21,12 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://www.linkedin.com/in/hiram-barsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-4 lg:p-5 hover:bg-blue-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-          whileHover={{ scale: 1.1, y: -2 }}
+          className="glass-button p-4 lg:p-5 hover:bg-blue-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ 
+            scale: 1.1, 
+            y: -3,
+            boxShadow: "0 10px 25px -3px rgba(59, 130, 246, 0.4)"
+          }}
           whileTap={{ scale: 0.95 }}
         >
           <Linkedin className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
@@ -31,8 +35,12 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://figma.com/@hirambarsky" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-4 lg:p-5 hover:bg-purple-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-          whileHover={{ scale: 1.1, y: -2 }}
+          className="glass-button p-4 lg:p-5 hover:bg-purple-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ 
+            scale: 1.1, 
+            y: -3,
+            boxShadow: "0 10px 25px -3px rgba(139, 92, 246, 0.4)"
+          }}
           whileTap={{ scale: 0.95 }}
         >
           <Figma className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
@@ -41,8 +49,12 @@ const HeroSocialLinks: React.FC<HeroSocialLinksProps> = ({ isVisible }) => {
           href="https://drive.google.com/file/d/1EaLXCdtpeVOaTfcdW__4epeLvrpZJnw-/view?usp=drivesdk"
           target="_blank" 
           rel="noopener noreferrer"
-          className="glass-button p-4 lg:p-5 hover:bg-green-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm hover:shadow-md [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
-          whileHover={{ scale: 1.1, y: -2 }}
+          className="glass-button p-4 lg:p-5 hover:bg-green-100/80 rounded-xl transition-all duration-300 backdrop-blur-sm shadow-sm [&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
+          whileHover={{ 
+            scale: 1.1, 
+            y: -3,
+            boxShadow: "0 10px 25px -3px rgba(34, 197, 94, 0.4)"
+          }}
           whileTap={{ scale: 0.95 }}
         >
           <Download className="h-6 w-6 lg:h-7 lg:w-7 text-gray-600" />
