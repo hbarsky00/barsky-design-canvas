@@ -42,17 +42,18 @@ const TechStackBadge: React.FC<TechStackBadgeProps> = ({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full",
-        "bg-tech-badge-bg/95 border",
-        "font-mono text-xs tracking-tight",
+        "inline-flex items-center gap-1.5 rounded-full",
+        "bg-tech-badge-bg/95 border-2",
+        "font-mono tracking-tight font-medium",
         "transition-all duration-200",
+        "shadow-sm",
         config.borderClass,
         config.textClass,
         config.glowClass,
-        size === "md" && "px-3 py-1.5 text-sm"
+        size === "sm" ? "px-3 py-1.5 text-sm" : "px-4 py-2 text-base"
       )}
     >
-      <Icon className={cn("shrink-0", size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5")} />
+      <Icon className={cn("shrink-0", size === "sm" ? "h-4 w-4" : "h-5 w-5")} />
       <span>{label}</span>
     </span>
   );
