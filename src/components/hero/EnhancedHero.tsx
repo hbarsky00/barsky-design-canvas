@@ -22,14 +22,36 @@ const EnhancedHero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll-driven parallax values
+  // Scroll-driven parallax values with different speeds for depth
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  // Background moves slowest (furthest away)
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const backgroundOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.6, 0.3]);
+  
+  // Heading - medium speed
+  const headingY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0]);
+  
+  // Description - slightly faster
+  const descriptionY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const descriptionOpacity = useTransform(scrollYProgress, [0, 0.5, 0.9], [1, 1, 0]);
+  
+  // Buttons - fastest (closest to viewer)
+  const buttonsY = useTransform(scrollYProgress, [0, 1], [0, -160]);
+  const buttonsOpacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [1, 1, 0]);
+  
+  // Social links - fastest
+  const socialY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const socialOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7], [1, 1, 0]);
+
+  // Explore button parallax
+  const exploreY = useTransform(scrollYProgress, [0, 1], [0, -240]);
+  const exploreOpacity = useTransform(scrollYProgress, [0, 0.2, 0.5], [1, 0.5, 0]);
 
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('section:nth-of-type(2)');
@@ -42,12 +64,16 @@ const EnhancedHero: React.FC = () => {
     <section 
       ref={sectionRef} 
       className="min-h-screen flex flex-col bg-transparent overflow-hidden relative"
-      style={{ perspective: "1000px" }}
+      style={{ perspective: "1200px" }}
     >
-      {/* Animated Background */}
+      {/* Animated Background with parallax */}
       <motion.div 
         className="absolute inset-0"
-        style={{ y: prefersReducedMotion ? 0 : backgroundY }}
+        style={{ 
+          y: prefersReducedMotion ? 0 : backgroundY,
+          scale: prefersReducedMotion ? 1 : backgroundScale,
+          opacity: prefersReducedMotion ? 1 : backgroundOpacity,
+        }}
       >
         <AnimatedBackground />
       </motion.div>
@@ -60,30 +86,60 @@ const EnhancedHero: React.FC = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center"
-            style={{ y: prefersReducedMotion ? 0 : contentY }}
           >
-            {/* Main content with generous spacing */}
+            {/* Main content with generous spacing and layered parallax */}
             <div className="space-y-6 lg:space-y-10">
-              <HeroHeading isVisible={isVisible} />
+              <motion.div 
+                style={{ 
+                  y: prefersReducedMotion ? 0 : headingY,
+                  opacity: prefersReducedMotion ? 1 : headingOpacity,
+                }}
+              >
+                <HeroHeading isVisible={isVisible} />
+              </motion.div>
               
-              <div className="space-y-4 lg:space-y-6">
+              <motion.div 
+                className="space-y-4 lg:space-y-6"
+                style={{ 
+                  y: prefersReducedMotion ? 0 : descriptionY,
+                  opacity: prefersReducedMotion ? 1 : descriptionOpacity,
+                }}
+              >
                 <HeroDescription isVisible={isVisible} />
-              </div>
+              </motion.div>
               
-              <div className="pt-4 lg:pt-8">
+              <motion.div 
+                className="pt-4 lg:pt-8"
+                style={{ 
+                  y: prefersReducedMotion ? 0 : buttonsY,
+                  opacity: prefersReducedMotion ? 1 : buttonsOpacity,
+                }}
+              >
                 <HeroActionButtons isVisible={isVisible} />
-              </div>
+              </motion.div>
               
-              <div className="hidden sm:block pt-6 lg:pt-10">
+              <motion.div 
+                className="hidden sm:block pt-6 lg:pt-10"
+                style={{ 
+                  y: prefersReducedMotion ? 0 : socialY,
+                  opacity: prefersReducedMotion ? 1 : socialOpacity,
+                }}
+              >
                 <HeroSocialLinks isVisible={isVisible} />
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Navigation Controls - Separated from main content */}
-      <div className="flex-shrink-0 relative z-10 pb-8">
+      {/* Navigation Controls with parallax */}
+      <motion.div 
+        className="flex-shrink-0 relative z-10 pb-8"
+        style={{ 
+          y: prefersReducedMotion ? 0 : exploreY,
+          opacity: prefersReducedMotion ? 1 : exploreOpacity,
+        }}
+      >
         <div className="flex justify-center">
           <button
             onClick={scrollToNextSection}
@@ -102,7 +158,7 @@ const EnhancedHero: React.FC = () => {
             </motion.div>
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
