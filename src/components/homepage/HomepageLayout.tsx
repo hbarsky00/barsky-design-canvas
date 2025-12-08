@@ -6,6 +6,7 @@ import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
+import FloatingScrollToTopButton from "@/components/FloatingScrollToTopButton";
 import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
@@ -128,6 +129,7 @@ const HomepageLayout: React.FC = () => {
       
       <Footer />
       <FloatingConsultationBubble />
+      <FloatingScrollToTopButton />
       <FloatingButtonGroup />
       
       {/* Bounce Reduction Components - Lazy loaded */}
