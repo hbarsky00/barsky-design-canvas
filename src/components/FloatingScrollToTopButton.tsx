@@ -51,7 +51,7 @@ const FloatingScrollToTopButton: React.FC = () => {
             duration: 0.3, 
             ease: [0.4, 0, 0.2, 1]
           }}
-          className="fixed bottom-4 sm:bottom-6 right-[4.5rem] sm:right-[5.5rem] z-40 pb-[env(safe-area-inset-bottom)]"
+          className="fixed bottom-16 sm:bottom-20 left-4 z-40 pb-[env(safe-area-inset-bottom)]"
         >
           <motion.button
             onClick={scrollToTop}
