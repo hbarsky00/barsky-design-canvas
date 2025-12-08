@@ -6,9 +6,10 @@ import VideoPlayer from "./VideoPlayer";
 import { CaseStudyData } from "@/data/caseStudies";
 import ProjectLinks from "@/components/project/ProjectLinks";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
+import TechStackDisplay, { TechStack } from "@/components/tech-stack/TechStackDisplay";
 
 interface CaseStudyHeroProps {
-  caseStudy: CaseStudyData;
+  caseStudy: CaseStudyData & { techStack?: TechStack };
 }
 
 const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
@@ -43,6 +44,13 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
                 </Badge>
               ))}
             </div>
+
+            {/* Tech Stack - Gen-AI First */}
+            {caseStudy.techStack && (
+              <div className="mt-6">
+                <TechStackDisplay techStack={caseStudy.techStack} variant="full" className="justify-center" />
+              </div>
+            )}
 
             {caseStudy.projectLink && (
               <div className="hero-cta-wrapper">

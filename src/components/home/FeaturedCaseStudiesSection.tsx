@@ -6,8 +6,23 @@ import { ArrowRight, Star, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { getAnnotationClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
+import TechStackDisplay, { TechStack } from "@/components/tech-stack/TechStackDisplay";
 
-const featuredCaseStudies = [
+interface FeaturedStudy {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  url: string;
+  liveUrl?: string;
+  category: string;
+  impact: string;
+  tags: string[];
+  techStack?: TechStack;
+}
+
+const featuredCaseStudies: FeaturedStudy[] = [
   {
     id: "smarter-health",
     title: "Smarter Health",
@@ -17,7 +32,12 @@ const featuredCaseStudies = [
     url: "/project/smarter-health",
     category: "Healthcare",
     impact: "60% more patients trusting their care plan",
-    tags: ["Healthcare", "Mobile App", "Accessibility"]
+    tags: ["Healthcare", "Mobile App", "Accessibility"],
+    techStack: {
+      aiTools: ["ChatGPT", "Figma AI"],
+      devStack: ["React Native", "TypeScript"],
+      designTools: ["Figma", "Material Design 3.0"],
+    }
   },
   {
     id: "herbalink",
@@ -28,7 +48,12 @@ const featuredCaseStudies = [
     url: "/project/herbalink",
     category: "Healthcare",
     impact: "Eliminated practitioner selection anxiety",
-    tags: ["AI", "Healthcare", "Mobile App"]
+    tags: ["AI", "Healthcare", "Mobile App"],
+    techStack: {
+      aiTools: ["ChatGPT", "AI Matching"],
+      devStack: ["React Native", "Node.js"],
+      designTools: ["Figma", "Protopie"],
+    }
   },
   {
     id: "crypto",
@@ -39,7 +64,12 @@ const featuredCaseStudies = [
     url: "/project/crypto",
     category: "FinTech", 
     impact: "+35% confident enough to start trading",
-    tags: ["Fintech", "Crypto", "Mobile & Web"]
+    tags: ["Fintech", "Crypto", "Mobile & Web"],
+    techStack: {
+      aiTools: ["Claude 3.5", "Cursor AI"],
+      devStack: ["React", "TypeScript", "WebSocket"],
+      designTools: ["Figma", "Framer Motion"],
+    }
   },
   // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
   {
@@ -52,7 +82,12 @@ const featuredCaseStudies = [
     liveUrl: "https://barskyjoint.com",
     category: "Restaurant Tech",
     impact: "28% more confident ordering",
-    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"]
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
+    techStack: {
+      aiTools: ["ChatGPT"],
+      devStack: ["React", "Next.js"],
+      designTools: ["Figma"],
+    }
   },
   {
     id: "business-management",
@@ -63,11 +98,16 @@ const featuredCaseStudies = [
     url: "/project/business-management",
     category: "Enterprise",
     impact: "68% more confident in data accuracy",
-    tags: ["Enterprise", "Automation", "Analytics"]
+    tags: ["Enterprise", "Automation", "Analytics"],
+    techStack: {
+      aiTools: ["ChatGPT", "Midjourney", "Cursor AI"],
+      devStack: ["React", "Next.js", "Supabase"],
+      designTools: ["Figma", "Framer"],
+    }
   }
 ];
 
-const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index: number }> = ({ study, index }) => {
+const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study, index }) => {
   const cardRef = React.useRef<HTMLDivElement>(null);
   const { containerStyle } = useScroll3DTilt(cardRef, { maxTilt: 3, yDistance: 12, childParallax: 8 });
   return (
@@ -134,6 +174,13 @@ const FeaturedCard: React.FC<{ study: typeof featuredCaseStudies[number]; index:
               </span>
             ))}
           </div>
+
+          {/* Tech Stack - Gen-AI First */}
+          {study.techStack && (
+            <div className="mb-4">
+              <TechStackDisplay techStack={study.techStack} variant="compact" />
+            </div>
+          )}
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">

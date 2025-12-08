@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import TechStackDisplay, { TechStack } from "@/components/tech-stack/TechStackDisplay";
 
 interface ModernProjectCardProps {
   title: string;
@@ -12,6 +13,7 @@ interface ModernProjectCardProps {
   videoThumbnail: string;
   video?: string;
   url: string;
+  techStack?: TechStack;
   className?: string;
 }
 
@@ -22,6 +24,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
   videoThumbnail,
   video,
   url,
+  techStack,
   className = ""
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -285,6 +288,11 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             <p className="text-body-medium text-gray-600 dark:text-gray-300 leading-relaxed">
               {description}
             </p>
+
+            {/* Tech Stack - Gen-AI First */}
+            {techStack && (
+              <TechStackDisplay techStack={techStack} variant="compact" />
+            )}
 
             {/* CTA visual (entire card is clickable) */}
             <div className="pt-2 text-primary flex items-center gap-2">

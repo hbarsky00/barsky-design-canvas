@@ -200,6 +200,15 @@
   --barsky-accent: var(--md-sys-color-tertiary);
   --barsky-accent-light: var(--md-sys-color-tertiary-container);
 
+  /* Tech Stack Badge System - Gen-AI First */
+  --tech-ai: 187 100% 42%;        /* Cyan for AI Tools */
+  --tech-ai-glow: 187 100% 50%;
+  --tech-dev: 270 91% 65%;        /* Purple for Dev Stack */
+  --tech-dev-glow: 270 100% 70%;
+  --tech-design: 25 95% 53%;      /* Orange for Design Tools */
+  --tech-design-glow: 25 100% 60%;
+  --tech-badge-bg: 220 20% 10%;   /* Dark background for badges */
+
   /* Legacy 3D Effects */
   --shadow-elevation: var(--md-sys-elevation-level2);
   --shadow-elevation-hover: var(--md-sys-elevation-level4);
