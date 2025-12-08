@@ -89,18 +89,34 @@ const MinimalHero: React.FC = () => {
       
       <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto w-full relative z-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="hero-loading flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
         >
-          {/* Ultra-Modern Avatar with Premium Effects */}
+          {/* Ultra-Modern Avatar with Premium Effects - Stagger: 0.1s */}
           <motion.div 
             className="flex justify-center order-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
-            <div className="relative">
+            <div className="relative group">
+              {/* Breathing Ring Effect - Visible on hover */}
+              <motion.div
+                className="absolute -inset-3 rounded-full border-2 border-primary/0 group-hover:border-primary/40 transition-colors duration-300"
+                animate={{
+                  scale: [1, 1.08, 1],
+                  opacity: [0, 0.6, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              
               {/* Multi-layered Premium Glow System */}
               <motion.div
                 className="absolute inset-0 rounded-full"
@@ -229,11 +245,11 @@ const MinimalHero: React.FC = () => {
 
           {/* Content - More proportional text scaling */}
           <div className="order-2">
-            {/* Enhanced Main H1 with gradient text */}
+            {/* Enhanced Main H1 with gradient text - Stagger: 0.3s */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             >
               <AnimatedText
                 text="Lead UX Designer | Driving Design Strategy & Leadership"
@@ -261,12 +277,12 @@ const MinimalHero: React.FC = () => {
               />
             </motion.div>
             
-            {/* Combined Hiram Barsky on one line */}
+            {/* Combined Hiram Barsky on one line - Stagger: 0.5s */}
             <div className="flex flex-row items-center justify-center">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
               >
             <AnimatedText
               text="Hiram Barsky"
@@ -283,14 +299,15 @@ const MinimalHero: React.FC = () => {
             />
               </motion.div>
             </div>
+            {/* URL - Stagger: 0.7s */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
             >
             <a 
               href="https://barskydesign.pro"
-              className="inline-block mb-1 lg:mb-2 xl:mb-2 2xl:mb-3"
+              className="inline-block mb-1 lg:mb-2 xl:mb-2 2xl:mb-3 animated-underline"
             >
               <AnimatedText
                 text="barskydesign.pro"
@@ -307,10 +324,11 @@ const MinimalHero: React.FC = () => {
             </a>
             </motion.div>
             
+            {/* Location - Stagger: 0.9s */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
             >
               <AnimatedText
                 text="Clifton, NJ"
@@ -325,11 +343,11 @@ const MinimalHero: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Enhanced Contact Icons Row with reduced spacing */}
+        {/* Enhanced Contact Icons Row - Stagger: 1.1s */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 1.1, ease: "easeOut" }}
           className="flex justify-center items-center space-x-4 sm:space-x-6 lg:space-x-7 xl:space-x-8 2xl:space-x-9
                      mt-4 sm:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 order-3"
         >
@@ -339,19 +357,15 @@ const MinimalHero: React.FC = () => {
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-2xl 
                        bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-lg border border-white/30
                        hover:bg-gradient-to-br hover:from-blue-50/60 hover:via-blue-50/30 hover:to-white/10 
-                       hover:border-blue-200/50 transition-all duration-500
-                       min-w-[44px] min-h-[44px] flex items-center justify-center 
-                       hover:shadow-xl hover:shadow-blue-500/25 group relative overflow-hidden"
+                       hover:border-blue-200/50 transition-all duration-300
+                       min-w-[44px] min-h-[44px] flex items-center justify-center group relative overflow-hidden"
             whileHover={{ 
-              scale: 1.15, 
-              y: -6,
-              rotateY: 5,
+              scale: 1.1, 
+              y: -3,
+              boxShadow: "0 10px 25px -3px rgba(59, 130, 246, 0.4)"
             }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
-            style={{
-              transformStyle: "preserve-3d",
-            }}
           >
             {/* Animated Ripple Background */}
             <motion.div
@@ -360,8 +374,7 @@ const MinimalHero: React.FC = () => {
             />
             
             <Mail className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 
-                           text-gray-700 group-hover:text-blue-600 transition-all duration-300 relative z-10
-                           group-hover:drop-shadow-sm" />
+                           text-gray-700 group-hover:text-blue-600 transition-all duration-300 relative z-10" />
           </motion.a>
 
           <motion.a
@@ -372,9 +385,12 @@ const MinimalHero: React.FC = () => {
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
                        bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-blue-50/50 hover:border-blue-200/50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center 
-                       hover:shadow-lg hover:shadow-blue-500/25"
-            whileHover={{ scale: 1.15, y: -4 }}
+                       min-w-[44px] min-h-[44px] flex items-center justify-center"
+            whileHover={{ 
+              scale: 1.1, 
+              y: -3,
+              boxShadow: "0 10px 25px -3px rgba(59, 130, 246, 0.4)"
+            }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -390,9 +406,12 @@ const MinimalHero: React.FC = () => {
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
                        bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-gray-50/50 hover:border-gray-200/50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center 
-                       hover:shadow-lg hover:shadow-gray-500/25"
-            whileHover={{ scale: 1.15, y: -4 }}
+                       min-w-[44px] min-h-[44px] flex items-center justify-center"
+            whileHover={{ 
+              scale: 1.1, 
+              y: -3,
+              boxShadow: "0 10px 25px -3px rgba(75, 85, 99, 0.4)"
+            }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -408,9 +427,12 @@ const MinimalHero: React.FC = () => {
             className="p-3 sm:p-4 lg:p-5 xl:p-6 2xl:p-7 rounded-xl 
                        bg-white/10 backdrop-blur-sm border border-white/20
                        hover:bg-green-50/50 hover:border-green-200/50 transition-all duration-300
-                       min-w-[44px] min-h-[44px] flex items-center justify-center 
-                       hover:shadow-lg hover:shadow-green-500/25"
-            whileHover={{ scale: 1.15, y: -4 }}
+                       min-w-[44px] min-h-[44px] flex items-center justify-center"
+            whileHover={{ 
+              scale: 1.1, 
+              y: -3,
+              boxShadow: "0 10px 25px -3px rgba(34, 197, 94, 0.4)"
+            }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -423,13 +445,13 @@ const MinimalHero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Continue Button - Fixed positioning within viewport */}
+      {/* Continue Button - Stagger: 1.4s */}
       {showContinueButton && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 1.2 }}
+          transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
           className="fixed bottom-8 inset-x-0 mx-auto w-fit cursor-pointer group z-50 flex items-center justify-center"
           onClick={handleNavigateDown}
           whileHover={{ scale: 1.1 }}

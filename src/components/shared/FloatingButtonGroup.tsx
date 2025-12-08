@@ -52,13 +52,17 @@ const FloatingButtonGroup: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Buy Me Coffee Button - always visible */}
+      {/* Buy Me Coffee Button - always visible with premium hover glow */}
       <motion.a
         href="https://buy.stripe.com/dRm14n2dl2xF7bG8O8dUY01"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
-        whileHover={{ scale: 1.05 }}
+        className="inline-flex items-center gap-2 px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-full shadow-lg transition-all duration-300 group"
+        whileHover={{ 
+          scale: 1.05, 
+          y: -3,
+          boxShadow: "0 10px 25px -3px rgba(217, 119, 6, 0.5)"
+        }}
         whileTap={{ scale: 0.95 }}
       >
         <Coffee 
