@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
@@ -7,6 +6,7 @@ import HeroDescription from "./HeroDescription";
 import HeroActionButtons from "./HeroActionButtons";
 import HeroSocialLinks from "./HeroSocialLinks";
 import AnimatedBackground from "./AnimatedBackground";
+import CursorSpotlight from "../effects/CursorSpotlight";
 
 
 const EnhancedHero: React.FC = () => {
@@ -66,6 +66,9 @@ const EnhancedHero: React.FC = () => {
       className="min-h-screen flex flex-col bg-transparent overflow-hidden relative"
       style={{ perspective: "1200px" }}
     >
+      {/* Cursor Spotlight Effect */}
+      <CursorSpotlight containerRef={sectionRef} size={500} opacity={0.12} />
+
       {/* Animated Background with parallax */}
       <motion.div 
         className="absolute inset-0"
