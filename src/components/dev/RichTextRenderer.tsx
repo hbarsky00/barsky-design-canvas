@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { sanitizeHtml } from '@/utils/htmlSanitizer';
 
 interface RichTextRendererProps {
   text: string;
@@ -84,7 +85,8 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ text, className = "
     // Handle italic text (*text*)
     formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
     
-    return <span dangerouslySetInnerHTML={{ __html: formatted }} />;
+    // Sanitize to prevent XSS
+    return <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(formatted) }} />;
   };
 
   return (

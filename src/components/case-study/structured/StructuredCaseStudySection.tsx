@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
+import { sanitizeHtml } from "@/utils/htmlSanitizer";
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -174,9 +175,11 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                     {line.includes('**') ? (
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: line
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                          __html: sanitizeHtml(
+                            line
+                              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                              .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                          )
                         }}
                       />
                     ) : (
