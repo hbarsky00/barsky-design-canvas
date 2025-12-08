@@ -69,7 +69,7 @@ export interface IdeationSection {
     alt: string;
     caption?: string;
   };
-  iterations: IdeationIteration[];
+  iterations?: IdeationIteration[];
 }
 
 export interface ClientTestimonial {
@@ -1953,28 +1953,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Tasks", description: "Today view + smart priority" },
         { title: "Invoices", description: "template-driven workflow" },
         { title: "Scheduling", description: "auto-generates tasks + invoices" },
-      ],
-      iterations: [
-        {
-          label: "Iteration 1",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png",
-          alt: "Today view clarity iteration",
-          blurb: 'Today view clarity → "Finally, something that makes sense"',
-          annotations: [
-            { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
-            { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" },
-          ],
-        },
-        {
-          label: "Iteration 2",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png",
-          alt: "Scheduling integration iteration",
-          blurb: 'Scheduling integration → "I look forward to checking this"',
-          annotations: [
-            { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
-            { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" },
-          ],
-        },
       ],
     },
     userTestingSection: {
