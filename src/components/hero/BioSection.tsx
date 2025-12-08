@@ -1,9 +1,11 @@
+
 import React from "react";
 import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import SectionHeader from "@/components/shared/SectionHeader";
-
 const BioSection: React.FC = () => {
+
   return (
     <section 
       id="bio-section"
@@ -67,6 +69,7 @@ const BioSection: React.FC = () => {
           </Card>
         </motion.div>
       </div>
+
     </section>
   );
 };

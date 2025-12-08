@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const FloatingScrollToTopButton: React.FC = () => {
   const location = useLocation();
@@ -27,11 +28,14 @@ const FloatingScrollToTopButton: React.FC = () => {
   }, [location.pathname]);
 
   const scrollToTop = () => {
+    console.log('🔄 FloatingScrollToTopButton: Scroll to top clicked!');
     if (typeof window !== 'undefined') {
+      console.log('📍 Current scroll position:', window.scrollY);
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
+      console.log('✅ Scroll to top executed');
     }
   };
 
@@ -44,24 +48,20 @@ const FloatingScrollToTopButton: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 10 }}
-          transition={{ 
-            duration: 0.3, 
-            ease: [0.4, 0, 0.2, 1]
-          }}
-          className="fixed bottom-16 sm:bottom-20 left-4 z-40 pb-[env(safe-area-inset-bottom)]"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-16 left-6 z-40"
         >
-          <motion.button
+          <Button
             onClick={scrollToTop}
-            className="h-12 w-12 flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg border border-border/20 backdrop-blur-sm"
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.05 }}
+            size="icon"
+            className="h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-5 w-5" />
-          </motion.button>
+          </Button>
         </motion.div>
       )}
     </AnimatePresence>

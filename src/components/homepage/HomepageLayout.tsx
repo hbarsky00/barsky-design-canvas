@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import Header from "@/components/Header";
 import MinimalHero from "@/components/hero/MinimalHero";
-import AuroraBackground from "@/components/hero/AuroraBackground";
 import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
@@ -36,10 +35,8 @@ const HomepageLayout: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
-      {/* Aurora Background - Gen AI Vibe */}
-      <AuroraBackground />
       
-      <BackgroundAudio
+      <BackgroundAudio 
         src="/audio/shove-it-deftones.mp3" 
         volume={0.15}
       />

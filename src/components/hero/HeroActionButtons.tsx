@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
-import MagneticButton from "@/components/effects/MagneticButton";
 
 interface HeroActionButtonsProps {
   isVisible: boolean;
@@ -30,9 +29,8 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
       transition={{ duration: 0.8, delay: 1.8 }}
       className="flex flex-col sm:flex-row justify-center gap-4 lg:gap-6"
     >
-      <MagneticButton
-        strength={0.25}
-        whileHover={{ scale: 1.05 }}
+      <motion.div
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
       >
         <Button 
@@ -45,13 +43,12 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           <span>Get Free UX+AI Consultation</span>
           <ArrowRight className="ml-2 h-5 w-5 lg:h-6 lg:w-6 group-hover:translate-x-1 transition-transform" />
         </Button>
-      </MagneticButton>
+      </motion.div>
       
-      <MagneticButton
-        className="hidden sm:block"
-        strength={0.25}
-        whileHover={{ scale: 1.05 }}
+      <motion.div
+        whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
+        className="hidden sm:block"
       >
         <Button 
           variant="outline"
@@ -62,7 +59,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           <span className="font-medium">See Case Studies & ROI</span>
           <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
-      </MagneticButton>
+      </motion.div>
     </motion.div>
   );
 };
