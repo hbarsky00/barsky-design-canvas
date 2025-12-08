@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const FloatingScrollToTopButton: React.FC = () => {
   const location = useLocation();
@@ -28,14 +27,11 @@ const FloatingScrollToTopButton: React.FC = () => {
   }, [location.pathname]);
 
   const scrollToTop = () => {
-    console.log('🔄 FloatingScrollToTopButton: Scroll to top clicked!');
     if (typeof window !== 'undefined') {
-      console.log('📍 Current scroll position:', window.scrollY);
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
-      console.log('✅ Scroll to top executed');
     }
   };
 
@@ -55,16 +51,17 @@ const FloatingScrollToTopButton: React.FC = () => {
             duration: 0.3, 
             ease: [0.4, 0, 0.2, 1]
           }}
-          className="fixed bottom-20 sm:bottom-[5.5rem] left-6 z-40 pb-[env(safe-area-inset-bottom)]"
+          className="fixed bottom-16 sm:bottom-20 left-4 z-40 pb-[env(safe-area-inset-bottom)]"
         >
-          <Button
+          <motion.button
             onClick={scrollToTop}
-            size="icon"
-            className="h-12 w-12 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
+            className="h-12 w-12 flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg border border-border/20 backdrop-blur-sm"
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-5 w-5" />
-          </Button>
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>
