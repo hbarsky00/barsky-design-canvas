@@ -54,10 +54,10 @@ const CaseStudyShareToolbar: React.FC<CaseStudyShareToolbarProps> = ({
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <Button
-        variant="default"
+        variant="brand"
         size="sm"
         onClick={handleLinkedInShare}
-        className="w-full sm:w-auto font-semibold !text-white [&_*]:!text-white"
+        className="w-full sm:w-auto font-semibold"
         aria-label="Share on LinkedIn"
       >
         <Linkedin className="h-4 w-4" />

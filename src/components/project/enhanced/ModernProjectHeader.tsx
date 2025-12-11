@@ -87,7 +87,7 @@ const ModernProjectHeader: React.FC<ModernProjectHeaderProps> = ({
               <div className="flex justify-center pt-4">
                 <Button 
                   asChild
-                  variant="default"
+                  variant="brand"
                 >
                   <a
                     href={details.projectLink}

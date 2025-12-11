@@ -25,7 +25,7 @@ const buttonVariants = cva(
         
         // Premium brand variants
         brand: "bg-gradient-to-r from-md-sys-primary via-blue-600 to-md-sys-tertiary text-md-sys-on-primary hover:shadow-glow-hover hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-8 h-12 font-bold transform transition-all duration-300 relative overflow-hidden",
-        default: "bg-gradient-to-r from-md-sys-primary to-blue-600 text-md-sys-on-primary hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
+        default: "bg-gradient-to-r from-md-sys-primary to-blue-600 text-white hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
         secondary: "bg-gradient-to-br from-md-sys-secondary-container to-md-sys-surface-container-high text-md-sys-on-secondary-container hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium border border-md-sys-outline-variant/30",
         ghost: "text-md-sys-primary hover:bg-gradient-to-r hover:from-md-sys-primary/10 hover:to-md-sys-tertiary/10 hover:scale-[1.02] rounded-2xl px-4 h-12 font-medium relative",
         link: "text-md-sys-primary underline-offset-4 hover:underline bg-transparent h-auto p-0 relative after:absolute after:w-full after:h-0.5 after:bg-gradient-to-r after:from-md-sys-primary after:to-md-sys-tertiary after:bottom-0 after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",

@@ -126,7 +126,7 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
                   <div className="flex justify-center pt-4">
                     <Button 
                       asChild
-                      variant="default"
+                      variant="brand"
                     >
                       <a
                         href={updatedDetails.projectLink}

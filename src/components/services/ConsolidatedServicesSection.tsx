@@ -114,8 +114,8 @@ const ConsolidatedServicesSection = () => {
               {/* CTA Button */}
               <div className="mt-auto">
                 <Link to={service.href}>
-                  <Button variant="default" className="w-full group" size="lg">
-                    <span className="text-slate-50">{service.cta}</span>
+                  <Button variant="brand" className="w-full group" size="lg">
+                    {service.cta}
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
