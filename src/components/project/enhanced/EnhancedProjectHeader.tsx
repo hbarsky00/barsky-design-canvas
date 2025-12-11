@@ -80,7 +80,7 @@ const EnhancedProjectHeader: React.FC<EnhancedProjectHeaderProps> = ({
               <div className="flex items-center space-x-4">
                 <Button 
                   asChild
-                  variant="default"
+                  variant="brand"
                   className="[&_svg]:stroke-2 [&_svg]:stroke-current [&_svg]:fill-none"
                 >
                   <a

@@ -66,7 +66,7 @@ const SimpleProjectHero: React.FC<SimpleProjectHeroProps> = ({
 
               {details.projectLink && (
                 <div className="hero-cta-wrapper">
-                  <Button asChild variant="default">
+                  <Button asChild variant="brand">
                     <a href={details.projectLink} target="_blank" rel="noopener noreferrer">
                       View Live Project
                       <ExternalLink className="ml-2 h-4 w-4" />
