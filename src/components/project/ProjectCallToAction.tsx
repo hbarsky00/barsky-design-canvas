@@ -57,6 +57,7 @@ const ProjectCallToAction: React.FC = () => {
         >
           <Button 
             onClick={openCalendly}
+            variant="brand"
             size="lg"
             className="w-full sm:w-auto"
           >
