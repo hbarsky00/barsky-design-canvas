@@ -19,7 +19,7 @@ const ContactInformation: React.FC = () => {
       
       {/* Quick Action Button - Only Schedule Consultation */}
       <div className="mb-8">
-       <Button onClick={openCalendly} size="lg" variant="brand" className="w-full sm:w-auto font-semibold">
+       <Button onClick={openCalendly} size="lg" className="w-full sm:w-auto font-semibold bg-gradient-to-r from-primary via-blue-600 to-purple-600 text-white hover:shadow-lg">
   <Calendar className="mr-2 h-5 w-5" />
   Schedule a Free Consultation
 </Button>
