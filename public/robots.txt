@@ -97,7 +97,6 @@ Allow: /
 
 # Sitemap locations
 Sitemap: https://barskydesign.pro/sitemap.xml
-Sitemap: https://barskydesign.pro/blog-sitemap.xml
 
 # Priority paths for crawlers
 Allow: /projects/
