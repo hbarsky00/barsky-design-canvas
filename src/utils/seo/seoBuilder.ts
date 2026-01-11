@@ -41,7 +41,19 @@ export function toAbs(url?: string): string {
 }
 
 export function buildSEO(input: SEOInput): BuiltSEO {
-  const canonical = `${SEO_CONSTANTS.BASE_URL}${input.path}`.replace(/[?#].*$/, "");
+  // Normalize canonical URL - ensure homepage gets trailing slash, others don't
+  let canonicalPath = input.path.replace(/[?#].*$/, "");
+  
+  // Remove trailing slash for non-root paths for consistency
+  if (canonicalPath !== '/' && canonicalPath.endsWith('/')) {
+    canonicalPath = canonicalPath.slice(0, -1);
+  }
+  
+  // Build canonical - homepage should be baseUrl/ (with trailing slash)
+  const canonical = canonicalPath === '/' 
+    ? `${SEO_CONSTANTS.BASE_URL}/`
+    : `${SEO_CONSTANTS.BASE_URL}${canonicalPath}`;
+    
   const isArticle = input.kind === "project" || input.kind === "post";
   const imageAbs = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
 
