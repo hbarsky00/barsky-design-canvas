@@ -20,9 +20,11 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
     // Configure audio
     audio.volume = volume;
     audio.loop = true;
-    audio.preload = 'none'; // Don't preload until user interaction
+    audio.preload = 'none';
 
-    // Deferred audio loading for performance
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+    let idleHandle: number | undefined;
+
     const tryAutoplay = async () => {
       try {
         await audio.play();
@@ -41,12 +43,21 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
     };
 
     // Delay audio loading for 20 seconds to prioritize critical resources
-    const timer = 'requestIdleCallback' in window 
-      ? window.requestIdleCallback(() => setTimeout(tryAutoplay, 20000), { timeout: 25000 })
-      : setTimeout(tryAutoplay, 20000);
+    if ('requestIdleCallback' in window) {
+      idleHandle = window.requestIdleCallback(() => {
+        timeoutHandle = setTimeout(tryAutoplay, 20000);
+      }, { timeout: 25000 });
+    } else {
+      timeoutHandle = setTimeout(tryAutoplay, 20000);
+    }
 
     return () => {
-      clearTimeout(timer);
+      if (idleHandle && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleHandle);
+      }
+      if (timeoutHandle) {
+        clearTimeout(timeoutHandle);
+      }
       if (audio) {
         audio.pause();
         audio.currentTime = 0;

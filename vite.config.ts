@@ -33,10 +33,6 @@ export default defineConfig(({ mode }) => ({
           radix: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
           supabase: ['@supabase/supabase-js'],
         }
-      },
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
       }
     },
     cssCodeSplit: true,
