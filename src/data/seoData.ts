@@ -130,7 +130,10 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
   "building-products-nobody-asked-for": "https://barskydesign.pro/images/blog-building-products-nobody-asked-for.jpg",
   "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/blog-wireframes-to-wow-visual-hierarchy.jpg",
   "case-study-writing": "https://barskydesign.pro/images/blog-case-study-writing.jpg",
-  "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg"
+  "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg",
+  "design-system-that-gets-used": "https://barskydesign.pro/images/blog-design-systems.jpg",
+  "beautiful-interface-doesnt-convert": "https://barskydesign.pro/images/blog-beautiful-interface.jpg",
+  "research-without-users": "https://barskydesign.pro/images/blog-research-without-users.jpg"
 };
 
 // Enhanced blog post SEO data
@@ -174,6 +177,18 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   "ai-in-design": {
     title: "Future of AI in Design | Designer's Perspective 2025 — Barsky Design",
     description: "How AI is transforming design work. Practical insights on tools, ethics, and career implications for UX and product designers."
+  },
+  "design-system-that-gets-used": {
+    title: "Design Systems That Actually Get Used | Practical Guide — Barsky Design",
+    description: "How to build design systems teams actually adopt. Governance, documentation, and adoption strategies from real-world experience."
+  },
+  "beautiful-interface-doesnt-convert": {
+    title: "Why Beautiful Interfaces Don't Convert | UX Psychology — Barsky Design",
+    description: "Pretty designs don't guarantee conversions. Learn the UX psychology behind why aesthetics alone fail and what actually drives user action."
+  },
+  "research-without-users": {
+    title: "User Research Without Users | Validation Strategies — Barsky Design",
+    description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups."
   }
 };
 
