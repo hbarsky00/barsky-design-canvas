@@ -138,7 +138,6 @@ const projects = loadProjectData();
 
 const routes = [
   '/',
-  '/projects', 
   '/about',
   '/services',
   '/blog',
@@ -187,24 +186,13 @@ function getSEOConfig(route, supabaseSeoMap = {}) {
   // Fallback to existing TypeScript data logic
   console.log(`⚠️ Using fallback TypeScript data for: ${route}`);
   
-  // Homepage
+  // Homepage - canonical should have trailing slash
   if (route === '/') {
     return {
       title: 'Hiram Barsky - Senior UX Designer & Product Strategist',
       description: 'Senior UX Designer with 15+ years creating user-centered digital experiences. Specializing in design thinking, user research, and product strategy.',
-      canonical: baseUrl,
+      canonical: `${baseUrl}/`,
       image: defaultImage,
-      type: 'website'
-    };
-  }
-  
-  // Projects page
-  if (route === '/projects') {
-    return {
-      title: 'UX Design Projects & Case Studies - Hiram Barsky',
-      description: 'Explore detailed UX design case studies showcasing user research, design thinking, and product strategy across healthcare, fintech, and SaaS platforms.',
-      canonical: `${baseUrl}/projects`,
-      image: 'https://barskyux.com/wp-content/uploads/2025/08/projects-showcase.png',
       type: 'website'
     };
   }
@@ -254,6 +242,16 @@ function getSEOConfig(route, supabaseSeoMap = {}) {
   }
   
   // Individual project pages
+  if (route.startsWith('/project/')) {
+    const projectSlug = route.split('/project/')[1];
+    const project = projects.find(p => p.slug === projectSlug);
+    
+    if (project) {
+      // Convert relative URLs to absolute URLs
+      let imageUrl = project.image;
+      if (imageUrl.startsWith('/')) {
+        imageUrl = `${baseUrl}${imageUrl}`;
+      }
   if (route.startsWith('/project/')) {
     const projectSlug = route.split('/project/')[1];
     const project = projects.find(p => p.slug === projectSlug);
