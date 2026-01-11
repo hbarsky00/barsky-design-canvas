@@ -27,26 +27,29 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['framer-motion', 'lucide-react'],
+          motion: ['framer-motion'],
+          icons: ['lucide-react'],
           charts: ['recharts'],
           radix: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
           supabase: ['@supabase/supabase-js'],
-          audio: ['react-hook-form'],
         }
+      },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
       }
     },
+    cssCodeSplit: true,
     sourcemap: false,
     minify: 'esbuild',
     target: 'esnext',
-    // Pure SSG build
     emptyOutDir: true,
-    // Remove console logs in production
     esbuild: {
       drop: mode === 'production' ? ['console', 'debugger'] : [],
+      treeShaking: true,
     },
-    // Compression and optimization
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 400,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', '@supabase/supabase-js'],

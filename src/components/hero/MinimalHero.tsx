@@ -101,9 +101,9 @@ const MinimalHero: React.FC = () => {
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
             <div className="relative">
-              {/* Multi-layered Premium Glow System */}
-              <motion.div
-                className="absolute inset-0 rounded-full"
+              {/* Static Premium Glow - CSS animation instead of JS */}
+              <div
+                className="absolute inset-0 rounded-full animate-pulse"
                 style={{
                   background: `
                     radial-gradient(circle, hsl(231 92% 58% / 0.15) 0%, transparent 70%),
@@ -111,19 +111,6 @@ const MinimalHero: React.FC = () => {
                   `,
                   filter: "blur(16px)",
                   padding: '8px'
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                }}
-                whileHover={{ 
-                  scale: 1.2, 
-                  filter: "blur(20px)",
-                  transition: { duration: 0.3 }
                 }}
               />
               
@@ -183,44 +170,11 @@ const MinimalHero: React.FC = () => {
                   duration={3000}
                 />
                 
-                {/* Premium Shimmer and Glass Effects */}
-                <motion.div 
+                {/* CSS-based shimmer effect - no JS animation */}
+                <div 
                   className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    background: `
-                      linear-gradient(135deg, 
-                        transparent 0%, 
-                        rgba(255, 255, 255, 0.6) 40%, 
-                        rgba(59, 130, 246, 0.2) 50%, 
-                        rgba(255, 255, 255, 0.6) 60%, 
-                        transparent 100%
-                      )
-                    `,
-                  }}
-                  animate={{
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
-                
-                {/* Floating Light Particles */}
-                <motion.div
-                  className="absolute inset-0 rounded-full pointer-events-none"
-                  animate={{
-                    background: [
-                      "radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 40%)",
-                      "radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 40%)",
-                      "radial-gradient(circle at 60% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%)",
-                    ]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
+                    background: `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`,
                   }}
                 />
               </div>
