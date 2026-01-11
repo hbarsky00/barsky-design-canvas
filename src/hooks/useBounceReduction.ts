@@ -40,13 +40,13 @@ export const useBounceReduction = (config: BounceReductionConfig = {}) => {
       setMetrics(prev => ({ ...prev, hasInteracted: true }));
     };
 
-    // Track time on page
+    // Track time on page - reduced frequency for performance
     const timeInterval = setInterval(() => {
       setMetrics(prev => ({ 
         ...prev, 
         timeOnPage: performance.now() - startTime 
       }));
-    }, 1000);
+    }, 5000);
 
     if (document.readyState === 'complete') {
       handleLoad();

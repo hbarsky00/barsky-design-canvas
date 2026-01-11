@@ -22,37 +22,28 @@ const BackgroundAudio: React.FC<BackgroundAudioProps> = ({
     audio.loop = true;
     audio.preload = 'none'; // Don't preload until user interaction
 
-    // Try to play immediately (will work if autoplay is allowed)
+    // Deferred audio loading for performance
     const tryAutoplay = async () => {
       try {
         await audio.play();
-        console.log('Background music started automatically');
       } catch (error) {
-        console.log('Autoplay blocked, waiting for user interaction');
-        // Set up event listeners for first user interaction
         const handleFirstInteraction = () => {
           if (!hasUserInteracted) {
             setHasUserInteracted(true);
-            audio.play().catch(console.error);
-            // Remove listeners after first interaction
-            if (typeof document !== 'undefined') {
-              document.removeEventListener('click', handleFirstInteraction);
-              document.removeEventListener('keydown', handleFirstInteraction);
-              document.removeEventListener('scroll', handleFirstInteraction);
-            }
+            audio.play().catch(() => {});
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
           }
         };
-
-        if (typeof document !== 'undefined') {
-          document.addEventListener('click', handleFirstInteraction);
-          document.addEventListener('keydown', handleFirstInteraction);  
-          document.addEventListener('scroll', handleFirstInteraction);
-        }
+        document.addEventListener('click', handleFirstInteraction);
+        document.addEventListener('keydown', handleFirstInteraction);
       }
     };
 
-    // Wait for significant user interaction before loading audio
-    const timer = setTimeout(tryAutoplay, 8000);
+    // Delay audio loading for 20 seconds to prioritize critical resources
+    const timer = 'requestIdleCallback' in window 
+      ? window.requestIdleCallback(() => setTimeout(tryAutoplay, 20000), { timeout: 25000 })
+      : setTimeout(tryAutoplay, 20000);
 
     return () => {
       clearTimeout(timer);
