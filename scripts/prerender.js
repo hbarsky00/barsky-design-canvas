@@ -252,16 +252,6 @@ function getSEOConfig(route, supabaseSeoMap = {}) {
       if (imageUrl.startsWith('/')) {
         imageUrl = `${baseUrl}${imageUrl}`;
       }
-  if (route.startsWith('/project/')) {
-    const projectSlug = route.split('/project/')[1];
-    const project = projects.find(p => p.slug === projectSlug);
-    
-    if (project) {
-      // Convert relative URLs to absolute URLs
-      let imageUrl = project.image;
-      if (imageUrl.startsWith('/')) {
-        imageUrl = `${baseUrl}${imageUrl}`;
-      }
       
       return {
         title: `${project.title} - UX Case Study by Hiram Barsky`,
