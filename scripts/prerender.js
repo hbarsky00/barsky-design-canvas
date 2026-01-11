@@ -142,6 +142,10 @@ const routes = [
   '/services',
   '/blog',
   '/contact',
+  '/store',
+  '/design-services/ux-ui-design',
+  '/design-services/mobile-app-design',
+  '/design-services/web-development',
   ...projects.map(p => `/project/${p.slug}`),
   ...blogPosts.map(p => `/blog/${p.slug}`)
 ];
@@ -239,6 +243,47 @@ function getSEOConfig(route, supabaseSeoMap = {}) {
       image: defaultImage,
       type: 'website'
     };
+  }
+  
+  // Store page
+  if (route === '/store') {
+    return {
+      title: 'Design Resources & Templates — Barsky Design',
+      description: 'Professional design resources, wireframe kits, and UX templates from an experienced product designer.',
+      canonical: `${baseUrl}/store`,
+      image: defaultImage,
+      type: 'website'
+    };
+  }
+  
+  // Design service pages
+  if (route.startsWith('/design-services/')) {
+    const serviceSlug = route.split('/design-services/')[1];
+    const serviceConfigs = {
+      'ux-ui-design': {
+        title: 'Expert UX/UI Design Services — Barsky Design',
+        description: 'Transform your product with expert UX/UI design. From user research to high-fidelity prototypes.',
+        image: defaultImage
+      },
+      'mobile-app-design': {
+        title: 'Mobile App Design Services | iOS & Android — Barsky Design',
+        description: 'Native and cross-platform mobile app design for iOS and Android with intuitive user experiences.',
+        image: defaultImage
+      },
+      'web-development': {
+        title: 'Modern Web Development | React & Frontend — Barsky Design',
+        description: 'Custom web development with React, TypeScript, and modern frameworks for performant web applications.',
+        image: defaultImage
+      }
+    };
+    const config = serviceConfigs[serviceSlug];
+    if (config) {
+      return {
+        ...config,
+        canonical: `${baseUrl}${route}`,
+        type: 'website'
+      };
+    }
   }
   
   // Individual project pages
