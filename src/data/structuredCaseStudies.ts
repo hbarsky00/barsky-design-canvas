@@ -771,8 +771,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/crypto",
     },
   },
-  daesearchproject: {
-    id: "daesearchproject",
+  "dae-search": {
+    id: "dae-search",
     title: "DAE Search Platform: Making Enterprise Data Actually Findable",
     description:
       "Redesigned an enterprise search platform that transformed how teams discover and access critical business data, reducing information retrieval time by 65% and delivering 20% ROI through improved productivity.",
@@ -2301,6 +2301,54 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       technologies: ["Restaurant Tech", "Food Service", "Kiosk Design", "Product Design"],
       path: "/project/barskyjoint",
+    },
+  },
+  "medication-app": {
+    id: "medication-app",
+    title: "Healthcare Medication Management App",
+    description: "Mobile-first medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility across iOS and Android.",
+    tags: ["Healthcare", "Mobile App", "Patient Safety", "iOS", "Android"],
+    gradientClasses: "from-rose-50 via-pink-50 to-fuchsia-50",
+    heroImage: {
+      src: "https://barskydesign.pro/images/medication-app-desktop-1.webp",
+      alt: "Medication management mobile app",
+    },
+    heroMetrics: [
+      { value: "35%", label: "Better Adherence" },
+      { value: "50%", label: "Fewer Missed Doses" },
+      { value: "92%", label: "Caregiver Approval" },
+    ],
+    sections: [],
+    seoData: {
+      image: "https://barskydesign.pro/images/medication-app-desktop-1.webp",
+      projectName: "Healthcare Medication Management App",
+      results: ["35% better adherence", "50% fewer missed doses", "92% caregiver approval"],
+      technologies: ["Healthcare", "Mobile App", "Patient Safety", "iOS", "Android"],
+      path: "/project/medication-app",
+    },
+  },
+  "gold2crypto": {
+    id: "gold2crypto",
+    title: "Crypto Exchange Onboarding Optimization",
+    description: "Reduced crypto exchange drop-off 50% with simplified KYC, progressive disclosure, and clear risk communication for gold-to-cryptocurrency conversion.",
+    tags: ["Fintech", "Crypto", "Onboarding", "KYC"],
+    gradientClasses: "from-amber-50 via-yellow-50 to-orange-50",
+    heroImage: {
+      src: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp",
+      alt: "Gold to crypto exchange platform",
+    },
+    heroMetrics: [
+      { value: "50%", label: "Reduced Drop-off" },
+      { value: "3x", label: "Faster KYC" },
+      { value: "78%", label: "Completion Rate" },
+    ],
+    sections: [],
+    seoData: {
+      image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp",
+      projectName: "Crypto Exchange Onboarding Optimization",
+      results: ["50% reduced drop-off", "3x faster KYC", "78% completion rate"],
+      technologies: ["Fintech", "Crypto", "Onboarding", "KYC"],
+      path: "/project/gold2crypto",
     },
   },
 };
