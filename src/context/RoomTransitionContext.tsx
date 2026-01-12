@@ -20,9 +20,9 @@ interface RoomTransitionProviderProps {
 
 export const RoomTransitionProvider: React.FC<RoomTransitionProviderProps> = ({
   children,
-  exitDuration = 400,
-  corridorDuration = 800,
-  enterDuration = 500,
+  exitDuration = 100,
+  corridorDuration = 100,
+  enterDuration = 100,
 }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionStage, setTransitionStage] = useState<"exiting" | "corridor" | "entering">("corridor");
