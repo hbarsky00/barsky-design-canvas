@@ -20,7 +20,7 @@
   to = "/images/:splat"
   status = 200
 
-# Prerendered project pages
+# Prerendered project pages (only those that exist and don't redirect)
 [[redirects]]
   from = "/project/herbalink"
   to = "/project/herbalink/index.html"
@@ -34,26 +34,6 @@
 [[redirects]]
   from = "/project/business-management"
   to = "/project/business-management/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/smarterhealth"
-  to = "/project/smarterhealth/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/crypto"
-  to = "/project/crypto/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/daesearchproject"
-  to = "/project/daesearchproject/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/investor-loan-app"
-  to = "/project/investor-loan-app/index.html"
   status = 200
 
 [[redirects]]
