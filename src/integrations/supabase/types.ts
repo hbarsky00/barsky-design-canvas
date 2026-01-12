@@ -271,7 +271,39 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      editable_content_public: {
+        Row: {
+          content_html: string | null
+          content_json: Json | null
+          content_key: string | null
+          created_at: string | null
+          id: string | null
+          page_path: string | null
+          section_name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          content_html?: string | null
+          content_json?: Json | null
+          content_key?: string | null
+          created_at?: string | null
+          id?: string | null
+          page_path?: string | null
+          section_name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          content_html?: string | null
+          content_json?: Json | null
+          content_key?: string | null
+          created_at?: string | null
+          id?: string | null
+          page_path?: string | null
+          section_name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
