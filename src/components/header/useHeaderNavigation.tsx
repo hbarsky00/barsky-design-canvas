@@ -1,6 +1,13 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+// Move navLinks outside the hook to prevent new array reference on every render
+const NAV_LINKS = [
+  { name: "Case Studies", href: "#case-studies" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact Me", href: "/contact" },
+];
 
 export const useHeaderNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,13 +18,7 @@ export const useHeaderNavigation = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const navLinks = [
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact Me", href: "/contact" },
-  ];
-
+  const navLinks = NAV_LINKS;
   // Track scroll direction and header visibility
   const lastYRef = useRef(0);
   const [headerHidden, setHeaderHidden] = useState(false);
@@ -260,7 +261,7 @@ export const useHeaderNavigation = () => {
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
-  }, [navLinks, location.pathname, isHomepage, isProjectPage]);
+  }, [location.pathname, isHomepage, isProjectPage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
