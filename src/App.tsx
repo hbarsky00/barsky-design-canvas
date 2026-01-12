@@ -59,7 +59,7 @@ function AppContent() {
       
       {/* Room Transition Overlay */}
       <RoomTransition 
-        isVisible={isTransitioning} 
+        isVisible={false} 
         projectTitle={projectTitle}
         stage={transitionStage}
       />
