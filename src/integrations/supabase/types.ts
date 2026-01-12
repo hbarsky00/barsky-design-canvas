@@ -271,42 +271,22 @@ export type Database = {
       }
     }
     Views: {
-      editable_content_public: {
-        Row: {
-          content_html: string | null
-          content_json: Json | null
-          content_key: string | null
-          created_at: string | null
-          id: string | null
-          page_path: string | null
-          section_name: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          content_html?: string | null
-          content_json?: Json | null
-          content_key?: string | null
-          created_at?: string | null
-          id?: string | null
-          page_path?: string | null
-          section_name?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          content_html?: string | null
-          content_json?: Json | null
-          content_key?: string | null
-          created_at?: string | null
-          id?: string | null
-          page_path?: string | null
-          section_name?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_editable_content: {
+        Args: { p_content_key?: string }
+        Returns: {
+          content_html: string
+          content_json: Json
+          content_key: string
+          created_at: string
+          id: string
+          page_path: string
+          section_name: string
+          updated_at: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
