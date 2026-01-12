@@ -5,9 +5,9 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { HeadingHierarchyProvider } from "@/components/seo/HeadingHierarchyProvider";
+import { RoomTransitionProvider, useRoomTransition } from "@/context/RoomTransitionContext";
 import ScrollToTop from "@/components/ScrollToTop";
 import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
-import { useRoomTransition } from "@/hooks/useRoomTransition";
 import RoomTransition from "@/components/transitions/RoomTransition";
 import SpatialNavigationWrapper from "@/components/transitions/SpatialNavigationWrapper";
 import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
@@ -76,7 +76,9 @@ function AppContent() {
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
-              {/* <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} /> DRAFT */}
+              <Route path="/project/crypto" element={<ProjectDetail />} />
+              <Route path="/project/dae-search" element={<ProjectDetail />} />
+              <Route path="/project/smarterhealth" element={<ProjectDetail />} />
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
@@ -125,7 +127,9 @@ function App() {
       <HelmetProvider>
         <HeadingHierarchyProvider>
           <ImageMaximizerProvider>
-            <AppContent />
+            <RoomTransitionProvider>
+              <AppContent />
+            </RoomTransitionProvider>
           </ImageMaximizerProvider>
         </HeadingHierarchyProvider>
       </HelmetProvider>
