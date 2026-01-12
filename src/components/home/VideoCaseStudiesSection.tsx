@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useRoomTransition } from "@/hooks/useRoomTransition";
+import { useRoomTransitionContext } from "@/context/RoomTransitionContext";
 import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 
 interface CaseStudy {
@@ -91,7 +91,7 @@ const CaseStudyCard: React.FC<{
   index: number;
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
-  const { triggerRoomTransition } = useRoomTransition();
+  const { triggerRoomTransition } = useRoomTransitionContext();
 
   // Check if we need a placeholder for Smarter Health assets
   const needsPlaceholder = (src?: string) => {
