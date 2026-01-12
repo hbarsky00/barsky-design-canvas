@@ -4,14 +4,10 @@
 /static/*            /static/:splat            200
 /images/*            /images/:splat            200
 
-# Serve prerendered project pages
+# Serve prerendered project pages (only those that exist and don't redirect)
 /project/herbalink              /project/herbalink/index.html              200
 /project/splittime              /project/splittime/index.html              200
 /project/business-management    /project/business-management/index.html    200
-/project/smarterhealth          /project/smarterhealth/index.html          200
-/project/crypto                 /project/crypto/index.html                 200
-/project/daesearchproject       /project/daesearchproject/index.html       200
-/project/investor-loan-app      /project/investor-loan-app/index.html      200
 /project/barskyjoint            /project/barskyjoint/index.html            200
 
 # Serve prerendered static pages

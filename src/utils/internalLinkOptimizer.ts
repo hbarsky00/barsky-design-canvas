@@ -176,28 +176,13 @@ class InternalLinkOptimizer {
 
   /**
    * Remove redirect chains in internal links
+   * DISABLED: This was causing SEO issues by creating redirect chains
+   * The patterns were incorrect and didn't match actual routes
    */
   fixInternalRedirects() {
-    const links = document.querySelectorAll('a[href]') as NodeListOf<HTMLAnchorElement>;
-    
-    // Common redirect patterns to fix
-    const redirectFixes: Record<string, string> = {
-      '/project/': '/case-studies/',
-      '/case-study-': '/project/',
-      '/services/': '/design-services/'
-    };
-    
-    links.forEach(link => {
-      let href = link.getAttribute('href') || '';
-      
-      // Fix known redirect patterns
-      Object.entries(redirectFixes).forEach(([pattern, replacement]) => {
-        if (href.includes(pattern)) {
-          href = href.replace(pattern, replacement);
-          link.setAttribute('href', href);
-        }
-      });
-    });
+    // Intentionally disabled - was creating redirect chains
+    // that caused Google Search Console "Page with redirect" errors
+    return;
   }
 
   /**

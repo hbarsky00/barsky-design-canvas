@@ -300,7 +300,6 @@ function buildHtml({
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
   <link rel="canonical" href="${escapeAttr(canonical)}" />
-  <meta http-equiv="refresh" content="0;url=${escapeAttr(canonical)}" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="${type === "article" ? "article" : "website"}" />

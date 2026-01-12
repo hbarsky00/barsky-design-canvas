@@ -15,6 +15,7 @@ const BASE_URL = 'https://barskydesign.pro';
 export const generateSitemapEntries = (): SitemapEntry[] => {
   const currentDate = new Date().toISOString().split('T')[0];
   
+  // Only include canonical, non-redirecting URLs
   const staticPages: SitemapEntry[] = [
     // High priority pages
     {
@@ -23,12 +24,7 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       changefreq: 'weekly',
       priority: 1.0
     },
-    {
-      url: `${BASE_URL}/projects`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: 0.9
-    },
+    // Note: /projects redirects to /#projects, so excluded
     {
       url: `${BASE_URL}/services`,
       lastmod: currentDate,
@@ -62,19 +58,7 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       priority: 0.7
     },
     
-    // Case study pages - high priority for SEO
-    {
-      url: `${BASE_URL}/project/smarterhealth`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: `${BASE_URL}/project/crypto`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
+    // Case study pages - only include pages that don't redirect
     {
       url: `${BASE_URL}/project/herbalink`,
       lastmod: currentDate,
@@ -89,12 +73,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     },
     {
       url: `${BASE_URL}/project/business-management`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: `${BASE_URL}/project/investor-loan-app`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.8
