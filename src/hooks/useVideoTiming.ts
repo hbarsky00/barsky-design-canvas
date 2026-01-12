@@ -1,4 +1,4 @@
-import { useEffect, useState, RefObject } from 'react';
+import { useEffect, useState, useCallback, RefObject } from 'react';
 
 interface VideoTimingHook {
   currentTime: number;
@@ -54,13 +54,13 @@ export const useVideoTiming = (
     };
   }, [videoRef, timestampTriggers, triggeredTimestamps]);
 
-  const hasReachedTimestamp = (timestamp: number): boolean => {
+  const hasReachedTimestamp = useCallback((timestamp: number): boolean => {
     return currentTime >= timestamp;
-  };
+  }, [currentTime]);
 
-  const addTimestampTrigger = (timestamp: number, callback: () => void) => {
+  const addTimestampTrigger = useCallback((timestamp: number, callback: () => void) => {
     setTimestampTriggers(prev => new Map(prev).set(timestamp, callback));
-  };
+  }, []);
 
   return {
     currentTime,
