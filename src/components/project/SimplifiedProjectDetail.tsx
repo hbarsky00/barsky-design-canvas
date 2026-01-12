@@ -13,13 +13,13 @@ const SimplifiedProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   
   if (!projectId) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/projects" replace />;
   }
 
   const caseStudyData = getStructuredCaseStudy(projectId);
   
   if (!caseStudyData) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/projects" replace />;
   }
 
   return (
