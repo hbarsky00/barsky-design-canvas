@@ -137,7 +137,7 @@ const UnifiedSEO: React.FC = () => {
         title: dbSeo.title,
         description: dbSeo.description,
         canonical: dbSeo.canonical_url || baseSeo.canonical,
-        image: dbSeo.og_image_url || baseSeo.image
+        image: dbSeo.og_image || baseSeo.image
       };
     }
     

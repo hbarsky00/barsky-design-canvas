@@ -10,45 +10,45 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "12.2.3 (519615d)"
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
       blog_posts: {
         Row: {
-          author: string
+          author: string | null
           content: string | null
           created_at: string
-          excerpt: string
+          excerpt: string | null
           featured_image: string | null
           id: string
-          published_date: string
+          published_date: string | null
           slug: string
           tags: string[] | null
           title: string
           updated_at: string
         }
         Insert: {
-          author?: string
+          author?: string | null
           content?: string | null
           created_at?: string
-          excerpt: string
+          excerpt?: string | null
           featured_image?: string | null
           id?: string
-          published_date?: string
+          published_date?: string | null
           slug: string
           tags?: string[] | null
           title: string
           updated_at?: string
         }
         Update: {
-          author?: string
+          author?: string | null
           content?: string | null
           created_at?: string
-          excerpt?: string
+          excerpt?: string | null
           featured_image?: string | null
           id?: string
-          published_date?: string
+          published_date?: string | null
           slug?: string
           tags?: string[] | null
           title?: string
@@ -60,165 +60,103 @@ export type Database = {
         Row: {
           change_key: string
           change_type: string
-          change_value: Json
+          change_value: string | null
           created_at: string
           id: string
           project_id: string
-          updated_at: string
         }
         Insert: {
           change_key: string
           change_type: string
-          change_value: Json
+          change_value?: string | null
           created_at?: string
           id?: string
           project_id: string
-          updated_at?: string
         }
         Update: {
           change_key?: string
           change_type?: string
-          change_value?: Json
+          change_value?: string | null
           created_at?: string
           id?: string
           project_id?: string
-          updated_at?: string
         }
         Relationships: []
       }
       editable_content: {
         Row: {
-          content_html: string
-          content_json: Json
+          content_html: string | null
+          content_json: Json | null
           content_key: string
           created_at: string
-          created_by: string | null
           id: string
           last_edited_by: string | null
-          page_path: string
-          section_name: string
+          page_path: string | null
+          section_name: string | null
           updated_at: string
         }
         Insert: {
-          content_html?: string
-          content_json?: Json
+          content_html?: string | null
+          content_json?: Json | null
           content_key: string
           created_at?: string
-          created_by?: string | null
           id?: string
           last_edited_by?: string | null
-          page_path?: string
-          section_name?: string
+          page_path?: string | null
+          section_name?: string | null
           updated_at?: string
         }
         Update: {
-          content_html?: string
-          content_json?: Json
+          content_html?: string | null
+          content_json?: Json | null
           content_key?: string
           created_at?: string
-          created_by?: string | null
           id?: string
           last_edited_by?: string | null
-          page_path?: string
-          section_name?: string
+          page_path?: string | null
+          section_name?: string | null
           updated_at?: string
         }
         Relationships: []
-      }
-      lead_interactions: {
-        Row: {
-          completed_at: string | null
-          content: string | null
-          created_at: string
-          id: string
-          interaction_type: string
-          lead_id: string
-          scheduled_at: string | null
-          subject: string | null
-        }
-        Insert: {
-          completed_at?: string | null
-          content?: string | null
-          created_at?: string
-          id?: string
-          interaction_type: string
-          lead_id: string
-          scheduled_at?: string | null
-          subject?: string | null
-        }
-        Update: {
-          completed_at?: string | null
-          content?: string | null
-          created_at?: string
-          id?: string
-          interaction_type?: string
-          lead_id?: string
-          scheduled_at?: string | null
-          subject?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "lead_interactions_lead_id_fkey"
-            columns: ["lead_id"]
-            isOneToOne: false
-            referencedRelation: "leads"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       leads: {
         Row: {
           budget_range: string | null
           company: string | null
-          contacted_at: string | null
           created_at: string
           email: string
           id: string
           lead_source: string | null
-          lead_status: string | null
           name: string
-          notes: string | null
           phone: string | null
-          priority_score: number | null
           project_description: string | null
           project_type: string | null
-          updated_at: string
           website: string | null
         }
         Insert: {
           budget_range?: string | null
           company?: string | null
-          contacted_at?: string | null
           created_at?: string
           email: string
           id?: string
           lead_source?: string | null
-          lead_status?: string | null
           name: string
-          notes?: string | null
           phone?: string | null
-          priority_score?: number | null
           project_description?: string | null
           project_type?: string | null
-          updated_at?: string
           website?: string | null
         }
         Update: {
           budget_range?: string | null
           company?: string | null
-          contacted_at?: string | null
           created_at?: string
           email?: string
           id?: string
           lead_source?: string | null
-          lead_status?: string | null
           name?: string
-          notes?: string | null
           phone?: string | null
-          priority_score?: number | null
           project_description?: string | null
           project_type?: string | null
-          updated_at?: string
           website?: string | null
         }
         Relationships: []
@@ -229,8 +167,8 @@ export type Database = {
           featured_image: string | null
           id: string
           path: string
-          seo_description: string
-          seo_title: string
+          seo_description: string | null
+          seo_title: string | null
           updated_at: string
         }
         Insert: {
@@ -238,8 +176,8 @@ export type Database = {
           featured_image?: string | null
           id?: string
           path: string
-          seo_description: string
-          seo_title: string
+          seo_description?: string | null
+          seo_title?: string | null
           updated_at?: string
         }
         Update: {
@@ -247,180 +185,87 @@ export type Database = {
           featured_image?: string | null
           id?: string
           path?: string
-          seo_description?: string
-          seo_title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          created_at: string | null
-          email: string | null
-          full_name: string | null
-          id: string
-          updated_at: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id: string
-          updated_at?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      project_content: {
-        Row: {
-          content_key: string
-          content_value: string | null
-          created_at: string
-          id: string
-          project_id: string
-          updated_at: string
-        }
-        Insert: {
-          content_key: string
-          content_value?: string | null
-          created_at?: string
-          id?: string
-          project_id: string
-          updated_at?: string
-        }
-        Update: {
-          content_key?: string
-          content_value?: string | null
-          created_at?: string
-          id?: string
-          project_id?: string
+          seo_description?: string | null
+          seo_title?: string | null
           updated_at?: string
         }
         Relationships: []
       }
       published_projects: {
         Row: {
-          content_blocks: Json
+          content_blocks: Json | null
+          created_at: string
           id: string
-          image_replacements: Json
+          image_replacements: Json | null
           project_id: string
           published_at: string
-          text_content: Json
+          text_content: Json | null
           updated_at: string
         }
         Insert: {
-          content_blocks?: Json
+          content_blocks?: Json | null
+          created_at?: string
           id?: string
-          image_replacements?: Json
+          image_replacements?: Json | null
           project_id: string
           published_at?: string
-          text_content?: Json
+          text_content?: Json | null
           updated_at?: string
         }
         Update: {
-          content_blocks?: Json
+          content_blocks?: Json | null
+          created_at?: string
           id?: string
-          image_replacements?: Json
+          image_replacements?: Json | null
           project_id?: string
           published_at?: string
-          text_content?: Json
+          text_content?: Json | null
           updated_at?: string
-        }
-        Relationships: []
-      }
-      security_audit_log: {
-        Row: {
-          details: Json | null
-          id: string
-          operation: string
-          table_name: string
-          timestamp: string
-          user_id: string | null
-        }
-        Insert: {
-          details?: Json | null
-          id?: string
-          operation: string
-          table_name: string
-          timestamp?: string
-          user_id?: string | null
-        }
-        Update: {
-          details?: Json | null
-          id?: string
-          operation?: string
-          table_name?: string
-          timestamp?: string
-          user_id?: string | null
         }
         Relationships: []
       }
       seo_meta: {
         Row: {
           canonical_url: string | null
-          created_at: string | null
-          description: string
+          created_at: string
+          description: string | null
           id: string
           keywords: string[] | null
-          og_image_url: string | null
-          path_type: string
-          slug: string
-          title: string
-          updated_at: string | null
+          og_image: string | null
+          og_type: string | null
+          page_path: string
+          path_type: string | null
+          slug: string | null
+          title: string | null
+          updated_at: string
         }
         Insert: {
           canonical_url?: string | null
-          created_at?: string | null
-          description: string
+          created_at?: string
+          description?: string | null
           id?: string
           keywords?: string[] | null
-          og_image_url?: string | null
-          path_type: string
-          slug: string
-          title: string
-          updated_at?: string | null
+          og_image?: string | null
+          og_type?: string | null
+          page_path: string
+          path_type?: string | null
+          slug?: string | null
+          title?: string | null
+          updated_at?: string
         }
         Update: {
           canonical_url?: string | null
-          created_at?: string | null
-          description?: string
+          created_at?: string
+          description?: string | null
           id?: string
           keywords?: string[] | null
-          og_image_url?: string | null
-          path_type?: string
-          slug?: string
-          title?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      user_roles: {
-        Row: {
-          created_at: string
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
+          og_image?: string | null
+          og_type?: string | null
+          page_path?: string
+          path_type?: string | null
+          slug?: string | null
+          title?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -429,18 +274,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
-      is_admin: { Args: never; Returns: boolean }
-      profile_exists: { Args: { profile_id: string }; Returns: boolean }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -567,8 +404,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "moderator", "user"],
-    },
+    Enums: {},
   },
 } as const
