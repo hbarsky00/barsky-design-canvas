@@ -11,7 +11,6 @@ interface EditableContentData {
   section_name: string;
   created_at: string;
   updated_at: string;
-  created_by: string | null;
   last_edited_by: string | null;
 }
 
@@ -24,6 +23,9 @@ interface UseEditableContentReturn {
   saveContent: (html: string, json?: any) => Promise<void>;
   refreshContent: () => Promise<void>;
 }
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export const useEditableContent = (
   contentKey: string,
@@ -38,7 +40,7 @@ export const useEditableContent = (
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const { toast } = useToast();
 
-  // Load content from database
+  // Load content from database (read is still public)
   const loadContent = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -48,9 +50,9 @@ export const useEditableContent = (
         .from('editable_content')
         .select('*')
         .eq('content_key', contentKey)
-        .single();
+        .maybeSingle();
 
-      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows found
+      if (error) {
         throw error;
       }
 
@@ -68,47 +70,36 @@ export const useEditableContent = (
     }
   }, [contentKey, defaultContent]);
 
-  // Save content to database
+  // Save content via secure edge function
   const saveContent = useCallback(async (html: string, json?: any) => {
     try {
       setIsSaving(true);
       setError(null);
 
-      // First check if content exists
-      const { data: existingData } = await supabase
-        .from('editable_content')
-        .select('id')
-        .eq('content_key', contentKey)
-        .single();
+      const user = (await supabase.auth.getUser()).data.user;
 
-      if (existingData) {
-        // Update existing content
-        const { error } = await supabase
-          .from('editable_content')
-          .update({
-            content_html: html,
-            content_json: json || {},
-            last_edited_by: (await supabase.auth.getUser()).data.user?.id,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('content_key', contentKey);
-
-        if (error) throw error;
-      } else {
-        // Insert new content
-        const { error } = await supabase
-          .from('editable_content')
-          .insert({
+      const response = await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content?action=upsert`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY
+          },
+          body: JSON.stringify({
             content_key: contentKey,
             content_html: html,
             content_json: json || {},
             page_path: pagePath,
             section_name: sectionName,
-            created_by: (await supabase.auth.getUser()).data.user?.id,
-            last_edited_by: (await supabase.auth.getUser()).data.user?.id,
-          });
+            last_edited_by: user?.id || 'anonymous'
+          })
+        }
+      );
 
-        if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save content');
       }
 
       setContent(html);
@@ -142,7 +133,7 @@ export const useEditableContent = (
     loadContent();
   }, [loadContent]);
 
-  // Set up real-time subscription
+  // Set up real-time subscription for updates
   useEffect(() => {
     const channel = supabase
       .channel(`editable-content-${contentKey}`)
