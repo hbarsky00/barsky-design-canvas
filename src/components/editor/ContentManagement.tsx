@@ -4,10 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Trash2, Edit, Search, Plus } from 'lucide-react';
+import { Trash2, Edit, Search } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { SimpleTextEditor } from './SimpleTextEditor';
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 interface ContentItem {
   id: string;
@@ -27,6 +30,7 @@ export const ContentManagement: React.FC = () => {
   const [editContent, setEditContent] = useState('');
   const { toast } = useToast();
 
+  // Load content (public read is still allowed)
   const loadContent = async () => {
     try {
       const { data, error } = await supabase
@@ -52,16 +56,26 @@ export const ContentManagement: React.FC = () => {
     loadContent();
   }, []);
 
+  // Delete via secure edge function
   const handleDelete = async (id: string, contentKey: string) => {
     if (!confirm(`Are you sure you want to delete "${contentKey}"?`)) return;
 
     try {
-      const { error } = await supabase
-        .from('editable_content')
-        .delete()
-        .eq('id', id);
+      const response = await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content?action=delete&id=${encodeURIComponent(id)}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY
+          }
+        }
+      );
 
-      if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to delete content');
+      }
 
       setContent(content.filter(item => item.id !== id));
       toast({
@@ -83,19 +97,29 @@ export const ContentManagement: React.FC = () => {
     setEditContent(item.content_html);
   };
 
+  // Save via secure edge function
   const handleSave = async () => {
     if (!editingItem) return;
 
     try {
-      const { error } = await supabase
-        .from('editable_content')
-        .update({
-          content_html: editContent,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', editingItem.id);
+      const response = await fetch(
+        `${SUPABASE_URL}/functions/v1/manage-content?action=update&id=${encodeURIComponent(editingItem.id)}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY
+          },
+          body: JSON.stringify({
+            content_html: editContent
+          })
+        }
+      );
 
-      if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save content');
+      }
 
       // Update local state
       setContent(content.map(item => 
@@ -123,8 +147,8 @@ export const ContentManagement: React.FC = () => {
 
   const filteredContent = content.filter(item =>
     item.content_key.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.page_path.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.section_name.toLowerCase().includes(searchTerm.toLowerCase())
+    (item.page_path || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (item.section_name || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) {
@@ -168,8 +192,8 @@ export const ContentManagement: React.FC = () => {
                 <div>
                   <CardTitle className="text-lg">{item.content_key}</CardTitle>
                   <div className="flex gap-2 mt-2">
-                    <Badge variant="secondary">{item.page_path}</Badge>
-                    <Badge variant="outline">{item.section_name}</Badge>
+                    <Badge variant="secondary">{item.page_path || 'No path'}</Badge>
+                    <Badge variant="outline">{item.section_name || 'No section'}</Badge>
                   </div>
                 </div>
                 <div className="flex gap-2">
