@@ -5,10 +5,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { HeadingHierarchyProvider } from "@/components/seo/HeadingHierarchyProvider";
-import { RoomTransitionProvider, useRoomTransition } from "@/context/RoomTransitionContext";
 import ScrollToTop from "@/components/ScrollToTop";
 import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
-import RoomTransition from "@/components/transitions/RoomTransition";
 import SpatialNavigationWrapper from "@/components/transitions/SpatialNavigationWrapper";
 import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
 
@@ -47,8 +45,6 @@ const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 const queryClient = new QueryClient();
 
 function AppContent() {
-  const { isTransitioning, transitionStage, projectTitle } = useRoomTransition();
-
   return (
     <>
       <ScrollToTop />
@@ -56,13 +52,6 @@ function AppContent() {
       <UnifiedSEO />
       {/* Sitemap generator */}
       <SitemapGenerator />
-      
-      {/* Room Transition Overlay */}
-      <RoomTransition 
-        isVisible={false} 
-        projectTitle={projectTitle}
-        stage={transitionStage}
-      />
       
       <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
@@ -125,9 +114,7 @@ function App() {
       <HelmetProvider>
         <HeadingHierarchyProvider>
           <ImageMaximizerProvider>
-            <RoomTransitionProvider>
-              <AppContent />
-            </RoomTransitionProvider>
+            <AppContent />
           </ImageMaximizerProvider>
         </HeadingHierarchyProvider>
       </HelmetProvider>

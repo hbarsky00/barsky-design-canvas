@@ -1,14 +1,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useRoomTransition } from "@/hooks/useRoomTransition";
 import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 
 interface CaseStudy {
@@ -91,7 +90,7 @@ const CaseStudyCard: React.FC<{
   index: number;
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
-  const { triggerRoomTransition } = useRoomTransition();
+  const navigate = useNavigate();
 
   // Check if we need a placeholder for Smarter Health assets
   const needsPlaceholder = (src?: string) => {
@@ -117,7 +116,7 @@ const CaseStudyCard: React.FC<{
       console.log('📦 Rendering PlaceholderImage for:', study.title);
       return (
         <div 
-          onClick={() => triggerRoomTransition(study.url, study.title)}
+          onClick={() => navigate(study.url)}
           className="block h-full cursor-pointer"
         >
           <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
@@ -128,7 +127,7 @@ const CaseStudyCard: React.FC<{
     if (study.video) {
       return (
         <div 
-          onClick={() => triggerRoomTransition(study.url, study.title)}
+          onClick={() => navigate(study.url)}
           className="block h-full group cursor-pointer"
         >
           <div className="flex justify-center h-full">
@@ -154,7 +153,7 @@ const CaseStudyCard: React.FC<{
     
     return (
       <div 
-        onClick={() => triggerRoomTransition(study.url, study.title)}
+        onClick={() => navigate(study.url)}
         className="block h-full group cursor-pointer"
       >
         <div className="flex justify-center h-full">
@@ -236,7 +235,7 @@ const CaseStudyCard: React.FC<{
             <Button 
               variant="case-study" 
               className="flex-1"
-              onClick={() => triggerRoomTransition(study.url, study.title)}
+              onClick={() => navigate(study.url)}
             >
               View Case Study
             </Button>
@@ -328,7 +327,7 @@ const CaseStudyCard: React.FC<{
                     <Button 
                       variant="case-study" 
                       className="flex-1 sm:flex-none"
-                      onClick={() => triggerRoomTransition(study.url, study.title)}
+                      onClick={() => navigate(study.url)}
                     >
                       View Case Study
                     </Button>
