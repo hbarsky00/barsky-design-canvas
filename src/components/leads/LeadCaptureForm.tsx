@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Send, Sparkles } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface LeadFormData {
   name: string;
@@ -53,22 +54,17 @@ const LeadCaptureForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/functions/v1/process-lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      // Use secure edge function instead of direct fetch
+      const { data, error } = await supabase.functions.invoke('submit-lead', {
+        body: {
           ...formData,
           lead_source: 'website'
-        }),
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit lead');
+      if (error) {
+        throw new Error(error.message || 'Failed to submit lead');
       }
-
-      const result = await response.json();
 
       toast({
         title: "🎉 Thank you!",

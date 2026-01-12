@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -35,12 +34,13 @@ export const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
-        .from('leads')
-        .insert([{
+      // Use secure edge function instead of direct database insert
+      const { data, error } = await supabase.functions.invoke('submit-lead', {
+        body: {
           ...formData,
           lead_source: 'website'
-        }]);
+        }
+      });
 
       if (error) {
         console.error('Error submitting form:', error);
