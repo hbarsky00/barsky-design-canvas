@@ -13,7 +13,7 @@ interface ProjectConfiguration {
 export const useProjectConfiguration = (projectId?: string): ProjectConfiguration => {
   return useMemo(() => {
     const isInvestorProject = projectId === "investor-loan-app";
-    const isDaeSearchProject = projectId === "daesearchproject";
+    const isDaeSearchProject = projectId === "dae-search";
 
     const inspirationImages = [
       "/lovable-uploads/e2d780f2-eb08-4510-83d7-3b5c7d30ec59.png",
