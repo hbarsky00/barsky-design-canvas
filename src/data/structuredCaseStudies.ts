@@ -936,7 +936,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "40% reduction in support tickets",
       ],
       technologies: ["React", "TypeScript", "Elasticsearch", "Node.js", "GraphQL"],
-      path: "/project/daesearchproject",
+      path: "/project/dae-search",
     },
   },
   herbalink: {

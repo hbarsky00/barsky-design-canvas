@@ -30,12 +30,12 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "daesearchproject",
+    id: "dae-search",
     tags: ["Enterprise", "Search", "Data Discovery"],
     title: "DAE Search Platform: Making Enterprise Data Actually Findable",
     description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
     impact: "20% ROI from Better Data Discovery",
-    url: "/project/daesearchproject",
+    url: "/project/dae-search",
     images: {
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search Platform showing enterprise data discovery interface"
