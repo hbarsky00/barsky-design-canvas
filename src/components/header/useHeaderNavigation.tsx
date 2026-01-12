@@ -2,6 +2,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// Static array - moved outside hook to prevent infinite re-renders
+const NAV_LINKS: { name: string; href: string }[] = [
+  { name: "Case Studies", href: "#case-studies" },
+  { name: "About", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact Me", href: "/contact" },
+];
+
 export const useHeaderNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
@@ -10,13 +18,6 @@ export const useHeaderNavigation = () => {
   const [isIntentionalScrolling, setIsIntentionalScrolling] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
-  const navLinks = [
-    { name: "Case Studies", href: "#case-studies" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact Me", href: "/contact" },
-  ];
 
   // Track scroll direction and header visibility
   const lastYRef = useRef(0);
@@ -218,7 +219,7 @@ export const useHeaderNavigation = () => {
 
       if (location.pathname === '/') {
         // Get all section elements that correspond to navigation links
-        const sections = navLinks
+        const sections = NAV_LINKS
           .filter(link => link.href.startsWith('#'))
           .map(link => ({
             id: link.href.substring(1),
@@ -260,7 +261,7 @@ export const useHeaderNavigation = () => {
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
-  }, [navLinks, location.pathname, isHomepage, isProjectPage]);
+  }, [location.pathname, isHomepage, isProjectPage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -284,7 +285,7 @@ export const useHeaderNavigation = () => {
     isScrolledPastHero,
     activeSection,
     isMobileMenuOpen,
-    navLinks,
+    navLinks: NAV_LINKS,
     handleLinkClick,
     toggleMobileMenu,
     isLinkActive,
