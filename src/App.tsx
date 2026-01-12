@@ -64,7 +64,7 @@ function AppContent() {
         stage={transitionStage}
       />
       
-      <SpatialNavigationWrapper isNavigating={isTransitioning}>
+      <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
           <div className="min-h-screen flex items-center justify-center">
             <MaterialDesignLoader size="lg" text="Loading page..." />
