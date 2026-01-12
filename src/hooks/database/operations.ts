@@ -7,75 +7,103 @@ export const saveChangeToDatabase = async (
   value: any
 ) => {
   try {
-    console.log(`💾 Saving ${changeType} change to database:`, { projectId, key });
+    console.log(`💾 Saving ${changeType} change via edge function:`, { projectId, key });
 
-    const changeData = {
-      project_id: projectId,
-      change_type: changeType,
-      change_key: key,
-      change_value: typeof value === 'string' ? value : JSON.stringify(value),
-      created_at: new Date().toISOString()
-    };
+    const { data, error } = await supabase.functions.invoke('dev-mode-changes', {
+      body: {
+        change_type: changeType,
+        change_key: key,
+        change_value: value
+      },
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-    const { error } = await supabase
-      .from('dev_mode_changes')
-      .upsert(changeData, {
-        onConflict: 'project_id,change_type,change_key'
-      });
+    // Workaround: use query params for action and projectId
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/dev-mode-changes?action=save&projectId=${encodeURIComponent(projectId)}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+        },
+        body: JSON.stringify({
+          change_type: changeType,
+          change_key: key,
+          change_value: value
+        })
+      }
+    );
 
-    if (error) {
-      console.error('❌ Database save error:', error);
-      throw error;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to save change');
     }
 
-    console.log('✅ Change saved to database successfully');
+    console.log('✅ Change saved via edge function successfully');
     return true;
   } catch (error) {
-    console.error('❌ Error saving change to database:', error);
+    console.error('❌ Error saving change via edge function:', error);
     throw error;
   }
 };
 
 export const fetchChangesFromDatabase = async (projectId: string) => {
   try {
-    console.log('📖 Fetching changes from database for project:', projectId);
+    console.log('📖 Fetching changes via edge function for project:', projectId);
 
-    const { data, error } = await supabase
-      .from('dev_mode_changes')
-      .select('*')
-      .eq('project_id', projectId);
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/dev-mode-changes?action=fetch&projectId=${encodeURIComponent(projectId)}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+        }
+      }
+    );
 
-    if (error) {
-      console.error('❌ Database fetch error:', error);
-      throw error;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to fetch changes');
     }
 
-    console.log('✅ Changes fetched from database:', data?.length || 0, 'records');
-    return data || [];
+    const result = await response.json();
+    console.log('✅ Changes fetched via edge function:', result.data?.length || 0, 'records');
+    return result.data || [];
   } catch (error) {
-    console.error('❌ Error fetching changes from database:', error);
+    console.error('❌ Error fetching changes via edge function:', error);
     return [];
   }
 };
 
 export const clearChangesFromDatabase = async (projectId: string) => {
   try {
-    console.log('🗑️ Clearing changes from database for project:', projectId);
+    console.log('🗑️ Clearing changes via edge function for project:', projectId);
 
-    const { error } = await supabase
-      .from('dev_mode_changes')
-      .delete()
-      .eq('project_id', projectId);
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/dev-mode-changes?action=clear&projectId=${encodeURIComponent(projectId)}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+        }
+      }
+    );
 
-    if (error) {
-      console.error('❌ Database clear error:', error);
-      return false;
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to clear changes');
     }
 
-    console.log('✅ Changes cleared from database successfully');
+    console.log('✅ Changes cleared via edge function successfully');
     return true;
   } catch (error) {
-    console.error('❌ Error clearing changes from database:', error);
+    console.error('❌ Error clearing changes via edge function:', error);
     return false;
   }
 };
