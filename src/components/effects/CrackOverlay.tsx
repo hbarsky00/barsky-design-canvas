@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CrackPatterns from './CrackPatterns';
 
@@ -17,6 +17,10 @@ const CrackOverlay: React.FC<CrackOverlayProps> = ({
 }) => {
   const [showCracks, setShowCracks] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
+  
+  // Store callback in ref to avoid triggering effect on function reference changes
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
     if (isActive) {
@@ -31,7 +35,7 @@ const CrackOverlay: React.FC<CrackOverlayProps> = ({
       const hideTimer = setTimeout(() => {
         setShowCracks(false);
         setShowParticles(false);
-        onComplete?.();
+        onCompleteRef.current?.();
       }, duration);
 
       return () => {
@@ -42,7 +46,7 @@ const CrackOverlay: React.FC<CrackOverlayProps> = ({
       setShowCracks(false);
       setShowParticles(false);
     }
-  }, [isActive, duration, onComplete]);
+  }, [isActive, duration]);
 
   // Generate random particles for glass effect
   const particles = Array.from({ length: 8 }, (_, i) => ({
