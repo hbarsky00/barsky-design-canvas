@@ -22,7 +22,6 @@ const buttonVariants = cva(
         "high-contrast": "bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-elevation-3 hover:shadow-elevation-5 hover:scale-[1.02] rounded-2xl font-bold",
         "on-dark": "bg-white/10 text-white border-2 border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         "on-image": "bg-black/40 text-white border-2 border-white/20 shadow-elevation-3 hover:bg-black/60 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
-        "on-gradient-filled": "bg-white text-primary hover:bg-white/90 hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-semibold backdrop-blur-sm",
         
         // Premium brand variants - ALL gradient buttons use text-white with standard colors
         brand: "bg-gradient-to-r from-primary via-blue-600 to-purple-600 text-white hover:shadow-glow-hover hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-8 h-12 font-bold transform transition-all duration-300 relative overflow-hidden",

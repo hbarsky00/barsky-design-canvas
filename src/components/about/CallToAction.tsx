@@ -20,7 +20,7 @@ const CallToAction: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button
             size="lg"
-            variant="on-gradient-filled"
+            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
             onClick={() => {
               if (typeof document !== 'undefined') {
                 const contactSection = document.getElementById('contact');
@@ -31,12 +31,13 @@ const CallToAction: React.FC = () => {
             }}
           >
             Start a Project
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
           
           <Button
             size="lg"
-            variant="on-dark"
+            variant="outline"
+            className="border-white text-white hover:bg-white/10"
             onClick={() => {
               if (typeof window !== 'undefined') {
                 window.open('/free-audit', '_blank');
