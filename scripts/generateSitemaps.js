@@ -75,6 +75,12 @@ function extractCaseStudyData(content) {
 
 const BASE_URL = 'https://barskydesign.pro';
 
+// URLs that redirect and should NOT be in sitemap
+const REDIRECT_URLS = [
+  'investor-loan-app',
+  'wholesale-distribution'
+];
+
 // Fetch SEO slugs from Supabase
 async function fetchSupabaseSlugs() {
   try {
@@ -101,29 +107,31 @@ async function generateMainSitemap() {
   const extractedBlogPosts = extractBlogData(blogDataContent);
   const supabaseSlugs = await fetchSupabaseSlugs();
   
-  // Convert Supabase slugs to sitemap entries
-  const supabaseEntries = supabaseSlugs.map(s => {
-    let url;
-    let priority = '0.7';
-    
-    if (s.path_type === 'page') {
-      url = s.slug === 'home' ? `${BASE_URL}/` : `${BASE_URL}/${s.slug}`;
-      priority = s.slug === 'home' ? '1.0' : '0.8';
-    } else if (s.path_type === 'project') {
-      url = `${BASE_URL}/project/${s.slug}`;
-      priority = '0.9';
-    } else if (s.path_type === 'post') {
-      url = `${BASE_URL}/blog/${s.slug}`;
-      priority = '0.7';
-    }
-    
-    return {
-      url,
-      lastmod: new Date(s.updated_at).toISOString().split('T')[0],
-      changefreq: 'monthly',
-      priority
-    };
-  }).filter(e => e.url);
+  // Convert Supabase slugs to sitemap entries (excluding redirect URLs)
+  const supabaseEntries = supabaseSlugs
+    .filter(s => !REDIRECT_URLS.includes(s.slug))
+    .map(s => {
+      let url;
+      let priority = '0.7';
+      
+      if (s.path_type === 'page') {
+        url = s.slug === 'home' ? `${BASE_URL}/` : `${BASE_URL}/${s.slug}`;
+        priority = s.slug === 'home' ? '1.0' : '0.8';
+      } else if (s.path_type === 'project') {
+        url = `${BASE_URL}/project/${s.slug}`;
+        priority = '0.9';
+      } else if (s.path_type === 'post') {
+        url = `${BASE_URL}/blog/${s.slug}`;
+        priority = '0.7';
+      }
+      
+      return {
+        url,
+        lastmod: new Date(s.updated_at).toISOString().split('T')[0],
+        changefreq: 'monthly',
+        priority
+      };
+    }).filter(e => e.url);
   
   // Merge with TypeScript entries (Supabase takes precedence)
   const supabaseUrls = new Set(supabaseEntries.map(e => e.url));

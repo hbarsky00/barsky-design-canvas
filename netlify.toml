@@ -1,4 +1,15 @@
 
+# 301 Redirects for pages that redirect (fix Google Search Console issues)
+[[redirects]]
+  from = "/project/investor-loan-app"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/project/wholesale-distribution"
+  to = "/project/business-management"
+  status = 301
+
 # Static assets
 [[redirects]]
   from = "/lovable-uploads/*"
