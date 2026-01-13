@@ -1,5 +1,18 @@
-
 # 301 Redirects for pages that redirect (fix Google Search Console issues)
+
+# www to non-www redirect (must be first, with force flag)
+[[redirects]]
+  from = "https://www.barskydesign.pro/*"
+  to = "https://barskydesign.pro/:splat"
+  status = 301
+  force = true
+
+# Old URL redirects
+[[redirects]]
+  from = "/web-development"
+  to = "/design-services/web-development"
+  status = 301
+
 [[redirects]]
   from = "/project/investor-loan-app"
   to = "/"
@@ -84,6 +97,7 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
     
 [[headers]]
   for = "/index.html"

@@ -1,6 +1,12 @@
 # 301 Redirects for pages that redirect (fix Google Search Console issues)
-/project/investor-loan-app       /                              301
-/project/wholesale-distribution  /project/business-management   301
+
+# www to non-www redirect (force with !)
+https://www.barskydesign.pro/*   https://barskydesign.pro/:splat   301!
+
+# Old URL redirects
+/web-development                 /design-services/web-development  301
+/project/investor-loan-app       /                                  301
+/project/wholesale-distribution  /project/business-management       301
 
 # Serve static assets first
 /lovable-uploads/*   /lovable-uploads/:splat   200
