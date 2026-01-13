@@ -1,3 +1,7 @@
+# 301 Redirects for pages that redirect (fix Google Search Console issues)
+/project/investor-loan-app       /                              301
+/project/wholesale-distribution  /project/business-management   301
+
 # Serve static assets first
 /lovable-uploads/*   /lovable-uploads/:splat   200
 /assets/*            /assets/:splat            200

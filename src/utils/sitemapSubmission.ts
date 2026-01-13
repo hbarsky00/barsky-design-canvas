@@ -84,7 +84,6 @@ export class SitemapSubmissionManager {
       '/project/splittime',
       '/project/herbalink',
       '/project/business-management',
-      '/project/investor-loan-app',
       '/project/medication-app',
       '/project/gold2crypto',
       '/project/dae-search',
