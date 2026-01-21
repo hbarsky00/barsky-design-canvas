@@ -7,6 +7,7 @@ https://www.barskydesign.pro/*   https://barskydesign.pro/:splat   301!
 /web-development                 /design-services/web-development  301
 /project/investor-loan-app       /                                  301
 /project/wholesale-distribution  /project/business-management       301
+/blog/design-system-that-gets-used  /blog/design-systems-that-get-used  301
 
 # Serve static assets first
 /lovable-uploads/*   /lovable-uploads/:splat   200

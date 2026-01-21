@@ -23,6 +23,11 @@
   to = "/project/business-management"
   status = 301
 
+[[redirects]]
+  from = "/blog/design-system-that-gets-used"
+  to = "/blog/design-systems-that-get-used"
+  status = 301
+
 # Static assets
 [[redirects]]
   from = "/lovable-uploads/*"

@@ -78,7 +78,8 @@ const BASE_URL = 'https://barskydesign.pro';
 // URLs that redirect and should NOT be in sitemap
 const REDIRECT_URLS = [
   'investor-loan-app',
-  'wholesale-distribution'
+  'wholesale-distribution',
+  'design-system-that-gets-used'
 ];
 
 // Fetch SEO slugs from Supabase
