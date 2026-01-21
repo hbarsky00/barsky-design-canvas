@@ -49,6 +49,17 @@
   to = "/images/:splat"
   status = 200
 
+# Trailing slash redirects (prevent duplicate content)
+[[redirects]]
+  from = "/project/:project/"
+  to = "/project/:project"
+  status = 301
+
+[[redirects]]
+  from = "/blog/:slug/"
+  to = "/blog/:slug"
+  status = 301
+
 # Prerendered project pages (only those that exist and don't redirect)
 [[redirects]]
   from = "/project/herbalink"
@@ -68,6 +79,31 @@
 [[redirects]]
   from = "/project/barskyjoint"
   to = "/project/barskyjoint/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/crypto"
+  to = "/project/crypto/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/smarterhealth"
+  to = "/project/smarterhealth/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/medication-app"
+  to = "/project/medication-app/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/gold2crypto"
+  to = "/project/gold2crypto/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/dae-search"
+  to = "/project/dae-search/index.html"
   status = 200
 
 # Prerendered static pages
