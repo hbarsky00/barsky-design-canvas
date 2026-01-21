@@ -50,7 +50,7 @@ serve(async (req) => {
     // 1) Read SEO from DB (source of truth)
     const { data: row, error } = await supabase
       .from("seo_meta")
-      .select("slug,path_type,title,description,canonical_url,og_image_url,updated_at")
+      .select("slug,path_type,title,description,canonical_url,og_image,updated_at")
       .eq("slug", slugForDb)
       .maybeSingle();
 
@@ -102,7 +102,7 @@ serve(async (req) => {
         title: row.title,
         description: row.description,
         canonical: expectedCanonical,
-        og_image_url: row.og_image_url,
+        og_image: row.og_image,
       },
       live, // optional diagnostics; not required to pass
       note: "Edge verifier uses DB; live fetch is best-effort and non-fatal. For HTML parity, use build-time runner."
