@@ -32,8 +32,25 @@ https://www.barskydesign.pro/*   https://barskydesign.pro/:splat   301!
 
 # Serve prerendered static pages
 /design-services                /design-services/index.html                200
+/design-services/ux-ui-design   /design-services/ux-ui-design/index.html   200
+/design-services/mobile-app-design /design-services/mobile-app-design/index.html 200
+/design-services/web-development /design-services/web-development/index.html 200
+/store                          /store/index.html                          200
+/blog                           /blog/index.html                           200
 /about                          /about/index.html                          200
 /contact                        /contact/index.html                        200
+
+# Serve prerendered blog posts
+/blog/finding-first-ux-job-guide       /blog/finding-first-ux-job-guide/index.html       200
+/blog/ai-enhanced-ux-designer-future   /blog/ai-enhanced-ux-designer-future/index.html   200
+/blog/built-product-without-real-data  /blog/built-product-without-real-data/index.html  200
+/blog/design-systems-that-get-used     /blog/design-systems-that-get-used/index.html     200
+/blog/case-study-writing               /blog/case-study-writing/index.html               200
+/blog/user-research-shoestring-budget  /blog/user-research-shoestring-budget/index.html  200
+/blog/building-products-nobody-asked-for /blog/building-products-nobody-asked-for/index.html 200
+/blog/wireframes-to-wow-visual-hierarchy /blog/wireframes-to-wow-visual-hierarchy/index.html 200
+/blog/beautiful-interface-doesnt-convert /blog/beautiful-interface-doesnt-convert/index.html 200
+/blog/research-without-users           /blog/research-without-users/index.html           200
 
 # Fallback to SPA for all other routes
 /*                   /index.html               200

@@ -113,6 +113,31 @@
   status = 200
 
 [[redirects]]
+  from = "/design-services/ux-ui-design"
+  to = "/design-services/ux-ui-design/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/design-services/mobile-app-design"
+  to = "/design-services/mobile-app-design/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/design-services/web-development"
+  to = "/design-services/web-development/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/store"
+  to = "/store/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+
+[[redirects]]
   from = "/about"
   to = "/about/index.html"
   status = 200
@@ -120,6 +145,57 @@
 [[redirects]]
   from = "/contact"
   to = "/contact/index.html"
+  status = 200
+
+# Prerendered blog posts
+[[redirects]]
+  from = "/blog/finding-first-ux-job-guide"
+  to = "/blog/finding-first-ux-job-guide/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/ai-enhanced-ux-designer-future"
+  to = "/blog/ai-enhanced-ux-designer-future/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/built-product-without-real-data"
+  to = "/blog/built-product-without-real-data/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/design-systems-that-get-used"
+  to = "/blog/design-systems-that-get-used/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/case-study-writing"
+  to = "/blog/case-study-writing/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/user-research-shoestring-budget"
+  to = "/blog/user-research-shoestring-budget/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/building-products-nobody-asked-for"
+  to = "/blog/building-products-nobody-asked-for/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/wireframes-to-wow-visual-hierarchy"
+  to = "/blog/wireframes-to-wow-visual-hierarchy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/beautiful-interface-doesnt-convert"
+  to = "/blog/beautiful-interface-doesnt-convert/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/research-without-users"
+  to = "/blog/research-without-users/index.html"
   status = 200
 
 # SPA fallback for all other routes
