@@ -4,8 +4,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 // Move navLinks outside the hook to prevent new array reference on every render
 const NAV_LINKS = [
   { name: "Case Studies", href: "#case-studies" },
-  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Store", href: "/store" },
   { name: "Blog", href: "/blog" },
+  { name: "About", href: "/about" },
   { name: "Contact Me", href: "/contact" },
 ];
 

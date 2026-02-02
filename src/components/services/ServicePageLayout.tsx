@@ -184,6 +184,39 @@ const ServicePageLayout: React.FC = () => {
                 <p className="text-body-small text-muted-foreground">{item.desc}</p>
               </motion.div>)}
           </div>
+          
+          {/* Design Services Sub-pages Links for SEO */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-12 text-center"
+          >
+            <p className="text-body-medium text-muted-foreground mb-4">
+              Explore specialized services:
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link 
+                to="/design-services/ux-ui-design" 
+                className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
+              >
+                UX/UI Design
+              </Link>
+              <Link 
+                to="/design-services/mobile-app-design" 
+                className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
+              >
+                Mobile App Design
+              </Link>
+              <Link 
+                to="/design-services/web-development" 
+                className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
+              >
+                Web Development
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </SectionTransition>
 
