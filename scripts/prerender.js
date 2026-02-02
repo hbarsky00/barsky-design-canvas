@@ -47,23 +47,57 @@ function loadBlogData() {
     const blogDataPath = join(__dirname, '..', 'src', 'data', 'blogData.ts');
     const content = readFileSync(blogDataPath, 'utf-8');
     
-    // Extract blog post data - simplified parsing for key fields
-    const posts = [];
-    const postMatches = content.match(/{\s*id:\s*"([^"]+)"[\s\S]*?slug:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?excerpt:\s*"([^"]+)"[\s\S]*?coverImage:\s*"([^"]+)"[\s\S]*?}/g);
+    // Known blog slugs - extracted manually for reliability
+    const knownBlogSlugs = [
+      'finding-first-ux-job-guide',
+      'design-systems-that-get-used',
+      'case-study-writing',
+      'ai-enhanced-ux-designer-future',
+      'user-research-shoestring-budget',
+      'built-product-without-real-data',
+      'building-products-nobody-asked-for',
+      'wireframes-to-wow-visual-hierarchy',
+      'beautiful-interface-doesnt-convert',
+      'research-without-users'
+    ];
     
-    if (postMatches) {
-      postMatches.forEach(match => {
-        const id = match.match(/id:\s*"([^"]+)"/)?.[1];
-        const slug = match.match(/slug:\s*"([^"]+)"/)?.[1];
-        const title = match.match(/title:\s*"([^"]+)"/)?.[1];
-        const excerpt = match.match(/excerpt:\s*"([^"]+)"/)?.[1];
-        const coverImage = match.match(/coverImage:\s*"([^"]+)"/)?.[1];
-        
-        if (id && slug && title && excerpt && coverImage) {
-          posts.push({ id, slug, title, excerpt, coverImage });
+    const posts = [];
+    
+    // Extract blog post data for each known slug
+    knownBlogSlugs.forEach(slug => {
+      const slugRegex = new RegExp(`slug:\\s*"${slug}"[\\s\\S]*?title:\\s*"([^"]+)"[\\s\\S]*?excerpt:\\s*"([^"]+)"`, 'm');
+      
+      // Look backwards from slug to find the id and coverImage
+      const blockRegex = new RegExp(`{\\s*id:\\s*"([^"]+)"[\\s\\S]*?title:\\s*"([^"]+)"[\\s\\S]*?excerpt:\\s*"([^"]+)"[\\s\\S]*?coverImage:\\s*([^,\\n]+)[\\s\\S]*?slug:\\s*"${slug}"`, 'm');
+      const match = content.match(blockRegex);
+      
+      if (match) {
+        posts.push({
+          id: match[1],
+          slug,
+          title: match[2],
+          excerpt: match[3],
+          // Use a fallback image since coverImage uses imported variables
+          coverImage: `/images/blog-${slug}.jpg`
+        });
+        console.log(`  ✓ Found blog post: ${slug}`);
+      } else {
+        // Try simpler match
+        const simpleMatch = content.match(new RegExp(`slug:\\s*"${slug}"`, 'm'));
+        if (simpleMatch) {
+          posts.push({
+            id: slug,
+            slug,
+            title: slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+            excerpt: 'Read this article on UX design.',
+            coverImage: `/images/blog-${slug}.jpg`
+          });
+          console.log(`  ✓ Found blog post (fallback): ${slug}`);
+        } else {
+          console.warn(`  ⚠️ Could not parse blog post: ${slug}`);
         }
-      });
-    }
+      }
+    });
     
     console.log(`📝 Loaded ${posts.length} blog posts from blogData.ts`);
     return posts;
@@ -79,23 +113,41 @@ function loadProjectData() {
     const projectDataPath = join(__dirname, '..', 'src', 'data', 'structuredCaseStudies.ts');
     const content = readFileSync(projectDataPath, 'utf-8');
     
-    // Extract project data - simplified parsing for key fields
-    const projects = [];
-    const projectMatches = content.match(/"([^"]+)":\s*{\s*id:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?description:\s*"([^"]+)"[\s\S]*?seoData:\s*{[\s\S]*?image:\s*"([^"]+)"[\s\S]*?}/g);
+    // Known project slugs - extracted manually for reliability
+    const knownSlugs = [
+      'smarterhealth',
+      'crypto', 
+      'dae-search',
+      'herbalink',
+      'splittime',
+      'business-management',
+      'investment-app',
+      'barskyjoint',
+      'medication-app',
+      'gold2crypto'
+    ];
     
-    if (projectMatches) {
-      projectMatches.forEach(match => {
-        const slug = match.match(/"([^"]+)":\s*{/)?.[1];
-        const id = match.match(/id:\s*"([^"]+)"/)?.[1];
-        const title = match.match(/title:\s*"([^"]+)"/)?.[1];
-        const description = match.match(/description:\s*"([^"]+)"/)?.[1];
-        const image = match.match(/seoData:\s*{[\s\S]*?image:\s*"([^"]+)"/)?.[1];
-        
-        if (slug && id && title && description && image) {
-          projects.push({ slug, id, title, description, image });
-        }
-      });
-    }
+    const projects = [];
+    
+    // Extract project data for each known slug
+    knownSlugs.forEach(slug => {
+      // Find the case study block for this slug
+      const slugRegex = new RegExp(`"${slug}":\\s*{[\\s\\S]*?id:\\s*"([^"]+)"[\\s\\S]*?title:\\s*"([^"]+)"[\\s\\S]*?description:\\s*"([^"]+)"[\\s\\S]*?seoData:\\s*{[\\s\\S]*?image:\\s*"([^"]+)"`, 'm');
+      const match = content.match(slugRegex);
+      
+      if (match) {
+        projects.push({
+          slug,
+          id: match[1],
+          title: match[2],
+          description: match[3],
+          image: match[4]
+        });
+        console.log(`  ✓ Found project: ${slug}`);
+      } else {
+        console.warn(`  ⚠️ Could not parse project: ${slug}`);
+      }
+    });
     
     console.log(`📄 Loaded ${projects.length} projects from structuredCaseStudies.ts`);
     return projects;
@@ -143,6 +195,7 @@ const routes = [
   '/blog',
   '/contact',
   '/store',
+  '/design-services',
   '/design-services/ux-ui-design',
   '/design-services/mobile-app-design',
   '/design-services/web-development',
@@ -256,7 +309,18 @@ function getSEOConfig(route, supabaseSeoMap = {}) {
     };
   }
   
-  // Design service pages
+  // Design services parent page
+  if (route === '/design-services') {
+    return {
+      title: 'Design Services — Barsky Design',
+      description: 'Comprehensive UX/UI design, mobile app design, and web development services from an experienced product designer.',
+      canonical: `${baseUrl}/design-services`,
+      image: defaultImage,
+      type: 'website'
+    };
+  }
+  
+  // Design service sub-pages
   if (route.startsWith('/design-services/')) {
     const serviceSlug = route.split('/design-services/')[1];
     const serviceConfigs = {
