@@ -24,7 +24,8 @@ export const PerformanceMetrics: React.FC = () => {
       if ('PerformanceObserver' in window) {
         // LCP Observer
         const lcpObserver = new PerformanceObserver((list) => {
-          const lcpEntry = list.getEntries().at(-1);
+          const entries = list.getEntries();
+          const lcpEntry = entries[entries.length - 1];
           if (lcpEntry) {
             setMetrics(prev => ({ ...prev, lcp: Math.round(lcpEntry.startTime) }));
           }
