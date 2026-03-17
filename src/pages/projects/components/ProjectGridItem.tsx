@@ -42,7 +42,7 @@ const ProjectGridItem: React.FC<ProjectGridItemProps> = ({ project, index }) => 
                 </Link>
               </Button>
               {project.link && (
-                <Button asChild variant="outline" className="bg-blue-50/90 hover:bg-blue-100 border-blue-300 text-blue-700 hover:text-blue-800">
+                <Button asChild variant="elevated">
                   <a
                     href={project.link}
                     target="_blank"

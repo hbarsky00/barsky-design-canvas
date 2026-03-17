@@ -125,7 +125,7 @@ const ServicesPreviewSection: React.FC = () => {
               }}>
                 Book Free Strategy Session
               </Button>
-              <Button variant="outline" size="lg" className="border-2 border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold py-3 px-6 transition-all duration-300" onClick={() => {
+              <Button variant="outline" size="lg" className="font-semibold py-3 px-6" onClick={() => {
               const projectsSection = document.getElementById('projects');
               if (projectsSection) {
                 projectsSection.scrollIntoView({

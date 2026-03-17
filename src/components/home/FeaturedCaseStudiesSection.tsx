@@ -195,7 +195,7 @@ const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study
               </Button>
              
               {study.liveUrl && (
-                <Button asChild variant="outlined">
+                <Button asChild variant="outline">
                   <a
                     href={study.liveUrl}
                     target="_blank"
