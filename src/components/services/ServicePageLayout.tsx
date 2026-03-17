@@ -54,7 +54,7 @@ const ServicePageLayout: React.FC = () => {
             delay: 0.3
           }} className="pt-4">
               <Button asChild variant="brand" size="lg">
-                <Link to="/contact" className="text-slate-50">
+                <Link to="/contact">
                   {SERVICES_HERO.buttonText}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
