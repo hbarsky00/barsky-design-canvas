@@ -158,7 +158,6 @@ const ConsolidatedServicesSection = () => {
                 variant="outline" 
                 size="lg"
                 asChild
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300"
               >
                 <Link to="/projects" className="flex items-center justify-center">
                   View More Projects
