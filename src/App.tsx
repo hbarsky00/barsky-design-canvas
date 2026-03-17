@@ -102,7 +102,7 @@ function AppContent() {
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>
-        <BuyMeCoffeeButton />
+        
         <Toaster />
       </>
   );
