@@ -25,7 +25,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Contact Barsky Design | Product Design & UX Consulting in NJ — Barsky Design',
     description: 'Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration opportunities in Clifton, NJ and beyond.',
-    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+    image: 'https://barskydesign.pro/images/macbookpro.png'
   },
   '/blog': {
     kind: 'page',
