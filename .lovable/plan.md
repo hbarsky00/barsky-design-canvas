@@ -1,104 +1,81 @@
 
 
-## Fix "Crawled - Currently Not Indexed" Pages
+## SEO Audit Results: Critical Failures Found
 
-### Problem Analysis
+### Root Cause Discovery
 
-Google crawled these 8 pages but chose not to index them. Based on my analysis, there are several issues:
+**The site is hosted on Lovable**, which does NOT support:
+- `_redirects` rules (Netlify-specific — all 40+ redirect rules are dead)
+- Build-time `prerender.js` execution (prerendered HTML files never get generated)
+- Static file routing for `/project/herbalink/index.html` etc.
 
-| URL | Issue | Last Crawled |
-|-----|-------|--------------|
-| `/project/investor-loan-app` | 301 redirect to `/` - should NOT be in sitemap | Jun 2025 |
-| `/store` | No internal links from navigation | Aug 2025 |
-| `/design-services/ux-ui-design` | Not in main nav, weak internal linking | Nov 2025 |
-| `/design-services/mobile-app-design` | Not in main nav, weak internal linking | Nov 2025 |
-| `/blog/finding-first-ux-job-guide` | Blog post - needs more internal links | Dec 2025 |
-| `/blog/ai-enhanced-ux-designer-future` | Blog post - needs more internal links | Nov 2025 |
-| `/blog/built-product-without-real-data` | Blog post - needs more internal links | Unknown |
-| `/project/dae-search` | Recently fixed, needs reindex | Jan 30, 2026 |
-
-### Root Causes
-
-1. **Orphan pages**: Store and design-services sub-pages have no links from main navigation
-2. **Weak internal linking**: Blog posts don't link to each other
-3. **Redirect in sitemap**: `/project/investor-loan-app` is already removed but GSC still tracking
-4. **Recent fixes not yet recrawled**: Changes made need time to be processed by Google
+This means **every page serves the same generic `index.html` head** to crawlers. React Helmet updates meta tags client-side via JavaScript, but many crawlers (and Google's initial pass) see only the fallback.
 
 ---
 
-### Implementation Plan
+### Audit Findings
 
-#### Step 1: Add Store and Design Services to Navigation
-**File:** `src/components/header/useHeaderNavigation.tsx`
+#### CRITICAL (Blocking indexing)
 
-Update the `NAV_LINKS` array:
-```typescript
-const NAV_LINKS = [
-  { name: "Case Studies", href: "#case-studies" },
-  { name: "Services", href: "/design-services" },
-  { name: "Store", href: "/store" },
-  { name: "Blog", href: "/blog" },
-  { name: "About", href: "/about" },
-  { name: "Contact Me", href: "/contact" },
-];
-```
+| # | Issue | Impact |
+|---|-------|--------|
+| 1 | **No prerendering on Lovable hosting** — `prerender.js` never runs, all routes serve identical `<head>` | Every page has the same title/description/canonical to Google |
+| 2 | **`_redirects` file is ignored** — www→non-www, trailing slash, old URL redirects all dead | Duplicate content, broken canonical chains |
+| 3 | **Google site verification placeholder** — `content="YOUR_VERIFICATION_CODE"` in index.html | Cannot verify site in Search Console |
+| 4 | **`seo_meta` table is empty** — returns `[]` for every query | Database SEO overrides never apply |
+| 5 | **Client-side sitemap pings fail** — CORS blocks `google.com/ping` and `bing.com/ping` from browser | Wasted network requests, console errors |
+| 6 | **Homepage canonical/og:url hardcoded** to `https://barskydesign.pro/` in index.html but published URL is `barsky-design-canvas.lovable.app` | Canonical mismatch if custom domain not configured |
 
-This adds internal links to the orphan pages from every page on the site.
+#### HIGH (SEO quality)
 
-#### Step 2: Add Store and Design Services to Footer
-**File:** `src/components/Footer.tsx`
+| # | Issue | Impact |
+|---|-------|--------|
+| 7 | **og:site_name inconsistency** — index.html says "Hiram Barsky - UX Designer", seoConstants says "Hiram Barsky \| Lead UX Designer \| Driving Design Strategy" | Mixed branding signals |
+| 8 | **Image domain mix** — `barskyux.com`, `barskydesign.pro`, `ctqttomppgkjbjkckise.supabase.co` used interchangeably | Some og:images may 404 |
+| 9 | **No structured data in static HTML** — JSON-LD only rendered by React client-side | Crawlers miss rich snippets |
+| 10 | **Sitemap lastmod dates stale** — all set to `2026-02-02`, over a month old | Google deprioritizes stale sitemaps |
 
-Add links to the Footer navigation:
-```tsx
-<li>
-  <Link to="/design-services">Design Services</Link>
-</li>
-<li>
-  <Link to="/store">Store</Link>
-</li>
-```
+#### MEDIUM (Spec compliance)
 
-#### Step 3: Add Related Posts Section to Blog Posts
-**File:** `src/components/blog/BlogPostContent.tsx` or similar
-
-Add a "Related Articles" section at the bottom of each blog post that links to 2-3 other blog posts. This creates internal linking between blog posts.
-
-#### Step 4: Add Design Services Sub-pages to Parent Page
-**File:** `src/pages/DesignServices.tsx` or similar
-
-Ensure the `/design-services` page has clear links to all sub-pages:
-- `/design-services/ux-ui-design`
-- `/design-services/mobile-app-design`
-- `/design-services/web-development`
-
-#### Step 5: Update Sitemap - Remove Redirect URL
-**File:** `scripts/generateSitemaps.js`
-
-Ensure `/project/investor-loan-app` is in the `REDIRECT_URLS` exclusion list (already done in previous fix).
+| # | Issue | Details |
+|---|-------|---------|
+| 11 | Title spec violation — homepage title doesn't end with "— Barsky Design" | SEO_SPEC rule: all titles end with "— Barsky Design" |
+| 12 | `/services` in sitemap but SEO_SPEC shows `/design-services` as the hub | Potential duplicate/competing pages |
+| 13 | `portfolio-red-flags-no-interviews` and `ai-in-design` blog posts in BLOG_SEO_MAP but missing from sitemap and `_redirects` prerender list | Orphan pages |
 
 ---
 
-### Files to Modify
+### Recommended Fix Plan
 
-| File | Change |
-|------|--------|
-| `src/components/header/useHeaderNavigation.tsx` | Add Store and Design Services to NAV_LINKS |
-| `src/components/Footer.tsx` | Add Store and Design Services links |
-| `src/components/blog/BlogPostContent.tsx` | Add Related Articles section |
-| `src/pages/DesignServices.tsx` | Verify links to sub-pages exist |
+#### Phase 1: Make SEO work on Lovable hosting (Critical)
 
-### Expected Results
+1. **Replace prerender.js with an `seo-handler` edge function** that intercepts bot user-agents and serves complete HTML with correct per-page meta tags (title, description, canonical, og:*, twitter:*, JSON-LD). This is the only way to serve unique meta tags per route on Lovable hosting.
 
-After publishing these changes:
-1. Store page will have links from every page (header + footer)
-2. Design services pages will have proper internal linking hierarchy
-3. Blog posts will link to each other, improving crawlability
-4. Google should recrawl and index these pages within 2-4 weeks
+2. **Populate the `seo_meta` table** with data from `seoData.ts` — insert rows for all static pages, projects, and blog posts so the edge function has a database to query.
 
-### Technical Notes
+3. **Remove dead infrastructure** — delete `_redirects`, `prerender.js`, `run-seo-check.mjs`, and the client-side sitemap ping code that produces CORS errors.
 
-- The prerendering system is working correctly
-- Netlify redirects are properly configured
-- The recent fix for `/project/dae-search` was just crawled on Jan 30, showing Google is seeing the updates
-- Request indexing in GSC for priority pages after publishing
+4. **Fix `index.html`** — remove `YOUR_VERIFICATION_CODE` placeholder, align og:site_name with constants, ensure fallback meta tags are reasonable defaults.
+
+#### Phase 2: Improve SEO signals
+
+5. **Generate sitemap dynamically** via edge function (or update static sitemap with current dates and all pages including missing blog posts).
+
+6. **Standardize all image URLs** to `barskydesign.pro` domain — replace `barskyux.com` and raw Supabase storage URLs.
+
+7. **Align all titles** with the SEO_SPEC formula (ending with "— Barsky Design").
+
+8. **Add Google Search Console verification** — get actual verification code or use DNS verification.
+
+#### Phase 3: Monitoring
+
+9. **Add a `/robots.txt`** route that dynamically points to the correct sitemap URL.
+
+10. **Create a lightweight SEO smoke test** that checks the edge function returns correct meta tags for each route.
+
+---
+
+### Summary
+
+The #1 reason the site isn't reaching anyone: **Lovable hosting serves the same generic HTML head for every route**. Crawlers see identical title/description/canonical on `/`, `/about`, `/project/herbalink`, etc. — Google treats this as duplicate content and deprioritizes indexing. The fix requires an edge function that serves unique, correct meta tags to crawlers per route.
 
