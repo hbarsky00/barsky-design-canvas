@@ -43,7 +43,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Design Resources & Templates | Premium UX Tools — Barsky Design',
     description: 'Professional design resources, wireframe kits, and UX templates to accelerate your product development. Digital downloads available instantly.',
-    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+    image: 'https://barskydesign.pro/images/macbookpro.png'
   },
   '/design-services/ux-ui-design': {
     kind: 'page',
