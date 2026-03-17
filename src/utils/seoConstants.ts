@@ -8,7 +8,7 @@ const getDynamicBaseUrl = (): string => {
     }
     return origin;
   }
-  return process.env.REACT_APP_BASE_URL || 'https://barskydesign.pro';
+  return 'https://barskydesign.pro';
 };
 
 export const SEO_CONSTANTS = {

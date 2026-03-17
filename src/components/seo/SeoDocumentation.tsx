@@ -10,7 +10,7 @@ interface SeoDocumentationProps {
 
 const SeoDocumentation: React.FC<SeoDocumentationProps> = ({ showInDev = false }) => {
   // Only show in development mode or when explicitly requested
-  if (!showInDev && process.env.NODE_ENV === 'production') {
+  if (!showInDev && import.meta.env.PROD) {
     return null;
   }
 

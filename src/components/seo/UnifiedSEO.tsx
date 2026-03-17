@@ -12,7 +12,7 @@ import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
 
 const devLog = (...args: any[]) => {
-  if (process.env.NODE_ENV !== 'production') console.warn(...args);
+  if (import.meta.env.DEV) console.warn(...args);
 };
 
 const UnifiedSEO: React.FC = () => {

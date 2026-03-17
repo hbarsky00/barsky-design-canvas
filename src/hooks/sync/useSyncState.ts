@@ -13,7 +13,7 @@ export const useSyncState = () => {
 
   const isProcessingRef = useRef<boolean>(false);
   const mountedRef = useRef(true);
-  const stuckTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const stuckTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateSyncState = useCallback((updates: Partial<SyncState>) => {
     if (mountedRef.current) {
