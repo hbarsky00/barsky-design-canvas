@@ -53,36 +53,10 @@ export const generateSitemapEntries = (): string => {
 };
 
 export const submitUrlForIndexing = async (url: string): Promise<boolean> => {
-  try {
-    // Enhanced URL submission with proper formatting
-    console.log('🔍 SEO: Submitting URL for indexing:', url);
-    
-    // Ping Google with the specific URL
-    const googlePingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(url)}`;
-    
-    // Track submission with enhanced analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'url_submission', {
-        submitted_url: url,
-        submission_method: 'enhanced_indexing',
-        canonical_url: url,
-        timestamp: new Date().toISOString(),
-        page_priority: getPageConfig(new URL(url).pathname).priority
-      });
-    }
-    
-    // Submit to search engines
-    try {
-      await fetch(googlePingUrl, { method: 'GET' });
-    } catch (error) {
-      console.log('⚠️ SEO: Google ping failed, continuing with local tracking');
-    }
-    
-    return true;
-  } catch (error) {
-    console.error('❌ SEO: Failed to submit URL for indexing:', error);
-    return false;
-  }
+  // Sitemap/URL submission is handled server-side via the seo-handler edge function.
+  // Client-side pings to google.com/ping fail due to CORS.
+  console.log('SEO: URL indexing handled server-side for:', url);
+  return true;
 };
 
 /**
