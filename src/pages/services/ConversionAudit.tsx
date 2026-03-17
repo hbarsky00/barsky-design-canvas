@@ -193,7 +193,7 @@ const ConversionAudit: React.FC = () => {
           </p>
           <Button 
             size="lg"
-            className="bg-green-600 hover:bg-green-700"
+            variant="brand"
             onClick={() => {
               if (typeof document !== 'undefined') {
                 const contactSection = document.getElementById('contact');
