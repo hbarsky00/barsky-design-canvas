@@ -36,8 +36,7 @@ const CallToAction: React.FC = () => {
           
           <Button
             size="lg"
-            variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            variant="on-dark"
             onClick={() => {
               if (typeof window !== 'undefined') {
                 window.open('/free-audit', '_blank');
