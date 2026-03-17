@@ -133,7 +133,7 @@ const HomepageLayout: React.FC = () => {
           onExitIntent={handleExitIntent}
           disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
         />
-        <LazyScrollEngagement />
+        
       </Suspense>
     </div>
   );
