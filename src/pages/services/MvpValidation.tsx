@@ -186,7 +186,7 @@ const MvpValidation: React.FC = () => {
           </p>
           <Button 
             size="lg"
-            className="bg-purple-600 hover:bg-purple-700"
+            variant="brand"
             onClick={() => {
               if (typeof document !== 'undefined') {
                 const contactSection = document.getElementById('contact');

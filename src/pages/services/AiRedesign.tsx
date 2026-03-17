@@ -130,7 +130,7 @@ const AiRedesign: React.FC = () => {
           </p>
           <Button 
             size="lg"
-            className="bg-blue-600 hover:bg-blue-700"
+            variant="brand"
             onClick={() => {
               if (typeof document !== 'undefined') {
                 const contactSection = document.getElementById('contact');
