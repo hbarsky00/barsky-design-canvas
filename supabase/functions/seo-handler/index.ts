@@ -26,9 +26,9 @@ const STATIC_SEO: Record<string, { title: string; description: string; image?: s
   "/blog": { title: "UX Design Blog | Product Design Insights & Case Studies — Barsky Design", description: "Expert insights on UX design, AI integration, design systems, and product strategy.", image: "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg" },
   "/about": { title: "About Hiram Barsky | 15+ Years Product Design Leadership — Barsky Design", description: "Senior UX/Product Designer with 15+ years creating data-driven, AI-powered platforms.", image: DEFAULT_IMAGE },
   "/store": { title: "Design Resources & Templates | Premium UX Tools — Barsky Design", description: "Professional design resources, wireframe kits, and UX templates.", image: DEFAULT_IMAGE },
-  "/design-services/ux-ui-design": { title: "Expert UX/UI Design Services | User-Centered Product Design — Barsky Design", description: "Transform your product with expert UX/UI design. From user research to high-fidelity prototypes." },
-  "/design-services/mobile-app-design": { title: "Mobile App Design Services | iOS & Android UX/UI — Barsky Design", description: "Native and cross-platform mobile app design for iOS and Android." },
-  "/design-services/web-development": { title: "Modern Web Development | React & Frontend Development — Barsky Design", description: "Custom web development with React, TypeScript, and modern frameworks." },
+  "/design-services/ux-ui-design": { title: "Expert UX/UI Design Services | User-Centered Product Design — Barsky Design", description: "Transform your product with expert UX/UI design. From user research to high-fidelity prototypes.", image: "https://barskydesign.pro/images/herbalink-desktop-1.webp" },
+  "/design-services/mobile-app-design": { title: "Mobile App Design Services | iOS & Android UX/UI — Barsky Design", description: "Native and cross-platform mobile app design for iOS and Android.", image: "https://barskydesign.pro/images/splittime-desktop-1.webp" },
+  "/design-services/web-development": { title: "Modern Web Development | React & Frontend Development — Barsky Design", description: "Custom web development with React, TypeScript, and modern frameworks.", image: "https://barskydesign.pro/images/business-management-desktop-1.webp" },
 };
 
 const PROJECT_SEO: Record<string, { title: string; description: string; image: string }> = {

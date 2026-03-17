@@ -49,19 +49,19 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Expert UX/UI Design Services | User-Centered Product Design — Barsky Design',
     description: 'Transform your product with expert UX/UI design. From user research to high-fidelity prototypes, I create intuitive experiences that drive results.',
-    image: 'https://barskydesign.pro/images/ux-ui-design-service.jpg'
+    image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
     title: 'Mobile App Design Services | iOS & Android UX/UI — Barsky Design',
     description: 'Native and cross-platform mobile app design for iOS and Android. User-centered design that increases engagement and app store ratings.',
-    image: 'https://barskydesign.pro/images/mobile-app-design-service.jpg'
+    image: 'https://barskydesign.pro/images/splittime-desktop-1.webp'
   },
   '/design-services/web-development': {
     kind: 'page',
     title: 'Modern Web Development | React & Frontend Development — Barsky Design',
     description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, and accessible web applications that scale.',
-    image: 'https://barskydesign.pro/images/web-development-service.jpg'
+    image: 'https://barskydesign.pro/images/business-management-desktop-1.webp'
   }
 };
 
