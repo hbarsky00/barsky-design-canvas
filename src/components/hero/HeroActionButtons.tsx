@@ -37,7 +37,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="brand"
           size="lg" 
           onClick={handleFreeConsultation}
-          className="w-full sm:w-auto relative overflow-hidden group font-bold py-5 lg:py-6 px-8 lg:px-10 !text-white shadow-lg hover:shadow-xl transition-all duration-300"
+          className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-bold shadow-lg hover:shadow-xl"
         >
           <Sparkles className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
           <span>Get Free UX+AI Consultation</span>
