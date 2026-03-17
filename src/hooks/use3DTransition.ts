@@ -19,7 +19,7 @@ export const use3DTransition = () => {
   const [direction, setDirection] = useState<TransitionDirection>('none');
   const [variation, setVariation] = useState(getTransitionVariation());
   const prefersReducedMotion = useReducedMotion();
-  const transitionTimeoutRef = useRef<NodeJS.Timeout>();
+  const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const triggerTransition = useCallback((transitionDirection: TransitionDirection, callback?: () => void) => {
     if (isTransitioning || prefersReducedMotion) {

@@ -18,7 +18,7 @@ export const useOptimisticSave = <T>({
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const debounceTimeoutRef = useRef<NodeJS.Timeout>();
+  const debounceTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const pendingDataRef = useRef<T | null>(null);
 
   const saveMutation = useMutation({

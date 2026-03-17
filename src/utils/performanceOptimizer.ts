@@ -48,7 +48,7 @@ export const initializePerformanceOptimizations = () => {
  * Enhanced scroll debouncer for better performance
  */
 export const createDebouncedScrollHandler = (callback: () => void, delay: number = 16) => {
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: ReturnType<typeof setTimeout>;
   let lastCall = 0;
   
   return () => {

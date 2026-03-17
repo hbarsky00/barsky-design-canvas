@@ -18,7 +18,7 @@ export const useScrollMomentum = ({
   const scrollVelocity = useVelocity(scrollY);
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | 'none'>('none');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   // Smooth scroll values with spring physics
   const smoothScrollY = useSpring(scrollY, {
