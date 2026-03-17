@@ -4,34 +4,31 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Primary SEO Meta Tags (Fallback for SSR/Prerender) -->
-    <title>Hiram Barsky | Lead Product Designer &amp; AI Innovator</title>
-    <meta name="description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, GenAI, Cyber &amp; Fintech | Based in Clifton, NJ. 15+ years creating user-centered digital experiences.">
+    <!-- Primary SEO Meta Tags (Fallback — overridden by React Helmet per page) -->
+    <title>Hiram Barsky | Lead Product Designer &amp; AI Innovator — Barsky Design</title>
+    <meta name="description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, Gen AI, Cyber &amp; Fintech | Based in Clifton, NJ. 15+ years creating user-centered digital experiences.">
     <meta name="author" content="Hiram Barsky">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <!-- Canonical URL dynamically set by React Helmet / prerender script -->
+    <link rel="canonical" href="https://barskydesign.pro/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://barskydesign.pro/">
-    
-    
-    <meta property="og:image" content="https://barskydesign.pro/images/hiram-barsky-profile.jpg">
+    <meta property="og:title" content="Hiram Barsky | Lead Product Designer &amp; AI Innovator — Barsky Design">
+    <meta property="og:description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, Gen AI, Cyber &amp; Fintech | Based in Clifton, NJ.">
+    <meta property="og:image" content="https://barskydesign.pro/images/hiram-barsky-headshot.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Hiram Barsky - UX Designer">
+    <meta property="og:site_name" content="Barsky Design">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://barskydesign.pro/">
-    
-    
-    <meta name="twitter:image" content="https://barskydesign.pro/images/hiram-barsky-profile.jpg">
+    <meta name="twitter:title" content="Hiram Barsky | Lead Product Designer &amp; AI Innovator — Barsky Design">
+    <meta name="twitter:description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, Gen AI, Cyber &amp; Fintech | Based in Clifton, NJ.">
+    <meta name="twitter:image" content="https://barskydesign.pro/images/hiram-barsky-headshot.jpg">
     <meta name="twitter:creator" content="@hirambarsky">
-    
-    <!-- Google Site Verification (Replace YOUR_VERIFICATION_CODE with actual code from Search Console) -->
-    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE">
     
     <!-- Additional SEO -->
     <meta name="keywords" content="UX Designer, Product Designer, AI Designer, Design Strategy, User Experience, Fintech Design, Healthcare UX, Clifton NJ">
@@ -45,25 +42,16 @@
     <base href="/" />
     
     <!-- Performance & Critical Resource Hints -->
-    <link rel="preconnect" href="https://barskyux.com" crossorigin>
-    <link rel="preconnect" href="https://ctqttomppgkjbjkckise.supabase.co" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload critical above-the-fold image -->
-    <link rel="preload" as="image" href="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp" fetchpriority="high">
-    
     <!-- Critical CSS -->
     <style>
-      /* Critical above-the-fold styles to prevent layout shift */
       .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
       .hero-loading { opacity: 0; animation: fade-in-fast 0.3s ease-out forwards; }
       @keyframes fade-in-fast { to { opacity: 1; } }
-      /* Prevent layout shift for images */
       img[loading="eager"] { content-visibility: auto; }
     </style>
-    
-
 
     <!-- SEO meta tags dynamically rendered by React Helmet in UnifiedSEO.tsx -->
     
@@ -88,16 +76,11 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     
-    <!-- Google Fonts - Optimized with display=swap for faster rendering -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-    
-    <!-- Critical Asset Preloads -->
-    <link rel="preload" href="https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp" as="image" crossorigin="anonymous">
-    <link rel="dns-prefetch" href="https://barskyux.com">
-    <link rel="dns-prefetch" href="https://ctqttomppgkjbjkckise.supabase.co">
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -105,41 +88,30 @@
     <!-- Additional meta tags -->
     <meta name="theme-color" content="#3B82F6" />
     <meta name="language" content="English" />
-    <meta property="og:title" content="Hiram Barsky | Lead Product Designer &amp; AI Innovator">
-  <meta name="twitter:title" content="Hiram Barsky | Lead Product Designer &amp; AI Innovator">
-  <meta property="og:description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, GenAI, Cyber &amp; Fintech | Based in Clifton, NJ. 15+ years creating user-centered digital experiences.">
-  <meta name="twitter:description" content="Driving Design Strategy &amp; Leadership | Passion for High Craft, GenAI, Cyber &amp; Fintech | Based in Clifton, NJ. 15+ years creating user-centered digital experiences.">
 </head>
   <body>
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Mobile Link Fix: Normalize all anchor hrefs and safely intercept internal links -->
+    <!-- Mobile Link Fix -->
     <script>
     (function () {
       const SAFE = /^(https?:\/\/|mailto:|tel:|\/|#)/i;
       function normalize(href) {
         if (!href) return href;
         href = href.trim();
-        // project:foo → /project/foo
         href = href.replace(/^project:/i, '/project/');
-        // app:// or intent:// → strip to path
         href = href.replace(/^(app|intent):\/\/?/i, '/');
-        // //project… → /project…
         href = href.replace(/^\/\/(project)/i, '/$1');
-        // http:barskydesign.pro → https://barskydesign.pro
         href = href.replace(/^http:barskydesign\.pro/i, 'https://barskydesign.pro');
-        // bare domain → https://…
         if (/^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(href)) {
           href = 'https://' + href;
         }
-        // internal "project…" without leading slash → add it
         if (/^project(\/|$)/i.test(href)) href = '/' + href;
         return href;
       }
 
       function normalizeLinks() {
-        // Normalize existing anchors
         document.querySelectorAll('a[href]').forEach(a => {
           const fixed = normalize(a.getAttribute('href'));
           if (fixed) a.setAttribute('href', fixed);
@@ -147,25 +119,21 @@
         });
       }
 
-      // Initial normalization
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', normalizeLinks);
       } else {
         normalizeLinks();
       }
 
-      // Re-normalize when React updates DOM
       const observer = new MutationObserver(normalizeLinks);
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Safe client-side routing: only intercept site-relative links
       document.addEventListener('click', (e) => {
         const a = e.target.closest('a[href]');
         if (!a) return;
         const href = a.getAttribute('href') || '';
-        if (!SAFE.test(href)) return;              // don't touch weird schemes
-        if (/^https?:\/\//i.test(href)) return;    // let browser handle absolute
-        // For site-relative links, use assign for SSG compatibility
+        if (!SAFE.test(href)) return;
+        if (/^https?:\/\//i.test(href)) return;
         if (href.startsWith('/')) {
           e.preventDefault();
           window.location.assign(href);
