@@ -1,3 +1,4 @@
+// @ts-expect-error - jest-dom types loaded via vitest config
 import "@testing-library/jest-dom";
 
 Object.defineProperty(window, "matchMedia", {
