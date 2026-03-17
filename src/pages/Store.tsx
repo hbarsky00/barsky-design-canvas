@@ -82,7 +82,7 @@ const Store: React.FC = () => {
               <p className="text-lg mb-6 opacity-90">
                 Can't find what you're looking for? Let's create a custom solution for your specific needs.
               </p>
-              <Button variant="secondary" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+              <Button variant="on-dark">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 Request Custom Work
               </Button>

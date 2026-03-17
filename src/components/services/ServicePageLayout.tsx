@@ -265,7 +265,7 @@ const ServicePageLayout: React.FC = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outlined" size="lg">
+              <Button asChild variant="outline" size="lg">
                 <Link to="/projects">
                   View My Work
                 </Link>

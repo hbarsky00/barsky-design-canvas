@@ -77,7 +77,8 @@ const NewsletterSignup: React.FC = () => {
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-white text-blue-600 hover:bg-gray-100 flex items-center justify-center gap-2"
+            variant="elevated"
+            className="w-full"
           >
             {isLoading ? (
               "Subscribing..."

@@ -120,9 +120,9 @@ const About: React.FC = () => {
                   }
                 }
               }}
-              variant="brand"
+              variant="on-dark"
               size="lg"
-              className="font-semibold bg-white text-blue-600 hover:bg-gray-100"
+              className="font-semibold"
             >
               Get Free Strategy Session
               <ArrowRight className="h-5 w-5 ml-2" />

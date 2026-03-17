@@ -66,7 +66,7 @@ const ProjectCallToAction: React.FC = () => {
           </Button>
           
           <Button 
-            variant="outlined"
+            variant="outline"
             size="lg"
             asChild
             className="w-full sm:w-auto"

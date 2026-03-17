@@ -20,7 +20,7 @@ const CallToAction: React.FC = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button
             size="lg"
-            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
+            variant="elevated"
             onClick={() => {
               if (typeof document !== 'undefined') {
                 const contactSection = document.getElementById('contact');
@@ -36,8 +36,7 @@ const CallToAction: React.FC = () => {
           
           <Button
             size="lg"
-            variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            variant="on-dark"
             onClick={() => {
               if (typeof window !== 'undefined') {
                 window.open('/free-audit', '_blank');

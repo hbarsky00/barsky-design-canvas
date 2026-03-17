@@ -37,7 +37,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="brand"
           size="lg" 
           onClick={handleFreeConsultation}
-          className="w-full sm:w-auto relative overflow-hidden group font-bold py-5 lg:py-6 px-8 lg:px-10 !text-white shadow-lg hover:shadow-xl transition-all duration-300"
+          className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-bold shadow-lg hover:shadow-xl"
         >
           <Sparkles className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
           <span>Get Free UX+AI Consultation</span>
@@ -54,7 +54,7 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
           variant="outline"
           size="lg"
           onClick={handleViewResults}
-          className="w-full sm:w-auto relative overflow-hidden group border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 py-5 lg:py-6 px-8 lg:px-10 font-semibold transition-all duration-300 backdrop-blur-sm"
+          className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-semibold"
         >
           <span className="font-medium">See Case Studies & ROI</span>
           <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform" />
