@@ -21,13 +21,19 @@ describe('buildSEO', () => {
         "description": "How I designed a HIPAA-conscious marketplace that increased certified herbalist bookings and patient retention through trustworthy UX and streamlined scheduling.",
         "image": "https://barskydesign.pro/images/herbalink/hero.jpg",
         "imageAlt": "HerbaLink – Herbalist Marketplace Case Study preview image",
+        "imageHeight": 630,
+        "imageWidth": 1200,
         "modifiedTime": "2025-08-10T12:00:00Z",
         "publishedTime": "2025-08-01T12:00:00Z",
+        "robots": "index,follow",
+        "siteName": "Hiram Barsky | Lead UX Designer | Driving Design Strategy",
         "tags": [
           "UX",
           "Healthcare",
         ],
         "title": "HerbaLink – Herbalist Marketplace Case Study",
+        "twitterCard": "summary_large_image",
+        "twitterSite": "@hirambarsky",
         "type": "article",
       }
     `);
