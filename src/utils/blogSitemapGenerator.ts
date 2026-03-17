@@ -66,17 +66,6 @@ ${entries.map(entry => `  <url>
 };
 
 export const submitBlogSitemap = async (): Promise<void> => {
-  try {
-    const sitemapXml = await generateBlogSitemap();
-    
-    // Submit to Google Search Console
-    const googleUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent('https://barskydesign.pro/blog-sitemap.xml')}`;
-    fetch(googleUrl, { method: 'GET', mode: 'no-cors' }).catch(() => {
-      console.log('Google sitemap submission attempted');
-    });
-
-    console.log('Blog sitemap generated and submitted');
-  } catch (error) {
-    console.error('Blog sitemap generation failed:', error);
-  }
+  // Sitemap submission handled server-side. Submit via Google Search Console.
+  console.log('Blog sitemap submission handled server-side.');
 };

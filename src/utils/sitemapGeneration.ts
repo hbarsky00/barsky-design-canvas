@@ -154,43 +154,10 @@ ${entries.map(entry => `  <url>
 };
 
 /**
- * Submits sitemap to search engines
+ * Sitemap submission is handled server-side via the seo-handler edge function.
+ * Client-side pings to google.com/ping and bing.com/ping fail due to CORS.
+ * Submit your sitemap via Google Search Console and Bing Webmaster Tools instead.
  */
 export const submitSitemapToSearchEngines = async (): Promise<void> => {
-  const sitemapUrl = `${BASE_URL}/sitemap.xml`;
-  
-  try {
-    // Ping Google
-    const googlePingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`;
-    
-    // Bing submission URL
-    const bingPingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`;
-    
-    // Submit to search engines (these will fail in dev but work in production)
-    try {
-      await fetch(googlePingUrl, { method: 'GET' });
-      console.log('✅ Sitemap submitted to Google');
-    } catch (error) {
-      console.log('⚠️ Google sitemap ping failed (expected in development)');
-    }
-    
-    try {
-      await fetch(bingPingUrl, { method: 'GET' });
-      console.log('✅ Sitemap submitted to Bing');
-    } catch (error) {
-      console.log('⚠️ Bing sitemap ping failed (expected in development)');
-    }
-
-    // Track submission for analytics
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'sitemap_submission', {
-        event_category: 'SEO',
-        event_label: 'automatic_submission',
-        value: generateSitemapEntries().length
-      });
-    }
-    
-  } catch (error) {
-    console.error('Sitemap submission error:', error);
-  }
+  console.log('Sitemap submission handled server-side. Submit via Search Console.');
 };
