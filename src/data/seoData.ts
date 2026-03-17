@@ -70,7 +70,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "smarterhealth": {
     title: "Smarter Health | Healthcare App UX Case Study — Barsky Design",
     description: "Healthcare app that made medication tracking 45% faster and appointment adherence 60% higher for diabetic patients through empathy-driven design.",
-    image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png"
+    image: "https://barskydesign.pro/images/smarterhealth-desktop-1.webp"
   },
   "crypto": {
     title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design",
