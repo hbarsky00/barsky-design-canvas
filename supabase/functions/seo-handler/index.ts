@@ -1,5 +1,5 @@
-
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
+// seo-handler v2 — serves SEO metadata for crawlers
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const corsHeaders: HeadersInit = {
   "Access-Control-Allow-Origin": "*",
