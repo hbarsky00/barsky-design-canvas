@@ -3,8 +3,6 @@
  */
 
 import { initImageOptimization } from './imageOptimizer';
-import { initTouchTargetFixes } from './touchTargetFixer';
-import { initAccessibilityFixes } from './accessibilityFixer';
 import { linkValidator } from './externalLinkValidator';
 import { optimizeCriticalResources, deferNonCriticalResources } from './performanceMonitor';
 import { initARIAValidation } from './ariaValidator';
@@ -17,8 +15,6 @@ export const initializePerformanceOptimizations = () => {
 
   // Apply comprehensive fixes
   initImageOptimization();
-  initTouchTargetFixes();
-  initAccessibilityFixes();
   linkValidator.initMonitoring();
   optimizeCriticalResources();
   deferNonCriticalResources();
