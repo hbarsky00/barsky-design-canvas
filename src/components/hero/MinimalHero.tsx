@@ -146,8 +146,6 @@ const MinimalHero: React.FC = () => {
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   loading="eager"
                   fetchPriority="high"
-                  sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 240px"
-                  style={{ maxWidth: '240px', height: 'auto' }}
                 />
                 <video
                   ref={videoRef}
