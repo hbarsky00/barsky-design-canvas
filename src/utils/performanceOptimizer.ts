@@ -15,8 +15,6 @@ export const initializePerformanceOptimizations = () => {
 
   // Apply comprehensive fixes
   initImageOptimization();
-  initTouchTargetFixes();
-  initAccessibilityFixes();
   linkValidator.initMonitoring();
   optimizeCriticalResources();
   deferNonCriticalResources();
