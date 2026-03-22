@@ -16,6 +16,7 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Only include canonical, non-redirecting URLs
+  // Note: /projects redirects to /#projects, so excluded
   const staticPages: SitemapEntry[] = [
     // High priority pages
     {
@@ -24,7 +25,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       changefreq: 'weekly',
       priority: 1.0
     },
-    // Note: /projects redirects to /#projects, so excluded
     {
       url: `${BASE_URL}/services`,
       lastmod: currentDate,
