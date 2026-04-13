@@ -74,7 +74,7 @@ const MinimalHero: React.FC = () => {
 
   return (
     <section 
-      className="min-h-screen pb-16 sm:pb-20 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
+      className="min-h-screen pb-6 sm:pb-10 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20"
       style={{
         background: `
@@ -92,7 +92,7 @@ const MinimalHero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="hero-loading flex flex-col items-center text-center gap-4 sm:gap-5 lg:gap-6 xl:gap-7 2xl:gap-8"
+          className="hero-loading flex flex-col items-center text-center gap-3 sm:gap-4 lg:gap-5 xl:gap-6 2xl:gap-7"
         >
           {/* Ultra-Modern Avatar with Premium Effects */}
           <motion.div 
