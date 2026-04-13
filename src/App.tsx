@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { HeadingHierarchyProvider } from "@/components/seo/HeadingHierarchyProvider";
 import ScrollToTop from "@/components/ScrollToTop";
-import BuyMeCoffeeButton from "@/components/shared/BuyMeCoffeeButton";
+
 import SpatialNavigationWrapper from "@/components/transitions/SpatialNavigationWrapper";
 import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
 
