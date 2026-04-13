@@ -74,7 +74,7 @@ const MinimalHero: React.FC = () => {
 
   return (
     <section 
-      className="min-h-screen pb-6 sm:pb-10 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
+      className="min-h-[100svh] pb-6 sm:pb-10 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20"
       style={{
         background: `
