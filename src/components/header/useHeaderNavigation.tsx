@@ -50,15 +50,29 @@ export const useHeaderNavigation = () => {
     // Set intentional scrolling flag
     setIsIntentionalScrolling(true);
     
-    // Simple, unified scroll function using scrollIntoView
+    const getScrollTarget = (element: HTMLElement) => {
+      const headerHeight = parseInt(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--header-height')
+          .trim() || '72',
+        10
+      );
+      const mobileAdjustment = window.innerWidth < 768 ? 12 : 20;
+
+      return Math.max(
+        0,
+        element.getBoundingClientRect().top + window.scrollY - headerHeight - mobileAdjustment
+      );
+    };
+
+    // Use window.scrollTo for consistent alignment with transformed/animated sections
     const attemptScroll = (retries = 3) => {
       const section = document.getElementById(sectionId);
       
       if (section) {
-        // Use scrollIntoView with block: 'start' for consistent behavior
-        section.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start'
+        window.scrollTo({
+          top: getScrollTarget(section),
+          behavior: 'smooth',
         });
         
         setIsMobileMenuOpen(false);
