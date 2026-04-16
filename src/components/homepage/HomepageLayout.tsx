@@ -51,13 +51,6 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        {/* Gradient fade divider between hero and case studies */}
-        <div className="h-16 sm:h-24 -mt-8 sm:-mt-12 relative z-20 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to bottom, hsl(220 20% 98%) 0%, hsl(0 0% 100% / 0) 40%, hsl(var(--background)) 100%)'
-          }}
-        />
-        
         {/* Remove 3D effects that cause layout distortion */}
         <div className="space-y-2 md:space-y-6">
         
