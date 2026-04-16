@@ -373,42 +373,42 @@ const MinimalHero: React.FC = () => {
           {/* Skip to Contact Button */}
          
         </motion.div>
-      </div>
 
-      {/* Continue Button - Inline on mobile, fixed on desktop */}
-      {showContinueButton && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 1.2 }}
-          className="relative mt-4 sm:fixed sm:bottom-8 sm:inset-x-0 mx-auto w-fit cursor-pointer group z-50 flex items-center justify-center"
-          onClick={handleNavigateDown}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <div className="flex flex-col items-center space-y-2 text-slate-700/80 hover:text-slate-800 transition-colors duration-300">
-            <span className="text-sm font-medium animate-pulse bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
-              Continue
-            </span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300 shadow-lg"
-            >
+        {/* Continue Button - Inline on mobile, fixed on desktop */}
+        {showContinueButton && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+            className="mt-6 sm:fixed sm:bottom-8 sm:inset-x-0 mx-auto w-fit cursor-pointer group z-50 flex items-center justify-center"
+            onClick={handleNavigateDown}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="flex flex-col items-center space-y-2 text-slate-700/80 hover:text-slate-800 transition-colors duration-300">
+              <span className="text-sm font-medium animate-pulse bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
+                Continue
+              </span>
               <motion.div
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300 shadow-lg"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
-                     className="text-slate-700 group-hover:text-blue-600 transition-colors duration-200">
-                  <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <motion.div
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                       className="text-slate-700 group-hover:text-blue-600 transition-colors duration-200">
+                    <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 };
