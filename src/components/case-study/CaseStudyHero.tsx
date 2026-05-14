@@ -37,13 +37,6 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
               {caseStudy.description}
             </p>
             
-            <div className="hero-tags">
-              {caseStudy.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
 
             {/* Tech Stack - Gen-AI First */}
             {caseStudy.techStack && (
