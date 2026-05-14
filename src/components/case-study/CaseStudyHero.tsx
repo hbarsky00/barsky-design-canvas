@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
+
 import VideoPlayer from "./VideoPlayer";
 import { CaseStudyData } from "@/data/caseStudies";
 import ProjectLinks from "@/components/project/ProjectLinks";
@@ -37,13 +37,6 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({ caseStudy }) => {
               {caseStudy.description}
             </p>
             
-            <div className="hero-tags">
-              {caseStudy.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
 
             {/* Tech Stack - Gen-AI First */}
             {caseStudy.techStack && (
