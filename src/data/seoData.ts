@@ -5,7 +5,7 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
     kind: 'home',
-    title: 'UX Designer Portfolio | Hiram Barsky — Lead Product Designer',
+    title: 'UX Designer Portfolio — Hiram Barsky, Product Designer',
     description: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
