@@ -1,0 +1,38 @@
+# Barsky Design
+
+> Portfolio of Hiram Barsky — Lead Product Designer & AI Innovator based in Clifton, NJ. 15+ years designing user-centered digital experiences across fintech, healthcare, and AI products.
+
+## Pages
+
+- [Home](/): Overview, hero, featured case studies, services and contact.
+- [About](/about): Background, philosophy, and experience as a Gen-AI-first product designer.
+- [Services](/services): UX/UI design, AI integration, and product strategy services.
+- [Design Services — UX/UI](/design-services/ux-ui-design): UX research, interaction design, and UI systems.
+- [Design Services — Mobile App Design](/design-services/mobile-app-design): iOS/Android product design and prototyping.
+- [Design Services — Web Development](/design-services/web-development): Modern, AI-assisted React/Vite web builds.
+- [Store](/store): Downloadable design templates and resources.
+- [Blog](/blog): Articles on UX, design systems, AI, and career growth.
+- [Contact](/contact): Project inquiries and consultation requests.
+
+## Case studies
+
+- [HerbaLink](/project/herbalink): Healthcare marketplace connecting users with herbalists.
+- [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict.
+- [Crypto Trading Platform](/project/crypto): Fintech UX simplifying complex trading flows.
+- [SmarterHealth](/project/smarterhealth): Healthcare experience modernization.
+- [Business Management](/project/business-management): B2B operations platform UX.
+- [Investor Loan App](/project/investor-loan-app): Fintech loan origination platform.
+- [Medication App](/project/medication-app): Healthcare medication tracking and adherence.
+- [Gold2Crypto](/project/gold2crypto): Crypto exchange onboarding for non-crypto users.
+- [DAE Search](/project/dae-search): Enterprise data discovery and search.
+- [BarskyJoint](/project/barskyjoint): Restaurant ordering system.
+
+## Blog
+
+- [Finding Your First UX Job](/blog/finding-first-ux-job-guide)
+- [Design Systems That Get Used](/blog/design-systems-that-get-used)
+- [Portfolio Red Flags](/blog/portfolio-red-flags-no-interviews)
+- [The AI-Enhanced UX Designer](/blog/ai-enhanced-ux-designer-future)
+- [User Research on a Shoestring Budget](/blog/user-research-shoestring-budget)
+- [AI in Design](/blog/ai-in-design)
+- [Case Study Writing](/blog/case-study-writing)
