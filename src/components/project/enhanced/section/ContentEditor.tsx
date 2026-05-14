@@ -3,6 +3,7 @@ import React from 'react';
 import { Edit3, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SimpleTextEditor } from '@/components/editor/SimpleTextEditor';
+import { sanitizeHtml } from '@/utils/htmlSanitizer';
 
 interface ContentEditorProps {
   isEditing: boolean;
@@ -46,7 +47,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
       <div className="group/content relative">
         <div 
           className="prose prose-lg text-gray-600 leading-relaxed max-w-none text-center"
-          dangerouslySetInnerHTML={{ __html: editedContent }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(editedContent) }}
         />
         {showEditingControls && (
           <Button
