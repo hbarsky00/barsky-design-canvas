@@ -33,6 +33,7 @@ const staticEntries: Entry[] = [
   { path: "/contact", changefreq: "monthly", priority: "0.7" },
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/projects", changefreq: "weekly", priority: "0.9" },
 ];
 
 // Project routes — extracted from App.tsx <Route path="/project/..."> entries,
@@ -56,6 +57,10 @@ function getProjectPaths(): string[] {
     "/project/medication-app",
     "/project/gold2crypto",
     "/project/dae-search",
+    "/project/business-management",
+    "/project/barskyjoint",
+    "/project/investor-loan-app",
+    "/project/wholesale-distribution",
   ].forEach((p) => found.add(p));
   return Array.from(found).sort();
 }

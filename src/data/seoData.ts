@@ -5,7 +5,7 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
     kind: 'home',
-    title: 'Hiram Barsky | Lead Product Designer & AI Innovator — Barsky Design',
+    title: 'Hiram Barsky | Lead Product & AI Designer',
     description: 'Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech | Based in Clifton, NJ',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
@@ -17,7 +17,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   },
   '/services': {
     kind: 'page',
-    title: 'Expert UX/UI Design Services | Mobile Apps & Web Development — Barsky Design',
+    title: 'UX/UI Design Services | Barsky Design',
     description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences that drive business results.',
     image: 'https://barskydesign.pro/images/macbookpro.png'
   },
