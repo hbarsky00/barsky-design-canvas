@@ -143,9 +143,12 @@ const MinimalHero: React.FC = () => {
                 <img
                   src={imageUrl}
                   alt="Hiram Barsky profile"
+                  width={384}
+                  height={384}
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   loading="eager"
                   fetchPriority="high"
+                  decoding="async"
                 />
                 <video
                   ref={videoRef}
