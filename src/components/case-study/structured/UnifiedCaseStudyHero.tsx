@@ -211,13 +211,6 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-8">
-                {caseStudyData.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="px-3 py-1">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
 
               {caseStudyData.projectLink && (
                 <div className="max-w-md">
