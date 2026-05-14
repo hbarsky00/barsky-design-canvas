@@ -191,7 +191,7 @@ const MinimalHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <AnimatedText
-                text="Lead UX Designer | Driving Design Strategy & Leadership"
+                text="UX Designer Portfolio — Lead Product & AI Design"
                 tag="h1"
                 type="word"
                 animation="fade"
