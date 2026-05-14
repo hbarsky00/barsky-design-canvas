@@ -266,8 +266,8 @@ export const blogPosts: BlogPost[] = [
       <h3 class="text-xl font-semibold mt-6 mb-3">2. Existing Customer Goldmine</h3>
       <p>Your current users are your best research participants. They're already invested in your product and often happy to share feedback. A simple email asking for 15 minutes of their time often yields surprising response rates.</p>
       
-      <h3 class="text-xl font-semibold mt-6 mb-3">3. The Coffee Shop Test</h3>
-      <p>Need quick usability feedback? Set up in a coffee shop with your laptop and offer to buy people coffee in exchange for 10 minutes of testing. You'll get diverse perspectives and real-world context.</p>
+      <h3 class="text-xl font-semibold mt-6 mb-3">3. Quick Public Feedback</h3>
+      <p>Need quick usability feedback? Approach people in public spaces like libraries or coworking areas with your prototype. A friendly introduction and 10 minutes of their time yields diverse perspectives and real-world context.</p>
       
       <h2 class="text-2xl font-bold mt-8 mb-4">Free and Low-Cost Tools</h2>
       
@@ -281,7 +281,7 @@ export const blogPosts: BlogPost[] = [
       <h3 class="text-xl font-semibold mt-6 mb-3">Analytics as Research:</h3>
       <ul class="list-disc pl-6 mb-4">
         <li>Google Analytics for behavior patterns</li>
-        <li>Hotjar for heatmaps and session recordings</li>
+        <li>Microsoft Clarity for heatmaps and session recordings</li>
         <li>Social media comments for sentiment analysis</li>
       </ul>
       
