@@ -141,6 +141,13 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
             imageCaptions={finalCaptions}
             project={updatedProject}
           />
+          <div className="flex flex-wrap justify-center gap-2">
+            {updatedProject.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="px-3 py-1 bg-blue-50/80 text-blue-700">
+                {tag}
+              </Badge>
+            ))}
+          </div>
           <ProjectCallToAction />
           <section className="mt-8">
             <ProjectNavigation
