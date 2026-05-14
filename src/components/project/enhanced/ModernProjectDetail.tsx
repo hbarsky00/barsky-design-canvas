@@ -110,18 +110,6 @@ const ModernProjectDetail: React.FC<ModernProjectDetailProps> = ({
                   className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto text-center"
                 />
 
-                <div className="flex flex-wrap justify-center gap-2">
-                  {updatedProject.tags.map((tag) => (
-                    <Badge 
-                      key={tag}
-                      variant="secondary" 
-                      className="glass-button px-3 py-1 bg-blue-50/80 text-blue-700 hover:bg-blue-100/80 backdrop-blur-sm transition-all duration-300"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
                 {updatedDetails.projectLink && (
                   <div className="flex justify-center pt-4">
                     <Button 
