@@ -1,6 +1,7 @@
 /**
  * Internal Link Structure Optimizer - Improve internal linking patterns
  */
+import { sanitizeHtml } from '@/utils/htmlSanitizer';
 
 interface InternalLinkData {
   url: string;
@@ -155,7 +156,7 @@ class InternalLinkOptimizer {
       const linkText = this.getLinkTextForUrl(linkUrl);
       const newContent = `${beforeText}${keywordText}. <a href="${linkUrl}" class="text-blue-vibrant hover:underline">${linkText}</a>${afterText}`;
       
-      element.innerHTML = newContent;
+      element.innerHTML = sanitizeHtml(newContent);
     }
   }
 
