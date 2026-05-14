@@ -40,7 +40,7 @@ const AiRedesign: React.FC = () => {
               {
                 phase: "AI Analysis & Research",
                 description: "Advanced analytics tools analyze user behavior, competitor strategies, and conversion optimization opportunities.",
-                tools: ["Hotjar AI", "Google Analytics Intelligence", "Competitor Analysis AI"]
+                tools: ["Clarity AI", "Google Analytics Intelligence", "Competitor Analysis AI"]
               },
               {
                 phase: "Intelligent Design Generation", 
