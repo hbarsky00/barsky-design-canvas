@@ -19,6 +19,16 @@ interface FreeAuditRequest {
   phone?: string;
 }
 
+const esc = (s: unknown): string =>
+  String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const escAttr = (s: unknown): string => esc(s);
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -70,9 +80,9 @@ const handler = async (req: Request): Promise<Response> => {
       subject: "Your Free UX Audit Request Received!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h1 style="color: #2563eb;">Thank you for your free audit request, ${formData.name}!</h1>
+          <h1 style="color: #2563eb;">Thank you for your free audit request, ${esc(formData.name)}!</h1>
           
-          <p>I've received your request for a free UX conversion audit and I'm excited to help you improve your ${formData.projectType.toLowerCase()}.</p>
+          <p>I've received your request for a free UX conversion audit and I'm excited to help you improve your ${esc(String(formData.projectType).toLowerCase())}.</p>
           
           <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="margin-top: 0; color: #1e293b;">What happens next:</h3>
@@ -86,10 +96,10 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p><strong>Your Project Details:</strong></p>
           <ul>
-            <li>Project Type: ${formData.projectType}</li>
-            <li>Budget Range: ${formData.budgetRange}</li>
-            ${formData.company ? `<li>Company: ${formData.company}</li>` : ''}
-            ${formData.website ? `<li>Website: <a href="${formData.website}">${formData.website}</a></li>` : ''}
+            <li>Project Type: ${esc(formData.projectType)}</li>
+            <li>Budget Range: ${esc(formData.budgetRange)}</li>
+            ${formData.company ? `<li>Company: ${esc(formData.company)}</li>` : ''}
+            ${formData.website ? `<li>Website: <a href="${escAttr(formData.website)}">${esc(formData.website)}</a></li>` : ''}
           </ul>
           
           <p>Based on similar projects like <a href="https://barskydesign.pro/case-study-herbalink">Herbalink (65% engagement increase)</a> and <a href="https://barskydesign.pro/case-study-splittime">Splittime (50% faster onboarding)</a>, I'm confident we can identify significant improvement opportunities.</p>
@@ -120,49 +130,49 @@ const handler = async (req: Request): Promise<Response> => {
           <table style="width: 100%; border-collapse: collapse;">
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Name:</td>
-              <td style="padding: 12px 0;">${formData.name}</td>
+              <td style="padding: 12px 0;">${esc(formData.name)}</td>
             </tr>
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Email:</td>
-              <td style="padding: 12px 0;"><a href="mailto:${formData.email}">${formData.email}</a></td>
+              <td style="padding: 12px 0;"><a href="mailto:${escAttr(formData.email)}">${esc(formData.email)}</a></td>
             </tr>
             ${formData.phone ? `
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Phone:</td>
-              <td style="padding: 12px 0;"><a href="tel:${formData.phone}">${formData.phone}</a></td>
+              <td style="padding: 12px 0;"><a href="tel:${escAttr(formData.phone)}">${esc(formData.phone)}</a></td>
             </tr>
             ` : ''}
             ${formData.company ? `
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Company:</td>
-              <td style="padding: 12px 0;">${formData.company}</td>
+              <td style="padding: 12px 0;">${esc(formData.company)}</td>
             </tr>
             ` : ''}
             ${formData.website ? `
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Website:</td>
-              <td style="padding: 12px 0;"><a href="${formData.website}" target="_blank">${formData.website}</a></td>
+              <td style="padding: 12px 0;"><a href="${escAttr(formData.website)}" target="_blank">${esc(formData.website)}</a></td>
             </tr>
             ` : ''}
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Project Type:</td>
-              <td style="padding: 12px 0;">${formData.projectType}</td>
+              <td style="padding: 12px 0;">${esc(formData.projectType)}</td>
             </tr>
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Budget Range:</td>
-              <td style="padding: 12px 0;"><strong>${formData.budgetRange}</strong></td>
+              <td style="padding: 12px 0;"><strong>${esc(formData.budgetRange)}</strong></td>
             </tr>
             ${formData.timeline ? `
             <tr style="border-bottom: 1px solid #e5e7eb;">
               <td style="padding: 12px 0; font-weight: bold;">Timeline:</td>
-              <td style="padding: 12px 0;">${formData.timeline}</td>
+              <td style="padding: 12px 0;">${esc(formData.timeline)}</td>
             </tr>
             ` : ''}
           </table>
           
           <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #0369a1; margin-top: 0;">Project Description:</h3>
-            <p style="margin-bottom: 0;">${formData.projectDescription}</p>
+            <p style="margin-bottom: 0;">${esc(formData.projectDescription)}</p>
           </div>
           
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -175,8 +185,8 @@ const handler = async (req: Request): Promise<Response> => {
             </ol>
           </div>
           
-          <p><strong>Lead ID:</strong> ${lead.id}</p>
-          <p><strong>Lead Score:</strong> ${lead.priority_score || 'Calculating...'}</p>
+          <p><strong>Lead ID:</strong> ${esc(lead.id)}</p>
+          <p><strong>Lead Score:</strong> ${esc(lead.priority_score ?? 'Calculating...')}</p>
         </div>
       `,
     });
