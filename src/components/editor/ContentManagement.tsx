@@ -8,6 +8,7 @@ import { Trash2, Edit, Search } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { SimpleTextEditor } from './SimpleTextEditor';
+import { sanitizeHtml } from '@/utils/htmlSanitizer';
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -247,7 +248,7 @@ export const ContentManagement: React.FC = () => {
             <CardContent>
               <div 
                 className="prose prose-sm max-w-none text-muted-foreground"
-                dangerouslySetInnerHTML={{ __html: item.content_html }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.content_html || '') }}
               />
               <div className="text-xs text-muted-foreground mt-4">
                 Last updated: {new Date(item.updated_at).toLocaleDateString()}
