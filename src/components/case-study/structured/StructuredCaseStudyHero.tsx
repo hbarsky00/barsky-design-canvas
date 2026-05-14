@@ -45,13 +45,6 @@ const StructuredCaseStudyHero: React.FC<StructuredCaseStudyHeroProps> = ({
               {caseStudyData.description}
             </p>
             
-            <div className="hero-tags">
-              {caseStudyData.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
 
             {/* Tech Stack - Gen-AI First */}
             {caseStudyData.techStack && (

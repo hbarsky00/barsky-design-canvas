@@ -487,6 +487,17 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           )}
 
           
+          {/* Tags */}
+          {caseStudyData.tags?.length ? (
+            <div className="flex flex-wrap justify-center gap-2 py-8">
+              {caseStudyData.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="px-3 py-1.5">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          ) : null}
+
           {/* Related Case Study Section */}
           <section id="more-work" data-section="more-work" aria-labelledby="more-work-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
             <h2 id="more-work-heading" className="sr-only">More Work Section</h2>

@@ -81,13 +81,6 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                     {caseStudyData.description}
                   </p>
                   
-                  <div className="hero-tags w-full">
-                    {caseStudyData.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="px-3 py-2">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
 
                   {caseStudyData.projectLink && (
                     <div className="hero-cta-wrapper w-full">
@@ -156,13 +149,6 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                   {caseStudyData.description}
                 </p>
                 
-                <div className="hero-tags">
-                  {caseStudyData.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="px-3 py-1.5">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
 
                 {caseStudyData.projectLink && (
                   <div className="hero-cta-wrapper">
@@ -225,13 +211,6 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
                 {caseStudyData.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-8">
-                {caseStudyData.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="px-3 py-1">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
 
               {caseStudyData.projectLink && (
                 <div className="max-w-md">
