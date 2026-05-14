@@ -19,7 +19,7 @@ export const SEO_CONSTANTS = {
   SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
-  DEFAULT_DESCRIPTION: 'Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech',
+  DEFAULT_DESCRIPTION: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',
   
   // Meta tag defaults
   THEME_COLOR: '#3B82F6',
