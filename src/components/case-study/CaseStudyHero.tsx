@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
+
 import VideoPlayer from "./VideoPlayer";
 import { CaseStudyData } from "@/data/caseStudies";
 import ProjectLinks from "@/components/project/ProjectLinks";
