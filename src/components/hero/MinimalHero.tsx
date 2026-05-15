@@ -377,40 +377,35 @@ const MinimalHero: React.FC = () => {
          
         </motion.div>
 
-        {/* Continue Button - Inline on mobile, fixed on desktop */}
-        {showContinueButton && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-            className="mt-6 sm:fixed sm:bottom-8 sm:inset-x-0 mx-auto w-fit cursor-pointer group z-50 flex items-center justify-center"
+        {/* Primary CTA — high-signal action to reduce bounce */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.0 }}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 order-4"
+        >
+          <button
             onClick={handleNavigateDown}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-white
+                       bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700
+                       shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40
+                       transition-all duration-300 hover:-translate-y-0.5 min-h-[48px]"
           >
-            <div className="flex flex-col items-center space-y-2 text-slate-700/80 hover:text-slate-800 transition-colors duration-300">
-              <span className="text-sm font-medium animate-pulse bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
-                Continue
-              </span>
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center group-hover:bg-white/30 group-hover:border-white/50 transition-all duration-300 shadow-lg"
-              >
-                <motion.div
-                  animate={{ y: [0, 3, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" 
-                       className="text-slate-700 group-hover:text-blue-600 transition-colors duration-200">
-                    <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
+            See My Work →
+          </button>
+          <a
+            href="https://calendly.com/barskyuxdesignservices/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-gray-800
+                       bg-white/70 backdrop-blur-sm border border-gray-200
+                       hover:bg-white hover:border-gray-300 transition-all duration-300
+                       hover:-translate-y-0.5 min-h-[48px] flex items-center justify-center"
+          >
+            Book a Call
+          </a>
+        </motion.div>
+
       </div>
     </section>
   );
