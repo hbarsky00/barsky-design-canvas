@@ -71,21 +71,33 @@ export const generateStructuredData = (seoData: SEOData) => {
     schemas.push(blogPostSchema);
   }
 
-  // Add Product schema for projects/case studies
+  // Add Article schema for projects/case studies (editorial content, not products)
   if (seoData.kind === 'project') {
-    const productSchema: any = {
+    const datePublished =
+      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const articleSchema: any = {
       "@context": "https://schema.org",
-      "@type": "Product",
-      name: seoData.title,
+      "@type": "Article",
+      headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      brand: {
-        "@type": "Brand",
-        name: "Hiram Barsky Design"
+      datePublished,
+      ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
+      author: {
+        "@type": "Person",
+        name: seoData.author || "Hiram Barsky"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Hiram Barsky Design",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://barskydesign.pro/logo.png"
+        }
       },
       ...(seoData.image && { image: seoData.image })
     };
-    schemas.push(productSchema);
+    schemas.push(articleSchema);
   }
 
   // Add FAQ schema for homepage
