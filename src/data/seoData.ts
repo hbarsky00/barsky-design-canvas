@@ -12,7 +12,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/projects': {
     kind: 'page',
     title: 'UX Case Studies & Product Design Portfolio — Barsky Design',
-    description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — showcasing measurable impact, user outcomes, and strategic design thinking.',
+    description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — measurable impact, user outcomes, and strategic design thinking.',
     image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
   },
   '/services': {
@@ -23,43 +23,43 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   },
   '/contact': {
     kind: 'page',
-    title: 'Contact Barsky Design | Product Design & UX Consulting in NJ — Barsky Design',
+    title: 'Contact Barsky Design — Product Design & UX Consulting',
     description: 'Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration opportunities in Clifton, NJ and beyond.',
     image: 'https://barskydesign.pro/images/macbookpro.png'
   },
   '/blog': {
     kind: 'page',
-    title: 'UX Design Blog | Product Design Insights & Case Studies — Barsky Design',
+    title: 'UX Design Blog — Product Design Insights | Barsky Design',
     description: 'Expert insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
     image: 'https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
     kind: 'page',
-    title: 'About Hiram Barsky | 15+ Years Product Design Leadership — Barsky Design',
+    title: 'About Hiram Barsky — 15+ Years Product Design',
     description: 'Senior UX/Product Designer with 15+ years creating data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.',
     image: 'https://barskydesign.pro/images/hiram-barsky-headshot.jpg'
   },
   '/store': {
     kind: 'page',
-    title: 'Design Resources & Templates | Premium UX Tools — Barsky Design',
+    title: 'Design Resources & Templates — Barsky Design',
     description: 'Professional design resources, wireframe kits, and UX templates to accelerate your product development. Digital downloads available instantly.',
     image: 'https://barskydesign.pro/images/macbookpro.png'
   },
   '/design-services/ux-ui-design': {
     kind: 'page',
-    title: 'Expert UX/UI Design Services | User-Centered Product Design — Barsky Design',
+    title: 'UX/UI Design Services — User-Centered Product Design',
     description: 'Transform your product with expert UX/UI design. From user research to high-fidelity prototypes, I create intuitive experiences that drive results.',
     image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
-    title: 'Mobile App Design Services | iOS & Android UX/UI — Barsky Design',
+    title: 'Mobile App Design — iOS & Android UX/UI | Barsky Design',
     description: 'Native and cross-platform mobile app design for iOS and Android. User-centered design that increases engagement and app store ratings.',
     image: 'https://barskydesign.pro/images/splittime-desktop-1.webp'
   },
   '/design-services/web-development': {
     kind: 'page',
-    title: 'Modern Web Development | React & Frontend Development — Barsky Design',
+    title: 'Web Development — React & Frontend | Barsky Design',
     description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, and accessible web applications that scale.',
     image: 'https://barskydesign.pro/images/business-management-desktop-1.webp'
   }
