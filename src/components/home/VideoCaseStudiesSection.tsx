@@ -68,6 +68,19 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side"
   },
+  {
+    id: "email-creation-ai",
+    tags: ["Pharma", "Gen AI", "Workflow Design"],
+    title: "40% Faster Pharma Campaigns With AI-Powered Email Creation",
+    description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
+    impact: "40% Faster Campaign Production",
+    url: "/project/email-creation-ai",
+    images: {
+      primary: "/images/email-ai-promo.png",
+      alt: "AI-powered pharma email creation workflow interface"
+    },
+    layout: "side-by-side"
+  },
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "herbalink",
