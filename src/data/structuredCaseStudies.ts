@@ -2327,6 +2327,91 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/medication-app",
     },
   },
+  "email-creation-ai": {
+    id: "email-creation-ai",
+    title: "40% Faster Campaigns: Designing an AI-Powered Email Creation Workflow for Pharma",
+    description:
+      "Designed a 6-step AI-powered email creation workflow that cut pharma campaign production time by 40% while maintaining full MLR compliance.",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    techStack: {
+      aiTools: ["Claude", "ChatGPT"],
+      devStack: ["React", "TypeScript"],
+      designTools: ["Figma"],
+    },
+    gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
+    heroImage: {
+      src: "/images/email-ai-promo.png",
+      alt: "AI-powered pharma email creation workflow",
+    },
+    heroMetrics: [
+      { value: "40%", label: "Faster Production" },
+      { value: "100%", label: "MLR Compliant" },
+      { value: "50%", label: "Fewer Revisions" },
+    ],
+    problemCallout: {
+      eyebrow: "The Problem",
+      statement:
+        "A global pharmaceutical company's HCP email production required 6+ disconnected tools, multiple manual handoffs between Medical Writers, Content Ops, and Brand teams, and a slow MLR review cycle that caused weeks of delays per campaign. There was no unified workflow — just fragmented steps, repeated rework, and no AI assistance to speed compliant content generation.",
+    },
+    outcomeSection: {
+      eyebrow: "Quantified Impact",
+      title: "Quantified Impact",
+      description:
+        "A unified AI-assisted workflow replaced disconnected tools and manual handoffs, accelerating compliant email production end-to-end.",
+      metrics: [
+        { value: "40%", label: "Reduction in production time" },
+        { value: "100%", label: "Compliant manuscript generation" },
+        { value: "3+", label: "Manual handoff steps eliminated" },
+        { value: "~50%", label: "Fewer revision cycles" },
+      ],
+      images: [
+        {
+          src: "/images/emailai-impact.png",
+          alt: "Before and after comparison of email production timeline showing reduced steps",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Freeform editing flopped — flipping the model fixed it",
+      content:
+        "Early designs let users write emails freeform inside the platform. Medical Writers ignored the AI suggestions entirely and defaulted to copy-pasting from Word documents. The breakthrough came from flipping the model — the AI generates a full compliant manuscript first from an approved brief, and the human refines from there. That shift made the AI feel like acceleration rather than an obstacle.",
+      images: [
+        {
+          src: "/images/emailai-fail.png",
+          alt: "Early wireframe showing abandoned freeform editor approach",
+        },
+      ],
+    },
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "Designing around real approval gates",
+      content:
+        "I mapped every role in the process — Medical Writer, Content Ops, Brand, MLR Reviewer — and designed each step around their actual approval gates, not an idealized flow. Each screen surfaces only what that role needs to act on. The AI acts as an orchestration layer: it pulls from approved briefs, appends market-specific compliance content automatically, and flags issues before they reach human review. The goal was to make compliance invisible and speed feel natural.\n\nHow I Used AI — Claude + Markdown Dev Handoff Method:\nI used Claude throughout the design process — not just as a writing tool, but as a dev handoff partner. I created structured Markdown files that documented every screen's logic, component states, role permissions, and AI behavior. These MD files gave the development team a precise spec they could follow without needing constant back-and-forth. It replaced long Slack threads with a single source of truth the AI helped me write, structure, and maintain as the product evolved.",
+      images: [
+        {
+          src: "/images/emailai-process.png",
+          alt: "Role-based workflow map showing each step owned by AI, Content Ops, Med Writer, and Brand",
+        },
+        {
+          src: "/images/emailai-ai-method.png",
+          alt: "Screenshot of Claude-generated MD spec file used for dev handoff",
+        },
+      ],
+    },
+    sections: [],
+    seoData: {
+      image: "/images/email-ai-promo.png",
+      projectName: "AI-Powered Pharma Email Creation Workflow",
+      results: [
+        "40% faster campaign production",
+        "100% MLR-compliant manuscripts",
+        "Eliminated 3+ manual handoffs",
+      ],
+      technologies: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+      path: "/project/email-creation-ai",
+    },
+  },
   "gold2crypto": {
     id: "gold2crypto",
     title: "Crypto Exchange Onboarding Optimization",
