@@ -1620,21 +1620,69 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
 }
 
 /* ============================================================
-   Gradient button readability — !important guarantee
-   Any button/link/role=button using a Tailwind gradient bg
-   must render light foreground. Scoped/component styles can
-   accidentally inherit dark text from parent sections, so we
-   force white here.
+   Explicit button text color wins globally
+   If a button/link/role=button declares a text utility, that
+   foreground must win even against scoped/component overrides.
    ============================================================ */
 @layer utilities {
-  button[class*="bg-gradient-"],
-  a[class*="bg-gradient-"],
-  [role="button"][class*="bg-gradient-"] {
+  button[class~="text-white"],
+  a[class~="text-white"],
+  [role="button"][class~="text-white"] {
     color: #ffffff !important;
   }
-  button[class*="bg-gradient-"] svg,
-  a[class*="bg-gradient-"] svg,
-  [role="button"][class*="bg-gradient-"] svg {
+  button[class~="text-primary"],
+  a[class~="text-primary"],
+  [role="button"][class~="text-primary"] {
+    color: hsl(var(--primary)) !important;
+  }
+  button[class~="text-primary-foreground"],
+  a[class~="text-primary-foreground"],
+  [role="button"][class~="text-primary-foreground"] {
+    color: hsl(var(--primary-foreground)) !important;
+  }
+  button[class~="text-secondary-foreground"],
+  a[class~="text-secondary-foreground"],
+  [role="button"][class~="text-secondary-foreground"] {
+    color: hsl(var(--secondary-foreground)) !important;
+  }
+  button[class~="text-foreground"],
+  a[class~="text-foreground"],
+  [role="button"][class~="text-foreground"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  button[class~="text-white"] svg,
+  a[class~="text-white"] svg,
+  [role="button"][class~="text-white"] svg,
+  button[class~="text-primary"] svg,
+  a[class~="text-primary"] svg,
+  [role="button"][class~="text-primary"] svg,
+  button[class~="text-primary-foreground"] svg,
+  a[class~="text-primary-foreground"] svg,
+  [role="button"][class~="text-primary-foreground"] svg,
+  button[class~="text-secondary-foreground"] svg,
+  a[class~="text-secondary-foreground"] svg,
+  [role="button"][class~="text-secondary-foreground"] svg,
+  button[class~="text-foreground"] svg,
+  a[class~="text-foreground"] svg,
+  [role="button"][class~="text-foreground"] svg {
+    color: currentColor !important;
+  }
+}
+
+/* ============================================================
+   Gradient button readability — fallback only
+   Only apply light foreground when a gradient button does not
+   already declare an explicit text-* utility.
+   ============================================================ */
+@layer utilities {
+  button[class*="bg-gradient-"]:not([class*="text-"]),
+  a[class*="bg-gradient-"]:not([class*="text-"]),
+  [role="button"][class*="bg-gradient-"]:not([class*="text-"]) {
+    color: #ffffff !important;
+  }
+  button[class*="bg-gradient-"]:not([class*="text-"]) svg,
+  a[class*="bg-gradient-"]:not([class*="text-"]) svg,
+  [role="button"][class*="bg-gradient-"]:not([class*="text-"]) svg {
     color: #ffffff !important;
   }
 }
