@@ -2363,9 +2363,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     whatDidntWorkSection: {
       eyebrow: "What I Haven't Solved",
-      title: "The MLR review experience — the hard problem I'm flagging, not hiding",
+      title: "Step 6 — the MLR review experience",
       content:
-        "**Step 6 — Pre-MLR RV Package — is the one I called out as underdesigned.**\n\nI designed the outputs the AI generates: an RV PDF, an annotations panel with click-out buttons and customizable alternatives, and a based-on declaration document.\n\nWhat I didn't fully solve is the review experience itself — how MLR reviewers annotate, flag, reject, or approve claims with legal accountability. That is the hardest part of the pharma email process, and in a real engagement it would require direct research with MLR teams and legal.\n\nThis screen is a placeholder for a much deeper design problem. Knowing what you haven't solved yet matters more than pretending otherwise.",
+        "I designed the AI outputs (RV PDF, annotations panel, based-on declaration) but not the review experience itself — how MLR reviewers annotate, reject, and approve claims with legal accountability. That's the hardest part of pharma email and would need direct research with MLR and legal.",
       images: [],
     },
     myThoughtProcessSection: {
