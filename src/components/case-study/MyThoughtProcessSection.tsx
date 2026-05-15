@@ -167,11 +167,11 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           <div className="content-rail-left space-y-8">
             {blocks.map((block, idx) => {
               const stepNum = getStepNumber(block);
-              const matchedImg = stepNum != null ? imagesByStep.get(stepNum) : undefined;
+              const matchedImgs = stepNum != null ? imagesByStep.get(stepNum) : undefined;
               return (
                 <div key={`block-${idx}`} className="space-y-4">
                   {renderBlock(block, `block-${idx}`)}
-                  {matchedImg && renderImage(matchedImg, `img-${idx}`)}
+                  {matchedImgs && matchedImgs.map((img, i) => renderImage(img, `img-${idx}-${i}`))}
                 </div>
               );
             })}
