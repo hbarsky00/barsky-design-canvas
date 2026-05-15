@@ -2351,7 +2351,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "What This Is",
       statement:
-        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like.\n\nBriefs live in one tool, copy in Word, compliance content gets manually added each time, and there is no single place where anyone can see where a campaign actually stands.\n\nManuscriptRx is a 6-step workflow that replaces that loop with one AI-assisted platform.",
+        "A self-initiated spec project: ManuscriptRx is a 6-step, AI-assisted workflow for pharma HCP email production — designed to replace the broken hand-offs between briefs, copy, and compliance.",
     },
     outcomeSection: {
       eyebrow: "The Core Design Problem",
