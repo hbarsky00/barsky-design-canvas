@@ -15,23 +15,27 @@ interface FlipCardProps {
 const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
-    const id = requestAnimationFrame(() => setIsOpen(true));
-    return () => cancelAnimationFrame(id);
+    const raf = requestAnimationFrame(() => setIsOpen(true));
+    const t = setTimeout(() => setIsAnimating(false), 1100);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
   }, []);
 
   const handleClick = () => {
-    if (!isOpen || isClosing) return;
+    if (isAnimating || isClosing) return;
+    setIsAnimating(true);
     setIsClosing(true);
-    setTimeout(onClose, 250);
+    setTimeout(onClose, 500);
   };
 
-  const transform = isClosing
-    ? `scale(${scale * 0.95})`
-    : isOpen
-    ? `rotateY(360deg) scale(${scale})`
-    : `rotateY(0deg) scale(${scale})`;
+  const transform = isOpen
+    ? `rotateX(8deg) rotateY(360deg) rotateZ(-4deg) scale(${scale})`
+    : `rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(${scale})`;
 
   return (
     <div
@@ -49,8 +53,8 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
           height: "100%",
           transformStyle: "preserve-3d",
           transition: isClosing
-            ? "opacity 0.25s ease, transform 0.25s ease"
-            : "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+            ? "opacity 0.5s ease-in"
+            : "transform 1.1s cubic-bezier(0.45, 0.05, 0.15, 1.0)",
           transform,
           opacity: isClosing ? 0 : 1,
           display: "flex",
