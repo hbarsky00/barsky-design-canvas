@@ -13,15 +13,7 @@ interface FlipCardProps {
 }
 
 const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
-  const [flipped, setFlipped] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  const rotation = !mounted ? 180 : flipped ? 180 : 0;
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <div
@@ -31,11 +23,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
         height: "80vh",
         perspective: "1000px",
       }}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (flipped) onClose();
-        else setFlipped(true);
-      }}
+      onClick={() => setIsFlipped((f) => !f)}
     >
       <div
         style={{
@@ -44,7 +32,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
           height: "100%",
           transformStyle: "preserve-3d",
           transition: "transform 0.6s ease",
-          transform: `rotateY(${rotation}deg) scale(${scale})`,
+          transform: `rotateY(${isFlipped ? 180 : 0}deg) scale(${scale})`,
         }}
       >
         <div
@@ -53,6 +41,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
             inset: 0,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
+            pointerEvents: "none",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -66,6 +55,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
             inset: 0,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
+            pointerEvents: "none",
             transform: "rotateY(180deg)",
             display: "flex",
             alignItems: "center",
