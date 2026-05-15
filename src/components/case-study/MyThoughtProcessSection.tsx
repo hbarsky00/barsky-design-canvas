@@ -94,13 +94,18 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
 }) => {
   const blocks = content.split(/\n\n+/).map((b) => b.trim()).filter(Boolean);
 
-  // Map images by step number for interleaving
-  const imagesByStep = new Map<number, ImageItem>();
+  // Map images by step number for interleaving (supports multiple images per step)
+  const imagesByStep = new Map<number, ImageItem[]>();
   const unmatchedImages: ImageItem[] = [];
   images.forEach((img) => {
     const n = getStepFromAlt(img.alt);
-    if (n != null && !imagesByStep.has(n)) imagesByStep.set(n, img);
-    else unmatchedImages.push(img);
+    if (n != null) {
+      const arr = imagesByStep.get(n) ?? [];
+      arr.push(img);
+      imagesByStep.set(n, arr);
+    } else {
+      unmatchedImages.push(img);
+    }
   });
 
   const renderImage = (img: ImageItem, key: string) => (
