@@ -2329,7 +2329,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "email-creation-ai": {
     id: "email-creation-ai",
-    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
+    title: "ManuscriptRx: Designing an AI-Assisted Email Creation Workflow for Pharma",
     description:
       "A self-initiated concept project — a 6-step AI-assisted workflow that replaces the broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
     tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
@@ -2341,7 +2341,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
     heroImage: {
       src: "/images/email-ai-promo.png",
-      alt: "BrandOS — AI-assisted pharma email creation workflow concept",
+      alt: "ManuscriptRx — AI-assisted pharma email creation workflow concept",
     },
     heroMetrics: [
       { value: "6", label: "Workflow steps" },
@@ -2351,7 +2351,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "What This Is",
       statement:
-        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like. Briefs in one tool, copy in Word, compliance content manually added each time, and no single place where anyone can see where a campaign actually stands. BrandOS is a 6-step workflow that replaces that loop with one AI-assisted platform.",
+        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like. Briefs in one tool, copy in Word, compliance content manually added each time, and no single place where anyone can see where a campaign actually stands. ManuscriptRx is a 6-step workflow that replaces that loop with one AI-assisted platform.",
     },
     outcomeSection: {
       eyebrow: "The Core Design Problem",
@@ -2375,7 +2375,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     myThoughtProcessSection: {
       eyebrow: "The 6-Step Workflow",
-      title: "Walking through BrandOS, screen by screen",
+      title: "Walking through ManuscriptRx, screen by screen",
       content:
         "Step 1 — Content Planning. The workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards. Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I surfaced the PromoMats metadata warning rather than hide it: a manager should see I understood the integration problems, not just the happy path.\n\nStep 2 — Assemble From Approved Content. The AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes. The two sticky notes about claims libraries and PromoMats image sourcing stay visible because, in a real spec, unresolved decisions need to be in the open.\n\nStep 3 — Iterate / Edit + Quality Checks. The most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off. I put QC inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\nStep 5 — Test Email. HTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop. The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes — a deliberate guardrail, not a technical limitation.\n\nStep 6 — Pre-MLR RV Package. (See \"What I Haven't Solved\" above.)\n\nHow I built the spec: I designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
       images: [
@@ -2404,7 +2404,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "/images/email-ai-promo.png",
-      projectName: "BrandOS — AI-Assisted Pharma Email Creation Workflow (Concept)",
+      projectName: "ManuscriptRx — AI-Assisted Pharma Email Creation Workflow (Concept)",
       results: [
         "Self-initiated concept project",
         "6-step workflow built around real approval gates",
