@@ -2348,11 +2348,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       { value: "4", label: "Roles designed for" },
       { value: "1", label: "Honest open problem" },
     ],
-    problemCallout: {
-      eyebrow: "What This Is",
-      statement:
-        "A self-initiated spec project: ManuscriptRx is a 6-step, AI-assisted workflow for pharma HCP email production — designed to replace the broken hand-offs between briefs, copy, and compliance.",
-    },
     outcomeSection: {
       eyebrow: "The Core Design Problem",
       title: "Pharma email production fails at the handoffs, not the writing",
