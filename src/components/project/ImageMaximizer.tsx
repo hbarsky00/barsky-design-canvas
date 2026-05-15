@@ -13,7 +13,25 @@ interface FlipCardProps {
 }
 
 const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setIsOpen(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const handleClick = () => {
+    if (!isOpen || isClosing) return;
+    setIsClosing(true);
+    setTimeout(onClose, 250);
+  };
+
+  const transform = isClosing
+    ? `scale(${scale * 0.95})`
+    : isOpen
+    ? `rotateY(360deg) scale(${scale})`
+    : `rotateY(0deg) scale(${scale})`;
 
   return (
     <div
@@ -21,52 +39,30 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
       style={{
         width: "min(90vw, 1200px)",
         height: "80vh",
-        perspective: "1000px",
+        perspective: "1200px",
       }}
-      onClick={() => {
-        if (isFlipped) onClose();
-        else setIsFlipped(true);
-      }}
+      onClick={handleClick}
     >
       <div
         style={{
-          position: "relative",
           width: "100%",
           height: "100%",
           transformStyle: "preserve-3d",
-          transition: "transform 0.6s ease",
-          transform: `rotateY(${isFlipped ? 180 : 0}deg) scale(${scale})`,
+          transition: isClosing
+            ? "opacity 0.25s ease, transform 0.25s ease"
+            : "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+          transform,
+          opacity: isClosing ? 0 : 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            pointerEvents: "none",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            pointerEvents: "none",
-            transform: "rotateY(180deg)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-        </div>
+        <img
+          src={image}
+          alt={title}
+          style={{ width: "100%", height: "100%", objectFit: "contain", pointerEvents: "none" }}
+        />
       </div>
     </div>
   );
