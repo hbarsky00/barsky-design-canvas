@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ImageControls from "./image-maximizer/ImageControls";
