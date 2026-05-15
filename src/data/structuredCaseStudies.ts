@@ -2329,10 +2329,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "email-creation-ai": {
     id: "email-creation-ai",
-    title: "40% Faster Campaigns: Designing an AI-Powered Email Creation Workflow for Pharma",
+    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
     description:
-      "Designed a 6-step AI-powered email creation workflow that cut pharma campaign production time by 40% while maintaining full MLR compliance.",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+      "A self-initiated concept project — a 6-step AI-assisted workflow that replaces the broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
+    tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
     techStack: {
       aiTools: ["Claude", "ChatGPT"],
       devStack: ["React", "TypeScript"],
@@ -2341,63 +2341,63 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
     heroImage: {
       src: "/images/email-ai-promo.png",
-      alt: "AI-powered pharma email creation workflow",
+      alt: "BrandOS — AI-assisted pharma email creation workflow concept",
     },
     heroMetrics: [
-      { value: "40%", label: "Faster Production" },
-      { value: "100%", label: "MLR Compliant" },
-      { value: "50%", label: "Fewer Revisions" },
+      { value: "6", label: "Workflow steps" },
+      { value: "4", label: "Roles designed for" },
+      { value: "1", label: "Honest open problem" },
     ],
     problemCallout: {
-      eyebrow: "The Problem",
+      eyebrow: "What This Is",
       statement:
-        "A global pharma company's HCP email production used 6+ disconnected tools and forced Medical Writers, Content Ops, and Brand teams to hand work back and forth manually. The MLR review cycle then added weeks of delay per campaign. There was no unified workflow — just fragmented steps, repeated rework, and no AI to speed up compliant content.",
+        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like. Briefs in one tool, copy in Word, compliance content manually added each time, and no single place where anyone can see where a campaign actually stands. BrandOS is a 6-step workflow that replaces that loop with one AI-assisted platform.",
     },
     outcomeSection: {
-      eyebrow: "Quantified Impact",
-      title: "What changed after launch",
+      eyebrow: "The Core Design Problem",
+      title: "Pharma email production fails at the handoffs, not the writing",
       description:
-        "One connected workflow replaced the patchwork of tools. Emails went from brief to MLR-ready in days instead of weeks.",
+        "The temptation is to add AI everywhere and call it smart. The real question is: how do we make sure the right person is looking at the right thing at the right time — and that the AI handles everything in between? That framing drove every screen.",
       metrics: [
-        { value: "40%", label: "Faster email production" },
-        { value: "100%", label: "Compliant drafts every time" },
-        { value: "3+", label: "Manual handoffs removed" },
-        { value: "~50%", label: "Fewer revision rounds" },
+        { value: "Roles", label: "Med Writer · Content Ops · Brand · MLR" },
+        { value: "Gates", label: "Designed around real approvals" },
+        { value: "AI", label: "Owns the work between humans" },
+        { value: "Spec", label: "Markdown handoff per screen" },
       ],
       images: [],
     },
     whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "Letting writers start from a blank page failed",
+      eyebrow: "What I Haven't Solved",
+      title: "The MLR review experience is the hard problem I'm flagging, not hiding",
       content:
-        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft, and the writer refines it inside a chat + live preview. Suddenly the AI felt like a head start, not extra work.",
+        "Step 6 — Pre-MLR RV Package — is the one I called out as underdesigned. I designed the outputs the AI generates: an RV PDF, an annotations panel with click-out buttons and customizable alternatives, and a based-on declaration document. What I didn't fully solve is the review experience itself — how MLR reviewers annotate, flag, reject, or approve claims with legal accountability. That's the hardest part of the pharma email process, and in a real engagement it would require direct research with MLR teams and legal. This screen is a placeholder for a much deeper design problem. Knowing what you haven't solved yet matters more than pretending otherwise.",
       images: [],
     },
     myThoughtProcessSection: {
       eyebrow: "The 6-Step Workflow",
-      title: "Walking through the workflow, screen by screen",
+      title: "Walking through BrandOS, screen by screen",
       content:
-        "Each screen below is one step in the production flow, in order. Step 1 plans the content. Step 2 assembles a compliant first draft from approved sources. Step 3 lets the team iterate in chat with a live preview and AI quality checks. Step 4 validates the rendered email across devices. Step 5 packages everything for MLR review.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
+        "Step 1 — Content Planning. The workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards. Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I surfaced the PromoMats metadata warning rather than hide it: a manager should see I understood the integration problems, not just the happy path.\n\nStep 2 — Assemble From Approved Content. The AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes. The two sticky notes about claims libraries and PromoMats image sourcing stay visible because, in a real spec, unresolved decisions need to be in the open.\n\nStep 3 — Iterate / Edit + Quality Checks. The most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off. I put QC inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\nStep 5 — Test Email. HTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop. The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes — a deliberate guardrail, not a technical limitation.\n\nStep 6 — Pre-MLR RV Package. (See \"What I Haven't Solved\" above.)\n\nHow I built the spec: I designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
       images: [
         {
           src: "/images/emailai-screen1-content-planning.png",
-          alt: "Screen 1 of 5 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
+          alt: "Step 1 — Content Planning: 6-step navigator with Brief Creation locked and Initiate Email Creation active",
         },
         {
           src: "/images/emailai-screen2-assemble.png",
-          alt: "Screen 2 of 5 — Assemble From Approved Content: AI manuscript on the left with Jasper, PromoMats, and Adobe Suite integrations; market-specific status panel on the right",
+          alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right, plus open-question sticky notes",
         },
         {
           src: "/images/emailai-screen3-iterate-qc.png",
-          alt: "Screen 3 of 5 — Iterate / Edit & Quality Checks: chat interface on the left, live email preview on the right, with AI compliance QC cards below",
+          alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom",
         },
         {
           src: "/images/emailai-screen4-test.png",
-          alt: "Screen 4 of 5 — Test Email: 5-step checklist on the left with Knak HTML validation, dual mobile and desktop email previews on the right",
+          alt: "Step 5 — Test Email: Knak HTML validation checklist on the left, dual mobile and desktop preview on the right",
         },
         {
           src: "/images/emailai-screen5-mlr.png",
-          alt: "Screen 5 of 5 — Pre-MLR RV Package: AI-generated RV PDF, annotations, and based-on declaration ready for Content Ops review",
+          alt: "Step 6 — Pre-MLR RV Package: AI-generated RV PDF, annotations panel, and based-on declaration; flagged as underdesigned and the next problem to solve",
         },
       ],
     },
