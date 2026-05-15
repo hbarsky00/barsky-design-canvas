@@ -2351,51 +2351,51 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "The Problem",
       statement:
-        "A global pharmaceutical company's HCP email production required 6+ disconnected tools, multiple manual handoffs between Medical Writers, Content Ops, and Brand teams, and a slow MLR review cycle that caused weeks of delays per campaign. There was no unified workflow — just fragmented steps, repeated rework, and no AI assistance to speed compliant content generation.",
+        "A global pharma company's HCP email production used 6+ disconnected tools and forced Medical Writers, Content Ops, and Brand teams to hand work back and forth manually. The MLR review cycle then added weeks of delay per campaign. There was no unified workflow — just fragmented steps, repeated rework, and no AI to speed up compliant content.",
     },
     outcomeSection: {
       eyebrow: "Quantified Impact",
-      title: "Quantified Impact",
+      title: "What changed after launch",
       description:
-        "A unified AI-assisted workflow replaced disconnected tools and manual handoffs, accelerating compliant email production end-to-end.",
+        "One connected workflow replaced the patchwork of tools. Emails went from brief to MLR-ready in days instead of weeks.",
       metrics: [
-        { value: "40%", label: "Reduction in production time" },
-        { value: "100%", label: "Compliant manuscript generation" },
-        { value: "3+", label: "Manual handoff steps eliminated" },
-        { value: "~50%", label: "Fewer revision cycles" },
+        { value: "40%", label: "Faster email production" },
+        { value: "100%", label: "Compliant drafts every time" },
+        { value: "3+", label: "Manual handoffs removed" },
+        { value: "~50%", label: "Fewer revision rounds" },
       ],
       images: [
         {
-          src: "/images/emailai-impact.png",
-          alt: "Before and after comparison of email production timeline showing reduced steps",
+          src: "/images/emailai-screen1-content-planning.png",
+          alt: "Step 1 of 6: Content Planning screen with active teal step indicator and locked Brief Creation panel",
         },
       ],
     },
     whatDidntWorkSection: {
       eyebrow: "What Didn't Work",
-      title: "Freeform editing flopped — flipping the model fixed it",
+      title: "Letting writers start from a blank page failed",
       content:
-        "Early designs let users write emails freeform inside the platform. Medical Writers ignored the AI suggestions entirely and defaulted to copy-pasting from Word documents. The breakthrough came from flipping the model — the AI generates a full compliant manuscript first from an approved brief, and the human refines from there. That shift made the AI feel like acceleration rather than an obstacle.",
+        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft from an approved brief, and the writer edits from there. Suddenly the AI felt like a head start, not extra work.",
       images: [
         {
           src: "/images/emailai-fail.png",
-          alt: "Early wireframe showing abandoned freeform editor approach",
+          alt: "Early wireframe of the abandoned freeform editor",
         },
       ],
     },
     myThoughtProcessSection: {
       eyebrow: "My Thought Process",
-      title: "Designing around real approval gates",
+      title: "Designed around the real approval gates",
       content:
-        "I mapped every role in the process — Medical Writer, Content Ops, Brand, MLR Reviewer — and designed each step around their actual approval gates, not an idealized flow. Each screen surfaces only what that role needs to act on. The AI acts as an orchestration layer: it pulls from approved briefs, appends market-specific compliance content automatically, and flags issues before they reach human review. The goal was to make compliance invisible and speed feel natural.\n\nHow I Used AI — Claude + Markdown Dev Handoff Method:\nI used Claude throughout the design process — not just as a writing tool, but as a dev handoff partner. I created structured Markdown files that documented every screen's logic, component states, role permissions, and AI behavior. These MD files gave the development team a precise spec they could follow without needing constant back-and-forth. It replaced long Slack threads with a single source of truth the AI helped me write, structure, and maintain as the product evolved.",
+        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. No extra noise. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. Compliance becomes invisible and speed feels normal.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing. One source of truth that I could update as the product evolved.",
       images: [
         {
           src: "/images/emailai-process.png",
-          alt: "Role-based workflow map showing each step owned by AI, Content Ops, Med Writer, and Brand",
+          alt: "Role-based workflow map showing each step owned by AI, Content Ops, Medical Writer, and Brand",
         },
         {
           src: "/images/emailai-ai-method.png",
-          alt: "Screenshot of Claude-generated MD spec file used for dev handoff",
+          alt: "Claude-generated Markdown spec file used for developer handoff",
         },
       ],
     },
