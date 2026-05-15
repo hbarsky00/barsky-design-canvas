@@ -5,6 +5,80 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ImageControls from "./image-maximizer/ImageControls";
 
+interface FlipCardProps {
+  image: string;
+  title: string;
+  scale: number;
+  onClose: () => void;
+}
+
+const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
+  const [flipped, setFlipped] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  const rotation = !mounted ? 180 : flipped ? 180 : 0;
+
+  return (
+    <div
+      className="relative cursor-pointer"
+      style={{
+        width: "min(90vw, 1200px)",
+        height: "80vh",
+        perspective: "1000px",
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (flipped) onClose();
+        else setFlipped(true);
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          transformStyle: "preserve-3d",
+          transition: "transform 0.6s ease",
+          transform: `rotateY(${rotation}deg) scale(${scale})`,
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img src={image} alt={title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 interface ImageMaximizerProps {
   image: string;
   title: string;
