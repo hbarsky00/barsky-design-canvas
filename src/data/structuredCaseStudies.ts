@@ -2364,6 +2364,20 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "3+", label: "Manual handoffs removed" },
         { value: "~50%", label: "Fewer revision rounds" },
       ],
+      images: [],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Letting writers start from a blank page failed",
+      content:
+        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft, and the writer refines it inside a chat + live preview. Suddenly the AI felt like a head start, not extra work.",
+      images: [],
+    },
+    myThoughtProcessSection: {
+      eyebrow: "The 6-Step Workflow",
+      title: "Walking through the workflow, screen by screen",
+      content:
+        "Each screen below is one step in the production flow, in order. Step 1 plans the content. Step 2 assembles a compliant first draft from approved sources. Step 3 lets the team iterate in chat with a live preview and AI quality checks. Step 4 validates the rendered email across devices. Step 5 packages everything for MLR review.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
       images: [
         {
           src: "/images/emailai-screen1-content-planning.png",
@@ -2373,26 +2387,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "/images/emailai-screen2-assemble.png",
           alt: "Screen 2 of 5 — Assemble From Approved Content: AI manuscript on the left with Jasper, PromoMats, and Adobe Suite integrations; market-specific status panel on the right",
         },
-      ],
-    },
-    whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "Letting writers start from a blank page failed",
-      content:
-        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft, and the writer refines it inside a chat + live preview. Suddenly the AI felt like a head start, not extra work.",
-      images: [
         {
           src: "/images/emailai-screen3-iterate-qc.png",
           alt: "Screen 3 of 5 — Iterate / Edit & Quality Checks: chat interface on the left, live email preview on the right, with AI compliance QC cards below",
         },
-      ],
-    },
-    myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "Designed around the real approval gates",
-      content:
-        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. Test Email validates HTML across mobile and desktop, and the final Pre-MLR RV Package bundles the manuscript, annotations, and based-on declaration so MLR review starts with everything in one place.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
-      images: [
         {
           src: "/images/emailai-screen4-test.png",
           alt: "Screen 4 of 5 — Test Email: 5-step checklist on the left with Knak HTML validation, dual mobile and desktop email previews on the right",
