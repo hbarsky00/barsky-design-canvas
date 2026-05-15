@@ -103,22 +103,20 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
       {isOpen && (
         <motion.div
           className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-          style={{ perspective: 1400 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
         >
           <motion.div
             className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
-            style={{ transformStyle: "preserve-3d", transformOrigin: "center" }}
-            initial={{ rotateY: -90, opacity: 0, scale: 0.85 }}
-            animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-            exit={{ rotateY: 90, opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
             <ImageControls
               scale={scale}
