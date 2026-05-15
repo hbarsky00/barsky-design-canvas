@@ -132,16 +132,13 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               </div>
             )}
 
-            <motion.img
+            <img
               key={image}
               src={image}
               alt={title}
               className="max-w-full max-h-[80vh] object-contain cursor-pointer"
               style={{ transform: `scale(${scale})`, transition: "transform 0.3s" }}
               onClick={onClose}
-              initial={{ rotateY: -90, opacity: 0 }}
-              animate={{ rotateY: 0, opacity: 1 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             />
 
             <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
