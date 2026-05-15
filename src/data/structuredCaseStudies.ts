@@ -2404,13 +2404,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "/images/email-ai-promo.png",
-      projectName: "AI-Powered Pharma Email Creation Workflow",
+      projectName: "BrandOS — AI-Assisted Pharma Email Creation Workflow (Concept)",
       results: [
-        "40% faster campaign production",
-        "100% MLR-compliant manuscripts",
-        "Eliminated 3+ manual handoffs",
+        "Self-initiated concept project",
+        "6-step workflow built around real approval gates",
+        "Markdown-spec dev handoff written with Claude",
       ],
-      technologies: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+      technologies: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
       path: "/project/email-creation-ai",
     },
   },
