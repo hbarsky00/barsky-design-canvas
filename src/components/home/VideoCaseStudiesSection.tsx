@@ -9,6 +9,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
 import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
+import { shouldShowPromoImpact } from "@/utils/promoCopy";
 
 interface CaseStudy {
   id: string;
@@ -104,6 +105,7 @@ const CaseStudyCard: React.FC<{
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const showImpact = shouldShowPromoImpact(study.title, study.description, study.impact);
 
   // Check if we need a placeholder for Smarter Health assets
   const needsPlaceholder = (src?: string) => {
@@ -239,9 +241,11 @@ const CaseStudyCard: React.FC<{
           </p>
 
           {/* Impact Metrics */}
-          <div className="text-impact-metric-md">
-            {study.impact}
-          </div>
+          {showImpact ? (
+            <div className="text-impact-metric-md">
+              {study.impact}
+            </div>
+          ) : null}
 
           {/* CTA Buttons */}
           <div className="flex flex-row gap-3 pt-2">
@@ -331,9 +335,11 @@ const CaseStudyCard: React.FC<{
                   </p>
 
                   {/* Impact Metrics */}
-                  <div className="text-impact-metric-md mb-4">
-                    {study.impact}
-                  </div>
+                  {showImpact ? (
+                    <div className="text-impact-metric-md mb-4">
+                      {study.impact}
+                    </div>
+                  ) : null}
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { shouldShowPromoImpact } from "@/utils/promoCopy";
 
 interface CaseStudy {
   id: string;
@@ -97,6 +98,9 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
   };
 
   const relatedStudy = getRelatedCaseStudy(currentProjectId);
+  const showImpact = relatedStudy
+    ? shouldShowPromoImpact(relatedStudy.title, relatedStudy.description, relatedStudy.impact)
+    : false;
 
   if (!relatedStudy) return null;
 
@@ -189,9 +193,11 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
               </p>
 
               {/* Impact Metrics */}
-              <div className="text-impact-metric-sm">
-                {relatedStudy.impact}
-              </div>
+              {showImpact ? (
+                <div className="text-impact-metric-sm">
+                  {relatedStudy.impact}
+                </div>
+              ) : null}
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-1">
