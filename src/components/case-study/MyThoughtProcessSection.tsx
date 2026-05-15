@@ -94,13 +94,18 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
 }) => {
   const blocks = content.split(/\n\n+/).map((b) => b.trim()).filter(Boolean);
 
-  // Map images by step number for interleaving
-  const imagesByStep = new Map<number, ImageItem>();
+  // Map images by step number for interleaving (supports multiple images per step)
+  const imagesByStep = new Map<number, ImageItem[]>();
   const unmatchedImages: ImageItem[] = [];
   images.forEach((img) => {
     const n = getStepFromAlt(img.alt);
-    if (n != null && !imagesByStep.has(n)) imagesByStep.set(n, img);
-    else unmatchedImages.push(img);
+    if (n != null) {
+      const arr = imagesByStep.get(n) ?? [];
+      arr.push(img);
+      imagesByStep.set(n, arr);
+    } else {
+      unmatchedImages.push(img);
+    }
   });
 
   const renderImage = (img: ImageItem, key: string) => (
@@ -162,11 +167,11 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           <div className="content-rail-left space-y-8">
             {blocks.map((block, idx) => {
               const stepNum = getStepNumber(block);
-              const matchedImg = stepNum != null ? imagesByStep.get(stepNum) : undefined;
+              const matchedImgs = stepNum != null ? imagesByStep.get(stepNum) : undefined;
               return (
                 <div key={`block-${idx}`} className="space-y-4">
                   {renderBlock(block, `block-${idx}`)}
-                  {matchedImg && renderImage(matchedImg, `img-${idx}`)}
+                  {matchedImgs && matchedImgs.map((img, i) => renderImage(img, `img-${idx}-${i}`))}
                 </div>
               );
             })}
