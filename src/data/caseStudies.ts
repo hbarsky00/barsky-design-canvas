@@ -151,12 +151,12 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     }
   },
   "email-creation-ai": {
-    title: "40% Faster Campaigns: Designing an AI-Powered Email Creation Workflow for Pharma",
+    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
     video: "",
     videoThumbnail: "images/email-ai-promo.png",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
     description:
-      "Designed a 6-step AI-powered email creation workflow that cut pharma campaign production time by 40% while maintaining full MLR compliance.",
+      "A self-initiated concept — a 6-step AI-assisted workflow that replaces the broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
     projectLink: "",
     stickyNav: [
       { label: "The Problem", anchor: "#the-problem" },
@@ -216,10 +216,10 @@ export const homepageCaseStudyPreviews = [
     url: "/project/business-management"
   },
   {
-    title: "40% Faster Campaigns: Designing an AI-Powered Email Creation Workflow for Pharma",
+    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
     description:
-      "Designed a 6-step AI-powered email creation workflow that cut pharma campaign production time by 40% while maintaining full MLR compliance.",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+      "A self-initiated concept — a 6-step AI-assisted workflow that replaces broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
+    tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
     videoThumbnail: "images/email-ai-promo.png",
     video: "",
     url: "/project/email-creation-ai"
