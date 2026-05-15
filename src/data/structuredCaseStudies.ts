@@ -2367,7 +2367,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/emailai-screen1-content-planning.png",
-          alt: "Step 1 of 6: Content Planning screen with active teal step indicator and locked Brief Creation panel",
+          alt: "Step 1 of 6 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
         },
       ],
     },
@@ -2375,11 +2375,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Letting writers start from a blank page failed",
       content:
-        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft from an approved brief, and the writer edits from there. Suddenly the AI felt like a head start, not extra work.",
+        "Our first version let Medical Writers type emails from scratch with AI suggestions on the side. They ignored the AI and pasted from Word like always. So we flipped it: the AI now writes a full compliant first draft, and the writer refines it inside a chat + live preview. Suddenly the AI felt like a head start, not extra work.",
       images: [
         {
-          src: "/images/emailai-fail.png",
-          alt: "Early wireframe of the abandoned freeform editor",
+          src: "/images/emailai-screen3-iterate-qc.png",
+          alt: "Screen 3 — Iterate / Edit & Quality Checks: chat interface on the left, live email preview on the right, with AI compliance QC cards below",
         },
       ],
     },
@@ -2387,15 +2387,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Designed around the real approval gates",
       content:
-        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. No extra noise. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. Compliance becomes invisible and speed feels normal.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing. One source of truth that I could update as the product evolved.",
+        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. The final Pre-MLR RV Package step bundles the manuscript, annotations, and based-on declaration so MLR review starts with everything in one place.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
       images: [
         {
-          src: "/images/emailai-process.png",
-          alt: "Role-based workflow map showing each step owned by AI, Content Ops, Medical Writer, and Brand",
+          src: "/images/emailai-screen2-assemble.png",
+          alt: "Screen 2 — Assemble From Approved Content: AI manuscript on the left with Jasper, PromoMats, and Adobe Suite integrations; market-specific status panel on the right",
         },
         {
-          src: "/images/emailai-ai-method.png",
-          alt: "Claude-generated Markdown spec file used for developer handoff",
+          src: "/images/emailai-screen5-mlr.png",
+          alt: "Screen 5 — Pre-MLR RV Package: AI-generated RV PDF, annotations, and based-on declaration ready for Content Ops review",
         },
       ],
     },
