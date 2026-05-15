@@ -1579,3 +1579,42 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
   .crack-line { stroke-width: 3px; }
   .crack-impact-point { r: 4px; }
 }
+
+/* ============================================================
+   Global button readability safety net
+   Ensures any element using a dark/colored token background
+   gets the matching foreground color when no explicit text-*
+   class is set. Does NOT override existing text-* classes
+   (so on-dark/outline variants and Button text-white stay intact).
+   ============================================================ */
+@layer utilities {
+  button.bg-primary:not([class*="text-"]),
+  a.bg-primary:not([class*="text-"]),
+  [role="button"].bg-primary:not([class*="text-"]) {
+    color: hsl(var(--primary-foreground));
+  }
+  button.bg-secondary:not([class*="text-"]),
+  a.bg-secondary:not([class*="text-"]),
+  [role="button"].bg-secondary:not([class*="text-"]) {
+    color: hsl(var(--secondary-foreground));
+  }
+  button.bg-destructive:not([class*="text-"]),
+  a.bg-destructive:not([class*="text-"]),
+  [role="button"].bg-destructive:not([class*="text-"]) {
+    color: hsl(var(--destructive-foreground));
+  }
+  button.bg-foreground:not([class*="text-"]),
+  a.bg-foreground:not([class*="text-"]),
+  [role="button"].bg-foreground:not([class*="text-"]) {
+    color: hsl(var(--background));
+  }
+  button.bg-black:not([class*="text-"]),
+  a.bg-black:not([class*="text-"]),
+  [role="button"].bg-black:not([class*="text-"]),
+  button[class*="bg-slate-9"]:not([class*="text-"]),
+  button[class*="bg-gray-9"]:not([class*="text-"]),
+  button[class*="bg-neutral-9"]:not([class*="text-"]),
+  button[class*="bg-zinc-9"]:not([class*="text-"]) {
+    color: #ffffff;
+  }
+}
