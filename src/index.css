@@ -1618,3 +1618,23 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
     color: #ffffff;
   }
 }
+
+/* ============================================================
+   Gradient button readability — !important guarantee
+   Any button/link/role=button using a Tailwind gradient bg
+   must render light foreground. Scoped/component styles can
+   accidentally inherit dark text from parent sections, so we
+   force white here.
+   ============================================================ */
+@layer utilities {
+  button[class*="bg-gradient-"],
+  a[class*="bg-gradient-"],
+  [role="button"][class*="bg-gradient-"] {
+    color: #ffffff !important;
+  }
+  button[class*="bg-gradient-"] svg,
+  a[class*="bg-gradient-"] svg,
+  [role="button"][class*="bg-gradient-"] svg {
+    color: #ffffff !important;
+  }
+}
