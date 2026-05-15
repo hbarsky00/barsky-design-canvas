@@ -151,7 +151,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     }
   },
   "email-creation-ai": {
-    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
+    title: "ManuscriptRx: Designing an AI-Assisted Email Creation Workflow for Pharma",
     video: "",
     videoThumbnail: "images/email-ai-promo.png",
     tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
@@ -216,7 +216,7 @@ export const homepageCaseStudyPreviews = [
     url: "/project/business-management"
   },
   {
-    title: "BrandOS: Designing an AI-Assisted Email Creation Workflow for Pharma",
+    title: "ManuscriptRx: Designing an AI-Assisted Email Creation Workflow for Pharma",
     description:
       "A self-initiated concept — a 6-step AI-assisted workflow that replaces broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
     tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
