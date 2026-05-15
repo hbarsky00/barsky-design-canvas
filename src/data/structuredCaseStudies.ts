@@ -2340,8 +2340,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
     heroImage: {
-      src: "/images/email-ai-promo.png",
-      alt: "ManuscriptRx — AI-assisted pharma email creation workflow concept",
+      src: "/images/emailai-screen1-content-planning.png",
+      alt: "Step 1 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
     },
     heroMetrics: [
       { value: "6", label: "Workflow steps" },
@@ -2351,13 +2351,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     problemCallout: {
       eyebrow: "What This Is",
       statement:
-        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like. Briefs in one tool, copy in Word, compliance content manually added each time, and no single place where anyone can see where a campaign actually stands. ManuscriptRx is a 6-step workflow that replaces that loop with one AI-assisted platform.",
+        "This is a spec project. I wasn't hired to fix this — I watched how broken pharma HCP email production is and designed what I think the solution should look like.\n\nBriefs live in one tool, copy in Word, compliance content gets manually added each time, and there is no single place where anyone can see where a campaign actually stands.\n\nManuscriptRx is a 6-step workflow that replaces that loop with one AI-assisted platform.",
     },
     outcomeSection: {
       eyebrow: "The Core Design Problem",
       title: "Pharma email production fails at the handoffs, not the writing",
       description:
-        "The temptation is to add AI everywhere and call it smart. The real question is: how do we make sure the right person is looking at the right thing at the right time — and that the AI handles everything in between? That framing drove every screen.",
+        "The temptation is to add AI everywhere and call it smart. The real question is simpler: how do we make sure the right person is looking at the right thing at the right time — and the AI handles everything in between? That framing drove every screen.",
       metrics: [
         { value: "Roles", label: "Med Writer · Content Ops · Brand · MLR" },
         { value: "Gates", label: "Designed around real approvals" },
@@ -2368,16 +2368,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     whatDidntWorkSection: {
       eyebrow: "What I Haven't Solved",
-      title: "The MLR review experience is the hard problem I'm flagging, not hiding",
+      title: "The MLR review experience — the hard problem I'm flagging, not hiding",
       content:
-        "Step 6 — Pre-MLR RV Package — is the one I called out as underdesigned. I designed the outputs the AI generates: an RV PDF, an annotations panel with click-out buttons and customizable alternatives, and a based-on declaration document. What I didn't fully solve is the review experience itself — how MLR reviewers annotate, flag, reject, or approve claims with legal accountability. That's the hardest part of the pharma email process, and in a real engagement it would require direct research with MLR teams and legal. This screen is a placeholder for a much deeper design problem. Knowing what you haven't solved yet matters more than pretending otherwise.",
+        "**Step 6 — Pre-MLR RV Package — is the one I called out as underdesigned.**\n\nI designed the outputs the AI generates: an RV PDF, an annotations panel with click-out buttons and customizable alternatives, and a based-on declaration document.\n\nWhat I didn't fully solve is the review experience itself — how MLR reviewers annotate, flag, reject, or approve claims with legal accountability. That is the hardest part of the pharma email process, and in a real engagement it would require direct research with MLR teams and legal.\n\nThis screen is a placeholder for a much deeper design problem. Knowing what you haven't solved yet matters more than pretending otherwise.",
       images: [],
     },
     myThoughtProcessSection: {
       eyebrow: "The 6-Step Workflow",
       title: "Walking through ManuscriptRx, screen by screen",
       content:
-        "Step 1 — Content Planning. The workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards. Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I surfaced the PromoMats metadata warning rather than hide it: a manager should see I understood the integration problems, not just the happy path.\n\nStep 2 — Assemble From Approved Content. The AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes. The two sticky notes about claims libraries and PromoMats image sourcing stay visible because, in a real spec, unresolved decisions need to be in the open.\n\nStep 3 — Iterate / Edit + Quality Checks. The most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off. I put QC inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\nStep 5 — Test Email. HTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop. The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes — a deliberate guardrail, not a technical limitation.\n\nStep 6 — Pre-MLR RV Package. (See \"What I Haven't Solved\" above.)\n\nHow I built the spec: I designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
+        "**Step 1 — Content Planning**\nThe workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards.\n*Design decision:* Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I also surfaced the PromoMats metadata warning rather than hide it, so a manager can see I understood the integration problems, not just the happy path.\n\n**Step 2 — Assemble From Approved Content**\nThe AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes.\n*Design decision:* The two sticky notes about claims libraries and PromoMats image sourcing stay visible. In a real spec, unresolved decisions need to be in the open.\n\n**Step 3 — Iterate / Edit + Quality Checks**\nThe most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off.\n*Design decision:* QC sits inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\n**Step 5 — Test Email**\nHTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop.\n*Design decision:* The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes. A deliberate guardrail, not a technical limitation.\n\n**Step 6 — Pre-MLR RV Package**\nSee \"What I Haven't Solved\" above — flagged here as the open problem rather than buried in the flow.\n\n**How I built the spec**\nI designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
       images: [
         {
           src: "/images/emailai-screen1-content-planning.png",
