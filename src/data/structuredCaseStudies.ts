@@ -2380,31 +2380,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         {
           src: "/images/emailai-screen2-assemble.png",
-          alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right, plus open-question sticky notes",
+          alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right",
         },
         {
           src: "/images/emailai-screen3-iterate-qc.png",
           alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom",
         },
         {
-          src: "/images/emailai-screen4-test.png",
-          alt: "Step 5 — Test Email: Knak HTML validation checklist on the left, dual mobile and desktop preview on the right",
-        },
-        {
-          src: "/images/emailai-screen5-mlr.png",
-          alt: "Step 6 — Pre-MLR RV Package: AI-generated RV PDF, annotations panel, and based-on declaration; flagged as underdesigned and the next problem to solve",
-        },
-        {
-          src: "/images/emailai-screen2-assemble-detail.png",
-          alt: "Step 2 — Assemble detail: side-by-side AI-Generated Manuscript and Content Assembly Status panels with verified branding, safety links, unsubscribe and privacy notice",
-        },
-        {
-          src: "/images/emailai-screen3-iterate-detail.png",
-          alt: "Step 3 — Iterate / Edit detail: AI Assistant chat, live email preview with role tabs and modifiable vs locked sections, and the Step 4 quality-check cards underneath",
-        },
-        {
           src: "/images/emailai-screen6-pre-mlr.png",
-          alt: "Step 6 — Pre-MLR detail: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right",
+          alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right",
         },
       ],
     },
