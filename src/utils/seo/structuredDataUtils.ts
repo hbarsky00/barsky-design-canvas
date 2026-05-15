@@ -52,14 +52,15 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   // Add specific schemas based on content type
   if (seoData.type === 'article' || seoData.kind === 'post') {
+    const datePublished =
+      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
     const blogPostSchema: any = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      ...(seoData.publishedTime && { datePublished: seoData.publishedTime }),
-      ...(seoData.published && { datePublished: seoData.published }),
+      datePublished,
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
       author: {
         "@type": "Person",
