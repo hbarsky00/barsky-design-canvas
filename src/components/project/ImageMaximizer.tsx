@@ -23,7 +23,10 @@ const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => 
         height: "80vh",
         perspective: "1000px",
       }}
-      onClick={() => setIsFlipped((f) => !f)}
+      onClick={() => {
+        if (isFlipped) onClose();
+        else setIsFlipped(true);
+      }}
     >
       <div
         style={{
