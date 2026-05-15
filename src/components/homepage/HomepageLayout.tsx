@@ -8,8 +8,6 @@ import FloatingConsultationBubble from "@/components/FloatingConsultationBubble"
 import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
-import BackgroundAudio from "@/components/audio/BackgroundAudio";
-
 import { useBounceReduction } from "@/hooks/useBounceReduction";
 import LazySection from "@/components/lazy/LazySection";
 import {
@@ -35,12 +33,6 @@ const HomepageLayout: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
-      
-      <BackgroundAudio 
-        src="/audio/shove-it-deftones.mp3" 
-        volume={0.15}
-      />
-      
       <Header />
       
       <main className="space-y-0 md:space-y-2 relative z-10">
