@@ -10,7 +10,9 @@ const ImageMaximizerContext = createContext<ImageMaximizerContextType | undefine
 export const useImageMaximizer = () => {
   const context = useContext(ImageMaximizerContext);
   if (!context) {
-    throw new Error('useImageMaximizer must be used within an ImageMaximizerProvider');
+    // Fallback no-op so consumers rendered outside a provider don't crash the page.
+    console.warn('useImageMaximizer used outside ImageMaximizerProvider — using no-op fallback.');
+    return { maximizeImage: () => {} } as ImageMaximizerContextType;
   }
   return context;
 };
