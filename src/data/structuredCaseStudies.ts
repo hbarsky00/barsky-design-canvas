@@ -2367,7 +2367,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/emailai-screen1-content-planning.png",
-          alt: "Step 1 of 6 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
+          alt: "Screen 1 of 5 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
+        },
+        {
+          src: "/images/emailai-screen2-assemble.png",
+          alt: "Screen 2 of 5 — Assemble From Approved Content: AI manuscript on the left with Jasper, PromoMats, and Adobe Suite integrations; market-specific status panel on the right",
         },
       ],
     },
@@ -2379,7 +2383,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/emailai-screen3-iterate-qc.png",
-          alt: "Screen 3 — Iterate / Edit & Quality Checks: chat interface on the left, live email preview on the right, with AI compliance QC cards below",
+          alt: "Screen 3 of 5 — Iterate / Edit & Quality Checks: chat interface on the left, live email preview on the right, with AI compliance QC cards below",
         },
       ],
     },
@@ -2387,15 +2391,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "My Thought Process",
       title: "Designed around the real approval gates",
       content:
-        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. The final Pre-MLR RV Package step bundles the manuscript, annotations, and based-on declaration so MLR review starts with everything in one place.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
+        "I mapped every person who touches an email — Medical Writer, Content Ops, Brand, MLR Reviewer — and built each screen around the one decision they actually need to make. The AI runs in the background: it pulls from approved briefs, auto-appends ISI, safety links, and unsubscribe per market, and flags compliance issues before a human ever sees the draft. Test Email validates HTML across mobile and desktop, and the final Pre-MLR RV Package bundles the manuscript, annotations, and based-on declaration so MLR review starts with everything in one place.\n\nHow I used AI in the design work:\nI used Claude as a dev handoff partner, not just a writing tool. For every screen I wrote a structured Markdown spec covering layout, states, role permissions, and AI behavior. The dev team built straight from those files — no long Slack threads, no guessing.",
       images: [
         {
-          src: "/images/emailai-screen2-assemble.png",
-          alt: "Screen 2 — Assemble From Approved Content: AI manuscript on the left with Jasper, PromoMats, and Adobe Suite integrations; market-specific status panel on the right",
+          src: "/images/emailai-screen4-test.png",
+          alt: "Screen 4 of 5 — Test Email: 5-step checklist on the left with Knak HTML validation, dual mobile and desktop email previews on the right",
         },
         {
           src: "/images/emailai-screen5-mlr.png",
-          alt: "Screen 5 — Pre-MLR RV Package: AI-generated RV PDF, annotations, and based-on declaration ready for Content Ops review",
+          alt: "Screen 5 of 5 — Pre-MLR RV Package: AI-generated RV PDF, annotations, and based-on declaration ready for Content Ops review",
         },
       ],
     },
