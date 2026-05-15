@@ -98,56 +98,71 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     }
   }, [isOpen]);
   
-  if (!isOpen) return null;
-  
   return (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center">
-        <ImageControls
-          scale={scale}
-          onZoomIn={handleZoomIn}
-          onZoomOut={handleZoomOut}
-          onReset={handleReset}
-          onClose={onClose}
-        />
-        
-        {/* Image counter for multiple images */}
-        {hasMultipleImages && (
-          <div className="absolute -top-12 text-white text-sm font-medium z-10">
-            {currentIndex + 1} / {imageList.length}
-          </div>
-        )}
-        
-        {/* Main Image - click to close */}
-        <img
-          src={image}
-          alt={title}
-          className="max-w-full max-h-[80vh] object-contain transition-transform duration-300 cursor-pointer"
-          onClick={onClose}
-        />
-        
-        {/* Caption */}
-        <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
-          <p className="text-black text-sm">{title}</p>
-        </div>
-        
-        {/* Navigation buttons for multiple images */}
-        {hasMultipleImages && (
-          <NavigationButtons
-            onPrev={handlePrevImage}
-            onNext={handleNextImage}
-            disabled={!hasMultipleImages}
-            currentIndex={currentIndex}
-            totalImages={imageList.length}
-          />
-        )}
-      </div>
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          style={{ perspective: 1400 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
+        >
+          <motion.div
+            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
+            style={{ transformStyle: "preserve-3d", transformOrigin: "center" }}
+            initial={{ rotateY: -90, opacity: 0, scale: 0.85 }}
+            animate={{ rotateY: 0, opacity: 1, scale: 1 }}
+            exit={{ rotateY: 90, opacity: 0, scale: 0.85 }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <ImageControls
+              scale={scale}
+              onZoomIn={handleZoomIn}
+              onZoomOut={handleZoomOut}
+              onReset={handleReset}
+              onClose={onClose}
+            />
+
+            {hasMultipleImages && (
+              <div className="absolute -top-12 text-white text-sm font-medium z-10">
+                {currentIndex + 1} / {imageList.length}
+              </div>
+            )}
+
+            <motion.img
+              key={image}
+              src={image}
+              alt={title}
+              className="max-w-full max-h-[80vh] object-contain cursor-pointer"
+              style={{ transform: `scale(${scale})`, transition: "transform 0.3s" }}
+              onClick={onClose}
+              initial={{ rotateY: -90, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            />
+
+            <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
+              <p className="text-black text-sm">{title}</p>
+            </div>
+
+            {hasMultipleImages && (
+              <NavigationButtons
+                onPrev={handlePrevImage}
+                onNext={handleNextImage}
+                disabled={!hasMultipleImages}
+                currentIndex={currentIndex}
+                totalImages={imageList.length}
+              />
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
