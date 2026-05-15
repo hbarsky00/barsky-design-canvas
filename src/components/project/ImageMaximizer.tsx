@@ -111,12 +111,9 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
             if (e.target === e.currentTarget) onClose();
           }}
         >
-          <motion.div
-            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          <div
+            className="relative flex flex-col items-center"
+            style={{ perspective: "1000px" }}
           >
             <ImageControls
               scale={scale}
@@ -132,13 +129,12 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               </div>
             )}
 
-            <img
+            <FlipCard
               key={image}
-              src={image}
-              alt={title}
-              className="max-w-full max-h-[80vh] object-contain cursor-pointer"
-              style={{ transform: `scale(${scale})`, transition: "transform 0.3s" }}
-              onClick={onClose}
+              image={image}
+              title={title}
+              scale={scale}
+              onClose={onClose}
             />
 
             <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
@@ -154,7 +150,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
                 totalImages={imageList.length}
               />
             )}
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
