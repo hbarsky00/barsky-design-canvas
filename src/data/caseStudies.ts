@@ -214,5 +214,14 @@ export const homepageCaseStudyPreviews = [
     videoThumbnail: "",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
     url: "/project/business-management"
+  },
+  {
+    title: "40% Faster Campaigns: Designing an AI-Powered Email Creation Workflow for Pharma",
+    description:
+      "Designed a 6-step AI-powered email creation workflow that cut pharma campaign production time by 40% while maintaining full MLR compliance.",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    videoThumbnail: "images/email-ai-promo.png",
+    video: "",
+    url: "/project/email-creation-ai"
   }
 ];
