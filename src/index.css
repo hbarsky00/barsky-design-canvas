@@ -1625,47 +1625,58 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
    foreground must win even against scoped/component overrides.
    ============================================================ */
 @layer utilities {
-  button[class~="text-white"],
-  a[class~="text-white"],
-  [role="button"][class~="text-white"] {
+  /* Match both text-* and !text-* (Tailwind important prefix) class names */
+  button[class*="text-white"],
+  a[class*="text-white"],
+  [role="button"][class*="text-white"] {
     color: #ffffff !important;
   }
-  button[class~="text-primary"],
-  a[class~="text-primary"],
-  [role="button"][class~="text-primary"] {
-    color: hsl(var(--primary)) !important;
-  }
-  button[class~="text-primary-foreground"],
-  a[class~="text-primary-foreground"],
-  [role="button"][class~="text-primary-foreground"] {
+  button[class*="text-primary-foreground"],
+  a[class*="text-primary-foreground"],
+  [role="button"][class*="text-primary-foreground"] {
     color: hsl(var(--primary-foreground)) !important;
   }
-  button[class~="text-secondary-foreground"],
-  a[class~="text-secondary-foreground"],
-  [role="button"][class~="text-secondary-foreground"] {
+  button[class*="text-secondary-foreground"],
+  a[class*="text-secondary-foreground"],
+  [role="button"][class*="text-secondary-foreground"] {
     color: hsl(var(--secondary-foreground)) !important;
+  }
+  button[class*="text-destructive-foreground"],
+  a[class*="text-destructive-foreground"],
+  [role="button"][class*="text-destructive-foreground"] {
+    color: hsl(var(--destructive-foreground)) !important;
+  }
+  button[class~="text-primary"]:not([class*="-foreground"]),
+  a[class~="text-primary"]:not([class*="-foreground"]),
+  [role="button"][class~="text-primary"]:not([class*="-foreground"]) {
+    color: hsl(var(--primary)) !important;
   }
   button[class~="text-foreground"],
   a[class~="text-foreground"],
   [role="button"][class~="text-foreground"] {
     color: hsl(var(--foreground)) !important;
   }
-  button[class~="text-white"] svg,
-  a[class~="text-white"] svg,
-  [role="button"][class~="text-white"] svg,
-  button[class~="text-primary"] svg,
-  a[class~="text-primary"] svg,
-  [role="button"][class~="text-primary"] svg,
-  button[class~="text-primary-foreground"] svg,
-  a[class~="text-primary-foreground"] svg,
-  [role="button"][class~="text-primary-foreground"] svg,
-  button[class~="text-secondary-foreground"] svg,
-  a[class~="text-secondary-foreground"] svg,
-  [role="button"][class~="text-secondary-foreground"] svg,
+  /* Force SVG icons inside these buttons to inherit the enforced text color */
+  button[class*="text-white"] svg,
+  a[class*="text-white"] svg,
+  [role="button"][class*="text-white"] svg,
+  button[class*="text-primary-foreground"] svg,
+  a[class*="text-primary-foreground"] svg,
+  [role="button"][class*="text-primary-foreground"] svg,
+  button[class*="text-secondary-foreground"] svg,
+  a[class*="text-secondary-foreground"] svg,
+  [role="button"][class*="text-secondary-foreground"] svg,
+  button[class*="text-destructive-foreground"] svg,
+  a[class*="text-destructive-foreground"] svg,
+  [role="button"][class*="text-destructive-foreground"] svg,
+  button[class~="text-primary"]:not([class*="-foreground"]) svg,
+  a[class~="text-primary"]:not([class*="-foreground"]) svg,
+  [role="button"][class~="text-primary"]:not([class*="-foreground"]) svg,
   button[class~="text-foreground"] svg,
   a[class~="text-foreground"] svg,
   [role="button"][class~="text-foreground"] svg {
     color: currentColor !important;
+    stroke: currentColor !important;
   }
 }
 
