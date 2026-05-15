@@ -10,8 +10,9 @@ How project pages are wired so you can swap or replace a case study without pain
 2. Copy an existing entry in the `structuredCaseStudies` object (e.g. `crypto`) and rename the key + `id` to your new slug (e.g. `myproject`).
 3. Fill in only the sections you want — every section is optional except `id`, `title`, `description`, `tags`.
 4. Route is automatic via the dynamic `/project/:slug` route. If you want a custom route or static SEO, add an entry to `src/data/seoData.ts`.
-5. Add the project to the homepage list (`src/data/projects/projectsList.ts` or `src/data/structuredCaseStudies` thumbnails — see "Where it shows up" below).
-6. To remove a case study: delete its key from `structuredCaseStudies`, remove its homepage entry, and (if it had a custom route) delete the `<Route>` line in `src/App.tsx`.
+5. **Add to the homepage "Featured Case Studies" grid** — edit the hardcoded `featuredCaseStudies` array in `src/components/home/FeaturedCaseStudiesSection.tsx`. This is the ONLY place the homepage cards come from. Editing `caseStudies.ts` or `structuredCaseStudies.ts` alone will NOT make it appear on the homepage.
+6. (Optional) Also add to `src/data/caseStudies.ts` (`homepageCaseStudyPreviews`) and `src/data/structuredCaseStudies.ts` if the project needs a `/project/:slug` detail page.
+7. To remove a case study: delete its entry from `FeaturedCaseStudiesSection.tsx`, remove from `structuredCaseStudies`, and (if it had a custom route) delete the `<Route>` line in `src/App.tsx`.
 
 That's it. No layout, no React component, no SEO file edits required for the standard flow.
 
