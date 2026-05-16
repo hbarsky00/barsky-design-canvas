@@ -30,70 +30,99 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "dae-search",
-    tags: ["Enterprise", "Search", "Data Discovery"],
-    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
-    description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
-    impact: "20% ROI from Better Data Discovery",
-    url: "/project/dae-search",
+    id: "barskyjoint",
+    tags: ["Restaurant Tech", "Kiosk", "Web"],
+    title: "BarskyJoint",
+    description: "One ordering system that works on a kiosk and a phone, without making either feel like a compromise.",
+    impact: "",
+    url: "/project/barskyjoint",
+    liveUrl: "https://barskyjoint.com",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
-      alt: "DAE Search Platform showing enterprise data discovery interface"
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
+      alt: "BarskyJoint ordering platform"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/lovable-uploads/barskyjoint-hero.mp4"
   },
   {
-    id: "smarterhealth",
-    tags: ["Healthcare", "Mobile App", "UX Design"],
-    title: "Smarter Health: Helping Patients Stay on Track",
-    description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
-    impact: "60% ↑ Appointment Adherence",
-    url: "/project/smarterhealth",
+    id: "splittime",
+    tags: ["Family Tech", "Legal UX", "Mobile"],
+    title: "SplitTime",
+    description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
+    impact: "",
+    url: "/project/splittime",
+    liveUrl: "https://splittime.pro",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
-      alt: "Smarter Health app dashboard with medication tracker"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "business-management",
-    tags: ["Enterprise", "Small Business", "Automation"],
-    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
-    description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
-    impact: "68% Fewer Operation Errors",
-    url: "/project/business-management",
-    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
-      alt: "Business management warehouse operations and inventory tracking system"
+      primary: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+      alt: "SplitTime co-parenting platform"
     },
     layout: "side-by-side"
   },
   {
     id: "email-creation-ai",
     tags: ["Pharma", "Gen AI", "Workflow Design"],
-    title: "40% Faster Pharma Campaigns With AI-Powered Email Creation",
-    description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
-    impact: "40% Faster Campaign Production",
+    title: "ManuscriptRx",
+    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
+    impact: "",
     url: "/project/email-creation-ai",
     images: {
-      primary: "/images/email-ai-promo.png",
-      alt: "AI-powered pharma email creation workflow interface"
+      primary: "/images/emailai-screen1-content-planning.png",
+      alt: "ManuscriptRx AI-assisted pharma email workflow"
     },
     layout: "side-by-side"
   },
-  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
+  {
+    id: "investor-loan-app",
+    tags: ["Enterprise", "FinTech", "Workflow"],
+    title: "Investor Loan Platform",
+    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
+    impact: "",
+    url: "/project/investor-loan-app",
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
+      alt: "Investor Loan Platform dashboard"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "crypto",
+    tags: ["Fintech", "Crypto", "Dual-Mode UX"],
+    title: "Trading Without Friction",
+    description: "A crypto trading interface designed for two audiences the industry insists you have to choose between.",
+    impact: "",
+    url: "/project/crypto",
+    images: {
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
+      alt: "Trading Without Friction crypto platform"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/crypto-hero.mp4"
+  },
   {
     id: "herbalink",
-    tags: ["Blue Sky", "Design Thinking", "GenAI"],
-    title: "HerbaLink: 3× More Bookings for Certified Herbalists",
-    description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
-    impact: "3× Practitioner Bookings",
+    tags: ["Health", "Marketplace", "Trust & Safety"],
+    title: "HerbaLink",
+    description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
+    impact: "",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
+    },
+    layout: "side-by-side",
+    video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
+  },
+  {
+    id: "dae-search",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    title: "DAE Search",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    impact: "",
+    url: "/project/dae-search",
+    images: {
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search enterprise data discovery interface"
     },
     layout: "side-by-side"
   }

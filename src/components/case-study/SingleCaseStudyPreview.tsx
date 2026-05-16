@@ -58,22 +58,7 @@ const caseStudies: CaseStudy[] = [
     layout: "web-mobile",
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
   },
-  {
-    id: "business-management",
-    tags: ["Enterprise", "Analytics", "Dashboard"],
-    title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
-    impact: "-68% Manual Entry Errors",
-    url: "/project/business-management",
-    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
-      secondary: "/lovable-uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-      alt: "Business management warehouse operations and inventory tracking system"
-    },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runotBezsgewiQ_transition_this_mockup_i_1dfa0b37-ac57-43c8-962d-5270ac3b12b7_0.mp4"
-  },
+  // business-management entry removed
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
 ];
 
