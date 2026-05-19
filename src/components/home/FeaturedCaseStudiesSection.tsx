@@ -87,6 +87,38 @@ const featuredCaseStudies: FeaturedStudy[] = [
       designTools: ["Figma", "Protopie"],
     }
   },
+  {
+    id: "email-creation-ai",
+    title: "Email Creation AI",
+    subtitle: "40% Faster Pharma Campaigns Without Sacrificing Compliance",
+    description: "Designed a 6-step AI-powered email creation workflow for a global pharma company that cut HCP campaign production time by 40% while keeping every manuscript MLR-compliant. Eliminated 3+ manual handoffs by flipping the model — AI generates the compliant draft, humans refine.",
+    image: "/images/email-ai-promo.png",
+    url: "/project/email-creation-ai",
+    category: "Pharma",
+    impact: "40% faster, 100% compliant",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    techStack: {
+      aiTools: ["Claude", "Gemini"],
+      devStack: ["React", "TypeScript"],
+      designTools: ["Figma", "Markdown Specs"],
+    }
+  },
+  {
+    id: "dae-search",
+    title: "DAE Search",
+    subtitle: "Enterprise Search Redesigned Around Trust, Not Just Relevance",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest. Semantic match with lineage and permissions inline reframed the product from a search tool into a data discovery tool.",
+    image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+    url: "/project/dae-search",
+    category: "Enterprise",
+    impact: "From 40 results to 4 trusted picks",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    techStack: {
+      aiTools: ["Semantic Search"],
+      devStack: ["React", "TypeScript"],
+      designTools: ["Figma"],
+    }
+  },
 ];
 
 const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study, index }) => {
