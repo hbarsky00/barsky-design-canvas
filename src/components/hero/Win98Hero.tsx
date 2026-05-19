@@ -8,6 +8,7 @@ import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid } from "lucide-rea
  */
 const Win98Hero: React.FC = () => {
   const [clock, setClock] = useState("");
+  const [startOpen, setStartOpen] = useState(false);
 
   useEffect(() => {
     const tick = () => {
