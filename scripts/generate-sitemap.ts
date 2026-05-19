@@ -61,6 +61,9 @@ function getProjectPaths(): string[] {
     "/project/barskyjoint",
     "/project/investor-loan-app",
     "/project/wholesale-distribution",
+    "/project/fire-lion",
+    "/project/ring-rival",
+    "/project/catchbuddy",
   ].forEach((p) => found.add(p));
   return Array.from(found).sort();
 }
