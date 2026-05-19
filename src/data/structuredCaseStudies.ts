@@ -681,7 +681,365 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: `/project/email-creation-ai`,
     },
   },
+  "fire-lion": {
+    id: `fire-lion`,
+    title: `Fire Lion`,
+    description: `A shipped game, built solo with AI. A one-tap arcade runner where you spell words mid-flight to cast spells.`,
+    tags: [`AI-Assisted Product`, `Game Design`, `Mobile Web`, `Solo Build`],
+    heroVideo: {
+      src: `/lovable-uploads/firelion-hero.mp4`,
+      poster: `/images/firelion-hero-title.png`,
+      alt: `Fire Lion gameplay overview`,
+    },
+    projectLink: `https://firelion.me`,
+    heroMetrics: [
+      { value: `Solo Build`, label: `One designer, AI as co-builder` },
+      { value: `Daily Playtests`, label: `Self + friends, real phones` },
+      { value: `6 Systems Cut`, label: `After watching real users` },
+    ],
+    researchSection: {
+      subhead: `Watching real players on real phones surfaced three patterns:`,
+      emergingThemes: [
+        {
+          eyebrow: `FEATURE BLOAT KILLS FUN`,
+          insight: `Daily missions, streaks, daily-word challenges, social proof counters — all added, all ignored.`,
+          drove: `Drove: a ruthless deletion list and a single-mode core loop.`,
+        },
+        {
+          eyebrow: `GAME FEEL CAN'T BE PROMPTED`,
+          insight: `AI shipped collision math and particle systems in minutes. The lion still felt like a balloon for 30 iterations.`,
+          drove: `Drove: hand-tuned gravity, tap impulse, and scroll curves over hundreds of test runs.`,
+        },
+        {
+          eyebrow: `PLAYERS WANT SURPRISE, NOT SHOPPING`,
+          insight: `Forge upgrade screens and pre-run skill trees tested badly. People wanted to play.`,
+          drove: `Drove: removed every pre-run friction point. Tap FLY is the only path in.`,
+        },
+      ],
+      researchImage: `/images/firelion-gameplay-lavagod.png`,
+      researchImageAlt: `Main runner gameplay, Lava God form, Wave 5, invincibility power-up`,
+    },
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `Most "I built X with AI" portfolios are a calculator, a dashboard, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
+    },
+    sprintZeroSection: {
+      eyebrow: `SPRINT ZERO`,
+      title: `Sprint Zero`,
+      workshopKickoff: ``,
+      explorations: `The spelling mechanic — words cast spells — was only added after the tap-to-fly felt right. Every later system (combos, bosses, modes) was layered on top of a verified core loop.`,
+      decisionPoint: `Build the smallest possible playable loop first — one tap, one lion, no words, no worlds, no audio — and only add a mechanic after the core gesture feels good.`,
+      images: [
+        { src: `/images/firelion-spelling-lightning.png`, alt: `Lightning Strike spell casting from spelling MN` },
+        { src: `/images/firelion-spelling-combo.png`, alt: `Spelling CRAP over a lava forge anvil, 5× combo` },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `Building features is easy with AI. Killing features is the actual design work.`,
+        description: `AI happily shipped daily missions, streaks, a forge upgrade screen, mod gating, and three premium fighter modes. Users used none of them. The deletion list ended up longer than the feature list — and the game got better with every removal.`,
+      },
+      {
+        number: 2,
+        title: `AI handles the work between human decisions. It doesn't replace them.`,
+        description: `AI scaffolded Supabase schemas, Tailwind tokens, particle systems, and refactors across 30+ files at a time. Every gravity tweak, tap impulse, and difficulty threshold was still mine — hand-tuned by feel over hundreds of test runs.`,
+      },
+      {
+        number: 3,
+        title: `Three modes serve three moods. Isolation is the design rule that makes it work.`,
+        description: `Fire Lion (tense, escalating), Lion Wars (strategic), Cub Mode (low-stakes recovery). Cub Mode lives in its own component with its own audio and state — enforced in the AI memory file so even at 2am, six prompts deep, the rule holds.`,
+      },
+    ],
+    ideationSection: {
+      subhead: `Multiple iterations on the core loop — kept only what made players want one more run.`,
+      bubbles: [
+        { title: `Tap-to-fly tuning`, description: `Tuned across ~30 iterations before it stopped feeling floaty.` },
+        { title: `Slow-start ramp`, description: `Added to ease beginners — players thought the game was broken. Cut entirely.` },
+        { title: `Boss fights rebuilt`, description: `From damage-sponge to telegraphed attacks with 3-second cinematic intros.` },
+      ],
+      wireframeImage: {
+        src: `/images/firelion-lionwars-combat.png`,
+        alt: `Lion Wars naval combat, wave 1 of 7, lava cavern backdrop`,
+        caption: `Lion Wars — built as a between-worlds mode, then pulled because it broke flow`,
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: `APPROACH & DECISION MAKING`,
+      title: `My Thought Process`,
+      content: `The whole project was held together by one question, asked over every feature: does this make the player want one more run? If yes, keep. If no — even if AI built it in minutes, even if it tested fine in isolation — cut. That filter is what separates a tech demo from a game, and it's the part AI can't do.`,
+    },
+    userTestingSection: {
+      eyebrow: `USER TESTING`,
+      title: `User Testing`,
+      description: `Tested with friends and family on real iOS and Android phones, plus daily self-playtests (minimum 10 runs per day). Qualitative changes that shipped from feedback: "Why is the first board always the same boss?" → randomized world order per run. "I can never revive." → full rewrite of revive UI and availability logic. "The lion flies too slowly at the start." → killed the slow-start mechanic. "It's stupid I can't move left and right in Cub Mode." → added horizontal movement.`,
+      images: [
+        { src: `/images/firelion-cubmode-sunset.png`, alt: `Cub Mode sunset scene — kept isolated from the main game so refactors never break it` },
+        { src: `/images/firelion-cubmode-ocean.png`, alt: `Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state` },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: `WHAT DIDN'T WORK`,
+      title: `What Didn't Work`,
+      content: `The first version had daily missions, a streak system, a daily Wordle-style challenge, a legacy cumulative score, a social proof counter, a forge pre-run upgrade screen, and mod gating behind a "Lava Rank" tier. All shipped fast thanks to AI. All ignored by players. All removed. Lion Wars originally triggered between worlds in the runner. Players hated being yanked out of flow. The trigger was removed; the code stays in the codebase for a Phase 2 integration directly into the main runner.`,
+    },
+    outcomeSection: {
+      eyebrow: `OUTCOME`,
+      title: `Outcome`,
+      description: `A shipped game with three modes, real retention loops, a deletion list longer than its feature list, and a clear thesis: AI can scaffold a game in a week, but deciding which 80% to throw away is the year of design work that makes it playable. Three modes — Fire Lion, Lion Wars, Cub Mode. Solo design end-to-end — UI, mechanics, economy, audio, art direction. Ruthless deletion discipline — every cut backed by observed player behavior. Reusable AI memory file keeps the next session in perfect context.`,
+    },
+    sections: [],
+    seoData: {
+      image: `/images/firelion-hero-title.png`,
+      projectName: `Fire Lion`,
+      results: [],
+      technologies: [],
+      path: `/project/fire-lion`,
+    },
+  },
+  "ring-rival": {
+    id: `ring-rival`,
+    title: `Ring-Rival`,
+    description: `Console boxing feel on the mobile web. Distinct AI opponents, AI-generated trash talk, career mode — built solo with AI as a co-builder.`,
+    tags: [`AI-Assisted Product`, `Mobile Web`, `Game Design`, `Solo Build`],
+    heroVideo: {
+      src: `/lovable-uploads/ringrival-hero.mp4`,
+      poster: `/images/ringrival-hero-title.png`,
+      alt: `Ring-Rival mobile boxing gameplay`,
+    },
+    projectLink: `https://rival.li`,
+    heroMetrics: [
+      { value: `Solo Build`, label: `Designer + AI, no team` },
+      { value: `22s → 6s`, label: `Time to first punch after testing` },
+      { value: `~40% → <2%`, label: `Audio failure rate after the first-tap gate` },
+    ],
+    researchSection: {
+      subhead: `Observing real players on real phones revealed three problems:`,
+      emergingThemes: [
+        {
+          eyebrow: `STATIC TUTORIALS DON'T WORK`,
+          insight: `A 4-step calibration wizard, a daily challenges modal, and a how-to page all tested poorly. Six of six testers skipped the how-to before their first fight.`,
+          drove: `Drove: if the first fight doesn't teach the controls in 10 seconds, no screen will.`,
+        },
+        {
+          eyebrow: `MOBILE AUDIO IS UNRELIABLE BY DEFAULT`,
+          insight: `iOS Safari kills audio that isn't triggered by user gesture. ~40% of first sessions launched silent.`,
+          drove: `Drove: AudioContext resume gated behind the first tap on the title screen.`,
+        },
+        {
+          eyebrow: `AI OPPONENTS NEED RHYTHM, NOT TIMERS`,
+          insight: `Early opponents threw punches at fixed intervals. Felt like fighting a metronome.`,
+          drove: `Drove: an EmotionEngine where opponents bait, hesitate, and tilt based on how the player is doing.`,
+        },
+      ],
+      researchImage: `/images/ringrival-glassjoe-idle.png`,
+      researchImageAlt: `Glass Joe idle stance — started with one opponent, two buttons, a health bar before adding anything else`,
+    },
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `Boxing games live on consoles for a reason — tight input latency, animation feel, and AI that reads like a real opponent. Doing all of that with a thumb on a phone, in a browser, no install, was the constraint that made the project worth building. The design question wasn't "can we ship a boxer," it was "can we ship one that feels right."`,
+    },
+    sprintZeroSection: {
+      eyebrow: `SPRINT ZERO`,
+      title: `Sprint Zero`,
+      workshopKickoff: ``,
+      explorations: `Five-second control briefing before each fight — readable in 10 seconds, dismissible. Each fighter has a distinct silhouette and personality, generated via Gemini image preview — voice without writing a dialogue tree.`,
+      decisionPoint: `Verify game feel on a single archetype (Glass Joe) before generating any other fighters. If a punch doesn't feel good against the easiest opponent, no amount of AI sprite generation will save the project.`,
+      images: [
+        { src: `/images/ringrival-controls-modal.png`, alt: `VS Glass Joe controls modal with input scheme` },
+        { src: `/images/ringrival-vonkaiser.png`, alt: `Von Kaiser — tall, broad, defensive guard` },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `AI generates fighters endlessly. Sequencing them is design.`,
+        description: `Sprite generation, trash talk, announcer intros, and crowd mood all came from AI prompts. Deciding the career order — Glass Joe → Von Kaiser → Bald Bull → … → the final boss — is a difficulty curve, hand-built across hundreds of test fights.`,
+      },
+      {
+        number: 2,
+        title: `Game feel is the part you can't prompt.`,
+        description: `Hit-stop duration, screen shake amplitude, the 60ms haptic on connect, the curve of the health bar drain — all hand-tuned by feel. No model knows whether a punch feels like a punch.`,
+      },
+      {
+        number: 3,
+        title: `Mobile ergonomics are decided by watching a real hand on a real phone.`,
+        description: `Where the punch button lives, how big the block zone is, whether the music toggle belongs top-right or in a menu — every one of these was settled by handing a phone to someone and watching them play.`,
+      },
+    ],
+    ideationSection: {
+      subhead: `Multiple iterations on core systems — every cut backed by observation, not opinion.`,
+      bubbles: [
+        { title: `Sprite scaling`, description: `Rebuilt three times before per-archetype mobileScaleBoost multipliers worked across body types.` },
+        { title: `Particle effects`, description: `Throttled to 15% of frames after Bald Bull's signature charge created an unreadable dust cloud on mobile.` },
+        { title: `AI opponent rhythm`, description: `Rewritten from fixed-interval punches to the EmotionEngine — bait, hesitate, tilt.` },
+      ],
+      wireframeImage: {
+        src: `/images/ringrival-knockdown.png`,
+        alt: `Knockdown — DOWN! 5 count with star burst over floored Glass Joe`,
+        caption: `Hit-stop, star burst, count timing — all hand-tuned by feel`,
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: `APPROACH & DECISION MAKING`,
+      title: `My Thought Process`,
+      content: `The whole game is a series of small calibration calls that AI can't make: is this punch satisfying, is this opponent fun to fight, is this control discoverable. AI's job was to generate raw material — sprites, voice lines, schemas, refactors — at a speed that made hundreds of micro-iterations possible. My job was to be the taste filter on every output.`,
+    },
+    userTestingSection: {
+      eyebrow: `USER TESTING`,
+      title: `User Testing`,
+      description: `Tested in person and remotely on iOS and Android phones, ages 14–47, with screen and face recording. Key changes from observation: time-to-first-punch dropped from 22s to 6s by cutting menus and tutorial screens. Audio failure rate dropped from ~40% to under 2% by gating AudioContext resume behind the first tap. Webcam hand-tracking and AR mode were cut — half the testers refused the camera prompt and bounced.`,
+      images: [
+        { src: `/images/ringrival-impact-particles.png`, alt: `Glass Joe getting hit — red impact particles dialed back so fighter stays visible` },
+        { src: `/images/ringrival-pause-modal.png`, alt: `Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow` },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: `WHAT DIDN'T WORK`,
+      title: `What Didn't Work`,
+      content: `The original calibration wizard, daily challenges modal, and how-to page were all built and all ignored. Cut. Webcam-based hand-tracking was technically impressive and the wrong mechanic for the audience. Removed entirely, along with all AR-mode references in SEO and the menu. Multiplayer and leaderboards exist as components but are gated. Shipping them requires moderation I didn't want to own in v1.`,
+      images: [
+        { src: `/images/ringrival-discodan.png`, alt: `Disco Dan — completely different silhouette and personality from Glass Joe` },
+      ],
+    },
+    outcomeSection: {
+      eyebrow: `OUTCOME`,
+      title: `Outcome`,
+      description: `A shipped boxing game with distinct AI opponents, generated trash talk, hand-tuned game feel, and a deployment cadence of 3–6 builds a day. Real users, real cuts, real opponents. Distinct opponents — each with their own silhouette, voice, and rhythm. AI as content engine — sprites, trash talk, intros, crowd reactions. Designer as taste filter — every output checked against "does this feel good." Iteration cadence: ship → watch a session → fix the loudest thing → reship.`,
+    },
+    sections: [],
+    seoData: {
+      image: `/images/ringrival-hero-title.png`,
+      projectName: `Ring-Rival`,
+      results: [],
+      technologies: [],
+      path: `/project/ring-rival`,
+    },
+  },
+  "catchbuddy": {
+    id: `catchbuddy`,
+    title: `CatchBuddy`,
+    description: `Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps. Built solo with AI as a co-builder.`,
+    tags: [`AI-Assisted Product`, `Trust & Safety`, `Mobile-First`, `Solo Build`],
+    heroVideo: {
+      src: `/lovable-uploads/catchbuddy-hero.mp4`,
+      poster: `/images/catchbuddy-hero-landing.png`,
+      alt: `CatchBuddy pickup sports app overview`,
+    },
+    projectLink: `https://catchbuddy.me`,
+    heroMetrics: [
+      { value: `Solo Build`, label: `Designer + AI, end-to-end` },
+      { value: `Safety-First Architecture`, label: `Minor approval, panic button, curated meeting spots` },
+      { value: `Real Stack Shipped`, label: `Auth, RLS, OAuth, Stripe, Realtime` },
+    ],
+    researchSection: {
+      subhead: `Observing pickup-sports culture and existing apps surfaced three friction points:`,
+      emergingThemes: [
+        {
+          eyebrow: `LEAGUE-FOCUSED APPS DON'T SERVE CASUAL PLAY`,
+          insight: `Existing platforms assume commitment, schedules, recurring teams. Most people want one game this weekend, not a season.`,
+          drove: `Drove: a single-action "post a catch request" as the entire product.`,
+        },
+        {
+          eyebrow: `TRUST IS THE REAL UNLOCK, NOT MATCHING`,
+          insight: `Two strangers meeting at a park requires a different safety model than dating apps or marketplaces.`,
+          drove: `Drove: phone verification, panic button, curated meeting spots, minor approval flow — built in from v1.`,
+        },
+        {
+          eyebrow: `"MATCHES" READS AS DATING`,
+          insight: `Early testers consistently misread the nav.`,
+          drove: `Drove: rewrote navigation as "Browse" and "Players" instead of "Matches."`,
+        },
+      ],
+      researchImage: `/images/catchbuddy-signin.png`,
+      researchImageAlt: `Sign-in screen with the CatchBuddy brand — first trust signal before anything is asked`,
+    },
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `Pickup sports are dying in cities. Existing apps are league-focused or chat-heavy. Nobody wants a Slack thread to throw a baseball after work. The real product wasn't another scheduling tool — it was a way to lower the friction and the safety risk of two strangers agreeing to meet at a park.`,
+    },
+    sprintZeroSection: {
+      eyebrow: `SPRINT ZERO`,
+      title: `Sprint Zero`,
+      workshopKickoff: ``,
+      explorations: `Step 1 — pick a sport. Five options, no menu, no friction. Step 2 — pick a park: curated venues only; no arbitrary GPS pins. Step 3 — equipment + preferences: small signals that cut down on missed expectations.`,
+      decisionPoint: `Ship the minimum viable trust loop — post a game, see games, confirm a match — and only then layer in the safety scaffolding (phone verification, panic button, minor approval). No discovery without trust signals in place.`,
+      images: [
+        { src: `/images/catchbuddy-post-game.png`, alt: `Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee` },
+        { src: `/images/catchbuddy-choose-park.png`, alt: `Choose a Park — searchable list with distance and amenities` },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `Safety can't be a bolt-on. It's the product.`,
+        description: `Minors require a verified parent on file before they can post. The panic button reaches every in-game screen. Public meeting spots are curated, not crowdsourced. None of that comes from a prompt — those are product calls about who's actually going to use this and what could go wrong.`,
+      },
+      {
+        number: 2,
+        title: `AI scaffolds the schema. It doesn't decide who's allowed to post.`,
+        description: `AI shipped the RLS policies, the profiles_public view, the Supabase migrations, the Stripe integration, the OAuth flow. The trust model — who gets in, who's gated, what's surfaced — was every decision I made by hand.`,
+      },
+      {
+        number: 3,
+        title: `Real reviews surface things AI misses.`,
+        description: `AI's own security code review caught a recursive RLS policy on the profiles table that would have leaked data in production. Used the AI as a second pair of eyes, not as the only set.`,
+      },
+    ],
+    ideationSection: {
+      subhead: `Multiple iterations on onboarding and flow — every cut backed by observed friction.`,
+      bubbles: [
+        { title: `"Quick Start" wizard`, description: `Built, then cut — users skipped it every time.` },
+        { title: `Homepage MapSection`, description: `Looked great in screenshots and confused first-time visitors. Cut.` },
+        { title: `iOS geolocation flow`, description: `Rebuilt with a city-dropdown fallback after half of testers denied location.` },
+      ],
+      wireframeImage: {
+        src: `/images/catchbuddy-equipment-prefs.png`,
+        alt: `Equipment and preferences — "I'll bring a football," no-contact toggle`,
+        caption: `Step 3 — equipment + preferences. Small signals that cut down on missed expectations`,
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: `APPROACH & DECISION MAKING`,
+      title: `My Thought Process`,
+      content: `The product had to be honest about who was using it. Two strangers, a park, a real game on a real day. Every design decision was checked against: would I let my 16-year-old cousin sign up for this? That filter killed open-ended chat, killed crowdsourced meeting spots, and gated everything for minors behind a verified parent.`,
+    },
+    userTestingSection: {
+      eyebrow: `USER TESTING`,
+      title: `User Testing`,
+      description: `Tested with friends, family, and parents reviewing the minor-approval flow on real iOS and Android phones. Changes from observation: "Matches" → "Browse" and "Players" — users read "Matches" as Tinder-like. Toast stacking — auto-dismiss after 3 seconds. Bottom nav layout shift — fixed to grid-cols-5 to prevent jumps when badges appear. Calendar OAuth state — rewrote with HMAC-SHA256 signing after CSRF vulnerability was caught. Demo data leakage — separated demo matches into their own query path with a Demo badge.`,
+      images: [
+        { src: `/images/catchbuddy-find-players.png`, alt: `Find Players list with 92% and 81% match scores — proximity + time heuristic surfaced as percentages users instantly understand` },
+        { src: `/images/catchbuddy-signup-minor-gate.png`, alt: `Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow` },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: `WHAT DIDN'T WORK`,
+      title: `What Didn't Work`,
+      content: `The Quick Start wizard was over-engineered onboarding. Users wanted to skip it. Cut. The homepage MapSection promised value the first interaction couldn't deliver. Cut. Apple Calendar, Outlook, and ICS support were built. Three calendar providers turned out to be a maintenance tax for a feature users barely cared about. Google-only now.`,
+      images: [
+        { src: `/images/catchbuddy-game-live.png`, alt: `Confirmation — "Your Game is Live!" with nearby player count, not a vanity counter` },
+      ],
+    },
+    outcomeSection: {
+      eyebrow: `OUTCOME`,
+      title: `Outcome`,
+      description: `A shipped pickup-sports platform with auth, RLS, Stripe payments, Google Calendar OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo with AI as a co-builder. Trust-first architecture: safety scaffolding built in from v1, not bolted on. Real stack: auth, RLS, OAuth, Stripe, Realtime, all shipped. User-driven cuts: every removed feature backed by observed friction. AI as collaborator: schema scaffolding, security review, copy drafts, edge functions.`,
+      images: [
+        { src: `/images/catchbuddy-pro-pricing.png`, alt: `Pro pricing — $7.99/mo or $59.99/yr, added after the safety and matching loop was stable` },
+      ],
+    },
+    sections: [],
+    seoData: {
+      image: `/images/catchbuddy-hero-landing.png`,
+      projectName: `CatchBuddy`,
+      results: [],
+      technologies: [],
+      path: `/project/catchbuddy`,
+    },
+  },
 };
+
 
 export const getStructuredCaseStudy = (id: string): StructuredCaseStudyData | null => {
   return structuredCaseStudies[id] || null;
