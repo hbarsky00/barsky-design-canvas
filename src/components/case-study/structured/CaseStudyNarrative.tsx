@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import MaximizableImage from "@/components/project/MaximizableImage";
 
 export type NarrativeBlock =
   | { type: "hook"; text: string }
