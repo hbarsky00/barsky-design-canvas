@@ -197,16 +197,10 @@ const Win98Hero: React.FC = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div
-                        className="sunk text-[11px] text-black px-2 py-[2px] text-center truncate group-hover:text-white"
-                        style={{ transition: "background 0.1s" }}
-                      >
-                        <span className="group-hover:[&]:hidden">{c.label}</span>
-                        <span className="hidden group-hover:inline">{c.label}</span>
+                      <div className="cs-thumb-label sunk text-[11px] text-black px-2 py-[2px] text-center truncate">
+                        {c.label}
                       </div>
-                      <style>{`
-                        .group:hover > div.sunk:last-child { background:#000080 !important; color:#fff !important; }
-                      `}</style>
+
                     </a>
                   ))}
                 </div>
