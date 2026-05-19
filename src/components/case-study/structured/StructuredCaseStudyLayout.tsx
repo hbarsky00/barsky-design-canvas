@@ -29,6 +29,7 @@ import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
+import CaseStudyNarrative from "./CaseStudyNarrative";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -53,26 +54,32 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ? window.location.href 
     : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
+  const hasNarrative = !!caseStudyData.narrativeBlocks && caseStudyData.narrativeBlocks.length > 0;
+
   // Create navigation items from sections in correct order
-  const navigationItems = [
-    { label: "Hero", anchor: "#hero" },
-    { label: "Overview", anchor: "#overview" },
-    ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
-    ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
-    ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
-    ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
-    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
-    ...(caseStudyData.ideationSection ? [
-      { label: "Ideation", anchor: "#ideation" }
-    ] : []),
-    ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
-    ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
-    ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
-    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
-    ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
-    ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
-    { label: "More Work", anchor: "#more-work" }
-  ];
+  const navigationItems = hasNarrative
+    ? [
+        { label: "Hero", anchor: "#hero" },
+        { label: "Story", anchor: "#story" },
+        { label: "More Work", anchor: "#more-work" },
+      ]
+    : [
+        { label: "Hero", anchor: "#hero" },
+        { label: "Overview", anchor: "#overview" },
+        ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
+        ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
+        ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
+        ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+        ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
+        ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
+        ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
+        ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
+        ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
+        ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
+        ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
+        ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
+        { label: "More Work", anchor: "#more-work" },
+      ];
 
 
   return (
@@ -110,15 +117,26 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
+          {/* Narrative blocks: image-first scannable layout for new case studies */}
+          {hasNarrative && (
+            <CaseStudyNarrative blocks={caseStudyData.narrativeBlocks!} />
+          )}
+
           {/* Overview Section - Full width band */}
-          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
-            <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
-              <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-            </section>
-          </div>
+          {!hasNarrative && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
+              <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
+                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+              </section>
+            </div>
+          )}
 
           <div className="section-container bg-white">
+
+          {/* Legacy sections — only render when no narrative blocks exist */}
+          {!hasNarrative && (<>
+
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
@@ -472,8 +490,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          
+          </>)}
+
           {/* Tags */}
+
           {caseStudyData.tags?.length ? (
             <div className="flex flex-wrap justify-center gap-2 py-8">
               {caseStudyData.tags.map((tag) => (
