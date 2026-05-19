@@ -54,26 +54,32 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ? window.location.href 
     : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
+  const hasNarrative = !!caseStudyData.narrativeBlocks && caseStudyData.narrativeBlocks.length > 0;
+
   // Create navigation items from sections in correct order
-  const navigationItems = [
-    { label: "Hero", anchor: "#hero" },
-    { label: "Overview", anchor: "#overview" },
-    ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
-    ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
-    ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
-    ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
-    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
-    ...(caseStudyData.ideationSection ? [
-      { label: "Ideation", anchor: "#ideation" }
-    ] : []),
-    ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
-    ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
-    ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
-    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
-    ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
-    ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
-    { label: "More Work", anchor: "#more-work" }
-  ];
+  const navigationItems = hasNarrative
+    ? [
+        { label: "Hero", anchor: "#hero" },
+        { label: "Story", anchor: "#story" },
+        { label: "More Work", anchor: "#more-work" },
+      ]
+    : [
+        { label: "Hero", anchor: "#hero" },
+        { label: "Overview", anchor: "#overview" },
+        ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
+        ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
+        ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
+        ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+        ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
+        ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
+        ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
+        ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
+        ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
+        ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
+        ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
+        ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
+        { label: "More Work", anchor: "#more-work" },
+      ];
 
 
   return (
