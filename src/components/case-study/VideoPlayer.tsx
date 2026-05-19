@@ -40,7 +40,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   };
   if (isLoomVideo || isYouTubeVideo) {
     return (
-      <div className="relative bg-white rounded-lg overflow-hidden">
+      <div className="relative bg-white rounded-sm overflow-hidden">
         <iframe
           src={getEmbedUrl(videoSrc)}
           title={title}
@@ -58,7 +58,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   }
 
   return (
-    <div className="relative bg-white rounded-lg overflow-hidden">
+    <div className="relative bg-white rounded-sm overflow-hidden">
       <img
         src={thumbnailSrc}
         alt={`${title} promotional image`}
