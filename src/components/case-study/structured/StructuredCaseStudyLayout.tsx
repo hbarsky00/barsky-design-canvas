@@ -96,6 +96,42 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           />
           </div>
 
+          {/* Hero Metrics band */}
+          {caseStudyData.heroMetrics && caseStudyData.heroMetrics.length > 0 && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50 border-y border-border/40">
+              <section
+                id="hero-metrics"
+                data-section="hero-metrics"
+                aria-label="Hero metrics"
+                className="section-snap py-10 md:py-12"
+              >
+                <div className="section-container">
+                  <div className={`grid gap-6 ${caseStudyData.heroMetrics.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 md:grid-cols-3"}`}>
+                    {caseStudyData.heroMetrics.map((m, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: i * 0.08 }}
+                        className="text-center px-4"
+                      >
+                        <div className="text-xl md:text-2xl font-display font-semibold text-foreground mb-1">
+                          {m.value}
+                        </div>
+                        <div className="text-sm text-muted-foreground leading-snug">
+                          {m.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          )}
+
+
+
           {/* Project Context Section */}
           {caseStudyData.projectContext && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
