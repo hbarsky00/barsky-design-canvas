@@ -29,7 +29,7 @@ const Win98Hero: React.FC = () => {
   return (
     <section
       aria-label="Hiram Barsky portfolio hero"
-      className="win98 relative px-3 py-3 sm:px-4 sm:py-4"
+      className="win98 relative px-3 py-3 sm:px-4 sm:py-4 min-h-screen flex flex-col"
       style={{ background: "#008080", fontFamily: "'MS Sans Serif', 'Tahoma', Arial, sans-serif" }}
     >
       <style>{`
@@ -43,7 +43,7 @@ const Win98Hero: React.FC = () => {
         .win98 * { box-sizing: border-box; }
       `}</style>
 
-      <div className="flex gap-3 sm:gap-4">
+      <div className="flex gap-3 sm:gap-4 flex-1 items-center">
         {/* Desktop icons column */}
         <div className="hidden sm:flex flex-col gap-3 pt-1 shrink-0">
           {[
