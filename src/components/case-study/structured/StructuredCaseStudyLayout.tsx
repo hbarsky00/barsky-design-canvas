@@ -61,10 +61,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
-    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.ideationSection ? [
       { label: "Ideation", anchor: "#ideation" }
     ] : []),
+    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
@@ -197,6 +197,21 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
+          {/* Ideation Section - Full width band */}
+          {caseStudyData.ideationSection && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <HeadingHierarchy level="h2" id="ideation-heading" className="sr-only">Ideation Section</HeadingHierarchy>
+                <IdeationSection ideationData={caseStudyData.ideationSection} />
+              </section>
+            </div>
+          )}
+
+          {/* Individual Iterations Sections */}
+          {caseStudyData.ideationSection && (
+            <IterationsSection iterations={caseStudyData.ideationSection.iterations} />
+          )}
+
           {/* My Thought Process Section */}
           {caseStudyData.myThoughtProcessSection && (
             <section 
@@ -212,21 +227,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 images={caseStudyData.myThoughtProcessSection.images || []}
               />
             </section>
-          )}
-
-          {/* Ideation Section - Full width band - Now appears after My Thought Process */}
-          {caseStudyData.ideationSection && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-                <HeadingHierarchy level="h2" id="ideation-heading" className="sr-only">Ideation Section</HeadingHierarchy>
-                <IdeationSection ideationData={caseStudyData.ideationSection} />
-              </section>
-            </div>
-          )}
-
-          {/* Individual Iterations Sections */}
-          {caseStudyData.ideationSection && (
-            <IterationsSection iterations={caseStudyData.ideationSection.iterations} />
           )}
 
           {/* What Didn't Work Section */}
