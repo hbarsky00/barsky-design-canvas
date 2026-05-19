@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid } from "lucide-react";
+import win98Bg from "@/assets/win98-ai-bg.jpg";
 
 /**
  * Windows 98 styled hero. Visual-only; preserves nav to /projects and Calendly.
@@ -43,7 +44,14 @@ const Win98Hero: React.FC = () => {
     <section
       aria-label="Hiram Barsky portfolio hero"
       className="win98 relative px-3 py-3 sm:px-4 sm:py-4 min-h-screen flex flex-col"
-      style={{ background: "#008080", fontFamily: "'MS Sans Serif', 'Tahoma', Arial, sans-serif" }}
+      style={{
+        backgroundColor: "#008080",
+        backgroundImage: `url(${win98Bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "multiply",
+        fontFamily: "'MS Sans Serif', 'Tahoma', Arial, sans-serif",
+      }}
     >
       <style>{`
         .win98 .raise { border-top:2px solid #fff; border-left:2px solid #fff; border-right:2px solid #808080; border-bottom:2px solid #808080; background:#c0c0c0; }
