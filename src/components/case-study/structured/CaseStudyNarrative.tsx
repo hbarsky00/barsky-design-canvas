@@ -24,9 +24,10 @@ const fadeUp = {
 const ImageFigure: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
   <figure className="space-y-3">
     <div className="overflow-hidden rounded-2xl border border-border/40 shadow-sm bg-white">
-      <MaximizableImage
+      <img
         src={src}
         alt={alt}
+        loading="lazy"
         className="w-full h-auto object-contain image-high-quality"
       />
     </div>
