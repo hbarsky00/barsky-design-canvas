@@ -63,8 +63,11 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
       </a>
 
       <div className="flex items-center gap-3 sm:gap-4">
-        <button
-          onClick={handleLinkedInShare}
+        <a
+          href={linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => onShare?.()}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"
           aria-label="Share on LinkedIn"
           title="Share on LinkedIn"
