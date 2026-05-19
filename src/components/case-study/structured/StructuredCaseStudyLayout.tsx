@@ -29,7 +29,6 @@ import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
-import CaseStudyNarrative from "./CaseStudyNarrative";
 
 
 interface StructuredCaseStudyLayoutProps {
@@ -54,32 +53,26 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ? window.location.href 
     : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
 
-  const hasNarrative = !!caseStudyData.narrativeBlocks && caseStudyData.narrativeBlocks.length > 0;
-
   // Create navigation items from sections in correct order
-  const navigationItems = hasNarrative
-    ? [
-        { label: "Hero", anchor: "#hero" },
-        { label: "Story", anchor: "#story" },
-        { label: "More Work", anchor: "#more-work" },
-      ]
-    : [
-        { label: "Hero", anchor: "#hero" },
-        { label: "Overview", anchor: "#overview" },
-        ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
-        ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
-        ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
-        ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
-        ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
-        ...(caseStudyData.ideationSection ? [{ label: "Ideation", anchor: "#ideation" }] : []),
-        ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
-        ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
-        ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
-        ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
-        ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
-        ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
-        { label: "More Work", anchor: "#more-work" },
-      ];
+  const navigationItems = [
+    { label: "Hero", anchor: "#hero" },
+    { label: "Overview", anchor: "#overview" },
+    ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
+    ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
+    ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
+    ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
+    ...(caseStudyData.ideationSection ? [
+      { label: "Ideation", anchor: "#ideation" }
+    ] : []),
+    ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
+    ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
+    ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
+    ...(caseStudyData.outcomeSection ? [{ label: "Outcome & Impact", anchor: "#outcome-results" }] : []),
+    ...(caseStudyData.postLaunchSection ? [{ label: "What Happened Next", anchor: "#post-launch" }] : []),
+    ...(caseStudyData.technicalImplementation ? [{ label: "Technical Implementation", anchor: "#technical" }] : []),
+    { label: "More Work", anchor: "#more-work" }
+  ];
 
 
   return (
@@ -104,39 +97,28 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </div>
 
           {/* Project Context Section */}
-          {!hasNarrative && caseStudyData.projectContext && (
+          {caseStudyData.projectContext && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
               <ProjectContextSection context={caseStudyData.projectContext} />
             </div>
           )}
 
           {/* Client Testimonial Section */}
-          {!hasNarrative && caseStudyData.clientTestimonial && (
+          {caseStudyData.clientTestimonial && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
               <ClientTestimonialSection testimonial={caseStudyData.clientTestimonial} />
             </div>
           )}
 
-          {/* Narrative blocks: image-first scannable layout for new case studies */}
-          {hasNarrative && (
-            <CaseStudyNarrative blocks={caseStudyData.narrativeBlocks!} />
-          )}
-
           {/* Overview Section - Full width band */}
-          {!hasNarrative && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
-              <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-                <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
-                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-              </section>
-            </div>
-          )}
+          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
+            <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+              <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
+              <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+            </section>
+          </div>
 
           <div className="section-container bg-white">
-
-          {/* Legacy sections — only render when no narrative blocks exist */}
-          {!hasNarrative && (<>
-
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
@@ -365,42 +347,56 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   projectId={caseStudyData.id}
                 />
               ) : caseStudyData.finalProductSection.images && (
-                <div className="grid gap-6 md:gap-8">
-                  {caseStudyData.finalProductSection.images.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
-                    >
-                      {image.annotations && image.annotations.length > 0 ? (
-                        <AnnotatedImage
-                          src={image.src}
-                          alt={image.alt}
-                          annotations={image.annotations}
-                          className="w-full h-auto rounded-lg"
-                        />
-                      ) : (
-                        <div className="group cursor-pointer">
-                          <div className="overflow-hidden">
-                            <img
-                              src={image.src}
-                              alt={image.alt}
-                              className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
-                            />
-                          </div>
-                          {image.caption && (
-                            <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                              {image.caption}
+                caseStudyData.finalProductSection.images.length > 3 ? (
+                  <ProjectImageCarousel
+                    images={caseStudyData.finalProductSection.images.map(img => img.src)}
+                    imageCaptions={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.caption) acc[img.src] = img.caption;
+                      return acc;
+                    }, {} as Record<string, string>)}
+                    imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.annotations) acc[img.src] = img.annotations;
+                      return acc;
+                    }, {} as Record<string, ImageAnnotation[]>)}
+                  />
+                ) : (
+                  <div className="grid gap-6 md:gap-8">
+                    {caseStudyData.finalProductSection.images.map((image, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                      >
+                        {image.annotations && image.annotations.length > 0 ? (
+                          <AnnotatedImage
+                            src={image.src}
+                            alt={image.alt}
+                            annotations={image.annotations}
+                            className="w-full h-auto rounded-lg"
+                          />
+                        ) : (
+                          <div className="group cursor-pointer">
+                            <div className="overflow-hidden">
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
+                              />
                             </div>
-                          )}
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
+                            {image.caption && (
+                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                                {image.caption}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                )
               )}
             </section>
           )}
@@ -490,10 +486,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          </>)}
-
+          
           {/* Tags */}
-
           {caseStudyData.tags?.length ? (
             <div className="flex flex-wrap justify-center gap-2 py-8">
               {caseStudyData.tags.map((tag) => (

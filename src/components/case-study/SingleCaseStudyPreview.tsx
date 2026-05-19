@@ -24,64 +24,42 @@ interface CaseStudy {
   video?: string;
 }
 
+// Homepage case studies data with actual image URLs
 const caseStudies: CaseStudy[] = [
   {
-    id: "firelion",
-    tags: ["Game", "Solo + AI", "Mobile Web"],
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Shipped solo with AI as a build partner.",
-    impact: "",
-    url: "/project/firelion",
-    liveUrl: "https://firelion.me",
-    images: {
-      primary: "/images/firelion-hero-title.png",
-      alt: "Fire Lion title screen"
-    },
-    layout: "single-centered"
-  },
-  {
-    id: "ring-rival",
-    tags: ["Game", "Solo + AI", "Mobile Web"],
-    title: "Ring-Rival",
-    description: "A retro arcade boxing game built for the mobile browser. AI opponents, AI-generated trash talk, career mode.",
-    impact: "",
-    url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
-    images: {
-      primary: "/images/ringrival-hero-title.png",
-      alt: "Ring-Rival title screen"
-    },
-    layout: "single-centered"
-  },
-  {
-    id: "catchbuddy",
-    tags: ["Marketplace", "Solo + AI", "Trust & Safety"],
-    title: "CatchBuddy",
-    description: "A location-aware web app for finding a partner for pickup sports in your neighborhood. Built solo with AI.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
-    images: {
-      primary: "/images/catchbuddy-hero-landing.png",
-      alt: "CatchBuddy landing page"
-    },
-    layout: "single-centered"
-  },
-  {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Trust & Safety"],
-    title: "HerbaLink",
-    description: "A booking platform for verified herbalists. Built around the realization that the product isn't search — it's trust.",
-    impact: "",
+    tags: ["Health", "Marketplace", "Gen AI"],
+    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
+    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
+    impact: "+3x Booking Rate Increase",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      alt: "HerbaLink booking interface"
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
+      secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
+      alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
     layout: "side-by-side",
     video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4"
-  }
+  },
+  {
+    id: "splittime",
+    tags: ["Family Tech", "iOS→Android", "Legal UX"],
+    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
+    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
+    impact: "-40% Conflict Reduction",
+    url: "/project/splittime",
+    liveUrl: "https://splittime.pro",
+    images: {
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
+      secondary: "images/desktop-signup-1.png",
+      alt: "SplitTime web and mobile views showing scheduling features"
+    },
+    layout: "web-mobile",
+    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
+  },
+  // business-management entry removed
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
 ];
 
 interface SingleCaseStudyPreviewProps {

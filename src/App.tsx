@@ -34,9 +34,10 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
-const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
-const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/StructuredRingRivalCaseStudy"));
-const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
+const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
+const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
+const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
+// const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 
@@ -64,14 +65,13 @@ function AppContent() {
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
+              {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/firelion" element={<StructuredFireLionCaseStudy />} />
-              <Route path="/project/fire-lion" element={<Navigate to="/project/firelion" replace />} />
-              <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
-              <Route path="/project/ringrival" element={<Navigate to="/project/ring-rival" replace />} />
-              <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
-              <Route path="/project/catch-buddy" element={<Navigate to="/project/catchbuddy" replace />} />
-
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
+              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
+              
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               
