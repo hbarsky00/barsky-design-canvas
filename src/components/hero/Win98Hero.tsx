@@ -47,10 +47,10 @@ const Win98Hero: React.FC = () => {
         {/* Desktop icons column */}
         <div className="hidden sm:flex flex-col gap-3 pt-1 shrink-0">
           {[
-            { Icon: Folder, label: "My Work", to: "/projects" as const },
+            { Icon: Folder, label: "My Work", onClick: () => document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" }) },
             { Icon: Mail, label: "Contact", to: "/contact" as const },
             { Icon: Github, label: "GitHub", href: "https://github.dev/hbarsky00" },
-          ].map(({ Icon, label, to, href }) => {
+          ].map(({ Icon, label, to, href, onClick }) => {
             const inner = (
               <div className="flex flex-col items-center w-16 cursor-pointer">
                 <div className="raise w-8 h-8 flex items-center justify-center mb-1">
@@ -59,6 +59,7 @@ const Win98Hero: React.FC = () => {
                 <span className="text-[11px] text-center leading-tight">{label}</span>
               </div>
             );
+            if (onClick) return <button key={label} onClick={onClick} className="desktop-icon bg-transparent border-0 p-0">{inner}</button>;
             return to ? (
               <Link key={label} to={to} className="desktop-icon">{inner}</Link>
             ) : (
@@ -66,6 +67,7 @@ const Win98Hero: React.FC = () => {
             );
           })}
         </div>
+
 
         {/* Window */}
         <div className="flex-1 flex justify-center">
