@@ -117,15 +117,26 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
+          {/* Narrative blocks: image-first scannable layout for new case studies */}
+          {hasNarrative && (
+            <CaseStudyNarrative blocks={caseStudyData.narrativeBlocks!} />
+          )}
+
           {/* Overview Section - Full width band */}
-          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
-            <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
-              <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-            </section>
-          </div>
+          {!hasNarrative && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
+              <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
+                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+              </section>
+            </div>
+          )}
 
           <div className="section-container bg-white">
+
+          {/* Legacy sections — only render when no narrative blocks exist */}
+          {!hasNarrative && (<>
+
 
           {/* Research Section */}
           {caseStudyData.researchSection && (
