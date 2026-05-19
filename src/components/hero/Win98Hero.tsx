@@ -62,6 +62,7 @@ const Win98Hero: React.FC = () => {
         .win98 .menu-item:hover { background:#000080; color:#fff; }
         .win98 .desktop-icon span { color:#fff; text-shadow:1px 1px #000; }
         .win98 * { box-sizing: border-box; }
+        .win98 a:hover .cs-thumb-label { background:#000080; color:#fff; }
       `}</style>
 
       <div className="flex gap-3 sm:gap-4 flex-1 items-center">
