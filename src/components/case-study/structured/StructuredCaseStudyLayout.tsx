@@ -29,6 +29,7 @@ import PostLaunchSection from "../PostLaunchSection";
 import TechnicalImplementationSection from "../TechnicalImplementationSection";
 import { Badge } from "@/components/ui/badge";
 import HeadingHierarchy from "@/components/seo/HeadingHierarchy";
+import CaseStudyNarrative from "./CaseStudyNarrative";
 
 
 interface StructuredCaseStudyLayoutProps {
