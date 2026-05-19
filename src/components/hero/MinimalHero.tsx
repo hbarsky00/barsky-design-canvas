@@ -191,7 +191,7 @@ const MinimalHero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <AnimatedText
-                text="Lead Product Designer"
+                text="UX Designer Portfolio — Lead Product & AI Design"
                 tag="h1"
                 type="word"
                 animation="fade"
@@ -203,7 +203,7 @@ const MinimalHero: React.FC = () => {
                            bg-clip-text text-transparent mb-1 sm:mb-1 lg:mb-1 xl:mb-1 2xl:mb-1 leading-[1.706]"
               />
               <AnimatedText
-                text="working with AI as a build partner. Four live apps. Real users. Real cuts."
+                text="Passion for High Craft, Gen AI, Cyber & Fintech"
                 tag="div"
                 type="word"
                 animation="fade"
