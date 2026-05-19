@@ -490,8 +490,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          
+          </>)}
+
           {/* Tags */}
+
           {caseStudyData.tags?.length ? (
             <div className="flex flex-wrap justify-center gap-2 py-8">
               {caseStudyData.tags.map((tag) => (
