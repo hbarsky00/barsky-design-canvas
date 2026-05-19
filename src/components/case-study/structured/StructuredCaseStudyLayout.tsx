@@ -347,56 +347,42 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   projectId={caseStudyData.id}
                 />
               ) : caseStudyData.finalProductSection.images && (
-                caseStudyData.finalProductSection.images.length > 3 ? (
-                  <ProjectImageCarousel
-                    images={caseStudyData.finalProductSection.images.map(img => img.src)}
-                    imageCaptions={caseStudyData.finalProductSection.images.reduce((acc, img) => {
-                      if (img.caption) acc[img.src] = img.caption;
-                      return acc;
-                    }, {} as Record<string, string>)}
-                    imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
-                      if (img.annotations) acc[img.src] = img.annotations;
-                      return acc;
-                    }, {} as Record<string, ImageAnnotation[]>)}
-                  />
-                ) : (
-                  <div className="grid gap-6 md:gap-8">
-                    {caseStudyData.finalProductSection.images.map((image, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
-                      >
-                        {image.annotations && image.annotations.length > 0 ? (
-                          <AnnotatedImage
-                            src={image.src}
-                            alt={image.alt}
-                            annotations={image.annotations}
-                            className="w-full h-auto rounded-lg"
-                          />
-                        ) : (
-                          <div className="group cursor-pointer">
-                            <div className="overflow-hidden">
-                              <img
-                                src={image.src}
-                                alt={image.alt}
-                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
-                              />
-                            </div>
-                            {image.caption && (
-                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                                {image.caption}
-                              </div>
-                            )}
+                <div className="grid gap-6 md:gap-8">
+                  {caseStudyData.finalProductSection.images.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                    >
+                      {image.annotations && image.annotations.length > 0 ? (
+                        <AnnotatedImage
+                          src={image.src}
+                          alt={image.alt}
+                          annotations={image.annotations}
+                          className="w-full h-auto rounded-lg"
+                        />
+                      ) : (
+                        <div className="group cursor-pointer">
+                          <div className="overflow-hidden">
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
+                            />
                           </div>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                )
+                          {image.caption && (
+                            <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                              {image.caption}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               )}
             </section>
           )}
