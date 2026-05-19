@@ -58,15 +58,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   }
 
   return (
-    <div className="relative bg-white rounded-sm overflow-hidden">
-      <img
-        src={thumbnailSrc}
-        alt={`${title} promotional image`}
-        className="w-full h-auto object-contain image-high-quality"
-        style={{ display: 'block' }}
-      />
-    </div>
+    <img
+      src={thumbnailSrc}
+      alt={`${title} promotional image`}
+      className="w-full h-auto object-contain image-high-quality block rounded-sm"
+    />
   );
+
 
 };
 
