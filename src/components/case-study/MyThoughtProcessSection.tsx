@@ -115,14 +115,14 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
           src={img.src}
           alt={img.alt}
           annotations={img.annotations}
-          className="w-full rounded-lg"
+          className="w-full rounded-sm"
         />
       ) : (
         <MaximizableImage
           src={img.src}
           alt={img.alt}
           caption={img.caption}
-          className="w-full rounded-lg"
+          className="w-full rounded-sm"
         />
       )}
     </div>
@@ -159,7 +159,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
                 src={video.src}
                 title={video.title}
                 caption={video.caption}
-                className="w-full rounded-lg shadow-lg"
+                className="w-full rounded-sm shadow-lg"
               />
             </motion.div>
           )}

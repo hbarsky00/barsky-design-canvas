@@ -72,7 +72,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights, video }) => {
               src={video.src}
               title={video.title}
               caption={video.caption}
-              className="w-full rounded-lg shadow-sm"
+              className="w-full rounded-sm shadow-sm"
             />
           </motion.div>
         )}
@@ -92,7 +92,7 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights, video }) => {
                   <MaximizableImage
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-auto rounded-lg shadow-sm"
+                    className="w-full h-auto rounded-sm shadow-sm"
                   />
                   {image.caption && (
                     <p className="text-sm text-muted-foreground mt-3 text-center content-rail-center">

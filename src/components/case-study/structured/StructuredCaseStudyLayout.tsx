@@ -411,7 +411,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                             src={image.src}
                             alt={image.alt}
                             annotations={image.annotations}
-                            className="w-full h-auto rounded-lg"
+                            className="w-full h-auto rounded-sm"
                           />
                         ) : (
                           <MaximizableImage
