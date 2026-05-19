@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Header from "@/components/Header";
-import MinimalHero from "@/components/hero/MinimalHero";
+import Win98Hero from "@/components/hero/Win98Hero";
 import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
 import Footer from "@/components/Footer";
@@ -39,7 +39,7 @@ const HomepageLayout: React.FC = () => {
         {/* Keep intro section outside 3D container to prevent displacement */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">
-            <MinimalHero />
+            <Win98Hero />
           </section>
         </SectionTransition>
         
