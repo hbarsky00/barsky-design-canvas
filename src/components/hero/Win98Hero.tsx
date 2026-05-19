@@ -27,6 +27,18 @@ const Win98Hero: React.FC = () => {
   const imageUrl =
     "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
 
+  const scrollToCaseStudies = () => {
+    const section = document.getElementById("case-studies");
+    if (!section) return;
+    const heading = section.querySelector("h1, h2, h3") as HTMLElement | null;
+    const target = heading ?? section;
+    const headerHeight = 72;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+
+
   return (
     <section
       aria-label="Hiram Barsky portfolio hero"
@@ -48,7 +60,7 @@ const Win98Hero: React.FC = () => {
         {/* Desktop icons column */}
         <div className="hidden sm:flex flex-col gap-3 pt-1 shrink-0">
           {[
-            { Icon: Folder, label: "My Work", onClick: () => document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" }) },
+            { Icon: Folder, label: "My Work", onClick: scrollToCaseStudies },
             { Icon: Mail, label: "Contact", to: "/contact" as const },
             { Icon: Github, label: "GitHub", href: "https://github.dev/hbarsky00" },
           ].map(({ Icon, label, to, href, onClick }) => {
@@ -124,7 +136,7 @@ const Win98Hero: React.FC = () => {
                     href="#case-studies"
                     onClick={(e) => {
                       e.preventDefault();
-                      document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" });
+                      scrollToCaseStudies();
                     }}
                     className="raise w98-btn"
                   >
@@ -176,7 +188,7 @@ const Win98Hero: React.FC = () => {
             </div>
             <ul className="flex-1 py-1 text-[12px] text-black">
               {[
-                { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" }); } },
+                { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
                 { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); window.location.assign("/projects"); } },
                 { label: "Contact", Icon: Mail, onClick: () => { setStartOpen(false); window.location.assign("/contact"); } },
                 { label: "LinkedIn", Icon: Linkedin, onClick: () => { setStartOpen(false); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
