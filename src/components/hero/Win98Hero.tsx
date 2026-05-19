@@ -189,7 +189,7 @@ const Win98Hero: React.FC = () => {
             <ul className="flex-1 py-1 text-[12px] text-black">
               {[
                 { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
-                { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); window.location.assign("/projects"); } },
+                { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
                 { label: "Contact", Icon: Mail, onClick: () => { setStartOpen(false); window.location.assign("/contact"); } },
                 { label: "LinkedIn", Icon: Linkedin, onClick: () => { setStartOpen(false); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
                 { label: "GitHub", Icon: Github, onClick: () => { setStartOpen(false); window.open("https://github.dev/hbarsky00", "_blank"); } },
