@@ -159,6 +159,57 @@ const Win98Hero: React.FC = () => {
                     Book a Call
                   </a>
                 </div>
+
+                {/* Divider */}
+                <div className="mt-4 mb-3">
+                  <div style={{ height: 0, borderTop: "1px solid #808080" }} />
+                  <div style={{ height: 0, borderTop: "1px solid #fff" }} />
+                </div>
+
+                {/* Case study thumbnails grid */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { id: "case-study-1", label: "Fire Lion", img: "/images/firelion-hero-title.png" },
+                    { id: "case-study-2", label: "Ring-Rival", img: "/images/ringrival-hero-title.png" },
+                    { id: "case-study-3", label: "CatchBuddy", img: "/images/catchbuddy-hero-landing.png" },
+                    { id: "case-study-4", label: "HerbaLink", img: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png" },
+                    { id: "case-study-5", label: "Email Creation AI", img: "/images/email-ai-promo.png" },
+                    { id: "case-study-6", label: "DAE Search", img: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg" },
+                  ].map((c) => (
+                    <a
+                      key={c.id}
+                      href={`#${c.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById(c.id);
+                        if (!el) return;
+                        const top = el.getBoundingClientRect().top + window.scrollY - 72;
+                        window.scrollTo({ top, behavior: "smooth" });
+                      }}
+                      className="group flex flex-col gap-1 no-underline"
+                    >
+                      <div className="sunk w-full aspect-[4/3] overflow-hidden">
+                        <img
+                          src={c.img}
+                          alt={c.label}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div
+                        className="sunk text-[11px] text-black px-2 py-[2px] text-center truncate group-hover:text-white"
+                        style={{ transition: "background 0.1s" }}
+                      >
+                        <span className="group-hover:[&]:hidden">{c.label}</span>
+                        <span className="hidden group-hover:inline">{c.label}</span>
+                      </div>
+                      <style>{`
+                        .group:hover > div.sunk:last-child { background:#000080 !important; color:#fff !important; }
+                      `}</style>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
