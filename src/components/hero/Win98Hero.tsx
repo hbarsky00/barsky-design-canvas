@@ -152,11 +152,14 @@ const Win98Hero: React.FC = () => {
       </div>
 
       {/* Taskbar */}
-      <div className="raise mt-2 flex items-center gap-1 px-1 py-[2px]">
-        <div className="raise px-2 py-[3px] flex items-center gap-1 text-[12px] font-bold text-black cursor-default">
+      <div className="raise mt-2 flex items-center gap-1 px-1 py-[2px] relative">
+        <button
+          onClick={() => setStartOpen((v) => !v)}
+          className={`${startOpen ? "sunk" : "raise"} px-2 py-[3px] flex items-center gap-1 text-[12px] font-bold text-black cursor-pointer`}
+        >
           <LayoutGrid className="w-[14px] h-[14px]" />
           Start
-        </div>
+        </button>
         <div className="sunk text-[11px] text-black px-2 py-[2px]">Hiram Barsky — Portfolio</div>
         <div className="ml-auto flex items-center gap-2">
           <a href="mailto:hbarsky01@gmail.com" aria-label="Email" className="sunk px-2 py-[2px] text-black"><Mail className="w-3 h-3" /></a>
@@ -164,7 +167,33 @@ const Win98Hero: React.FC = () => {
           <a href="https://calendly.com/barskyuxdesignservices/30min" target="_blank" rel="noopener noreferrer" aria-label="Book a call" className="sunk px-2 py-[2px] text-black"><Calendar className="w-3 h-3" /></a>
           <div className="sunk text-[11px] text-black px-2 py-[2px]">{clock}</div>
         </div>
+
+        {startOpen && (
+          <div className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30" onMouseLeave={() => setStartOpen(false)}>
+            <div className="w-7 flex items-end justify-center py-2 text-white font-bold text-[11px] tracking-widest" style={{ background: "#000080", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+              Barsky<span className="font-normal">98</span>
+            </div>
+            <ul className="flex-1 py-1 text-[12px] text-black">
+              {[
+                { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" }); } },
+                { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); window.location.assign("/projects"); } },
+                { label: "Contact", Icon: Mail, onClick: () => { setStartOpen(false); window.location.assign("/contact"); } },
+                { label: "LinkedIn", Icon: Linkedin, onClick: () => { setStartOpen(false); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
+                { label: "GitHub", Icon: Github, onClick: () => { setStartOpen(false); window.open("https://github.dev/hbarsky00", "_blank"); } },
+                { label: "Book a Call", Icon: Calendar, onClick: () => { setStartOpen(false); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
+              ].map(({ label, Icon, onClick }) => (
+                <li key={label}>
+                  <button onClick={onClick} className="w-full flex items-center gap-2 px-2 py-[5px] hover:bg-[#000080] hover:text-white text-left">
+                    <Icon className="w-4 h-4" />
+                    <span>{label}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
+
     </section>
   );
 };
