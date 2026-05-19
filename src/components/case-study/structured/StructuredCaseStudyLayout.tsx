@@ -414,20 +414,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                             className="w-full h-auto rounded-lg"
                           />
                         ) : (
-                          <div className="group cursor-pointer">
-                            <div className="overflow-hidden">
-                              <img
-                                src={image.src}
-                                alt={image.alt}
-                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
-                              />
-                            </div>
-                            {image.caption && (
-                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                                {image.caption}
-                              </div>
-                            )}
-                          </div>
+                          <MaximizableImage
+                            src={image.src}
+                            alt={image.alt}
+                            caption={image.caption}
+                            imageList={caseStudyData.finalProductSection.images.map(img => img.src)}
+                            currentIndex={index}
+                            className="w-full h-auto image-high-quality"
+                          />
                         )}
                       </motion.div>
                     ))}
