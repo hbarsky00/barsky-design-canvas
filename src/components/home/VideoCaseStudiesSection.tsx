@@ -88,6 +88,32 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
+  },
+  {
+    id: "email-creation-ai",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    title: "Email Creation AI",
+    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
+    impact: "",
+    url: "/project/email-creation-ai",
+    images: {
+      primary: "/images/email-ai-promo.png",
+      alt: "Email Creation AI workflow"
+    },
+    layout: "side-by-side"
+  },
+  {
+    id: "dae-search",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    title: "DAE Search",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    impact: "",
+    url: "/project/dae-search",
+    images: {
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search platform interface"
+    },
+    layout: "side-by-side"
   }
 ];
 
