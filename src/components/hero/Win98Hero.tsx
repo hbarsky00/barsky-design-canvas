@@ -117,7 +117,16 @@ const Win98Hero: React.FC = () => {
                 </div>
 
                 <div className="flex gap-2 flex-wrap">
-                  <Link to="/projects" className="raise w-98-btn w98-btn">See My Work</Link>
+                  <a
+                    href="#case-studies"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="raise w98-btn"
+                  >
+                    See My Work
+                  </a>
                   <a
                     href="https://calendly.com/barskyuxdesignservices/30min"
                     target="_blank"
