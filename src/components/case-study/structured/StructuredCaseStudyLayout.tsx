@@ -104,14 +104,14 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
           </div>
 
           {/* Project Context Section */}
-          {caseStudyData.projectContext && (
+          {!hasNarrative && caseStudyData.projectContext && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
               <ProjectContextSection context={caseStudyData.projectContext} />
             </div>
           )}
 
           {/* Client Testimonial Section */}
-          {caseStudyData.clientTestimonial && (
+          {!hasNarrative && caseStudyData.clientTestimonial && (
             <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
               <ClientTestimonialSection testimonial={caseStudyData.clientTestimonial} />
             </div>
