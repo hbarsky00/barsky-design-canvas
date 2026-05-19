@@ -24,6 +24,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { StructuredCaseStudySectionProps } from "@/components/case-study/structured/StructuredCaseStudySection";
+import type { NarrativeBlock } from "@/components/case-study/structured/CaseStudyNarrative";
 
 export interface EmergingTheme {
   eyebrow: string;
