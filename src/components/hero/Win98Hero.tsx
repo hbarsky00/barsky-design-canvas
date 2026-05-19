@@ -111,7 +111,7 @@ const Win98Hero: React.FC = () => {
             <div className="p-4 flex flex-col sm:flex-row gap-4 items-start">
               <div className="shrink-0 w-20">
                 <div className="sunk w-20 h-20 overflow-hidden">
-                  <img src={imageUrl} alt="Hiram Barsky" className="w-full h-full object-cover" loading="eager" />
+                  <img src={imageUrl} alt="Hiram Barsky" width={80} height={80} className="w-full h-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
                 </div>
                 <div className="text-[11px] text-black text-center mt-1 break-words">hiram_barsky.bmp</div>
               </div>
