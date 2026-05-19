@@ -74,6 +74,10 @@ function AppContent() {
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+              <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
+              <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
+              <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
+
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
