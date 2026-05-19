@@ -416,45 +416,114 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "herbalink": {
     id: `herbalink`,
     title: `HerbaLink`,
-    description: `A booking platform for herbalists, built around the realization that the actual product is trust, not search.`,
-    tags: [`Health`, `Marketplace`, `Trust & Safety`],
+    description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
+    tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
     heroVideo: {
       src: `https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4`,
       poster: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
       alt: `HerbaLink booking platform overview`,
     },
     projectLink: `http://herbalink.live`,
-    problemCallout: {
-      eyebrow: `THE PROBLEM`,
-      statement: `One quote from research stuck: 'I found this herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick.' — Jessica. That's not a search problem. It's a trust and safety problem, and they're the same problem. Build the world's best herbalist directory and someone still finds an unqualified practitioner — I've made things worse.`,
+    heroMetrics: [
+      { value: `Solo Build`, label: `Designer + AI, end-to-end` },
+      { value: `Credentials as a Gate`, label: `Verified against an external registry, not a badge` },
+      { value: `Smaller Catalog by Design`, label: `Honest beats exhaustive` },
+    ],
+    researchSection: {
+      subhead: `Talking to users turning to herbalism revealed three problems:`,
+      emergingThemes: [
+        {
+          eyebrow: `DISCOVERY IS A MISINFORMATION FIELD`,
+          insight: `Instagram practitioners with no credentials, Google results that mix certified herbalists with weekend-workshop graduates, supplement interactions nobody warns about.`,
+          drove: `Drove: a credentialed directory gated by external verification.`,
+        },
+        {
+          eyebrow: `TRUST IS THE PRODUCT, NOT SEARCH`,
+          insight: `One user: "I found an herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick."`,
+          drove: `Drove: making the safe path the easy path, not warning labels on the unsafe one.`,
+        },
+        {
+          eyebrow: `FILTER-HEAVY UX FEELS LIKE WEBMD`,
+          insight: `A user testing the early filter panel: "This feels like trying to diagnose myself on WebMD."`,
+          drove: `Drove: replaced filters with a guided triage intake.`,
+        },
+      ],
+      researchImage: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`,
+      researchImageAlt: `The American Herbalists Guild directory — the external credential source HerbaLink verifies against`,
     },
-    finalProductSection: {
-      eyebrow: `WHAT I DID`,
-      title: `What I Did`,
-      description: `Verified credentials as a gate, not a badge. Practitioners aren't visible until credentials are checked against the American Herbalists Guild or equivalent. No 'unverified' tier. Smaller catalog, more honest one. Safety info — drug interactions, contraindications — on the booking page, not in an FAQ. If you're booking for a condition where herbs interact with common prescriptions, that warning is unavoidable. Guided matching instead of filters: testing the filter-heavy version was brutal — 'this feels like trying to diagnose myself on WebMD.' Redesigned closer to a triage intake than a search bar. Visible sources on every claim. Users mostly won't click through, but the act of citing keeps the platform honest.`,
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing for them — and the discovery experience is a misinformation field. The design job wasn't to build a bigger directory. It was to make the safe path the easy path, in a category where being wrong has real medical consequences.`,
+    },
+    sprintZeroSection: {
+      eyebrow: `SPRINT ZERO`,
+      title: `Sprint Zero`,
+      workshopKickoff: ``,
+      explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
+      decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`, alt: `AHG directory — grid of herbal schools` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial Concepts & Sketches` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `User Flow Explorations` },
-        { src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1`, alt: `HerbaLink user flow from onboarding to booking` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `Flow exploration — credential gate sits before any browsing` },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `"Verified" as a gate is a different product than "verified" as a badge.`,
+        description: `Most directories let anyone list themselves and slap a badge on profiles that pass a basic check. Inverting that — no practitioner is visible until verified — produces a smaller, more honest catalog. That distinction is the product.`,
+      },
+      {
+        number: 2,
+        title: `Users say "more options," they mean "more confidence in the option I pick."`,
+        description: `Adding 200 practitioners to the early catalog made the experience worse, not better. The win came from removing anyone whose credentials couldn't be verified — even when the catalog visibly shrank.`,
+      },
+      {
+        number: 3,
+        title: `AI can build the directory in a weekend. Deciding who doesn't appear in it is the actual product.`,
+        description: `AI handled scaffolding, Supabase schemas, RLS policies, edge functions, the symptom intake structure, and copy variants. The credential model — which certifications matter for which conditions, when to refuse a listing — was every call I made by hand.`,
+      },
+    ],
+    ideationSection: {
+      subhead: `Multiple iterations on discovery and intake — each cut backed by observed user behavior.`,
+      bubbles: [
+        { title: `Heavy filter panel`, description: `Modality, condition, price, location, availability tested as "WebMD." Replaced with guided intake.` },
+        { title: `Comprehensive symptom diary`, description: `Mood, sleep, supplements, side effects, energy was opened twice per user and abandoned. Cut to one question: what changed since last visit?` },
+        { title: `Yelp-style "Verified" badge`, description: `Scrapped in favor of a gate that controls visibility entirely.` },
+      ],
+      wireframeImage: {
+        src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1`,
+        alt: `HerbaLink user flow from onboarding to booking`,
+        caption: `Final flow — onboarding feeds a guided intake, not a search bar`,
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: `APPROACH & DECISION MAKING`,
+      title: `My Thought Process`,
+      content: `In a category dominated by misinformation, the design job is to make the safe path the easy path. Not to add warning labels to the unsafe path. Every decision was checked against: would this protect a user from the same $200-tincture mistake? That filter killed open-ended search, killed crowdsourced practitioner listings, and inverted "verified" from a badge into a gate.`,
+    },
+    userTestingSection: {
+      eyebrow: `USER TESTING`,
+      title: `User Testing`,
+      description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
+      images: [
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
       ],
     },
     whatDidntWorkSection: {
-      eyebrow: `HICCUP`,
-      title: `Hiccup`,
-      content: `Original architecture was a giant filterable database. Wrong product. When users say they want more options, they often mean they want more confidence in the option they pick. Adding 200 practitioners made things worse. Also over-designed the symptom tracker as a comprehensive health diary. Users opened it twice and abandoned it. Cut back to 'what changed since last visit?' — that one they use.`,
+      eyebrow: `WHAT DIDN'T WORK`,
+      title: `What Didn't Work`,
+      content: `The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The "Verified" badge approach was abandoned entirely in favor of the gate model.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `User testing session showing booking flow validation` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
       ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `Early users described it as feeling more like booking a doctor than browsing a wellness app. That was the shift I was after.`,
+      description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final product desktop interface` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final product mobile interface` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
       ],
     },
     sections: [],
@@ -466,6 +535,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: `/project/herbalink`,
     },
   },
+
   "splittime": {
     id: `splittime`,
     title: `SplitTime`,
