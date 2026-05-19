@@ -260,6 +260,7 @@ export interface StructuredCaseStudyData {
     }>;
   };
   sections: StructuredCaseStudySectionProps[];
+  narrativeBlocks?: NarrativeBlock[];
   projectLink?: string;
   gradientClasses?: string;
   seoData?: {
