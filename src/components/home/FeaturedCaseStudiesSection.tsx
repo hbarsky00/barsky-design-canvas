@@ -24,19 +24,51 @@ interface FeaturedStudy {
 
 const featuredCaseStudies: FeaturedStudy[] = [
   {
-    id: "smarterhealth",
-    title: "Smarter Health",
-    subtitle: "Transforming Patient Anxiety Into Confident Self-Care",
-    description: "Reduced patient anxiety around medication management by transforming overwhelming daily routines into confident, consistent health behaviors. Empathy-driven design helped diabetic patients trust their care plan, resulting in 3× higher engagement and 60% better adherence.",
-    image: "/assets/case-studies/smarter-health/og-cover.png",
-    url: "/project/smarterhealth",
-    category: "Healthcare",
-    impact: "60% more patients trusting their care plan",
-    tags: ["Healthcare", "Mobile App", "Accessibility"],
+    id: "fire-lion",
+    title: "Fire Lion",
+    subtitle: "A shipped game, built solo with AI",
+    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder — the deletion list ended up longer than the feature list.",
+    image: "/images/firelion-hero-title.png",
+    url: "/project/fire-lion",
+    category: "Game Design",
+    impact: "Shipped solo, 3 modes, ruthless cuts",
+    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
     techStack: {
-      aiTools: ["ChatGPT", "Figma AI"],
-      devStack: ["React Native", "TypeScript"],
-      designTools: ["Figma", "Material Design 3.0"],
+      aiTools: ["Claude", "Cursor AI", "Gemini"],
+      devStack: ["React", "TypeScript", "Supabase"],
+      designTools: ["Figma"],
+    }
+  },
+  {
+    id: "ring-rival",
+    title: "Ring-Rival",
+    subtitle: "Console boxing feel on the mobile web",
+    description: "Distinct AI opponents, AI-generated trash talk, career mode — built solo with AI as a co-builder. Time-to-first-punch dropped from 22s to 6s after testing.",
+    image: "/images/ringrival-hero-title.png",
+    url: "/project/ring-rival",
+    category: "Game Design",
+    impact: "22s → 6s time to first punch",
+    tags: ["AI-Assisted Product", "Mobile Web", "Solo Build"],
+    techStack: {
+      aiTools: ["Claude", "Gemini Image", "Cursor AI"],
+      devStack: ["React", "TypeScript", "Web Audio"],
+      designTools: ["Figma"],
+    }
+  },
+  {
+    id: "catchbuddy",
+    title: "CatchBuddy",
+    subtitle: "Same-day pickup sports, designed for trust",
+    description: "Post a game, see open games, confirm in a few taps. Safety-first architecture with minor approval, panic button, and curated meeting spots. Built solo with AI.",
+    image: "/images/catchbuddy-hero-landing.png",
+    url: "/project/catchbuddy",
+    category: "Trust & Safety",
+    impact: "Safety-first architecture, real stack shipped",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
+    techStack: {
+      aiTools: ["Claude", "Cursor AI"],
+      devStack: ["React", "Supabase", "Stripe"],
+      designTools: ["Figma"],
     }
   },
   {
@@ -55,72 +87,6 @@ const featuredCaseStudies: FeaturedStudy[] = [
       designTools: ["Figma", "Protopie"],
     }
   },
-  {
-    id: "crypto",
-    title: "Trading Without Friction",
-    subtitle: "Turning Fear Into Confident First Trades",
-    description: "Helped beginners trust themselves enough to make their first trade, while proving to pros they don't need to sacrifice speed for clarity. Eliminated the anxiety that makes 60% quit before trading, building confidence through transparency and dual-mode design.",
-    image: "/lovable-uploads/crypto-cover.jpg",
-    url: "/project/crypto",
-    category: "FinTech", 
-    impact: "+35% confident enough to start trading",
-    tags: ["Fintech", "Crypto", "Mobile & Web"],
-    techStack: {
-      aiTools: ["Claude 3.5", "Cursor AI"],
-      devStack: ["React", "TypeScript", "WebSocket"],
-      designTools: ["Figma", "Framer Motion"],
-    }
-  },
-  // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
-  {
-    id: "email-creation-ai",
-    title: "Email Creation AI",
-    subtitle: "40% Faster Pharma Campaigns Without Sacrificing Compliance",
-    description: "Designed a 6-step AI-powered email creation workflow for a global pharma company that cut HCP campaign production time by 40% while keeping every manuscript MLR-compliant. Eliminated 3+ manual handoffs by flipping the model — AI generates the compliant draft, humans refine.",
-    image: "/images/email-ai-promo.png",
-    url: "/project/email-creation-ai",
-    category: "Pharma",
-    impact: "40% faster, 100% compliant",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
-    techStack: {
-      aiTools: ["Claude", "Gemini"],
-      devStack: ["React", "TypeScript"],
-      designTools: ["Figma", "Markdown Specs"],
-    }
-  },
-  {
-    id: "barskyjoint",
-    title: "BarskyJoint",
-    subtitle: "Eliminating Ordering Anxiety to Boost Confidence",
-    description: "Eliminated ordering anxiety and decision paralysis to increase customer confidence and spending. Menu clarity and guided customization helped diners trust their choices, resulting in 28% higher ticket sizes as customers felt empowered to explore options.",
-    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
-    url: "/project/barskyjoint",
-    liveUrl: "https://barskyjoint.com",
-    category: "Restaurant Tech",
-    impact: "28% more confident ordering",
-    tags: ["Restaurant Tech", "Food Service", "Kiosk Design"],
-    techStack: {
-      aiTools: ["ChatGPT"],
-      devStack: ["React", "Next.js"],
-      designTools: ["Figma"],
-    }
-  },
-  {
-    id: "business-management",
-    title: "Business Management",
-    subtitle: "From Operational Chaos to Confident Control",
-    description: "Reduced operational anxiety by turning complex manual processes into confident, automated workflows. Teams moved from constant uncertainty about data accuracy to trusting their systems, resulting in 68% fewer errors and clear visibility into business health.",
-    image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
-    url: "/project/business-management",
-    category: "Enterprise",
-    impact: "68% more confident in data accuracy",
-    tags: ["Enterprise", "Automation", "Analytics"],
-    techStack: {
-      aiTools: ["ChatGPT", "Midjourney", "Cursor AI"],
-      devStack: ["React", "Next.js", "Supabase"],
-      designTools: ["Figma", "Framer"],
-    }
-  }
 ];
 
 const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study, index }) => {
