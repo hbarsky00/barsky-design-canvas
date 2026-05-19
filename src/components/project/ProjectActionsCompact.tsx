@@ -43,21 +43,8 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     }
   };
 
-  const handleLinkedInShare = () => {
-    const shareUrl = projectPageUrl || liveUrl;
-    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
-    
-    // Open LinkedIn sharing dialog in popup
-    if (typeof window !== 'undefined') {
-      window.open(
-        linkedinUrl,
-        '_blank',
-        'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
-      );
-    }
-    
-    onShare?.();
-  };
+  const shareUrl = projectPageUrl || liveUrl || '';
+  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
 
   if (!liveUrl) return null;
 
