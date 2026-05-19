@@ -64,13 +64,14 @@ function AppContent() {
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
-              {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-              <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
-              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
-              
+              <Route path="/project/firelion" element={<StructuredFireLionCaseStudy />} />
+              <Route path="/project/fire-lion" element={<Navigate to="/project/firelion" replace />} />
+              <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
+              <Route path="/project/ringrival" element={<Navigate to="/project/ring-rival" replace />} />
+              <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
+              <Route path="/project/catch-buddy" element={<Navigate to="/project/catchbuddy" replace />} />
+
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               
