@@ -127,7 +127,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                     src={image.src}
                     alt={image.alt}
                     caption={image.caption}
-                    className="w-full rounded-lg shadow-lg"
+                    className="w-full rounded-sm shadow-lg"
                     projectId="case-study"
                     fit="contain"
                   />
@@ -145,7 +145,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                     src={media.src}
                     alt={media.alt}
                     caption={media.caption}
-                    className="w-full max-w-full rounded-lg shadow-lg"
+                    className="w-full max-w-full rounded-sm shadow-lg"
                     projectId="case-study"
                     fit="contain"
                   />
@@ -155,7 +155,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                   src={media.src}
                   alt={media.alt}
                   caption={media.caption}
-                  className="w-full max-w-full rounded-lg shadow-lg"
+                  className="w-full max-w-full rounded-sm shadow-lg"
                   videoOptions={media.videoOptions}
                 />
               )}
