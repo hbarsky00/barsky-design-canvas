@@ -30,73 +30,49 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "barskyjoint",
-    tags: ["Restaurant Tech", "Kiosk", "Web"],
-    title: "BarskyJoint",
-    description: "One ordering system that works on a kiosk and a phone, without making either feel like a compromise.",
+    id: "fire-lion",
+    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
+    title: "Fire Lion",
+    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
     impact: "",
-    url: "/project/barskyjoint",
-    liveUrl: "https://barskyjoint.com",
+    url: "/project/fire-lion",
+    liveUrl: "https://firelion.me",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
-      alt: "BarskyJoint ordering platform"
+      primary: "/images/firelion-hero-title.png",
+      alt: "Fire Lion gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/barskyjoint-hero.mp4"
+    video: "/lovable-uploads/firelion-hero.mp4"
   },
   {
-    id: "splittime",
-    tags: ["Family Tech", "Legal UX", "Mobile"],
-    title: "SplitTime",
-    description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
+    id: "ring-rival",
+    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
+    title: "Ring-Rival",
+    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
-    url: "/project/splittime",
-    liveUrl: "https://splittime.pro",
+    url: "/project/ring-rival",
+    liveUrl: "https://rival.li",
     images: {
-      primary: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
-      alt: "SplitTime co-parenting platform"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "email-creation-ai",
-    tags: ["Pharma", "Gen AI", "Workflow Design"],
-    title: "ManuscriptRx",
-    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
-    impact: "",
-    url: "/project/email-creation-ai",
-    images: {
-      primary: "/images/emailai-screen1-content-planning.png",
-      alt: "ManuscriptRx AI-assisted pharma email workflow"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "investor-loan-app",
-    tags: ["Enterprise", "FinTech", "Workflow"],
-    title: "Investor Loan Platform",
-    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
-    impact: "",
-    url: "/project/investor-loan-app",
-    images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png",
-      alt: "Investor Loan Platform dashboard"
-    },
-    layout: "side-by-side"
-  },
-  {
-    id: "crypto",
-    tags: ["Fintech", "Crypto", "Dual-Mode UX"],
-    title: "Trading Without Friction",
-    description: "A crypto trading interface designed for two audiences the industry insists you have to choose between.",
-    impact: "",
-    url: "/project/crypto",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
-      alt: "Trading Without Friction crypto platform"
+      primary: "/images/ringrival-hero-title.png",
+      alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/crypto-hero.mp4"
+    video: "/lovable-uploads/ringrival-hero.mp4"
+  },
+  {
+    id: "catchbuddy",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
+    title: "CatchBuddy",
+    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
+    impact: "",
+    url: "/project/catchbuddy",
+    liveUrl: "https://catchbuddy.me",
+    images: {
+      primary: "/images/catchbuddy-hero-landing.png",
+      alt: "CatchBuddy pickup sports app"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/catchbuddy-hero.mp4"
   },
   {
     id: "herbalink",
@@ -112,19 +88,6 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
-  },
-  {
-    id: "dae-search",
-    tags: ["Enterprise", "Data Discovery", "Search UX"],
-    title: "DAE Search",
-    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
-    impact: "",
-    url: "/project/dae-search",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
-      alt: "DAE Search enterprise data discovery interface"
-    },
-    layout: "side-by-side"
   }
 ];
 
