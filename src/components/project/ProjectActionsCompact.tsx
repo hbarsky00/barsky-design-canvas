@@ -73,7 +73,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
           title="Share on LinkedIn"
         >
           <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-        </button>
+        </a>
 
         <button
           onClick={handleCopy}
