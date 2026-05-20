@@ -41,7 +41,9 @@ const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/Structu
 const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
 const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/StructuredRingRivalCaseStudy"));
 const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
-// const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
+const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
+const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
+const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/StructuredSplittimeCaseStudy"));
 
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
