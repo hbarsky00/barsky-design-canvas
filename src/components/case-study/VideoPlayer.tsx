@@ -1,5 +1,6 @@
 
 import React from "react";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -58,10 +59,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   }
 
   return (
-    <img
+    <MaximizableImage
       src={thumbnailSrc}
       alt={`${title} promotional image`}
-      className="w-full h-auto object-contain image-high-quality block rounded-sm"
+      className="w-full rounded-sm"
+      projectId="case-study"
+      fit="contain"
     />
   );
 
