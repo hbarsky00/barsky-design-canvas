@@ -132,13 +132,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
 
           {heroImage && (
             <div className="mb-16">
-              <MaximizableImage
-                src={heroImage.src}
-                alt={heroImage.alt}
-                className="w-full"
-                projectId={projectId}
-                fit="contain"
-              />
+              <HeroHoverMedia image={heroImage} projectId={projectId} />
             </div>
           )}
 
