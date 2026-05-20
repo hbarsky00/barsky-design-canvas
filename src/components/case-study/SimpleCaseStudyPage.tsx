@@ -34,6 +34,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   description,
   tags,
   liveUrl,
+  heroImage,
   blocks,
 }) => {
   return (
