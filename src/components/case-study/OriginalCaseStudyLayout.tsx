@@ -68,7 +68,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-center mb-12"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6">
                     {caseStudy.title}
                   </h1>
                   
@@ -130,7 +130,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                     className={`mb-20 ${isProjectPage ? 'cs-card' : ''}`}
                     style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
                   >
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8 text-left lg:text-center">
                       {title}
                     </h2>
                     
