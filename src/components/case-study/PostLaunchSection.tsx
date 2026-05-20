@@ -83,7 +83,7 @@ const PostLaunchSection: React.FC<PostLaunchSectionProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
               >
                 <MaximizableImage
                   src={image.src}
