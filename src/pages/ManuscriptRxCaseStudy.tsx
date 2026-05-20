@@ -14,10 +14,6 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "A regulated pharma email touches a medical writer, content ops, brand, MLR, and CRM — each in a different tool. Two weeks to send one email is considered fast.",
           "The obvious AI fix is \"dump the manuscript in and ship it.\" That's wrong.",
         ],
-        image: {
-          src: "/images/emailai-screen1-content-planning.png",
-          alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
-        },
       },
       {
         heading: "The Thesis",
@@ -25,10 +21,9 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "Regulated email requires human review at specific gates. The AI's job is the work between humans — not the work humans do.",
           "That one constraint shaped every decision.",
         ],
-        image: {
-          src: "/images/emailai-screen2-assemble.png",
-          alt: "Step 2 — AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right",
-        },
+        images: [
+          { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right" },
+        ],
       },
       {
         heading: "What I Built",
@@ -36,10 +31,9 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "Six steps, each with a clear owner and a clear gate. QC sits inline with editing — AI auto-pass, Content Ops, and Med Writer sign off while the writer is still in the content.",
           "\"Send Preview to Brand\" doesn't appear until the AI checklist passes.",
         ],
-        image: {
-          src: "/images/emailai-screen3-iterate-qc.png",
-          alt: "Step 3 — AI chat with live email preview on top, three role-owned QC cards on the bottom",
-        },
+        images: [
+          { src: "/images/emailai-screen3-iterate-qc.png", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom" },
+        ],
       },
       {
         heading: "The Honest Parts",
@@ -47,10 +41,9 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "Brief Creation is locked as \"Outside pilot scope\" — the brief lives upstream and saying that out loud is more useful than pretending I designed it.",
           "PromoMats integration warning stays visible on screen. Unresolved decisions in the open, not hidden.",
         ],
-        image: {
-          src: "/images/emailai-screen6-pre-mlr.png",
-          alt: "Step 5 — HTML generation and metadata checklist on the left, mobile and desktop email previews on the right",
-        },
+        images: [
+          { src: "/images/emailai-screen6-pre-mlr.png", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right" },
+        ],
       },
       {
         heading: "What I Haven't Solved",

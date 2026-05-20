@@ -14,21 +14,19 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Analysts search \"revenue,\" get 40 results, then spend 20 minutes figuring out which table is current, which is the team-of-record's, and which was deprecated three quarters ago but never cleaned up.",
           "The job isn't returning results — it's returning the one result you can act on.",
         ],
-        image: {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg",
-          alt: "Advanced search interface showing enterprise context",
-        },
+        images: [
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
+        ],
       },
       {
         heading: "What I Built",
         paragraphs: [
-          "Semantic search over metadata, not keyword match — tables called arr_monthly surface for \"revenue.\" Results cut from 40-to-narrow-down to 4-to-pick-from.",
+          "Semantic search over metadata, not keyword match — tables called `arr_monthly` surface for \"revenue.\" Results cut from 40-to-narrow-down to 4-to-pick-from.",
           "Data lineage lives on the result itself: where the data came from, when it last refreshed, what depends on it. One glance, not a click-through.",
         ],
-        image: {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp",
-          alt: "Information architecture / user flow process",
-        },
+        images: [
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp", alt: "Information architecture analysis of existing data systems" },
+        ],
       },
       {
         heading: "The Decisions That Mattered",
@@ -36,16 +34,16 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Permission state is a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely made people think the data didn't exist.",
           "Permission-aware autocomplete was built, security flagged it — the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
         ],
-        image: {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png",
-          alt: "Initial concepts for enterprise search / filter select screen",
-        },
+        images: [
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp", alt: "Initial concepts for enterprise search interface design" },
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png", alt: "Search paradigm exploration and decision framework" },
+        ],
       },
       {
         heading: "What I Got Wrong First",
         paragraphs: [
-          "Started by treating this as consumer search with an enterprise wrapper — clean ranked list, minimal chrome. Wrong audience. Enterprise users want context, signals, and density.",
-          "Analysts type fragments and abbreviations. \"I know what I want, find it fast\" mattered more than conversational queries.",
+          "Started by treating this as consumer search with an enterprise wrapper — clean ranked list, minimal chrome. Wrong audience.",
+          "Enterprise users want context, signals, and density. Analysts type fragments and abbreviations, not full questions.",
         ],
       },
       {
