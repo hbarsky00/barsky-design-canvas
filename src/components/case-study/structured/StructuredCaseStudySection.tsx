@@ -104,7 +104,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
   return (
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-      <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
+      <Card className={`p-3 sm:p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
         <CaseStudySectionHeader
           title={title}
           icon={Icon}
