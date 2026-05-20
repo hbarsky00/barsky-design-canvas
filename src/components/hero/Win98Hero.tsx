@@ -219,7 +219,8 @@ const Win98Hero: React.FC = () => {
       </div>
 
       {/* Taskbar */}
-      <div className="raise mt-2 flex items-center gap-1 px-1 py-[2px] relative">
+      <div className="raise mt-2 flex items-center gap-1 px-1 py-[2px] sticky bottom-0 z-20">
+
         <button
           onClick={() => setStartOpen((v) => !v)}
           className={`${startOpen ? "sunk" : "raise"} px-2 py-[3px] flex items-center gap-1 text-[12px] font-bold text-black cursor-pointer`}
