@@ -68,6 +68,18 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
             )}
           </header>
 
+          {heroImage && (
+            <div className="mb-16">
+              <MaximizableImage
+                src={heroImage.src}
+                alt={heroImage.alt}
+                className="w-full"
+                projectId={projectId}
+                fit="contain"
+              />
+            </div>
+          )}
+
           <div className="space-y-16">
             {blocks.map((b) => {
               const imgs = b.images ?? (b.image ? [b.image] : []);
