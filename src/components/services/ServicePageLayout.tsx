@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Sparkles, Cpu, Palette, Users } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, Cpu, Palette, Users, Brain, Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from "@/data/services";
+import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO, SERVICE_PACKAGES } from "@/data/services";
 import { Link } from "react-router-dom";
 import SectionTransition from "@/components/transitions/SectionTransition";
-const serviceIcons = [<Palette className="h-8 w-8" />, <Cpu className="h-8 w-8" />];
+const serviceIcons = [<Brain className="h-8 w-8" />, <Cpu className="h-8 w-8" />, <Palette className="h-8 w-8" />];
 const ServicePageLayout: React.FC = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
@@ -32,7 +32,7 @@ const ServicePageLayout: React.FC = () => {
             delay: 0.1
           }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-md-sys-primary-container/50 text-md-sys-on-primary-container text-label-medium font-medium backdrop-blur-sm border border-md-sys-outline-variant/30">
               <Sparkles className="h-4 w-4" />
-              Gen-AI First Approach
+              AI-First Designer
             </motion.div>
             
             <h1 className="text-display-small md:text-display-medium lg:text-display-large font-bold text-foreground tracking-tight">
@@ -79,14 +79,14 @@ const ServicePageLayout: React.FC = () => {
           duration: 0.5
         }} className="text-center mb-12">
             <h2 className="text-headline-medium md:text-headline-large font-bold text-foreground mb-4">
-              What I Offer
+              What I Do
             </h2>
             <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive design and development services powered by AI-enhanced workflows
+              I help startups and enterprises design products that think, adapt, and scale — built from the ground up with AI at the core.
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {SERVICES_DATA.map((service, index) => <motion.div key={service.title} initial={{
             opacity: 0,
             y: 20
@@ -194,14 +194,14 @@ const ServicePageLayout: React.FC = () => {
             className="mt-12 text-center"
           >
             <p className="text-body-medium text-muted-foreground mb-4">
-              Explore specialized services:
+              Specialized Services:
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link 
                 to="/design-services/ux-ui-design" 
                 className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
               >
-                UX/UI Design
+                AI Interaction Design
               </Link>
               <Link 
                 to="/design-services/mobile-app-design" 
@@ -210,13 +210,74 @@ const ServicePageLayout: React.FC = () => {
                 Mobile App Design
               </Link>
               <Link 
-                to="/design-services/web-development" 
+                to="/design-services/ux-ui-design" 
                 className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
               >
-                Web Development
+                UX/UI Design
               </Link>
             </div>
           </motion.div>
+        </div>
+      </SectionTransition>
+
+      {/* Packages Section */}
+      <SectionTransition variant="fade" delay={0.25} className="py-16 md:py-20 px-4 bg-md-sys-surface-container-low/40">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-headline-medium md:text-headline-large font-bold text-foreground mb-4">
+              Packages
+            </h2>
+            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
+              Clear scope. Fixed pricing. Designed for how AI products actually ship.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {SERVICE_PACKAGES.map((pkg, index) => (
+              <motion.div
+                key={pkg.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+              >
+                <Card className="h-full bg-background/60 backdrop-blur-sm border-md-sys-outline-variant/30 shadow-elevation-2 hover:shadow-elevation-4 transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="p-6 md:p-8 flex flex-col h-full">
+                    <div className="flex items-center gap-2 mb-3">
+                      <DollarSign className="h-5 w-5 text-md-sys-primary" />
+                      <span className="text-headline-small font-bold text-foreground">{pkg.price}</span>
+                    </div>
+                    <h3 className="text-title-large font-bold text-foreground mb-2">{pkg.title}</h3>
+                    <p className="text-body-medium text-muted-foreground mb-4">{pkg.description}</p>
+                    <div className="inline-flex items-center gap-2 text-body-small text-md-sys-primary bg-md-sys-primary-container/30 px-3 py-2 rounded-lg mb-6 w-fit">
+                      <Clock className="h-4 w-4" />
+                      <span className="font-medium">{pkg.timeline}</span>
+                    </div>
+                    <ul className="space-y-3 mb-6 flex-1">
+                      {pkg.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3">
+                          <CheckCircle className="h-5 w-5 text-md-sys-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-body-medium text-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button asChild variant="brand" size="lg" className="w-full mt-auto">
+                      <Link to="/contact">
+                        Get Started
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </SectionTransition>
 
@@ -236,7 +297,7 @@ const ServicePageLayout: React.FC = () => {
         }} className="space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-md-sys-tertiary-container/50 text-md-sys-on-tertiary-container text-label-medium font-medium">
               <Users className="h-4 w-4" />
-              Let's Collaborate
+              Let's Build
             </div>
             
             <h2 className="text-headline-large md:text-display-small font-bold text-foreground">
@@ -267,7 +328,7 @@ const ServicePageLayout: React.FC = () => {
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link to="/projects">
-                  View My Work
+                  See My Work
                 </Link>
               </Button>
             </motion.div>
