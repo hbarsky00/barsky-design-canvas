@@ -29,10 +29,10 @@ const Win98Hero: React.FC = () => {
     "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
 
   const scrollToCaseStudies = () => {
-    const section = document.getElementById("case-studies");
-    if (!section) return;
-    const heading = section.querySelector("h1, h2, h3") as HTMLElement | null;
-    const target = heading ?? section;
+    const target =
+      document.getElementById("case-study-1") ||
+      document.getElementById("case-studies");
+    if (!target) return;
     const headerHeight = 72;
     const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
     window.scrollTo({ top, behavior: "smooth" });
