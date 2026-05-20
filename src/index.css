@@ -1674,7 +1674,8 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
 
 /* Global heading font — all headings use Space Grotesk */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
 }
+
 
 
