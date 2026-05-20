@@ -8,6 +8,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     description="Same-day pickup sports, designed for trust. Post a game, find players, confirm in a few taps — built solo with AI as a co-builder."
     tags={["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"]}
     liveUrl="https://catchbuddy.me"
+    heroImage={{
+      src: "/images/catchbuddy-hero-landing.png",
+      alt: "CatchBuddy pickup sports landing hero",
+    }}
     blocks={[
       {
         heading: "The Problem",

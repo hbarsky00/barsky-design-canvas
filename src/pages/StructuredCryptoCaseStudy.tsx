@@ -7,6 +7,10 @@ const StructuredCryptoCaseStudy: React.FC = () => (
     title="Trading Without Friction"
     description="A crypto trading interface designed for two audiences the industry insists you have to choose between."
     tags={["Fintech", "Crypto", "Product Design", "Dual-Mode UX"]}
+    heroImage={{
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
+      alt: "Crypto trading dashboard on mobile and desktop",
+    }}
     blocks={[
       {
         heading: "The Problem",

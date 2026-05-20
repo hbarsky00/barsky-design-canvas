@@ -8,6 +8,10 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
     description="A co-parenting app designed around the fact that every interaction is potential evidence."
     tags={["Family Tech", "Legal UX", "Mobile"]}
     liveUrl="https://splittime.pro"
+    heroImage={{
+      src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+      alt: "SplitTime co-parenting platform overview",
+    }}
     blocks={[
       {
         heading: "The Problem",

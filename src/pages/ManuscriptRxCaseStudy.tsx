@@ -7,6 +7,10 @@ const ManuscriptRxCaseStudy: React.FC = () => (
     title="ManuscriptRx"
     description="A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI."
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
+    heroImage={{
+      src: "/images/emailai-screen1-content-planning.png",
+      alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
+    }}
     blocks={[
       {
         heading: "The Problem",

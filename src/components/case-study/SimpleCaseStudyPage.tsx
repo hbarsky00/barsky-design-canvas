@@ -24,6 +24,7 @@ export interface SimpleCaseStudyPageProps {
   description: string;
   tags: string[];
   liveUrl?: string;
+  heroImage?: SimpleCaseStudyImage;
   blocks: SimpleCaseStudyBlock[];
 }
 
@@ -33,6 +34,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   description,
   tags,
   liveUrl,
+  heroImage,
   blocks,
 }) => {
   return (
@@ -65,6 +67,18 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
               </a>
             )}
           </header>
+
+          {heroImage && (
+            <div className="mb-16">
+              <MaximizableImage
+                src={heroImage.src}
+                alt={heroImage.alt}
+                className="w-full"
+                projectId={projectId}
+                fit="contain"
+              />
+            </div>
+          )}
 
           <div className="space-y-16">
             {blocks.map((b) => {
