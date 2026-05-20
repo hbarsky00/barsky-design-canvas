@@ -12,45 +12,42 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         heading: "The Problem",
         paragraphs: [
           "\"Easy\" crypto apps hide complexity and charge premium spreads. \"Pro\" apps expose everything and assume you brought your own confidence.",
-          "Both audiences get screwed differently. Beginners pay for hidden fees and never graduate. Pros pay for every \"are you sure?\" tax built for someone else.",
+          "Beginners pay for hidden fees and never graduate. Pros pay for every \"are you sure?\" tax built for someone else.",
         ],
-        image: {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png",
-          alt: "Competitor analysis exposing beginner exploitation",
-        },
+        images: [
+          { src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg", alt: "Failed prototype iterations and stakeholder feedback sessions" },
+        ],
       },
       {
         heading: "What I Built",
         paragraphs: [
-          "Two modes, one platform, shared core. Beginner mode strips the chart, uses plain English, and surfaces total cost — including spread — next to the action button, every time.",
-          "Pro mode shows the full order book with zero hand-holding. Mode is a setting, not a separate product: beginners can see Pro exists, pros can flip to help a friend.",
+          "Two modes, one platform, shared core. Beginner mode strips the chart, uses plain English, and surfaces total cost — including spread — next to the action button every time.",
+          "Pro mode shows the full order book with zero hand-holding. Mode is a setting, not a separate product.",
         ],
-        image: {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png",
-          alt: "User flow chart for crypto app",
-        },
+        images: [
+          { src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png", alt: "Competitor analysis exposing beginner exploitation" },
+          { src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png", alt: "User Flow Chart for Crypto App" },
+        ],
       },
       {
         heading: "The Design Constraint That Held It Together",
         paragraphs: [
-          "Plain language as a design rule, not a copy pass: if we couldn't explain something in one sentence, we either explained it inline or cut it from beginner mode entirely.",
+          "Plain language as a design rule, not a copy pass: if we couldn't explain something in one sentence, we either explained it inline or cut it from beginner mode.",
           "Total cost next to the action button was the most-fought decision and the one I'd defend hardest.",
         ],
-        image: {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png",
-          alt: "Initial concepts challenging crypto app conventions",
-        },
+        images: [
+          { src: "https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png", alt: "Initial concepts challenging crypto app conventions" },
+        ],
       },
       {
         heading: "What I Got Wrong First",
         paragraphs: [
-          "First version of beginner mode was too protected — confirmations everywhere, tooltips on every term, an onboarding tour that wouldn't quit. People felt patronized, not safe. Fix: explain on hover, confirm only above a threshold, get out of the way otherwise.",
+          "First version of beginner mode was too protected — confirmations everywhere, tooltips on every term, an onboarding tour that wouldn't quit. People felt patronized, not safe.",
           "Pro mode had the opposite problem: I'd cut so much that pros couldn't find features they relied on. Density is a feature for that audience.",
         ],
-        image: {
-          src: "https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png",
-          alt: "Design thinking process update",
-        },
+        images: [
+          { src: "https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png", alt: "Design thinking process for crypto platform" },
+        ],
       },
       {
         heading: "Outcome",

@@ -5,10 +5,17 @@ import MaximizableImage from "@/components/project/MaximizableImage";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { Badge } from "@/components/ui/badge";
 
+export interface SimpleCaseStudyImage {
+  src: string;
+  alt: string;
+}
+
 export interface SimpleCaseStudyBlock {
   heading: string;
   paragraphs: string[];
-  image?: { src: string; alt: string };
+  images?: SimpleCaseStudyImage[];
+  /** @deprecated use images */
+  image?: SimpleCaseStudyImage;
 }
 
 export interface SimpleCaseStudyPageProps {
@@ -60,30 +67,38 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
           </header>
 
           <div className="space-y-16">
-            {blocks.map((b) => (
-              <section key={b.heading}>
-                <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
-                  {b.heading}
-                </h2>
-                {b.paragraphs.map((p, i) => (
-                  <p
-                    key={i}
-                    className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6"
-                  >
-                    {p}
-                  </p>
-                ))}
-                {b.image && (
-                  <MaximizableImage
-                    src={b.image.src}
-                    alt={b.image.alt}
-                    className="w-full"
-                    projectId={projectId}
-                    fit="contain"
-                  />
-                )}
-              </section>
-            ))}
+            {blocks.map((b) => {
+              const imgs = b.images ?? (b.image ? [b.image] : []);
+              return (
+                <section key={b.heading}>
+                  <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
+                    {b.heading}
+                  </h2>
+                  {b.paragraphs.map((p, i) => (
+                    <p
+                      key={i}
+                      className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6"
+                    >
+                      {p}
+                    </p>
+                  ))}
+                  {imgs.length > 0 && (
+                    <div className="space-y-6">
+                      {imgs.map((img, idx) => (
+                        <MaximizableImage
+                          key={`${img.src}-${idx}`}
+                          src={img.src}
+                          alt={img.alt}
+                          className="w-full"
+                          projectId={projectId}
+                          fit="contain"
+                        />
+                      ))}
+                    </div>
+                  )}
+                </section>
+              );
+            })}
           </div>
         </main>
         <Footer />

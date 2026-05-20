@@ -15,15 +15,19 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Most \"I built X with AI\" portfolios are a calculator or a dashboard. Safe. Forgettable.",
           "The harder question — can a designer ship a real product solo with AI? — needed a harder answer. Game feel can't be faked with a prompt.",
         ],
-        image: { src: "/images/firelion-hero-title.png", alt: "Fire Lion hero title screen" },
+        images: [
+          { src: "/images/firelion-spelling-lightning.png", alt: "Lightning Strike spell casting from spelling MN" },
+        ],
       },
       {
         heading: "What I Built",
         paragraphs: [
-          "One tap, one lion, one core loop — built and playable before any mechanics were added.",
+          "One tap, one lion, one core loop — playable before any mechanics were added.",
           "Three modes emerged from real play: Fire Lion (tense, escalating), Lion Wars (strategic), Cub Mode (low-stakes recovery). Each lives in its own isolated component so late-night AI sessions never break the others.",
         ],
-        image: { src: "/images/firelion-spelling-lightning.png", alt: "Lightning Strike spell casting from spelling MN" },
+        images: [
+          { src: "/images/firelion-spelling-combo.png", alt: "Spelling CRAP over a lava forge anvil, 5× combo" },
+        ],
       },
       {
         heading: "What AI Did vs. What I Did",
@@ -31,15 +35,20 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "AI scaffolded Supabase schemas, particle systems, and refactors across 30+ files at a time.",
           "Every gravity tweak, tap impulse, and difficulty curve was hand-tuned across hundreds of test runs. Building features is easy with AI. Killing them is the actual design work.",
         ],
-        image: { src: "/images/firelion-lionwars-combat.png", alt: "Lion Wars naval combat, wave 1 of 7" },
+        images: [
+          { src: "/images/firelion-lionwars-combat.png", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop" },
+        ],
       },
       {
         heading: "What Got Cut",
         paragraphs: [
-          "Daily missions, streaks, a Wordle-style challenge, a social proof counter, a forge upgrade screen, and mod gating — all shipped, all ignored by players, all removed.",
+          "Daily missions, streaks, a Wordle-style challenge, a social proof counter, a forge upgrade screen, and mod gating — all shipped, all ignored, all removed.",
           "The deletion list ended up longer than the feature list. The game got better with every cut.",
         ],
-        image: { src: "/images/firelion-cubmode-sunset.png", alt: "Cub Mode sunset scene" },
+        images: [
+          { src: "/images/firelion-cubmode-sunset.png", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it" },
+          { src: "/images/firelion-cubmode-ocean.png", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state" },
+        ],
       },
       {
         heading: "Outcome",
