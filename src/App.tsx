@@ -81,6 +81,9 @@ function AppContent() {
               <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
               <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
               <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
+              <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
+              <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
 
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
