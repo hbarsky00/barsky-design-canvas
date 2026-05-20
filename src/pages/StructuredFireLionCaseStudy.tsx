@@ -8,6 +8,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
     description="A shipped arcade game, built solo with AI. You spell words mid-flight to cast spells — and most of the design work was deciding what to delete."
     tags={["AI-Assisted Product", "Game Design", "Mobile Web", "Solo Build"]}
     liveUrl="https://firelion.me"
+    heroImage={{
+      src: "/images/firelion-hero-title.png",
+      alt: "Fire Lion hero title screen",
+    }}
     blocks={[
       {
         heading: "The Problem",

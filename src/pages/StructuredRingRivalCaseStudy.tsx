@@ -8,6 +8,10 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     description="Console boxing feel on the mobile web. Distinct AI opponents, generated trash talk, career mode — built solo with AI as a co-builder."
     tags={["AI-Assisted Product", "Mobile Web", "Game Design", "Solo Build"]}
     liveUrl="https://rival.li"
+    heroImage={{
+      src: "/images/ringrival-hero-title.png",
+      alt: "Ring-Rival hero title screen",
+    }}
     blocks={[
       {
         heading: "The Problem",

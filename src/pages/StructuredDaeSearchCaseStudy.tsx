@@ -7,6 +7,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     title="DAE Search"
     description="Enterprise search redesigned around an inconvenient truth: finding the data is only half the job. Knowing whether to trust it is the rest."
     tags={["Enterprise", "Data Discovery", "Search UX"]}
+    heroImage={{
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search platform interface overview",
+    }}
     blocks={[
       {
         heading: "The Problem",

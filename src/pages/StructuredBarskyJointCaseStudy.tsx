@@ -8,6 +8,10 @@ const StructuredBarskyJointCaseStudy: React.FC = () => (
     description="One ordering system that works on a kiosk and a phone — without making either feel like a compromise."
     tags={["Restaurant Tech", "Food Service", "Kiosk Design"]}
     liveUrl="https://barskyjoint.com"
+    heroImage={{
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
+      alt: "BarskyJoint ordering platform promo",
+    }}
     blocks={[
       {
         heading: "The Problem",

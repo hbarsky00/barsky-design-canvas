@@ -8,6 +8,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     description="Verified herbalists, designed around trust. A booking platform where the credential gate is the product — not a badge."
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
     liveUrl="http://herbalink.live"
+    heroImage={{
+      src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+      alt: "HerbaLink book-an-herbalist promo on mobile",
+    }}
     blocks={[
       {
         heading: "The Problem",
