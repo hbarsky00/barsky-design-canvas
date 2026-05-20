@@ -61,7 +61,7 @@ const ManuscriptRxCaseStudy: React.FC = () => {
         <Header />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+32px)] pb-24">
           <header className="mb-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4">
               ManuscriptRx
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
@@ -81,7 +81,7 @@ const ManuscriptRxCaseStudy: React.FC = () => {
           <div className="space-y-16">
             {blocks.map((b) => (
               <section key={b.heading}>
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+                <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
                   {b.heading}
                 </h2>
                 {b.paragraphs.map((p, i) => (
@@ -103,7 +103,7 @@ const ManuscriptRxCaseStudy: React.FC = () => {
             ))}
 
             <section>
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+              <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
                 What I Haven&rsquo;t Solved
               </h2>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
