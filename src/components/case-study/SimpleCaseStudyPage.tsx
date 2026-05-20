@@ -24,6 +24,7 @@ export interface SimpleCaseStudyPageProps {
   description: string;
   tags: string[];
   liveUrl?: string;
+  heroImage?: SimpleCaseStudyImage;
   blocks: SimpleCaseStudyBlock[];
 }
 
