@@ -280,7 +280,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     title={caseStudyData.userTestingSection.video.title}
                     caption={caseStudyData.userTestingSection.video.caption}
                     projectId={caseStudyData.id}
-                    className="rounded-lg shadow-sm"
+                    className="rounded-sm shadow-sm"
                     hoverToPlay={true}
                     showControls={false}
                   />
@@ -326,7 +326,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                      className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
                     >
                       <MaximizableImage
                         src={image.src}
@@ -404,7 +404,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
+                        className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
                       >
                         {image.annotations && image.annotations.length > 0 ? (
                           <AnnotatedImage

@@ -142,7 +142,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                       </div>
                       
                       <div className="relative">
-                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                        <div className="aspect-video bg-muted rounded-sm overflow-hidden shadow-lg">
                           <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
                             <div className="text-center">
                               <p className="text-muted-foreground mb-2">Image Placeholder</p>

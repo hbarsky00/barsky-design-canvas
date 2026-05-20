@@ -63,7 +63,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
 
   return (
     <div className={`relative inline-block group cursor-pointer ${className}`}>
-      <div className="overflow-hidden rounded-lg">
+      <div className="overflow-hidden rounded-sm">
         <img
           src={src}
           alt={alt}

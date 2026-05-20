@@ -58,7 +58,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
               src={ideationData.wireframeImage.src}
               alt={ideationData.wireframeImage.alt}
               caption={ideationData.wireframeImage.caption}
-              className="w-full h-auto rounded-xl shadow-lg"
+              className="w-full h-auto rounded-sm shadow-lg"
             />
           </div>
         )}
