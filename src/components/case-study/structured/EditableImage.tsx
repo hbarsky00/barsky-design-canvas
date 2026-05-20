@@ -51,7 +51,7 @@ export const EditableImage: React.FC<EditableImageProps> = ({
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative overflow-hidden rounded-xl bg-surface-container"
+        className="relative overflow-hidden rounded-sm bg-surface-container"
       >
         <img
           src={src || "/placeholder.svg"}

@@ -23,7 +23,7 @@ const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content 
       
       <div className="space-y-8">
         <div className="relative">
-          <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+          <div className="aspect-video bg-muted rounded-sm overflow-hidden shadow-lg">
             <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-muted-foreground mb-2">Image Placeholder</p>
