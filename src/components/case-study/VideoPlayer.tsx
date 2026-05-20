@@ -1,5 +1,6 @@
 
 import React from "react";
+import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface VideoPlayerProps {
   videoSrc: string;
