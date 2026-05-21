@@ -271,53 +271,6 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
-  "barskyjoint": {
-    id: `barskyjoint`,
-    title: `BarskyJoint`,
-    description: `One ordering system that works on a kiosk and a phone, without making either feel like a compromise.`,
-    tags: [`Restaurant Tech`, `Food Service`, `Kiosk Design`],
-    heroVideo: {
-      src: `/lovable-uploads/barskyjoint-hero.mp4`,
-      poster: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png`,
-      alt: `BarskyJoint ordering platform overview`,
-    },
-    projectLink: `https://barskyjoint.com`,
-    problemCallout: {
-      eyebrow: `THE PROBLEM`,
-      statement: `A burger with 14 customizations, all shown at once, freezes people. On a kiosk a line forms behind them. On web they close the tab.`,
-    },
-    finalProductSection: {
-      eyebrow: `WHAT I DID`,
-      title: `What I Did`,
-      description: `Every item ships with a sensible default. Two taps and you're done — customize inline if you want, no modal, no new screen. Same components on kiosk and web, with tap targets sized for thumbs vs. cursors: one design system, calibrated per device. The order summary stays visible at all times instead of living on a separate cart page.`,
-      images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/mainpagedesktop.jpg`, alt: `Menu confusion analysis from restaurant ordering interface` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/journeymap0.jpg`, alt: `Customer journey mapping for restaurant ordering flow` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/uxpilot-design-1757973264652.png`, alt: `Decision point analysis for ordering platform design` },
-      ],
-    },
-    whatDidntWorkSection: {
-      eyebrow: `HICCUP`,
-      title: `Hiccup`,
-      content: `First version showed all customization upfront. I thought I was being thorough. Three test sessions in, people were stalling on the toppings screen for a burger they'd already decided on — pulled it back to defaults-plus-expand. Also tried to make the kiosk feel 'modern' with animation. On a kiosk, animation is latency. Cut almost all of it.`,
-      images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barskyjoint800.jpg`, alt: `Failed early restaurant ordering interface design` },
-      ],
-    },
-    outcomeSection: {
-      eyebrow: `OUTCOME`,
-      title: `Outcome`,
-      description: `Faster orders and fewer mid-order abandonments in early testing. No post-launch numbers I'd stand behind.`,
-    },
-    sections: [],
-    seoData: {
-      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png`,
-      projectName: `BarskyJoint`,
-      results: [],
-      technologies: [],
-      path: `/project/barskyjoint`,
-    },
-  },
   "crypto": {
     id: `crypto`,
     title: `Trading Without Friction`,
