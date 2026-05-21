@@ -320,6 +320,31 @@ const Win98Hero: React.FC = () => {
           <Minesweeper />
         </Win98Window>
       )}
+      {openGames.includes("solitaire") && (
+        <Win98Window
+          title="Solitaire"
+          icon="S"
+          width={360}
+          initialX={160}
+          initialY={120}
+          onClose={() => closeGame("solitaire")}
+        >
+          <Solitaire />
+        </Win98Window>
+      )}
+      {openGames.includes("pacman") && (
+        <Win98Window
+          title="Pac-Man"
+          icon="P"
+          width={290}
+          initialX={200}
+          initialY={80}
+          onClose={() => closeGame("pacman")}
+        >
+          <PacMan />
+        </Win98Window>
+      )}
+
 
     </section>
   );
