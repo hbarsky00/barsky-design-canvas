@@ -58,7 +58,7 @@ function getProjectPaths(): string[] {
     "/project/gold2crypto",
     "/project/dae-search",
     "/project/business-management",
-    "/project/barskyjoint",
+    
     "/project/investor-loan-app",
     "/project/wholesale-distribution",
     "/project/fire-lion",
