@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid, Gamepad2, ChevronRight } from "lucide-react";
 import win98Bg from "@/assets/win98-ai-bg.jpg";
