@@ -313,7 +313,6 @@ const Win98Hero: React.FC = () => {
             tabIndex={-1}
             autoFocus
             onKeyDown={handleKey}
-            ref-callback="true"
             className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30 outline-none"
           >
             <div className="w-7 flex items-end justify-center py-2 text-white font-bold text-[11px] tracking-widest" style={{ background: "#000080", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
