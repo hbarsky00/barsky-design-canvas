@@ -58,8 +58,9 @@ const Win98Hero: React.FC = () => {
   return (
     <section
       aria-label="Hiram Barsky portfolio hero"
-      className="win98 relative px-3 py-3 sm:px-4 sm:py-4 min-h-screen flex flex-col"
+      className="win98 relative px-3 py-3 sm:px-4 sm:py-4 flex flex-col overflow-hidden"
       style={{
+        height: "100dvh",
         backgroundColor: "#008080",
         backgroundImage: `url(${win98Bg})`,
         backgroundSize: "cover",
@@ -80,7 +81,7 @@ const Win98Hero: React.FC = () => {
         .win98 a:hover .cs-thumb-label { background:#000080; color:#fff; }
       `}</style>
 
-      <div className="flex gap-3 sm:gap-4 flex-1 items-center">
+      <div className="flex gap-3 sm:gap-4 flex-1 min-h-0 items-start sm:items-center overflow-auto">
         {/* Desktop icons column */}
         <div className="hidden sm:flex flex-col gap-3 pt-1 shrink-0">
           {[
