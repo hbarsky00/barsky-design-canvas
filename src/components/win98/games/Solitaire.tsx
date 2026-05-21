@@ -247,9 +247,7 @@ const Solitaire: React.FC = () => {
             {f.length > 0 ? (
               <CardView
                 card={f[f.length - 1]}
-                onClick={(e) => {
-                  if (sel) tryMoveTo({ kind: "foundation", index: i });
-                }}
+                onClick={() => { if (sel) tryMoveTo({ kind: "foundation", index: i }); }}
                 style={{ left: 0, top: 0 }}
               />
             ) : (
