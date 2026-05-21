@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid } from "lucide-react";
+import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid, Gamepad2, ChevronRight } from "lucide-react";
 import win98Bg from "@/assets/win98-ai-bg.jpg";
+import Win98Window from "@/components/win98/Win98Window";
+import Minesweeper from "@/components/win98/games/Minesweeper";
 
 /**
  * Windows 98 styled hero. Visual-only; preserves nav to /projects and Calendly.
  * Styles are scoped via the `.win98` wrapper to avoid leaking into the rest of the app.
  */
+type GameId = "minesweeper" | "solitaire" | "pacman";
+
 const Win98Hero: React.FC = () => {
   const [clock, setClock] = useState("");
   const [startOpen, setStartOpen] = useState(false);
+  const [gamesOpen, setGamesOpen] = useState(false);
+  const [openGames, setOpenGames] = useState<GameId[]>([]);
+
+  const launchGame = (id: GameId) => {
+    setStartOpen(false);
+    setGamesOpen(false);
+    setOpenGames((g) => (g.includes(id) ? g : [...g, id]));
+  };
+  const closeGame = (id: GameId) => setOpenGames((g) => g.filter((x) => x !== id));
 
   useEffect(() => {
     const tick = () => {
