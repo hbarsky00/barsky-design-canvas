@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid, Gamepad2, ChevronRight } from "lucide-react";
 import win98Bg from "@/assets/win98-ai-bg.jpg";
@@ -18,6 +18,10 @@ const Win98Hero: React.FC = () => {
   const [startOpen, setStartOpen] = useState(false);
   const [gamesOpen, setGamesOpen] = useState(false);
   const [openGames, setOpenGames] = useState<GameId[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeGameIndex, setActiveGameIndex] = useState(0);
+  const startMenuRef = useRef<HTMLDivElement | null>(null);
+  const startBtnRef = useRef<HTMLButtonElement | null>(null);
 
   const launchGame = (id: GameId) => {
     setStartOpen(false);
@@ -25,6 +29,25 @@ const Win98Hero: React.FC = () => {
     setOpenGames((g) => (g.includes(id) ? g : [...g, id]));
   };
   const closeGame = (id: GameId) => setOpenGames((g) => g.filter((x) => x !== id));
+
+  const closeStart = () => { setStartOpen(false); setGamesOpen(false); };
+
+  // Close on outside click / Escape
+  useEffect(() => {
+    if (!startOpen) return;
+    const onDown = (e: MouseEvent) => {
+      const t = e.target as Node;
+      if (startMenuRef.current?.contains(t) || startBtnRef.current?.contains(t)) return;
+      closeStart();
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeStart(); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [startOpen]);
 
   useEffect(() => {
     const tick = () => {
@@ -238,7 +261,8 @@ const Win98Hero: React.FC = () => {
       <div className="raise mt-2 flex items-center gap-1 px-1 py-[2px] sticky bottom-0 z-20">
 
         <button
-          onClick={() => setStartOpen((v) => !v)}
+          ref={startBtnRef}
+          onClick={() => { setStartOpen((v) => !v); setActiveIndex(0); setGamesOpen(false); }}
           className={`${startOpen ? "sunk" : "raise"} px-2 py-[3px] flex items-center gap-1 text-[12px] font-bold text-black cursor-pointer`}
         >
           <LayoutGrid className="w-[14px] h-[14px]" />
@@ -252,60 +276,92 @@ const Win98Hero: React.FC = () => {
           <div className="sunk text-[11px] text-black px-2 py-[2px]">{clock}</div>
         </div>
 
-        {startOpen && (
-          <div className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30" onMouseLeave={() => { setStartOpen(false); setGamesOpen(false); }}>
+        {startOpen && (() => {
+          type MainItem = { label: string; Icon: typeof Folder; isGames?: boolean; onSelect: () => void };
+          const mainItems: MainItem[] = [
+            { label: "Case Studies", Icon: Folder, onSelect: () => { closeStart(); scrollToCaseStudies(); } },
+            { label: "All Projects", Icon: LayoutGrid, onSelect: () => { closeStart(); scrollToCaseStudies(); } },
+            { label: "Contact", Icon: Mail, onSelect: () => { closeStart(); window.location.assign("/contact"); } },
+            { label: "LinkedIn", Icon: Linkedin, onSelect: () => { closeStart(); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
+            { label: "GitHub", Icon: Github, onSelect: () => { closeStart(); window.open("https://github.dev/hbarsky00", "_blank"); } },
+            { label: "Book a Call", Icon: Calendar, onSelect: () => { closeStart(); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
+            { label: "Games", Icon: Gamepad2, isGames: true, onSelect: () => { setGamesOpen(true); setActiveGameIndex(0); } },
+          ];
+          const games = [
+            { id: "minesweeper" as GameId, label: "Minesweeper" },
+            { id: "solitaire" as GameId, label: "Solitaire" },
+            { id: "pacman" as GameId, label: "Pac-Man" },
+          ];
+          const handleKey = (e: React.KeyboardEvent) => {
+            if (gamesOpen) {
+              if (e.key === "ArrowDown") { e.preventDefault(); setActiveGameIndex((i) => (i + 1) % games.length); }
+              else if (e.key === "ArrowUp") { e.preventDefault(); setActiveGameIndex((i) => (i - 1 + games.length) % games.length); }
+              else if (e.key === "ArrowLeft") { e.preventDefault(); setGamesOpen(false); }
+              else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); launchGame(games[activeGameIndex].id); }
+              return;
+            }
+            if (e.key === "ArrowDown") { e.preventDefault(); setActiveIndex((i) => (i + 1) % mainItems.length); }
+            else if (e.key === "ArrowUp") { e.preventDefault(); setActiveIndex((i) => (i - 1 + mainItems.length) % mainItems.length); }
+            else if (e.key === "ArrowRight") {
+              if (mainItems[activeIndex].isGames) { e.preventDefault(); setGamesOpen(true); setActiveGameIndex(0); }
+            }
+            else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); mainItems[activeIndex].onSelect(); }
+          };
+          return (
+          <div
+            ref={startMenuRef}
+            tabIndex={-1}
+            autoFocus
+            onKeyDown={handleKey}
+            className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30 outline-none"
+          >
             <div className="w-7 flex items-end justify-center py-2 text-white font-bold text-[11px] tracking-widest" style={{ background: "#000080", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
               Barsky<span className="font-normal">98</span>
             </div>
             <ul className="flex-1 py-1 text-[12px] text-black relative">
-              {[
-                { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
-                { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
-                { label: "Contact", Icon: Mail, onClick: () => { setStartOpen(false); window.location.assign("/contact"); } },
-                { label: "LinkedIn", Icon: Linkedin, onClick: () => { setStartOpen(false); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
-                { label: "GitHub", Icon: Github, onClick: () => { setStartOpen(false); window.open("https://github.dev/hbarsky00", "_blank"); } },
-                { label: "Book a Call", Icon: Calendar, onClick: () => { setStartOpen(false); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
-              ].map(({ label, Icon, onClick }) => (
-                <li key={label}>
-                  <button onClick={onClick} onMouseEnter={() => setGamesOpen(false)} className="w-full flex items-center gap-2 px-2 py-[5px] hover:bg-[#000080] hover:text-white text-left">
-                    <Icon className="w-4 h-4" />
-                    <span>{label}</span>
-                  </button>
-                </li>
-              ))}
-              {/* Games submenu */}
-              <li>
-                <button
-                  onMouseEnter={() => setGamesOpen(true)}
-                  onClick={() => setGamesOpen((v) => !v)}
-                  className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${gamesOpen ? "bg-[#000080] text-white" : "hover:bg-[#000080] hover:text-white"}`}
-                >
-                  <Gamepad2 className="w-4 h-4" />
-                  <span className="flex-1">Games</span>
-                  <ChevronRight className="w-3 h-3" />
-                </button>
-                {gamesOpen && (
-                  <div className="raise absolute left-full top-0 ml-[1px] w-44 py-1 z-40">
-                    {[
-                      { id: "minesweeper" as GameId, label: "Minesweeper" },
-                      { id: "solitaire" as GameId, label: "Solitaire" },
-                      { id: "pacman" as GameId, label: "Pac-Man" },
-                    ].map((g) => (
-                      <button
-                        key={g.id}
-                        onClick={() => launchGame(g.id)}
-                        className="w-full flex items-center gap-2 px-2 py-[5px] text-left hover:bg-[#000080] hover:text-white"
+              {mainItems.map((item, idx) => {
+                const isActive = idx === activeIndex && (!gamesOpen || !item.isGames || true);
+                const highlight = idx === activeIndex || (item.isGames && gamesOpen);
+                return (
+                  <li key={item.label}>
+                    <button
+                      onMouseEnter={() => {
+                        setActiveIndex(idx);
+                        if (item.isGames) { setGamesOpen(true); setActiveGameIndex(0); }
+                        else setGamesOpen(false);
+                      }}
+                      onClick={() => item.onSelect()}
+                      className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${highlight ? "bg-[#000080] text-white" : ""}`}
+                    >
+                      <item.Icon className="w-4 h-4" />
+                      <span className="flex-1">{item.label}</span>
+                      {item.isGames && <ChevronRight className="w-3 h-3" />}
+                    </button>
+                    {item.isGames && gamesOpen && (
+                      <div
+                        className="raise absolute left-full top-0 ml-[1px] w-44 py-1 z-40"
+                        onMouseEnter={() => setGamesOpen(true)}
                       >
-                        <Gamepad2 className="w-4 h-4" />
-                        <span>{g.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </li>
+                        {games.map((g, gi) => (
+                          <button
+                            key={g.id}
+                            onMouseEnter={() => setActiveGameIndex(gi)}
+                            onClick={() => launchGame(g.id)}
+                            className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${gi === activeGameIndex ? "bg-[#000080] text-white" : ""}`}
+                          >
+                            <Gamepad2 className="w-4 h-4" />
+                            <span>{g.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
-        )}
+          );
+        })()}
       </div>
 
       {/* Game windows */}
