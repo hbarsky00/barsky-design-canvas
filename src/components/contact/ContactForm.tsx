@@ -153,11 +153,12 @@ const ContactForm: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-gradient-to-r from-primary to-purple-600 text-primary-foreground text-sm font-semibold shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Sending..." : "Send message"}
-            <Send size={16} />
+            <Send size={14} />
           </button>
+
         </form>
       </Form>
     </div>
