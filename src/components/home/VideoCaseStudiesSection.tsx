@@ -100,7 +100,8 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/email-ai-promo.png",
       alt: "Email Creation AI workflow"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/lovable-uploads/email-creation-ai-hero.mp4"
   },
   {
     id: "dae-search",
@@ -113,7 +114,8 @@ const caseStudies: CaseStudy[] = [
       primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search platform interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/lovable-uploads/dae-search-hero.mp4"
   }
 ];
 
