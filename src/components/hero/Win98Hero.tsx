@@ -81,7 +81,7 @@ const Win98Hero: React.FC = () => {
         .win98 a:hover .cs-thumb-label { background:#000080; color:#fff; }
       `}</style>
 
-      <div className="flex gap-3 sm:gap-4 flex-1 items-center">
+      <div className="flex gap-3 sm:gap-4 flex-1 min-h-0 items-start sm:items-center overflow-auto">
         {/* Desktop icons column */}
         <div className="hidden sm:flex flex-col gap-3 pt-1 shrink-0">
           {[
