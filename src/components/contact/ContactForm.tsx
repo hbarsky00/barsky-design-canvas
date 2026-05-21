@@ -139,11 +139,12 @@ const ContactForm: React.FC = () => {
                 <FormControl>
                   <textarea
                     {...field}
-                    rows={5}
+                    rows={3}
                     placeholder="Tell me a bit about your project..."
-                    className="w-full px-3.5 py-3 rounded-lg border border-border bg-white text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-border bg-white text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"
                   />
                 </FormControl>
+
                 <FormMessage className="text-xs" />
               </FormItem>
             )}
@@ -152,11 +153,12 @@ const ContactForm: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-gradient-to-r from-primary to-purple-600 text-primary-foreground text-sm font-semibold shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Sending..." : "Send message"}
-            <Send size={16} />
+            <Send size={14} />
           </button>
+
         </form>
       </Form>
     </div>

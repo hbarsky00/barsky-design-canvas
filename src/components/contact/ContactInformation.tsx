@@ -20,15 +20,14 @@ const ContactInformation: React.FC = () => {
         Have a project in mind or want to collaborate? Reach out.
       </p>
 
-      <Button
+      <button
         onClick={openCalendly}
-        variant="brand"
-        size="sm"
-        className="w-full sm:w-auto self-start font-semibold mb-6"
+        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg border border-primary text-primary text-sm font-semibold bg-white hover:bg-primary hover:text-primary-foreground transition-colors self-start mb-6"
       >
-        <Calendar className="mr-2 h-4 w-4" />
+        <Calendar className="h-4 w-4" />
         Schedule a free consultation
-      </Button>
+      </button>
+
 
       <div className="space-y-4">
         <a
