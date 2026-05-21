@@ -277,7 +277,8 @@ const Win98Hero: React.FC = () => {
         </div>
 
         {startOpen && (() => {
-          const mainItems = [
+          type MainItem = { label: string; Icon: typeof Folder; isGames?: boolean; onSelect: () => void };
+          const mainItems: MainItem[] = [
             { label: "Case Studies", Icon: Folder, onSelect: () => { closeStart(); scrollToCaseStudies(); } },
             { label: "All Projects", Icon: LayoutGrid, onSelect: () => { closeStart(); scrollToCaseStudies(); } },
             { label: "Contact", Icon: Mail, onSelect: () => { closeStart(); window.location.assign("/contact"); } },
@@ -285,7 +286,7 @@ const Win98Hero: React.FC = () => {
             { label: "GitHub", Icon: Github, onSelect: () => { closeStart(); window.open("https://github.dev/hbarsky00", "_blank"); } },
             { label: "Book a Call", Icon: Calendar, onSelect: () => { closeStart(); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
             { label: "Games", Icon: Gamepad2, isGames: true, onSelect: () => { setGamesOpen(true); setActiveGameIndex(0); } },
-          ] as const;
+          ];
           const games = [
             { id: "minesweeper" as GameId, label: "Minesweeper" },
             { id: "solitaire" as GameId, label: "Solitaire" },
