@@ -26,7 +26,7 @@ const Win98Hero: React.FC = () => {
   }, []);
 
   const imageUrl =
-    "https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp";
+    "/images/hiram-barsky-profile.png";
 
   const scrollToCaseStudies = () => {
     const target =
