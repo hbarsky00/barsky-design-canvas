@@ -11,6 +11,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/catchbuddy-hero-landing.png",
       alt: "CatchBuddy pickup sports landing hero",
+      hoverVideo: "/lovable-uploads/catchbuddy-hero.mp4",
     }}
     blocks={[
       {

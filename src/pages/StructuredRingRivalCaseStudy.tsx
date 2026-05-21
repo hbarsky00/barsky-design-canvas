@@ -11,6 +11,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/ringrival-hero-title.png",
       alt: "Ring-Rival hero title screen",
+      hoverVideo: "/lovable-uploads/ringrival-hero.mp4",
     }}
     blocks={[
       {

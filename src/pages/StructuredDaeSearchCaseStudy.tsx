@@ -10,6 +10,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     heroImage={{
       src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search platform interface overview",
+      hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
     }}
     blocks={[
       {
