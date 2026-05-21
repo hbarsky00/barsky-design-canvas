@@ -250,11 +250,11 @@ const Win98Hero: React.FC = () => {
         </div>
 
         {startOpen && (
-          <div className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30" onMouseLeave={() => setStartOpen(false)}>
+          <div className="raise absolute bottom-full left-0 mb-1 w-60 flex z-30" onMouseLeave={() => { setStartOpen(false); setGamesOpen(false); }}>
             <div className="w-7 flex items-end justify-center py-2 text-white font-bold text-[11px] tracking-widest" style={{ background: "#000080", writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
               Barsky<span className="font-normal">98</span>
             </div>
-            <ul className="flex-1 py-1 text-[12px] text-black">
+            <ul className="flex-1 py-1 text-[12px] text-black relative">
               {[
                 { label: "Case Studies", Icon: Folder, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
                 { label: "All Projects", Icon: LayoutGrid, onClick: () => { setStartOpen(false); scrollToCaseStudies(); } },
@@ -264,16 +264,62 @@ const Win98Hero: React.FC = () => {
                 { label: "Book a Call", Icon: Calendar, onClick: () => { setStartOpen(false); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
               ].map(({ label, Icon, onClick }) => (
                 <li key={label}>
-                  <button onClick={onClick} className="w-full flex items-center gap-2 px-2 py-[5px] hover:bg-[#000080] hover:text-white text-left">
+                  <button onClick={onClick} onMouseEnter={() => setGamesOpen(false)} className="w-full flex items-center gap-2 px-2 py-[5px] hover:bg-[#000080] hover:text-white text-left">
                     <Icon className="w-4 h-4" />
                     <span>{label}</span>
                   </button>
                 </li>
               ))}
+              {/* Games submenu */}
+              <li>
+                <button
+                  onMouseEnter={() => setGamesOpen(true)}
+                  onClick={() => setGamesOpen((v) => !v)}
+                  className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${gamesOpen ? "bg-[#000080] text-white" : "hover:bg-[#000080] hover:text-white"}`}
+                >
+                  <Gamepad2 className="w-4 h-4" />
+                  <span className="flex-1">Games</span>
+                  <ChevronRight className="w-3 h-3" />
+                </button>
+                {gamesOpen && (
+                  <div className="raise absolute left-full top-0 ml-[1px] w-44 py-1 z-40">
+                    {[
+                      { id: "minesweeper" as GameId, label: "Minesweeper" },
+                      { id: "solitaire" as GameId, label: "Solitaire", disabled: true },
+                      { id: "pacman" as GameId, label: "Pac-Man", disabled: true },
+                    ].map((g) => (
+                      <button
+                        key={g.id}
+                        disabled={g.disabled}
+                        onClick={() => !g.disabled && launchGame(g.id)}
+                        className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${g.disabled ? "text-[#808080] cursor-not-allowed" : "hover:bg-[#000080] hover:text-white"}`}
+                      >
+                        <Gamepad2 className="w-4 h-4" />
+                        <span>{g.label}</span>
+                        {g.disabled && <span className="ml-auto text-[10px]">soon</span>}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </li>
             </ul>
           </div>
         )}
       </div>
+
+      {/* Game windows */}
+      {openGames.includes("minesweeper") && (
+        <Win98Window
+          title="Minesweeper"
+          icon="M"
+          width={340}
+          initialX={120}
+          initialY={100}
+          onClose={() => closeGame("minesweeper")}
+        >
+          <Minesweeper />
+        </Win98Window>
+      )}
 
     </section>
   );
