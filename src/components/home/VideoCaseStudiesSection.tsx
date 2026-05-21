@@ -166,25 +166,27 @@ const CaseStudyCard: React.FC<{
           className="block h-full group cursor-pointer"
         >
           <div className="flex justify-center h-full">
-            <video 
-              src={study.video}
-              poster={study.images.primary}
-              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
-              muted
-              loop
-              playsInline
-              style={{ maxWidth: '625px', height: 'auto' }}
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => {
-                e.currentTarget.pause();
-                e.currentTarget.currentTime = 0;
-                e.currentTarget.load();
-              }}
-            />
+            <div className="w-full aspect-video overflow-hidden" style={{ maxWidth: '625px' }}>
+              <video 
+                src={study.video}
+                poster={study.images.primary}
+                className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                muted
+                loop
+                playsInline
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => {
+                  e.currentTarget.pause();
+                  e.currentTarget.currentTime = 0;
+                  e.currentTarget.load();
+                }}
+              />
+            </div>
           </div>
         </div>
       );
     }
+
     
     return (
       <div 
