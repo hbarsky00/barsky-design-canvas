@@ -11,6 +11,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     heroImage={{
       src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink book-an-herbalist promo on mobile",
+      hoverVideo: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
     }}
     blocks={[
       {
