@@ -11,7 +11,6 @@ const StructuredFireLionCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/firelion-hero-title.png",
       alt: "Fire Lion hero title screen",
-      hoverVideo: "/lovable-uploads/firelion-hero.mp4",
     }}
     blocks={[
       {

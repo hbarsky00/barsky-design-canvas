@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MaximizableImage from "@/components/project/MaximizableImage";
@@ -8,69 +8,7 @@ import { Badge } from "@/components/ui/badge";
 export interface SimpleCaseStudyImage {
   src: string;
   alt: string;
-  /** Optional video URL that plays on hover over the image. */
-  hoverVideo?: string;
 }
-
-const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string }> = ({ image, projectId }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  if (!image.hoverVideo) {
-    return (
-      <MaximizableImage
-        src={image.src}
-        alt={image.alt}
-        className="w-full"
-        projectId={projectId}
-        fit="contain"
-      />
-    );
-  }
-
-  const onEnter = () => {
-    setPlaying(true);
-    videoRef.current?.play().catch(() => {});
-  };
-  const onLeave = () => {
-    setPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
-
-  return (
-    <div
-      className="relative w-full overflow-hidden"
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      onTouchStart={onEnter}
-      onTouchEnd={onLeave}
-    >
-      <div style={{ opacity: playing ? 0 : 1, transition: "opacity 200ms ease" }}>
-        <MaximizableImage
-          src={image.src}
-          alt={image.alt}
-          className="w-full"
-          projectId={projectId}
-          fit="contain"
-        />
-      </div>
-      <video
-        ref={videoRef}
-        src={image.hoverVideo}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden={!playing}
-        className="absolute inset-0 w-full h-full object-contain pointer-events-none"
-        style={{ opacity: playing ? 1 : 0, transition: "opacity 200ms ease" }}
-      />
-    </div>
-  );
-};
 
 export interface SimpleCaseStudyBlock {
   heading: string;
@@ -132,7 +70,13 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
 
           {heroImage && (
             <div className="mb-16">
-              <HeroHoverMedia image={heroImage} projectId={projectId} />
+              <MaximizableImage
+                src={heroImage.src}
+                alt={heroImage.alt}
+                className="w-full"
+                projectId={projectId}
+                fit="contain"
+              />
             </div>
           )}
 
