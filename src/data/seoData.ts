@@ -111,11 +111,6 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     title: "Enterprise Data Search — UX Case Study",
     description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
     image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
-  },
-  "barskyjoint": {
-    title: "Restaurant Ordering — Food Tech UX Case Study",
-    description: "End-to-end restaurant ordering that lifted average ticket size 25% via menu clarity, guided customization, and seamless checkout.",
-    image: "https://barskydesign.pro/images/barskyjoint-desktop-1.webp"
   }
 };
 
