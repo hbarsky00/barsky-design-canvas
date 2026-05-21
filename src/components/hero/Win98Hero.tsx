@@ -58,8 +58,9 @@ const Win98Hero: React.FC = () => {
   return (
     <section
       aria-label="Hiram Barsky portfolio hero"
-      className="win98 relative px-3 py-3 sm:px-4 sm:py-4 min-h-screen flex flex-col"
+      className="win98 relative px-3 py-3 sm:px-4 sm:py-4 flex flex-col overflow-hidden"
       style={{
+        height: "100dvh",
         backgroundColor: "#008080",
         backgroundImage: `url(${win98Bg})`,
         backgroundSize: "cover",
