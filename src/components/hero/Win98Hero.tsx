@@ -4,6 +4,8 @@ import { Folder, Mail, Github, Linkedin, Calendar, LayoutGrid, Gamepad2, Chevron
 import win98Bg from "@/assets/win98-ai-bg.jpg";
 import Win98Window from "@/components/win98/Win98Window";
 import Minesweeper from "@/components/win98/games/Minesweeper";
+import Solitaire from "@/components/win98/games/Solitaire";
+import PacMan from "@/components/win98/games/PacMan";
 
 /**
  * Windows 98 styled hero. Visual-only; preserves nav to /projects and Calendly.
@@ -285,18 +287,16 @@ const Win98Hero: React.FC = () => {
                   <div className="raise absolute left-full top-0 ml-[1px] w-44 py-1 z-40">
                     {[
                       { id: "minesweeper" as GameId, label: "Minesweeper" },
-                      { id: "solitaire" as GameId, label: "Solitaire", disabled: true },
-                      { id: "pacman" as GameId, label: "Pac-Man", disabled: true },
+                      { id: "solitaire" as GameId, label: "Solitaire" },
+                      { id: "pacman" as GameId, label: "Pac-Man" },
                     ].map((g) => (
                       <button
                         key={g.id}
-                        disabled={g.disabled}
-                        onClick={() => !g.disabled && launchGame(g.id)}
-                        className={`w-full flex items-center gap-2 px-2 py-[5px] text-left ${g.disabled ? "text-[#808080] cursor-not-allowed" : "hover:bg-[#000080] hover:text-white"}`}
+                        onClick={() => launchGame(g.id)}
+                        className="w-full flex items-center gap-2 px-2 py-[5px] text-left hover:bg-[#000080] hover:text-white"
                       >
                         <Gamepad2 className="w-4 h-4" />
                         <span>{g.label}</span>
-                        {g.disabled && <span className="ml-auto text-[10px]">soon</span>}
                       </button>
                     ))}
                   </div>
