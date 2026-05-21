@@ -721,7 +721,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
-      statement: `Most "I built X with AI" portfolios are a calculator, a dashboard, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
+      statement: `Most "I built X with AI" portfolios are a calculator, a to-do app, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
     },
     sprintZeroSection: {
       eyebrow: `SPRINT ZERO`,
