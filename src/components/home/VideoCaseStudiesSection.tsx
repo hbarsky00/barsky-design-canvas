@@ -42,7 +42,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Fire Lion gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/firelion-hero.mp4"
+    video: "/lovable-uploads/fire-lion-hero.mp4"
   },
   {
     id: "ring-rival",
@@ -57,7 +57,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/ringrival-hero.mp4"
+    video: "/lovable-uploads/ring-rival-hero.mp4"
   },
   {
     id: "catchbuddy",
