@@ -687,7 +687,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A shipped game, built solo with AI. A one-tap arcade runner where you spell words mid-flight to cast spells.`,
     tags: [`AI-Assisted Product`, `Game Design`, `Mobile Web`, `Solo Build`],
     heroVideo: {
-      src: `/lovable-uploads/firelion-hero.mp4`,
+      src: `/lovable-uploads/fire-lion-hero.mp4`,
       poster: `/images/firelion-hero-title.png`,
       alt: `Fire Lion gameplay overview`,
     },
@@ -803,7 +803,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `Console boxing feel on the mobile web. Distinct AI opponents, AI-generated trash talk, career mode — built solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Mobile Web`, `Game Design`, `Solo Build`],
     heroVideo: {
-      src: `/lovable-uploads/ringrival-hero.mp4`,
+      src: `/lovable-uploads/ring-rival-hero.mp4`,
       poster: `/images/ringrival-hero-title.png`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
