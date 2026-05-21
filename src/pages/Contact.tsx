@@ -8,11 +8,9 @@ const Contact = () => {
   return <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow pt-16">
-        <section className="py-12 dark:bg-gray-900">
+        <section className="py-4 md:py-6 dark:bg-gray-900">
           <div className="px-0 md:px-6 lg:px-10 max-w-6xl mx-auto">
-            
-            
-            <div className="grid md:grid-cols-2 gap-12 py-[20px]">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 py-2">
               <div className="px-4 md:px-0">
                 <ContactInformation />
               </div>

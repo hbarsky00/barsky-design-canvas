@@ -70,55 +70,55 @@ const ContactForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-  return <section id="contact" className="flex flex-col justify-center py-4 bg-muted/30 relative scroll-mt-20">
+  return <section id="contact" className="flex flex-col justify-center py-2 bg-muted/30 relative scroll-mt-20">
       <div className="bg-white mx-0 px-[10px] py-[10px]">
-        <SectionHeader as="h2" title="Get In Touch" subtitle="Ready to start your project? Let's discuss your needs and create something amazing together." subtitleClassName="text-base md:text-lg" className="mb-8" />
+        <SectionHeader as="h2" title="Get In Touch" subtitle="Ready to start your project? Let's discuss your needs." subtitleClassName="text-sm md:text-base" className="mb-3" titleClassName="text-2xl md:text-3xl" />
 
         <div className="w-full">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg space-y-3">
               <FormField control={form.control} name="name" render={({
               field
-            }) => <FormItem className="mb-6">
+            }) => <FormItem className="space-y-1">
                     <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your name" {...field} autoFocus={shouldAutoFocus} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
+                      <Input placeholder="Your name" {...field} autoFocus={shouldAutoFocus} className="w-full px-3 py-2 h-9 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>} />
               
               <FormField control={form.control} name="email" render={({
               field
-            }) => <FormItem className="mb-6">
+            }) => <FormItem className="space-y-1">
                     <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="your@email.com" type="email" {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
+                      <Input placeholder="your@email.com" type="email" {...field} className="w-full px-3 py-2 h-9 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>} />
               
               <FormField control={form.control} name="subject" render={({
               field
-            }) => <FormItem className="mb-6">
+            }) => <FormItem className="space-y-1">
                     <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
                     <FormControl>
-                      <Input placeholder="Subject of your message" {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
+                      <Input placeholder="Subject of your message" {...field} className="w-full px-3 py-2 h-9 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>} />
               
               <FormField control={form.control} name="message" render={({
               field
-            }) => <FormItem className="mb-6">
+            }) => <FormItem className="space-y-1">
                     <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Your message..." rows={5} {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
+                      <Textarea placeholder="Your message..." rows={3} {...field} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>} />
               
-              <Button type="submit" variant="outline" size="lg" className="flex items-center gap-2 h-9 px-4" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
+              <Button type="submit" variant="outline" size="sm" className="flex items-center gap-2 h-9 px-4" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"} <Send size={16} />
               </Button>
             </form>
           </Form>
