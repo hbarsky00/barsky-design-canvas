@@ -116,7 +116,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
         <div className="space-y-8">
           {/* Multiple Images Support */}
           {images && images.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6">
               {images.map((image, index) => {
                 const showPlaceholder = needsPlaceholder(image.src);
                 return showPlaceholder ? (
