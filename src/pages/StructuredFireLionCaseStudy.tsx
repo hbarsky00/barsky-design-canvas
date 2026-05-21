@@ -17,7 +17,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "The Problem",
         paragraphs: [
-          "Most \"I built X with AI\" portfolios are a calculator or a dashboard. Safe. Forgettable.",
+          "Most \"I built X with AI\" portfolios are a calculator or a to-do app. Safe. Forgettable.",
           "The harder question — can a designer ship a real product solo with AI? — needed a harder answer. Game feel can't be faked with a prompt.",
         ],
         images: [
