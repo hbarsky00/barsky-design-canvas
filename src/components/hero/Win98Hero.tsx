@@ -18,6 +18,10 @@ const Win98Hero: React.FC = () => {
   const [startOpen, setStartOpen] = useState(false);
   const [gamesOpen, setGamesOpen] = useState(false);
   const [openGames, setOpenGames] = useState<GameId[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeGameIndex, setActiveGameIndex] = useState(0);
+  const startMenuRef = useRef<HTMLDivElement | null>(null);
+  const startBtnRef = useRef<HTMLButtonElement | null>(null);
 
   const launchGame = (id: GameId) => {
     setStartOpen(false);
@@ -25,6 +29,25 @@ const Win98Hero: React.FC = () => {
     setOpenGames((g) => (g.includes(id) ? g : [...g, id]));
   };
   const closeGame = (id: GameId) => setOpenGames((g) => g.filter((x) => x !== id));
+
+  const closeStart = () => { setStartOpen(false); setGamesOpen(false); };
+
+  // Close on outside click / Escape
+  useEffect(() => {
+    if (!startOpen) return;
+    const onDown = (e: MouseEvent) => {
+      const t = e.target as Node;
+      if (startMenuRef.current?.contains(t) || startBtnRef.current?.contains(t)) return;
+      closeStart();
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeStart(); };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [startOpen]);
 
   useEffect(() => {
     const tick = () => {
