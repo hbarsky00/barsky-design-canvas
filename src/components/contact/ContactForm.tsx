@@ -139,11 +139,12 @@ const ContactForm: React.FC = () => {
                 <FormControl>
                   <textarea
                     {...field}
-                    rows={5}
+                    rows={3}
                     placeholder="Tell me a bit about your project..."
-                    className="w-full px-3.5 py-3 rounded-lg border border-border bg-white text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-border bg-white text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none"
                   />
                 </FormControl>
+
                 <FormMessage className="text-xs" />
               </FormItem>
             )}
