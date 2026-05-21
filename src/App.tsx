@@ -75,7 +75,7 @@ function AppContent() {
               {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-              <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
+              <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
               <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
