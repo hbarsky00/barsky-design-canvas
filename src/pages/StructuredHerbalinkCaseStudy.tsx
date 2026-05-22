@@ -1,70 +1,54 @@
 import React from "react";
-import SimpleCaseStudyPage from "@/components/case-study/SimpleCaseStudyPage";
+import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
 
-const StructuredHerbalinkCaseStudy: React.FC = () => (
-  <SimpleCaseStudyPage
-    projectId="herbalink"
-    title="HerbaLink"
-    description="Verified herbalists, designed around trust. A booking platform where the credential gate is the product — not a badge."
-    tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
-    liveUrl="http://herbalink.live"
-    heroImage={{
-      src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      alt: "HerbaLink book-an-herbalist promo on mobile",
-      hoverVideo: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
-    }}
-    blocks={[
-      {
-        heading: "The Problem",
-        paragraphs: [
-          "People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing — and the discovery experience is a misinformation field.",
-          "The design job wasn't to build a bigger directory. It was to make the safe path the easy path in a category where being wrong has real medical consequences.",
-        ],
-        images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png", alt: "Initial concepts and sketches focused on the credential gate, not the directory layout" },
-        ],
-      },
-      {
-        heading: "Verified as a Gate, Not a Badge",
-        paragraphs: [
-          "Most directories let anyone list and then badge profiles that pass a basic check. Inverting that — no practitioner visible until verified against the American Herbalists Guild — produces a smaller, more honest catalog.",
-          "Adding 200 unverified practitioners made the experience worse, not better.",
-        ],
-        images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png", alt: "Flow exploration — credential gate sits before any browsing" },
-        ],
-      },
-      {
-        heading: "What AI Did vs. What I Did",
-        paragraphs: [
-          "AI handled Supabase schemas, RLS policies, edge functions, the symptom intake structure, and copy variants.",
-          "Which certifications matter for which conditions, when to refuse a listing, who doesn't appear in the catalog — those were every call made by hand.",
-        ],
-        images: [
-          { src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1", alt: "HerbaLink user flow from onboarding to booking" },
-        ],
-      },
-      {
-        heading: "What Got Cut",
-        paragraphs: [
-          "The original filter panel was replaced with guided triage intake after a tester said \"this feels like WebMD.\"",
-          "The comprehensive symptom diary was cut to a single follow-up question — users opened the full version twice and abandoned it.",
-          "Open-ended search was removed entirely in favor of credential-first discovery.",
-        ],
-        images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png", alt: "Symptom tracker — final form, after the comprehensive version was cut" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png", alt: "HerbaLink early Book an Herbalist concept — before the credential gate was inverted" },
-        ],
-      },
-      {
-        heading: "Outcome",
-        paragraphs: [
-          "A shipped booking platform where every listed practitioner has externally verified credentials, intake replaces search, and the safer path is also the easier one.",
-          "Smaller catalog by design — honest beats exhaustive.",
-        ],
-      },
-    ]}
-  />
-);
+const config: MiniSiteConfig = {
+  id: "herbalink",
+  brandName: "HerbaLink",
+  colors: {
+    bg: "#faf9f6",
+    text: "#2d2d2d",
+    accent: "#4a7c59",
+    secondary: "#6b9b78",
+    navText: "#2d2d2d",
+    navBgOnScroll: "rgba(250,249,246,0.9)",
+    muted: "rgba(45,45,45,0.7)",
+    border: "rgba(45,45,45,0.12)",
+    cardBg: "rgba(74,124,89,0.06)",
+  },
+  nav: { ctaLabel: "Find an Herbalist →", ctaHref: "http://herbalink.live" },
+  hero: {
+    eyebrow: "Verified Herbalist Platform",
+    headline: "Find a Herbalist You Can Trust.",
+    subhead: "Every practitioner verified against the American Herbalists Guild. No unverified listings, ever.",
+    ctaLabel: "Find an Herbalist →",
+    ctaHref: "http://herbalink.live",
+    image: { src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png", alt: "HerbaLink platform" },
+  },
+  features: [
+    { title: "Credential-Gated Directory", description: "Nothing visible until verified against the American Herbalists Guild. Smaller catalog. Honest by design." },
+    { title: "Symptom-First Discovery", description: "Guided intake replaces open search. Describe what you're experiencing, not what certification you want." },
+    { title: "Transparent Booking", description: "See credentials, specialties, and availability before you book." },
+    { title: "Built for Safety", description: "In a category where bad advice has real consequences, the safer path is the easier one." },
+  ],
+  about: {
+    body: "People turn to herbalism for conditions conventional medicine isn't addressing — and the discovery experience is a misinformation field. Inverting the credential gate produces a smaller, more honest catalog. Honest beats exhaustive.",
+    honest: "Practitioner onboarding is manual. Scaling verified supply is the hardest problem and I haven't cracked it.",
+  },
+  press: [
+    { field: "Type", value: "Solo-built healthcare platform" },
+    { field: "Stack", value: "Supabase, Stripe, Edge Functions, RLS" },
+    { field: "Verification", value: "American Herbalists Guild" },
+    { field: "Platform", value: "Mobile web" },
+    { field: "Status", value: "✓ Live" },
+    { field: "URL", value: "herbalink.live" },
+    { field: "Designer", value: "Hiram Barsky" },
+  ],
+  bottomCta: { label: "Find an Herbalist at herbalink.live →", href: "http://herbalink.live" },
+  seo: {
+    title: "HerbaLink — Verified Herbalist Platform",
+    description: "Find a verified herbalist you can trust. Every practitioner credentialed against the American Herbalists Guild.",
+  },
+};
 
+const StructuredHerbalinkCaseStudy: React.FC = () => <MiniProductSite config={config} />;
 export default StructuredHerbalinkCaseStudy;

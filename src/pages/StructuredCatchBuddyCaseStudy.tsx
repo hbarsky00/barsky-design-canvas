@@ -1,71 +1,54 @@
 import React from "react";
-import SimpleCaseStudyPage from "@/components/case-study/SimpleCaseStudyPage";
+import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
 
-const StructuredCatchBuddyCaseStudy: React.FC = () => (
-  <SimpleCaseStudyPage
-    projectId="catchbuddy"
-    title="CatchBuddy"
-    description="Same-day pickup sports, designed for trust. Post a game, find players, confirm in a few taps — built solo with AI as a co-builder."
-    tags={["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"]}
-    liveUrl="https://catchbuddy.me"
-    heroImage={{
-      src: "/images/catchbuddy-hero-landing.png",
-      alt: "CatchBuddy pickup sports landing hero",
-      hoverVideo: "/lovable-uploads/catchbuddy-hero.mp4",
-    }}
-    blocks={[
-      {
-        heading: "The Problem",
-        paragraphs: [
-          "Pickup sports are dying in cities. Existing apps assume commitment, schedules, and recurring teams. Most people want one game this weekend, not a season.",
-          "The real product wasn't another scheduling tool — it was a way to lower the friction and safety risk of two strangers agreeing to meet at a park.",
-        ],
-        images: [
-          { src: "/images/catchbuddy-post-game.png", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee" },
-        ],
-      },
-      {
-        heading: "Safety Is the Product",
-        paragraphs: [
-          "Minors require a verified parent before they can post. The panic button reaches every in-game screen. Public meeting spots are curated, not crowdsourced.",
-          "None of that came from a prompt — those are product calls about who's actually going to use this and what could go wrong.",
-        ],
-        images: [
-          { src: "/images/catchbuddy-choose-park.png", alt: "Choose a Park — searchable list with distance and amenities" },
-        ],
-      },
-      {
-        heading: "What AI Did vs. What I Did",
-        paragraphs: [
-          "AI shipped the RLS policies, Supabase migrations, Stripe integration, and OAuth flow.",
-          "The trust model — who gets in, who's gated, what's surfaced — was every decision made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
-        ],
-        images: [
-          { src: "/images/catchbuddy-equipment-prefs.png", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle" },
-        ],
-      },
-      {
-        heading: "What Got Cut",
-        paragraphs: [
-          "\"Matches\" was renamed to \"Browse\" and \"Players\" after testers consistently read it as Tinder-like.",
-          "The Quick Start wizard was over-engineered — users wanted to skip it.",
-          "Apple, Outlook, and ICS calendar support were built and then cut as a maintenance tax for a feature users barely used.",
-        ],
-        images: [
-          { src: "/images/catchbuddy-find-players.png", alt: "Find Players list with 92% and 81% match scores" },
-          { src: "/images/catchbuddy-signup-minor-gate.png", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow" },
-          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter" },
-        ],
-      },
-      {
-        heading: "Outcome",
-        paragraphs: [
-          "A shipped platform with auth, RLS, Stripe, Google OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo.",
-          "Trust-first architecture, built in from v1, not bolted on.",
-        ],
-      },
-    ]}
-  />
-);
+const config: MiniSiteConfig = {
+  id: "catchbuddy",
+  brandName: "CatchBuddy",
+  colors: {
+    bg: "#ffffff",
+    text: "#111111",
+    accent: "#16a34a",
+    secondary: "#22c55e",
+    navText: "#111111",
+    navBgOnScroll: "rgba(255,255,255,0.9)",
+    muted: "rgba(17,17,17,0.65)",
+    border: "rgba(17,17,17,0.1)",
+    cardBg: "rgba(17,17,17,0.03)",
+  },
+  nav: { ctaLabel: "Find a Game →", ctaHref: "https://catchbuddy.me" },
+  hero: {
+    eyebrow: "Pickup Sports Platform",
+    headline: "Find Local Players. Play Today.",
+    subhead: "Post a game, find partners, confirm in a few taps.",
+    ctaLabel: "Find a Game →",
+    ctaHref: "https://catchbuddy.me",
+    image: { src: "/images/catchbuddy-hero-landing.png", alt: "CatchBuddy app" },
+  },
+  features: [
+    { title: "Same-Day Games", description: "Post and play today. No schedules, no seasons, no commitments." },
+    { title: "Safety First", description: "Curated meeting spots, panic button on every screen, verified parent gate for minors." },
+    { title: "Smart Matching", description: "Match scores based on sport, skill, location, and availability." },
+    { title: "Zero Friction", description: "Google OAuth, in-app confirmation, calendar export. Post to confirmed in under 2 minutes." },
+  ],
+  about: {
+    body: "Pickup sports are dying in cities. Existing apps assume commitment. The real product was a way to lower the friction and safety risk of two strangers agreeing to meet at a park.",
+    honest: "Retention after the first game. Getting people back for a second is harder than getting them there the first time.",
+  },
+  press: [
+    { field: "Type", value: "Solo-built consumer platform" },
+    { field: "Stack", value: "Supabase, Stripe, Google OAuth, Realtime" },
+    { field: "Sports", value: "Football, Basketball, Baseball, Volleyball, Frisbee" },
+    { field: "Platform", value: "Mobile web + PWA" },
+    { field: "Status", value: "✓ Live" },
+    { field: "URL", value: "catchbuddy.me" },
+    { field: "Designer", value: "Hiram Barsky" },
+  ],
+  bottomCta: { label: "Find a Game at catchbuddy.me →", href: "https://catchbuddy.me" },
+  seo: {
+    title: "CatchBuddy — Same-Day Pickup Sports Platform",
+    description: "Find local players and play today. Same-day pickup sports with smart matching, safety-first design, and zero friction.",
+  },
+};
 
+const StructuredCatchBuddyCaseStudy: React.FC = () => <MiniProductSite config={config} />;
 export default StructuredCatchBuddyCaseStudy;
