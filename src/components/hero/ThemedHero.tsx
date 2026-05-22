@@ -1,6 +1,7 @@
 import React from "react";
 import "@/styles/themes.css";
 import StyleSwitcher, { useStoredTheme } from "./StyleSwitcher";
+import ParallaxHero from "./ParallaxHero";
 import type { ThemeId } from "./themeConfig";
 
 const NAME = "Hiram Barsky";
@@ -175,14 +176,18 @@ const ThemedHero: React.FC = () => {
   return (
     <>
       <StyleSwitcher themeId={themeId} onChange={setThemeId} />
-      <section
-        data-theme={themeId}
-        aria-label="Hiram Barsky portfolio hero"
-      >
-        <div className="hero">
-          <HeroContent themeId={themeId} />
-        </div>
-      </section>
+      {themeId === "3d" ? (
+        <ParallaxHero />
+      ) : (
+        <section
+          data-theme={themeId}
+          aria-label="Hiram Barsky portfolio hero"
+        >
+          <div className="hero">
+            <HeroContent themeId={themeId} />
+          </div>
+        </section>
+      )}
     </>
   );
 };
