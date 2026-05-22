@@ -13,7 +13,7 @@ const AUTHOR = "Hiram Barsky";
 const DEFAULT_DESC =
   "Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech";
 const DEFAULT_IMAGE =
-  "https://barskydesign.pro/images/hiram-barsky-headshot.jpg";
+  "https://barskydesign.pro/images/hiram-barsky-profile.png";
 const TWITTER_HANDLE = "@hirambarsky";
 
 /* ── SEO Data ─────────────────────────────────────────────────────── */

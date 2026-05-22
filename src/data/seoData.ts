@@ -37,7 +37,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'About Hiram Barsky — 15+ Years in Design',
     description: 'Senior UX/Product Designer with 15+ years building data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-headshot.jpg'
+    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/store': {
     kind: 'page',
