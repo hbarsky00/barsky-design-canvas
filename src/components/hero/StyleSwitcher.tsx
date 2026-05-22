@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
 import { THEMES, STORAGE_KEY, DEFAULT_THEME, type ThemeId } from "./themeConfig";
+
 
 interface Props {
   themeId: ThemeId;
