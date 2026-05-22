@@ -54,7 +54,7 @@ const HeroContent: React.FC<{ themeId: ThemeId }> = ({ themeId }) => {
   const caseGrid = (
     <div className="case-grid">
       {CASE_STUDIES.map((c) => (
-        <Link key={c.id} className="case-card" to={c.to}>
+        <Link key={c.id} className="case-card" to={c.to} title={`${c.label} — ${c.desc}`} style={{ cursor: "pointer" }}>
           <img className="case-thumb" src={c.img} alt={c.label} loading="lazy" />
           <div className="case-label">{c.label}</div>
         </Link>
