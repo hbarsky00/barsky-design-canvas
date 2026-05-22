@@ -1,71 +1,50 @@
 import React from "react";
-import SimpleCaseStudyPage from "@/components/case-study/SimpleCaseStudyPage";
+import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
 
-const StructuredRingRivalCaseStudy: React.FC = () => (
-  <SimpleCaseStudyPage
-    projectId="ring-rival"
-    title="Ring-Rival"
-    description="Console boxing feel on the mobile web. Distinct AI opponents, generated trash talk, career mode — built solo with AI as a co-builder."
-    tags={["AI-Assisted Product", "Mobile Web", "Game Design", "Solo Build"]}
-    liveUrl="https://rival.li"
-    heroImage={{
-      src: "/images/ringrival-hero-title.png",
-      alt: "Ring-Rival hero title screen",
-      hoverVideo: "/lovable-uploads/ring-rival-hero.mp4",
-    }}
-    blocks={[
-      {
-        heading: "The Problem",
-        paragraphs: [
-          "Boxing games live on consoles for a reason — tight input latency, real animation feel, AI that reads like an opponent.",
-          "Doing all of that with a thumb in a browser, no install, was the constraint that made it worth building. The question wasn't \"can we ship a boxer\" — it was \"can we ship one that feels right.\"",
-        ],
-        images: [
-          { src: "/images/ringrival-controls-modal.png", alt: "VS Glass Joe controls modal with input scheme" },
-        ],
-      },
-      {
-        heading: "What I Built",
-        paragraphs: [
-          "One archetype (Glass Joe) had to feel good before any other fighter was generated.",
-          "AI produced sprites, trash talk, announcer intros, and crowd reactions. The career order — difficulty curve, fight sequencing, when each opponent appears — was built by hand across hundreds of test fights.",
-        ],
-        images: [
-          { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — tall, broad, defensive guard" },
-        ],
-      },
-      {
-        heading: "The Parts AI Can't Do",
-        paragraphs: [
-          "Hit-stop duration, screen shake amplitude, a 60ms haptic on connect, the curve of health bar drain — all hand-tuned by feel.",
-          "Where the punch button lives and how big the block zone is were settled by watching a real hand on a real phone. No model knows whether a punch feels like a punch.",
-        ],
-        images: [
-          { src: "/images/ringrival-knockdown.png", alt: "Knockdown — DOWN! 5 count with star burst over floored Glass Joe" },
-        ],
-      },
-      {
-        heading: "What Got Cut",
-        paragraphs: [
-          "Time-to-first-punch dropped from 22 seconds to 6 by cutting menus and tutorial screens.",
-          "Audio failure rate dropped from ~40% to under 2% by gating AudioContext behind the first tap.",
-          "Webcam hand-tracking was technically impressive and completely wrong for the audience — removed entirely.",
-        ],
-        images: [
-          { src: "/images/ringrival-impact-particles.png", alt: "Glass Joe getting hit — red impact particles dialed back so fighter stays visible" },
-          { src: "/images/ringrival-pause-modal.png", alt: "Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow" },
-          { src: "/images/ringrival-discodan.png", alt: "Disco Dan — completely different silhouette and personality from Glass Joe" },
-        ],
-      },
-      {
-        heading: "Outcome",
-        paragraphs: [
-          "A shipped boxing game with a 3–6 build-per-day cadence, real user cuts, and AI opponents that bait, hesitate, and tilt.",
-          "AI generated the raw material. The designer was the taste filter on every output.",
-        ],
-      },
-    ]}
-  />
-);
+const config: MiniSiteConfig = {
+  id: "ring-rival",
+  brandName: "Ring-Rival",
+  colors: {
+    bg: "#0d0d0d",
+    text: "#ffffff",
+    accent: "#e8003d",
+    secondary: "#ffffff",
+    navText: "#ffffff",
+  },
+  nav: { ctaLabel: "Fight Now →", ctaHref: "https://rival.li" },
+  hero: {
+    eyebrow: "Mobile Web Boxing",
+    headline: "Console Boxing Feel. Zero Install.",
+    subhead: "Distinct AI opponents, generated trash talk, career mode — in your browser.",
+    ctaLabel: "Start Career →",
+    ctaHref: "https://rival.li",
+    image: { src: "/images/ringrival-hero-title.png", alt: "Ring-Rival boxing game" },
+  },
+  features: [
+    { title: "Distinct AI Opponents", description: "Each fighter has a unique silhouette, personality, and trash talk. Generated with AI, tuned across hundreds of fights." },
+    { title: "Console-Grade Feel", description: "Hit-stop, screen shake, 60ms haptic on connect. Hand-tuned by feel, not by prompt." },
+    { title: "Career Mode", description: "Fight through a difficulty-ordered roster. Unlock opponents by winning." },
+    { title: "Zero Install", description: "Full game in the browser. No app store, no download." },
+  ],
+  about: {
+    body: "Boxing games live on consoles for a reason. Doing console feel with a thumb in a browser was the constraint that made it worth building. No model knows whether a punch feels like a punch — that part was all hand-tuning.",
+    honest: "Multiplayer is the obvious next step and the hardest engineering problem. Webcam hand-tracking was explored and cut — impressive, wrong audience.",
+  },
+  press: [
+    { field: "Type", value: "Solo-built mobile web game" },
+    { field: "Stack", value: "Canvas API, Web Audio, Haptics, Supabase" },
+    { field: "Opponents", value: "Glass Joe, Von Kaiser, Disco Dan + more" },
+    { field: "Platform", value: "Mobile web — iOS Safari, Chrome" },
+    { field: "Status", value: "✓ Live" },
+    { field: "URL", value: "rival.li" },
+    { field: "Designer", value: "Hiram Barsky" },
+  ],
+  bottomCta: { label: "Fight Now at rival.li →", href: "https://rival.li" },
+  seo: {
+    title: "Ring-Rival — Mobile Web Boxing by Hiram Barsky",
+    description: "Console boxing feel with zero install. Distinct AI opponents, generated trash talk, full career mode in the browser.",
+  },
+};
 
+const StructuredRingRivalCaseStudy: React.FC = () => <MiniProductSite config={config} />;
 export default StructuredRingRivalCaseStudy;
