@@ -45,18 +45,33 @@
   font-family: 'Inter', system-ui, sans-serif;
 }
 [data-theme="3d"] .hero .hero-inner {
-  background: rgba(124, 109, 235, 0.08);
-  border: 1px solid rgba(167, 139, 250, 0.4);
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 32px;
+  background: rgba(124, 109, 235, 0.05);
+  border: 1px solid rgba(124, 109, 235, 0.3);
+  border-radius: 12px;
+  padding: 2.5rem;
 }
-[data-theme="3d"] .hero .name { color: #a78bfa; }
-[data-theme="3d"] .hero .skill { border-color: #a78bfa; color: #c4b5fd; }
-[data-theme="3d"] .hero .btn.primary { background: #a78bfa; color: #0a0a1a; border-color: #a78bfa; }
-[data-theme="3d"] .hero .btn.primary > span { color: #0a0a1a; }
-[data-theme="3d"] .hero .case-thumb,
-[data-theme="3d"] .hero .case-label { border: 1px solid rgba(167,139,250,.3); border-radius: 8px; }
+[data-theme="3d"] .hero .name { color: #ffffff; font-size: 48px; font-weight: 500; }
+[data-theme="3d"] .hero .role { color: #7c6deb; font-size: 14px; }
+[data-theme="3d"] .hero .bio { color: #888; font-size: 14px; }
+[data-theme="3d"] .hero .skill {
+  background: rgba(124, 109, 235, 0.1);
+  border: 1px solid rgba(124, 109, 235, 0.3);
+  border-radius: 20px;
+  color: #a78bfa;
+}
+[data-theme="3d"] .hero .btn {
+  background: transparent;
+  border: 1px solid rgba(124, 109, 235, 0.4);
+  color: #ffffff;
+  border-radius: 8px;
+}
+[data-theme="3d"] .hero .btn.primary {
+  background: #7c6deb;
+  border-color: #7c6deb;
+}
+[data-theme="3d"] .hero .btn.primary > span { color: #ffffff; }
+[data-theme="3d"] .hero .case-thumb { border: 1px solid rgba(124,109,235,.3); border-radius: 8px; }
+
 
 /* =========== 1990s =========== */
 [data-theme="1990s"] .hero {
