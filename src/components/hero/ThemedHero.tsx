@@ -54,16 +54,10 @@ const HeroContent: React.FC<{ themeId: ThemeId }> = ({ themeId }) => {
   const caseGrid = (
     <div className="case-grid">
       {CASE_STUDIES.map((c) => (
-        <a key={c.id} className="case-card" href={`#${c.id}`} onClick={(e) => {
-          e.preventDefault();
-          const el = document.getElementById(c.id);
-          if (!el) return;
-          const top = el.getBoundingClientRect().top + window.scrollY - 72;
-          window.scrollTo({ top, behavior: "smooth" });
-        }}>
+        <Link key={c.id} className="case-card" to={c.to}>
           <img className="case-thumb" src={c.img} alt={c.label} loading="lazy" />
           <div className="case-label">{c.label}</div>
-        </a>
+        </Link>
       ))}
     </div>
   );
