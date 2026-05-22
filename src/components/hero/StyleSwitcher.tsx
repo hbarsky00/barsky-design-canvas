@@ -35,23 +35,30 @@ const StyleSwitcher: React.FC<Props> = ({ themeId, onChange }) => {
     <>
       <div className="style-switcher-bar">
         <span>Viewing:</span>
-        <button className="pill" onClick={() => setOpen(true)} aria-label="Change theme">
+        <button
+          type="button"
+          className="pill"
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen((v) => !v); }}
+          aria-label="Change theme"
+          aria-expanded={open}
+        >
           <span className="dot" style={{ background: current.color }} />
           <current.Icon size={14} color={current.color} />
           <strong>{current.label}</strong>
           <ChevronDown size={12} />
         </button>
         <span>version.</span>
-        <button className="try-link" onClick={tryAnother}>Try another?</button>
+        <button type="button" className="try-link" onClick={tryAnother}>Try another?</button>
       </div>
 
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
         <div className="style-switcher-modal-overlay" onClick={() => setOpen(false)}>
           <div className="style-switcher-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-grid">
               {THEMES.map((t) => (
                 <button
                   key={t.id}
+                  type="button"
                   className={`mode-btn ${t.id === themeId ? "active" : ""}`}
                   onClick={() => select(t.id)}
                 >
@@ -64,11 +71,13 @@ const StyleSwitcher: React.FC<Props> = ({ themeId, onChange }) => {
             </div>
             <div className="modal-footer">SYSTEM SELECT ({currentIndex}/{THEMES.length})</div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
 };
+
 
 export const useStoredTheme = () => {
   const [themeId, setThemeId] = useState<ThemeId>(() => {
