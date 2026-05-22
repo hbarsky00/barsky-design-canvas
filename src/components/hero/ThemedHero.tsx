@@ -11,12 +11,12 @@ const BIO = "Passion for high craft, Gen AI, Cybersecurity & Fintech design.";
 const SKILLS = ["Gen AI", "Fintech", "Cyber", "UX/UI"];
 
 const CASE_STUDIES = [
-  { id: "case-study-1", label: "Fire Lion", img: "/images/firelion-hero-title.png", to: "/project/fire-lion" },
-  { id: "case-study-2", label: "Ring-Rival", img: "/images/ringrival-hero-title.png", to: "/project/ring-rival" },
-  { id: "case-study-3", label: "CatchBuddy", img: "/images/catchbuddy-hero-landing.png", to: "/project/catchbuddy" },
-  { id: "case-study-4", label: "HerbaLink", img: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png", to: "/project/herbalink" },
-  { id: "case-study-5", label: "QR Code Builder", img: "/images/email-ai-promo.png", to: "/project/qr-code-builder" },
-  { id: "case-study-6", label: "ROI Design Builder", img: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg", to: "/project/roi-design-builder" },
+  { id: "case-study-1", label: "Fire Lion", img: "/images/firelion-hero-title.png", to: "/project/fire-lion", desc: "Word-casting arcade game" },
+  { id: "case-study-2", label: "Ring-Rival", img: "/images/ringrival-hero-title.png", to: "/project/ring-rival", desc: "Mobile web boxing" },
+  { id: "case-study-3", label: "CatchBuddy", img: "/images/catchbuddy-hero-landing.png", to: "/project/catchbuddy", desc: "Same-day pickup sports" },
+  { id: "case-study-4", label: "HerbaLink", img: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png", to: "/project/herbalink", desc: "Verified herbalist platform" },
+  { id: "case-study-5", label: "QR Code Builder", img: "/images/email-ai-promo.png", to: "/project/qr-code-builder", desc: "Generate branded QR codes with analytics" },
+  { id: "case-study-6", label: "ROI Design Builder", img: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg", to: "/project/roi-design-builder", desc: "Calculate design ROI for stakeholder buy-in" },
 ];
 
 const scrollToCaseStudies = () => {
@@ -54,7 +54,7 @@ const HeroContent: React.FC<{ themeId: ThemeId }> = ({ themeId }) => {
   const caseGrid = (
     <div className="case-grid">
       {CASE_STUDIES.map((c) => (
-        <Link key={c.id} className="case-card" to={c.to}>
+        <Link key={c.id} className="case-card" to={c.to} title={`${c.label} — ${c.desc}`} style={{ cursor: "pointer" }}>
           <img className="case-thumb" src={c.img} alt={c.label} loading="lazy" />
           <div className="case-label">{c.label}</div>
         </Link>

@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global pointer cursor on all interactive elements */
+button,
+[role="button"],
+a,
+summary,
+label[for],
+select,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+button:disabled,
+[role="button"][aria-disabled="true"],
+button[disabled] {
+  cursor: not-allowed;
+}
+
 /* Image Quality Enhancement */
 @layer utilities {
   .image-render-crisp-edges {
