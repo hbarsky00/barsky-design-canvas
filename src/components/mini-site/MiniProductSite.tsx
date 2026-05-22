@@ -321,6 +321,37 @@ const MiniProductSite: React.FC<{ config: MiniSiteConfig }> = ({ config }) => {
           </a>
         )}
       </section>
+
+      {/* Floating Back Button */}
+      <a
+        href="/"
+        style={{
+          position: "fixed",
+          bottom: 24,
+          left: 24,
+          zIndex: 9999,
+          padding: "8px 14px",
+          borderRadius: 999,
+          fontSize: 12,
+          textDecoration: "none",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          transition: "background 0.15s, color 0.15s",
+          background: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)",
+          color: isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)",
+          border: `1px solid ${isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.15)"}`,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = isLight ? "rgba(0,0,0,0.14)" : "rgba(255,255,255,0.18)";
+          e.currentTarget.style.color = isLight ? "rgba(0,0,0,0.8)" : "rgba(255,255,255,1)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)";
+          e.currentTarget.style.color = isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
+        }}
+      >
+        ← Home
+      </a>
     </div>
   );
 };
