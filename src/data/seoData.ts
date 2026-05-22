@@ -111,6 +111,26 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     title: "Enterprise Data Search — UX Case Study",
     description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
     image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
+  },
+  "fire-lion": {
+    title: "Fire Lion — AI-Built Game Design Case Study",
+    description: "Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.",
+    image: "https://barskydesign.pro/images/firelion-hero-title.png"
+  },
+  "ring-rival": {
+    title: "Ring-Rival — AI Boxing Game Case Study",
+    description: "A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.",
+    image: "https://barskydesign.pro/images/ringrival-hero-title.png"
+  },
+  "catchbuddy": {
+    title: "CatchBuddy — Safe Sports Matching Case Study",
+    description: "Designing a safety-first matching loop before layering monetization.",
+    image: "https://barskydesign.pro/images/catchbuddy-hero-landing.png"
+  },
+  "email-creation-ai": {
+    title: "ManuscriptRx — Pharma Email AI Case Study",
+    description: "AI handles the work between humans across a 6-step regulated email workflow.",
+    image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png"
   }
 };
 
