@@ -350,7 +350,7 @@ const MiniProductSite: React.FC<{ config: MiniSiteConfig }> = ({ config }) => {
           e.currentTarget.style.color = isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.7)";
         }}
       >
-        ← Home
+        ← barskydesign.pro
       </a>
     </div>
   );
