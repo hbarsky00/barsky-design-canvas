@@ -266,6 +266,7 @@ const ProductSection: React.FC<{ label: string; items: { label: string; desc: st
       <Link
         key={it.label}
         to={it.to}
+        title={`${it.label} — ${it.desc}`}
         style={{
           display: "flex",
           alignItems: "center",
@@ -273,6 +274,7 @@ const ProductSection: React.FC<{ label: string; items: { label: string; desc: st
           marginBottom: 12,
           textDecoration: "none",
           color: "inherit",
+          cursor: "pointer",
         }}
       >
         <span
