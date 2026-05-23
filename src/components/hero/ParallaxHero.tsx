@@ -108,6 +108,12 @@ const ParallaxHero: React.FC = () => {
               borderRadius: "50%",
               background: `rgba(255,255,255,${0.4 + s.depth * 0.4})`,
               boxShadow: s.size === 3 ? "0 0 4px rgba(255,255,255,0.4)" : undefined,
+              ["--drift-x" as any]: `${s.driftX}px`,
+              ["--drift-y" as any]: `${s.driftY}px`,
+              ["--drift-dur" as any]: `${s.driftDur}s`,
+              ["--drift-delay" as any]: `${s.driftDelay}s`,
+              ["--twinkle-dur" as any]: `${s.twinkleDur}s`,
+              ["--twinkle-delay" as any]: `${s.twinkleDelay}s`,
             }}
           />
         ))}
