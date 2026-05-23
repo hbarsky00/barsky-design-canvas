@@ -8,7 +8,7 @@ const ParallaxHero: React.FC = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
 
-  const stars = useMemo<Star[]>(() => {
+  const stars = useMemo(() => {
     const rng = (seed: number) => {
       let s = seed;
       return () => {
@@ -17,12 +17,22 @@ const ParallaxHero: React.FC = () => {
       };
     };
     const r = rng(42);
-    return Array.from({ length: 80 }, () => ({
-      x: r() * 100,
-      y: r() * 85,
-      size: r() > 0.85 ? 3 : 2,
-      depth: r() * 0.6 + 0.4,
-    }));
+    return Array.from({ length: 80 }, () => {
+      const angle = r() * Math.PI * 2;
+      const dist = 8 + r() * 12;
+      return {
+        x: r() * 100,
+        y: r() * 85,
+        size: r() > 0.85 ? 3 : 2,
+        depth: r() * 0.6 + 0.4,
+        driftX: Math.cos(angle) * dist,
+        driftY: Math.sin(angle) * dist,
+        driftDur: 6 + r() * 14,
+        driftDelay: r() * 8,
+        twinkleDur: 2 + r() * 3,
+        twinkleDelay: r() * 8,
+      };
+    });
   }, []);
 
   useEffect(() => {
