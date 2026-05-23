@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import HeroContent from "./HeroContent";
 
-type Star = { x: number; y: number; size: number; depth: number };
+
 
 const ParallaxHero: React.FC = () => {
   const skyRef = useRef<HTMLDivElement>(null);
