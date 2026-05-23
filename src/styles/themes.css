@@ -103,9 +103,61 @@
 }
 .parallax-content {
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
-  padding: 120px 24px 80px;
+  padding: 120px 24px 80px; color: #fff;
 }
-.parallax-hero .hero-name { text-shadow: 0 0 40px rgba(139,58,58,0.4); color: #fff; }
+.parallax-content .hero-inner { width: 100%; text-align: center; }
+.parallax-content .hero-eyebrow { font-size: 15px; color: rgba(255,255,255,.55); margin: 0 0 8px; }
+.parallax-content .hero-name {
+  font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
+  color: #fff; margin: 0; line-height: 1.05;
+  text-shadow: 0 0 40px rgba(139,58,58,0.4);
+}
+.parallax-content .hero-divider { width: 60px; height: 2px; background: rgba(255,255,255,.4); margin: 12px auto; border: 0; }
+.parallax-content .hero-role { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; }
+.parallax-content .hero-tagline { font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0; }
+.parallax-content .product-list { max-width: 480px; margin: 32px auto 0; }
+.parallax-content .section-label {
+  display: block; text-align: center; font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.35); margin: 28px 0 12px;
+}
+.parallax-content .product-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  justify-content: flex-start; text-decoration: none; color: inherit;
+}
+.parallax-content .product-pill {
+  border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 14px;
+  font-size: 13px; color: #fff; background: transparent; white-space: nowrap;
+  flex-shrink: 0; transition: background .15s, border-color .15s;
+}
+.parallax-content .product-row:hover .product-pill { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
+.parallax-content .product-description { font-size: 13px; color: rgba(255,255,255,.5); text-align: left; }
+.parallax-content .social-icons {
+  display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
+}
+.parallax-content .social-link { color: rgba(255,255,255,.6); display: inline-flex; text-decoration: none; transition: color .15s; }
+.parallax-content .social-link:hover { color: #fff; }
+.parallax-content .book-call-wrap { margin-top: 12px; text-align: center; }
+.parallax-content .book-call {
+  display: inline-block; font-size: 13px; color: rgba(255,255,255,.35);
+  text-decoration: none; transition: color .15s;
+}
+.parallax-content .book-call:hover { color: #fff; text-decoration: underline; }
+
+/* Star twinkle + drift */
+@keyframes star-twinkle {
+  0%   { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+@keyframes star-drift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(var(--drift-x, 10px), var(--drift-y, -8px)); }
+}
+.parallax-stars > span {
+  will-change: transform, opacity;
+  animation:
+    star-twinkle var(--twinkle-dur, 3s) ease-in-out var(--twinkle-delay, 0s) infinite alternate,
+    star-drift var(--drift-dur, 12s) ease-in-out var(--drift-delay, 0s) infinite alternate;
+}
 
 /* =========== 3D (default) =========== */
 [data-theme="3d"] .hero {
