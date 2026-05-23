@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import HeroContent from "./HeroContent";
 
-type Star = { x: number; y: number; size: number; depth: number };
+
 
 const ParallaxHero: React.FC = () => {
   const skyRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
 
-  const stars = useMemo<Star[]>(() => {
+  const stars = useMemo(() => {
     const rng = (seed: number) => {
       let s = seed;
       return () => {
@@ -17,12 +17,22 @@ const ParallaxHero: React.FC = () => {
       };
     };
     const r = rng(42);
-    return Array.from({ length: 80 }, () => ({
-      x: r() * 100,
-      y: r() * 85,
-      size: r() > 0.85 ? 3 : 2,
-      depth: r() * 0.6 + 0.4,
-    }));
+    return Array.from({ length: 80 }, () => {
+      const angle = r() * Math.PI * 2;
+      const dist = 8 + r() * 12;
+      return {
+        x: r() * 100,
+        y: r() * 85,
+        size: r() > 0.85 ? 3 : 2,
+        depth: r() * 0.6 + 0.4,
+        driftX: Math.cos(angle) * dist,
+        driftY: Math.sin(angle) * dist,
+        driftDur: 6 + r() * 14,
+        driftDelay: r() * 8,
+        twinkleDur: 2 + r() * 3,
+        twinkleDelay: r() * 8,
+      };
+    });
   }, []);
 
   useEffect(() => {
@@ -98,6 +108,12 @@ const ParallaxHero: React.FC = () => {
               borderRadius: "50%",
               background: `rgba(255,255,255,${0.4 + s.depth * 0.4})`,
               boxShadow: s.size === 3 ? "0 0 4px rgba(255,255,255,0.4)" : undefined,
+              ["--drift-x" as any]: `${s.driftX}px`,
+              ["--drift-y" as any]: `${s.driftY}px`,
+              ["--drift-dur" as any]: `${s.driftDur}s`,
+              ["--drift-delay" as any]: `${s.driftDelay}s`,
+              ["--twinkle-dur" as any]: `${s.twinkleDur}s`,
+              ["--twinkle-delay" as any]: `${s.twinkleDelay}s`,
             }}
           />
         ))}
