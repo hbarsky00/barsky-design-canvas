@@ -49,6 +49,7 @@ const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
+const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
 
 
 const queryClient = new QueryClient();
@@ -88,6 +89,7 @@ function AppContent() {
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
               <Route path="/project/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
+              <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
 
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               

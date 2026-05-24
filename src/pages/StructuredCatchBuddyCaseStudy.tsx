@@ -1,5 +1,6 @@
 import React from "react";
 import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
+import heroImg from "@/assets/projects/catchbuddy.png";
 
 const config: MiniSiteConfig = {
   id: "catchbuddy",
@@ -22,7 +23,7 @@ const config: MiniSiteConfig = {
     subhead: "Post a game, find partners, confirm in a few taps.",
     ctaLabel: "Find a Game →",
     ctaHref: "https://catchbuddy.me",
-    image: { src: "/images/catchbuddy-hero-landing.png", alt: "CatchBuddy app" },
+    image: { src: heroImg, alt: "CatchBuddy app" },
   },
   features: [
     { title: "Same-Day Games", description: "Post and play today. No schedules, no seasons, no commitments." },

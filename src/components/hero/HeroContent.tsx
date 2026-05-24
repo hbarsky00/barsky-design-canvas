@@ -10,7 +10,7 @@ const SHIPPED = [
 ];
 
 const CONCEPTS = [
-  { label: "QR Code Builder", desc: "generate branded QR codes with analytics", to: "/project/qr-code-builder" },
+  { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
   { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
 ];
 
