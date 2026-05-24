@@ -1,5 +1,6 @@
 import React from "react";
 import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
+import heroImg from "@/assets/projects/firelion.png";
 
 const config: MiniSiteConfig = {
   id: "fire-lion",
@@ -18,7 +19,7 @@ const config: MiniSiteConfig = {
     subhead: "A solo-built mobile web game where vocabulary is your weapon.",
     ctaLabel: "Play Free →",
     ctaHref: "https://firelion.me",
-    image: { src: "/images/firelion-hero-title.png", alt: "Fire Lion gameplay" },
+    image: { src: heroImg, alt: "Fire Lion gameplay" },
   },
   features: [
     { title: "Three Game Modes", description: "Fire Lion, Lion Wars, Cub Mode. Each isolated so refactors never break the others." },

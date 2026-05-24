@@ -1,5 +1,8 @@
 import React from "react";
 import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
+import roiHero from "@/assets/projects/roidesigncalc.png";
+
+const ROI_URL = "https://roicalc.one/";
 
 const config: MiniSiteConfig = {
   id: "roi-design-builder",
@@ -15,15 +18,14 @@ const config: MiniSiteConfig = {
     border: "rgba(17,17,17,0.1)",
     cardBg: "rgba(14,165,233,0.06)",
   },
-  nav: { ctaLabel: "Try It →", ctaDisabled: true },
+  nav: { ctaLabel: "Try It →", ctaHref: ROI_URL },
   hero: {
-    eyebrow: "Enterprise · Stakeholder Tools · Concept",
+    eyebrow: "Enterprise · Stakeholder Tools",
     headline: "Make the Business Case for Design.",
     subhead: "A calculator and presentation tool that helps designers translate design decisions into dollars.",
-    ctaLabel: "Coming Soon",
-    ctaDisabled: true,
-    statusBadge: "🚧 In Development",
-    placeholderText: "ROI",
+    ctaLabel: "Open ROI Calculator →",
+    ctaHref: ROI_URL,
+    image: { src: roiHero, alt: "ROI Design Calculator interface" },
   },
   features: [
     { title: "ROI Calculator", description: "Input project scope, team size, and design decisions. Get a defensible business case output." },
@@ -33,19 +35,20 @@ const config: MiniSiteConfig = {
   ],
   about: {
     body: "Designers lose budget conversations because they speak in craft and stakeholders speak in money. The brief was a tool that translates. The hard part isn't the math — it's knowing which numbers stakeholders actually trust.",
-    honest: "This is a concept. The benchmark data problem is real — generic industry stats get challenged immediately. The tool only works if the numbers are defensible. That's the unsolved design problem.",
+    honest: "The benchmark data problem is real — generic industry stats get challenged immediately. The tool only works if the numbers are defensible. That's the ongoing design problem.",
   },
   press: [
-    { field: "Type", value: "Concept / Tool Design" },
+    { field: "Type", value: "Tool Design" },
     { field: "Tags", value: "Enterprise, Stakeholder Tools, ROI" },
-    { field: "Status", value: "🚧 In Development" },
+    { field: "Status", value: "✓ Live" },
+    { field: "URL", value: "roicalc.one" },
     { field: "Platform", value: "Web app" },
     { field: "Designer", value: "Hiram Barsky" },
   ],
-  bottomCta: { label: "In Development — Check Back Soon", disabled: true },
+  bottomCta: { label: "Try ROI Design Builder →", href: ROI_URL },
   seo: {
     title: "ROI Design Builder — Make the Business Case for Design",
-    description: "A concept calculator and presentation tool that helps designers translate design decisions into dollars stakeholders trust.",
+    description: "A calculator and presentation tool that helps designers translate design decisions into dollars stakeholders trust.",
   },
 };
 

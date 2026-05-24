@@ -1,5 +1,6 @@
 import React from "react";
 import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
+import heroImg from "@/assets/projects/ringrival.png";
 
 const config: MiniSiteConfig = {
   id: "ring-rival",
@@ -18,7 +19,7 @@ const config: MiniSiteConfig = {
     subhead: "Distinct AI opponents, generated trash talk, career mode — in your browser.",
     ctaLabel: "Start Career →",
     ctaHref: "https://rival.li",
-    image: { src: "/images/ringrival-hero-title.png", alt: "Ring-Rival boxing game" },
+    image: { src: heroImg, alt: "Ring-Rival boxing game" },
   },
   features: [
     { title: "Distinct AI Opponents", description: "Each fighter has a unique silhouette, personality, and trash talk. Generated with AI, tuned across hundreds of fights." },

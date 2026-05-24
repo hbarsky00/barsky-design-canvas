@@ -1,5 +1,6 @@
 import React from "react";
 import MiniProductSite, { MiniSiteConfig } from "@/components/mini-site/MiniProductSite";
+import heroImg from "@/assets/projects/herbalink.png";
 
 const config: MiniSiteConfig = {
   id: "herbalink",
@@ -22,7 +23,7 @@ const config: MiniSiteConfig = {
     subhead: "Every practitioner verified against the American Herbalists Guild. No unverified listings, ever.",
     ctaLabel: "Find an Herbalist →",
     ctaHref: "http://herbalink.live",
-    image: { src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png", alt: "HerbaLink platform" },
+    image: { src: heroImg, alt: "HerbaLink platform" },
   },
   features: [
     { title: "Credential-Gated Directory", description: "Nothing visible until verified against the American Herbalists Guild. Smaller catalog. Honest by design." },
