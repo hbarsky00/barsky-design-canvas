@@ -14,7 +14,7 @@ const Contact: React.FC = () => {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
               <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                Let's build something together
+                Contact Hiram Barsky for Product Design Services
               </h1>
               <p className="mt-2 text-muted-foreground text-sm md:text-base">
                 Project, collaboration, or just want to say hi — pick the channel that works for you.

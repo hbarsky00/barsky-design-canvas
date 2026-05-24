@@ -35,7 +35,7 @@ const HeroContent: React.FC = () => {
   return (
     <div className="hero-inner">
       <p className="hero-eyebrow">Hey there! I am</p>
-      <h1 className="hero-name">HIRAM BARSKY</h1>
+      <h1 className="hero-name">HIRAM BARSKY<span className="sr-only"> — Lead Product & AI Designer</span></h1>
       <div className="hero-divider" />
       <p className="hero-role">Lead Product &amp; AI Designer · Clifton, NJ</p>
       <p className="hero-tagline">I design AI-first products that ship.</p>
