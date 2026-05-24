@@ -8,9 +8,11 @@ import LLMChatHero from "./themes/LLMChatHero";
 import Win95Hero from "./themes/Win95Hero";
 import EightBitHero from "./themes/EightBitHero";
 import MDHero from "./themes/MDHero";
+import StructuralHero from "./themes/StructuralHero";
 import ThemeFx from "./themes/ThemeFx";
 
 const FX_THEMES = new Set(["flash", "brutalism", "swiss", "1990s"]);
+const STRUCTURAL_THEMES = new Set(["teletext", "sys7", "viz", "workbench", "2010s", "simple"]);
 
 const ThemedHero: React.FC = () => {
   const [themeId, setThemeId] = useStoredTheme();
@@ -37,6 +39,7 @@ const ThemedHero: React.FC = () => {
       case "md":
         return <MDHero />;
       default:
+        if (STRUCTURAL_THEMES.has(themeId)) return <StructuralHero themeId={themeId as any} />;
         return <HeroContent />;
     }
   };
