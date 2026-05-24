@@ -18,15 +18,15 @@ const ProductSection: React.FC<{ label: string; items: typeof SHIPPED }> = ({ la
   <div className="product-section">
     <div className="section-label">{label}</div>
     {items.map((it) => (
-      <Link
+      <a
         key={it.label}
-        to={it.to}
+        href={it.to}
         title={`${it.label} — ${it.desc}`}
         className="product-row"
       >
         <span className="product-pill">{it.label}</span>
         <span className="product-description">{it.desc}</span>
-      </Link>
+      </a>
     ))}
   </div>
 );
