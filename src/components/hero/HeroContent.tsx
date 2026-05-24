@@ -41,8 +41,8 @@ const HeroContent: React.FC = () => {
       <p className="hero-tagline">I design AI-first products that ship.</p>
 
       <div className="product-list">
-        <ProductSection label="Shipped Products" items={SHIPPED} />
-        <ProductSection label="Concept Work" items={CONCEPTS} />
+        <ProductSection label="SHIPPED PRODUCTS" items={SHIPPED} />
+        <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
       </div>
 
       <div className="social-icons">
