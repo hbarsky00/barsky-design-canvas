@@ -58,12 +58,16 @@ function getProjectPaths(): string[] {
     "/project/gold2crypto",
     "/project/dae-search",
     "/project/business-management",
-    
     "/project/investor-loan-app",
     "/project/wholesale-distribution",
     "/project/fire-lion",
     "/project/ring-rival",
     "/project/catchbuddy",
+    "/project/herbalink",
+    "/project/barskyjoint",
+    "/project/qr-code-builder",
+    "/project/roi-design-builder",
+    "/project/valora-bet",
   ].forEach((p) => found.add(p));
   return Array.from(found).sort();
 }
