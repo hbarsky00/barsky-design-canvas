@@ -7,6 +7,10 @@ import TerminalHero from "./themes/TerminalHero";
 import LLMChatHero from "./themes/LLMChatHero";
 import Win95Hero from "./themes/Win95Hero";
 import EightBitHero from "./themes/EightBitHero";
+import MDHero from "./themes/MDHero";
+import ThemeFx from "./themes/ThemeFx";
+
+const FX_THEMES = new Set(["flash", "brutalism", "swiss", "1990s"]);
 
 const ThemedHero: React.FC = () => {
   const [themeId, setThemeId] = useStoredTheme();
@@ -30,6 +34,8 @@ const ThemedHero: React.FC = () => {
         return <Win95Hero />;
       case "8bit":
         return <EightBitHero />;
+      case "md":
+        return <MDHero />;
       default:
         return <HeroContent />;
     }
@@ -39,7 +45,10 @@ const ThemedHero: React.FC = () => {
     <>
       <StyleSwitcher themeId={themeId} onChange={setThemeId} />
       <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero">
-        <div className="hero">{renderInteractive()}</div>
+        <div className="hero">
+          {renderInteractive()}
+          {FX_THEMES.has(themeId) && <ThemeFx themeId={themeId} />}
+        </div>
       </section>
     </>
   );

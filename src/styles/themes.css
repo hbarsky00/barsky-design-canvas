@@ -818,3 +818,170 @@
   0%, 70% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* ============================================================
+   Visual Theme Treatments — Flash · Brutalism · Swiss · 1990s · MD
+   3D name-tilt smoothing handled in ParallaxHero JS.
+   ============================================================ */
+
+/* Shared FX layer */
+.theme-fx-layer {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 10;
+}
+
+/* 3D — name tilt easing */
+.parallax-content .hero-name {
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ============ FLASH ============ */
+[data-theme="flash"] .hero { background: linear-gradient(135deg, #2a0a3d, #0a0a1a); color: #fff; cursor: default; min-height: 100vh; }
+[data-theme="flash"] .hero .hero-name {
+  animation: flashPulse 3s ease-in-out infinite;
+  background: linear-gradient(90deg, #cc88ff, #ff88cc, #cc88ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@keyframes flashPulse { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+[data-theme="flash"] .hero .product-pill {
+  transition: all 0.2s ease;
+}
+[data-theme="flash"] .hero .product-row:hover .product-pill {
+  transform: scale(1.08); box-shadow: 0 0 16px rgba(204,136,255,0.6);
+  border-color: #cc88ff; color: #fff;
+}
+.fx-flash-particle {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: #cc88ff; box-shadow: 0 0 8px #cc88ff;
+  pointer-events: none; transform: translate(-50%, -50%);
+  animation: flashParticle 0.5s ease-out forwards;
+}
+@keyframes flashParticle {
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+}
+
+/* ============ BRUTALISM ============ */
+[data-theme="brutalism"] .hero { background: #fff; color: #000; cursor: crosshair; min-height: 100vh; }
+[data-theme="brutalism"] .hero, [data-theme="brutalism"] .hero * { font-family: 'Helvetica Neue', Arial, sans-serif; }
+[data-theme="brutalism"] .hero .hero-name { color: #000; animation: brutalShake 0.4s ease-out 0.3s 1; }
+[data-theme="brutalism"] .hero .product-pill {
+  border: 2px solid #000; border-radius: 0; color: #000; background: #fff;
+  transition: none;
+}
+[data-theme="brutalism"] .hero .product-row:hover .product-pill {
+  background: #000; color: #fff; animation: brutalShake 0.3s ease-in-out;
+}
+@keyframes brutalShake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4px, 0); }
+  40% { transform: translate(4px, 0); }
+  60% { transform: translate(-4px, 0); }
+  80% { transform: translate(4px, 0); }
+  100% { transform: translate(0, 0); }
+}
+.fx-brutal-x {
+  position: absolute; font-size: 32px; font-weight: 900; color: #000;
+  transform: translate(-50%, -50%); pointer-events: none;
+  animation: brutalXFade 0.5s ease-out forwards;
+}
+@keyframes brutalXFade {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
+}
+
+/* ============ SWISS ============ */
+[data-theme="swiss"] .hero { background: #fff; color: #000; min-height: 100vh; padding: 80px 24px; align-items: flex-start; }
+[data-theme="swiss"] .hero, [data-theme="swiss"] .hero * { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+[data-theme="swiss"] .hero .hero-name { color: #000; position: relative; display: inline-block; }
+[data-theme="swiss"] .hero .hero-name::after {
+  content: ""; position: absolute; left: 0; bottom: -4px;
+  height: 4px; width: 0; background: #000; transition: width 0.3s ease;
+}
+[data-theme="swiss"] .hero .hero-name:hover::after { width: 100%; }
+[data-theme="swiss"] .hero .product-pill {
+  border: 0; border-radius: 0; color: #000; background: transparent; position: relative;
+  padding: 4px 0;
+}
+[data-theme="swiss"] .hero .product-pill::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  height: 1px; width: 0; background: #000; transition: width 0.2s ease;
+}
+[data-theme="swiss"] .hero .product-row:hover .product-pill::after { width: 100%; }
+[data-theme="swiss"] .hero .product-row:hover .product-pill { background: transparent; }
+.fx-swiss-crosshair {
+  position: absolute; left: 0; top: 0; width: 100%; height: 1px;
+  background: rgba(0,0,0,0.08); will-change: transform;
+}
+
+/* ============ 1990s ============ */
+[data-theme="1990s"] .hero {
+  background: #008080; color: #fff; min-height: 100vh;
+  font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+}
+[data-theme="1990s"] .hero .hero-name {
+  color: #ffff00; text-shadow: 2px 2px 0 #ff00ff, 4px 4px 0 #000;
+  cursor: pointer;
+}
+[data-theme="1990s"] .hero .hero-name:hover { animation: rainbow 0.5s linear infinite; }
+@keyframes rainbow {
+  0%   { color: #ff0000; }
+  17%  { color: #ff8800; }
+  33%  { color: #ffff00; }
+  50%  { color: #00ff00; }
+  67%  { color: #0088ff; }
+  83%  { color: #8800ff; }
+  100% { color: #ff0000; }
+}
+[data-theme="1990s"] .hero .product-pill {
+  background: #ffff00; color: #000; border: 2px outset #ffff00;
+}
+[data-theme="1990s"] .hero .product-description { color: #fff; }
+.fx-sparkle {
+  position: absolute; top: -20px;
+  animation: fxFall linear forwards;
+  pointer-events: none;
+}
+@keyframes fxFall {
+  from { transform: translateY(0); opacity: 1; }
+  90%  { opacity: 1; }
+  to   { transform: translateY(100vh); opacity: 0; }
+}
+.fx-marquee {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+  background: #000080; color: #ffff00; overflow: hidden; z-index: 20;
+  border-top: 2px solid #ffff00;
+}
+.fx-marquee-track {
+  display: inline-block; white-space: nowrap; padding: 4px 0;
+  font-size: 13px; font-weight: bold;
+  animation: marqueeScroll 30s linear infinite;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.fx-visitor-counter {
+  position: absolute; bottom: 40px; right: 12px;
+  background: #000; color: #00ff00; padding: 4px 10px;
+  border: 2px solid #00ff00; font-family: 'Courier New', monospace;
+  font-size: 12px; z-index: 20;
+}
+
+/* ============ MD ============ */
+[data-theme="md"] .hero { background: #1e1e1e; color: #d4d4d4; min-height: 100vh; padding: 40px 24px; align-items: flex-start; }
+.md-hero {
+  width: 100%; max-width: 760px; margin: 0 auto; cursor: pointer;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', monospace;
+}
+.md-stream {
+  font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+  color: #d4d4d4; margin: 0; font-family: inherit;
+}
+.md-stream a {
+  color: #60a5fa; text-decoration: underline; cursor: pointer;
+}
+.md-cursor {
+  display: inline-block; color: #d4d4d4;
+  animation: blink 1s steps(2) infinite;
+}

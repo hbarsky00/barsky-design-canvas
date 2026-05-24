@@ -52,6 +52,13 @@ const ParallaxHero: React.FC = () => {
         if (skyRef.current) skyRef.current.style.transform = `translate3d(${mx * 0.3}px, ${y * 0.05 + my * 0.3}px, 0)`;
         if (starsRef.current) starsRef.current.style.transform = `translate3d(${mx * 0.8}px, ${y * 0.15 + my * 0.8}px, 0)`;
         if (mountainsRef.current) mountainsRef.current.style.transform = `translate3d(${mx * 1.5}px, ${y * 0.25 + my * 1.5}px, 0)`;
+        // Subtle name tilt — max ±3deg
+        const nameEl = document.querySelector<HTMLElement>(".parallax-content .hero-name");
+        if (nameEl) {
+          const rx = (-my / 10) * 3;
+          const ry = (mx / 10) * 3;
+          nameEl.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        }
         raf = 0;
       });
     };
