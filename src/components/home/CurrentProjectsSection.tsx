@@ -134,6 +134,8 @@ const CurrentProjectsSection: React.FC = () => {
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          width={1280}
+                          height={720}
                         />
                         {/* Play button overlay */}
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
