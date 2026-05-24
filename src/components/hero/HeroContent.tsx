@@ -3,30 +3,30 @@ import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github, Calendar } from "lucide-react";
 
 const SHIPPED = [
-  { label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
-  { label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
   { label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
+  { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
+  { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
 ];
 
 const CONCEPTS = [
-  { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
-  { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
+  { label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
+  { label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
 ];
 
 const ProductSection: React.FC<{ label: string; items: typeof SHIPPED }> = ({ label, items }) => (
   <div className="product-section">
     <div className="section-label">{label}</div>
     {items.map((it) => (
-      <Link
+      <a
         key={it.label}
-        to={it.to}
+        href={it.to}
         title={`${it.label} — ${it.desc}`}
         className="product-row"
       >
         <span className="product-pill">{it.label}</span>
         <span className="product-description">{it.desc}</span>
-      </Link>
+      </a>
     ))}
   </div>
 );
@@ -41,8 +41,8 @@ const HeroContent: React.FC = () => {
       <p className="hero-tagline">I design AI-first products that ship.</p>
 
       <div className="product-list">
-        <ProductSection label="Shipped Products" items={SHIPPED} />
-        <ProductSection label="Concept Work" items={CONCEPTS} />
+        <ProductSection label="SHIPPED PRODUCTS" items={SHIPPED} />
+        <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
       </div>
 
       <div className="social-icons">
