@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github, Calendar } from "lucide-react";
 
 const SHIPPED = [
-  { label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
-  { label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
   { label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
+  { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
+  { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
 ];
 
 const CONCEPTS = [
-  { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
-  { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
+  { label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
+  { label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
 ];
 
 const ProductSection: React.FC<{ label: string; items: typeof SHIPPED }> = ({ label, items }) => (
