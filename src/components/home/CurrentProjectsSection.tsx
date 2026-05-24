@@ -145,7 +145,7 @@ const CurrentProjectsSection: React.FC = () => {
                         </div>
                       </>
                     )}
-                  </div>
+                  </button>
 
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between gap-3 mb-3">
