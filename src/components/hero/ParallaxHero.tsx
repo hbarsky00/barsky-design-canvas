@@ -120,21 +120,32 @@ const ParallaxHero: React.FC = () => {
         ))}
       </div>
 
-      {/* Layer 3: Mountains */}
+      {/* Layer 3: Mountains (with drifting seamless loop) */}
       <div ref={mountainsRef} aria-hidden className="parallax-mountains">
-        <svg viewBox="0 0 1200 240" preserveAspectRatio="none" style={{ position: "absolute", bottom: 8, left: 0, width: "100%", height: "85%", display: "block" }}>
-          <path
-            d="M0,240 L0,150 L80,110 L160,140 L240,90 L340,130 L440,80 L540,120 L640,70 L760,110 L880,90 L1000,130 L1100,100 L1200,140 L1200,240 Z"
-            fill="#1a0f1f"
-          />
-        </svg>
-        <svg viewBox="0 0 1200 240" preserveAspectRatio="none" style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "70%", display: "block" }}>
-          <path
-            d="M0,240 L0,180 L100,140 L200,170 L300,120 L420,160 L520,110 L640,150 L760,120 L880,160 L1000,130 L1120,170 L1200,140 L1200,240 Z"
-            fill="#0d0d0d"
-          />
-        </svg>
+        <div className="parallax-mountains-drift parallax-mountains-back">
+          {[0, 1].map((i) => (
+            <svg key={i} viewBox="0 0 1200 240" preserveAspectRatio="none">
+              <path
+                d="M0,240 L0,150 L80,110 L160,140 L240,90 L340,130 L440,80 L540,120 L640,70 L760,110 L880,90 L1000,130 L1100,100 L1200,140 L1200,240 Z"
+                fill="#1a0f1f"
+              />
+            </svg>
+          ))}
+        </div>
+        <div className="parallax-mountains-drift parallax-mountains-front">
+          {[0, 1].map((i) => (
+            <svg key={i} viewBox="0 0 1200 240" preserveAspectRatio="none">
+              <path
+                d="M0,240 L0,180 L100,140 L200,170 L300,120 L420,160 L520,110 L640,150 L760,120 L880,160 L1000,130 L1120,170 L1200,140 L1200,240 Z"
+                fill="#0d0d0d"
+              />
+            </svg>
+          ))}
+        </div>
       </div>
+
+      {/* Layer 4: Dynamic FX (shooting stars, meteors, airplanes) */}
+      <SkyEffects />
 
       <div className="parallax-content">
         <HeroContent />
