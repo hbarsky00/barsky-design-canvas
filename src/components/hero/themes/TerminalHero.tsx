@@ -4,21 +4,14 @@ import { HERO_PROJECTS } from "./projects";
 
 type Line = { kind: "out" | "cmd"; text: string };
 
-const INTRO = [
-  "Hey there! I am",
-  "HIRAM BARSKY",
-  "Lead Product & AI Designer · Clifton, NJ",
-  "I design AI-first products that ship.",
-];
-
-const HELP = "available: ls ./projects · whoami · cat skills.txt · open <project-id> · clear · help";
-
+const HELP = "available: ls · whoami · cat skills.txt · open <project-id> · clear · help";
 const HISTORY_KEY = "barsky-terminal-history";
+
+const projectListing = () =>
+  HERO_PROJECTS.map((p) => `  ${p.id.padEnd(22)}  ${p.desc}`).join("\n");
 
 const TerminalHero: React.FC = () => {
   const navigate = useNavigate();
-  const [intro, setIntro] = useState<string[]>([""]);
-  const [introDone, setIntroDone] = useState(false);
   const [lines, setLines] = useState<Line[]>([]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>(() => {
@@ -33,60 +26,25 @@ const TerminalHero: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Typing intro
   useEffect(() => {
-    let lineIdx = 0;
-    let charIdx = 0;
-    let cancelled = false;
-
-    const tick = () => {
-      if (cancelled) return;
-      if (lineIdx >= INTRO.length) {
-        setIntroDone(true);
-        return;
-      }
-      const target = INTRO[lineIdx];
-      charIdx += 1;
-      setIntro((prev) => {
-        const next = [...prev];
-        next[lineIdx] = target.slice(0, charIdx);
-        return next;
-      });
-      if (charIdx >= target.length) {
-        lineIdx += 1;
-        charIdx = 0;
-        setIntro((prev) => (lineIdx < INTRO.length ? [...prev, ""] : prev));
-        setTimeout(tick, 250);
-      } else {
-        setTimeout(tick, 40);
-      }
-    };
-    const t = setTimeout(tick, 200);
-    return () => {
-      cancelled = true;
-      clearTimeout(t);
-    };
+    inputRef.current?.focus();
   }, []);
-
-  useEffect(() => {
-    if (introDone) inputRef.current?.focus();
-  }, [introDone]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [lines, intro, introDone]);
+  }, [lines]);
 
   const run = (raw: string) => {
     const cmd = raw.trim();
-    const append = (text: string) => setLines((l) => [...l, { kind: "cmd", text: raw }, { kind: "out", text }]);
+    const append = (text: string) =>
+      setLines((l) => [...l, { kind: "cmd", text: raw }, { kind: "out", text }]);
 
     if (!cmd) {
       setLines((l) => [...l, { kind: "cmd", text: "" }]);
       return;
     }
 
-    // Save to history
     const newHistory = [...history, cmd].slice(-50);
     setHistory(newHistory);
     try {
@@ -95,16 +53,12 @@ const TerminalHero: React.FC = () => {
       /* noop */
     }
 
-    if (cmd === "clear") {
-      setLines([]);
-      return;
-    }
+    if (cmd === "clear") return setLines([]);
     if (cmd === "help") return append(HELP);
-    if (cmd === "ls ./projects" || cmd === "ls") {
-      return append(HERO_PROJECTS.map((p) => `${p.id.padEnd(22)}  ${p.desc}`).join("\n"));
-    }
-    if (cmd === "whoami") return append("Lead Product & AI Designer. Clifton, NJ.");
-    if (cmd === "cat skills.txt") return append("Gen AI · Fintech · Cyber · UX/UI");
+    if (cmd === "ls" || cmd === "ls ./projects" || cmd === "projects")
+      return append(projectListing());
+    if (cmd === "whoami") return append("Hiram Barsky — Lead Product & AI Designer, Clifton, NJ");
+    if (cmd === "cat skills.txt") return append("Gen AI · Fintech · Cyber · UX/UI · Product Design");
     if (cmd.startsWith("open ")) {
       const id = cmd.slice(5).trim();
       const proj = HERO_PROJECTS.find((p) => p.id === id);
@@ -113,9 +67,9 @@ const TerminalHero: React.FC = () => {
         setTimeout(() => navigate(proj.to), 250);
         return;
       }
-      return append(`unknown project: ${id}. try 'ls ./projects'`);
+      return append(`unknown project: ${id}. try 'ls'`);
     }
-    append(`command not found: ${cmd}. try 'ls ./projects'`);
+    append(`command not found: ${cmd}. try 'help' or 'ls'`);
   };
 
   const onKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -146,43 +100,48 @@ const TerminalHero: React.FC = () => {
   return (
     <div className="terminal-hero" onClick={() => inputRef.current?.focus()}>
       <div className="terminal-screen" ref={scrollRef}>
-        {intro.map((text, i) => (
-          <div key={`intro-${i}`} className={`terminal-line terminal-intro-${i}`}>
-            {text}
-            {!introDone && i === intro.length - 1 && <span className="terminal-cursor" />}
-          </div>
-        ))}
-        {introDone && (
-          <>
-            <div className="terminal-line terminal-help">type 'help' for commands</div>
-            {lines.map((l, i) =>
-              l.kind === "cmd" ? (
-                <div key={i} className="terminal-line">
-                  <span className="terminal-prompt">hiram@barskydesign:~$</span> {l.text}
-                </div>
-              ) : (
-                <pre key={i} className="terminal-out">
-                  {l.text}
-                </pre>
-              )
-            )}
-            <div className="terminal-line terminal-input-line">
-              <span className="terminal-prompt">hiram@barskydesign:~$</span>
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={onKey}
-                spellCheck={false}
-                autoCapitalize="off"
-                autoCorrect="off"
-                className="terminal-input"
-                aria-label="Terminal input"
-              />
-              <span className="terminal-cursor" />
+        <div className="terminal-line terminal-intro-0">Hey there! I am</div>
+        <div className="terminal-line terminal-intro-1">HIRAM BARSKY</div>
+        <div className="terminal-line terminal-intro-2">Lead Product &amp; AI Designer · Clifton, NJ</div>
+        <div className="terminal-line terminal-intro-3">I design AI-first products that ship.</div>
+
+        <div className="terminal-line terminal-help" style={{ marginTop: 14 }}>
+          shipped &amp; concept projects — type{" "}
+          <span style={{ color: "#7CFFB2" }}>open &lt;project-id&gt;</span> to view
+        </div>
+        <pre className="terminal-out">{projectListing()}</pre>
+
+        <div className="terminal-line terminal-help" style={{ marginTop: 8 }}>
+          type 'help' for commands
+        </div>
+
+        {lines.map((l, i) =>
+          l.kind === "cmd" ? (
+            <div key={i} className="terminal-line">
+              <span className="terminal-prompt">hiram@barskydesign:~$</span> {l.text}
             </div>
-          </>
+          ) : (
+            <pre key={i} className="terminal-out">
+              {l.text}
+            </pre>
+          )
         )}
+
+        <div className="terminal-line terminal-input-line">
+          <span className="terminal-prompt">hiram@barskydesign:~$</span>
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKey}
+            spellCheck={false}
+            autoCapitalize="off"
+            autoCorrect="off"
+            className="terminal-input"
+            aria-label="Terminal input"
+          />
+          <span className="terminal-cursor" />
+        </div>
       </div>
     </div>
   );
