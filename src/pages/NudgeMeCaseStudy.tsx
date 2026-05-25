@@ -48,7 +48,6 @@ const NudgeMeCaseStudy: React.FC = () => (
         { label: "Home", href: "#hero" },
         { label: "Features", href: "#features" },
         { label: "How It Works", href: "#flow" },
-        { label: "Stack", href: "#stack" },
       ]}
       cta={{ label: "Try NudgeMe →", href: "https://nudgeme.rip" }}
       bg="rgba(255,255,255,0.9)"
