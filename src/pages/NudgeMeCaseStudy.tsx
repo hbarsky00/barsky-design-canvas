@@ -136,32 +136,6 @@ const NudgeMeCaseStudy: React.FC = () => (
       </div>
     </section>
 
-    {/* STACK */}
-    <section id="stack" style={{ background: "#fff", padding: "96px 24px" }}>
-      <div style={{ maxWidth: 920, margin: "0 auto" }}>
-        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>UNDER THE HOOD</p>
-        <h2 style={{ color: INK, fontSize: 32, fontWeight: 600, margin: "8px 0 24px", letterSpacing: "-0.02em" }}>Built to ship.</h2>
-        <p style={{ color: SUBDUED, fontSize: 16, lineHeight: 1.75, marginBottom: 32 }}>
-          React 18 + TypeScript + Vite on the front. Tailwind with a custom token system (teal primary, no purple, no indigo). Supabase Postgres with row-level security, Supabase Auth, and ten edge functions for scheduling, push, SMS verification, Google Calendar OAuth, and email. The parser is fully client-side: Chrono-node and a rules engine run in parallel, reconcile by confidence, then extract titles, flags, and importance scores. Recurrence is real RFC 5545 RRULE — not a fake "every X days" hack.
-        </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px,1fr))", gap: 12 }}>
-          {[
-            "React 18 · TypeScript · Vite",
-            "Tailwind · Custom tokens",
-            "Supabase · Postgres + Edge",
-            "Chrono-node + rules parser",
-            "RFC 5545 RRULE",
-            "Web Push · PWA · Service Worker",
-            "Twilio SMS · Email",
-            "Google Calendar OAuth",
-          ].map((t) => (
-            <div key={t} style={{ background: SURFACE, border: `1px solid #BBEAD9`, borderRadius: 999, padding: "8px 14px", color: TEAL_DARK, fontSize: 13, fontWeight: 500, textAlign: "center" }}>
-              {t}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
     {/* WHY */}
     <section style={{ background: SURFACE, padding: "96px 24px" }}>
