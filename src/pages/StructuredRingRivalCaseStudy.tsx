@@ -15,7 +15,7 @@ const rounds = [
 
 const press = [
   ["Type", "Mobile web boxing game"],
-  ["Stack", "React, Supabase, Web Audio API, Haptics"],
+  
   ["Opponents", "AI-generated roster, hand-tuned"],
   ["Platform", "Mobile web — iOS Safari, Chrome"],
   ["Status", "✓ Live"],
