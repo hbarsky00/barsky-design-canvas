@@ -11,5 +11,5 @@ export const HERO_PROJECTS: HeroProject[] = [
   { id: "catchbuddy", label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { id: "herbalink", label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
   { id: "valora-bet", label: "Valora Bet", desc: "social prediction markets", to: "/project/valora-bet" },
-  { id: "roi-design-builder", label: "ROI Design Builder", desc: "design ROI calculator", to: "/project/roi-design-builder" },
+  { id: "nudgeme", label: "NudgeMe", desc: "natural-language reminder app", to: "/project/nudgeme" },
 ];
