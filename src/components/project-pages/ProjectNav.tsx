@@ -59,7 +59,7 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
                   document.querySelector(l.href)?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
               }}
-              style={{ color: textColor, fontSize: 13, textDecoration: "none", opacity: 0.85 }}
+              style={{ color: textColor, fontSize: 13, textDecoration: "none", opacity: 0.85, whiteSpace: "nowrap" }}
               className="hidden md:inline"
             >
               {l.label}

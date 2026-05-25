@@ -47,7 +47,7 @@ const NudgeMeCaseStudy: React.FC = () => (
       links={[
         { label: "Home", href: "#hero" },
         { label: "Features", href: "#features" },
-        { label: "How it works", href: "#flow" },
+        { label: "How It Works", href: "#flow" },
         { label: "Stack", href: "#stack" },
       ]}
       cta={{ label: "Try NudgeMe →", href: "https://nudgeme.rip" }}
