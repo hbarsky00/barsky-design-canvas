@@ -131,6 +131,21 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     title: "ManuscriptRx — Pharma Email AI Case Study",
     description: "AI handles the work between humans across a 6-step regulated email workflow.",
     image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png"
+  },
+  "valora-bet": {
+    title: "Valora Bet — Social Prediction Markets Case Study",
+    description: "Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.",
+    image: "https://barskydesign.pro/images/valorabet-hero.png"
+  },
+  "nudgeme": {
+    title: "NudgeMe — Natural Language Reminder App Case Study",
+    description: "Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.",
+    image: "https://barskydesign.pro/images/nudgeme-hero.png"
+  },
+  "qr-code-builder": {
+    title: "QR Code Builder — Branded QR Generator Case Study",
+    description: "Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.",
+    image: "https://barskydesign.pro/images/qr-code-builder-hero.png"
   }
 };
 
