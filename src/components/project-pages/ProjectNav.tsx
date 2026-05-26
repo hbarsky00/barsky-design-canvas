@@ -36,19 +36,36 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
         transition: "background 0.2s",
       }}
     >
-      <div style={{
-        maxWidth: 1280, margin: "0 auto", padding: "12px 24px",
-        display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: 16,
-      }}>
-        <div style={{ justifySelf: "start" }}>
-          <Link to="/" style={{ color: backColor, fontSize: 12, textDecoration: "none", letterSpacing: 0.2 }}>
-            ← barskydesign.pro
-          </Link>
-        </div>
-        <div style={{ justifySelf: "center", color: textColor, fontWeight: 700, letterSpacing: 0.04 }}>
+      <div
+        style={{
+          maxWidth: 1280, margin: "0 auto", padding: "10px 12px",
+          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8,
+        }}
+      >
+        <Link
+          to="/"
+          aria-label="Back to barskydesign.pro"
+          style={{
+            color: backColor, fontSize: 13, textDecoration: "none",
+            display: "inline-flex", alignItems: "center", flexShrink: 0,
+          }}
+        >
+          <span aria-hidden="true">←</span>
+          <span className="hidden sm:inline" style={{ marginLeft: 6 }}>barskydesign.pro</span>
+        </Link>
+
+        <div
+          style={{
+            color: textColor, fontWeight: 700, letterSpacing: 0.04,
+            fontSize: 14, flex: "1 1 auto", textAlign: "center",
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+            minWidth: 0, padding: "0 8px",
+          }}
+        >
           {brand}
         </div>
-        <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: 18 }}>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0, minWidth: 0 }}>
           {links.map((l) => (
             <a
               key={l.label}
@@ -70,9 +87,10 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
             target={cta.href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
             style={{
-              background: ctaBg, color: ctaColor, padding: "8px 16px",
+              background: ctaBg, color: ctaColor, padding: "8px 12px",
               borderRadius: 6, fontWeight: 700, fontSize: 13, textDecoration: "none",
               display: "inline-block", whiteSpace: "nowrap",
+              maxWidth: 150, overflow: "hidden", textOverflow: "ellipsis",
             }}
           >
             {cta.label}
