@@ -16,7 +16,7 @@ const CONCEPTS = [
 
 const ProductSection: React.FC<{ label: string; items: typeof SHIPPED }> = ({ label, items }) => (
   <div className="product-section">
-    <div className="section-label">{label}</div>
+    <h2 className="section-label">{label}</h2>
     {items.map((it) => (
       <a
         key={it.label}
