@@ -54,6 +54,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://barsky-design-canvas.lovable.app/store/success</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://barsky-design-canvas.lovable.app/blog</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>weekly</changefreq>
