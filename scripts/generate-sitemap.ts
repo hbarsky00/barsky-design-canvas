@@ -5,7 +5,7 @@
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://barsky-design-canvas.lovable.app";
+const BASE_URL = "https://barskydesign.pro";
 const today = new Date().toISOString().slice(0, 10);
 
 interface Entry {

@@ -32,4 +32,4 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-Sitemap: https://barsky-design-canvas.lovable.app/sitemap.xml
+Sitemap: https://barskydesign.pro/sitemap.xml
