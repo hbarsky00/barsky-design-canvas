@@ -5,7 +5,7 @@
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://barskydesign.pro";
+const BASE_URL = "https://barsky-design-canvas.lovable.app";
 const today = new Date().toISOString().slice(0, 10);
 
 interface Entry {
@@ -68,6 +68,7 @@ function getProjectPaths(): string[] {
     "/project/qr-code-builder",
     "/project/roi-design-builder",
     "/project/valora-bet",
+    "/project/nudgeme",
   ].forEach((p) => found.add(p));
   return Array.from(found).sort();
 }
