@@ -140,6 +140,10 @@ const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study
             <img
               src={study.image}
               alt={study.title}
+              width={800}
+              height={448}
+              loading="lazy"
+              decoding="async"
               className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute top-4 left-4">

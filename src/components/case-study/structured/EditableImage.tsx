@@ -56,6 +56,10 @@ export const EditableImage: React.FC<EditableImageProps> = ({
         <img
           src={src || "/placeholder.svg"}
           alt={alt}
+          width={1600}
+          height={900}
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
           onClick={() => maximizeImage(src, alt)}
         />

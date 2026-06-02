@@ -47,6 +47,10 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
           <img 
             src={post.coverImage} 
             alt={post.title}
+            width={1600}
+            height={900}
+            loading="eager"
+            decoding="async"
             className="w-full h-auto object-cover"
           />
         </div>
