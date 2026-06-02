@@ -40,7 +40,7 @@ const HeroContent: React.FC = () => {
       <p className="hero-role">Lead Product &amp; AI Designer · Clifton, NJ</p>
       <p className="hero-tagline">I design AI-first products that ship.</p>
 
-      <div className="product-list">
+      <div id="projects" className="product-list">
         <ProductSection label="SHIPPED PRODUCTS" items={SHIPPED} />
         <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
       </div>
