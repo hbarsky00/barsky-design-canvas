@@ -51,7 +51,11 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                 >
                   <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                     <img 
-                      alt="Hiram Barsky" 
+                      alt="Hiram Barsky"
+                      width={40}
+                      height={40}
+                      loading="lazy"
+                      decoding="async"
                       className="w-10 h-10 rounded-full object-cover border-2 border-border" 
                       src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
                     />

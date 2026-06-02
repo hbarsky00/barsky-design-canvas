@@ -50,7 +50,10 @@ const FeaturedProjects: React.FC = () => {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img 
                     src={project.image} 
-                    alt={project.title} 
+                    alt={project.title}
+                    width={800}
+                    height={600}
+                    decoding="async"
                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
                     loading="lazy" 
                   />

@@ -59,6 +59,10 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
+                width={1600}
+                height={900}
+                loading="eager"
+                decoding="async"
                 className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
