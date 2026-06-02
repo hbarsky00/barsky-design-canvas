@@ -50,7 +50,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           </a>
           <a href="#about" onClick={(e) => { e.preventDefault(); document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" }); }}
             style={{ border: `1.5px solid ${SAGE}`, color: SAGE, padding: "14px 24px", borderRadius: 4, fontWeight: 700, textDecoration: "none", fontFamily: "Inter, sans-serif" }}>
-            Learn More
+            Learn more about HerbaLink
           </a>
         </div>
       </div>

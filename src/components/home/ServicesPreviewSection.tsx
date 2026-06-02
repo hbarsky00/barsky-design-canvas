@@ -11,7 +11,7 @@ const ServicesPreviewSection: React.FC = () => {
     description: "Perfect for funded startups needing rapid market validation",
     timeline: "3 weeks to launch-ready design",
     features: ["AI-powered competitive analysis", "User persona development with ChatGPT", "Strategic UX wireframes", "High-fidelity UI design", "Interactive prototype", "30-day post-launch support"],
-    cta: "Learn More",
+    cta: "Learn more about MVP validation",
     href: "/services#mvp-validation"
   }, {
     icon: <Trophy className="h-8 w-8 text-purple-600" />,

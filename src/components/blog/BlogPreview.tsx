@@ -61,7 +61,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                 </div>
                 
                 <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors text-sm md:text-base">
-                  Read More
+                  Read more about {post.title}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
