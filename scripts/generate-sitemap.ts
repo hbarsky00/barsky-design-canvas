@@ -93,14 +93,12 @@ function getBlogSlugs(): string[] {
   return [
     "finding-first-ux-job-guide",
     "design-systems-that-get-used",
-    "portfolio-red-flags-no-interviews",
     "ai-enhanced-ux-designer-future",
     "user-research-shoestring-budget",
     "built-product-without-real-data",
     "building-products-nobody-asked-for",
     "wireframes-to-wow-visual-hierarchy",
     "case-study-writing",
-    "ai-in-design",
     "beautiful-interface-doesnt-convert",
     "research-without-users",
   ];
