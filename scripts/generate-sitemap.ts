@@ -34,8 +34,15 @@ const staticEntries: Entry[] = [
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/store/success", changefreq: "yearly", priority: "0.3" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/projects", changefreq: "weekly", priority: "0.9" },
 ];
+
+// Routes that redirect — exclude from sitemap.
+const REDIRECT_PATHS = new Set([
+  "/project/barskyjoint",
+  "/project/roi-design-builder",
+  "/project/wholesale-distribution",
+  "/projects",
+]);
 
 // Project routes — extracted from App.tsx <Route path="/project/..."> entries,
 // excluding redirects and the dynamic :projectId catch-all.
@@ -60,18 +67,18 @@ function getProjectPaths(): string[] {
     "/project/dae-search",
     "/project/business-management",
     "/project/investor-loan-app",
-    "/project/wholesale-distribution",
     "/project/fire-lion",
     "/project/ring-rival",
     "/project/catchbuddy",
     "/project/herbalink",
-    "/project/barskyjoint",
     "/project/qr-code-builder",
-    "/project/roi-design-builder",
     "/project/valora-bet",
     "/project/nudgeme",
+    "/project/email-creation-ai",
   ].forEach((p) => found.add(p));
-  return Array.from(found).sort();
+  return Array.from(found)
+    .filter((p) => !REDIRECT_PATHS.has(p))
+    .sort();
 }
 
 // Blog slugs — read from src/data/blog if available, else fall back to known list.
