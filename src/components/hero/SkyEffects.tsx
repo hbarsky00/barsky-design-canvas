@@ -84,6 +84,54 @@ const SkyEffects: React.FC = () => {
       append(el, 12000);
     };
 
+    const spawnHelicopter = () => {
+      const heroW = layer.clientWidth || window.innerWidth;
+      const rtl = Math.random() < 0.5;
+      const el = document.createElement("span");
+      el.className = "sky-helicopter" + (rtl ? " sky-helicopter--rtl" : "");
+      el.style.top = `${rand(20, 55)}%`;
+
+      const body = document.createElement("span");
+      body.className = "sky-helicopter-body";
+      body.textContent = "🚁";
+      el.appendChild(body);
+
+      const light = document.createElement("span");
+      light.className = "sky-helicopter-light";
+      el.appendChild(light);
+
+      if (rtl) {
+        el.style.left = `${heroW + 40}px`;
+        el.style.setProperty("--heli-distance", `${-(heroW + 120)}px`);
+      } else {
+        el.style.left = `-40px`;
+        el.style.setProperty("--heli-distance", `${heroW + 80}px`);
+      }
+      append(el, 16000);
+    };
+
+    const spawnUfo = () => {
+      const heroW = layer.clientWidth || window.innerWidth;
+      const rtl = Math.random() < 0.5;
+      const el = document.createElement("span");
+      el.className = "sky-ufo";
+      el.textContent = "🛸";
+      el.style.top = `${rand(8, 45)}%`;
+
+      const beam = document.createElement("span");
+      beam.className = "sky-ufo-beam";
+      el.appendChild(beam);
+
+      if (rtl) {
+        el.style.left = `${heroW + 60}px`;
+        el.style.setProperty("--ufo-distance", `${-(heroW + 140)}px`);
+      } else {
+        el.style.left = `-60px`;
+        el.style.setProperty("--ufo-distance", `${heroW + 100}px`);
+      }
+      append(el, 18000);
+    };
+
     const scheduleLoop = (fn: () => void, minS: number, maxS: number) => {
       let cancelled = false;
       const tick = () => {
