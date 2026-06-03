@@ -34,8 +34,15 @@ const staticEntries: Entry[] = [
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/store/success", changefreq: "yearly", priority: "0.3" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/projects", changefreq: "weekly", priority: "0.9" },
 ];
+
+// Routes that redirect — exclude from sitemap.
+const REDIRECT_PATHS = new Set([
+  "/project/barskyjoint",
+  "/project/roi-design-builder",
+  "/project/wholesale-distribution",
+  "/projects",
+]);
 
 // Project routes — extracted from App.tsx <Route path="/project/..."> entries,
 // excluding redirects and the dynamic :projectId catch-all.
