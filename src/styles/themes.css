@@ -145,8 +145,9 @@
 
 /* Star twinkle + drift */
 @keyframes star-twinkle {
-  0%   { opacity: 0.3; }
-  100% { opacity: 1; }
+  0%   { opacity: 0.05; transform: scale(0.6); }
+  50%  { opacity: 1;    transform: scale(1.2); }
+  100% { opacity: 0.05; transform: scale(0.6); }
 }
 @keyframes star-drift {
   0%   { transform: translate(0, 0); }
@@ -155,7 +156,7 @@
 .parallax-stars > span {
   will-change: transform, opacity;
   animation:
-    star-twinkle var(--twinkle-dur, 3s) ease-in-out var(--twinkle-delay, 0s) infinite alternate,
+    star-twinkle var(--twinkle-dur, 2.5s) ease-in-out var(--twinkle-delay, 0s) infinite,
     star-drift var(--drift-dur, 12s) ease-in-out var(--drift-delay, 0s) infinite alternate;
 }
 
