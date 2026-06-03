@@ -44,41 +44,20 @@ const REDIRECT_PATHS = new Set([
   "/projects",
 ]);
 
-// Project routes — extracted from App.tsx <Route path="/project/..."> entries,
-// excluding redirects and the dynamic :projectId catch-all.
+// Featured projects — the only project URLs surfaced on the homepage and
+// the only ones we want indexed by search engines. Other project routes
+// still work for direct visits but are not advertised in the sitemap.
+const FEATURED_PROJECTS = [
+  "/project/catchbuddy",
+  "/project/herbalink",
+  "/project/valora-bet",
+  "/project/nudgeme",
+  "/project/ring-rival",
+  "/project/fire-lion",
+];
+
 function getProjectPaths(): string[] {
-  const appPath = resolve("src/App.tsx");
-  const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
-  const re = /<Route\s+path="(\/project\/[a-z0-9-]+)"/gi;
-  const found = new Set<string>();
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(src)) !== null) {
-    if (!src.slice(m.index, m.index + 400).includes("Navigate")) {
-      found.add(m[1]);
-    }
-  }
-  // Known additional projects rendered via <Route path="/project/:projectId" />.
-  [
-    "/project/splittime",
-    "/project/crypto",
-    "/project/smarterhealth",
-    "/project/medication-app",
-    "/project/gold2crypto",
-    "/project/dae-search",
-    "/project/business-management",
-    "/project/investor-loan-app",
-    "/project/fire-lion",
-    "/project/ring-rival",
-    "/project/catchbuddy",
-    "/project/herbalink",
-    "/project/qr-code-builder",
-    "/project/valora-bet",
-    "/project/nudgeme",
-    "/project/email-creation-ai",
-  ].forEach((p) => found.add(p));
-  return Array.from(found)
-    .filter((p) => !REDIRECT_PATHS.has(p))
-    .sort();
+  return [...FEATURED_PROJECTS].sort();
 }
 
 // Blog slugs — read from src/data/blog if available, else fall back to known list.
