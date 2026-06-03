@@ -150,11 +150,15 @@ const SkyEffects: React.FC = () => {
     const cancelStar = scheduleLoop(spawnShootingStar, 4, 8);
     const cancelMeteor = scheduleLoop(spawnMeteor, 15, 30);
     const cancelPlane = scheduleLoop(spawnAirplane, 45, 90);
+    const cancelHeli = scheduleLoop(spawnHelicopter, 20, 50);
+    const cancelUfo = scheduleLoop(spawnUfo, 30, 70);
 
     return () => {
       cancelStar();
       cancelMeteor();
       cancelPlane();
+      cancelHeli();
+      cancelUfo();
       timeouts.forEach(clearTimeout);
       tracked.forEach((el) => {
         if (el.parentNode) el.parentNode.removeChild(el);
