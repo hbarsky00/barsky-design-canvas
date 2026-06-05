@@ -197,8 +197,11 @@ const CaseStudyCard: React.FC<{
           <img 
             src={study.images.primary} 
             alt={study.images.alt}
+            width={1250}
+            height={781}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
+            decoding="async"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
             style={{ maxWidth: '625px', height: 'auto' }}
           />
