@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/valorabet.png";
@@ -7,7 +7,8 @@ const ORANGE = "#f97316";
 const BG = "#0d0f1e";
 
 const features = [
-  ["100+ Live Markets", "Crypto, sports, politics, and more. New markets added daily."],
+  ["Markets Across Categories", "Crypto, sports, politics, and more. New markets added as testers request them."],
+
   ["Create Your Own Market", "Publish a question, set the terms, let the crowd decide."],
   ["CPMM Pricing", "Prices move with every bet using a Constant Product Market Maker. The crowd sets the odds."],
   ["Clubs & Leaderboards", "Join clubs, compete with friends, climb the global ranks."],
