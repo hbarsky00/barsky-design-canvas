@@ -11,26 +11,26 @@ const SUBDUED = "#6B7280";
 const BORDER = "#E5E7EB";
 
 const features = [
-  { title: "Type the way you'd say it", desc: "\"Call mom Tuesday 6pm\" or \"Gym Mon Wed Fri 7am\" — Chrono-NLP plus a rules engine parse it in 300ms, no forms." },
-  { title: "Real recurring schedules", desc: "RFC 5545 RRULE under the hood. Weekly, biweekly, weekdays, custom intervals, end dates, occurrence caps — all from one sentence." },
-  { title: "Multi-channel delivery", desc: "In-app modal, Web Push, Email, SMS. Pick exact time, 5-minute early, or both. Scheduler dedupes and catches missed pings on tab return." },
-  { title: "Installable PWA", desc: "Add to home screen on iOS and Android. Service worker handles background sync and push when the tab is closed." },
-  { title: "Guest-friendly", desc: "Type a reminder before you sign up. Device ID preserves it. Account creation is one screen, context survives the modal." },
-  { title: "Safety-aware parser", desc: "Detects password, credit card, and SSN-like content. Warns before saving — never auto-blocks, never silently logs." },
+  { title: "Type the way you'd say it", desc: "\"Call mom Tuesday 6pm\" or \"Gym Mon Wed Fri 7am\" — it understands plain English. No forms, no dropdowns." },
+  { title: "Repeats that actually work", desc: "Weekly, every other week, weekdays, custom — just type it in a sentence and the app handles the rest." },
+  { title: "Get nudged your way", desc: "Pick how you want to be reminded: in the app, browser pop-up, email, or text message. On time, or 5 minutes early." },
+  { title: "Add it to your phone", desc: "Install it on your home screen like a real app — works on iPhone and Android. Reminders still fire when the tab is closed." },
+  { title: "Try before you sign up", desc: "Type a reminder first, make an account after. Your reminder doesn't disappear when you sign up." },
+  { title: "Keeps you safe", desc: "If you accidentally type a password or credit card number, it warns you before saving. Nothing private gets logged." },
 ];
 
 const dataPoints = [
-  { k: "Parse latency", v: "300ms" },
-  { k: "Scheduler poll", v: "15–60s adaptive" },
-  { k: "Recurrence spec", v: "RFC 5545" },
-  { k: "Channels", v: "App · Push · Email · SMS" },
+  { k: "How fast it reads you", v: "Instant" },
+  { k: "How often it checks", v: "Every 15–60s" },
+  { k: "Repeats supported", v: "Any schedule" },
+  { k: "Ways to get nudged", v: "App · Pop-up · Email · Text" },
 ];
 
 const flow = [
-  { step: "01", title: "Type", desc: "User types naturally in the main textarea. Chrono + rules parser run in parallel." },
-  { step: "02", title: "Preview", desc: "300ms debounce. Title, date, time, recurrence appear inline. Every field is editable." },
-  { step: "03", title: "Save", desc: "Guest? Signup modal preserves context. Logged in? Reminder is created and confirmed via toast." },
-  { step: "04", title: "Nudge", desc: "Edge function polls due reminders. Push/Email/SMS fires on the configured channel and timing." },
+  { step: "01", title: "Type", desc: "Write your reminder the way you'd say it out loud." },
+  { step: "02", title: "Preview", desc: "The app shows what it understood — title, date, time, repeat. Edit anything that's off." },
+  { step: "03", title: "Save", desc: "Not signed up yet? Quick signup keeps your reminder. Already in? Done — you'll see a confirmation." },
+  { step: "04", title: "Nudge", desc: "When it's time, you get the reminder on whichever channel you picked." },
 ];
 
 const NudgeMeCaseStudy: React.FC = () => (
@@ -145,12 +145,12 @@ const NudgeMeCaseStudy: React.FC = () => (
           Calendar apps are too much. Notes apps are not enough.
         </h2>
         <p style={{ color: SUBDUED, fontSize: 17, lineHeight: 1.75 }}>
-          Every reminder app I've used wants me to click through three screens before I can save the thing. By the time I'm done, I've forgotten what I wanted to remember. NudgeMe lets me type a sentence — and the parser handles the date, the repeat, the timezone. The hard part wasn't the UI. It was building a parser that handles ambiguity gracefully: knowing when to ask, when to assume, and when to warn the user before they save a password as a reminder.
+          Every reminder app I've used makes me click through three screens before I can save the thing. By the time I'm done, I've forgotten what I wanted to remember. NudgeMe lets me type one sentence — it figures out the date, the repeat, and when to ping me. The tricky part wasn't the look. It was teaching the app to handle the messy way people actually talk, and to warn you before you accidentally save something private like a password.
         </p>
         <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 12, borderLeft: `3px solid ${TEAL}`, padding: 20, marginTop: 28 }}>
           <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>STATUS</p>
           <p style={{ color: "#334155", fontSize: 15, lineHeight: 1.6, marginTop: 8 }}>
-            Live PWA at nudgeme.rip. Free tier: 5 active reminders, browser notifications. Premium ($9/mo) unlocks recurring, email, SMS. Professional ($19/mo) adds Google Calendar sync. Stripe billing is wired to the UI; processing goes live next.
+            Live at nudgeme.rip — install it on your phone or use it in the browser. Free plan lets you keep 5 reminders with browser pop-ups. Premium ($9/mo) unlocks repeating reminders, email, and text messages. Pro ($19/mo) adds Google Calendar sync. Looking for testers and feedback.
           </p>
         </div>
       </div>
