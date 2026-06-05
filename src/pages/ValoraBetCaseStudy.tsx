@@ -13,28 +13,8 @@ const features = [
   ["Clubs & Leaderboards", "Join clubs, compete with friends, climb the global ranks."],
 ];
 
-const useCount = (target: number, prefix = "", suffix = "") => {
-  const [v, setV] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    const start = performance.now();
-    const dur = 1200;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setV(Math.floor(target * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target]);
-  return `${prefix}${v.toLocaleString()}${suffix}`;
-};
-
 const ValoraBetCaseStudy: React.FC = () => {
-  const markets = useCount(100, "", "+");
-  const players = useCount(15000, "", "");
-  const volume = useCount(1, "$", "M+");
+
 
   return (
     <div style={{ background: BG, color: "#fff", minHeight: "100vh", fontFamily: "Inter, system-ui, sans-serif" }}>
