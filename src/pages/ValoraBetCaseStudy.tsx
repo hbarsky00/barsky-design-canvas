@@ -124,8 +124,9 @@ const ValoraBetCaseStudy: React.FC = () => {
 
       {/* BOTTOM CTA */}
       <section style={{ background: ORANGE, padding: "80px 24px", textAlign: "center" }}>
-        <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Play Now at valora.bet →</h2>
-        <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>100+ live markets. Free to play. No install.</p>
+        <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Try the beta at valora.bet →</h2>
+        <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>Free to play. No install. Feedback wanted.</p>
+
         <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-block", marginTop: 24, background: "#fff", color: ORANGE, padding: "16px 32px", borderRadius: 6, fontWeight: 800, textDecoration: "none" }}>
           Open Valora →
