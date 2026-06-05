@@ -43,21 +43,24 @@ const ValoraBetCaseStudy: React.FC = () => {
             Create and bet on real-world outcomes using play money.
           </p>
 
-          <div style={{ display: "flex", gap: 32, margin: "32px 0", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, margin: "28px 0", flexWrap: "wrap" }}>
             {[
-              { n: markets, l: "LIVE MARKETS" },
-              { n: players, l: "PLAYERS" },
-              { n: volume, l: "VOLUME" },
-            ].map((s, i, arr) => (
-              <div key={s.l} style={{
-                paddingRight: i < arr.length - 1 ? 32 : 0,
-                borderRight: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
-              }}>
-                <div style={{ color: "#fff", fontSize: 28, fontWeight: 800, fontVariantNumeric: "tabular-nums" }}>{s.n}</div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, letterSpacing: "0.1em", marginTop: 4 }}>{s.l}</div>
-              </div>
+              { l: "LIVE IN BETA", c: ORANGE },
+              { l: "PLAY MONEY", c: "rgba(255,255,255,0.7)" },
+              { l: "SEEKING TESTERS", c: "rgba(255,255,255,0.7)" },
+            ].map((s) => (
+              <span key={s.l} style={{
+                color: s.c,
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                padding: "6px 12px",
+                border: `1px solid ${s.c === ORANGE ? ORANGE : "rgba(255,255,255,0.18)"}`,
+                borderRadius: 999,
+              }}>{s.l}</span>
             ))}
           </div>
+
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
