@@ -32,7 +32,7 @@
       .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
       .hero-loading { opacity: 0; animation: fade-in-fast 0.3s ease-out forwards; }
       @keyframes fade-in-fast { to { opacity: 1; } }
-      img[loading="eager"] { content-visibility: auto; }
+      img[fetchpriority="high"] { content-visibility: visible; }
     </style>
 
     <!-- SEO meta tags dynamically rendered by React Helmet in UnifiedSEO.tsx -->
