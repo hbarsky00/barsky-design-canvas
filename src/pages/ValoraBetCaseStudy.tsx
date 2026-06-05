@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/valorabet.png";
@@ -7,34 +7,15 @@ const ORANGE = "#f97316";
 const BG = "#0d0f1e";
 
 const features = [
-  ["100+ Live Markets", "Crypto, sports, politics, and more. New markets added daily."],
+  ["Markets Across Categories", "Crypto, sports, politics, and more. New markets added as testers request them."],
+
   ["Create Your Own Market", "Publish a question, set the terms, let the crowd decide."],
   ["CPMM Pricing", "Prices move with every bet using a Constant Product Market Maker. The crowd sets the odds."],
   ["Clubs & Leaderboards", "Join clubs, compete with friends, climb the global ranks."],
 ];
 
-const useCount = (target: number, prefix = "", suffix = "") => {
-  const [v, setV] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    const start = performance.now();
-    const dur = 1200;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setV(Math.floor(target * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target]);
-  return `${prefix}${v.toLocaleString()}${suffix}`;
-};
-
 const ValoraBetCaseStudy: React.FC = () => {
-  const markets = useCount(100, "", "+");
-  const players = useCount(15000, "", "");
-  const volume = useCount(1, "$", "M+");
+
 
   return (
     <div style={{ background: BG, color: "#fff", minHeight: "100vh", fontFamily: "Inter, system-ui, sans-serif" }}>
@@ -63,21 +44,24 @@ const ValoraBetCaseStudy: React.FC = () => {
             Create and bet on real-world outcomes using play money.
           </p>
 
-          <div style={{ display: "flex", gap: 32, margin: "32px 0", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, margin: "28px 0", flexWrap: "wrap" }}>
             {[
-              { n: markets, l: "LIVE MARKETS" },
-              { n: players, l: "PLAYERS" },
-              { n: volume, l: "VOLUME" },
-            ].map((s, i, arr) => (
-              <div key={s.l} style={{
-                paddingRight: i < arr.length - 1 ? 32 : 0,
-                borderRight: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none",
-              }}>
-                <div style={{ color: "#fff", fontSize: 28, fontWeight: 800, fontVariantNumeric: "tabular-nums" }}>{s.n}</div>
-                <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, letterSpacing: "0.1em", marginTop: 4 }}>{s.l}</div>
-              </div>
+              { l: "LIVE IN BETA", c: ORANGE },
+              { l: "PLAY MONEY", c: "rgba(255,255,255,0.7)" },
+              { l: "SEEKING TESTERS", c: "rgba(255,255,255,0.7)" },
+            ].map((s) => (
+              <span key={s.l} style={{
+                color: s.c,
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                padding: "6px 12px",
+                border: `1px solid ${s.c === ORANGE ? ORANGE : "rgba(255,255,255,0.18)"}`,
+                borderRadius: 999,
+              }}>{s.l}</span>
             ))}
           </div>
+
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
@@ -130,18 +114,20 @@ const ValoraBetCaseStudy: React.FC = () => {
             </p>
           </div>
           <div style={{ background: "rgba(249,115,22,0.08)", borderLeft: `3px solid ${ORANGE}`, padding: 24, alignSelf: "start" }}>
-            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHERE IT STANDS</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 12 }}>
-              Google OAuth is intermittently broken. Market resolution requires manual admin intervention. Scaling real-money markets would require a compliance layer that doesn't exist.
+              Live in beta with play money. The mechanic works end-to-end and the platform is up and running. I'm looking for testers to break it, tell me what's confusing, and shape what ships next.
             </p>
           </div>
+
         </div>
       </section>
 
       {/* BOTTOM CTA */}
       <section style={{ background: ORANGE, padding: "80px 24px", textAlign: "center" }}>
-        <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Play Now at valora.bet →</h2>
-        <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>100+ live markets. Free to play. No install.</p>
+        <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Try the beta at valora.bet →</h2>
+        <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>Free to play. No install. Feedback wanted.</p>
+
         <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-block", marginTop: 24, background: "#fff", color: ORANGE, padding: "16px 32px", borderRadius: 6, fontWeight: 800, textDecoration: "none" }}>
           Open Valora →
