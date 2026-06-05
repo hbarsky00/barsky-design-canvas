@@ -113,11 +113,12 @@ const ValoraBetCaseStudy: React.FC = () => {
             </p>
           </div>
           <div style={{ background: "rgba(249,115,22,0.08)", borderLeft: `3px solid ${ORANGE}`, padding: 24, alignSelf: "start" }}>
-            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHERE IT STANDS</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 12 }}>
-              Google OAuth is intermittently broken. Market resolution requires manual admin intervention. Scaling real-money markets would require a compliance layer that doesn't exist.
+              Live in beta with play money. The mechanic works end-to-end and the platform is up and running. I'm looking for testers to break it, tell me what's confusing, and shape what ships next.
             </p>
           </div>
+
         </div>
       </section>
 
