@@ -145,12 +145,12 @@ const NudgeMeCaseStudy: React.FC = () => (
           Calendar apps are too much. Notes apps are not enough.
         </h2>
         <p style={{ color: SUBDUED, fontSize: 17, lineHeight: 1.75 }}>
-          Every reminder app I've used wants me to click through three screens before I can save the thing. By the time I'm done, I've forgotten what I wanted to remember. NudgeMe lets me type a sentence — and the parser handles the date, the repeat, the timezone. The hard part wasn't the UI. It was building a parser that handles ambiguity gracefully: knowing when to ask, when to assume, and when to warn the user before they save a password as a reminder.
+          Every reminder app I've used makes me click through three screens before I can save the thing. By the time I'm done, I've forgotten what I wanted to remember. NudgeMe lets me type one sentence — it figures out the date, the repeat, and when to ping me. The tricky part wasn't the look. It was teaching the app to handle the messy way people actually talk, and to warn you before you accidentally save something private like a password.
         </p>
         <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 12, borderLeft: `3px solid ${TEAL}`, padding: 20, marginTop: 28 }}>
           <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>STATUS</p>
           <p style={{ color: "#334155", fontSize: 15, lineHeight: 1.6, marginTop: 8 }}>
-            Live PWA at nudgeme.rip. Free tier: 5 active reminders, browser notifications. Premium ($9/mo) unlocks recurring, email, SMS. Professional ($19/mo) adds Google Calendar sync. Stripe billing is wired to the UI; processing goes live next.
+            Live at nudgeme.rip — install it on your phone or use it in the browser. Free plan lets you keep 5 reminders with browser pop-ups. Premium ($9/mo) unlocks repeating reminders, email, and text messages. Pro ($19/mo) adds Google Calendar sync. Looking for testers and feedback.
           </p>
         </div>
       </div>
