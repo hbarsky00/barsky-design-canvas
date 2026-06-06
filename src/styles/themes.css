@@ -564,15 +564,15 @@
   will-change: transform, opacity;
   animation: airplaneCross 12s linear forwards;
 }
-.sky-airplane--rtl { transform: scaleX(-1); }
 .sky-airplane--rtl.sky-airplane { animation-name: airplaneCrossRtl; }
+/* ✈ glyph faces up-left by default; flip for left→right travel so the nose leads */
 @keyframes airplaneCross {
-  from { transform: translateX(0); }
-  to   { transform: translateX(var(--airplane-distance, 100vw)); }
+  from { transform: scaleX(-1) translateX(0); }
+  to   { transform: scaleX(-1) translateX(calc(var(--airplane-distance, 100vw) * -1)); }
 }
 @keyframes airplaneCrossRtl {
-  from { transform: scaleX(-1) translateX(0); }
-  to   { transform: scaleX(-1) translateX(calc(var(--airplane-distance, -100vw) * -1)); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--airplane-distance, -100vw)); }
 }
 .sky-airplane-light {
   position: absolute;
