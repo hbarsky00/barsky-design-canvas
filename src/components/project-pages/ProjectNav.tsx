@@ -43,15 +43,26 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
         }}
       >
         <Link
-          to="/"
-          aria-label="Back to barskydesign.pro"
+          to="/projects"
+          aria-label="Back to projects"
           style={{
-            color: backColor, fontSize: 13, textDecoration: "none",
-            display: "inline-flex", alignItems: "center", flexShrink: 0,
+            color: textColor,
+            fontSize: 13,
+            fontWeight: 600,
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            flexShrink: 0,
+            padding: "8px 12px",
+            minHeight: 40,
+            borderRadius: 999,
+            border: `1px solid ${textColor}33`,
+            background: `${textColor}0D`,
           }}
         >
-          <span aria-hidden="true">←</span>
-          <span className="hidden sm:inline" style={{ marginLeft: 6 }}>barskydesign.pro</span>
+          <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1 }}>←</span>
+          <span>Back</span>
         </Link>
 
         <div
