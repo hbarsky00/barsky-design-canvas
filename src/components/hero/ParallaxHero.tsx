@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
-import mountainsSprite from "@/assets/parallax-mountains.png";
+
 
 
 
