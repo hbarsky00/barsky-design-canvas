@@ -9,13 +9,6 @@ const ParallaxHero: React.FC = () => {
   const skyRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
-  const [isDay, setIsDay] = useState(false);
-
-  useEffect(() => {
-    // Begin the dusk → dawn time lapse shortly after landing.
-    const t = setTimeout(() => setIsDay(true), 4000);
-    return () => clearTimeout(t);
-  }, []);
 
   const stars = useMemo(() => {
     const rng = (seed: number) => {
