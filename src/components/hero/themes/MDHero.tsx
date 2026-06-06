@@ -12,7 +12,7 @@ const FULL = `# HIRAM BARSKY
 
 ${HERO_PROJECTS.slice(0, 4).map((p) => `- [${p.label}](${p.to}) — ${p.desc}`).join("\n")}
 
-## Concept Work
+## Concept Games
 
 ${HERO_PROJECTS.slice(4).map((p) => `- [${p.label}](${p.to}) — ${p.desc}`).join("\n")}
 
