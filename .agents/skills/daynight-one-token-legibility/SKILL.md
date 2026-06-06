@@ -1,3 +1,8 @@
+---
+name: daynight-one-token-legibility
+description: Day/night hero legibility fix — one shared theme-aware text color token (dark in day, light at night), cardless in both themes, with aligned uniform pills. Corrects the cardless-hero white-text rule when the day sky is genuinely light.
+---
+
 # Skill: Day/Night Hero Legibility — One Token, Cardless, Aligned (Lovable)
 
 **Use when:** A hero has a day/night theme where the DAY sky is genuinely light,
