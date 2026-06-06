@@ -186,6 +186,43 @@ const ParallaxHero: React.FC = () => {
         </div>
       </div>
 
+      {/* Daytime ocean — replaces mountains during the timelapse */}
+      <div aria-hidden className="parallax-ocean">
+        <svg viewBox="0 0 1200 320" preserveAspectRatio="none" className="parallax-ocean-svg">
+          <defs>
+            <linearGradient id="ocean-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#3aa9d6" />
+              <stop offset="55%" stopColor="#1e6fa3" />
+              <stop offset="100%" stopColor="#0c3a63" />
+            </linearGradient>
+          </defs>
+          {/* Ocean body */}
+          <rect x="0" y="80" width="1200" height="240" fill="url(#ocean-grad)" />
+          {/* Far wave band */}
+          <path className="wave wave-back"
+            d="M0,110 Q150,90 300,110 T600,110 T900,110 T1200,110 L1200,140 L0,140 Z"
+            fill="rgba(255,255,255,0.18)" />
+          {/* Mid wave band */}
+          <path className="wave wave-mid"
+            d="M0,150 Q150,130 300,150 T600,150 T900,150 T1200,150 L1200,180 L0,180 Z"
+            fill="rgba(255,255,255,0.22)" />
+          {/* Front wave band */}
+          <path className="wave wave-front"
+            d="M0,210 Q150,185 300,210 T600,210 T900,210 T1200,210 L1200,320 L0,320 Z"
+            fill="rgba(10,40,70,0.55)" />
+          {/* Shark fins cruising */}
+          <g className="shark shark-1">
+            <path d="M0,200 Q12,178 22,200 Q14,196 0,200 Z" fill="#0b2238" />
+          </g>
+          <g className="shark shark-2">
+            <path d="M0,232 Q16,200 30,232 Q18,227 0,232 Z" fill="#08182a" />
+          </g>
+          <g className="shark shark-3">
+            <path d="M0,178 Q9,162 18,178 Q11,175 0,178 Z" fill="#0e2a44" />
+          </g>
+        </svg>
+      </div>
+
       {/* Layer 4: Dynamic FX (shooting stars, meteors, airplanes) */}
       <SkyEffects />
 
