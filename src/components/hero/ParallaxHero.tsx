@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 
@@ -9,6 +9,13 @@ const ParallaxHero: React.FC = () => {
   const skyRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
+  const [isDay, setIsDay] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsDay((d) => !d), 4000);
+    return () => clearTimeout(t);
+  }, [isDay]);
+
 
   const stars = useMemo(() => {
     const rng = (seed: number) => {
