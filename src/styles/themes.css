@@ -479,12 +479,16 @@
   will-change: transform;
   animation: mountainDrift 60s linear infinite;
 }
-.parallax-mountains-drift > svg {
+.parallax-mountains-drift > svg,
+.parallax-mountains-drift > img {
   flex: 0 0 50%;
   height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: bottom center;
 }
-.parallax-mountains-back { bottom: 8px; height: 85%; }
+.parallax-mountains-drift > img.is-mirrored { transform: scaleX(-1); }
+.parallax-mountains-back { bottom: 8px; height: 85%; opacity: 0.55; filter: blur(1px); }
 .parallax-mountains-front {
   bottom: 0;
   height: 70%;
