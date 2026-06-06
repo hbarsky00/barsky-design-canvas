@@ -12,9 +12,10 @@ const ParallaxHero: React.FC = () => {
   const [isDay, setIsDay] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setIsDay((d) => !d), 4000);
+    const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
     return () => clearTimeout(t);
   }, [isDay]);
+
 
 
   const stars = useMemo(() => {
