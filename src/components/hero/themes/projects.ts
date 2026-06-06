@@ -5,11 +5,13 @@ export type HeroProject = {
   to: string;
 };
 
+// Canonical order — first 4 are SHIPPED PRODUCTS, last 2 are CONCEPT GAMES.
+// All theme heroes (Terminal, LLMChat, Win95, EightBit, MD, etc.) consume this list.
 export const HERO_PROJECTS: HeroProject[] = [
-  { id: "fire-lion", label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
-  { id: "ring-rival", label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
   { id: "catchbuddy", label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { id: "herbalink", label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
-  { id: "valora-bet", label: "Valora Bet", desc: "social prediction markets", to: "/project/valora-bet" },
-  { id: "nudgeme", label: "NudgeMe", desc: "natural-language reminder app", to: "/project/nudgeme" },
+  { id: "valora-bet", label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
+  { id: "roi-design-builder", label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
+  { id: "ring-rival", label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },
+  { id: "fire-lion", label: "Fire Lion", desc: "word-casting arcade game", to: "/project/fire-lion" },
 ];
