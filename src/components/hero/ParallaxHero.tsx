@@ -100,15 +100,21 @@ const ParallaxHero: React.FC = () => {
   return (
     <section
       data-theme="3d"
+      data-daytime={isDay ? "day" : "night"}
       aria-label="Hiram Barsky portfolio hero"
-      className="parallax-hero"
+      className={`parallax-hero ${isDay ? "is-day" : ""}`}
     >
-      {/* Layer 1: Sky gradient */}
+      {/* Layer 1: Sky gradient (night) */}
       <div
         ref={skyRef}
         aria-hidden
         className="parallax-sky"
       />
+      {/* Layer 1b: Day sky overlay — fades in over the timelapse */}
+      <div aria-hidden className="parallax-sky-day" />
+      {/* Sun — rises during the timelapse */}
+      <div aria-hidden className="parallax-sun" />
+
 
       {/* Layer 2: Stars */}
       <div ref={starsRef} aria-hidden className="parallax-stars">
