@@ -104,20 +104,20 @@
 }
 .parallax-hero.is-day .parallax-sky-day { opacity: 1; }
 
-/* Sun rises during the timelapse */
+/* Sun rises into the top-right during the timelapse */
 .parallax-sun {
   position: absolute; z-index: 1; pointer-events: none;
-  width: 120px; height: 120px; right: 12%; top: 70%;
+  width: 140px; height: 140px; right: 8%; top: 8%;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, #fff8d6 0%, #ffd97a 45%, #ffb347 70%, rgba(255,179,71,0) 80%);
-  box-shadow: 0 0 80px 30px rgba(255, 217, 122, 0.45);
+  box-shadow: 0 0 100px 40px rgba(255, 217, 122, 0.5);
   opacity: 0;
-  transform: translateY(120px) scale(0.85);
+  transform: translateY(-40px) scale(0.7);
   transition: opacity 40s ease-in-out, transform 50s ease-out;
 }
 .parallax-hero.is-day .parallax-sun {
   opacity: 1;
-  transform: translateY(-260px) scale(1);
+  transform: translateY(0) scale(1);
 }
 
 .parallax-stars {
@@ -130,15 +130,56 @@
 .parallax-mountains {
   position: absolute; bottom: -20px; left: -5%; right: -5%; height: 30%;
   will-change: transform; z-index: 2; pointer-events: none;
-  transition: filter 50s ease-in-out;
+  transition: opacity 30s ease-in-out;
 }
-.parallax-hero.is-day .parallax-mountains { filter: brightness(0.65) saturate(0.6) hue-rotate(190deg); }
+.parallax-hero.is-day .parallax-mountains { opacity: 0; }
+
+/* Daytime ocean — appears as the timelapse turns to day */
+.parallax-ocean {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 40%;
+  z-index: 2; pointer-events: none;
+  opacity: 0;
+  transition: opacity 30s ease-in-out;
+}
+.parallax-hero.is-day .parallax-ocean { opacity: 1; }
+.parallax-ocean-svg { width: 100%; height: 100%; display: block; }
+
+@keyframes ocean-wave-shift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-90px); }
+}
+.parallax-ocean .wave { will-change: transform; }
+.parallax-ocean .wave-back  { animation: ocean-wave-shift 11s ease-in-out infinite alternate; }
+.parallax-ocean .wave-mid   { animation: ocean-wave-shift 7s  ease-in-out infinite alternate-reverse; }
+.parallax-ocean .wave-front { animation: ocean-wave-shift 5s  ease-in-out infinite alternate; }
+
+@keyframes shark-cruise {
+  0%   { transform: translateX(-60px); }
+  100% { transform: translateX(1260px); }
+}
+.parallax-ocean .shark { will-change: transform; }
+.parallax-ocean .shark-1 { animation: shark-cruise 26s linear infinite; }
+.parallax-ocean .shark-2 { animation: shark-cruise 38s linear infinite; animation-delay: -12s; }
+.parallax-ocean .shark-3 { animation: shark-cruise 32s linear infinite; animation-delay: -22s; }
 
 .parallax-content {
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
   padding: 120px 24px 80px; color: #fff;
 }
-.parallax-content .hero-inner { width: 100%; text-align: center; }
+.parallax-content .hero-inner {
+  width: 100%; text-align: center;
+  background: rgba(10, 14, 28, 0.32);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 28px 22px;
+  transition: background 30s ease-in-out, border-color 30s ease-in-out;
+}
+.parallax-hero.is-day .parallax-content .hero-inner {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(15,26,46,0.18);
+}
 .parallax-content .hero-eyebrow {
   font-size: 15px; color: rgba(255,255,255,.55); margin: 0 0 8px;
   transition: color 30s ease-in-out;
