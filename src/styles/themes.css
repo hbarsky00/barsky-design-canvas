@@ -87,62 +87,92 @@
 .parallax-hero {
   position: relative; min-height: 100vh; overflow: hidden;
   background: #0d0a1a; color: #fff;
-  transition: background-color 50s ease-in-out;
+  transition: background-color 2.5s ease-in-out;
 }
 .parallax-hero.is-day { background: #cfe6f7; }
+
+/* Sticky viewport-sized stack — keeps a single scene visible while content scrolls */
+.parallax-bg-stack {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh; /* so content flows over it */
+  pointer-events: none;
+  z-index: 0;
+}
+
 .parallax-sky {
-  position: absolute; inset: -5%;
+  position: absolute; inset: 0;
   background: linear-gradient(180deg, #1a1a2e 0%, #2d1b4e 55%, #8b3a3a 100%);
   will-change: transform; z-index: 0;
+  transition: opacity 2.5s ease-in-out;
+  opacity: 1;
 }
-/* Day sky overlay — fades from 0 → 1 across ~50s for a timelapse feel */
+.parallax-hero.is-day .parallax-sky { opacity: 0; }
+
+/* Day sky overlay */
 .parallax-sky-day {
-  position: absolute; inset: -5%; z-index: 0; pointer-events: none;
+  position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(180deg, #4ea6e8 0%, #8ec8ec 55%, #f7d6a8 100%);
   opacity: 0;
-  transition: opacity 50s ease-in-out;
+  transition: opacity 2.5s ease-in-out;
 }
 .parallax-hero.is-day .parallax-sky-day { opacity: 1; }
 
-/* Sun rises into the top-right during the timelapse */
+/* Sun rises into the top-right during the day */
 .parallax-sun {
-  position: absolute; z-index: 1; pointer-events: none;
+  position: absolute; z-index: 1;
   width: 140px; height: 140px; right: 8%; top: 8%;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, #fff8d6 0%, #ffd97a 45%, #ffb347 70%, rgba(255,179,71,0) 80%);
   box-shadow: 0 0 100px 40px rgba(255, 217, 122, 0.5);
   opacity: 0;
-  transform: translateY(-40px) scale(0.7);
-  transition: opacity 40s ease-in-out, transform 50s ease-out;
+  transform: translateY(-30px) scale(0.85);
+  transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
 }
 .parallax-hero.is-day .parallax-sun {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
+/* Moon glows at night */
+.parallax-moon {
+  position: absolute; z-index: 1;
+  width: 90px; height: 90px; right: 12%; top: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f6f3e8 0%, #d8d4c2 60%, #a8a497 100%);
+  box-shadow: 0 0 60px 20px rgba(230, 225, 200, 0.35);
+  opacity: 1;
+  transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
+}
+.parallax-hero.is-day .parallax-moon {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.85);
+}
+
 .parallax-stars {
-  position: absolute; inset: -5%;
-  will-change: transform; z-index: 1; pointer-events: none;
-  transition: opacity 30s ease-in-out;
+  position: absolute; inset: 0;
+  will-change: transform; z-index: 1;
+  transition: opacity 2.5s ease-in-out;
 }
 .parallax-hero.is-day .parallax-stars { opacity: 0; }
 
 .parallax-mountains {
-  position: absolute; bottom: -20px; left: -5%; right: -5%; height: 30%;
-  will-change: transform; z-index: 2; pointer-events: none;
-  transition: opacity 30s ease-in-out;
+  position: absolute; bottom: -20px; left: -5%; right: -5%; height: 38%;
+  will-change: transform; z-index: 2;
+  transition: opacity 2.5s ease-in-out;
 }
 .parallax-hero.is-day .parallax-mountains { opacity: 0; }
 
-/* Daytime ocean — appears as the timelapse turns to day */
-.parallax-ocean {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 40%;
-  z-index: 2; pointer-events: none;
+.parallax-mountains.parallax-mountains-day {
   opacity: 0;
-  transition: opacity 30s ease-in-out;
 }
-.parallax-hero.is-day .parallax-ocean { opacity: 1; }
-.parallax-ocean-svg { width: 100%; height: 100%; display: block; }
+.parallax-hero.is-day .parallax-mountains.parallax-mountains-day {
+  opacity: 1;
+}
+
 
 @keyframes ocean-wave-shift {
   0%   { transform: translateX(0); }
