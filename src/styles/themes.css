@@ -256,6 +256,28 @@
 }
 .parallax-content .book-call:hover { color: #fff; text-decoration: underline; }
 
+/* Day-theme legibility fix: section labels + product descriptions need dark text on light sky.
+   Scrim behind product list keeps contrast at the day↔night transition midpoint. */
+.parallax-hero.is-day .parallax-content .product-list {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 12px;
+  padding: 8px 14px;
+}
+.parallax-hero.is-day .parallax-content .section-label {
+  color: rgba(15,23,42,0.75);
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+.parallax-hero.is-day .parallax-content .product-description {
+  color: rgba(15,23,42,0.85);
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+.parallax-content .section-label,
+.parallax-content .product-description {
+  transition: color 2.5s ease, text-shadow 2.5s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .parallax-hero, .parallax-sky-day, .parallax-sun, .parallax-stars,
   .parallax-mountains, .parallax-content .hero-name,
