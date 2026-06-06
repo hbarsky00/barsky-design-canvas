@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
-import mountainsSprite from "@/assets/parallax-mountains.png";
+
 
 
 
@@ -128,15 +128,48 @@ const ParallaxHero: React.FC = () => {
         ))}
       </div>
 
-      {/* Layer 3: Mountains (AI-painted sprite, drifting parallax loop) */}
+      {/* Layer 3: Mountains (hand-illustrated, drifting seamless loop) */}
       <div ref={mountainsRef} aria-hidden className="parallax-mountains">
         <div className="parallax-mountains-drift parallax-mountains-back">
-          <img src={mountainsSprite} alt="" decoding="async" loading="lazy" />
-          <img src={mountainsSprite} alt="" decoding="async" loading="lazy" className="is-mirrored" />
+          {[0, 1].map((i) => (
+            <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id={`mb-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2a1838" />
+                  <stop offset="100%" stopColor="#120a1c" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,260 L0,170 C 60,150 90,135 140,128 L 200,90 L 240,118 C 290,130 320,118 360,108 L 430,60 L 480,98 L 520,82 L 560,112 L 640,55 L 700,100 L 740,86 L 820,118 L 880,75 L 940,110 L 1000,72 L 1060,108 L 1120,92 L 1200,130 L 1200,260 Z"
+                fill={`url(#mb-grad-${i})`}
+              />
+              <path d="M425,68 L440,60 L455,72 L448,76 L440,72 L432,76 Z" fill="#d8d3e8" opacity="0.55" />
+              <path d="M635,62 L644,55 L656,68 L650,72 L644,68 L638,72 Z" fill="#d8d3e8" opacity="0.5" />
+              <path d="M195,98 L202,90 L212,102 L206,106 L202,102 L198,106 Z" fill="#d8d3e8" opacity="0.4" />
+            </svg>
+          ))}
         </div>
         <div className="parallax-mountains-drift parallax-mountains-front">
-          <img src={mountainsSprite} alt="" decoding="async" loading="lazy" />
-          <img src={mountainsSprite} alt="" decoding="async" loading="lazy" className="is-mirrored" />
+          {[0, 1].map((i) => (
+            <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id={`mf-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#15101c" />
+                  <stop offset="100%" stopColor="#050308" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,260 L0,200 L 80,150 L 130,180 L 180,140 L 230,178 L 300,110 L 360,170 L 410,138 L 480,180 L 540,118 L 600,168 L 680,128 L 740,172 L 800,140 L 870,182 L 930,125 L 1000,170 L 1070,138 L 1130,178 L 1200,150 L 1200,260 Z"
+                fill={`url(#mf-grad-${i})`}
+              />
+              {[60, 155, 260, 380, 505, 625, 760, 895, 1025, 1155].map((cx, idx) => (
+                <g key={idx} opacity="0.85">
+                  <path d={`M${cx},230 L${cx - 6},244 L${cx + 6},244 Z`} fill="#0a0610" />
+                  <path d={`M${cx},220 L${cx - 8},240 L${cx + 8},240 Z`} fill="#0a0610" />
+                </g>
+              ))}
+            </svg>
+          ))}
         </div>
       </div>
 
