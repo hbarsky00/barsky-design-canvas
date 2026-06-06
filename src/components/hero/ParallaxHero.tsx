@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 
