@@ -6,7 +6,6 @@ const SHIPPED = [
   { label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
   { label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
-  { label: "ROI Design Builder", desc: "calculate design ROI for stakeholder buy-in", to: "/project/roi-design-builder" },
 ];
 
 const CONCEPTS = [
