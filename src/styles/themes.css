@@ -87,38 +87,79 @@
 .parallax-hero {
   position: relative; min-height: 100vh; overflow: hidden;
   background: #0d0a1a; color: #fff;
+  transition: background-color 50s ease-in-out;
 }
+.parallax-hero.is-day { background: #cfe6f7; }
 .parallax-sky {
   position: absolute; inset: -5%;
   background: linear-gradient(180deg, #1a1a2e 0%, #2d1b4e 55%, #8b3a3a 100%);
   will-change: transform; z-index: 0;
 }
+/* Day sky overlay — fades from 0 → 1 across ~50s for a timelapse feel */
+.parallax-sky-day {
+  position: absolute; inset: -5%; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, #4ea6e8 0%, #8ec8ec 55%, #f7d6a8 100%);
+  opacity: 0;
+  transition: opacity 50s ease-in-out;
+}
+.parallax-hero.is-day .parallax-sky-day { opacity: 1; }
+
+/* Sun rises during the timelapse */
+.parallax-sun {
+  position: absolute; z-index: 1; pointer-events: none;
+  width: 120px; height: 120px; right: 12%; top: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #fff8d6 0%, #ffd97a 45%, #ffb347 70%, rgba(255,179,71,0) 80%);
+  box-shadow: 0 0 80px 30px rgba(255, 217, 122, 0.45);
+  opacity: 0;
+  transform: translateY(120px) scale(0.85);
+  transition: opacity 40s ease-in-out, transform 50s ease-out;
+}
+.parallax-hero.is-day .parallax-sun {
+  opacity: 1;
+  transform: translateY(-260px) scale(1);
+}
+
 .parallax-stars {
   position: absolute; inset: -5%;
   will-change: transform; z-index: 1; pointer-events: none;
+  transition: opacity 30s ease-in-out;
 }
+.parallax-hero.is-day .parallax-stars { opacity: 0; }
+
 .parallax-mountains {
   position: absolute; bottom: -20px; left: -5%; right: -5%; height: 30%;
   will-change: transform; z-index: 2; pointer-events: none;
+  transition: filter 50s ease-in-out;
 }
+.parallax-hero.is-day .parallax-mountains { filter: brightness(0.65) saturate(0.6) hue-rotate(190deg); }
+
 .parallax-content {
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
   padding: 120px 24px 80px; color: #fff;
 }
 .parallax-content .hero-inner { width: 100%; text-align: center; }
-.parallax-content .hero-eyebrow { font-size: 15px; color: rgba(255,255,255,.55); margin: 0 0 8px; }
+.parallax-content .hero-eyebrow {
+  font-size: 15px; color: rgba(255,255,255,.55); margin: 0 0 8px;
+  transition: color 30s ease-in-out;
+}
 .parallax-content .hero-name {
   font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
   color: #fff; margin: 0; line-height: 1.05;
   text-shadow: 0 0 40px rgba(139,58,58,0.4);
+  transition: color 30s ease-in-out, text-shadow 30s ease-in-out;
 }
-.parallax-content .hero-divider { width: 60px; height: 2px; background: rgba(255,255,255,.4); margin: 12px auto; border: 0; }
-.parallax-content .hero-role { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; }
-.parallax-content .hero-tagline { font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0; }
+.parallax-content .hero-divider {
+  width: 60px; height: 2px; background: rgba(255,255,255,.4); margin: 12px auto; border: 0;
+  transition: background 30s ease-in-out;
+}
+.parallax-content .hero-role { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; transition: color 30s ease-in-out; }
+.parallax-content .hero-tagline { font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0; transition: color 30s ease-in-out; }
 .parallax-content .product-list { max-width: 480px; margin: 32px auto 0; }
 .parallax-content .section-label {
   display: block; text-align: center; font-size: 11px; letter-spacing: .18em;
   text-transform: uppercase; color: rgba(255,255,255,.35); margin: 28px 0 12px;
+  transition: color 30s ease-in-out;
 }
 .parallax-content .product-row {
   display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
@@ -127,21 +168,55 @@
 .parallax-content .product-pill {
   border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 14px;
   font-size: 13px; color: #fff; background: transparent; white-space: nowrap;
-  flex-shrink: 0; transition: background .15s, border-color .15s;
+  flex-shrink: 0;
+  transition: background 30s ease-in-out, border-color 30s ease-in-out, color 30s ease-in-out;
 }
 .parallax-content .product-row:hover .product-pill { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
-.parallax-content .product-description { font-size: 13px; color: rgba(255,255,255,.5); text-align: left; }
+.parallax-content .product-description { font-size: 13px; color: rgba(255,255,255,.5); text-align: left; transition: color 30s ease-in-out; }
 .parallax-content .social-icons {
   display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
 }
-.parallax-content .social-link { color: rgba(255,255,255,.6); display: inline-flex; text-decoration: none; transition: color .15s; }
+.parallax-content .social-link { color: rgba(255,255,255,.6); display: inline-flex; text-decoration: none; transition: color 30s ease-in-out; }
 .parallax-content .social-link:hover { color: #fff; }
 .parallax-content .book-call-wrap { margin-top: 12px; text-align: center; }
 .parallax-content .book-call {
   display: inline-block; font-size: 13px; color: rgba(255,255,255,.35);
-  text-decoration: none; transition: color .15s;
+  text-decoration: none; transition: color 30s ease-in-out;
 }
 .parallax-content .book-call:hover { color: #fff; text-decoration: underline; }
+
+/* ===== Day-mode content overrides (text becomes dark for readability) ===== */
+.parallax-hero.is-day .parallax-content { color: #0f1a2e; }
+.parallax-hero.is-day .parallax-content .hero-eyebrow { color: rgba(15,26,46,.7); }
+.parallax-hero.is-day .parallax-content .hero-name {
+  color: #0a1428;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+}
+.parallax-hero.is-day .parallax-content .hero-divider { background: rgba(15,26,46,.35); }
+.parallax-hero.is-day .parallax-content .hero-role { color: rgba(15,26,46,.75); }
+.parallax-hero.is-day .parallax-content .hero-tagline { color: #0a1428; }
+.parallax-hero.is-day .parallax-content .section-label { color: rgba(15,26,46,.55); }
+.parallax-hero.is-day .parallax-content .product-pill {
+  border-color: rgba(15,26,46,.45); color: #0a1428; background: rgba(255,255,255,.35);
+}
+.parallax-hero.is-day .parallax-content .product-row:hover .product-pill {
+  background: rgba(255,255,255,.6); border-color: rgba(15,26,46,.7);
+}
+.parallax-hero.is-day .parallax-content .product-description { color: rgba(15,26,46,.7); }
+.parallax-hero.is-day .parallax-content .social-link { color: rgba(15,26,46,.7); }
+.parallax-hero.is-day .parallax-content .social-link:hover { color: #0a1428; }
+.parallax-hero.is-day .parallax-content .book-call { color: rgba(15,26,46,.6); }
+.parallax-hero.is-day .parallax-content .book-call:hover { color: #0a1428; }
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-hero, .parallax-sky-day, .parallax-sun, .parallax-stars,
+  .parallax-mountains, .parallax-content .hero-name,
+  .parallax-content .hero-eyebrow, .parallax-content .hero-role,
+  .parallax-content .hero-tagline, .parallax-content .section-label,
+  .parallax-content .product-pill, .parallax-content .product-description,
+  .parallax-content .social-link, .parallax-content .book-call,
+  .parallax-content .hero-divider { transition: none !important; }
+}
 
 /* Star twinkle + drift */
 @keyframes star-twinkle {

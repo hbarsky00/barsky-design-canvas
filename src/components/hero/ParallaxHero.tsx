@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 
@@ -9,6 +9,13 @@ const ParallaxHero: React.FC = () => {
   const skyRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
+  const [isDay, setIsDay] = useState(false);
+
+  useEffect(() => {
+    // Begin the dusk → dawn time lapse shortly after landing.
+    const t = setTimeout(() => setIsDay(true), 4000);
+    return () => clearTimeout(t);
+  }, []);
 
   const stars = useMemo(() => {
     const rng = (seed: number) => {
@@ -93,15 +100,21 @@ const ParallaxHero: React.FC = () => {
   return (
     <section
       data-theme="3d"
+      data-daytime={isDay ? "day" : "night"}
       aria-label="Hiram Barsky portfolio hero"
-      className="parallax-hero"
+      className={`parallax-hero ${isDay ? "is-day" : ""}`}
     >
-      {/* Layer 1: Sky gradient */}
+      {/* Layer 1: Sky gradient (night) */}
       <div
         ref={skyRef}
         aria-hidden
         className="parallax-sky"
       />
+      {/* Layer 1b: Day sky overlay — fades in over the timelapse */}
+      <div aria-hidden className="parallax-sky-day" />
+      {/* Sun — rises during the timelapse */}
+      <div aria-hidden className="parallax-sun" />
+
 
       {/* Layer 2: Stars */}
       <div ref={starsRef} aria-hidden className="parallax-stars">
