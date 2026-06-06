@@ -182,25 +182,25 @@
 }
 .parallax-content .hero-eyebrow {
   font-size: 15px; color: rgba(255,255,255,.55); margin: 0 0 8px;
-  transition: color 30s ease-in-out;
+  transition: color 30s ease-in-out 25s;
 }
 .parallax-content .hero-name {
   font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
   color: #fff; margin: 0; line-height: 1.05;
   text-shadow: 0 0 40px rgba(139,58,58,0.4);
-  transition: color 30s ease-in-out, text-shadow 30s ease-in-out;
+  transition: color 30s ease-in-out 25s, text-shadow 30s ease-in-out 25s;
 }
 .parallax-content .hero-divider {
   width: 60px; height: 2px; background: rgba(255,255,255,.4); margin: 12px auto; border: 0;
   transition: background 30s ease-in-out;
 }
-.parallax-content .hero-role { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; transition: color 30s ease-in-out; }
-.parallax-content .hero-tagline { font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0; transition: color 30s ease-in-out; }
+.parallax-content .hero-role { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; transition: color 30s ease-in-out 25s; }
+.parallax-content .hero-tagline { font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0; transition: color 30s ease-in-out 25s; }
 .parallax-content .product-list { max-width: 480px; margin: 32px auto 0; }
 .parallax-content .section-label {
   display: block; text-align: center; font-size: 11px; letter-spacing: .18em;
   text-transform: uppercase; color: rgba(255,255,255,.35); margin: 28px 0 12px;
-  transition: color 30s ease-in-out;
+  transition: color 30s ease-in-out 25s;
 }
 .parallax-content .product-row {
   display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
@@ -210,19 +210,19 @@
   border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 14px;
   font-size: 13px; color: #fff; background: transparent; white-space: nowrap;
   flex-shrink: 0;
-  transition: background 30s ease-in-out, border-color 30s ease-in-out, color 30s ease-in-out;
+  transition: background 30s ease-in-out 25s, border-color 30s ease-in-out 25s, color 30s ease-in-out 25s;
 }
 .parallax-content .product-row:hover .product-pill { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
-.parallax-content .product-description { font-size: 13px; color: rgba(255,255,255,.5); text-align: left; transition: color 30s ease-in-out; }
+.parallax-content .product-description { font-size: 13px; color: rgba(255,255,255,.5); text-align: left; transition: color 30s ease-in-out 25s; }
 .parallax-content .social-icons {
   display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
 }
-.parallax-content .social-link { color: rgba(255,255,255,.6); display: inline-flex; text-decoration: none; transition: color 30s ease-in-out; }
+.parallax-content .social-link { color: rgba(255,255,255,.6); display: inline-flex; text-decoration: none; transition: color 30s ease-in-out 25s; }
 .parallax-content .social-link:hover { color: #fff; }
 .parallax-content .book-call-wrap { margin-top: 12px; text-align: center; }
 .parallax-content .book-call {
   display: inline-block; font-size: 13px; color: rgba(255,255,255,.35);
-  text-decoration: none; transition: color 30s ease-in-out;
+  text-decoration: none; transition: color 30s ease-in-out 25s;
 }
 .parallax-content .book-call:hover { color: #fff; text-decoration: underline; }
 
