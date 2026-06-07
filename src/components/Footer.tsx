@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
   const linkCls = "hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded";
 
   return (
-    <footer className="py-12" role="contentinfo" aria-label="Site footer" style={{ ...fg, ...bg }}>
+    <footer className="relative z-10 -mt-px py-12" role="contentinfo" aria-label="Site footer" style={{ ...fg, ...bg }}>
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
