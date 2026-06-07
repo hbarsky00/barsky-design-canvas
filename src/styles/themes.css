@@ -1709,56 +1709,71 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
   opacity: 1;
 }
 
-/* Windshield wiper — pivots from bottom-left of hero, sweeps across */
+/* Windshield wiper — full-height vertical blade that sweeps the entire
+   hero left → right → left, clearing everything in its path */
 .windshield-wiper {
   position: absolute;
-  left: -10%;
-  bottom: -8%;
-  width: 1px;
-  height: 1px;
+  inset: 0;
   pointer-events: none;
   z-index: 7;
+  overflow: hidden;
 }
 .windshield-wiper-arm {
   position: absolute;
-  left: 0;
+  top: 0;
   bottom: 0;
-  width: 140vmax;
-  height: 18px;
-  transform-origin: 0% 100%;
-  transform: rotate(-10deg);
-  animation: wiperSweep 1.6s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
+  left: 0;
+  width: 28px;
+  transform: translateX(-120%);
+  animation: wiperSweep 1.8s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
+  will-change: transform;
 }
 .windshield-wiper-blade {
   position: absolute;
-  left: 6%;
-  right: 2%;
-  top: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
-    to bottom,
+    to right,
     rgba(10, 12, 20, 0) 0%,
-    rgba(10, 12, 20, 0.55) 35%,
-    rgba(10, 12, 20, 0.75) 50%,
-    rgba(10, 12, 20, 0.55) 65%,
+    rgba(10, 12, 20, 0.45) 35%,
+    rgba(10, 12, 20, 0.7) 50%,
+    rgba(10, 12, 20, 0.45) 65%,
     rgba(10, 12, 20, 0) 100%
   );
-  border-radius: 4px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.35);
-  filter: blur(0.4px);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+  filter: blur(0.5px);
 }
 @keyframes wiperSweep {
-  0%   { transform: rotate(-10deg); }
-  45%  { transform: rotate(95deg); }
-  55%  { transform: rotate(95deg); }
-  100% { transform: rotate(-10deg); }
+  0%   { transform: translateX(-120%); }
+  48%  { transform: translateX(calc(100vw + 20px)); }
+  52%  { transform: translateX(calc(100vw + 20px)); }
+  100% { transform: translateX(-120%); }
 }
 
-/* While wiping, fade out lingering drops/flakes ahead of the blade */
+/* While wiping, fade out lingering drops/flakes/splashes ahead of the blade */
 .weather-fx.is-wiping .weather-drop,
-.weather-fx.is-wiping .weather-flake {
+.weather-fx.is-wiping .weather-flake,
+.weather-fx.is-wiping .weather-splash {
   transition: opacity 220ms ease;
   opacity: 0 !important;
+}
+
+/* Daytime legibility wash — full-bleed soft darkening behind hero content.
+   Not a card: no edges, fades to transparent at top & sides so the bright
+   sky still shows at the margins. Active in day/dusk where the sky is
+   light. Night is unchanged. */
+.parallax-hero.is-day::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5; /* below WeatherFX (6), above background scene layers */
+  background:
+    radial-gradient(
+      ellipse 80% 55% at 50% 62%,
+      rgba(10, 14, 28, 0.32) 0%,
+      rgba(10, 14, 28, 0.22) 45%,
+      rgba(10, 14, 28, 0) 80%
+    );
 }
 
 @media (prefers-reduced-motion: reduce) {
