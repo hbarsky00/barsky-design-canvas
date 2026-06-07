@@ -87,18 +87,11 @@
 .parallax-hero {
   position: relative; min-height: 100vh; overflow: hidden;
   background: #0d0a1a; color: #fff;
-  transition: background-color 2.5s ease-in-out;
 }
-.parallax-hero.is-day { background: #cfe6f7; }
 
-/* Continuous page background — body matches the hero theme so the footer
-   (now transparent) sits on the same color as the hero, no seam. */
-body[data-daytime="night"] { background: #0d0a1a; --site-fg: #f8fafc; }
-body[data-daytime="day"]   { background: #cfe6f7; --site-fg: #0f172a; }
-/* Flat-scene textMode wins over day/night so the footer follows the active scene. */
+/* Footer/body text color follows the active scene's textMode. */
 body[data-text-mode="light"] { --site-fg: #f8fafc; }
 body[data-text-mode="dark"]  { --site-fg: #0f172a; }
-body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s ease; }
 
 /* Sticky viewport-sized stack — keeps a single scene visible while content scrolls */
 .parallax-bg-stack {
@@ -111,77 +104,6 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   pointer-events: none;
   z-index: 0;
 }
-
-.parallax-sky {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, #1a1a2e 0%, #2d1b4e 55%, #8b3a3a 100%);
-  will-change: transform; z-index: 0;
-  transition: opacity 2.5s ease-in-out;
-  opacity: 1;
-}
-.parallax-hero.is-day .parallax-sky { opacity: 0; }
-
-/* Day sky overlay */
-.parallax-sky-day {
-  position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(180deg, #4ea6e8 0%, #8ec8ec 55%, #f7d6a8 100%);
-  opacity: 0;
-  transition: opacity 2.5s ease-in-out;
-}
-.parallax-hero.is-day .parallax-sky-day { opacity: 1; }
-
-/* Sun rises into the top-right during the day */
-.parallax-sun {
-  position: absolute; z-index: 1;
-  width: 95px; height: 95px; right: 5%; top: 4%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, #fff8d6 0%, #ffd97a 45%, #ffb347 70%, rgba(255,179,71,0) 80%);
-  box-shadow: 0 0 70px 28px rgba(255, 217, 122, 0.5);
-  opacity: 0;
-  transform: translateY(-30px) scale(0.85);
-  transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
-}
-.parallax-hero.is-day .parallax-sun {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Moon glows at night — distinct upper-left position so it never shares the sun's spot */
-.parallax-moon {
-  position: absolute; z-index: 1;
-  width: 90px; height: 90px; left: 10%; top: 8%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f6f3e8 0%, #d8d4c2 60%, #a8a497 100%);
-  box-shadow: 0 0 60px 20px rgba(230, 225, 200, 0.35);
-  opacity: 1;
-  transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
-}
-.parallax-hero.is-day .parallax-moon {
-  opacity: 0;
-  transform: translateY(-30px) scale(0.85);
-}
-
-.parallax-stars {
-  position: absolute; inset: 0;
-  will-change: transform; z-index: 1;
-  transition: opacity 2.5s ease-in-out;
-}
-.parallax-hero.is-day .parallax-stars { opacity: 0; }
-
-.parallax-mountains {
-  position: absolute; bottom: -20px; left: -5%; right: -5%; height: 38%;
-  will-change: transform; z-index: 2;
-  transition: opacity 2.5s ease-in-out;
-}
-.parallax-hero.is-day .parallax-mountains { opacity: 0; }
-
-.parallax-mountains.parallax-mountains-day {
-  opacity: 0;
-}
-.parallax-hero.is-day .parallax-mountains.parallax-mountains-day {
-  opacity: 1;
-}
-
 
 @keyframes ocean-wave-shift {
   0%   { transform: translateX(0); }
@@ -201,20 +123,18 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-ocean .shark-2 { animation: shark-cruise 38s linear infinite; animation-delay: -12s; }
 .parallax-ocean .shark-3 { animation: shark-cruise 32s linear infinite; animation-delay: -22s; }
 
-/* ONE shared theme-aware foreground token. Night = near-white, Day = slate-900.
+/* ONE shared theme-aware foreground token. Light scenes = near-white, Dark scenes = slate-900.
    Every text element + pill below uses currentColor so nothing is hardcoded. */
 .parallax-content {
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
   padding: 120px 24px 80px;
   --hero-fg: #f8fafc;
   color: var(--hero-fg);
-  transition: color 2.5s ease;
+  transition: color 0.4s ease;
 }
-.parallax-hero.is-day .parallax-content { --hero-fg: #0f172a; }
+.parallax-hero[data-text-mode="light"] .parallax-content { --hero-fg: #f8fafc; }
+.parallax-hero[data-text-mode="dark"]  .parallax-content { --hero-fg: #0f172a; }
 
-/* Per-scene textMode wins over is-day when a flat scene is active. */
-.parallax-hero.has-flat-scene[data-text-mode="light"] .parallax-content { --hero-fg: #f8fafc; }
-.parallax-hero.has-flat-scene[data-text-mode="dark"]  .parallax-content { --hero-fg: #0f172a; }
 
 /* Flat scene crossfade stack — sits above the live bg-stack, below content. */
 .parallax-scene-stack {
@@ -338,8 +258,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-content .book-call:hover { color: currentColor; text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) {
-  .parallax-hero, .parallax-sky-day, .parallax-sun, .parallax-stars,
-  .parallax-mountains, .parallax-content .hero-name,
+  .parallax-hero, .parallax-scene-img, .parallax-content .hero-name,
   .parallax-content .hero-eyebrow, .parallax-content .hero-role,
   .parallax-content .hero-tagline, .parallax-content .section-label,
   .parallax-content .product-pill, .parallax-content .product-description,
@@ -347,22 +266,6 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   .parallax-content .hero-divider { transition: none !important; }
 }
 
-/* Star twinkle + drift */
-@keyframes star-twinkle {
-  0%   { opacity: 0.05; transform: scale(0.6); }
-  50%  { opacity: 1;    transform: scale(1.2); }
-  100% { opacity: 0.05; transform: scale(0.6); }
-}
-@keyframes star-drift {
-  0%   { transform: translate(0, 0); }
-  100% { transform: translate(var(--drift-x, 10px), var(--drift-y, -8px)); }
-}
-.parallax-stars > span {
-  will-change: transform, opacity;
-  animation:
-    star-twinkle var(--twinkle-dur, 2.5s) ease-in-out var(--twinkle-delay, 0s) infinite,
-    star-drift var(--drift-dur, 12s) ease-in-out var(--drift-delay, 0s) infinite alternate;
-}
 
 /* =========== 3D (default) =========== */
 [data-theme="3d"] .hero {
@@ -668,204 +571,9 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   font-size: 11px; letter-spacing: .1em; color: #888; text-transform: uppercase;
 }
 
-/* ============================================================
-   Sky FX — drifting mountains, shooting stars, meteors, airplane
-   Scoped to .parallax-hero so other themes are unaffected.
-   ============================================================ */
+/* (Sky FX, drifting mountains, meteors, airplane, helicopter, UFO removed —
+   every scene is now a flat baked PNG; no live layers remain.) */
 
-/* Drifting seamless mountain layers */
-.parallax-mountains-drift {
-  position: absolute;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  display: flex;
-  will-change: transform;
-  animation: mountainDrift 60s linear infinite;
-}
-.parallax-mountains-drift > svg,
-.parallax-mountains-drift > img {
-  flex: 0 0 50%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: bottom center;
-}
-.parallax-mountains-drift > img.is-mirrored { transform: scaleX(-1); }
-.parallax-mountains-back { bottom: 8px; height: 85%; opacity: 0.55; filter: blur(1px); }
-.parallax-mountains-front {
-  bottom: 0;
-  height: 70%;
-  animation-duration: 90s; /* parallax: front layer slower for depth */
-}
-@keyframes mountainDrift {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* FX layer container */
-.parallax-fx {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Shooting stars */
-.sky-shooting-star {
-  position: absolute;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.9));
-  transform: rotate(-30deg);
-  transform-origin: left center;
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: shootingStar 0.8s ease-out forwards;
-}
-@keyframes shootingStar {
-  0%   { opacity: 1; transform: rotate(-30deg) translate(0, 0); }
-  100% { opacity: 0; transform: rotate(-30deg) translate(300px, 150px); }
-}
-
-/* Meteors */
-.sky-meteor {
-  position: absolute;
-  width: 220px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255,200,100,0), rgba(255,255,200,1));
-  box-shadow: 0 0 8px rgba(255,200,100,0.8);
-  transform: rotate(-30deg);
-  transform-origin: left center;
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: meteorStreak 1.2s ease-out forwards;
-}
-@keyframes meteorStreak {
-  0%   { opacity: 1; transform: rotate(-30deg) translate(0, 0); }
-  100% { opacity: 0; transform: rotate(-30deg) translate(400px, 200px); }
-}
-.sky-meteor-dot {
-  position: absolute;
-  right: 0;
-  top: -2px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,200,1);
-  box-shadow: 0 0 12px rgba(255,200,100,0.9);
-  opacity: 0;
-  animation: meteorDot 0.4s ease-out 1.2s forwards;
-}
-@keyframes meteorDot {
-  0%   { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(0.4); }
-}
-
-/* Airplane */
-.sky-airplane {
-  position: absolute;
-  font-size: 14px;
-  opacity: 0.6;
-  color: #fff;
-  will-change: transform, opacity;
-  animation: airplaneCross 12s linear forwards;
-}
-.sky-airplane--rtl.sky-airplane { animation-name: airplaneCrossRtl; }
-/* ✈ glyph faces up-left by default; flip for left→right travel so the nose leads */
-@keyframes airplaneCross {
-  from { transform: scaleX(-1) translateX(0); }
-  to   { transform: scaleX(-1) translateX(calc(var(--airplane-distance, 100vw) * -1)); }
-}
-@keyframes airplaneCrossRtl {
-  from { transform: translateX(0); }
-  to   { transform: translateX(var(--airplane-distance, -100vw)); }
-}
-.sky-airplane-light {
-  position: absolute;
-  right: -2px;
-  top: 50%;
-  width: 3px;
-  height: 3px;
-  background: #fff;
-  border-radius: 50%;
-  animation: skyBlink 2s step-end infinite;
-}
-@keyframes skyBlink {
-  0%, 49%   { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-/* Helicopter */
-.sky-helicopter {
-  position: absolute;
-  font-size: 22px;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,0.3));
-  will-change: transform;
-  animation: heliCross 16s linear forwards;
-}
-.sky-helicopter--rtl { animation-name: heliCrossRtl; }
-.sky-helicopter-body { display: inline-block; transform: scaleX(-1); }
-.sky-helicopter--rtl .sky-helicopter-body { transform: none; }
-@keyframes heliCross {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(25%, -8px); }
-  50%  { transform: translate(50%, 6px); }
-  75%  { transform: translate(75%, -4px); }
-  100% { transform: translate(var(--heli-distance, 100vw), 0); }
-}
-@keyframes heliCrossRtl {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(-25%, -8px); }
-  50%  { transform: translate(-50%, 6px); }
-  75%  { transform: translate(-75%, -4px); }
-  100% { transform: translate(calc(var(--heli-distance, -100vw) * -1 * -1), 0); }
-}
-.sky-helicopter-light {
-  position: absolute; right: -3px; top: 50%;
-  width: 4px; height: 4px; background: #ff4444; border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255,68,68,0.9);
-  animation: skyBlink 1.2s step-end infinite;
-}
-
-/* UFO with aliens */
-.sky-ufo {
-  position: absolute;
-  font-size: 26px;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 8px rgba(120,255,180,0.55));
-  will-change: transform;
-  animation: ufoFloat 18s ease-in-out forwards;
-}
-@keyframes ufoFloat {
-  0%   { transform: translate(0, 0) rotate(0deg); }
-  20%  { transform: translate(20%, -20px) rotate(-3deg); }
-  40%  { transform: translate(40%, 18px) rotate(2deg); }
-  60%  { transform: translate(60%, -15px) rotate(-2deg); }
-  80%  { transform: translate(80%, 12px) rotate(3deg); }
-  100% { transform: translate(var(--ufo-distance, 100vw), 0) rotate(0deg); }
-}
-.sky-ufo-beam {
-  position: absolute;
-  left: 50%; top: 90%;
-  width: 0; height: 0;
-  border-left: 14px solid transparent;
-  border-right: 14px solid transparent;
-  border-top: 28px solid rgba(120,255,180,0.25);
-  transform: translateX(-50%);
-  animation: ufoBeamPulse 1.5s ease-in-out infinite;
-}
-@keyframes ufoBeamPulse {
-  0%, 100% { opacity: 0.2; }
-  50%      { opacity: 0.7; }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .parallax-mountains-drift { animation: none; }
-}
 
 /* ============================================================
    Interactive Theme Treatments — Terminal · LLM Chat · Win95 · 8-Bit
