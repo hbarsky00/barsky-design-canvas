@@ -66,7 +66,7 @@ const ParallaxHero: React.FC = () => {
       data-scene={activeScene.id}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
-      className="parallax-hero has-flat-scene"
+      className="parallax-hero"
     >
       {/* Flat scene crossfade stack — every scene is a single full-bleed PNG/JPG. */}
       <div className="parallax-scene-stack" aria-hidden>
