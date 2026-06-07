@@ -93,9 +93,9 @@ const WeatherFX: React.FC = () => {
       spawning = true;
       root.dataset.mode = m;
       if (m === "rain") {
-        rainInterval = setInterval(spawnDrop, 38);
+        rainInterval = setInterval(spawnDrop, 110);
       } else if (m === "snow") {
-        snowInterval = setInterval(spawnFlake, 180);
+        snowInterval = setInterval(spawnFlake, 320);
       }
     };
 
@@ -105,50 +105,41 @@ const WeatherFX: React.FC = () => {
       if (snowInterval) { clearInterval(snowInterval); snowInterval = null; }
     };
 
-    const runWiper = () =>
+    // "Clear" = simply fade out and remove all current precipitation.
+    // No wiper, no blade — just a gentle dissipation.
+    const clearWeather = () =>
       new Promise<void>((resolve) => {
-        root.classList.add("is-wiping");
-        const wiper = document.createElement("div");
-        wiper.className = "windshield-wiper";
-        const arm = document.createElement("span");
-        arm.className = "windshield-wiper-arm";
-        const blade = document.createElement("span");
-        blade.className = "windshield-wiper-blade";
-        arm.appendChild(blade);
-        wiper.appendChild(arm);
-        root.appendChild(wiper);
-        const cleanup = () => {
-          if (wiper.parentNode) wiper.parentNode.removeChild(wiper);
-          root.classList.remove("is-wiping");
-          // clear any remaining droplets/flakes after wipe
+        root.classList.add("is-clearing");
+        const t = setTimeout(() => {
           tracked.forEach((el) => {
-            if (el.classList.contains("weather-drop") || el.classList.contains("weather-flake")) {
+            if (
+              el.classList.contains("weather-drop") ||
+              el.classList.contains("weather-flake") ||
+              el.classList.contains("weather-splash")
+            ) {
               if (el.parentNode) el.parentNode.removeChild(el);
               tracked.delete(el);
             }
           });
+          root.classList.remove("is-clearing");
           resolve();
-        };
-        const t = setTimeout(cleanup, 1900);
+        }, 900);
         timeouts.push(t);
       });
 
     // Master cycle
     const cycle = async () => {
       while (!cancelled) {
-        // idle clear window
-        await wait(rand(10000, 18000));
+        // long idle clear window so legibility is the default state
+        await wait(rand(18000, 28000));
         if (cancelled) return;
-        // pick weather
         const pick: Mode = Math.random() < 0.5 ? "rain" : "snow";
         startWeather(pick);
-        await wait(rand(14000, 24000));
+        await wait(rand(10000, 16000));
         if (cancelled) return;
-        // brief wiper while precipitation may still spawn,
-        // then stop spawning and let the screen dry
         stopSpawning();
         root.dataset.mode = "clear";
-        await runWiper();
+        await clearWeather();
         mode = "clear";
       }
     };
