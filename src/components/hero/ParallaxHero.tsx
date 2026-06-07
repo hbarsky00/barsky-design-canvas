@@ -29,6 +29,18 @@ const ParallaxHero: React.FC = () => {
     return () => { delete document.body.dataset.daytime; };
   }, [isDay]);
 
+  // When a flat scene is active, let its textMode drive the global --site-fg
+  // so the footer (and any other body-scoped text) stays legible. Mountains
+  // (live scene) clears this so the day/night binding takes over again.
+  useEffect(() => {
+    if (isFlatScene) {
+      document.body.dataset.textMode = activeScene.textMode;
+    } else {
+      delete document.body.dataset.textMode;
+    }
+    return () => { delete document.body.dataset.textMode; };
+  }, [isFlatScene, activeScene.textMode]);
+
 
 
   const stars = useMemo(() => {
