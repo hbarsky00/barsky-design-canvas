@@ -84,15 +84,18 @@ const ParallaxHero: React.FC = () => {
       aria-label="Hiram Barsky portfolio hero"
       className="parallax-hero"
     >
-      {/* Flat scene image */}
+      {/* Flat scene crossfade stack — all images mounted, active one fades in. */}
       <div className="parallax-scene-stack" aria-hidden>
-        <img
-          src={activeScene.image}
-          alt=""
-          loading="eager"
-          decoding="async"
-          className="parallax-scene-img is-active"
-        />
+        {SCENES.map((s, i) => (
+          <img
+            key={s.id}
+            src={s.image}
+            alt=""
+            loading={i === sceneIndex ? "eager" : "lazy"}
+            decoding="async"
+            className={`parallax-scene-img ${i === sceneIndex ? "is-active" : ""}`}
+          />
+        ))}
       </div>
 
       {/* Per-scene animated overlay (sun/moon + aircraft) */}
