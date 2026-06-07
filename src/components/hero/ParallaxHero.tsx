@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
+import WeatherFX from "./WeatherFX";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
 
 
