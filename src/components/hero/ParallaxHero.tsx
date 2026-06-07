@@ -156,8 +156,38 @@ const ParallaxHero: React.FC = () => {
         <div className="parallax-sky-day" />
         {/* Sun rises during day */}
         <div className="parallax-sun" />
-        {/* Moon glows during night */}
-        <div className="parallax-moon" />
+        {/* Moon glows during night, with a friendly alien visitor */}
+        <div className="parallax-moon">
+          <div className="parallax-alien" aria-hidden>
+            <div className="parallax-alien-bubble">Hi!</div>
+            <svg className="parallax-alien-body" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+              {/* antenna */}
+              <line x1="30" y1="14" x2="30" y2="4" stroke="#7cf6c4" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="30" cy="3" r="2.5" fill="#c8ff5e">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite" />
+              </circle>
+              {/* head */}
+              <ellipse cx="30" cy="24" rx="14" ry="13" fill="#9ef0b8" stroke="#3aa676" strokeWidth="1" />
+              {/* eyes */}
+              <ellipse cx="24" cy="25" rx="3" ry="4" fill="#0b0f1a" />
+              <ellipse cx="36" cy="25" rx="3" ry="4" fill="#0b0f1a" />
+              <circle cx="25" cy="24" r="0.9" fill="#fff" />
+              <circle cx="37" cy="24" r="0.9" fill="#fff" />
+              {/* smile */}
+              <path d="M25 31 Q30 34 35 31" stroke="#2a6a4a" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+              {/* body */}
+              <path d="M20 36 Q30 34 40 36 L42 58 Q30 62 18 58 Z" fill="#9ef0b8" stroke="#3aa676" strokeWidth="1" />
+              {/* waving arm */}
+              <path className="parallax-alien-arm" d="M40 40 Q50 36 52 28" stroke="#9ef0b8" strokeWidth="4" fill="none" strokeLinecap="round" />
+              <circle className="parallax-alien-hand" cx="52" cy="28" r="3" fill="#9ef0b8" stroke="#3aa676" strokeWidth="0.8" />
+              {/* other arm */}
+              <path d="M20 40 Q14 48 16 58" stroke="#9ef0b8" strokeWidth="4" fill="none" strokeLinecap="round" />
+              {/* legs */}
+              <rect x="22" y="56" width="5" height="10" rx="2" fill="#9ef0b8" stroke="#3aa676" strokeWidth="0.8" />
+              <rect x="33" y="56" width="5" height="10" rx="2" fill="#9ef0b8" stroke="#3aa676" strokeWidth="0.8" />
+            </svg>
+          </div>
+        </div>
         {/* Subtle daytime clouds */}
         <div className="parallax-clouds" aria-hidden>
           <span className="parallax-cloud parallax-cloud--1" />
