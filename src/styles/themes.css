@@ -266,7 +266,9 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transition: color 2.5s ease;
 }
 @media (max-width: 640px) {
-  .parallax-content { padding-bottom: 96px; }
+  .parallax-content { padding-top: 96px; padding-bottom: 48px; }
+  .parallax-content .social-icons { margin-top: 20px; }
+  .parallax-content .book-call-wrap { margin-top: 8px; }
 }
 .parallax-hero.is-day .parallax-content { --hero-fg: #0f172a; }
 
@@ -372,7 +374,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   white-space: nowrap;
   flex-shrink: 0;
   min-width: 110px; text-align: center;
-  transition: background-color .2s ease, border-color .2s ease;
+  transition:
+    background-color 2.5s ease-in-out,
+    border-color 2.5s ease-in-out,
+    color 2.5s ease-in-out,
+    box-shadow 2.5s ease-in-out;
 }
 /* Light text (dark scenes): dark semi-opaque fill */
 /* Night mountains + flat dark scenes: dark semi-opaque pill, light label */
@@ -423,7 +429,12 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   width: 40px; height: 40px; border-radius: 999px;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    background-color 2.5s ease-in-out,
+    color 2.5s ease-in-out,
+    box-shadow 2.5s ease-in-out,
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 .parallax-hero.is-day .parallax-content .social-link,
 .parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .social-link {
