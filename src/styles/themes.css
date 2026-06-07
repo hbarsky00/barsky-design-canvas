@@ -876,17 +876,22 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
 /* Airplane */
 .sky-airplane {
   position: absolute;
-  font-size: 14px;
-  opacity: 0.6;
+  opacity: 0.7;
   color: #fff;
   will-change: transform, opacity;
   animation: airplaneCross 12s linear forwards;
+  display: inline-flex;
+  align-items: center;
+}
+.sky-airplane-body {
+  display: inline-flex;
+  line-height: 0;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
 }
 .sky-airplane--rtl.sky-airplane { animation-name: airplaneCrossRtl; }
-/* ✈ glyph faces up-left by default; flip for left→right travel so the nose leads */
 @keyframes airplaneCross {
-  from { transform: scaleX(-1) translateX(0); }
-  to   { transform: scaleX(-1) translateX(calc(var(--airplane-distance, 100vw) * -1)); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--airplane-distance, 100vw)); }
 }
 @keyframes airplaneCrossRtl {
   from { transform: translateX(0); }
