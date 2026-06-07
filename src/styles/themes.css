@@ -449,6 +449,14 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
   .parallax-content .hero-divider { transition: none !important; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .parallax-content .social-link,
+  .parallax-content .book-call {
+    transform: none !important;
+    transition: color 0.15s ease, opacity 0.15s ease !important;
+  }
+}
+
 /* Star twinkle + drift */
 @keyframes star-twinkle {
   0%   { opacity: 0.05; transform: scale(0.6); }
