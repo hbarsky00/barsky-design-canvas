@@ -1776,12 +1776,13 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transform: translateX(-50%);
   width: 100vw;
   max-width: none;
-  bottom: 0;
-  height: 42%;
+  bottom: -20px;
+  height: 38%;
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.6s ease;
   z-index: 2;
+  overflow: hidden;
 }
 .parallax-hero.is-ocean .parallax-ocean { opacity: 1; }
 
@@ -1791,17 +1792,16 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transition: opacity 1.6s ease;
 }
 
-/* Stacked wave bands fill the ocean container */
+/* Stacked wave bands sit at the bottom of the ocean container, crests staying inside */
 .parallax-ocean .wave {
   position: absolute;
   left: -5%;
   width: 110%;
-  height: 100%;
   bottom: 0;
 }
-.parallax-ocean .wave-back  { bottom: 22%; height: 60%; opacity: 0.85; }
-.parallax-ocean .wave-mid   { bottom: 10%; height: 55%; opacity: 0.92; }
-.parallax-ocean .wave-front { bottom: 0;   height: 50%; }
+.parallax-ocean .wave-back  { height: 55%; opacity: 0.85; }
+.parallax-ocean .wave-mid   { height: 42%; opacity: 0.92; }
+.parallax-ocean .wave-front { height: 30%; }
 
 /* Distant fishing boat — slow drift across the horizon line */
 .ocean-boat-track {
