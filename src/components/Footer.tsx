@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <h3 className="heading-card mb-6" style={fg}>
+            <h3 className="heading-card mt-0 mb-6" style={fg}>
               Hiram <span className="text-blue-vibrant">Barsky</span>
             </h3>
             <p className="mb-6 leading-relaxed" style={fg}>
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
             </ul>
 
             <div className="mt-6">
-              <h4 className="text-lg heading-medium mb-4" style={fg}>Connect</h4>
+              <h4 className="text-lg heading-medium mt-0 mb-4" style={fg}>Connect</h4>
               <div className="flex space-x-4" role="list">
                 <a
                   href="https://www.linkedin.com/in/hiram-barsky"
