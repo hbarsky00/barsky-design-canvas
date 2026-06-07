@@ -1692,88 +1692,13 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
   100% { transform: scale(2);   opacity: 0; }
 }
 
-/* Subtle film of moisture on the "windshield" while precipitating */
-.weather-fx::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.04), transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03), transparent 45%);
-  opacity: 0;
-  transition: opacity 800ms ease;
-  pointer-events: none;
-}
-.weather-fx[data-mode="rain"]::before,
-.weather-fx[data-mode="snow"]::before {
-  opacity: 1;
-}
-
-/* Windshield wiper — full-height vertical blade that sweeps the entire
-   hero left → right → left, clearing everything in its path */
-.windshield-wiper {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 7;
-  overflow: hidden;
-}
-.windshield-wiper-arm {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 28px;
-  transform: translateX(-120%);
-  animation: wiperSweep 1.8s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
-  will-change: transform;
-}
-.windshield-wiper-blade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(10, 12, 20, 0) 0%,
-    rgba(10, 12, 20, 0.45) 35%,
-    rgba(10, 12, 20, 0.7) 50%,
-    rgba(10, 12, 20, 0.45) 65%,
-    rgba(10, 12, 20, 0) 100%
-  );
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
-  filter: blur(0.5px);
-}
-@keyframes wiperSweep {
-  0%   { transform: translateX(-120%); }
-  48%  { transform: translateX(calc(100vw + 20px)); }
-  52%  { transform: translateX(calc(100vw + 20px)); }
-  100% { transform: translateX(-120%); }
-}
-
-/* While wiping, fade out lingering drops/flakes/splashes ahead of the blade */
-.weather-fx.is-wiping .weather-drop,
-.weather-fx.is-wiping .weather-flake,
-.weather-fx.is-wiping .weather-splash {
-  transition: opacity 220ms ease;
+/* Gentle "clearing" — fade out any remaining precipitation when weather ends.
+   No wiper blade, no dark line — just a soft dissipation. */
+.weather-fx.is-clearing .weather-drop,
+.weather-fx.is-clearing .weather-flake,
+.weather-fx.is-clearing .weather-splash {
+  transition: opacity 700ms ease;
   opacity: 0 !important;
-}
-
-/* Daytime legibility wash — full-bleed soft darkening behind hero content.
-   Not a card: no edges, fades to transparent at top & sides so the bright
-   sky still shows at the margins. Active in day/dusk where the sky is
-   light. Night is unchanged. */
-.parallax-hero.is-day::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5; /* below WeatherFX (6), above background scene layers */
-  background:
-    radial-gradient(
-      ellipse 80% 55% at 50% 62%,
-      rgba(10, 14, 28, 0.32) 0%,
-      rgba(10, 14, 28, 0.22) 45%,
-      rgba(10, 14, 28, 0) 80%
-    );
 }
 
 @media (prefers-reduced-motion: reduce) {
