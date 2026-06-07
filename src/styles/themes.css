@@ -194,6 +194,49 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   opacity: 1;
 }
 
+/* Subtle daytime clouds — hidden at night and on flat scenes */
+.parallax-clouds {
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0; transition: opacity 2.5s ease-in-out;
+  z-index: 1;
+}
+.parallax-hero.is-day .parallax-clouds { opacity: 1; }
+.parallax-hero.has-flat-scene .parallax-clouds { opacity: 0; }
+.parallax-cloud {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 999px;
+  filter: blur(14px);
+  opacity: 0.32;
+  will-change: transform;
+}
+.parallax-cloud::before,
+.parallax-cloud::after {
+  content: ""; position: absolute; background: #ffffff; border-radius: 999px;
+}
+.parallax-cloud--1 { top: 14%; left: -10%; width: 220px; height: 38px;
+  animation: cloud-drift 95s linear infinite; }
+.parallax-cloud--2 { top: 22%; left: -20%; width: 300px; height: 44px;
+  opacity: 0.22; animation: cloud-drift 140s linear infinite; animation-delay: -40s; }
+.parallax-cloud--3 { top: 9%;  left: -15%; width: 180px; height: 30px;
+  opacity: 0.28; animation: cloud-drift 110s linear infinite; animation-delay: -70s; }
+.parallax-cloud--4 { top: 30%; left: -25%; width: 260px; height: 40px;
+  opacity: 0.18; animation: cloud-drift 170s linear infinite; animation-delay: -110s; }
+.parallax-cloud--1::before { width: 90px; height: 90px; top: -34px; left: 40px; }
+.parallax-cloud--1::after  { width: 70px; height: 70px; top: -22px; left: 120px; }
+.parallax-cloud--2::before { width: 110px; height: 110px; top: -44px; left: 60px; }
+.parallax-cloud--2::after  { width: 80px;  height: 80px;  top: -28px; left: 170px; }
+.parallax-cloud--3::before { width: 70px; height: 70px; top: -26px; left: 30px; }
+.parallax-cloud--3::after  { width: 55px; height: 55px; top: -18px; left: 95px; }
+.parallax-cloud--4::before { width: 95px; height: 95px; top: -38px; left: 50px; }
+.parallax-cloud--4::after  { width: 70px; height: 70px; top: -22px; left: 150px; }
+
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(125vw); }
+}
+
+
 
 @keyframes ocean-wave-shift {
   0%   { transform: translateX(0); }
