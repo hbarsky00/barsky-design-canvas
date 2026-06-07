@@ -1772,7 +1772,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
    ============================================================ */
 .parallax-ocean {
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: none;
+  bottom: 0;
   height: 42%;
   pointer-events: none;
   opacity: 0;
