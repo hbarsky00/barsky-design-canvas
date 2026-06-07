@@ -322,9 +322,11 @@ body[data-text-mode="light"] .parallax-content .product-pill {
   border-color: rgba(248, 250, 252, 0.25);
 }
 /* Dark text (bright scenes): near-white semi-opaque fill */
+/* Dark text (bright scenes): light blue fill, white label */
 body[data-text-mode="dark"] .parallax-content .product-pill {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(15, 23, 42, 0.15);
+  background: rgba(59, 130, 246, 0.85);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
 }
 .parallax-content .product-row:hover .product-pill {
   border-color: currentColor;
