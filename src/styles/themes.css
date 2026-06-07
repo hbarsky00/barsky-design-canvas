@@ -291,8 +291,10 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-scene-stack {
   position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: none;
   height: 100vh;
   margin-bottom: -100vh;
   pointer-events: none;
