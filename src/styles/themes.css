@@ -266,10 +266,14 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transition: color 2.5s ease;
 }
 @media (max-width: 640px) {
+  /* Let the scenery fill the entire hero (content drives the height) so the
+     mountains/sky reach all the way down to the footer — no light band. */
   .parallax-bg-stack,
   .parallax-scene-stack {
-    height: 84svh;
-    margin-bottom: -84svh;
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    margin-bottom: 0;
   }
   .parallax-content { padding-top: 96px; padding-bottom: 0; }
   .parallax-content .hero-inner { padding-bottom: 0; }
