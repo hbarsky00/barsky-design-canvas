@@ -91,6 +91,12 @@
 }
 .parallax-hero.is-day { background: #cfe6f7; }
 
+/* Continuous page background — body matches the hero theme so the footer
+   (now transparent) sits on the same color as the hero, no seam. */
+body[data-daytime="night"] { background: #0d0a1a; --site-fg: #f8fafc; }
+body[data-daytime="day"]   { background: #cfe6f7; --site-fg: #0f172a; }
+body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s ease; }
+
 /* Sticky viewport-sized stack — keeps a single scene visible while content scrolls */
 .parallax-bg-stack {
   position: sticky;
