@@ -137,20 +137,44 @@ const NudgeMeCaseStudy: React.FC = () => (
     </section>
 
 
-    {/* WHY */}
+    {/* WHY — Decisions, tradeoffs, AI-honesty */}
     <section style={{ background: SURFACE, padding: "96px 24px" }}>
-      <div style={{ maxWidth: 720, margin: "0 auto" }}>
-        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>WHY I BUILT THIS</p>
-        <h2 style={{ color: INK, fontSize: 30, fontWeight: 600, margin: "8px 0 20px", letterSpacing: "-0.02em" }}>
-          Calendar apps are too much. Notes apps are not enough.
+      <div style={{ maxWidth: 760, margin: "0 auto" }}>
+        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>THE REAL PROBLEM</p>
+        <h2 style={{ color: INK, fontSize: 30, fontWeight: 600, margin: "8px 0 16px", letterSpacing: "-0.02em" }}>
+          Calendar apps are too much. Notes apps don't ping you.
         </h2>
         <p style={{ color: SUBDUED, fontSize: 17, lineHeight: 1.75 }}>
-          Every reminder app I've used makes me click through three screens before I can save the thing. By the time I'm done, I've forgotten what I wanted to remember. NudgeMe lets me type one sentence — it figures out the date, the repeat, and when to ping me. The tricky part wasn't the look. It was teaching the app to handle the messy way people actually talk, and to warn you before you accidentally save something private like a password.
+          Every reminder app makes you click through three screens before you can save the thing. By the time you're done, you've forgotten what you wanted to remember. The design job wasn't a prettier form — it was making one sentence the entire input, and trusting the parser enough that the preview screen is the only correction surface a user ever needs.
         </p>
-        <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 12, borderLeft: `3px solid ${TEAL}`, padding: 20, marginTop: 28 }}>
+
+        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: "36px 0 0" }}>KEY DECISIONS</p>
+        <ul style={{ color: SUBDUED, fontSize: 16, lineHeight: 1.75, paddingLeft: 20, margin: "8px 0 0" }}>
+          <li style={{ marginBottom: 12 }}>
+            <strong style={{ color: INK }}>Natural-language input over a form.</strong> Chose a single sentence over the calendar-app pattern of date picker + time picker + repeat dropdown because the form is where reminders die. Tradeoff: the parser has to handle real human phrasing — slang, typos, "next tues" — and a visible preview step exists specifically so a misread can be fixed in one tap instead of a re-entry.
+          </li>
+          <li style={{ marginBottom: 12 }}>
+            <strong style={{ color: INK }}>Save first, sign up after.</strong> Chose letting strangers type a reminder before creating an account over the standard auth-wall onboarding because the friction kills the demo. Tradeoff: anonymous draft storage and a quiet account merge on signup, but I get to watch real first-use behavior instead of post-signup behavior.
+          </li>
+          <li>
+            <strong style={{ color: INK }}>Block private data at the input layer.</strong> Chose pattern-matching for passwords, card numbers, and SSNs at parse time over a generic privacy disclaimer because users will type sensitive things into any free-text field eventually. Tradeoff: occasional false positives on legitimate strings, mitigated with a one-tap override.
+          </li>
+        </ul>
+
+        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: "36px 0 0" }}>AI vs. JUDGMENT</p>
+        <p style={{ color: SUBDUED, fontSize: 16, lineHeight: 1.75, marginTop: 8 }}>
+          AI handled the LLM parser, the Supabase schema, the recurrence engine, the multi-channel dispatch (browser, email, SMS), and the PWA install plumbing. What I wouldn't let it decide: when the parser is confident enough to skip the preview step. That's a trust call — get it wrong and silent misreads become missed reminders, which is the one failure mode the product can't survive.
+        </p>
+
+        <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: "36px 0 0" }}>WHAT DIDN'T WORK</p>
+        <p style={{ color: SUBDUED, fontSize: 16, lineHeight: 1.75, marginTop: 8 }}>
+          First version auto-saved on parse with no preview. Sounded clean; produced silent misreads users only caught when the reminder didn't fire. Added the preview step back. Also tried push notifications without a PWA install — iOS Safari kills them. The "Add to Home Screen" step became a real onboarding moment, not a footnote.
+        </p>
+
+        <div style={{ background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 12, borderLeft: `3px solid ${TEAL}`, padding: 20, marginTop: 32 }}>
           <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>STATUS</p>
           <p style={{ color: "#334155", fontSize: 15, lineHeight: 1.6, marginTop: 8 }}>
-            Live at nudgeme.rip — install it on your phone or use it in the browser. Free plan lets you keep 5 reminders with browser pop-ups. Premium ($9/mo) unlocks repeating reminders, email, and text messages. Pro ($19/mo) adds Google Calendar sync. Looking for testers and feedback.
+            Live at nudgeme.rip. Free plan keeps 5 reminders with browser pop-ups. Premium ($9/mo) unlocks repeating reminders, email, and text. Pro ($19/mo) adds Google Calendar sync. Looking for testers and feedback.
           </p>
         </div>
       </div>
