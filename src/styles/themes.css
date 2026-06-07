@@ -402,15 +402,37 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
 .parallax-content .social-link {
   color: color-mix(in srgb, currentColor 80%, transparent);
   display: inline-flex; text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
 }
-.parallax-content .social-link:hover { color: currentColor; }
+.parallax-content .social-link:hover,
+.parallax-content .social-link:focus-visible {
+  color: hsl(var(--md-sys-color-tertiary));
+  opacity: 1;
+  transform: scale(1.1);
+}
+.parallax-content .social-link:focus-visible {
+  outline: 2px solid hsl(var(--md-sys-color-tertiary)) !important;
+  outline-offset: 2px !important;
+}
 .parallax-content .book-call-wrap { margin-top: 12px; text-align: center; }
 .parallax-content .book-call {
   display: inline-block; font-size: 13px;
   color: color-mix(in srgb, currentColor 70%, transparent);
   text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
 }
-.parallax-content .book-call:hover { color: currentColor; text-decoration: underline; }
+.parallax-content .book-call:hover,
+.parallax-content .book-call:focus-visible {
+  color: hsl(var(--md-sys-color-tertiary));
+  opacity: 1;
+  transform: scale(1.1);
+}
+.parallax-content .book-call:focus-visible {
+  outline: 2px solid hsl(var(--md-sys-color-tertiary)) !important;
+  outline-offset: 2px !important;
+}
 
 .parallax-content .hero-bottom-contrast,
 .parallax-content .hero-bottom-contrast a {
