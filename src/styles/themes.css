@@ -173,33 +173,30 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transform: translateY(-30px) scale(0.85);
 }
 
-/* Alien standing on top of the moon waving hi */
+/* Alien centered on the moon, waving hi */
 .parallax-alien {
   position: absolute;
   left: 50%;
-  bottom: 100%;
-  transform: translate(-50%, 14px);
-  width: 60px;
-  height: 80px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
   pointer-events: none;
   animation: alien-bob 3.2s ease-in-out infinite;
+  z-index: 2;
 }
-.parallax-alien-body {
+.parallax-alien-img {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 4px 10px rgba(126, 246, 196, 0.35));
-  overflow: visible;
-}
-.parallax-alien-arm,
-.parallax-alien-hand {
-  transform-origin: 40px 40px;
-  animation: alien-wave 1.6s ease-in-out infinite;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(126, 246, 196, 0.45));
 }
 .parallax-alien-bubble {
   position: absolute;
   left: 100%;
   top: 6px;
-  margin-left: 6px;
+  margin-left: 4px;
   padding: 4px 10px;
   font-size: 12px;
   font-weight: 700;
@@ -208,6 +205,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   border-radius: 12px;
   white-space: nowrap;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 18px rgba(230, 225, 200, 0.35);
+  z-index: 3;
 }
 .parallax-alien-bubble::before {
   content: "";
@@ -219,12 +217,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   border-radius: 2px;
 }
 @keyframes alien-bob {
-  0%, 100% { transform: translate(-50%, 14px); }
-  50%      { transform: translate(-50%, 10px); }
-}
-@keyframes alien-wave {
-  0%, 100% { transform: rotate(0deg); }
-  50%      { transform: rotate(-18deg); }
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%      { transform: translate(-50%, calc(-50% - 4px)); }
 }
 .parallax-hero.is-day .parallax-alien { opacity: 0; }
 
