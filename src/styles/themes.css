@@ -1614,3 +1614,153 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
 }
 [data-theme="simple"] .hero .product-description { opacity: .65; }
 [data-theme="simple"] .hero .social-icons { justify-content: flex-start; }
+
+/* ============================================================
+   Weather FX — rain, snow, splashes, windshield wiper sweep
+   Sits above hero content as a "windshield" surface.
+   ============================================================ */
+.weather-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 6;
+}
+
+/* Rain */
+.weather-drop {
+  position: absolute;
+  top: -30px;
+  width: 1.5px;
+  height: 18px;
+  background: linear-gradient(
+    to bottom,
+    rgba(180, 210, 240, 0),
+    rgba(200, 225, 250, 0.85)
+  );
+  border-radius: 1px;
+  transform: skewX(var(--drop-skew, -8deg)) translateY(0);
+  animation: weatherDropFall linear forwards;
+  will-change: transform, opacity;
+}
+@keyframes weatherDropFall {
+  0%   { transform: skewX(var(--drop-skew, -8deg)) translateY(0); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: skewX(var(--drop-skew, -8deg)) translateY(105vh); opacity: 0.9; }
+}
+
+/* Snow */
+.weather-flake {
+  position: absolute;
+  top: -12px;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0) 100%);
+  border-radius: 50%;
+  filter: blur(0.3px);
+  animation: weatherFlakeFall linear forwards;
+  will-change: transform, opacity;
+}
+@keyframes weatherFlakeFall {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  8%   { opacity: 1; }
+  100% { transform: translate3d(var(--flake-sway, 0px), 105vh, 0); opacity: 0.85; }
+}
+
+/* Splash on "screen" impact — pinned to bottom of hero */
+.weather-splash {
+  position: absolute;
+  bottom: 0;
+  width: 14px;
+  height: 4px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(220,235,255,0.75), rgba(220,235,255,0) 70%);
+  animation: weatherSplash 600ms ease-out forwards;
+  will-change: transform, opacity;
+}
+.weather-splash--snow {
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  background: radial-gradient(circle, rgba(255,255,255,0.85), rgba(255,255,255,0) 70%);
+  animation-duration: 900ms;
+}
+@keyframes weatherSplash {
+  0%   { transform: scale(0.3); opacity: 0.9; }
+  60%  { transform: scale(1.4); opacity: 0.5; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+
+/* Subtle film of moisture on the "windshield" while precipitating */
+.weather-fx::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.04), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03), transparent 45%);
+  opacity: 0;
+  transition: opacity 800ms ease;
+  pointer-events: none;
+}
+.weather-fx[data-mode="rain"]::before,
+.weather-fx[data-mode="snow"]::before {
+  opacity: 1;
+}
+
+/* Windshield wiper — pivots from bottom-left of hero, sweeps across */
+.windshield-wiper {
+  position: absolute;
+  left: -10%;
+  bottom: -8%;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  z-index: 7;
+}
+.windshield-wiper-arm {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 140vmax;
+  height: 18px;
+  transform-origin: 0% 100%;
+  transform: rotate(-10deg);
+  animation: wiperSweep 1.6s cubic-bezier(0.55, 0.05, 0.4, 1) forwards;
+}
+.windshield-wiper-blade {
+  position: absolute;
+  left: 6%;
+  right: 2%;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 12, 20, 0) 0%,
+    rgba(10, 12, 20, 0.55) 35%,
+    rgba(10, 12, 20, 0.75) 50%,
+    rgba(10, 12, 20, 0.55) 65%,
+    rgba(10, 12, 20, 0) 100%
+  );
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+  filter: blur(0.4px);
+}
+@keyframes wiperSweep {
+  0%   { transform: rotate(-10deg); }
+  45%  { transform: rotate(95deg); }
+  55%  { transform: rotate(95deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+/* While wiping, fade out lingering drops/flakes ahead of the blade */
+.weather-fx.is-wiping .weather-drop,
+.weather-fx.is-wiping .weather-flake {
+  transition: opacity 220ms ease;
+  opacity: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weather-fx { display: none; }
+}
