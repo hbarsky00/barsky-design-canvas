@@ -3,7 +3,7 @@ import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 import WeatherFX from "./WeatherFX";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
-import alienAsset from "@/assets/alien-waving.png.asset.json";
+
 
 
 
@@ -157,20 +157,8 @@ const ParallaxHero: React.FC = () => {
         <div className="parallax-sky-day" />
         {/* Sun rises during day */}
         <div className="parallax-sun" />
-        {/* Moon glows during night, with a friendly alien visitor standing on it */}
-        <div className="parallax-moon">
-          <div className="parallax-alien" aria-hidden>
-            <div className="parallax-alien-bubble">Hi!</div>
-            <img
-              className="parallax-alien-img"
-              src={alienAsset.url}
-              alt=""
-              loading="lazy"
-              width={512}
-              height={512}
-            />
-          </div>
-        </div>
+        {/* Moon glows during night */}
+        <div className="parallax-moon" />
         {/* Subtle daytime clouds */}
         <div className="parallax-clouds" aria-hidden>
           <span className="parallax-cloud parallax-cloud--1" />
