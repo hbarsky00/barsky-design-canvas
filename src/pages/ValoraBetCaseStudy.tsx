@@ -104,19 +104,44 @@ const ValoraBetCaseStudy: React.FC = () => {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT — Decisions, tradeoffs, AI-honesty */}
       <section id="about" style={{ background: "#111827", padding: "80px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 40 }}>
           <div>
-            <h2 style={{ color: "#fff", fontSize: 28, fontWeight: 800, margin: "0 0 16px" }}>Why I Built This</h2>
-            <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.7 }}>
-              Prediction markets are one of the most accurate forecasting tools humans have built and almost no one uses them. The design job was making the betting mechanic feel familiar enough to play without a tutorial, while keeping the CPMM pricing honest and visible. Most platforms hide the math. Valora shows it.
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>THE REAL PROBLEM</p>
+            <h2 style={{ color: "#fff", fontSize: 28, fontWeight: 800, margin: "8px 0 16px" }}>Prediction markets are accurate. Nobody uses them.</h2>
+            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 15, lineHeight: 1.7 }}>
+              The forecasting math has been solved for decades. The reason normal people don't touch these platforms is the UI — order books, liquidity pools, share counts. Familiar to a trader, opaque to everyone else. The design job wasn't another exchange. It was a betting interface a casual user can play in 10 seconds, sitting on top of honest CPMM pricing that doesn't lie about the odds.
+            </p>
+
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: "32px 0 0" }}>KEY DECISIONS</p>
+            <ul style={{ color: "rgba(255,255,255,0.75)", fontSize: 15, lineHeight: 1.7, paddingLeft: 18, margin: "8px 0 0" }}>
+              <li style={{ marginBottom: 12 }}>
+                <strong style={{ color: "#fff" }}>Play money, not real money.</strong> Chose social play over a regulated exchange because shipping real-money markets means KYC, state-by-state licensing, and a legal surface I'm not staffing solo. Tradeoff: no skin-in-the-game accuracy, but I can iterate on the mechanic without a lawyer in every release.
+              </li>
+              <li style={{ marginBottom: 12 }}>
+                <strong style={{ color: "#fff" }}>Show the pricing math, don't hide it.</strong> Chose visible CPMM curves over a Polymarket-style clean "Yes 67¢" chip because hiding the math is how casual users get fleeced. Tradeoff: a denser bet screen, but the user can see exactly how their bet moves the price.
+              </li>
+              <li>
+                <strong style={{ color: "#fff" }}>Let anyone create a market.</strong> Chose open authoring over a curated question set because the product dies if it's just my opinions. Tradeoff: moderation overhead and bad-question risk, mitigated by clubs and a flag-and-review loop instead of pre-approval.
+              </li>
+            </ul>
+
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: "32px 0 0" }}>AI vs. JUDGMENT</p>
+            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 15, lineHeight: 1.7, marginTop: 8 }}>
+              AI scaffolded the CPMM math, Supabase schemas, RLS policies, and the clubs/leaderboards plumbing. What I wouldn't let it decide: how the bet screen frames a position. Getting that wrong turns "social prediction" into a casino UI, and the whole premise breaks.
             </p>
           </div>
+
           <div style={{ background: "rgba(249,115,22,0.08)", borderLeft: `3px solid ${ORANGE}`, padding: 24, alignSelf: "start" }}>
-            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHERE IT STANDS</p>
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT DIDN'T WORK</p>
             <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 12 }}>
-              Live in beta with play money. The mechanic works end-to-end and the platform is up and running. I'm looking for testers to break it, tell me what's confusing, and shape what ships next.
+              First bet screen showed the order book like a real exchange. Testers froze. Replaced with a slider that updates the price preview live — same math, one less concept to learn. Also tried curated markets only for the first month; engagement cratered. Open authoring was the unlock, not the risk.
+            </p>
+
+            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: "24px 0 0" }}>WHERE IT STANDS</p>
+            <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 12 }}>
+              Live in beta with play money. The mechanic works end-to-end. Looking for testers to break it and tell me what's confusing before the next round of cuts.
             </p>
           </div>
 
