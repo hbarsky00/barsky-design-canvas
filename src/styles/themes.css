@@ -266,6 +266,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transition: color 2.5s ease;
 }
 @media (max-width: 640px) {
+  .parallax-bg-stack,
+  .parallax-scene-stack {
+    height: 84svh;
+    margin-bottom: -84svh;
+  }
   .parallax-content { padding-top: 96px; padding-bottom: 48px; }
   .parallax-content .social-icons { margin-top: 20px; }
   .parallax-content .book-call-wrap { margin-top: 8px; }
