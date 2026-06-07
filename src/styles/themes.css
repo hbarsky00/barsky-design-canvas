@@ -86,10 +86,10 @@
 /* Parallax layout (3D theme) — background layers + content positioning */
 .parallax-hero {
   position: relative; overflow: hidden;
-  background: var(--site-footer-bg, #0d0a1a); color: #fff;
+  background: #0d0a1a; color: #fff;
   transition: background-color 2.5s ease-in-out;
 }
-.parallax-hero.is-day { background: var(--site-footer-bg, #0d0a1a); }
+.parallax-hero.is-day { background: #cfe6f7; }
 
 /* Global footer must own its own background; body fallback matches it so no seam
    or trailing bottom gap can appear underneath. */
@@ -291,10 +291,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-scene-stack {
   position: sticky;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: none;
+  left: 0;
+  width: 100%;
   height: 100vh;
   margin-bottom: -100vh;
   pointer-events: none;
@@ -438,14 +436,14 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-content .social-link {
   color: color-mix(in srgb, currentColor 80%, transparent);
-  background: transparent;
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: 999px;
   text-decoration: none;
   cursor: pointer;
   transition:
-    background-color 2.5s ease,
-    color 0.15s ease,
+    background-color 2.5s ease-in-out,
+    color 2.5s ease-in-out,
+    box-shadow 2.5s ease-in-out,
     transform 0.15s ease,
     opacity 0.15s ease;
 }
@@ -453,7 +451,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .social-link {
   background: #ffffff;
   color: #0f172a;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 .parallax-content .social-link:hover,
 .parallax-content .social-link:focus-visible {
@@ -1767,108 +1765,3 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 @media (prefers-reduced-motion: reduce) {
   .weather-fx { display: none; }
 }
-
-/* ============================================================
-   Ocean scene — auto-cycles in place of mountain silhouettes.
-   Sky, sun, moon, stars, clouds, and weather keep working above it.
-   ============================================================ */
-.parallax-ocean {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  max-width: none;
-  bottom: 0;
-  height: 42%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.6s ease;
-  z-index: 2;
-}
-.parallax-hero.is-ocean .parallax-ocean { opacity: 1; }
-
-/* When ocean is active, fade the mountain silhouettes out (both night + day) */
-.parallax-hero.is-ocean .parallax-mountains {
-  opacity: 0 !important;
-  transition: opacity 1.6s ease;
-}
-
-/* Stacked wave bands fill the ocean container */
-.parallax-ocean .wave {
-  position: absolute;
-  left: -5%;
-  width: 110%;
-  height: 100%;
-  bottom: 0;
-}
-.parallax-ocean .wave-back  { bottom: 22%; height: 60%; opacity: 0.85; }
-.parallax-ocean .wave-mid   { bottom: 10%; height: 55%; opacity: 0.92; }
-.parallax-ocean .wave-front { bottom: 0;   height: 50%; }
-
-/* Distant fishing boat — slow drift across the horizon line */
-.ocean-boat-track {
-  position: absolute;
-  left: 0; right: 0;
-  top: 8%;
-  height: 32px;
-  pointer-events: none;
-}
-.ocean-boat {
-  position: absolute;
-  left: 10%;
-  width: 90px;
-  height: 46px;
-  animation: ocean-boat-drift 60s linear infinite;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35));
-}
-@keyframes ocean-boat-drift {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(70vw); }
-  100% { transform: translateX(0); }
-}
-
-/* Sporadic jumping fish layer */
-.ocean-fish-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.ocean-fish {
-  position: absolute;
-  bottom: 38%;
-  width: 18px;
-  height: 10px;
-  margin-left: -9px;
-  background:
-    radial-gradient(ellipse at 30% 50%, hsl(200 30% 85%) 0%, hsl(205 35% 60%) 60%, hsl(210 40% 35%) 100%);
-  border-radius: 50% 60% 50% 60% / 60% 60% 40% 40%;
-  transform-origin: center bottom;
-  animation: ocean-fish-jump 2s ease-out forwards;
-  will-change: transform, opacity;
-}
-.ocean-fish::after {
-  /* tail */
-  content: "";
-  position: absolute;
-  right: -6px;
-  top: 1px;
-  width: 0;
-  height: 0;
-  border-left: 6px solid hsl(210 40% 35%);
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-}
-@keyframes ocean-fish-jump {
-  0%   { transform: translate(0, 20px) rotate(calc(var(--fish-flip, 1) * -25deg)) scaleX(var(--fish-flip, 1)); opacity: 0; }
-  15%  { opacity: 1; }
-  50%  { transform: translate(calc(var(--fish-flip, 1) * 18px), -38px) rotate(calc(var(--fish-flip, 1) * 0deg)) scaleX(var(--fish-flip, 1)); }
-  85%  { opacity: 1; }
-  100% { transform: translate(calc(var(--fish-flip, 1) * 36px), 20px) rotate(calc(var(--fish-flip, 1) * 35deg)) scaleX(var(--fish-flip, 1)); opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .parallax-ocean .wave,
-  .ocean-boat,
-  .ocean-fish { animation: none !important; }
-}
-
