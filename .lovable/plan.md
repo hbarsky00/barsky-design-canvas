@@ -1,41 +1,53 @@
-# Fix transition pill flash + hero bottom cutoff
+## Fix: hero pill transition + mobile CTA clipping
 
-Two surgical fixes to the parallax hero. No structural changes, no new components.
+Two real problems, one root cause for each. Scope is `src/styles/themes.css` only — no markup, no component logic.
 
-## Issue 1 — Pills go dark/gray mid-transition (day ↔ night)
+### 1. Pill color flash during day↔night swap
 
-In screenshot 1 (mid-transition to night), the product pills are dark gray with washed-out text. That's because:
+Today the pill background/text/border swap **instantly** at the moment `.is-day` is added/removed on `.parallax-hero`, while the sky itself fades over 2.5s. That's the "odd" snap you see on the buttons.
 
-- During the transition there's a window where `data-text-mode` is `light` (night text color taking over) but the background is still the bright day sky.
-- The `body[data-text-mode="light"] .product-pill` rule paints the pills `rgba(15,23,42,0.7)` (dark) → reads as ugly gray slabs against the bright sky.
-- Text color is also mid-fade between dark and white, so labels go low-contrast gray.
+Fix: add a transition on the pill's color properties so they crossfade on the same curve as the sky.
 
-Fix: make the pill background follow the **scene** (day vs night) instead of the text mode, so the white-pill day style stays locked until the sky is actually dark.
+```css
+.parallax-content .product-pill {
+  transition:
+    background-color 2.5s ease-in-out,
+    border-color 2.5s ease-in-out,
+    color 2.5s ease-in-out,
+    box-shadow 2.5s ease-in-out;
+}
+.parallax-content .social-link {
+  transition:
+    background-color 2.5s ease-in-out,
+    color 2.5s ease-in-out,
+    box-shadow 2.5s ease-in-out,
+    transform .15s ease;   /* keep hover snappy */
+}
+```
 
-- Use `.parallax-hero.is-day .product-pill` (and its hover variant) for the solid white pill + dark label + soft shadow.
-- Use `.parallax-hero:not(.is-day):not(.has-flat-scene) .product-pill` (night mountains) for the existing dark semi-opaque pill + light label.
-- Flat scenes keep their current `[data-text-mode]`-driven pill rule.
-- Force the pill **label color** explicitly inside the day and night rules so it doesn't mid-fade with the rest of the hero text.
+Hover transitions stay fast because hover uses `transform`/`background-color` on a different selector that already overrides.
 
-Result: pills swap appearance only once, exactly when the sky swaps — no awkward gray middle frame.
+### 2. "Book a Call" cut off on mobile + extra footer gap
 
-## Issue 2 — Social icons clipped at the bottom
+`.parallax-content` currently has `padding-bottom: 96px` on ≤640px. Combined with the social-icons + book-call stack, the CTA gets pushed below the visible hero on a 390×728 viewport, and the inflated bottom padding is what's reading as "space back from the footer."
 
-In screenshot 1 the email / LinkedIn / GitHub / calendar row sits behind the mountain silhouette and is half-cut. The hero content needs a hair more breathing room at the bottom on mobile so the icon row clears the mountains.
+Fix on mobile only (≤640px):
 
-Fix (mobile only, ≤ 640px):
+```css
+@media (max-width: 640px) {
+  .parallax-content {
+    padding-top: 96px;     /* was 120px — subtle lift */
+    padding-bottom: 48px;  /* was 96px — kills the footer gap */
+  }
+  .parallax-content .social-icons { margin-top: 20px; }     /* was 28px */
+  .parallax-content .book-call-wrap { margin-top: 8px; }    /* was 12px */
+}
+```
 
-- Add ~24px additional bottom padding to `.parallax-content` on mobile, OR shift the content block up by reducing the top padding by the same amount. Going with **extra bottom padding** so the headline keeps its current vertical position — only the icon row moves into safer territory.
-- Verify on 390×844 and 360×800 that the icons sit fully above the bottom mountain line in both day and night.
+Desktop is untouched.
 
-Desktop is unaffected.
+### Files
+- `src/styles/themes.css` — pill/social transition properties + mobile padding block. ~12 lines changed.
 
-## Files touched
-
-- `src/styles/themes.css` — only the pill-state selectors (~10 lines) and one mobile padding tweak inside an existing media query (or add a small `@media (max-width: 640px)` block if none exists for `.parallax-content`).
-
-## Out of scope
-
-- No changes to copy, fonts, sun/moon, mountains, transition timing, or any other component.
-- No changes to the theme picker button position.
-- No tweaks to icon size or spacing between icons.
+### Out of scope
+Hero component markup, footer component, theme picker, scene switcher, desktop spacing, copy.
