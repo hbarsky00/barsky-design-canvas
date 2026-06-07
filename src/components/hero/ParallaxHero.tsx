@@ -261,8 +261,8 @@ const ParallaxHero: React.FC = () => {
           </div>
         </div>
 
-        {/* Dynamic FX (shooting stars, meteors) */}
-        <SkyEffects />
+        {/* Dynamic FX — only over the live mountains scene; flat scenes bake their own sky */}
+        {!isFlatScene && <SkyEffects />}
       </div>
 
       <div className="parallax-content">
