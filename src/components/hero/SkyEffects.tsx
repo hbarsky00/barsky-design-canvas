@@ -65,13 +65,9 @@ const SkyEffects: React.FC = () => {
       const rtl = Math.random() < 0.5;
       const el = document.createElement("span");
       el.className = "sky-airplane" + (rtl ? " sky-airplane--rtl" : "");
-      el.textContent = "✈";
-      // Wider altitude band so each flight crosses a different part of the sky
       el.style.top = `${rand(8, 55)}%`;
-      // Randomize speed per flight (8s fast → 18s slow)
       const durationS = rand(8, 18);
       el.style.animationDuration = `${durationS}s`;
-      // Start just outside whichever edge
       if (rtl) {
         el.style.left = `${heroW + 40}px`;
         el.style.setProperty("--airplane-distance", `${-(heroW + 120)}px`);
@@ -80,7 +76,18 @@ const SkyEffects: React.FC = () => {
         el.style.setProperty("--airplane-distance", `${heroW + 80}px`);
       }
 
-      // Blinking light
+      // Inner body holds orientation (rotate, not mirror-flip, so it never warps)
+      const body = document.createElement("span");
+      body.className = "sky-airplane-body";
+      // SVG silhouette with nose pointing right by default
+      body.innerHTML =
+        '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">' +
+        '<path fill="currentColor" d="M21 12l-7-1.2V5.5a1.5 1.5 0 0 0-3 0v5.3L4 12v1.6l7-1v3.7l-1.8 1v1.2L12 18l2.8.5v-1.2l-1.8-1v-3.7l7 1V12z"/>' +
+        '</svg>';
+      if (rtl) body.style.transform = "scaleX(-1)";
+      el.appendChild(body);
+
+      // Blinking light (sits at the tail)
       const light = document.createElement("span");
       light.className = "sky-airplane-light";
       el.appendChild(light);
