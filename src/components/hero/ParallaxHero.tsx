@@ -16,6 +16,12 @@ const ParallaxHero: React.FC = () => {
     return () => clearTimeout(t);
   }, [isDay]);
 
+  // Sync day/night to <body> so footer + body background can theme themselves
+  useEffect(() => {
+    document.body.dataset.daytime = isDay ? "day" : "night";
+    return () => { delete document.body.dataset.daytime; };
+  }, [isDay]);
+
 
 
   const stars = useMemo(() => {
