@@ -66,7 +66,11 @@ const SkyEffects: React.FC = () => {
       const el = document.createElement("span");
       el.className = "sky-airplane" + (rtl ? " sky-airplane--rtl" : "");
       el.textContent = "✈";
-      el.style.top = `${rand(15, 40)}%`;
+      // Wider altitude band so each flight crosses a different part of the sky
+      el.style.top = `${rand(8, 55)}%`;
+      // Randomize speed per flight (8s fast → 18s slow)
+      const durationS = rand(8, 18);
+      el.style.animationDuration = `${durationS}s`;
       // Start just outside whichever edge
       if (rtl) {
         el.style.left = `${heroW + 40}px`;
@@ -81,7 +85,7 @@ const SkyEffects: React.FC = () => {
       light.className = "sky-airplane-light";
       el.appendChild(light);
 
-      append(el, 12000);
+      append(el, durationS * 1000 + 500);
     };
 
     const spawnHelicopter = () => {
@@ -89,7 +93,11 @@ const SkyEffects: React.FC = () => {
       const rtl = Math.random() < 0.5;
       const el = document.createElement("span");
       el.className = "sky-helicopter" + (rtl ? " sky-helicopter--rtl" : "");
-      el.style.top = `${rand(20, 55)}%`;
+      // Wider altitude band; helicopters tend to fly lower than planes
+      el.style.top = `${rand(18, 65)}%`;
+      // Randomize speed per flight (12s brisk → 24s lazy)
+      const durationS = rand(12, 24);
+      el.style.animationDuration = `${durationS}s`;
 
       const body = document.createElement("span");
       body.className = "sky-helicopter-body";
@@ -107,8 +115,9 @@ const SkyEffects: React.FC = () => {
         el.style.left = `-40px`;
         el.style.setProperty("--heli-distance", `${heroW + 80}px`);
       }
-      append(el, 16000);
+      append(el, durationS * 1000 + 500);
     };
+
 
     const spawnUfo = () => {
       const heroW = layer.clientWidth || window.innerWidth;
