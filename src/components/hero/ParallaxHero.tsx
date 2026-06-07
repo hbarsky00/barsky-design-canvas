@@ -3,6 +3,7 @@ import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 import WeatherFX from "./WeatherFX";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
+import alienAsset from "@/assets/alien-waving.png.asset.json";
 
 
 
