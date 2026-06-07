@@ -156,38 +156,105 @@ body[data-text-mode="dark"]  { --site-fg: #0f172a; }
 }
 .parallax-scene-img.is-active { opacity: 1; }
 
-/* Scene switcher — bottom-center, subtle */
-.parallax-scene-switcher {
+/* ============ Per-scene animated overlay ============
+   Sits ABOVE the flat scene image and BELOW the content. Pure CSS keyframes,
+   no JS timers, no body state. Decorative only — does not affect text contrast. */
+.parallax-overlay {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* ---- Celestial (sun / moon) arc ---- */
+.overlay-celestial {
   position: absolute;
-  bottom: 18px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70%;
+  will-change: transform;
+}
+.overlay-celestial .overlay-sun-body,
+.overlay-celestial .overlay-moon-body {
+  position: absolute;
+  top: 8%;
   left: 50%;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
   transform: translateX(-50%);
-  z-index: 4;
-  display: flex; gap: 8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  backdrop-filter: blur(6px);
 }
-.parallax-scene-switcher .scene-dot {
-  appearance: none;
-  border: 1px solid color-mix(in srgb, var(--hero-fg, #f8fafc) 35%, transparent);
-  background: transparent;
-  color: var(--hero-fg, #f8fafc);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 999px;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+.overlay-sun .overlay-sun-body {
+  background: radial-gradient(circle at 35% 35%, #fff4c2 0%, #ffd66b 45%, #ffb347 75%, rgba(255,179,71,0) 100%);
+  box-shadow: 0 0 60px 20px rgba(255, 214, 107, 0.55), 0 0 140px 60px rgba(255, 179, 71, 0.25);
 }
-.parallax-scene-switcher .scene-dot:hover { opacity: 1; }
-.parallax-scene-switcher .scene-dot.is-active {
-  opacity: 1;
-  background: color-mix(in srgb, var(--hero-fg, #f8fafc) 18%, transparent);
-  border-color: color-mix(in srgb, var(--hero-fg, #f8fafc) 65%, transparent);
+.overlay-moon .overlay-moon-body {
+  background: radial-gradient(circle at 35% 35%, #fdfcf6 0%, #e7e5dc 55%, #c9c6bb 80%, rgba(201,198,187,0) 100%);
+  box-shadow: 0 0 50px 16px rgba(255, 255, 255, 0.35), 0 0 120px 40px rgba(200, 210, 235, 0.18);
+}
+
+@keyframes celestial-arc {
+  0%   { transform: translate(-45vw, 30%) scale(0.95); opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { transform: translate(0, -2%) scale(1); opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate(45vw, 30%) scale(0.95); opacity: 0; }
+}
+.overlay-celestial { animation: celestial-arc 120s linear infinite; }
+
+/* ---- Aircraft (plane + helicopter) ---- */
+.overlay-aircraft {
+  position: absolute;
+  color: rgba(20, 22, 35, 0.85);
+  will-change: transform;
+}
+.parallax-hero[data-text-mode="light"] .overlay-aircraft {
+  color: rgba(245, 248, 255, 0.72);
+}
+
+.overlay-plane {
+  width: 56px; height: 14px;
+  top: 18%;
+  left: -10%;
+  animation: aircraft-fly-right 48s linear infinite;
+  animation-delay: -8s;
+}
+.overlay-heli {
+  width: 48px; height: 18px;
+  top: 32%;
+  left: 110%;
+  animation: aircraft-fly-left 62s linear infinite;
+  animation-delay: -30s;
+}
+.overlay-heli .overlay-heli-rotor { transform-origin: 50% 50%; }
+
+@keyframes aircraft-fly-right {
+  0%   { transform: translateX(0); opacity: 0; }
+  3%   { opacity: 1; }
+  45%  { transform: translateX(70vw); opacity: 1; }
+  55%  { transform: translateX(85vw); opacity: 1; }
+  60%  { transform: translateX(95vw); opacity: 0; }
+  100% { transform: translateX(95vw); opacity: 0; }
+}
+@keyframes aircraft-fly-left {
+  0%   { transform: translateX(0); opacity: 0; }
+  4%   { opacity: 1; }
+  50%  { transform: translateX(-75vw); opacity: 1; }
+  60%  { transform: translateX(-95vw); opacity: 0; }
+  100% { transform: translateX(-95vw); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay-celestial,
+  .overlay-aircraft { animation: none !important; }
+  .overlay-aircraft { opacity: 0; }
+  .overlay-celestial { transform: translate(0, -2%); opacity: 1; }
 }
 
 

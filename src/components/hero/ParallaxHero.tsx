@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import HeroContent from "./HeroContent";
+import SceneOverlay from "./SceneOverlay";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
 
 const ParallaxHero: React.FC = () => {
-  const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
-  const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
+  const activeScene = SCENES.find((s) => s.id === DEFAULT_SCENE_ID) ?? SCENES[0];
   const textMode = activeScene.textMode;
 
   // Drive the global --site-fg from the active scene's textMode so the footer
-  // (and any other body-scoped text) stays legible on every scene. Every scene
-  // is flat now — no special-casing.
+  // (and any other body-scoped text) stays legible.
   useEffect(() => {
     document.body.dataset.textMode = textMode;
     return () => { delete document.body.dataset.textMode; };
   }, [textMode]);
 
-  // Subtle hero-name tilt on mouse move (desktop only). No layer parallax —
-  // there are no live layers left to translate.
+  // Subtle hero-name tilt on mouse move (desktop only).
   useEffect(() => {
     let raf = 0;
     let mouseX = 0;
@@ -68,38 +66,22 @@ const ParallaxHero: React.FC = () => {
       aria-label="Hiram Barsky portfolio hero"
       className="parallax-hero"
     >
-      {/* Flat scene crossfade stack — every scene is a single full-bleed PNG/JPG. */}
+      {/* Flat scene image */}
       <div className="parallax-scene-stack" aria-hidden>
-        {SCENES.map((s) => (
-          <img
-            key={s.id}
-            src={s.image}
-            alt=""
-            loading={s.id === sceneId ? "eager" : "lazy"}
-            decoding="async"
-            className={`parallax-scene-img ${s.id === sceneId ? "is-active" : ""}`}
-          />
-        ))}
+        <img
+          src={activeScene.image}
+          alt=""
+          loading="eager"
+          decoding="async"
+          className="parallax-scene-img is-active"
+        />
       </div>
+
+      {/* Per-scene animated overlay (sun/moon + aircraft) */}
+      <SceneOverlay scene={activeScene} />
 
       <div className="parallax-content">
         <HeroContent />
-      </div>
-
-      {/* Scene switcher */}
-      <div className="parallax-scene-switcher" aria-label="Scene">
-        {SCENES.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => setSceneId(s.id)}
-            aria-pressed={s.id === sceneId}
-            aria-label={`Switch to ${s.label} scene`}
-            className={`scene-dot ${s.id === sceneId ? "is-active" : ""}`}
-          >
-            <span>{s.label}</span>
-          </button>
-        ))}
       </div>
     </section>
   );
