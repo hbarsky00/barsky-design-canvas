@@ -10,11 +10,12 @@ const Footer: React.FC = () => {
   const fg = { color: "var(--site-fg, #f8fafc)" } as React.CSSProperties;
   const muted = { color: "color-mix(in srgb, var(--site-fg, #f8fafc) 75%, transparent)" } as React.CSSProperties;
   const border = { borderColor: "color-mix(in srgb, var(--site-fg, #f8fafc) 25%, transparent)" } as React.CSSProperties;
+  const bg = { backgroundColor: "var(--site-footer-bg, #0d0a1a)" } as React.CSSProperties;
 
   const linkCls = "hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded";
 
   return (
-    <footer className="bg-transparent py-12" role="contentinfo" aria-label="Site footer" style={fg}>
+    <footer className="py-12" role="contentinfo" aria-label="Site footer" style={{ ...fg, ...bg }}>
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>

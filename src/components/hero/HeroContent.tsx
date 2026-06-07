@@ -44,7 +44,7 @@ const HeroContent: React.FC = () => {
         <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
       </div>
 
-      <div className="social-icons">
+      <div className="social-icons hero-bottom-contrast">
         {[
           { Icon: Mail, href: "mailto:hbarsky01@gmail.com", label: "Email" },
           { Icon: Linkedin, href: "https://www.linkedin.com/in/hiram-barsky", label: "LinkedIn" },
@@ -57,7 +57,7 @@ const HeroContent: React.FC = () => {
         ))}
       </div>
 
-      <div className="book-call-wrap">
+      <div className="book-call-wrap hero-bottom-contrast">
         <a
           className="book-call"
           href="https://calendly.com/barskyuxdesignservices/30min"
