@@ -277,6 +277,9 @@ const ParallaxHero: React.FC = () => {
         <HeroContent />
       </div>
 
+      {/* Foreground weather + windshield wiper */}
+      <WeatherFX />
+
     </section>
 
   );
