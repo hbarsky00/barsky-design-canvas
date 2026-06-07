@@ -471,8 +471,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   cursor: pointer;
   transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
 }
-.parallax-hero.is-day .parallax-content .book-call {
+.parallax-hero.is-day .parallax-content .book-call,
+.parallax-hero.is-day .parallax-content .book-call-wrap.hero-bottom-contrast,
+.parallax-hero.is-day .parallax-content .book-call-wrap.hero-bottom-contrast a {
   color: #ffffff;
+  text-shadow: none !important;
 }
 .parallax-content .book-call:hover,
 .parallax-content .book-call:focus-visible {
