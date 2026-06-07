@@ -114,12 +114,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 
 /* Sticky viewport-sized stack — keeps a single scene visible while content scrolls */
 .parallax-bg-stack {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 100vh;
-  margin-bottom: -100vh; /* so content flows over it */
+  height: 100%;
+  margin-bottom: 0;
   pointer-events: none;
   z-index: 0;
 }
@@ -289,12 +288,11 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 
 /* Flat scene crossfade stack — sits above the live bg-stack, below content. */
 .parallax-scene-stack {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 100vh;
-  margin-bottom: -100vh;
+  height: 100%;
+  margin-bottom: 0;
   pointer-events: none;
   z-index: 1;
 }
