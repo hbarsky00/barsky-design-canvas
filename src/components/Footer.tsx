@@ -15,7 +15,16 @@ const Footer: React.FC = () => {
   const linkCls = "hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded";
 
   return (
-    <footer className="pt-0 pb-12" role="contentinfo" aria-label="Site footer" style={{ ...fg, ...bg }}>
+    <footer className="relative pt-20 pb-12" role="contentinfo" aria-label="Site footer" style={{ ...fg, ...bg }}>
+      {/* Soft fade from transparent into the footer's dark background so the
+          mountain scene above blends smoothly into the footer. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-16 h-16"
+        style={{
+          background: "linear-gradient(to bottom, transparent, var(--site-footer-bg, #0d0a1a))",
+        }}
+      />
       <div className="section-container">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
