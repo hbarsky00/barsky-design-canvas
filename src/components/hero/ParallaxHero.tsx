@@ -157,6 +157,13 @@ const ParallaxHero: React.FC = () => {
         <div className="parallax-sun" />
         {/* Moon glows during night */}
         <div className="parallax-moon" />
+        {/* Subtle daytime clouds */}
+        <div className="parallax-clouds" aria-hidden>
+          <span className="parallax-cloud parallax-cloud--1" />
+          <span className="parallax-cloud parallax-cloud--2" />
+          <span className="parallax-cloud parallax-cloud--3" />
+          <span className="parallax-cloud parallax-cloud--4" />
+        </div>
 
         {/* Stars */}
         <div ref={starsRef} className="parallax-stars">
