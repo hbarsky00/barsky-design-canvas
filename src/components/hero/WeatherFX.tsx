@@ -93,9 +93,9 @@ const WeatherFX: React.FC = () => {
       spawning = true;
       root.dataset.mode = m;
       if (m === "rain") {
-        rainInterval = setInterval(spawnDrop, 110);
+        rainInterval = setInterval(spawnDrop, 38);
       } else if (m === "snow") {
-        snowInterval = setInterval(spawnFlake, 320);
+        snowInterval = setInterval(spawnFlake, 180);
       }
     };
 
