@@ -335,7 +335,7 @@ body[data-text-mode="light"] .parallax-content .product-row:hover .product-pill 
   background: rgba(15, 23, 42, 0.85);
 }
 body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(37, 99, 235, 0.95);
 }
 .parallax-content .product-description {
   font-size: 13px; text-align: left;
