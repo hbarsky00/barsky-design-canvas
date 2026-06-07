@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
+import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
 
 
 
@@ -10,6 +11,12 @@ const ParallaxHero: React.FC = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
   const [isDay, setIsDay] = useState(false);
+  const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
+  const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
+  const isFlatScene = activeScene.image !== null;
+  // Text mode: flat scene's textMode wins; mountains keeps day/night driving it.
+  const textMode = isFlatScene ? activeScene.textMode : (isDay ? "dark" : "light");
+
 
   useEffect(() => {
     const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
@@ -108,11 +115,28 @@ const ParallaxHero: React.FC = () => {
     <section
       data-theme="3d"
       data-daytime={isDay ? "day" : "night"}
+      data-scene={activeScene.id}
+      data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
-      className={`parallax-hero ${isDay ? "is-day" : ""}`}
+      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
     >
+      {/* Flat scene overlay — single full-bleed image, crossfades over live scene */}
+      <div className="parallax-scene-stack" aria-hidden>
+        {SCENES.filter((s) => s.image).map((s) => (
+          <img
+            key={s.id}
+            src={s.image as string}
+            alt=""
+            loading={s.id === sceneId ? "eager" : "lazy"}
+            decoding="async"
+            className={`parallax-scene-img ${s.id === sceneId ? "is-active" : ""}`}
+          />
+        ))}
+      </div>
+
       {/* Sticky stack so only one viewport-sized scene is visible at a time */}
       <div className="parallax-bg-stack" aria-hidden>
+
         {/* Night sky */}
         <div ref={skyRef} className="parallax-sky" />
         {/* Day sky fades over night */}
@@ -232,7 +256,24 @@ const ParallaxHero: React.FC = () => {
       <div className="parallax-content">
         <HeroContent />
       </div>
+
+      {/* Scene switcher — cycles registered scenes */}
+      <div className="parallax-scene-switcher" aria-label="Scene">
+        {SCENES.map((s) => (
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => setSceneId(s.id)}
+            aria-pressed={s.id === sceneId}
+            aria-label={`Switch to ${s.label} scene`}
+            className={`scene-dot ${s.id === sceneId ? "is-active" : ""}`}
+          >
+            <span>{s.label}</span>
+          </button>
+        ))}
+      </div>
     </section>
+
   );
 };
 

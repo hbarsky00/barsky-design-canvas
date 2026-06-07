@@ -209,6 +209,65 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-hero.is-day .parallax-content { --hero-fg: #0f172a; }
 
+/* Per-scene textMode wins over is-day when a flat scene is active. */
+.parallax-hero.has-flat-scene[data-text-mode="light"] .parallax-content { --hero-fg: #f8fafc; }
+.parallax-hero.has-flat-scene[data-text-mode="dark"]  .parallax-content { --hero-fg: #0f172a; }
+
+/* Flat scene crossfade stack — sits above the live bg-stack, below content. */
+.parallax-scene-stack {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+.parallax-scene-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.parallax-scene-img.is-active { opacity: 1; }
+
+/* Scene switcher — bottom-center, subtle */
+.parallax-scene-switcher {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex; gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  backdrop-filter: blur(6px);
+}
+.parallax-scene-switcher .scene-dot {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--hero-fg, #f8fafc) 35%, transparent);
+  background: transparent;
+  color: var(--hero-fg, #f8fafc);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.parallax-scene-switcher .scene-dot:hover { opacity: 1; }
+.parallax-scene-switcher .scene-dot.is-active {
+  opacity: 1;
+  background: color-mix(in srgb, var(--hero-fg, #f8fafc) 18%, transparent);
+  border-color: color-mix(in srgb, var(--hero-fg, #f8fafc) 65%, transparent);
+}
+
+
 .parallax-content .hero-inner {
   width: 100%; text-align: center;
   background: transparent; border: 0; border-radius: 0;
