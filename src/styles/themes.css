@@ -86,10 +86,10 @@
 /* Parallax layout (3D theme) — background layers + content positioning */
 .parallax-hero {
   position: relative; overflow: hidden;
-  background: #0d0a1a; color: #fff;
+  background: var(--site-footer-bg, #0d0a1a); color: #fff;
   transition: background-color 2.5s ease-in-out;
 }
-.parallax-hero.is-day { background: #cfe6f7; }
+.parallax-hero.is-day { background: var(--site-footer-bg, #0d0a1a); }
 
 /* Global footer must own its own background; body fallback matches it so no seam
    or trailing bottom gap can appear underneath. */
