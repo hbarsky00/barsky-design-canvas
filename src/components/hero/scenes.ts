@@ -1,4 +1,6 @@
 import cityNight from "@/assets/scenes/city-night.jpg";
+import beachDay from "@/assets/scenes/beach-day.jpg";
+import snowCity from "@/assets/scenes/snow-city.jpg";
 
 export type TextMode = "light" | "dark";
 
@@ -23,6 +25,18 @@ export const SCENES: Scene[] = [
     label: "City — Night",
     image: cityNight,
     textMode: "light",
+  },
+  {
+    id: "beach-day",
+    label: "Beach — Day",
+    image: beachDay,
+    textMode: "dark",
+  },
+  {
+    id: "snow-city",
+    label: "Snow City",
+    image: snowCity,
+    textMode: "dark",
   },
 ];
 
