@@ -243,6 +243,7 @@
   border-radius: 6px; padding: 5px 14px;
   font-size: 13px; color: currentColor; background: transparent; white-space: nowrap;
   flex-shrink: 0;
+  min-width: 110px; text-align: center;
   transition: border-color .2s ease;
 }
 .parallax-content .product-row:hover .product-pill {
