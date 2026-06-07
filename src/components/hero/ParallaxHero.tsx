@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeroContent from "./HeroContent";
 import SceneOverlay from "./SceneOverlay";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
 
+const ROTATE_MS = 13000;
+
 const ParallaxHero: React.FC = () => {
-  const activeScene = SCENES.find((s) => s.id === DEFAULT_SCENE_ID) ?? SCENES[0];
+  const [sceneIndex, setSceneIndex] = useState<number>(() => {
+    const i = SCENES.findIndex((s) => s.id === DEFAULT_SCENE_ID);
+    return i >= 0 ? i : 0;
+  });
+  const activeScene = SCENES[sceneIndex];
   const textMode = activeScene.textMode;
 
   // Drive the global --site-fg from the active scene's textMode so the footer
@@ -13,6 +19,18 @@ const ParallaxHero: React.FC = () => {
     document.body.dataset.textMode = textMode;
     return () => { delete document.body.dataset.textMode; };
   }, [textMode]);
+
+  // Auto-rotate scenes. Honors prefers-reduced-motion (holds a single scene).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
+    const id = window.setInterval(() => {
+      setSceneIndex((i) => (i + 1) % SCENES.length);
+    }, ROTATE_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
 
   // Subtle hero-name tilt on mouse move (desktop only).
   useEffect(() => {
@@ -66,15 +84,18 @@ const ParallaxHero: React.FC = () => {
       aria-label="Hiram Barsky portfolio hero"
       className="parallax-hero"
     >
-      {/* Flat scene image */}
+      {/* Flat scene crossfade stack — all images mounted, active one fades in. */}
       <div className="parallax-scene-stack" aria-hidden>
-        <img
-          src={activeScene.image}
-          alt=""
-          loading="eager"
-          decoding="async"
-          className="parallax-scene-img is-active"
-        />
+        {SCENES.map((s, i) => (
+          <img
+            key={s.id}
+            src={s.image}
+            alt=""
+            loading={i === sceneIndex ? "eager" : "lazy"}
+            decoding="async"
+            className={`parallax-scene-img ${i === sceneIndex ? "is-active" : ""}`}
+          />
+        ))}
       </div>
 
       {/* Per-scene animated overlay (sun/moon + aircraft) */}
