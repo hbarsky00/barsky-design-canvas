@@ -1765,3 +1765,103 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 @media (prefers-reduced-motion: reduce) {
   .weather-fx { display: none; }
 }
+
+/* ============================================================
+   Ocean scene — auto-cycles in place of mountain silhouettes.
+   Sky, sun, moon, stars, clouds, and weather keep working above it.
+   ============================================================ */
+.parallax-ocean {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 42%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  z-index: 2;
+}
+.parallax-hero.is-ocean .parallax-ocean { opacity: 1; }
+
+/* When ocean is active, fade the mountain silhouettes out (both night + day) */
+.parallax-hero.is-ocean .parallax-mountains {
+  opacity: 0 !important;
+  transition: opacity 1.6s ease;
+}
+
+/* Stacked wave bands fill the ocean container */
+.parallax-ocean .wave {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  bottom: 0;
+}
+.parallax-ocean .wave-back  { bottom: 22%; height: 60%; opacity: 0.85; }
+.parallax-ocean .wave-mid   { bottom: 10%; height: 55%; opacity: 0.92; }
+.parallax-ocean .wave-front { bottom: 0;   height: 50%; }
+
+/* Distant fishing boat — slow drift across the horizon line */
+.ocean-boat-track {
+  position: absolute;
+  left: 0; right: 0;
+  top: 8%;
+  height: 32px;
+  pointer-events: none;
+}
+.ocean-boat {
+  position: absolute;
+  left: -80px;
+  width: 70px;
+  height: 36px;
+  animation: ocean-boat-drift 90s linear infinite;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
+}
+@keyframes ocean-boat-drift {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 160px)); }
+}
+
+/* Sporadic jumping fish layer */
+.ocean-fish-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ocean-fish {
+  position: absolute;
+  bottom: 38%;
+  width: 18px;
+  height: 10px;
+  margin-left: -9px;
+  background:
+    radial-gradient(ellipse at 30% 50%, hsl(200 30% 85%) 0%, hsl(205 35% 60%) 60%, hsl(210 40% 35%) 100%);
+  border-radius: 50% 60% 50% 60% / 60% 60% 40% 40%;
+  transform-origin: center bottom;
+  animation: ocean-fish-jump 2s ease-out forwards;
+  will-change: transform, opacity;
+}
+.ocean-fish::after {
+  /* tail */
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 1px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid hsl(210 40% 35%);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+@keyframes ocean-fish-jump {
+  0%   { transform: translate(0, 20px) rotate(calc(var(--fish-flip, 1) * -25deg)) scaleX(var(--fish-flip, 1)); opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { transform: translate(calc(var(--fish-flip, 1) * 18px), -38px) rotate(calc(var(--fish-flip, 1) * 0deg)) scaleX(var(--fish-flip, 1)); }
+  85%  { opacity: 1; }
+  100% { transform: translate(calc(var(--fish-flip, 1) * 36px), 20px) rotate(calc(var(--fish-flip, 1) * 35deg)) scaleX(var(--fish-flip, 1)); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-ocean .wave,
+  .ocean-boat,
+  .ocean-fish { animation: none !important; }
+}
+

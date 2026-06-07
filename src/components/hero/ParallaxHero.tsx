@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 import WeatherFX from "./WeatherFX";
+import OceanLayer from "./OceanLayer";
 import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
 
 
@@ -14,6 +15,7 @@ const ParallaxHero: React.FC = () => {
   const mountainsRef = useRef<HTMLDivElement>(null);
   const [isDay, setIsDay] = useState(false);
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
+  const [isOcean, setIsOcean] = useState(false);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
   // Text mode: flat scene's textMode wins; mountains keeps day/night driving it.
@@ -24,6 +26,13 @@ const ParallaxHero: React.FC = () => {
     const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
     return () => clearTimeout(t);
   }, [isDay]);
+
+  // Slow auto-cycle between mountains and ocean. No user control.
+  useEffect(() => {
+    if (isFlatScene) return; // flat scenes own the whole stage
+    const t = setTimeout(() => setIsOcean((v) => !v), isOcean ? 45000 : 75000);
+    return () => clearTimeout(t);
+  }, [isOcean, isFlatScene]);
 
   // Sync day/night to <body> so footer + body background can theme themselves
   useEffect(() => {
@@ -132,7 +141,7 @@ const ParallaxHero: React.FC = () => {
       data-scene={activeScene.id}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
-      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
+      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""} ${!isFlatScene && isOcean ? "is-ocean" : ""}`}
     >
       {/* Flat scene overlay — single full-bleed image, crossfades over live scene */}
       <div className="parallax-scene-stack" aria-hidden>
@@ -269,6 +278,9 @@ const ParallaxHero: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Ocean scene — auto-cycles in place of mountain silhouettes */}
+        {!isFlatScene && <OceanLayer />}
 
         {/* Dynamic FX — only over the live mountains scene; flat scenes bake their own sky */}
         {!isFlatScene && <SkyEffects />}
