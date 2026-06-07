@@ -392,7 +392,15 @@ body[data-text-mode="light"] .parallax-content .product-row:hover .product-pill 
 body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
   background: rgba(37, 99, 235, 0.95);
 }
-.parallax-content .product-description {
+/* Day mode: light blue fill, no stroke */
+.parallax-hero.is-day .parallax-content .product-pill {
+  background: rgba(147, 197, 253, 0.55);
+  border-color: transparent;
+}
+.parallax-hero.is-day .parallax-content .product-row:hover .product-pill {
+  background: rgba(147, 197, 253, 0.75);
+  border-color: transparent;
+}
   font-size: 13px; text-align: left;
   color: color-mix(in srgb, currentColor 80%, transparent);
 }
