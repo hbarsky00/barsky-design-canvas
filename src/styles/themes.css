@@ -1815,15 +1815,16 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .ocean-boat {
   position: absolute;
-  left: -80px;
-  width: 70px;
-  height: 36px;
-  animation: ocean-boat-drift 90s linear infinite;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
+  left: 10%;
+  width: 90px;
+  height: 46px;
+  animation: ocean-boat-drift 60s linear infinite;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35));
 }
 @keyframes ocean-boat-drift {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(100vw + 160px)); }
+  50%  { transform: translateX(70vw); }
+  100% { transform: translateX(0); }
 }
 
 /* Sporadic jumping fish layer */
