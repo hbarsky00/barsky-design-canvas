@@ -279,6 +279,9 @@ const ParallaxHero: React.FC = () => {
           </div>
         </div>
 
+        {/* Ocean scene — auto-cycles in place of mountain silhouettes */}
+        {!isFlatScene && <OceanLayer />}
+
         {/* Dynamic FX — only over the live mountains scene; flat scenes bake their own sky */}
         {!isFlatScene && <SkyEffects />}
       </div>
