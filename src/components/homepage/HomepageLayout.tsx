@@ -9,7 +9,7 @@ const HomepageLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
       <Header />
-      <main className="relative z-10">
+      <main className="relative z-10" style={{ backgroundColor: "var(--site-footer-bg, #0d0a1a)" }}>
         <section id="intro" tabIndex={-1} className="scroll-offset">
           <ThemedHero />
         </section>
