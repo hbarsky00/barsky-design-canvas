@@ -401,6 +401,7 @@ body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
   background: rgba(147, 197, 253, 0.75);
   border-color: transparent;
 }
+.parallax-content .product-description {
   font-size: 13px; text-align: left;
   color: color-mix(in srgb, currentColor 80%, transparent);
 }
