@@ -376,12 +376,12 @@ body[data-text-mode="light"] .parallax-content .product-pill {
   background: rgba(15, 23, 42, 0.7);
   border-color: rgba(248, 250, 252, 0.25);
 }
-/* Dark text (bright scenes): near-white semi-opaque fill */
-/* Dark text (bright scenes): light blue fill, white label */
+/* Dark text (bright scenes): solid white pill, dark label */
 body[data-text-mode="dark"] .parallax-content .product-pill {
-  background: rgba(59, 130, 246, 0.85);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ffffff;
+  background: #ffffff;
+  border-color: transparent;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 .parallax-content .product-row:hover .product-pill {
   border-color: currentColor;
@@ -390,31 +390,35 @@ body[data-text-mode="light"] .parallax-content .product-row:hover .product-pill 
   background: rgba(15, 23, 42, 0.85);
 }
 body[data-text-mode="dark"] .parallax-content .product-row:hover .product-pill {
-  background: rgba(37, 99, 235, 0.95);
-}
-/* Day mode: solid white pill, dark text inherited */
-.parallax-hero.is-day .parallax-content .product-pill {
   background: #ffffff;
   border-color: transparent;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
-}
-.parallax-hero.is-day .parallax-content .product-row:hover .product-pill {
-  background: #ffffff;
-  border-color: transparent;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
 }
 .parallax-content .product-description {
   font-size: 13px; text-align: left;
-  color: color-mix(in srgb, currentColor 80%, transparent);
+  color: currentColor;
+  opacity: 0.95;
+}
+body[data-text-mode="dark"] .parallax-content .product-description {
+  color: #0f172a;
+  opacity: 1;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 .parallax-content .social-icons {
   display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
 }
 .parallax-content .social-link {
   color: color-mix(in srgb, currentColor 80%, transparent);
-  display: inline-flex; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 999px;
+  text-decoration: none;
   cursor: pointer;
-  transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+body[data-text-mode="dark"] .parallax-content .social-link {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 .parallax-content .social-link:hover,
 .parallax-content .social-link:focus-visible {
