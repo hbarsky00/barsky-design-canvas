@@ -84,7 +84,7 @@ const SkyEffects: React.FC = () => {
         '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">' +
         '<path fill="currentColor" d="M21 12l-7-1.2V5.5a1.5 1.5 0 0 0-3 0v5.3L4 12v1.6l7-1v3.7l-1.8 1v1.2L12 18l2.8.5v-1.2l-1.8-1v-3.7l7 1V12z"/>' +
         '</svg>';
-      body.style.transform = rtl ? "rotate(90deg) scaleX(-1)" : "rotate(90deg)";
+      body.style.transform = rtl ? "rotate(-90deg) scaleX(-1)" : "rotate(-90deg)";
       el.appendChild(body);
 
       // Blinking light (sits at the tail)
