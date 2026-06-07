@@ -129,7 +129,7 @@ const WeatherFX: React.FC = () => {
           });
           resolve();
         };
-        const t = setTimeout(cleanup, 1700);
+        const t = setTimeout(cleanup, 1900);
         timeouts.push(t);
       });
 
