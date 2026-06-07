@@ -130,10 +130,10 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 /* Sun rises into the top-right during the day */
 .parallax-sun {
   position: absolute; z-index: 1;
-  width: 140px; height: 140px; right: 8%; top: 8%;
+  width: 95px; height: 95px; right: 5%; top: 4%;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 50%, #fff8d6 0%, #ffd97a 45%, #ffb347 70%, rgba(255,179,71,0) 80%);
-  box-shadow: 0 0 100px 40px rgba(255, 217, 122, 0.5);
+  box-shadow: 0 0 70px 28px rgba(255, 217, 122, 0.5);
   opacity: 0;
   transform: translateY(-30px) scale(0.85);
   transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
@@ -143,10 +143,10 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transform: translateY(0) scale(1);
 }
 
-/* Moon glows at night */
+/* Moon glows at night — distinct upper-left position so it never shares the sun's spot */
 .parallax-moon {
   position: absolute; z-index: 1;
-  width: 90px; height: 90px; right: 12%; top: 12%;
+  width: 90px; height: 90px; left: 10%; top: 8%;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #f6f3e8 0%, #d8d4c2 60%, #a8a497 100%);
   box-shadow: 0 0 60px 20px rgba(230, 225, 200, 0.35);
