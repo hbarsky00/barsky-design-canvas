@@ -262,14 +262,49 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
   padding: 120px 24px 0;
   --hero-fg: #f8fafc;
+  /* Halo behind every line of text/icons so they read on ANY sky
+     (bright day, dusk gradients, dark night). Halo is the OPPOSITE
+     luminance of the text and flips with the theme. */
+  --hero-halo: rgba(0, 0, 0, 0.55);
   color: var(--hero-fg);
   transition: color 2.5s ease;
 }
-.parallax-hero.is-day .parallax-content { --hero-fg: #0f172a; }
+.parallax-hero.is-day .parallax-content {
+  --hero-fg: #0f172a;
+  --hero-halo: rgba(255, 255, 255, 0.85);
+}
 
 /* Per-scene textMode wins over is-day when a flat scene is active. */
-.parallax-hero.has-flat-scene[data-text-mode="light"] .parallax-content { --hero-fg: #f8fafc; }
-.parallax-hero.has-flat-scene[data-text-mode="dark"]  .parallax-content { --hero-fg: #0f172a; }
+.parallax-hero.has-flat-scene[data-text-mode="light"] .parallax-content {
+  --hero-fg: #f8fafc;
+  --hero-halo: rgba(0, 0, 0, 0.55);
+}
+.parallax-hero.has-flat-scene[data-text-mode="dark"]  .parallax-content {
+  --hero-fg: #0f172a;
+  --hero-halo: rgba(255, 255, 255, 0.85);
+}
+
+/* Apply the halo to every text and icon element in the hero. Cheap
+   (composites once per element, unlike backdrop-blur) and works at
+   every point of the day→night transition. */
+.parallax-content .hero-eyebrow,
+.parallax-content .hero-name,
+.parallax-content .hero-role,
+.parallax-content .hero-tagline,
+.parallax-content .section-label,
+.parallax-content .product-pill,
+.parallax-content .product-description,
+.parallax-content .book-call {
+  text-shadow:
+    0 0 6px var(--hero-halo),
+    0 0 14px var(--hero-halo),
+    0 1px 2px var(--hero-halo);
+}
+.parallax-content .social-link svg,
+.parallax-content .social-link {
+  filter: drop-shadow(0 0 6px var(--hero-halo))
+          drop-shadow(0 1px 2px var(--hero-halo));
+}
 
 /* Flat scene crossfade stack — sits above the live bg-stack, below content. */
 .parallax-scene-stack {
