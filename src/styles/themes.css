@@ -437,29 +437,29 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
 }
 .parallax-content .social-link {
-  color: color-mix(in srgb, currentColor 80%, transparent);
+  color: hsl(var(--md-sys-color-tertiary));
+  background: transparent;
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: 999px;
   text-decoration: none;
   cursor: pointer;
   transition:
-    background-color 2.5s ease-in-out,
-    color 2.5s ease-in-out,
-    box-shadow 2.5s ease-in-out,
     transform 0.15s ease,
-    opacity 0.15s ease;
+    opacity 0.15s ease,
+    filter 0.15s ease;
 }
 .parallax-hero.is-day .parallax-content .social-link,
 .parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .social-link {
-  background: #ffffff;
-  color: #0f172a;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  background: transparent;
+  color: hsl(var(--md-sys-color-tertiary));
+  box-shadow: none;
 }
 .parallax-content .social-link:hover,
 .parallax-content .social-link:focus-visible {
   color: hsl(var(--md-sys-color-tertiary));
   opacity: 1;
   transform: scale(1.1);
+  filter: brightness(1.25);
 }
 .parallax-content .social-link:focus-visible {
   outline: 2px solid hsl(var(--md-sys-color-tertiary)) !important;
