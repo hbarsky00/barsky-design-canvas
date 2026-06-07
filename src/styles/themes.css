@@ -192,91 +192,81 @@
 .parallax-ocean .shark-2 { animation: shark-cruise 38s linear infinite; animation-delay: -12s; }
 .parallax-ocean .shark-3 { animation: shark-cruise 32s linear infinite; animation-delay: -22s; }
 
+/* ONE shared theme-aware foreground token. Night = near-white, Day = slate-900.
+   Every text element + pill below uses currentColor so nothing is hardcoded. */
 .parallax-content {
   position: relative; z-index: 3; max-width: 720px; margin: 0 auto;
-  padding: 120px 24px 80px; color: #fff;
+  padding: 120px 24px 80px;
+  --hero-fg: #f8fafc;
+  color: var(--hero-fg);
+  transition: color 2.5s ease;
 }
+.parallax-hero.is-day .parallax-content { --hero-fg: #0f172a; }
+
 .parallax-content .hero-inner {
   width: 100%; text-align: center;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
+  background: transparent; border: 0; border-radius: 0;
   padding: 28px 22px;
 }
 
 .parallax-content .hero-eyebrow {
-  font-size: 15px; color: rgba(255,255,255,.7); margin: 0 0 8px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  font-size: 15px; margin: 0 0 8px;
+  color: color-mix(in srgb, currentColor 75%, transparent);
 }
 .parallax-content .hero-name {
   font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
-  color: #fff; margin: 0; line-height: 1.05;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.55), 0 0 40px rgba(139,58,58,0.35);
+  color: currentColor; margin: 0; line-height: 1.05;
 }
 .parallax-content .hero-divider {
-  width: 60px; height: 2px; background: rgba(255,255,255,.45); margin: 12px auto; border: 0;
+  width: 60px; height: 2px; background: currentColor; opacity: .45; margin: 12px auto; border: 0;
 }
 .parallax-content .hero-role {
-  font-size: 14px; color: rgba(255,255,255,.85); margin: 0;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  font-size: 14px; margin: 0;
+  color: color-mix(in srgb, currentColor 85%, transparent);
 }
 .parallax-content .hero-tagline {
-  font-size: 16px; color: #fff; font-weight: 500; margin: 10px 0 0;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  font-size: 16px; color: currentColor; font-weight: 500; margin: 10px 0 0;
 }
 .parallax-content .product-list { max-width: 480px; margin: 32px auto 0; }
 .parallax-content .section-label {
   display: block; text-align: center; font-size: 11px; letter-spacing: .18em;
-  text-transform: uppercase; color: rgba(255,255,255,.55); margin: 28px 0 12px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  text-transform: uppercase; margin: 28px 0 12px;
+  color: color-mix(in srgb, currentColor 70%, transparent);
 }
 .parallax-content .product-row {
   display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
   justify-content: flex-start; text-decoration: none; color: inherit;
 }
+/* Pills: border-only, label uses the same token. No fill in either theme. */
 .parallax-content .product-pill {
-  border: 1px solid rgba(255,255,255,.35); border-radius: 6px; padding: 5px 14px;
-  font-size: 13px; color: #fff; background: rgba(255,255,255,0.06); white-space: nowrap;
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  border-radius: 6px; padding: 5px 14px;
+  font-size: 13px; color: currentColor; background: transparent; white-space: nowrap;
   flex-shrink: 0;
+  transition: border-color .2s ease;
 }
-.parallax-content .product-row:hover .product-pill { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.6); }
+.parallax-content .product-row:hover .product-pill {
+  border-color: currentColor;
+}
 .parallax-content .product-description {
-  font-size: 13px; color: rgba(255,255,255,.7); text-align: left;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  font-size: 13px; text-align: left;
+  color: color-mix(in srgb, currentColor 80%, transparent);
 }
 .parallax-content .social-icons {
   display: flex; flex-direction: row; gap: 20px; justify-content: center; margin-top: 28px;
 }
-.parallax-content .social-link { color: rgba(255,255,255,.75); display: inline-flex; text-decoration: none; }
-.parallax-content .social-link:hover { color: #fff; }
+.parallax-content .social-link {
+  color: color-mix(in srgb, currentColor 80%, transparent);
+  display: inline-flex; text-decoration: none;
+}
+.parallax-content .social-link:hover { color: currentColor; }
 .parallax-content .book-call-wrap { margin-top: 12px; text-align: center; }
 .parallax-content .book-call {
-  display: inline-block; font-size: 13px; color: rgba(255,255,255,.55);
+  display: inline-block; font-size: 13px;
+  color: color-mix(in srgb, currentColor 70%, transparent);
   text-decoration: none;
 }
-.parallax-content .book-call:hover { color: #fff; text-decoration: underline; }
-
-/* Day-theme legibility fix: section labels + product descriptions need dark text on light sky.
-   Scrim behind product list keeps contrast at the day↔night transition midpoint. */
-.parallax-hero.is-day .parallax-content .product-list {
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  border-radius: 12px;
-  padding: 8px 14px;
-}
-.parallax-hero.is-day .parallax-content .section-label {
-  color: rgba(15,23,42,0.75);
-  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
-}
-.parallax-hero.is-day .parallax-content .product-description {
-  color: rgba(15,23,42,0.85);
-  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
-}
-.parallax-content .section-label,
-.parallax-content .product-description {
-  transition: color 2.5s ease, text-shadow 2.5s ease;
-}
+.parallax-content .book-call:hover { color: currentColor; text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) {
   .parallax-hero, .parallax-sky-day, .parallax-sun, .parallax-stars,
