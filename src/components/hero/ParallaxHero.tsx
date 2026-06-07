@@ -269,21 +269,6 @@ const ParallaxHero: React.FC = () => {
         <HeroContent />
       </div>
 
-      {/* Scene switcher — cycles registered scenes */}
-      <div className="parallax-scene-switcher" aria-label="Scene">
-        {SCENES.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => setSceneId(s.id)}
-            aria-pressed={s.id === sceneId}
-            aria-label={`Switch to ${s.label} scene`}
-            className={`scene-dot ${s.id === sceneId ? "is-active" : ""}`}
-          >
-            <span>{s.label}</span>
-          </button>
-        ))}
-      </div>
     </section>
 
   );
