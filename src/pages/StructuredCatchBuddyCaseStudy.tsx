@@ -103,6 +103,9 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           <p style={{ color: "#555", fontSize: 15, lineHeight: 1.7 }}>
             Pickup sports are dying in cities. Existing apps assume commitment. The real product wasn't a scheduler — it was a way to lower the friction and safety risk of two strangers agreeing to meet at a park. Trust-first architecture, built in from v1, not bolted on.
           </p>
+          <p style={{ color: "#555", fontSize: 15, lineHeight: 1.7, marginTop: 16 }}>
+            I chose curated public spots over user-chosen locations because safety anxiety was the real barrier to adoption, and gave up the viral growth of unconstrained listings.
+          </p>
         </div>
         <div style={{ background: "#fff", border: "1px solid #e5e5e5", borderRadius: 12, borderTop: `3px solid ${GREEN}`, padding: 24, alignSelf: "start" }}>
           <p style={{ color: GREEN, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>

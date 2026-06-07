@@ -114,9 +114,12 @@ const StructuredFireLionCaseStudy: React.FC = () => {
           <div>
             <h2 style={{ color: "#fff", fontSize: 32, fontWeight: 800, margin: "0 0 20px" }}>Why I Built This</h2>
             <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 16, lineHeight: 1.7 }}>
-              The design job was deciding what to delete. Building features is easy with AI. Killing them is the actual work.
-            </p>
-          </div>
+            The design job was deciding what to delete. Building features is easy with AI. Killing them is the actual work.
+          </p>
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 16, lineHeight: 1.7, marginTop: 16 }}>
+            I chose a canvas renderer over DOM sprites because framerate mattered for arcade feel, and gave up accessibility tooling.
+          </p>
+        </div>
           <div style={{
             background: "rgba(255,107,0,0.08)", borderLeft: `3px solid ${ORANGE}`,
             padding: 24, alignSelf: "start",

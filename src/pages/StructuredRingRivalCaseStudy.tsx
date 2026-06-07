@@ -95,6 +95,9 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, lineHeight: 1.7 }}>
           Boxing games live on consoles for a reason. Doing console feel with a thumb in a browser was the constraint that made it worth building. Every hit-stop duration and screen shake amplitude was hand-tuned across hundreds of test fights.
         </p>
+        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, lineHeight: 1.7, marginTop: 20 }}>
+          I chose async matchmaking over real-time because we had no users yet to justify the infrastructure, and gave up instant feedback.
+        </p>
         <div style={{ background: "rgba(232,0,61,0.08)", borderLeft: `3px solid ${RED}`, padding: 20, marginTop: 32 }}>
           <p style={{ color: RED, fontSize: 11, fontWeight: 800, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>
           <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 10 }}>
