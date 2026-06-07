@@ -102,6 +102,9 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           <span style={{ float: "left", fontSize: 64, lineHeight: 0.85, paddingRight: 12, paddingTop: 6, color: SAGE, fontWeight: 700 }}>P</span>
           eople turn to herbalism for conditions conventional medicine isn't addressing — and the discovery experience is a misinformation field. Inverting the credential gate produces a smaller, more honest catalog. Honest beats exhaustive.
         </p>
+        <p style={{ color: "#444", fontSize: 17, lineHeight: 1.8, clear: "both", marginTop: 24 }}>
+          I chose manual verification over automated credential checks because one fake practitioner would destroy the platform's trust, and gave up near-instant onboarding.
+        </p>
         <div style={{ clear: "both", marginTop: 32, background: "#fff", border: `1px solid ${BORDER}`, borderRadius: 8, borderLeft: `3px solid ${SAGE}`, padding: 20 }}>
           <p style={{ color: SAGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0, fontFamily: "Inter, sans-serif" }}>WHAT I HAVEN'T SOLVED</p>
           <p style={{ color: "#444", fontSize: 15, lineHeight: 1.6, marginTop: 10 }}>
