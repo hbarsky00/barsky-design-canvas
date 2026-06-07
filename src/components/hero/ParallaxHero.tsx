@@ -15,6 +15,7 @@ const ParallaxHero: React.FC = () => {
   const mountainsRef = useRef<HTMLDivElement>(null);
   const [isDay, setIsDay] = useState(false);
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
+  const [isOcean, setIsOcean] = useState(false);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
   // Text mode: flat scene's textMode wins; mountains keeps day/night driving it.
@@ -25,6 +26,13 @@ const ParallaxHero: React.FC = () => {
     const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
     return () => clearTimeout(t);
   }, [isDay]);
+
+  // Slow auto-cycle between mountains and ocean. No user control.
+  useEffect(() => {
+    if (isFlatScene) return; // flat scenes own the whole stage
+    const t = setTimeout(() => setIsOcean((v) => !v), isOcean ? 45000 : 75000);
+    return () => clearTimeout(t);
+  }, [isOcean, isFlatScene]);
 
   // Sync day/night to <body> so footer + body background can theme themselves
   useEffect(() => {
