@@ -141,7 +141,7 @@ const ParallaxHero: React.FC = () => {
       data-scene={activeScene.id}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
-      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
+      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""} ${!isFlatScene && isOcean ? "is-ocean" : ""}`}
     >
       {/* Flat scene overlay — single full-bleed image, crossfades over live scene */}
       <div className="parallax-scene-stack" aria-hidden>
