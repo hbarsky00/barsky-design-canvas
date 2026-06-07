@@ -227,9 +227,9 @@
 .parallax-content .hero-tagline {
   font-size: 16px; color: currentColor; font-weight: 500; margin: 10px 0 0;
 }
-.parallax-content .product-list { max-width: 480px; margin: 32px auto 0; }
+.parallax-content .product-list { max-width: 360px; margin: 32px auto 0; }
 .parallax-content .section-label {
-  display: block; text-align: center; font-size: 11px; letter-spacing: .18em;
+  display: block; text-align: left; font-size: 11px; letter-spacing: .18em;
   text-transform: uppercase; margin: 28px 0 12px;
   color: color-mix(in srgb, currentColor 70%, transparent);
 }
@@ -243,6 +243,7 @@
   border-radius: 6px; padding: 5px 14px;
   font-size: 13px; color: currentColor; background: transparent; white-space: nowrap;
   flex-shrink: 0;
+  min-width: 110px; text-align: center;
   transition: border-color .2s ease;
 }
 .parallax-content .product-row:hover .product-pill {
