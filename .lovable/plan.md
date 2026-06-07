@@ -1,53 +1,22 @@
-## Fix: hero pill transition + mobile CTA clipping
+## Goal
+The front mountain range in `src/assets/mountains-foreground.svg` currently reads as harsh zig-zag jagged edges with no snow. Redraw it so it looks like proper mountains and add snow caps to its tallest peaks (matching the style already used on the back range).
 
-Two real problems, one root cause for each. Scope is `src/styles/themes.css` only — no markup, no component logic.
+## Changes
+**File:** `src/assets/mountains-foreground.svg` (front-range group only)
 
-### 1. Pill color flash during day↔night swap
+1. Replace the front-range `<path>` with a redrawn silhouette:
+   - Fewer, more deliberate peaks with varied heights (3–4 dominant summits, smaller foothills between)
+   - Asymmetric slopes (one side steeper than the other) instead of uniform triangles
+   - Slightly curved/sloped segments using a mix of `L` line commands at intermediate points to avoid pure sawtooth look
+   - Keep viewBox `0 0 1600 500` and `preserveAspectRatio="none"` untouched so layout doesn't shift
 
-Today the pill background/text/border swap **instantly** at the moment `.is-day` is added/removed on `.parallax-hero`, while the sky itself fades over 2.5s. That's the "odd" snap you see on the buttons.
+2. Add snow caps on the 3 tallest front-range peaks, using the same technique as the back range:
+   - Small white polygon (`fill-opacity="0.85"`) hugging each summit
+   - Jagged lower edge so snow looks like it's clinging to the peak, not a hat
 
-Fix: add a transition on the pill's color properties so they crossfade on the same curve as the sky.
+3. Leave the back range and mid range paths completely untouched.
 
-```css
-.parallax-content .product-pill {
-  transition:
-    background-color 2.5s ease-in-out,
-    border-color 2.5s ease-in-out,
-    color 2.5s ease-in-out,
-    box-shadow 2.5s ease-in-out;
-}
-.parallax-content .social-link {
-  transition:
-    background-color 2.5s ease-in-out,
-    color 2.5s ease-in-out,
-    box-shadow 2.5s ease-in-out,
-    transform .15s ease;   /* keep hover snappy */
-}
-```
-
-Hover transitions stay fast because hover uses `transform`/`background-color` on a different selector that already overrides.
-
-### 2. "Book a Call" cut off on mobile + extra footer gap
-
-`.parallax-content` currently has `padding-bottom: 96px` on ≤640px. Combined with the social-icons + book-call stack, the CTA gets pushed below the visible hero on a 390×728 viewport, and the inflated bottom padding is what's reading as "space back from the footer."
-
-Fix on mobile only (≤640px):
-
-```css
-@media (max-width: 640px) {
-  .parallax-content {
-    padding-top: 96px;     /* was 120px — subtle lift */
-    padding-bottom: 48px;  /* was 96px — kills the footer gap */
-  }
-  .parallax-content .social-icons { margin-top: 20px; }     /* was 28px */
-  .parallax-content .book-call-wrap { margin-top: 8px; }    /* was 12px */
-}
-```
-
-Desktop is untouched.
-
-### Files
-- `src/styles/themes.css` — pill/social transition properties + mobile padding block. ~12 lines changed.
-
-### Out of scope
-Hero component markup, footer component, theme picker, scene switcher, desktop spacing, copy.
+## Out of scope
+- No changes to colors, CSS, or any other component
+- No changes to the parallax hero layout, sun, moon, or positioning
+- Back and mid mountain ranges stay exactly as they are
