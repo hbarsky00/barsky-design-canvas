@@ -17,8 +17,14 @@ export const SCENES: Scene[] = [
   {
     id: "mountains",
     label: "Mountains",
-    image: null, // live ParallaxHero scene (gradient + sun/moon/mountains)
-    textMode: "light", // overridden at runtime by is-day for the live scene
+    image: null, // live ParallaxHero scene — mountains silhouette
+    textMode: "light",
+  },
+  {
+    id: "city",
+    label: "City",
+    image: null, // live ParallaxHero scene — city skyline silhouette
+    textMode: "light",
   },
   {
     id: "city-night",
@@ -40,4 +46,8 @@ export const SCENES: Scene[] = [
   },
 ];
 
+/** Live silhouette scene ids that are NOT flat images. */
+export const LIVE_SCENE_IDS = ["mountains", "city"] as const;
+
 export const DEFAULT_SCENE_ID = "mountains";
+
