@@ -18,6 +18,8 @@ import moonGibbous from "@/assets/hero-moon-gibbous.png";
 
 const MOON_PHASES = [moonCrescent, moonHalf, moonGibbous, moonFull];
 const SUN_PHASES = [sunMidday, sunGolden, sunHazy, sunSunset];
+const CLOUD_PRESETS = ["clear", "few", "scattered", "overcast"] as const;
+type CloudPreset = typeof CLOUD_PRESETS[number];
 
 
 const ParallaxHero: React.FC = () => {
@@ -28,6 +30,7 @@ const ParallaxHero: React.FC = () => {
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
   const [moonImg, setMoonImg] = useState(() => MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
   const [sunImg, setSunImg] = useState(() => SUN_PHASES[Math.floor(Math.random() * SUN_PHASES.length)]);
+  const [clouds, setClouds] = useState<CloudPreset>(() => CLOUD_PRESETS[Math.floor(Math.random() * CLOUD_PRESETS.length)]);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
   // Text mode: flat scene's textMode wins; live scenes use day/night.
@@ -41,6 +44,7 @@ const ParallaxHero: React.FC = () => {
           setMoonImg(MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
         } else {
           setSunImg(SUN_PHASES[Math.floor(Math.random() * SUN_PHASES.length)]);
+          setClouds(CLOUD_PRESETS[Math.floor(Math.random() * CLOUD_PRESETS.length)]);
         }
         return !d;
       });
@@ -172,6 +176,7 @@ const ParallaxHero: React.FC = () => {
       data-theme="3d"
       data-daytime={isDay ? "day" : "night"}
       data-scene={activeScene.id}
+      data-clouds={clouds}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
       className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
