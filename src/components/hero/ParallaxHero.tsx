@@ -5,6 +5,8 @@ import WeatherFX from "./WeatherFX";
 import { SCENES, DEFAULT_SCENE_ID, LIVE_SCENE_IDS } from "./scenes";
 import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
 import CitySilhouette from "./silhouettes/CitySilhouette";
+import CoastlineSilhouette from "./silhouettes/CoastlineSilhouette";
+import PalmsSilhouette from "./silhouettes/PalmsSilhouette";
 
 
 const ParallaxHero: React.FC = () => {
@@ -217,6 +219,12 @@ const ParallaxHero: React.FC = () => {
           </div>
           <div className="parallax-silhouette-slot" data-silhouette="city">
             <CitySilhouette />
+          </div>
+          <div className="parallax-silhouette-slot" data-silhouette="coastline">
+            <CoastlineSilhouette />
+          </div>
+          <div className="parallax-silhouette-slot" data-silhouette="palms">
+            <PalmsSilhouette />
           </div>
         </div>
 
