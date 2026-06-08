@@ -25,6 +25,18 @@ const ParallaxHero: React.FC = () => {
     return () => clearTimeout(t);
   }, [isDay]);
 
+  // Auto-cycle through scenes every 18s. Resets whenever scene changes
+  // (manual dot clicks reset the timer naturally via dependency).
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const idx = SCENES.findIndex((s) => s.id === sceneId);
+      const next = SCENES[(idx + 1) % SCENES.length];
+      setSceneId(next.id);
+    }, 18000);
+    return () => clearTimeout(t);
+  }, [sceneId]);
+
+
   // Sync day/night to <body> so footer + body background can theme themselves
   useEffect(() => {
     document.body.dataset.daytime = isDay ? "day" : "night";
