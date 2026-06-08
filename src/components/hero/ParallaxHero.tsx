@@ -290,7 +290,7 @@ const ParallaxHero: React.FC = () => {
             <svg
               key={i}
               className="parallax-eagle"
-              viewBox="0 0 100 40"
+              viewBox="0 0 120 44"
               style={{
                 top: e.top,
                 animationDelay: e.delay,
@@ -298,13 +298,37 @@ const ParallaxHero: React.FC = () => {
                 ["--eagle-scale" as any]: e.scale,
               }}
             >
+              {/* Soaring bald eagle silhouette: fingered wingtips, head, fanned tail */}
               <path
-                d="M4,24 Q18,4 34,22 Q42,14 48,20 L50,18 L52,20 Q58,14 66,22 Q82,4 96,24 Q82,17 66,23 L52,22 L48,22 L34,23 Q18,17 4,24 Z"
-                fill="#1a0f1c"
+                d="M60,22
+                   C 58,18 56,16 54,15
+                   C 50,14 46,15 42,17
+                   C 38,15 34,12 30,11
+                   L 31,14 L 27,13 L 28,16 L 24,15 L 25,18 L 21,17 L 22,20
+                   C 18,19 14,19 10,20
+                   C 16,22 22,23 28,23
+                   C 34,24 40,24 46,23
+                   C 50,23 54,23 58,24
+                   L 60,28
+                   L 62,24
+                   C 66,23 70,23 74,23
+                   C 80,24 86,24 92,23
+                   C 98,23 104,22 110,20
+                   C 106,19 102,19 98,20
+                   L 99,17 L 95,18 L 96,15 L 92,16 L 93,13 L 89,14 L 90,11
+                   C 86,12 82,15 78,17
+                   C 74,15 70,14 66,15
+                   C 64,16 62,18 60,22 Z"
+                fill="#1a1410"
               />
-              <circle cx="52" cy="19.5" r="1.4" fill="#ffffff" opacity="0.95" />
-              <path d="M50,22 L50,26 L48.5,26 L50,22 L51.5,26 Z" fill="#f5d76a" opacity="0.9" />
+              {/* Small white head */}
+              <ellipse cx="60" cy="20" rx="2.4" ry="1.8" fill="#f4ede0" />
+              {/* Beak hint */}
+              <path d="M60,21 L62.2,22 L60,22.4 Z" fill="#d9a23a" />
+              {/* Fanned white tail */}
+              <path d="M58,24 L60,30 L62,24 Z" fill="#f4ede0" opacity="0.95" />
             </svg>
+
           ))}
         </div>
 
