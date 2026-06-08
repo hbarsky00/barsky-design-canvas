@@ -153,7 +153,7 @@ const SkyEffects: React.FC = () => {
         for (const s of ships) {
           if (!s.alive) continue;
           s.x += s.vx * dt;
-          s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)${dir > 0 ? " scaleX(-1)" : ""}`;
+          s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)${dir < 0 ? " scaleX(-1)" : ""}`;
           const pFx = plane.x + speedPxPerMs * lookAhead;
           const sFx = s.x + s.vx * lookAhead;
           const horizOverlap =
