@@ -2,10 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 import WeatherFX from "./WeatherFX";
-import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
-
-
-
+import { SCENES, DEFAULT_SCENE_ID, LIVE_SCENE_IDS } from "./scenes";
+import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
+import CitySilhouette from "./silhouettes/CitySilhouette";
 
 
 const ParallaxHero: React.FC = () => {
@@ -16,8 +15,31 @@ const ParallaxHero: React.FC = () => {
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
-  // Text mode: flat scene's textMode wins; mountains keeps day/night driving it.
+  // Text mode: flat scene's textMode wins; live scenes use day/night.
   const textMode = isFlatScene ? activeScene.textMode : (isDay ? "dark" : "light");
+
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
+    return () => clearTimeout(t);
+  }, [isDay]);
+
+  // Auto-rotate between live silhouette scenes (mountains <-> city) every 18s.
+  // Pauses when a flat image scene is active.
+  useEffect(() => {
+    if (isFlatScene) return;
+    const t = setTimeout(() => {
+      setSceneId((prev) => {
+        const idx = LIVE_SCENE_IDS.indexOf(prev as typeof LIVE_SCENE_IDS[number]);
+        const nextIdx = idx === -1 ? 0 : (idx + 1) % LIVE_SCENE_IDS.length;
+        return LIVE_SCENE_IDS[nextIdx];
+      });
+    }, 18000);
+    return () => clearTimeout(t);
+  }, [sceneId, isFlatScene]);
+
+
+
 
 
   useEffect(() => {
@@ -192,148 +214,13 @@ const ParallaxHero: React.FC = () => {
           ))}
         </div>
 
-        {/* City skyline (night) */}
-        <div ref={mountainsRef} className="parallax-mountains">
-          <div className="parallax-mountains-drift parallax-mountains-back">
-            {[0, 1].map((i) => (
-              <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`mb-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2a1838" />
-                    <stop offset="100%" stopColor="#120a1c" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,160 L50,160 L50,135 L100,135 L100,150 L150,150 L150,110 L200,110 L200,145 L260,145 L260,120 L310,120 L310,95 L355,95 L355,135 L405,135 L405,85 L445,85 L445,115 L495,115 L495,150 L545,150 L545,100 L590,100 L590,130 L640,130 L640,90 L685,90 L685,125 L735,125 L735,155 L785,155 L785,105 L830,105 L830,135 L880,135 L880,85 L925,85 L925,120 L975,120 L975,150 L1025,150 L1025,110 L1070,110 L1070,140 L1125,140 L1125,100 L1170,100 L1170,145 L1200,145 L1200,260 Z"
-                  fill={`url(#mb-grad-${i})`}
-                />
-                {/* Dimmer windows on back skyline */}
-                <g fill="#d9a55c" opacity="0.45">
-                  <rect x="60" y="145" width="2" height="3" /><rect x="70" y="145" width="2" height="3" /><rect x="80" y="145" width="2" height="3" />
-                  <rect x="160" y="120" width="2" height="3" /><rect x="175" y="120" width="2" height="3" /><rect x="160" y="135" width="2" height="3" />
-                  <rect x="320" y="105" width="2" height="3" /><rect x="335" y="105" width="2" height="3" /><rect x="320" y="120" width="2" height="3" />
-                  <rect x="415" y="95" width="2" height="3" /><rect x="430" y="95" width="2" height="3" /><rect x="415" y="110" width="2" height="3" /><rect x="430" y="110" width="2" height="3" />
-                  <rect x="555" y="110" width="2" height="3" /><rect x="570" y="110" width="2" height="3" /><rect x="555" y="125" width="2" height="3" />
-                  <rect x="650" y="100" width="2" height="3" /><rect x="665" y="100" width="2" height="3" /><rect x="650" y="115" width="2" height="3" />
-                  <rect x="795" y="115" width="2" height="3" /><rect x="810" y="115" width="2" height="3" /><rect x="795" y="130" width="2" height="3" />
-                  <rect x="890" y="95" width="2" height="3" /><rect x="905" y="95" width="2" height="3" /><rect x="890" y="110" width="2" height="3" /><rect x="905" y="110" width="2" height="3" />
-                  <rect x="1035" y="120" width="2" height="3" /><rect x="1050" y="120" width="2" height="3" /><rect x="1035" y="135" width="2" height="3" />
-                  <rect x="1135" y="110" width="2" height="3" /><rect x="1150" y="110" width="2" height="3" /><rect x="1135" y="125" width="2" height="3" />
-                </g>
-              </svg>
-            ))}
+        {/* Live silhouette scenes — mountains and city crossfade by activeScene.id */}
+        <div ref={mountainsRef} className="parallax-silhouette-stack" data-active-silhouette={activeScene.id}>
+          <div className="parallax-silhouette-slot" data-silhouette="mountains">
+            <MountainsSilhouette />
           </div>
-          <div className="parallax-mountains-drift parallax-mountains-front">
-            {[0, 1].map((i) => (
-              <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`mf-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#15101c" />
-                    <stop offset="100%" stopColor="#050308" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,180 L65,180 L65,120 L130,120 L130,160 L190,160 L190,80 L250,80 L250,140 L310,140 L310,50 L370,50 L370,130 L425,130 L425,170 L490,170 L490,90 L555,90 L555,150 L615,150 L615,60 L675,60 L675,140 L735,140 L735,175 L795,175 L795,100 L855,100 L855,150 L915,150 L915,70 L975,70 L975,140 L1035,140 L1035,165 L1095,165 L1095,110 L1150,110 L1150,155 L1200,155 L1200,260 Z"
-                  fill={`url(#mf-grad-${i})`}
-                />
-                {/* Antennas on tallest towers */}
-                <rect x="339" y="28" width="2" height="22" fill="#050308" />
-                <rect x="644" y="38" width="2" height="22" fill="#050308" />
-                <rect x="944" y="50" width="2" height="20" fill="#050308" />
-                {/* Glowing windows */}
-                <g fill="#ffd27a" opacity="0.75">
-                  <rect x="200" y="100" width="3" height="4" /><rect x="210" y="100" width="3" height="4" /><rect x="220" y="100" width="3" height="4" /><rect x="230" y="100" width="3" height="4" /><rect x="240" y="100" width="3" height="4" />
-                  <rect x="200" y="120" width="3" height="4" /><rect x="220" y="120" width="3" height="4" /><rect x="240" y="120" width="3" height="4" />
-                  <rect x="200" y="140" width="3" height="4" /><rect x="210" y="140" width="3" height="4" /><rect x="230" y="140" width="3" height="4" />
-                  <rect x="320" y="70" width="3" height="4" /><rect x="335" y="70" width="3" height="4" /><rect x="350" y="70" width="3" height="4" />
-                  <rect x="320" y="90" width="3" height="4" /><rect x="350" y="90" width="3" height="4" />
-                  <rect x="320" y="110" width="3" height="4" /><rect x="335" y="110" width="3" height="4" />
-                  <rect x="500" y="110" width="3" height="4" /><rect x="515" y="110" width="3" height="4" /><rect x="530" y="110" width="3" height="4" /><rect x="545" y="110" width="3" height="4" />
-                  <rect x="500" y="130" width="3" height="4" /><rect x="530" y="130" width="3" height="4" />
-                  <rect x="625" y="80" width="3" height="4" /><rect x="645" y="80" width="3" height="4" /><rect x="665" y="80" width="3" height="4" />
-                  <rect x="625" y="100" width="3" height="4" /><rect x="665" y="100" width="3" height="4" />
-                  <rect x="625" y="120" width="3" height="4" /><rect x="645" y="120" width="3" height="4" />
-                  <rect x="805" y="120" width="3" height="4" /><rect x="820" y="120" width="3" height="4" /><rect x="835" y="120" width="3" height="4" /><rect x="845" y="120" width="3" height="4" />
-                  <rect x="805" y="140" width="3" height="4" /><rect x="835" y="140" width="3" height="4" />
-                  <rect x="925" y="90" width="3" height="4" /><rect x="945" y="90" width="3" height="4" /><rect x="965" y="90" width="3" height="4" />
-                  <rect x="925" y="110" width="3" height="4" /><rect x="965" y="110" width="3" height="4" />
-                  <rect x="925" y="130" width="3" height="4" /><rect x="945" y="130" width="3" height="4" />
-                  <rect x="1105" y="130" width="3" height="4" /><rect x="1120" y="130" width="3" height="4" /><rect x="1140" y="130" width="3" height="4" />
-                </g>
-              </svg>
-            ))}
-          </div>
-        </div>
-
-        {/* City skyline — sunlit version that swaps in during daytime */}
-        <div className="parallax-mountains parallax-mountains-day">
-          <div className="parallax-mountains-drift parallax-mountains-back">
-            {[0, 1].map((i) => (
-              <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`mbd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#9ec5e8" />
-                    <stop offset="100%" stopColor="#4f7fa8" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,160 L50,160 L50,135 L100,135 L100,150 L150,150 L150,110 L200,110 L200,145 L260,145 L260,120 L310,120 L310,95 L355,95 L355,135 L405,135 L405,85 L445,85 L445,115 L495,115 L495,150 L545,150 L545,100 L590,100 L590,130 L640,130 L640,90 L685,90 L685,125 L735,125 L735,155 L785,155 L785,105 L830,105 L830,135 L880,135 L880,85 L925,85 L925,120 L975,120 L975,150 L1025,150 L1025,110 L1070,110 L1070,140 L1125,140 L1125,100 L1170,100 L1170,145 L1200,145 L1200,260 Z"
-                  fill={`url(#mbd-grad-${i})`}
-                />
-                {/* Sunlit reflective windows on daytime back skyline */}
-                <g fill="#fff8d6" opacity="0.85">
-                  <rect x="60" y="145" width="2" height="3" /><rect x="70" y="145" width="2" height="3" /><rect x="80" y="145" width="2" height="3" />
-                  <rect x="160" y="120" width="2" height="3" /><rect x="175" y="120" width="2" height="3" /><rect x="160" y="135" width="2" height="3" />
-                  <rect x="320" y="105" width="2" height="3" /><rect x="335" y="105" width="2" height="3" /><rect x="320" y="120" width="2" height="3" />
-                  <rect x="415" y="95" width="2" height="3" /><rect x="430" y="95" width="2" height="3" /><rect x="415" y="110" width="2" height="3" /><rect x="430" y="110" width="2" height="3" />
-                  <rect x="555" y="110" width="2" height="3" /><rect x="570" y="110" width="2" height="3" /><rect x="555" y="125" width="2" height="3" />
-                  <rect x="650" y="100" width="2" height="3" /><rect x="665" y="100" width="2" height="3" /><rect x="650" y="115" width="2" height="3" />
-                  <rect x="795" y="115" width="2" height="3" /><rect x="810" y="115" width="2" height="3" /><rect x="795" y="130" width="2" height="3" />
-                  <rect x="890" y="95" width="2" height="3" /><rect x="905" y="95" width="2" height="3" /><rect x="890" y="110" width="2" height="3" /><rect x="905" y="110" width="2" height="3" />
-                  <rect x="1035" y="120" width="2" height="3" /><rect x="1050" y="120" width="2" height="3" /><rect x="1035" y="135" width="2" height="3" />
-                  <rect x="1135" y="110" width="2" height="3" /><rect x="1150" y="110" width="2" height="3" /><rect x="1135" y="125" width="2" height="3" />
-                </g>
-              </svg>
-            ))}
-          </div>
-          <div className="parallax-mountains-drift parallax-mountains-front">
-            {[0, 1].map((i) => (
-              <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`mfd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3a6f9c" />
-                    <stop offset="100%" stopColor="#1c3a5e" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,180 L65,180 L65,120 L130,120 L130,160 L190,160 L190,80 L250,80 L250,140 L310,140 L310,50 L370,50 L370,130 L425,130 L425,170 L490,170 L490,90 L555,90 L555,150 L615,150 L615,60 L675,60 L675,140 L735,140 L735,175 L795,175 L795,100 L855,100 L855,150 L915,150 L915,70 L975,70 L975,140 L1035,140 L1035,165 L1095,165 L1095,110 L1150,110 L1150,155 L1200,155 L1200,260 Z"
-                  fill={`url(#mfd-grad-${i})`}
-                />
-                <rect x="339" y="28" width="2" height="22" fill="#1c3a5e" />
-                <rect x="644" y="38" width="2" height="22" fill="#1c3a5e" />
-                <rect x="944" y="50" width="2" height="20" fill="#1c3a5e" />
-                {/* Sunlit reflective windows on daytime front skyline */}
-                <g fill="#fff8d6" opacity="0.9">
-                  <rect x="200" y="100" width="3" height="4" /><rect x="210" y="100" width="3" height="4" /><rect x="220" y="100" width="3" height="4" /><rect x="230" y="100" width="3" height="4" /><rect x="240" y="100" width="3" height="4" />
-                  <rect x="200" y="120" width="3" height="4" /><rect x="220" y="120" width="3" height="4" /><rect x="240" y="120" width="3" height="4" />
-                  <rect x="200" y="140" width="3" height="4" /><rect x="210" y="140" width="3" height="4" /><rect x="230" y="140" width="3" height="4" />
-                  <rect x="320" y="70" width="3" height="4" /><rect x="335" y="70" width="3" height="4" /><rect x="350" y="70" width="3" height="4" />
-                  <rect x="320" y="90" width="3" height="4" /><rect x="350" y="90" width="3" height="4" />
-                  <rect x="320" y="110" width="3" height="4" /><rect x="335" y="110" width="3" height="4" />
-                  <rect x="500" y="110" width="3" height="4" /><rect x="515" y="110" width="3" height="4" /><rect x="530" y="110" width="3" height="4" /><rect x="545" y="110" width="3" height="4" />
-                  <rect x="500" y="130" width="3" height="4" /><rect x="530" y="130" width="3" height="4" />
-                  <rect x="625" y="80" width="3" height="4" /><rect x="645" y="80" width="3" height="4" /><rect x="665" y="80" width="3" height="4" />
-                  <rect x="625" y="100" width="3" height="4" /><rect x="665" y="100" width="3" height="4" />
-                  <rect x="625" y="120" width="3" height="4" /><rect x="645" y="120" width="3" height="4" />
-                  <rect x="805" y="120" width="3" height="4" /><rect x="820" y="120" width="3" height="4" /><rect x="835" y="120" width="3" height="4" /><rect x="845" y="120" width="3" height="4" />
-                  <rect x="805" y="140" width="3" height="4" /><rect x="835" y="140" width="3" height="4" />
-                  <rect x="925" y="90" width="3" height="4" /><rect x="945" y="90" width="3" height="4" /><rect x="965" y="90" width="3" height="4" />
-                  <rect x="925" y="110" width="3" height="4" /><rect x="965" y="110" width="3" height="4" />
-                  <rect x="925" y="130" width="3" height="4" /><rect x="945" y="130" width="3" height="4" />
-                  <rect x="1105" y="130" width="3" height="4" /><rect x="1120" y="130" width="3" height="4" /><rect x="1140" y="130" width="3" height="4" />
-                </g>
-              </svg>
-            ))}
+          <div className="parallax-silhouette-slot" data-silhouette="city">
+            <CitySilhouette />
           </div>
         </div>
 
