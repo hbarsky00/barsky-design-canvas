@@ -8,7 +8,12 @@ import CitySilhouette from "./silhouettes/CitySilhouette";
 import CoastlineSilhouette from "./silhouettes/CoastlineSilhouette";
 import PalmsSilhouette from "./silhouettes/PalmsSilhouette";
 import sunImg from "@/assets/hero-sun.png";
-import moonImg from "@/assets/hero-moon.png";
+import moonFull from "@/assets/hero-moon.png";
+import moonCrescent from "@/assets/hero-moon-crescent.png";
+import moonHalf from "@/assets/hero-moon-half.png";
+import moonGibbous from "@/assets/hero-moon-gibbous.png";
+
+const MOON_PHASES = [moonCrescent, moonHalf, moonGibbous, moonFull];
 
 
 const ParallaxHero: React.FC = () => {
@@ -17,6 +22,7 @@ const ParallaxHero: React.FC = () => {
   const mountainsRef = useRef<HTMLDivElement>(null);
   const [isDay, setIsDay] = useState(false);
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
+  const [moonImg, setMoonImg] = useState(() => MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
   // Text mode: flat scene's textMode wins; live scenes use day/night.
@@ -24,7 +30,13 @@ const ParallaxHero: React.FC = () => {
 
 
   useEffect(() => {
-    const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
+    const t = setTimeout(() => {
+      setIsDay((d) => {
+        // When flipping back to night, pick a new random moon phase
+        if (d) setMoonImg(MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
+        return !d;
+      });
+    }, 12000);
     return () => clearTimeout(t);
   }, [isDay]);
 
