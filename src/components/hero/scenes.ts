@@ -28,6 +28,6 @@ export const SCENES: Scene[] = [
 ];
 
 /** Live silhouette scene ids that are NOT flat images. */
-export const LIVE_SCENE_IDS = ["mountains", "city", "coastline", "palms"] as const;
+export const LIVE_SCENE_IDS = ["mountains", "city", "coastline"] as const;
 
 export const DEFAULT_SCENE_ID = "mountains";
