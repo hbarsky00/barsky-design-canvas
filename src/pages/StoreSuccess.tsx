@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Download, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Download } from 'lucide-react';
+import BackButton from '@/components/ui/BackButton';
 import { trackPageView } from '@/lib/analytics';
 
 const StoreSuccess: React.FC = () => {
