@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import alienShipUrl from "@/assets/hero-alien-ship.png";
+import alienShipNightUrl from "@/assets/hero-alien-ship.png";
+import alienShipDayUrl from "@/assets/hero-alien-ship-day.png";
 
 
 /**
@@ -106,7 +107,8 @@ const SkyEffects: React.FC = () => {
       const shipCount = Math.random() < 0.55 ? 1 : 2;
       for (let i = 0; i < shipCount; i++) {
         const sEl = document.createElement("img");
-        sEl.src = alienShipUrl;
+        const isDay = !!layer.closest(".parallax-hero")?.classList.contains("is-day");
+        sEl.src = isDay ? alienShipDayUrl : alienShipNightUrl;
         sEl.alt = "";
         // Ship PNG faces left by default. If plane goes left, ship must travel right → mirror.
         sEl.className = "sky-alien-ship" + (dir < 0 ? " is-mirrored" : "");
