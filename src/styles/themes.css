@@ -144,13 +144,25 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 /* Sun rises into the top-right during the day (premium AI PNG) */
 .parallax-sun {
   position: absolute; z-index: 1;
-  width: 170px; height: 170px; right: 5%; top: 24px;
+  width: 132px; height: 132px; right: 1.5%; top: 26px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: drop-shadow(0 0 55px rgba(255, 217, 122, 0.6));
+  filter:
+    drop-shadow(0 0 20px rgba(255, 198, 92, 0.45))
+    drop-shadow(0 0 42px rgba(255, 182, 58, 0.26));
   opacity: 0;
   transition: opacity 2.5s ease-in-out;
+}
+.parallax-sun::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 214, 133, 0.32) 0%, rgba(255, 182, 58, 0.18) 38%, rgba(255, 160, 64, 0.08) 58%, rgba(255, 160, 64, 0) 74%);
+  mix-blend-mode: screen;
+  opacity: 0.95;
 }
 .parallax-hero.is-day .parallax-sun {
   opacity: 1;
