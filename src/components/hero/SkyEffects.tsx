@@ -108,7 +108,8 @@ const SkyEffects: React.FC = () => {
         const sEl = document.createElement("img");
         sEl.src = alienShipUrl;
         sEl.alt = "";
-        sEl.className = "sky-alien-ship" + (dir > 0 ? " is-mirrored" : "");
+        // Ship PNG faces left by default. If plane goes left, ship must travel right → mirror.
+        sEl.className = "sky-alien-ship" + (dir < 0 ? " is-mirrored" : "");
         // If plane goes right, ship faces left (image default faces left) → mirror when dir<0
         // Ship comes from opposite edge
         const shipDurS = rand(6, 10);
