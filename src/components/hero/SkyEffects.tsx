@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import alienShipUrl from "@/assets/hero-alien-ship.png";
+import alienShipNightUrl from "@/assets/hero-alien-ship.png";
+import alienShipDayUrl from "@/assets/hero-alien-ship-day.png";
 
 
 /**
