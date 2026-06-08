@@ -176,6 +176,7 @@ const ParallaxHero: React.FC = () => {
       data-theme="3d"
       data-daytime={isDay ? "day" : "night"}
       data-scene={activeScene.id}
+      data-clouds={clouds}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
       className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
