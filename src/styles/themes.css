@@ -1003,44 +1003,40 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   100% { opacity: 0; transform: scale(0.4); }
 }
 
-/* Airplane */
+/* Airplane (JS-driven position; tilts to dodge) */
 .sky-airplane {
   position: absolute;
-  opacity: 0.7;
+  left: 0;
+  top: 0;
+  opacity: 0.85;
   color: #fff;
-  will-change: transform, opacity;
-  animation: airplaneCross 12s linear forwards;
+  will-change: transform;
   display: inline-flex;
   align-items: center;
+  pointer-events: none;
 }
 .sky-airplane-body {
   display: inline-flex;
   line-height: 0;
   filter: drop-shadow(0 0 2px rgba(255,255,255,0.35));
+  transition: transform 220ms ease-out;
+  transform: rotate(var(--plane-rot, 90deg)) rotate(var(--plane-tilt, 0deg));
 }
-.sky-airplane--rtl.sky-airplane { animation-name: airplaneCrossRtl; }
-@keyframes airplaneCross {
-  from { transform: translateX(0); }
-  to   { transform: translateX(var(--airplane-distance, 100vw)); }
-}
-@keyframes airplaneCrossRtl {
-  from { transform: translateX(0); }
-  to   { transform: translateX(var(--airplane-distance, -100vw)); }
-}
-.sky-airplane-light {
+
+/* Alien spaceship — AI-generated transparent PNG, mirrored when chasing rtl */
+.sky-alien-ship {
   position: absolute;
-  right: -2px;
-  top: 50%;
-  width: 3px;
-  height: 3px;
-  background: #fff;
-  border-radius: 50%;
-  animation: skyBlink 2s step-end infinite;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: auto;
+  opacity: 0.95;
+  will-change: transform;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(120, 220, 255, 0.45)) drop-shadow(0 0 14px rgba(255, 80, 220, 0.25));
 }
-@keyframes skyBlink {
-  0%, 49%   { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
+.sky-alien-ship.is-mirrored { transform: scaleX(-1); }
+
 
 /* Helicopter */
 .sky-helicopter {
