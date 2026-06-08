@@ -201,6 +201,21 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   opacity: 1;
 }
 
+/* Live silhouette crossfade — only the slot matching data-active-silhouette is visible */
+.parallax-silhouette-stack {
+  position: absolute; inset: 0;
+  will-change: transform; z-index: 2;
+}
+.parallax-silhouette-slot {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+}
+.parallax-silhouette-stack[data-active-silhouette="mountains"] .parallax-silhouette-slot[data-silhouette="mountains"],
+.parallax-silhouette-stack[data-active-silhouette="city"] .parallax-silhouette-slot[data-silhouette="city"] {
+  opacity: 1;
+}
+
 /* Subtle daytime clouds — hidden at night and on flat scenes */
 .parallax-clouds {
   position: absolute; inset: 0; pointer-events: none;
