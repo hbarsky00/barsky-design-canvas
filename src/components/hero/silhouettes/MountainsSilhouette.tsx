@@ -12,16 +12,24 @@ const MountainsSilhouette: React.FC = () => {
   const frontPath =
     "M0,260 L0,215 L150,140 L260,180 L390,55 L520,170 L660,100 L790,180 L930,45 L1070,170 L1200,135 L1200,260 Z";
 
-  // Snow caps — single triangles, apex exactly at peak, base points walked
-  // down the actual slopes so the cap sits ON the mountain. Front layer only
-  // (back is blurred/dim and freestanding triangles look floaty there).
-  // Front peaks: (390,55) between (260,180)->(520,170); (930,45) between (790,180)->(1070,170).
+  // Snow caps — single triangles only (see skill://snow-caps-on-peaks).
+  // Apex sits exactly on each front peak; base points walk down the actual
+  // slopes. Small natural variations: slightly asymmetric base depth per side
+  // so caps don't look stamped. Stroke adds a crisp edge for daytime contrast.
   const snowFront = (
-    <g fill="#ffffff" opacity="0.92">
-      {/* Left summit cap, depth 22 */}
-      <polygon points="367.1,77 390,55 412.4,77" />
-      {/* Right summit cap, depth 22 */}
-      <polygon points="909.3,67 930,45 951.7,67" />
+    <g
+      fill="#ffffff"
+      fillOpacity="0.96"
+      stroke="#dbe6f1"
+      strokeWidth="0.6"
+      strokeLinejoin="round"
+    >
+      {/* Left summit (390,55). Left slope -> (260,180), right slope -> (520,170).
+          Left depth 20, right depth 24 — gentle asymmetry. */}
+      <polygon points="369.2,75 390,55 413.8,79" />
+      {/* Right summit (930,45). Left slope -> (790,180), right slope -> (1070,170).
+          Left depth 24, right depth 18 — cap leans slightly left. */}
+      <polygon points="904.1,69 930,45 950.2,63" />
     </g>
   );
   // Back layer stays bare — see skill://snow-caps-on-peaks
