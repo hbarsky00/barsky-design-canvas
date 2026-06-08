@@ -7,13 +7,17 @@ import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
 import CitySilhouette from "./silhouettes/CitySilhouette";
 import CoastlineSilhouette from "./silhouettes/CoastlineSilhouette";
 import PalmsSilhouette from "./silhouettes/PalmsSilhouette";
-import sunImg from "@/assets/hero-sun.png";
+import sunMidday from "@/assets/hero-sun-midday.png";
+import sunGolden from "@/assets/hero-sun-golden.png";
+import sunHazy from "@/assets/hero-sun-hazy.png";
+import sunSunset from "@/assets/hero-sun-sunset.png";
 import moonFull from "@/assets/hero-moon.png";
 import moonCrescent from "@/assets/hero-moon-crescent.png";
 import moonHalf from "@/assets/hero-moon-half.png";
 import moonGibbous from "@/assets/hero-moon-gibbous.png";
 
 const MOON_PHASES = [moonCrescent, moonHalf, moonGibbous, moonFull];
+const SUN_PHASES = [sunMidday, sunGolden, sunHazy, sunSunset];
 
 
 const ParallaxHero: React.FC = () => {
@@ -23,6 +27,7 @@ const ParallaxHero: React.FC = () => {
   const [isDay, setIsDay] = useState(false);
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
   const [moonImg, setMoonImg] = useState(() => MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
+  const [sunImg, setSunImg] = useState(() => SUN_PHASES[Math.floor(Math.random() * SUN_PHASES.length)]);
   const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
   const isFlatScene = activeScene.image !== null;
   // Text mode: flat scene's textMode wins; live scenes use day/night.
@@ -32,8 +37,11 @@ const ParallaxHero: React.FC = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       setIsDay((d) => {
-        // When flipping back to night, pick a new random moon phase
-        if (d) setMoonImg(MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
+        if (d) {
+          setMoonImg(MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
+        } else {
+          setSunImg(SUN_PHASES[Math.floor(Math.random() * SUN_PHASES.length)]);
+        }
         return !d;
       });
     }, 12000);

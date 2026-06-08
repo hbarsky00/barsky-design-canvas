@@ -144,23 +144,16 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 /* Sun rises into the top-right during the day (premium AI PNG) */
 .parallax-sun {
   position: absolute; z-index: 1;
-  width: 180px; height: 180px; right: 4%; top: 20px;
+  width: 195px; height: 195px; right: 4%; top: 20px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   filter: drop-shadow(0 0 55px rgba(255, 217, 122, 0.6));
   opacity: 0;
-  transform: translateY(-30px) scale(0.85);
-  transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
-  animation: sun-breathe 7s ease-in-out infinite;
+  transition: opacity 2.5s ease-in-out;
 }
 .parallax-hero.is-day .parallax-sun {
   opacity: 1;
-  transform: translateY(0) scale(1);
-}
-@keyframes sun-breathe {
-  0%, 100% { width: 180px; height: 180px; }
-  50% { width: 210px; height: 210px; }
 }
 
 /* Moon glows in the upper-left at night (premium AI PNG) */
