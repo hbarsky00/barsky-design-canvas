@@ -1,11 +1,10 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@/data/blogData";
 import { Calendar, Clock } from "lucide-react";
 import MinimalShareToolbar from "./MinimalShareToolbar";
+import BackButton from "@/components/ui/BackButton";
 
 interface BlogPostHeaderProps {
   post: BlogPost;
