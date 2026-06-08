@@ -1050,5 +1050,62 @@ export const blogPosts: BlogPost[] = [
       
       <p>And that's a pretty good starting point.</p>
     `
+  },
+  {
+    id: "10",
+    title: "Essential AI Tools for Product Designers in 2026",
+    excerpt: "A practitioner's review of the AI design generators I actually keep in my stack — Figma AI, Magic Design, Vizcom, and the rest — and where each one earns its seat.",
+    author: "Hiram Barsky",
+    date: "June 8, 2026",
+    readTime: "9 min read",
+    coverImage: blogAiToolsProductDesigners,
+    tags: ["AI Design", "AI Tools", "Product Design", "UX Design", "Design Workflow"],
+    slug: "essential-ai-tools-for-product-designers",
+    content: `
+      <p>Every week someone DMs me asking for "the list" of AI design tools worth learning. The honest answer is that most AI design generators are demos in a trench coat — but a handful have quietly become part of how I ship real product work. This is the short list, with the angle each tool actually earns its keep.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">How I evaluate an AI design tool</h2>
+      <p>Before any tool gets a seat in my workflow it has to clear three bars:</p>
+      <ol class="list-decimal pl-6 mb-4">
+        <li><strong>Does it shorten a step I already do?</strong> Not invent a new one I now have to maintain.</li>
+        <li><strong>Does the output survive a design review?</strong> If I have to apologize for it, it's a toy.</li>
+        <li><strong>Does it respect the system?</strong> Tokens, components, accessibility — non-negotiables.</li>
+      </ol>
+
+      <h2 class="text-section-title mt-8 mb-4">1. Figma AI — the in-canvas accelerant</h2>
+      <p>Figma AI is the lowest-friction win on this list because it lives where I already work. Auto-naming layers, drafting first-pass copy in a component, and generating quick variants for a design review save me 30–60 minutes a day. It's not creating breakthrough concepts — it's deleting the boring parts of the job.</p>
+      <p><strong>Best for:</strong> Cleaning up files, generating starter copy, batching component variants.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">2. Magic Design (Canva) — the stakeholder-deck killer</h2>
+      <p>I don't use Magic Design for product UI, but for the slide deck I have to whip up around the product? It's the fastest way from "we need a 10-slide narrative by EOD" to something a PM is happy to send out. As an AI design generator for marketing-adjacent work, it punches above its weight.</p>
+      <p><strong>Best for:</strong> Internal decks, landing-page concepts, social assets.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">3. Vizcom — concept exploration without committing</h2>
+      <p>Vizcom is where I sketch a rough idea and let AI render it ten different ways before I touch Figma. The reason it's on this list and not Midjourney: Vizcom respects perspective and rough form, so the output feels like a designer's exploration, not a stock-photo hallucination.</p>
+      <p><strong>Best for:</strong> Hardware/industrial concepting, mood exploration, "what if we tried…" rounds.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">4. v0 by Vercel — design-to-code that ships</h2>
+      <p>For anything React-shaped, v0 is the bridge between a Figma frame and a working component in production. I treat it as the fastest way to a code-true prototype I can hand to engineering — not the final implementation. The gap between "AI design" and "AI code" basically closed in the last 12 months and v0 is why.</p>
+      <p><strong>Best for:</strong> Functional prototypes, component scaffolds, design QA in real code.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">5. Lovable — full-stack prototypes for usability tests</h2>
+      <p>When I need a clickable, data-backed prototype users can actually log into and try, Lovable beats stitching a Figma prototype together. Good usability data needs real interactions; Lovable is the shortest path I've found to get there without an engineer.</p>
+      <p><strong>Best for:</strong> Usability studies, founder pitches, internal tools that need to exist by Friday.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">6. Galileo AI — UI drafts from a sentence</h2>
+      <p>Galileo is the closest thing to "describe the screen and get a UI" that I trust to drop into Figma without a full rebuild. The output isn't pixel-final, but as a starting frame for a brainstorm — especially for screens I haven't designed before, like settings flows or empty states — it's a real timesaver.</p>
+      <p><strong>Best for:</strong> Cold-start screens, ideation, blanking on layout.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">7. Khroma & Huemint — color systems faster than you can argue about them</h2>
+      <p>I used to lose half a day picking palettes. Khroma learns your taste; Huemint generates accessible combinations on demand. Neither replaces a thoughtful brand system, but both end the "is this teal too green?" Slack thread.</p>
+      <p><strong>Best for:</strong> Early brand explorations, dashboard palettes, dark-mode pairs.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">What I don't use (yet)</h2>
+      <p>I've tested most of the buzzy "AI design generator" tools that promise to replace the designer. The ones I dropped fall into two buckets: <strong>output quality that breaks down the moment you ask for a system</strong>, and <strong>tools that don't plug into my existing Figma / code / handoff loop</strong>. If a tool needs me to change three habits to use it, it loses every time to one that augments a habit I already have.</p>
+
+      <h2 class="text-section-title mt-8 mb-4">The real shift</h2>
+      <p>"AI design" stopped being a category in 2026 — it became a layer underneath every tool. The product designers pulling ahead aren't the ones with the longest tool stack; they're the ones who let AI delete the busywork and spend the saved time on judgement: which problem to solve, which trade-off to make, which detail matters.</p>
+      <p>Pick two tools from this list. Use them for a month. Drop the one that doesn't earn its seat. That's the only AI workflow strategy that's ever worked for me.</p>
+    `
   }
 ];
