@@ -192,8 +192,15 @@ const ParallaxHero: React.FC = () => {
           ))}
         </div>
 
-        {/* City skyline (night) */}
-        <div ref={mountainsRef} className="parallax-mountains">
+        {/* Live silhouette scenes — mountains and city crossfade by activeScene.id */}
+        <div ref={mountainsRef} className="parallax-silhouette-stack" data-active-silhouette={activeScene.id}>
+          <div className="parallax-silhouette-slot" data-silhouette="mountains">
+            <MountainsSilhouette />
+          </div>
+          <div className="parallax-silhouette-slot" data-silhouette="city">
+            <CitySilhouette />
+          </div>
+        </div>
           <div className="parallax-mountains-drift parallax-mountains-back">
             {[0, 1].map((i) => (
               <svg key={i} viewBox="0 0 1200 260" preserveAspectRatio="none">
