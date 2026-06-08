@@ -283,6 +283,8 @@ const SkyEffects: React.FC = () => {
       cancelHeli();
       cancelUfo();
       timeouts.forEach(clearTimeout);
+      rafs.forEach((id) => cancelAnimationFrame(id));
+      rafs.clear();
       tracked.forEach((el) => {
         if (el.parentNode) el.parentNode.removeChild(el);
       });
