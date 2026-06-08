@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
+import { ShoppingCart, Award, CreditCard } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
