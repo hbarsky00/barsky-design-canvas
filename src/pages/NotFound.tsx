@@ -28,18 +28,12 @@ const NotFound: React.FC = () => {
               The page you are looking for does not exist or has been moved.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <BackButton to="/" label="Back to Home" />
               <Button asChild variant="outline">
                 <Link to="/">
                   <Home className="w-4 h-4 mr-2" />
-                  Back to Home
-                </Link>
-              </Button>
-              
-              <Button asChild>
-                <Link to="/" className="flex items-center">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Go Back
+                  Home
                 </Link>
               </Button>
             </div>
