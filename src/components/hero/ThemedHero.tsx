@@ -1,6 +1,6 @@
 import React from "react";
 import "@/styles/themes.css";
-import StyleSwitcher, { useStoredTheme } from "./StyleSwitcher";
+import { useStoredTheme } from "./StyleSwitcher";
 import ParallaxHero from "./ParallaxHero";
 import HeroContent from "./HeroContent";
 import TerminalHero from "./themes/TerminalHero";
@@ -18,12 +18,7 @@ const ThemedHero: React.FC = () => {
   const [themeId, setThemeId] = useStoredTheme();
 
   if (themeId === "3d") {
-    return (
-      <>
-        <StyleSwitcher themeId={themeId} onChange={setThemeId} />
-        <ParallaxHero />
-      </>
-    );
+    return <ParallaxHero />;
   }
 
   const renderInteractive = () => {
@@ -45,15 +40,12 @@ const ThemedHero: React.FC = () => {
   };
 
   return (
-    <>
-      <StyleSwitcher themeId={themeId} onChange={setThemeId} />
-      <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero">
-        <div className="hero">
-          {renderInteractive()}
-          {FX_THEMES.has(themeId) && <ThemeFx themeId={themeId} />}
-        </div>
-      </section>
-    </>
+    <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero">
+      <div className="hero">
+        {renderInteractive()}
+        {FX_THEMES.has(themeId) && <ThemeFx themeId={themeId} />}
+      </div>
+    </section>
   );
 };
 
