@@ -144,7 +144,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 /* Sun rises into the top-right during the day (premium AI PNG) */
 .parallax-sun {
   position: absolute; z-index: 1;
-  width: 195px; height: 195px; right: 4%; top: 20px;
+  width: 260px; height: 260px; right: 2%; top: 8px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
