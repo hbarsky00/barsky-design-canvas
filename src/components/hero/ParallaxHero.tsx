@@ -280,8 +280,8 @@ const ParallaxHero: React.FC = () => {
                   d="M0,260 L0,160 L50,160 L50,135 L100,135 L100,150 L150,150 L150,110 L200,110 L200,145 L260,145 L260,120 L310,120 L310,95 L355,95 L355,135 L405,135 L405,85 L445,85 L445,115 L495,115 L495,150 L545,150 L545,100 L590,100 L590,130 L640,130 L640,90 L685,90 L685,125 L735,125 L735,155 L785,155 L785,105 L830,105 L830,135 L880,135 L880,85 L925,85 L925,120 L975,120 L975,150 L1025,150 L1025,110 L1070,110 L1070,140 L1125,140 L1125,100 L1170,100 L1170,145 L1200,145 L1200,260 Z"
                   fill={`url(#mbd-grad-${i})`}
                 />
-                {/* Dark windows on daytime back skyline */}
-                <g fill="#1c3a5e" opacity="0.55">
+                {/* Sunlit reflective windows on daytime back skyline */}
+                <g fill="#fff8d6" opacity="0.85">
                   <rect x="60" y="145" width="2" height="3" /><rect x="70" y="145" width="2" height="3" /><rect x="80" y="145" width="2" height="3" />
                   <rect x="160" y="120" width="2" height="3" /><rect x="175" y="120" width="2" height="3" /><rect x="160" y="135" width="2" height="3" />
                   <rect x="320" y="105" width="2" height="3" /><rect x="335" y="105" width="2" height="3" /><rect x="320" y="120" width="2" height="3" />
@@ -312,8 +312,8 @@ const ParallaxHero: React.FC = () => {
                 <rect x="339" y="28" width="2" height="22" fill="#1c3a5e" />
                 <rect x="644" y="38" width="2" height="22" fill="#1c3a5e" />
                 <rect x="944" y="50" width="2" height="20" fill="#1c3a5e" />
-                {/* Dark windows on daytime front skyline */}
-                <g fill="#1c3a5e" opacity="0.6">
+                {/* Sunlit reflective windows on daytime front skyline */}
+                <g fill="#fff8d6" opacity="0.9">
                   <rect x="200" y="100" width="3" height="4" /><rect x="210" y="100" width="3" height="4" /><rect x="220" y="100" width="3" height="4" /><rect x="230" y="100" width="3" height="4" /><rect x="240" y="100" width="3" height="4" />
                   <rect x="200" y="120" width="3" height="4" /><rect x="220" y="120" width="3" height="4" /><rect x="240" y="120" width="3" height="4" />
                   <rect x="200" y="140" width="3" height="4" /><rect x="210" y="140" width="3" height="4" /><rect x="230" y="140" width="3" height="4" />
