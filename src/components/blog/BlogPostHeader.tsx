@@ -13,13 +13,9 @@ interface BlogPostHeaderProps {
 const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
   return (
     <header className="mb-12">
-      <Link 
-        to="/blog" 
-        className="inline-flex items-center text-barsky-blue hover:underline mb-8"
-      >
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to all posts
-      </Link>
+      <div className="mb-8">
+        <BackButton to="/blog" label="Back to all posts" />
+      </div>
       
       <div className="flex flex-wrap gap-2 mb-4">
         {post.tags.map(tag => (
