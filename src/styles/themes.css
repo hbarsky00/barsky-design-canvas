@@ -372,7 +372,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 
 .parallax-content .hero-eyebrow {
   font-size: 15px; margin: 0 0 8px;
-  color: color-mix(in srgb, currentColor 75%, transparent);
+  color: currentColor; opacity: 0.92;
 }
 .parallax-content .hero-name {
   font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
@@ -383,7 +383,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-content .hero-role {
   font-size: 14px; margin: 0;
-  color: color-mix(in srgb, currentColor 85%, transparent);
+  color: currentColor; opacity: 0.95;
 }
 .parallax-content .hero-tagline {
   font-size: 16px; color: currentColor; font-weight: 500; margin: 10px 0 0;
@@ -392,7 +392,36 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-content .section-label {
   display: block; text-align: left; font-size: 11px; letter-spacing: .18em;
   text-transform: uppercase; margin: 28px 0 12px;
-  color: color-mix(in srgb, currentColor 70%, transparent);
+  color: currentColor; opacity: 0.85;
+}
+
+/* Strong text-shadow so text holds contrast at EVERY point of the day/night
+   crossfade (the medium-blue midstate is where it usually fails). */
+.parallax-content .hero-eyebrow,
+.parallax-content .hero-name,
+.parallax-content .hero-role,
+.parallax-content .hero-tagline,
+.parallax-content .section-label,
+.parallax-content .product-description {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 2px 12px rgba(0, 0, 0, 0.40);
+}
+.parallax-hero.is-day .parallax-content .hero-eyebrow,
+.parallax-hero.is-day .parallax-content .hero-name,
+.parallax-hero.is-day .parallax-content .hero-role,
+.parallax-hero.is-day .parallax-content .hero-tagline,
+.parallax-hero.is-day .parallax-content .section-label,
+.parallax-hero.is-day .parallax-content .product-description,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .hero-eyebrow,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .hero-name,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .hero-role,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .hero-tagline,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .section-label,
+.parallax-hero.has-flat-scene[data-text-mode="dark"] .parallax-content .product-description {
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.85),
+    0 2px 10px rgba(255, 255, 255, 0.55);
 }
 .parallax-content .product-row {
   display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
@@ -408,17 +437,17 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   flex-shrink: 0;
   min-width: 110px; text-align: center;
   transition:
-    background-color 2.5s ease-in-out,
-    border-color 2.5s ease-in-out,
-    color 2.5s ease-in-out,
-    box-shadow 2.5s ease-in-out;
+    background-color 0.6s ease-in-out,
+    border-color 0.6s ease-in-out,
+    color 0.6s ease-in-out,
+    box-shadow 0.6s ease-in-out;
 }
 /* Light text (dark scenes): dark semi-opaque fill */
 /* Night mountains + flat dark scenes: dark semi-opaque pill, light label */
 .parallax-hero:not(.is-day):not(.has-flat-scene) .parallax-content .product-pill,
 .parallax-hero.has-flat-scene[data-text-mode="light"] .parallax-content .product-pill {
-  background: rgba(15, 23, 42, 0.7);
-  border-color: rgba(248, 250, 252, 0.25);
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(248, 250, 252, 0.35);
   color: #f8fafc;
 }
 /* Day mountains + flat light scenes: solid white pill, dark label */
