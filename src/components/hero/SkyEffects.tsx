@@ -146,30 +146,28 @@ const SkyEffects: React.FC = () => {
         // Advance plane
         plane.x += speedPxPerMs * dt;
 
-        // Dodge: check predicted overlap with each ship in next 0.45s
+        // Advance ships and check for impending collision
         const lookAhead = 450;
         let dodgeY: number | null = null;
         for (const s of ships) {
           if (!s.alive) continue;
           s.x += s.vx * dt;
+          s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)${dir > 0 ? " scaleX(-1)" : ""}`;
           const pFx = plane.x + speedPxPerMs * lookAhead;
           const sFx = s.x + s.vx * lookAhead;
           const horizOverlap =
             Math.abs(pFx - sFx) < (plane.w + s.w) / 2 + 30 ||
             Math.abs(plane.x - s.x) < (plane.w + s.w) / 2 + 20;
           const vertOverlap = Math.abs(plane.y - s.y) < (plane.h + s.h) / 2 + 24;
-          if (horizOverlap && vertOverlap) {
-            // Dodge toward whichever side has more room
+          if (horizOverlap && vertOverlap && dodgeY === null) {
             const up = s.y - 70;
             const down = s.y + 70;
             const upRoom = up;
             const downRoom = heroH * 0.7 - down;
             dodgeY = upRoom > downRoom ? Math.max(15, up) : Math.min(heroH * 0.7, down);
-            break;
           }
-          // Move ship in DOM
-          s.el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0)${dir > 0 ? " scaleX(-1)" : ""}`;
         }
+
 
         plane.targetY = dodgeY ?? plane.baseY;
         plane.y += (plane.targetY - plane.y) * Math.min(1, dt / 220);
