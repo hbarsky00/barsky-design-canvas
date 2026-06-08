@@ -42,19 +42,6 @@ const ParallaxHero: React.FC = () => {
 
 
 
-
-const ParallaxHero: React.FC = () => {
-  const skyRef = useRef<HTMLDivElement>(null);
-  const starsRef = useRef<HTMLDivElement>(null);
-  const mountainsRef = useRef<HTMLDivElement>(null);
-  const [isDay, setIsDay] = useState(false);
-  const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
-  const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
-  const isFlatScene = activeScene.image !== null;
-  // Text mode: flat scene's textMode wins; mountains keeps day/night driving it.
-  const textMode = isFlatScene ? activeScene.textMode : (isDay ? "dark" : "light");
-
-
   useEffect(() => {
     const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
     return () => clearTimeout(t);
