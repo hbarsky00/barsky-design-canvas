@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Home, ArrowLeft } from "lucide-react";
+import { Home } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
