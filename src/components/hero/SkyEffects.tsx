@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import alienShipUrl from "@/assets/hero-alien-ship.png";
+
 
 /**
  * Spawns shooting stars, meteors, and airplanes into the parallax hero sky.
