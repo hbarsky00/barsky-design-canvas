@@ -212,7 +212,9 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   transition: opacity 1.8s ease-in-out;
 }
 .parallax-silhouette-stack[data-active-silhouette="mountains"] .parallax-silhouette-slot[data-silhouette="mountains"],
-.parallax-silhouette-stack[data-active-silhouette="city"] .parallax-silhouette-slot[data-silhouette="city"] {
+.parallax-silhouette-stack[data-active-silhouette="city"] .parallax-silhouette-slot[data-silhouette="city"],
+.parallax-silhouette-stack[data-active-silhouette="coastline"] .parallax-silhouette-slot[data-silhouette="coastline"],
+.parallax-silhouette-stack[data-active-silhouette="palms"] .parallax-silhouette-slot[data-silhouette="palms"] {
   opacity: 1;
 }
 
