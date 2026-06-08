@@ -42,10 +42,6 @@ const ParallaxHero: React.FC = () => {
 
 
 
-  useEffect(() => {
-    const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
-    return () => clearTimeout(t);
-  }, [isDay]);
 
   // Sync day/night to <body> so footer + body background can theme themselves
   useEffect(() => {
