@@ -19,7 +19,7 @@ export const SCENES: Scene[] = [
   { id: "mountains", label: "Mountains", image: null, textMode: "light" },
   { id: "city", label: "City", image: null, textMode: "light" },
   { id: "coastline", label: "Coastline", image: null, textMode: "light" },
-  { id: "palms", label: "Tropical Island", image: null, textMode: "light" },
+  
   { id: "city-night", label: "City — Night", image: cityNight, textMode: "light" },
   { id: "beach-day", label: "Beach — Day", image: beachDay, textMode: "dark" },
   { id: "snow-city", label: "Snow City", image: snowCity, textMode: "dark" },
