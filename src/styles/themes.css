@@ -162,7 +162,14 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   position: absolute; z-index: 1;
   width: 90px; height: 90px; left: 5%; top: 4%;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f6f3e8 0%, #d8d4c2 60%, #a8a497 100%);
+  background:
+    radial-gradient(circle at 62% 30%, rgba(120,110,95,0.45) 0 6%, transparent 7%),
+    radial-gradient(circle at 30% 60%, rgba(120,110,95,0.55) 0 5%, transparent 6%),
+    radial-gradient(circle at 70% 70%, rgba(120,110,95,0.4) 0 4%, transparent 5%),
+    radial-gradient(circle at 48% 48%, rgba(120,110,95,0.35) 0 3%, transparent 4%),
+    radial-gradient(circle at 22% 32%, rgba(120,110,95,0.3) 0 2.5%, transparent 3.5%),
+    radial-gradient(circle at 80% 45%, rgba(120,110,95,0.3) 0 2%, transparent 3%),
+    radial-gradient(circle at 35% 35%, #f6f3e8 0%, #d8d4c2 60%, #a8a497 100%);
   box-shadow: 0 0 60px 20px rgba(230, 225, 200, 0.35);
   opacity: 1;
   transition: opacity 2.5s ease-in-out, transform 2.5s ease-out;
