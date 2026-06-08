@@ -7,6 +7,8 @@ import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
 import CitySilhouette from "./silhouettes/CitySilhouette";
 import CoastlineSilhouette from "./silhouettes/CoastlineSilhouette";
 import PalmsSilhouette from "./silhouettes/PalmsSilhouette";
+import sunImg from "@/assets/hero-sun.png";
+import moonImg from "@/assets/hero-moon.png";
 
 
 const ParallaxHero: React.FC = () => {
@@ -176,9 +178,9 @@ const ParallaxHero: React.FC = () => {
         {/* Day sky fades over night */}
         <div className="parallax-sky-day" />
         {/* Sun rises during day */}
-        <div className="parallax-sun" />
+        <div className="parallax-sun" style={{ backgroundImage: `url(${sunImg})` }} />
         {/* Moon glows during night */}
-        <div className="parallax-moon" />
+        <div className="parallax-moon" style={{ backgroundImage: `url(${moonImg})` }} />
         {/* Subtle daytime clouds */}
         <div className="parallax-clouds" aria-hidden>
           <span className="parallax-cloud parallax-cloud--1" />
