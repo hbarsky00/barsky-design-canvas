@@ -248,6 +248,19 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-cloud--4::before { width: 95px; height: 95px; top: -38px; left: 50px; }
 .parallax-cloud--4::after  { width: 70px; height: 70px; top: -22px; left: 150px; }
 
+/* Cloud weather presets — random each day */
+.parallax-hero[data-clouds="clear"] .parallax-cloud { opacity: 0 !important; }
+.parallax-hero[data-clouds="few"] .parallax-cloud--3,
+.parallax-hero[data-clouds="few"] .parallax-cloud--4 { opacity: 0 !important; }
+.parallax-hero[data-clouds="scattered"] .parallax-cloud--1 { opacity: 0.38; }
+.parallax-hero[data-clouds="scattered"] .parallax-cloud--2 { opacity: 0.30; }
+.parallax-hero[data-clouds="scattered"] .parallax-cloud--3 { opacity: 0.34; }
+.parallax-hero[data-clouds="scattered"] .parallax-cloud--4 { opacity: 0.26; }
+.parallax-hero[data-clouds="overcast"] .parallax-cloud--1 { opacity: 0.55; }
+.parallax-hero[data-clouds="overcast"] .parallax-cloud--2 { opacity: 0.50; }
+.parallax-hero[data-clouds="overcast"] .parallax-cloud--3 { opacity: 0.52; }
+.parallax-hero[data-clouds="overcast"] .parallax-cloud--4 { opacity: 0.48; }
+
 @keyframes cloud-drift {
   from { transform: translateX(0); }
   to   { transform: translateX(125vw); }
