@@ -201,6 +201,36 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   opacity: 1;
 }
 
+/* Bald eagles — only visible during day, hidden on flat scenes */
+.parallax-eagles {
+  position: absolute; inset: 0; z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+  overflow: hidden;
+}
+.parallax-hero.is-day .parallax-eagles { opacity: 1; }
+.parallax-hero.has-flat-scene .parallax-eagles { opacity: 0; }
+.parallax-eagle {
+  position: absolute;
+  left: 0;
+  width: 72px; height: 28px;
+  transform: translate3d(-15vw, 0, 0) scale(var(--eagle-scale, 1));
+  animation: eagle-soar linear infinite;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+  will-change: transform;
+}
+@keyframes eagle-soar {
+  0%   { transform: translate3d(-15vw, 0,    0) scale(var(--eagle-scale, 1)); }
+  25%  { transform: translate3d(20vw,  -14px, 0) scale(var(--eagle-scale, 1)); }
+  50%  { transform: translate3d(55vw,  8px,  0) scale(var(--eagle-scale, 1)); }
+  75%  { transform: translate3d(90vw,  -10px, 0) scale(var(--eagle-scale, 1)); }
+  100% { transform: translate3d(130vw, 0,    0) scale(var(--eagle-scale, 1)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .parallax-eagle { animation: none; transform: translate3d(40vw, 0, 0) scale(var(--eagle-scale, 1)); }
+}
+
 /* Subtle daytime clouds — hidden at night and on flat scenes */
 .parallax-clouds {
   position: absolute; inset: 0; pointer-events: none;
