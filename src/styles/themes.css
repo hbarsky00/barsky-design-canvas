@@ -472,7 +472,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-hero.is-day .parallax-content .book-call,
 .parallax-hero.is-day .parallax-content .book-call-wrap.hero-bottom-contrast,
 .parallax-hero.is-day .parallax-content .book-call-wrap.hero-bottom-contrast a {
-  color: #ffffff;
+  color: #000000;
   text-shadow: none !important;
 }
 .parallax-content .book-call:hover,
