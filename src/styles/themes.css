@@ -877,9 +877,10 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-mountains-drift > svg,
 .parallax-mountains-drift > img {
   flex: 0 0 50%;
+  width: 50%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: fill;
   object-position: bottom center;
 }
 .parallax-mountains-drift > img.is-mirrored { transform: scaleX(-1); }
