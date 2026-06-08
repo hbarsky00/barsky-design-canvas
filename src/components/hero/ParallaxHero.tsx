@@ -25,18 +25,6 @@ const ParallaxHero: React.FC = () => {
     return () => clearTimeout(t);
   }, [isDay]);
 
-  // Auto-cycle through scenes every 18s. Resets whenever scene changes
-  // (manual dot clicks reset the timer naturally via dependency).
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const idx = SCENES.findIndex((s) => s.id === sceneId);
-      const next = SCENES[(idx + 1) % SCENES.length];
-      setSceneId(next.id);
-    }, 18000);
-    return () => clearTimeout(t);
-  }, [sceneId]);
-
-
   // Sync day/night to <body> so footer + body background can theme themselves
   useEffect(() => {
     document.body.dataset.daytime = isDay ? "day" : "night";
@@ -204,7 +192,7 @@ const ParallaxHero: React.FC = () => {
           ))}
         </div>
 
-        {/* Mountains (night) */}
+        {/* City skyline (night) */}
         <div ref={mountainsRef} className="parallax-mountains">
           <div className="parallax-mountains-drift parallax-mountains-back">
             {[0, 1].map((i) => (
@@ -216,13 +204,9 @@ const ParallaxHero: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <path
-                  d="M0,260 L0,180 L 90,140 L 160,170 L 220,70 L 290,140 L 350,95 L 420,30 L 490,110 L 560,75 L 640,140 L 720,45 L 790,120 L 860,80 L 930,135 L 1000,55 L 1080,125 L 1160,90 L 1200,115 L 1200,260 Z"
+                  d="M0,260 L0,160 L50,160 L50,135 L100,135 L100,150 L150,150 L150,110 L200,110 L200,145 L260,145 L260,120 L310,120 L310,95 L355,95 L355,135 L405,135 L405,85 L445,85 L445,115 L495,115 L495,150 L545,150 L545,100 L590,100 L590,130 L640,130 L640,90 L685,90 L685,125 L735,125 L735,155 L785,155 L785,105 L830,105 L830,135 L880,135 L880,85 L925,85 L925,120 L975,120 L975,150 L1025,150 L1025,110 L1070,110 L1070,140 L1125,140 L1125,100 L1170,100 L1170,145 L1200,145 L1200,260 Z"
                   fill={`url(#mb-grad-${i})`}
                 />
-                <path d="M408,48 L414,40 L420,30 L426,42 L432,48 L426,46 L420,44 L414,46 Z" fill="#d8d3e8" opacity="0.6" />
-                <path d="M708,62 L714,54 L720,45 L726,55 L732,62 L726,60 L720,58 L714,60 Z" fill="#d8d3e8" opacity="0.55" />
-                <path d="M988,72 L994,64 L1000,55 L1006,65 L1012,72 L1006,70 L1000,68 L994,70 Z" fill="#d8d3e8" opacity="0.5" />
-                <path d="M210,86 L215,78 L220,70 L225,80 L230,86 L225,84 L220,82 L215,84 Z" fill="#d8d3e8" opacity="0.45" />
               </svg>
             ))}
           </div>
@@ -236,19 +220,39 @@ const ParallaxHero: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <path
-                  d="M0,260 L0,210 L 70,160 L 130,220 L 200,80 L 270,215 L 340,140 L 410,225 L 480,55 L 550,220 L 620,170 L 690,225 L 760,95 L 830,215 L 900,150 L 970,225 L 1040,75 L 1110,220 L 1180,165 L 1200,200 L 1200,260 Z"
+                  d="M0,260 L0,180 L65,180 L65,120 L130,120 L130,160 L190,160 L190,80 L250,80 L250,140 L310,140 L310,50 L370,50 L370,130 L425,130 L425,170 L490,170 L490,90 L555,90 L555,150 L615,150 L615,60 L675,60 L675,140 L735,140 L735,175 L795,175 L795,100 L855,100 L855,150 L915,150 L915,70 L975,70 L975,140 L1035,140 L1035,165 L1095,165 L1095,110 L1150,110 L1150,155 L1200,155 L1200,260 Z"
                   fill={`url(#mf-grad-${i})`}
                 />
-                <path d="M468,76 L474,66 L480,55 L486,67 L492,76 L486,74 L480,71 L474,74 Z" fill="#d8d3e8" opacity="0.45" />
-                <path d="M1028,96 L1034,86 L1040,75 L1046,87 L1052,96 L1046,94 L1040,91 L1034,94 Z" fill="#d8d3e8" opacity="0.4" />
-                <path d="M188,100 L194,90 L200,80 L206,92 L212,100 L206,98 L200,95 L194,98 Z" fill="#d8d3e8" opacity="0.4" />
-                <path d="M748,116 L754,106 L760,95 L766,107 L772,116 L766,114 L760,111 L754,114 Z" fill="#d8d3e8" opacity="0.35" />
+                {/* Antennas on tallest towers */}
+                <rect x="339" y="28" width="2" height="22" fill="#050308" />
+                <rect x="644" y="38" width="2" height="22" fill="#050308" />
+                <rect x="944" y="50" width="2" height="20" fill="#050308" />
+                {/* Glowing windows */}
+                <g fill="#ffd27a" opacity="0.75">
+                  <rect x="200" y="100" width="3" height="4" /><rect x="210" y="100" width="3" height="4" /><rect x="220" y="100" width="3" height="4" /><rect x="230" y="100" width="3" height="4" /><rect x="240" y="100" width="3" height="4" />
+                  <rect x="200" y="120" width="3" height="4" /><rect x="220" y="120" width="3" height="4" /><rect x="240" y="120" width="3" height="4" />
+                  <rect x="200" y="140" width="3" height="4" /><rect x="210" y="140" width="3" height="4" /><rect x="230" y="140" width="3" height="4" />
+                  <rect x="320" y="70" width="3" height="4" /><rect x="335" y="70" width="3" height="4" /><rect x="350" y="70" width="3" height="4" />
+                  <rect x="320" y="90" width="3" height="4" /><rect x="350" y="90" width="3" height="4" />
+                  <rect x="320" y="110" width="3" height="4" /><rect x="335" y="110" width="3" height="4" />
+                  <rect x="500" y="110" width="3" height="4" /><rect x="515" y="110" width="3" height="4" /><rect x="530" y="110" width="3" height="4" /><rect x="545" y="110" width="3" height="4" />
+                  <rect x="500" y="130" width="3" height="4" /><rect x="530" y="130" width="3" height="4" />
+                  <rect x="625" y="80" width="3" height="4" /><rect x="645" y="80" width="3" height="4" /><rect x="665" y="80" width="3" height="4" />
+                  <rect x="625" y="100" width="3" height="4" /><rect x="665" y="100" width="3" height="4" />
+                  <rect x="625" y="120" width="3" height="4" /><rect x="645" y="120" width="3" height="4" />
+                  <rect x="805" y="120" width="3" height="4" /><rect x="820" y="120" width="3" height="4" /><rect x="835" y="120" width="3" height="4" /><rect x="845" y="120" width="3" height="4" />
+                  <rect x="805" y="140" width="3" height="4" /><rect x="835" y="140" width="3" height="4" />
+                  <rect x="925" y="90" width="3" height="4" /><rect x="945" y="90" width="3" height="4" /><rect x="965" y="90" width="3" height="4" />
+                  <rect x="925" y="110" width="3" height="4" /><rect x="965" y="110" width="3" height="4" />
+                  <rect x="925" y="130" width="3" height="4" /><rect x="945" y="130" width="3" height="4" />
+                  <rect x="1105" y="130" width="3" height="4" /><rect x="1120" y="130" width="3" height="4" /><rect x="1140" y="130" width="3" height="4" />
+                </g>
               </svg>
             ))}
           </div>
         </div>
 
-        {/* Day mountains — sunlit version that swaps in during daytime */}
+        {/* City skyline — sunlit version that swaps in during daytime */}
         <div className="parallax-mountains parallax-mountains-day">
           <div className="parallax-mountains-drift parallax-mountains-back">
             {[0, 1].map((i) => (
@@ -260,13 +264,9 @@ const ParallaxHero: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <path
-                  d="M0,260 L0,180 L 90,140 L 160,170 L 220,70 L 290,140 L 350,95 L 420,30 L 490,110 L 560,75 L 640,140 L 720,45 L 790,120 L 860,80 L 930,135 L 1000,55 L 1080,125 L 1160,90 L 1200,115 L 1200,260 Z"
+                  d="M0,260 L0,160 L50,160 L50,135 L100,135 L100,150 L150,150 L150,110 L200,110 L200,145 L260,145 L260,120 L310,120 L310,95 L355,95 L355,135 L405,135 L405,85 L445,85 L445,115 L495,115 L495,150 L545,150 L545,100 L590,100 L590,130 L640,130 L640,90 L685,90 L685,125 L735,125 L735,155 L785,155 L785,105 L830,105 L830,135 L880,135 L880,85 L925,85 L925,120 L975,120 L975,150 L1025,150 L1025,110 L1070,110 L1070,140 L1125,140 L1125,100 L1170,100 L1170,145 L1200,145 L1200,260 Z"
                   fill={`url(#mbd-grad-${i})`}
                 />
-                <path d="M408,48 L414,40 L420,30 L426,42 L432,48 L426,46 L420,44 L414,46 Z" fill="#ffffff" opacity="0.9" />
-                <path d="M708,62 L714,54 L720,45 L726,55 L732,62 L726,60 L720,58 L714,60 Z" fill="#ffffff" opacity="0.85" />
-                <path d="M988,72 L994,64 L1000,55 L1006,65 L1012,72 L1006,70 L1000,68 L994,70 Z" fill="#ffffff" opacity="0.8" />
-                <path d="M210,86 L215,78 L220,70 L225,80 L230,86 L225,84 L220,82 L215,84 Z" fill="#ffffff" opacity="0.75" />
               </svg>
             ))}
           </div>
@@ -280,166 +280,16 @@ const ParallaxHero: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <path
-                  d="M0,260 L0,210 L 70,160 L 130,220 L 200,80 L 270,215 L 340,140 L 410,225 L 480,55 L 550,220 L 620,170 L 690,225 L 760,95 L 830,215 L 900,150 L 970,225 L 1040,75 L 1110,220 L 1180,165 L 1200,200 L 1200,260 Z"
+                  d="M0,260 L0,180 L65,180 L65,120 L130,120 L130,160 L190,160 L190,80 L250,80 L250,140 L310,140 L310,50 L370,50 L370,130 L425,130 L425,170 L490,170 L490,90 L555,90 L555,150 L615,150 L615,60 L675,60 L675,140 L735,140 L735,175 L795,175 L795,100 L855,100 L855,150 L915,150 L915,70 L975,70 L975,140 L1035,140 L1035,165 L1095,165 L1095,110 L1150,110 L1150,155 L1200,155 L1200,260 Z"
                   fill={`url(#mfd-grad-${i})`}
                 />
-                <path d="M468,76 L474,66 L480,55 L486,67 L492,76 L486,74 L480,71 L474,74 Z" fill="#ffffff" opacity="0.85" />
-                <path d="M1028,96 L1034,86 L1040,75 L1046,87 L1052,96 L1046,94 L1040,91 L1034,94 Z" fill="#ffffff" opacity="0.8" />
-                <path d="M188,100 L194,90 L200,80 L206,92 L212,100 L206,98 L200,95 L194,98 Z" fill="#ffffff" opacity="0.8" />
-                <path d="M748,116 L754,106 L760,95 L766,107 L772,116 L766,114 L760,111 L754,114 Z" fill="#ffffff" opacity="0.75" />
+                <rect x="339" y="28" width="2" height="22" fill="#1c3a5e" />
+                <rect x="644" y="38" width="2" height="22" fill="#1c3a5e" />
+                <rect x="944" y="50" width="2" height="20" fill="#1c3a5e" />
               </svg>
             ))}
           </div>
         </div>
-
-        {/* City skyline (night) — drifts like the mountains */}
-        <div className="parallax-city">
-          <div className="parallax-mountains-drift parallax-city-back">
-            {[0, 1].map((i) => (
-              <svg key={`cbn-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`cb-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2a1838" />
-                    <stop offset="100%" stopColor="#120a1c" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,170 L60,170 L60,140 L120,140 L120,180 L180,180 L180,120 L240,120 L240,160 L320,160 L320,100 L380,100 L380,150 L460,150 L460,130 L520,130 L520,170 L600,170 L600,110 L680,110 L680,150 L760,150 L760,135 L840,135 L840,170 L920,170 L920,125 L1000,125 L1000,160 L1080,160 L1080,140 L1140,140 L1140,175 L1200,175 L1200,260 Z"
-                  fill={`url(#cb-grad-${i})`}
-                />
-              </svg>
-            ))}
-          </div>
-          <div className="parallax-mountains-drift parallax-city-front">
-            {[0, 1].map((i) => (
-              <svg key={`cfn-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`cf-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#15101c" />
-                    <stop offset="100%" stopColor="#050308" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,210 L80,210 L80,170 L150,170 L150,200 L220,200 L220,140 L260,140 L260,90 L300,90 L300,150 L370,150 L370,180 L450,180 L450,120 L520,120 L520,75 L560,75 L560,160 L640,160 L640,135 L720,135 L720,180 L800,180 L800,100 L860,100 L860,165 L940,165 L940,130 L1010,130 L1010,175 L1090,175 L1090,150 L1160,150 L1160,195 L1200,195 L1200,260 Z"
-                  fill={`url(#cf-grad-${i})`}
-                />
-                <rect x="278" y="70" width="2" height="20" fill="#050308" />
-                <rect x="538" y="55" width="2" height="20" fill="#050308" />
-                <rect x="828" y="80" width="2" height="20" fill="#050308" />
-                {Array.from({ length: 70 }).map((_, w) => {
-                  const xs = [85,105,125,160,180,200,230,245,270,295,310,330,350,380,400,420,460,480,500,520,540,570,590,610,630,650,670,690,710,730,750,770,810,830,850,870,890,910,930,950,970,990,1020,1040,1060,1080,1100,1120,1140,1160];
-                  const x = xs[w % xs.length];
-                  const yBase = 95 + ((w * 19) % 80);
-                  return (
-                    <rect
-                      key={`win-${i}-${w}`}
-                      x={x}
-                      y={yBase}
-                      width="3"
-                      height="4"
-                      fill="#ffd27a"
-                      opacity={0.55 + ((w * 31) % 45) / 100}
-                    />
-                  );
-                })}
-              </svg>
-            ))}
-          </div>
-        </div>
-
-        {/* City skyline (day) — sunlit version */}
-        <div className="parallax-city parallax-city-day-wrap">
-          <div className="parallax-mountains-drift parallax-city-back">
-            {[0, 1].map((i) => (
-              <svg key={`cbd-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`cbd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#9ec5e8" />
-                    <stop offset="100%" stopColor="#4f7fa8" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,170 L60,170 L60,140 L120,140 L120,180 L180,180 L180,120 L240,120 L240,160 L320,160 L320,100 L380,100 L380,150 L460,150 L460,130 L520,130 L520,170 L600,170 L600,110 L680,110 L680,150 L760,150 L760,135 L840,135 L840,170 L920,170 L920,125 L1000,125 L1000,160 L1080,160 L1080,140 L1140,140 L1140,175 L1200,175 L1200,260 Z"
-                  fill={`url(#cbd-grad-${i})`}
-                />
-              </svg>
-            ))}
-          </div>
-          <div className="parallax-mountains-drift parallax-city-front">
-            {[0, 1].map((i) => (
-              <svg key={`cfd-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`cfd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3a6f9c" />
-                    <stop offset="100%" stopColor="#1c3a5e" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0,260 L0,210 L80,210 L80,170 L150,170 L150,200 L220,200 L220,140 L260,140 L260,90 L300,90 L300,150 L370,150 L370,180 L450,180 L450,120 L520,120 L520,75 L560,75 L560,160 L640,160 L640,135 L720,135 L720,180 L800,180 L800,100 L860,100 L860,165 L940,165 L940,130 L1010,130 L1010,175 L1090,175 L1090,150 L1160,150 L1160,195 L1200,195 L1200,260 Z"
-                  fill={`url(#cfd-grad-${i})`}
-                />
-                <rect x="278" y="70" width="2" height="20" fill="#1c3a5e" />
-                <rect x="538" y="55" width="2" height="20" fill="#1c3a5e" />
-                <rect x="828" y="80" width="2" height="20" fill="#1c3a5e" />
-              </svg>
-            ))}
-          </div>
-        </div>
-
-
-
-        {/* Bald eagles soaring (daytime only) */}
-        <div className="parallax-eagles" aria-hidden>
-          {[
-            { delay: "0s", duration: "42s", top: "22%", scale: 1 },
-            { delay: "-16s", duration: "54s", top: "14%", scale: 0.65 },
-            { delay: "-32s", duration: "60s", top: "32%", scale: 0.5 },
-          ].map((e, i) => (
-            <svg
-              key={i}
-              className="parallax-eagle"
-              viewBox="0 0 120 44"
-              style={{
-                top: e.top,
-                animationDelay: e.delay,
-                animationDuration: e.duration,
-                ["--eagle-scale" as any]: e.scale,
-              }}
-            >
-              {/* Soaring bald eagle silhouette: fingered wingtips, head, fanned tail */}
-              <path
-                d="M60,22
-                   C 58,18 56,16 54,15
-                   C 50,14 46,15 42,17
-                   C 38,15 34,12 30,11
-                   L 31,14 L 27,13 L 28,16 L 24,15 L 25,18 L 21,17 L 22,20
-                   C 18,19 14,19 10,20
-                   C 16,22 22,23 28,23
-                   C 34,24 40,24 46,23
-                   C 50,23 54,23 58,24
-                   L 60,28
-                   L 62,24
-                   C 66,23 70,23 74,23
-                   C 80,24 86,24 92,23
-                   C 98,23 104,22 110,20
-                   C 106,19 102,19 98,20
-                   L 99,17 L 95,18 L 96,15 L 92,16 L 93,13 L 89,14 L 90,11
-                   C 86,12 82,15 78,17
-                   C 74,15 70,14 66,15
-                   C 64,16 62,18 60,22 Z"
-                fill="#1a1410"
-              />
-              {/* Small white head */}
-              <ellipse cx="60" cy="20" rx="2.4" ry="1.8" fill="#f4ede0" />
-              {/* Beak hint */}
-              <path d="M60,21 L62.2,22 L60,22.4 Z" fill="#d9a23a" />
-              {/* Fanned white tail */}
-              <path d="M58,24 L60,30 L62,24 Z" fill="#f4ede0" opacity="0.95" />
-            </svg>
-
-          ))}
-        </div>
-
 
 
         {/* Dynamic FX — only over the live mountains scene; flat scenes bake their own sky */}
