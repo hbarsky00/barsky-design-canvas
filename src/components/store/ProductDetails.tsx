@@ -61,7 +61,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-6">
-      <div className="mb-6">
         <BackButton to="/store" label="Back to Store" />
       </div>
       
