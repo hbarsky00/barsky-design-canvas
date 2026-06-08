@@ -201,6 +201,22 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   opacity: 1;
 }
 
+/* Hide mountains entirely when a non-mountain live scene is active */
+.parallax-hero:not([data-scene="mountains"]) .parallax-mountains { opacity: 0; }
+
+/* City skyline — same positioning + drift as mountains, scene-gated */
+.parallax-city {
+  position: absolute; bottom: -20px; left: -5%; right: -5%; height: 42%;
+  will-change: transform; z-index: 2;
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+}
+.parallax-hero[data-scene="city"] .parallax-city { opacity: 1; }
+.parallax-hero[data-scene="city"].is-day .parallax-city:not(.parallax-city-day-wrap) { opacity: 0; }
+.parallax-city.parallax-city-day-wrap { opacity: 0; }
+.parallax-hero[data-scene="city"].is-day .parallax-city.parallax-city-day-wrap { opacity: 1; }
+
+
 /* Bald eagles — only visible during day, hidden on flat scenes */
 .parallax-eagles {
   position: absolute; inset: 0; z-index: 2;
@@ -343,10 +359,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-scene-img.is-active { opacity: 1; }
 
-/* Daytime treatment for the night city — brighten, cool, desaturate warm windows */
-.parallax-hero.is-day[data-scene="city-night"] .parallax-scene-img.is-active {
-  filter: brightness(1.55) contrast(0.92) saturate(0.7) hue-rotate(-15deg);
-}
+
+
 
 /* Scene switcher — bottom-center, subtle */
 .parallax-scene-switcher {
