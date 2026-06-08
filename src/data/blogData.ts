@@ -5,6 +5,7 @@ import blogCaseStudyWriting from '@/assets/blog-case-study-writing.jpg';
 import blogAiInDesign from '@/assets/blog-ai-in-design.jpg';
 import blogUserResearchBudget from '@/assets/blog-user-research-budget.jpg';
 import blogVisualHierarchy from '@/assets/blog-visual-hierarchy.jpg';
+import blogAiToolsProductDesigners from '@/assets/blog-ai-tools-product-designers.jpg';
 
 export interface BlogPost {
   id: string;
