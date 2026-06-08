@@ -292,6 +292,102 @@ const ParallaxHero: React.FC = () => {
           </div>
         </div>
 
+        {/* City skyline (night) — drifts like the mountains */}
+        <div className="parallax-city">
+          <div className="parallax-mountains-drift parallax-city-back">
+            {[0, 1].map((i) => (
+              <svg key={`cbn-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id={`cb-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#2a1838" />
+                    <stop offset="100%" stopColor="#120a1c" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,260 L0,170 L60,170 L60,140 L120,140 L120,180 L180,180 L180,120 L240,120 L240,160 L320,160 L320,100 L380,100 L380,150 L460,150 L460,130 L520,130 L520,170 L600,170 L600,110 L680,110 L680,150 L760,150 L760,135 L840,135 L840,170 L920,170 L920,125 L1000,125 L1000,160 L1080,160 L1080,140 L1140,140 L1140,175 L1200,175 L1200,260 Z"
+                  fill={`url(#cb-grad-${i})`}
+                />
+              </svg>
+            ))}
+          </div>
+          <div className="parallax-mountains-drift parallax-city-front">
+            {[0, 1].map((i) => (
+              <svg key={`cfn-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id={`cf-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#15101c" />
+                    <stop offset="100%" stopColor="#050308" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,260 L0,210 L80,210 L80,170 L150,170 L150,200 L220,200 L220,140 L260,140 L260,90 L300,90 L300,150 L370,150 L370,180 L450,180 L450,120 L520,120 L520,75 L560,75 L560,160 L640,160 L640,135 L720,135 L720,180 L800,180 L800,100 L860,100 L860,165 L940,165 L940,130 L1010,130 L1010,175 L1090,175 L1090,150 L1160,150 L1160,195 L1200,195 L1200,260 Z"
+                  fill={`url(#cf-grad-${i})`}
+                />
+                <rect x="278" y="70" width="2" height="20" fill="#050308" />
+                <rect x="538" y="55" width="2" height="20" fill="#050308" />
+                <rect x="828" y="80" width="2" height="20" fill="#050308" />
+                {Array.from({ length: 70 }).map((_, w) => {
+                  const xs = [85,105,125,160,180,200,230,245,270,295,310,330,350,380,400,420,460,480,500,520,540,570,590,610,630,650,670,690,710,730,750,770,810,830,850,870,890,910,930,950,970,990,1020,1040,1060,1080,1100,1120,1140,1160];
+                  const x = xs[w % xs.length];
+                  const yBase = 95 + ((w * 19) % 80);
+                  return (
+                    <rect
+                      key={`win-${i}-${w}`}
+                      x={x}
+                      y={yBase}
+                      width="3"
+                      height="4"
+                      fill="#ffd27a"
+                      opacity={0.55 + ((w * 31) % 45) / 100}
+                    />
+                  );
+                })}
+              </svg>
+            ))}
+          </div>
+        </div>
+
+        {/* City skyline (day) — sunlit version */}
+        <div className="parallax-city parallax-city-day-wrap">
+          <div className="parallax-mountains-drift parallax-city-back">
+            {[0, 1].map((i) => (
+              <svg key={`cbd-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id={`cbd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#9ec5e8" />
+                    <stop offset="100%" stopColor="#4f7fa8" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,260 L0,170 L60,170 L60,140 L120,140 L120,180 L180,180 L180,120 L240,120 L240,160 L320,160 L320,100 L380,100 L380,150 L460,150 L460,130 L520,130 L520,170 L600,170 L600,110 L680,110 L680,150 L760,150 L760,135 L840,135 L840,170 L920,170 L920,125 L1000,125 L1000,160 L1080,160 L1080,140 L1140,140 L1140,175 L1200,175 L1200,260 Z"
+                  fill={`url(#cbd-grad-${i})`}
+                />
+              </svg>
+            ))}
+          </div>
+          <div className="parallax-mountains-drift parallax-city-front">
+            {[0, 1].map((i) => (
+              <svg key={`cfd-${i}`} viewBox="0 0 1200 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id={`cfd-grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#3a6f9c" />
+                    <stop offset="100%" stopColor="#1c3a5e" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,260 L0,210 L80,210 L80,170 L150,170 L150,200 L220,200 L220,140 L260,140 L260,90 L300,90 L300,150 L370,150 L370,180 L450,180 L450,120 L520,120 L520,75 L560,75 L560,160 L640,160 L640,135 L720,135 L720,180 L800,180 L800,100 L860,100 L860,165 L940,165 L940,130 L1010,130 L1010,175 L1090,175 L1090,150 L1160,150 L1160,195 L1200,195 L1200,260 Z"
+                  fill={`url(#cfd-grad-${i})`}
+                />
+                <rect x="278" y="70" width="2" height="20" fill="#1c3a5e" />
+                <rect x="538" y="55" width="2" height="20" fill="#1c3a5e" />
+                <rect x="828" y="80" width="2" height="20" fill="#1c3a5e" />
+              </svg>
+            ))}
+          </div>
+        </div>
+
+
+
         {/* Bald eagles soaring (daytime only) */}
         <div className="parallax-eagles" aria-hidden>
           {[
