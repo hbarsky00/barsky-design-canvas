@@ -1,6 +1,8 @@
 import cityNight from "@/assets/scenes/city-night.jpg";
 import beachDay from "@/assets/scenes/beach-day.jpg";
 import snowCity from "@/assets/scenes/snow-city.jpg";
+import oceanNight from "@/assets/scenes/ocean-night.jpg";
+import oceanDay from "@/assets/scenes/ocean-day.jpg";
 
 export type TextMode = "light" | "dark";
 
@@ -44,10 +46,21 @@ export const SCENES: Scene[] = [
     image: snowCity,
     textMode: "dark",
   },
+  {
+    id: "ocean-day",
+    label: "Ocean — Day",
+    image: oceanDay,
+    textMode: "dark",
+  },
+  {
+    id: "ocean-night",
+    label: "Ocean — Night",
+    image: oceanNight,
+    textMode: "light",
+  },
 ];
 
 /** Live silhouette scene ids that are NOT flat images. */
 export const LIVE_SCENE_IDS = ["mountains", "city"] as const;
 
 export const DEFAULT_SCENE_ID = "mountains";
-
