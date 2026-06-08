@@ -275,7 +275,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
     height: 100%;
     margin-bottom: 0;
   }
-  .parallax-content { padding-top: 72px; padding-bottom: 0; }
+  .parallax-content { padding-top: 40px; padding-bottom: 0; }
   .parallax-content .hero-inner { padding-bottom: 0; }
   .parallax-content .social-icons { margin-top: 20px; }
   .parallax-content .book-call-wrap { margin-top: 8px; }
