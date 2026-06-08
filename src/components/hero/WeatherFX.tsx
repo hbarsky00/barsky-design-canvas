@@ -129,18 +129,22 @@ const WeatherFX: React.FC = () => {
 
     // Master cycle
     const cycle = async () => {
+      // Short initial delay so weather is visible without waiting forever
+      await wait(rand(2500, 5000));
+      let first = true;
       while (!cancelled) {
-        // long idle clear window so legibility is the default state
-        await wait(rand(18000, 28000));
-        if (cancelled) return;
         const pick: Mode = Math.random() < 0.5 ? "rain" : "snow";
         startWeather(pick);
-        await wait(rand(10000, 16000));
+        await wait(rand(12000, 18000));
         if (cancelled) return;
         stopSpawning();
         root.dataset.mode = "clear";
         await clearWeather();
         mode = "clear";
+        if (cancelled) return;
+        // moderate idle gap between weather events
+        await wait(rand(8000, 14000));
+        first = false;
       }
     };
 
