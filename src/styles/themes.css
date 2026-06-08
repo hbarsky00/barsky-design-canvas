@@ -359,10 +359,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-scene-img.is-active { opacity: 1; }
 
-/* Daytime treatment for the night city — brighten, cool, desaturate warm windows */
-.parallax-hero.is-day[data-scene="city-night"] .parallax-scene-img.is-active {
-  filter: brightness(1.55) contrast(0.92) saturate(0.7) hue-rotate(-15deg);
-}
+
+
 
 /* Scene switcher — bottom-center, subtle */
 .parallax-scene-switcher {
