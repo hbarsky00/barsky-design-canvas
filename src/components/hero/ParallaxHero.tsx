@@ -312,6 +312,26 @@ const ParallaxHero: React.FC = () => {
                 <rect x="339" y="28" width="2" height="22" fill="#1c3a5e" />
                 <rect x="644" y="38" width="2" height="22" fill="#1c3a5e" />
                 <rect x="944" y="50" width="2" height="20" fill="#1c3a5e" />
+                {/* Dark windows on daytime front skyline */}
+                <g fill="#1c3a5e" opacity="0.6">
+                  <rect x="200" y="100" width="3" height="4" /><rect x="210" y="100" width="3" height="4" /><rect x="220" y="100" width="3" height="4" /><rect x="230" y="100" width="3" height="4" /><rect x="240" y="100" width="3" height="4" />
+                  <rect x="200" y="120" width="3" height="4" /><rect x="220" y="120" width="3" height="4" /><rect x="240" y="120" width="3" height="4" />
+                  <rect x="200" y="140" width="3" height="4" /><rect x="210" y="140" width="3" height="4" /><rect x="230" y="140" width="3" height="4" />
+                  <rect x="320" y="70" width="3" height="4" /><rect x="335" y="70" width="3" height="4" /><rect x="350" y="70" width="3" height="4" />
+                  <rect x="320" y="90" width="3" height="4" /><rect x="350" y="90" width="3" height="4" />
+                  <rect x="320" y="110" width="3" height="4" /><rect x="335" y="110" width="3" height="4" />
+                  <rect x="500" y="110" width="3" height="4" /><rect x="515" y="110" width="3" height="4" /><rect x="530" y="110" width="3" height="4" /><rect x="545" y="110" width="3" height="4" />
+                  <rect x="500" y="130" width="3" height="4" /><rect x="530" y="130" width="3" height="4" />
+                  <rect x="625" y="80" width="3" height="4" /><rect x="645" y="80" width="3" height="4" /><rect x="665" y="80" width="3" height="4" />
+                  <rect x="625" y="100" width="3" height="4" /><rect x="665" y="100" width="3" height="4" />
+                  <rect x="625" y="120" width="3" height="4" /><rect x="645" y="120" width="3" height="4" />
+                  <rect x="805" y="120" width="3" height="4" /><rect x="820" y="120" width="3" height="4" /><rect x="835" y="120" width="3" height="4" /><rect x="845" y="120" width="3" height="4" />
+                  <rect x="805" y="140" width="3" height="4" /><rect x="835" y="140" width="3" height="4" />
+                  <rect x="925" y="90" width="3" height="4" /><rect x="945" y="90" width="3" height="4" /><rect x="965" y="90" width="3" height="4" />
+                  <rect x="925" y="110" width="3" height="4" /><rect x="965" y="110" width="3" height="4" />
+                  <rect x="925" y="130" width="3" height="4" /><rect x="945" y="130" width="3" height="4" />
+                  <rect x="1105" y="130" width="3" height="4" /><rect x="1120" y="130" width="3" height="4" /><rect x="1140" y="130" width="3" height="4" />
+                </g>
               </svg>
             ))}
           </div>
