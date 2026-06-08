@@ -250,9 +250,6 @@ const ParallaxHero: React.FC = () => {
           <div className="parallax-silhouette-slot" data-silhouette="coastline">
             <CoastlineSilhouette />
           </div>
-          <div className="parallax-silhouette-slot" data-silhouette="palms">
-            <PalmsSilhouette />
-          </div>
         </div>
 
 
