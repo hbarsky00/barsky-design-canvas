@@ -12,21 +12,21 @@ const MountainsSilhouette: React.FC = () => {
   const frontPath =
     "M0,260 L0,215 L150,140 L260,180 L390,55 L520,170 L660,100 L790,180 L930,45 L1070,170 L1200,135 L1200,260 Z";
 
-  // Snow cap triangles for the 4 tallest peaks (back: 340,860 — front: 390,930)
+  // Snow caps — single triangles, apex exactly at peak, base points walked
+  // down the actual slopes so the cap sits ON the mountain. Front layer only
+  // (back is blurred/dim and freestanding triangles look floaty there).
+  // Front peaks: (390,55) between (260,180)->(520,170); (930,45) between (790,180)->(1070,170).
   const snowFront = (
-    <g>
-      <polygon points="370,80 390,55 410,80 405,90 395,82 385,90" fill="#ffffff" opacity="0.9" />
-      <polygon points="910,72 930,45 950,72 945,82 935,72 925,82" fill="#ffffff" opacity="0.9" />
-      <polygon points="245,160 260,180 275,160" fill="#ffffff" opacity="0.75" />
-      <polygon points="775,160 790,180 805,160" fill="#ffffff" opacity="0.75" />
+    <g fill="#ffffff" opacity="0.92">
+      {/* Left summit cap, depth 22 */}
+      <polygon points="367.1,77 390,55 412.4,77" />
+      {/* Right summit cap, depth 22 */}
+      <polygon points="909.3,67 930,45 951.7,67" />
     </g>
   );
-  const snowBack = (
-    <g>
-      <polygon points="325,108 340,90 355,108" fill="#ffffff" opacity="0.7" />
-      <polygon points="845,98 860,80 875,98" fill="#ffffff" opacity="0.7" />
-    </g>
-  );
+  // Back layer stays bare — see skill://snow-caps-on-peaks
+  const snowBack = null;
+
 
   return (
     <>
