@@ -18,6 +18,8 @@ import moonGibbous from "@/assets/hero-moon-gibbous.png";
 
 const MOON_PHASES = [moonCrescent, moonHalf, moonGibbous, moonFull];
 const SUN_PHASES = [sunMidday, sunGolden, sunHazy, sunSunset];
+const CLOUD_PRESETS = ["clear", "few", "scattered", "overcast"] as const;
+type CloudPreset = typeof CLOUD_PRESETS[number];
 
 
 const ParallaxHero: React.FC = () => {
