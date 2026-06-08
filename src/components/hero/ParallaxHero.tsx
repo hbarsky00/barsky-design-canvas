@@ -6,7 +6,7 @@ import { SCENES, DEFAULT_SCENE_ID, LIVE_SCENE_IDS } from "./scenes";
 import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
 import CitySilhouette from "./silhouettes/CitySilhouette";
 import CoastlineSilhouette from "./silhouettes/CoastlineSilhouette";
-import PalmsSilhouette from "./silhouettes/PalmsSilhouette";
+
 import sunMidday from "@/assets/hero-sun-midday.png";
 import sunGolden from "@/assets/hero-sun-golden.png";
 import sunHazy from "@/assets/hero-sun-hazy.png";
