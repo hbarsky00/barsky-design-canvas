@@ -872,7 +872,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   height: 100%;
   display: flex;
   will-change: transform;
-  animation: mountainDrift 60s linear infinite;
+  animation: mountainDrift 25s linear infinite;
 }
 .parallax-mountains-drift > svg,
 .parallax-mountains-drift > img {
@@ -887,7 +887,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 .parallax-mountains-front {
   bottom: 0;
   height: 70%;
-  animation-duration: 90s; /* parallax: front layer slower for depth */
+  animation-duration: 40s; /* parallax: front layer slower than back for depth */
 }
 @keyframes mountainDrift {
   from { transform: translateX(0); }
