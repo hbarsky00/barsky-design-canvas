@@ -2,7 +2,42 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import HeroContent from "./HeroContent";
 import SkyEffects from "./SkyEffects";
 import WeatherFX from "./WeatherFX";
-import { SCENES, DEFAULT_SCENE_ID } from "./scenes";
+import { SCENES, DEFAULT_SCENE_ID, LIVE_SCENE_IDS } from "./scenes";
+import MountainsSilhouette from "./silhouettes/MountainsSilhouette";
+import CitySilhouette from "./silhouettes/CitySilhouette";
+
+
+const ParallaxHero: React.FC = () => {
+  const skyRef = useRef<HTMLDivElement>(null);
+  const starsRef = useRef<HTMLDivElement>(null);
+  const mountainsRef = useRef<HTMLDivElement>(null);
+  const [isDay, setIsDay] = useState(false);
+  const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
+  const activeScene = SCENES.find((s) => s.id === sceneId) ?? SCENES[0];
+  const isFlatScene = activeScene.image !== null;
+  // Text mode: flat scene's textMode wins; live scenes use day/night.
+  const textMode = isFlatScene ? activeScene.textMode : (isDay ? "dark" : "light");
+
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsDay((d) => !d), isDay ? 12000 : 12000);
+    return () => clearTimeout(t);
+  }, [isDay]);
+
+  // Auto-rotate between live silhouette scenes (mountains <-> city) every 18s.
+  // Pauses when a flat image scene is active.
+  useEffect(() => {
+    if (isFlatScene) return;
+    const t = setTimeout(() => {
+      setSceneId((prev) => {
+        const idx = LIVE_SCENE_IDS.indexOf(prev as typeof LIVE_SCENE_IDS[number]);
+        const nextIdx = idx === -1 ? 0 : (idx + 1) % LIVE_SCENE_IDS.length;
+        return LIVE_SCENE_IDS[nextIdx];
+      });
+    }, 18000);
+    return () => clearTimeout(t);
+  }, [sceneId, isFlatScene]);
+
 
 
 
