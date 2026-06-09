@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import AnimatedName from "./AnimatedName";
 
 interface IdentityBadgeProps {
   imageSrc: string;
