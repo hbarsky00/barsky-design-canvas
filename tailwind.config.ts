@@ -300,6 +300,33 @@ const config: Config = {
             transform: "translateY(0%) rotateX(0deg)",
           },
         },
+        "name-glow": {
+          "0%, 100%": { textShadow: "0 0 0px rgba(59,130,246,0)" },
+          "50%": { textShadow: "0 0 12px rgba(59,130,246,0.5), 0 0 4px rgba(59,130,246,0.3)" },
+        },
+        "name-wave": {
+          "0%, 100%": { transform: "rotate(0deg) scale(1)" },
+          "25%": { transform: "rotate(-1.5deg) scale(1.02)" },
+          "75%": { transform: "rotate(1.5deg) scale(1.02)" },
+        },
+        "name-pop": {
+          "0%": { transform: "scale(1)" },
+          "30%": { transform: "scale(1.08)" },
+          "60%": { transform: "scale(0.96)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "name-track": {
+          "0%, 100%": { letterSpacing: "-0.02em" },
+          "50%": { letterSpacing: "0.08em" },
+        },
+        "name-shimmer": {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        "name-breathe": {
+          "0%, 100%": { opacity: "1", transform: "translateY(0)" },
+          "50%": { opacity: "0.7", transform: "translateY(-3px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
