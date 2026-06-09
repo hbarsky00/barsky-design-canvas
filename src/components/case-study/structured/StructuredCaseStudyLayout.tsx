@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Home } from "lucide-react";
+import { Home } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
@@ -92,14 +93,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
           {/* Back to projects bar — clear exit from case study */}
           <div className="section-container mb-4 flex items-center justify-between gap-3">
-            <Link
-              to="/#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted transition-colors"
-              aria-label="Back to all projects"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to projects
-            </Link>
+            <BackButton to="/#projects" label="Back to projects" ariaLabel="Back to all projects" />
+
             <Link
               to="/"
               className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"

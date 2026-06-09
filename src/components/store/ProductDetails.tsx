@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
+import { ShoppingCart, Award, CreditCard } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -60,11 +61,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-6">
-        <Button variant="ghost" asChild>
-          <Link to="/store" className="flex items-center text-slate-600 dark:text-slate-300 hover:text-barsky-blue">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Back to Store
-          </Link>
-        </Button>
+        <BackButton to="/store" label="Back to Store" />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

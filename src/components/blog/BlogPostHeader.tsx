@@ -1,11 +1,10 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@/data/blogData";
 import { Calendar, Clock } from "lucide-react";
 import MinimalShareToolbar from "./MinimalShareToolbar";
+import BackButton from "@/components/ui/BackButton";
 
 interface BlogPostHeaderProps {
   post: BlogPost;
@@ -14,13 +13,9 @@ interface BlogPostHeaderProps {
 const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
   return (
     <header className="mb-12">
-      <Link 
-        to="/blog" 
-        className="inline-flex items-center text-barsky-blue hover:underline mb-8"
-      >
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to all posts
-      </Link>
+      <div className="mb-8">
+        <BackButton to="/blog" label="Back to all posts" />
+      </div>
       
       <div className="flex flex-wrap gap-2 mb-4">
         {post.tags.map(tag => (
