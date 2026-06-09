@@ -159,15 +159,14 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
       </div>
 
       <div className="flex flex-col font-display whitespace-nowrap">
-        <span
+        <AnimatedName
+          name={name}
           className={cn(
             s.name,
             "font-semibold tracking-tight leading-none",
             "text-slate-800 dark:text-slate-100"
           )}
-        >
-          {name}
-        </span>
+        />
 
         {subtitle && (
           subtitleStyle === "pill" ? (
