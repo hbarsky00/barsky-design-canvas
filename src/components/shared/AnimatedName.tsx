@@ -1,63 +1,61 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { cn } from "@/lib/utils";
 
-const ANIMATIONS = [
-  "animate-name-glow",
-  "animate-name-wave",
-  "animate-name-pop",
-  "animate-name-track",
-  "animate-name-shimmer",
-  "animate-name-breathe",
-] as const;
+const WebGLNameFx = lazy(() => import("./WebGLNameFx"));
+
+const EFFECT_COUNT = 6;
+const CYCLE_MS = 15000;
+const ACTIVE_MS = 2500;
 
 interface AnimatedNameProps {
   name: string;
   className?: string;
 }
 
+/**
+ * Crisp HTML text on top, WebGL/Three.js FX layer behind.
+ * Cycles 6 distinct shader effects every 15s for 2.5s each.
+ * Respects prefers-reduced-motion (no FX layer rendered).
+ */
 const AnimatedName: React.FC<AnimatedNameProps> = ({ name, className }) => {
-  const [index, setIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [effect, setEffect] = useState(0);
+  const [active, setActive] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    // Trigger first animation immediately on mount
-    setIsPlaying(true);
-    const endTimer = setTimeout(() => setIsPlaying(false), 2500);
-
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % ANIMATIONS.length);
-      setIsPlaying(true);
-      const t = setTimeout(() => setIsPlaying(false), 2500);
-      return () => clearTimeout(t);
-    }, 15000);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(endTimer);
-    };
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mql.matches);
+    const onChange = () => setReduced(mql.matches);
+    mql.addEventListener?.("change", onChange);
+    return () => mql.removeEventListener?.("change", onChange);
   }, []);
 
+  useEffect(() => {
+    if (reduced) return;
+    let endTimer: number | undefined;
+    const trigger = () => {
+      setActive(true);
+      endTimer = window.setTimeout(() => setActive(false), ACTIVE_MS);
+    };
+    trigger();
+    const interval = window.setInterval(() => {
+      setEffect((p) => (p + 1) % EFFECT_COUNT);
+      trigger();
+    }, CYCLE_MS);
+    return () => {
+      window.clearInterval(interval);
+      if (endTimer) window.clearTimeout(endTimer);
+    };
+  }, [reduced]);
+
   return (
-    <span
-      className={cn(
-        className,
-        "inline-block origin-center",
-        isPlaying ? ANIMATIONS[index] : ""
+    <span className={cn("relative inline-block leading-none", className)}>
+      <span className="relative z-10">{name}</span>
+      {!reduced && (
+        <Suspense fallback={null}>
+          <WebGLNameFx effect={effect} active={active} />
+        </Suspense>
       )}
-      style={
-        ANIMATIONS[index] === "animate-name-shimmer"
-          ? {
-              backgroundImage:
-                "linear-gradient(90deg, hsl(var(--foreground)) 0%, #3b82f6 50%, hsl(var(--foreground)) 100%)",
-              backgroundSize: "200% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }
-          : undefined
-      }
-    >
-      {name}
     </span>
   );
 };
