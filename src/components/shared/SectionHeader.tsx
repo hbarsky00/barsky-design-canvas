@@ -34,7 +34,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   subtitleAnimation = "typewriter",
   subtitleDelay = 0.2,
 }) => {
-  const Tag = as as keyof JSX.IntrinsicElements;
+  const Tag = as as unknown as React.ElementType;
 
   return (
     <header className={clsx("not-prose text-center mb-8 md:mb-12", className)}>
