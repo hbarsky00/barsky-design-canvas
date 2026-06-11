@@ -3,24 +3,17 @@ import React, { Suspense, lazy } from "react";
 const WebGLCityLayer = lazy(() => import("./WebGLCityLayer"));
 
 /**
- * City skyline silhouette via WebGL (single canvas per day/night mode).
- * Slots into the .parallax-mountains structure so positioning, day/night
- * crossfade (CSS opacity), and parallax all behave as before.
+ * City skyline silhouette — ONE WebGL canvas. Day/night is blended inside
+ * the shader (uDay watches body[data-daytime]), so no second day canvas.
+ * Inline opacity:1 overrides the .is-day CSS that would hide the night layer.
  */
 const CitySilhouette: React.FC = () => {
   return (
-    <>
-      <div className="parallax-mountains" data-silhouette="city">
-        <Suspense fallback={null}>
-          <WebGLCityLayer day={0} />
-        </Suspense>
-      </div>
-      <div className="parallax-mountains parallax-mountains-day" data-silhouette="city">
-        <Suspense fallback={null}>
-          <WebGLCityLayer day={1} />
-        </Suspense>
-      </div>
-    </>
+    <div className="parallax-mountains" data-silhouette="city" style={{ opacity: 1 }}>
+      <Suspense fallback={null}>
+        <WebGLCityLayer />
+      </Suspense>
+    </div>
   );
 };
 
