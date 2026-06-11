@@ -378,11 +378,11 @@ const WebGLBeachLayer: React.FC = () => {
     <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
       <Canvas
         dpr={[1, 1.5]}
-        camera={{ position: [0, 2.2, 13], fov: 38, near: 0.1, far: 220 }}
+        camera={{ position: [0, 1.7, 10], fov: 42, near: 0.1, far: 220 }}
         gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
         onCreated={({ camera }) => {
-          camera.lookAt(0, 0.4, -18);
+          camera.lookAt(0, 1.1, -8);
         }}
       >
         <BeachScene />
