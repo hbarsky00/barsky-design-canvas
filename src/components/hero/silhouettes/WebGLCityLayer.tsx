@@ -1,11 +1,28 @@
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 /**
  * Single-canvas WebGL city skyline. Draws BOTH back and front building layers
- * inside one fragment shader to minimize WebGL contexts (browsers cap at ~16).
+ * inside one fragment shader, and blends day/night via uDay (watching
+ * body[data-daytime]) so only ONE WebGL context is used for the whole scene.
  */
+
+const useDayTarget = () => {
+  const target = useRef(
+    typeof document !== "undefined" && document.body.dataset.daytime === "day" ? 1 : 0
+  );
+  useEffect(() => {
+    const update = () => {
+      target.current = document.body.dataset.daytime === "day" ? 1 : 0;
+    };
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(document.body, { attributes: true, attributeFilter: ["data-daytime"] });
+    return () => obs.disconnect();
+  }, []);
+  return target;
+};
 
 const vert = /* glsl */ `
   varying vec2 vUv;
@@ -80,22 +97,25 @@ const frag = /* glsl */ `
   }
 `;
 
-const CityPlane: React.FC<{ day: number }> = ({ day }) => {
+const CityPlane: React.FC = () => {
   const matRef = useRef<THREE.ShaderMaterial>(null);
   const { viewport, size } = useThree();
+  const dayTarget = useDayTarget();
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uDay: { value: day },
+      uDay: { value: dayTarget.current },
       uAspect: { value: 1 },
     }),
-    [day]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     if (matRef.current) {
       const u = matRef.current.uniforms as any;
       u.uTime.value = clock.elapsedTime;
       u.uAspect.value = size.width / Math.max(size.height, 1);
+      u.uDay.value = THREE.MathUtils.damp(u.uDay.value, dayTarget.current, 1.6, delta);
     }
   });
   return (
@@ -113,7 +133,7 @@ const CityPlane: React.FC<{ day: number }> = ({ day }) => {
   );
 };
 
-const WebGLCityLayer: React.FC<{ day: number }> = ({ day }) => {
+const WebGLCityLayer: React.FC = () => {
   return (
     <div
       aria-hidden
@@ -126,7 +146,7 @@ const WebGLCityLayer: React.FC<{ day: number }> = ({ day }) => {
         gl={{ antialias: true, alpha: true, premultipliedAlpha: false, powerPreference: "low-power" }}
         style={{ background: "transparent" }}
       >
-        <CityPlane day={day} />
+        <CityPlane />
       </Canvas>
     </div>
   );
