@@ -358,17 +358,6 @@ const BeachScene: React.FC = () => {
       <directionalLight ref={dirRef} position={[8, 6, 4]} />
       <Sand day={day} />
       <Water day={day} />
-
-      {/* Dancers on the sand */}
-      <Person x={-6.5} z={4.5} scale={1.15} phase={0.0} dancing tone={0.15} swim="#e54b6b" rotY={0.2} day={day} />
-      <Person x={-4.2} z={6.0} scale={1.05} phase={1.3} dancing tone={0.75} swim="#2bb6c4" rotY={-0.15} day={day} />
-      <Person x={-1.8} z={4.0} scale={1.20} phase={2.1} dancing tone={0.40} swim="#f0c14b" rotY={0.05} day={day} />
-      <Person x={ 4.0} z={5.0} scale={1.10} phase={0.7} dancing tone={0.85} swim="#7d4ed0" rotY={-0.25} day={day} />
-      <Person x={ 6.5} z={4.0} scale={1.05} phase={2.6} dancing tone={0.30} swim="#f28b3d" rotY={0.3} day={day} />
-
-      {/* Relaxers on the sand */}
-      <Person x={ 0.8} z={3.6} scale={1.00} sitting tone={0.50} swim="#36a86d" rotY={-0.35} day={day} />
-      <Person x={ 2.6} z={4.2} scale={0.95} sitting tone={0.65} swim="#e0a3c8" rotY={0.25} day={day} />
     </>
   );
 };
