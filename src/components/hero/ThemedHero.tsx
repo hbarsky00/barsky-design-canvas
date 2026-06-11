@@ -42,7 +42,7 @@ const ThemedHero: React.FC = () => {
     }
   };
 
-  const showBackdrop = themeId !== "3d" && !NO_BACKDROP_THEMES.has(themeId);
+  const showBackdrop = !NO_BACKDROP_THEMES.has(themeId);
 
   return (
     <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero" className="relative">
