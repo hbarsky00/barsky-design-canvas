@@ -1,5 +1,5 @@
 ---
-name: WebGL Hero Scene Layer
+name: webgl-hero-scene-layer
 description: Procedural WebGL (R3F + shader) scenes for the hero silhouette slot — city, beach, etc. Single fragment shader per day/night, slots into .parallax-mountains.
 type: feature
 ---
