@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import "@/styles/themes.css";
 import { useStoredTheme } from "./StyleSwitcher";
-const ParallaxHero3D = lazy(() => import("./r3f/ParallaxHero3D"));
 import HeroContent from "./HeroContent";
 import TerminalHero from "./themes/TerminalHero";
 import LLMChatHero from "./themes/LLMChatHero";
@@ -11,11 +10,10 @@ import MDHero from "./themes/MDHero";
 import StructuralHero from "./themes/StructuralHero";
 import ThemeFx from "./themes/ThemeFx";
 
-const WebGLHeroBackdrop = lazy(() => import("./WebGLHeroBackdrop"));
+const ParallaxHero3D = lazy(() => import("./r3f/ParallaxHero3D"));
 
 const FX_THEMES = new Set(["flash", "brutalism", "swiss", "1990s"]);
 const STRUCTURAL_THEMES = new Set(["teletext", "sys7", "viz", "workbench", "2010s", "simple"]);
-const NO_BACKDROP_THEMES = new Set(["terminal", "win95", "8bit", "teletext", "sys7", "workbench"]);
 
 const ThemedHero: React.FC = () => {
   const [themeId, setThemeId] = useStoredTheme();
@@ -46,16 +44,9 @@ const ThemedHero: React.FC = () => {
     }
   };
 
-  const showBackdrop = !NO_BACKDROP_THEMES.has(themeId);
-
   return (
-    <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero" className="relative">
-      {showBackdrop && (
-        <Suspense fallback={null}>
-          <WebGLHeroBackdrop />
-        </Suspense>
-      )}
-      <div className="hero relative" style={{ zIndex: 1 }}>
+    <section data-theme={themeId} aria-label="Hiram Barsky portfolio hero">
+      <div className="hero">
         {renderInteractive()}
         {FX_THEMES.has(themeId) && <ThemeFx themeId={themeId} />}
       </div>
