@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import "@/styles/themes.css";
 import { useStoredTheme } from "./StyleSwitcher";
-import ParallaxHero from "./ParallaxHero";
+const ParallaxHero3D = lazy(() => import("./r3f/ParallaxHero3D"));
 import HeroContent from "./HeroContent";
 import TerminalHero from "./themes/TerminalHero";
 import LLMChatHero from "./themes/LLMChatHero";
@@ -21,7 +21,11 @@ const ThemedHero: React.FC = () => {
   const [themeId, setThemeId] = useStoredTheme();
 
   if (themeId === "3d") {
-    return <ParallaxHero />;
+    return (
+      <Suspense fallback={<section className="parallax-hero" aria-label="Loading 3D hero" />}>
+        <ParallaxHero3D />
+      </Suspense>
+    );
   }
 
   const renderInteractive = () => {
