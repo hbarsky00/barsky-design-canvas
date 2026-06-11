@@ -1,43 +1,41 @@
-import React from "react";
-import cityNight from "@/assets/hero-city-night.png";
-import cityDay from "@/assets/hero-city-day.png";
+import React, { Suspense, lazy } from "react";
+
+const WebGLCityLayer = lazy(() => import("./WebGLCityLayer"));
 
 /**
- * City skyline silhouette (live scene). Uses AI-generated panoramic PNGs with
- * transparent backgrounds. Seamless loop is achieved by mirroring the second
- * tile, so buildings never get cut at the wrap boundary.
- * Day/night crossfade is handled by .parallax-mountains CSS based on .is-day.
+ * City skyline silhouette rendered via WebGL/Three.js (procedural).
+ * Keeps the .parallax-mountains slot structure so positioning, day/night
+ * crossfade (CSS opacity), and parallax mouse/scroll offsets all behave
+ * exactly like the previous PNG version.
  */
 const CitySilhouette: React.FC = () => {
-  const renderTiles = (src: string, alt: string) => (
-    <>
-      <img src={src} alt={alt} draggable={false} />
-      <img src={src} alt="" aria-hidden className="is-mirrored" draggable={false} />
-    </>
-  );
-
   return (
     <>
       {/* NIGHT */}
       <div className="parallax-mountains" data-silhouette="city">
-        <div className="parallax-mountains-drift parallax-mountains-back">
-          {renderTiles(cityNight, "")}
+        <div className="parallax-mountains-back" style={{ position: "absolute", left: 0, width: "100%" }}>
+          <Suspense fallback={null}>
+            <WebGLCityLayer day={0} variant="back" />
+          </Suspense>
         </div>
-        <div className="parallax-mountains-drift parallax-mountains-front">
-          {renderTiles(cityNight, "City skyline at night")}
+        <div className="parallax-mountains-front" style={{ position: "absolute", left: 0, width: "100%" }}>
+          <Suspense fallback={null}>
+            <WebGLCityLayer day={0} variant="front" />
+          </Suspense>
         </div>
       </div>
 
       {/* DAY */}
-      <div
-        className="parallax-mountains parallax-mountains-day"
-        data-silhouette="city"
-      >
-        <div className="parallax-mountains-drift parallax-mountains-back">
-          {renderTiles(cityDay, "")}
+      <div className="parallax-mountains parallax-mountains-day" data-silhouette="city">
+        <div className="parallax-mountains-back" style={{ position: "absolute", left: 0, width: "100%" }}>
+          <Suspense fallback={null}>
+            <WebGLCityLayer day={1} variant="back" />
+          </Suspense>
         </div>
-        <div className="parallax-mountains-drift parallax-mountains-front">
-          {renderTiles(cityDay, "City skyline in daylight")}
+        <div className="parallax-mountains-front" style={{ position: "absolute", left: 0, width: "100%" }}>
+          <Suspense fallback={null}>
+            <WebGLCityLayer day={1} variant="front" />
+          </Suspense>
         </div>
       </div>
     </>
