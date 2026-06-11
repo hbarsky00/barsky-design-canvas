@@ -140,102 +140,185 @@ const Sand: React.FC<{ day: DayRef }> = ({ day }) => {
   );
 };
 
-// ---------- Person (low-poly silhouette, animated) ----------
+// ---------- Person (jointed low-poly figure) ----------
 type PersonProps = {
   x: number;
   z: number;
+  rotY?: number;
   scale?: number;
   phase?: number;
   dancing?: boolean;
   sitting?: boolean;
+  tone?: number;       // 0 → light, 1 → deep skin (day)
+  swim?: string;       // swimwear color (hex)
   day: DayRef;
 };
 
-const tmpColor = new THREE.Color();
+const skinDay = new THREE.Color();
+const skinNight = new THREE.Color(0.05, 0.05, 0.08);
+const tmp = new THREE.Color();
+const swimDay = new THREE.Color();
 
-const Person: React.FC<PersonProps> = ({ x, z, scale = 1, phase = 0, dancing = false, sitting = false, day }) => {
-  const group = useRef<THREE.Group>(null);
+const Person: React.FC<PersonProps> = ({
+  x, z, rotY = 0, scale = 1, phase = 0,
+  dancing = false, sitting = false,
+  tone = 0.5, swim = "#e54b6b",
+  day,
+}) => {
+  // refs to joints
+  const root = useRef<THREE.Group>(null);
   const torso = useRef<THREE.Group>(null);
-  const armL = useRef<THREE.Mesh>(null);
-  const armR = useRef<THREE.Mesh>(null);
-  const legL = useRef<THREE.Mesh>(null);
-  const legR = useRef<THREE.Mesh>(null);
+  const shoulderL = useRef<THREE.Group>(null);
+  const shoulderR = useRef<THREE.Group>(null);
+  const hipL = useRef<THREE.Group>(null);
+  const hipR = useRef<THREE.Group>(null);
+
+  // material refs (skin vs swim)
+  const skinRefs = useRef<THREE.MeshStandardMaterial[]>([]);
+  const swimRefs = useRef<THREE.MeshStandardMaterial[]>([]);
+  const pushSkin = (m: THREE.MeshStandardMaterial | null) => { if (m && !skinRefs.current.includes(m)) skinRefs.current.push(m); };
+  const pushSwim = (m: THREE.MeshStandardMaterial | null) => { if (m && !swimRefs.current.includes(m)) swimRefs.current.push(m); };
+
+  // Precompute skin palette in lerp(0..1): tone 0 = (0.95,0.78,0.62), tone 1 = (0.42,0.26,0.18)
+  const skinR_d = THREE.MathUtils.lerp(0.95, 0.42, tone);
+  const skinG_d = THREE.MathUtils.lerp(0.78, 0.26, tone);
+  const skinB_d = THREE.MathUtils.lerp(0.62, 0.18, tone);
+  swimDay.set(swim);
 
   useFrame(({ clock }) => {
     const t = clock.elapsedTime + phase;
     const d = day.current;
-    if (dancing && torso.current) {
-      torso.current.position.y = 0.92 + Math.abs(Math.sin(t * 3)) * 0.08;
-      torso.current.rotation.z = Math.sin(t * 2) * 0.12;
-    }
+
     if (dancing) {
-      if (armL.current) armL.current.rotation.z = Math.PI * 0.85 + Math.sin(t * 3) * 0.4;
-      if (armR.current) armR.current.rotation.z = -Math.PI * 0.85 - Math.sin(t * 3 + 1) * 0.4;
-      if (legL.current) legL.current.rotation.x = Math.sin(t * 4) * 0.3;
-      if (legR.current) legR.current.rotation.x = -Math.sin(t * 4) * 0.3;
-    }
-    // Dark silhouette at night, warm dark skin-tone at day
-    tmpColor.setRGB(
-      THREE.MathUtils.lerp(0.03, 0.13, d),
-      THREE.MathUtils.lerp(0.03, 0.10, d),
-      THREE.MathUtils.lerp(0.05, 0.10, d)
-    );
-    group.current?.traverse((o) => {
-      const mesh = o as THREE.Mesh;
-      if ((mesh as any).isMesh) {
-        const m = mesh.material as THREE.MeshStandardMaterial;
-        if (m && (m as any).isMeshStandardMaterial) m.color.copy(tmpColor);
+      // hip sway + bounce
+      if (torso.current) {
+        torso.current.rotation.z = Math.sin(t * 2.2) * 0.10;
+        torso.current.position.y = Math.abs(Math.sin(t * 3.0)) * 0.05;
       }
-    });
+      // arms up & swaying (rotate around shoulder = local Z so arm swings out to the side)
+      if (shoulderL.current) {
+        shoulderL.current.rotation.z = 1.9 + Math.sin(t * 2.5) * 0.35;     // raised
+        shoulderL.current.rotation.x = Math.sin(t * 2.0) * 0.15;
+      }
+      if (shoulderR.current) {
+        shoulderR.current.rotation.z = -1.9 - Math.sin(t * 2.5 + 1) * 0.35;
+        shoulderR.current.rotation.x = Math.sin(t * 2.0 + 0.6) * 0.15;
+      }
+      // legs step in place
+      if (hipL.current) hipL.current.rotation.x = Math.sin(t * 3.0) * 0.30;
+      if (hipR.current) hipR.current.rotation.x = -Math.sin(t * 3.0) * 0.30;
+    }
+
+    // skin color
+    skinDay.setRGB(skinR_d, skinG_d, skinB_d);
+    tmp.copy(skinNight).lerp(skinDay, d);
+    for (const m of skinRefs.current) m.color.copy(tmp);
+
+    // swim color (only visible during day; near-black at night so it merges)
+    tmp.copy(skinNight).lerp(swimDay, Math.min(1, d * 1.1));
+    for (const m of swimRefs.current) m.color.copy(tmp);
   });
 
   if (sitting) {
+    // Sitting on the sand, leaning back on one arm, knees bent up
     return (
-      <group ref={group} position={[x, 0, z]} scale={scale} rotation={[0, -0.3, 0]}>
-        <mesh position={[0, 0.35, 0]} rotation={[0, 0, -0.45]}>
-          <capsuleGeometry args={[0.18, 0.5, 4, 8]} />
-          <meshStandardMaterial roughness={0.95} />
+      <group ref={root} position={[x, 0, z]} rotation={[0, rotY, 0]} scale={scale}>
+        {/* hips on the sand */}
+        <mesh position={[0, 0.18, 0]}>
+          <sphereGeometry args={[0.20, 14, 12]} />
+          <meshStandardMaterial ref={(m) => pushSwim(m)} roughness={0.95} />
         </mesh>
-        <mesh position={[0.40, 0.64, 0]}>
-          <sphereGeometry args={[0.17, 12, 12]} />
-          <meshStandardMaterial roughness={0.95} />
-        </mesh>
-        <mesh position={[-0.25, 0.20, 0]} rotation={[0, 0, 0.6]}>
-          <capsuleGeometry args={[0.10, 0.55, 4, 8]} />
-          <meshStandardMaterial roughness={0.95} />
-        </mesh>
+        {/* torso leaning back */}
+        <group position={[0, 0.30, 0]} rotation={[-0.55, 0, 0]}>
+          <mesh position={[0, 0.22, 0]}>
+            <capsuleGeometry args={[0.14, 0.32, 6, 12]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+          {/* neck + head */}
+          <mesh position={[0, 0.58, 0]}>
+            <sphereGeometry args={[0.13, 14, 12]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+          {/* support arm back */}
+          <group position={[0.16, 0.30, 0]} rotation={[0.4, 0, -1.1]}>
+            <mesh position={[0, -0.22, 0]}>
+              <capsuleGeometry args={[0.05, 0.34, 4, 8]} />
+              <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+            </mesh>
+          </group>
+          {/* resting arm on knee */}
+          <group position={[-0.16, 0.30, 0]} rotation={[1.2, 0, 0.3]}>
+            <mesh position={[0, -0.22, 0]}>
+              <capsuleGeometry args={[0.05, 0.34, 4, 8]} />
+              <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+            </mesh>
+          </group>
+        </group>
+        {/* bent legs (knees up) */}
+        <group position={[-0.10, 0.20, 0.05]} rotation={[-1.1, 0, 0]}>
+          <mesh position={[0, -0.22, 0]}>
+            <capsuleGeometry args={[0.07, 0.36, 4, 8]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+        </group>
+        <group position={[0.10, 0.20, 0.05]} rotation={[-1.1, 0, 0]}>
+          <mesh position={[0, -0.22, 0]}>
+            <capsuleGeometry args={[0.07, 0.36, 4, 8]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+        </group>
       </group>
     );
   }
 
+  // Standing / dancing rig — joints pivot at shoulder/hip so limbs swing correctly
   return (
-    <group ref={group} position={[x, 0, z]} scale={scale}>
-      <group ref={torso} position={[0, 0.92, 0]}>
-        <mesh>
-          <capsuleGeometry args={[0.18, 0.55, 4, 8]} />
-          <meshStandardMaterial roughness={0.95} />
-        </mesh>
-        <mesh position={[0, 0.58, 0]}>
-          <sphereGeometry args={[0.18, 12, 12]} />
-          <meshStandardMaterial roughness={0.95} />
-        </mesh>
-        <mesh ref={armL} position={[-0.20, 0.28, 0]}>
-          <capsuleGeometry args={[0.07, 0.45, 4, 6]} />
-          <meshStandardMaterial roughness={0.95} />
-        </mesh>
-        <mesh ref={armR} position={[0.20, 0.28, 0]}>
-          <capsuleGeometry args={[0.07, 0.45, 4, 6]} />
-          <meshStandardMaterial roughness={0.95} />
+    <group ref={root} position={[x, 0, z]} rotation={[0, rotY, 0]} scale={scale}>
+      {/* legs first (origin at hip joint, mesh hangs below) */}
+      <group ref={hipL} position={[-0.08, 0.55, 0]}>
+        <mesh position={[0, -0.25, 0]}>
+          <capsuleGeometry args={[0.07, 0.42, 4, 8]} />
+          <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
         </mesh>
       </group>
-      <mesh ref={legL} position={[-0.10, 0.42, 0]}>
-        <capsuleGeometry args={[0.09, 0.5, 4, 6]} />
-        <meshStandardMaterial roughness={0.95} />
+      <group ref={hipR} position={[0.08, 0.55, 0]}>
+        <mesh position={[0, -0.25, 0]}>
+          <capsuleGeometry args={[0.07, 0.42, 4, 8]} />
+          <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+        </mesh>
+      </group>
+
+      {/* hips / swim band */}
+      <mesh position={[0, 0.58, 0]}>
+        <cylinderGeometry args={[0.14, 0.14, 0.12, 14]} />
+        <meshStandardMaterial ref={(m) => pushSwim(m)} roughness={0.95} />
       </mesh>
-      <mesh ref={legR} position={[0.10, 0.42, 0]}>
-        <capsuleGeometry args={[0.09, 0.5, 4, 6]} />
-        <meshStandardMaterial roughness={0.95} />
-      </mesh>
+
+      {/* torso group sways */}
+      <group ref={torso} position={[0, 0.70, 0]}>
+        <mesh position={[0, 0.18, 0]}>
+          <capsuleGeometry args={[0.13, 0.34, 6, 12]} />
+          <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+        </mesh>
+        {/* neck + head */}
+        <mesh position={[0, 0.56, 0]}>
+          <sphereGeometry args={[0.13, 14, 12]} />
+          <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+        </mesh>
+        {/* shoulders: rotation.z swings the arm out to the side */}
+        <group ref={shoulderL} position={[-0.17, 0.32, 0]}>
+          <mesh position={[0, -0.22, 0]}>
+            <capsuleGeometry args={[0.05, 0.36, 4, 8]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+        </group>
+        <group ref={shoulderR} position={[0.17, 0.32, 0]}>
+          <mesh position={[0, -0.22, 0]}>
+            <capsuleGeometry args={[0.05, 0.36, 4, 8]} />
+            <meshStandardMaterial ref={(m) => pushSkin(m)} roughness={0.95} />
+          </mesh>
+        </group>
+      </group>
     </group>
   );
 };
