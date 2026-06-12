@@ -158,42 +158,47 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
   return (
     <section className="mt-12 pt-8 border-t border-gray-200">
       <h3 className="heading-subsection text-gray-900 mb-6">
-        Related UX Design Articles
+        Related AI Design Posts
       </h3>
-      
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {relatedPosts.map((post) => (
-          <article 
+          <Link
             key={post.id}
-            className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors duration-200"
+            to={`/blog/${post.slug}`}
+            className="group bg-gray-50 rounded-lg overflow-hidden hover:bg-gray-100 transition-colors duration-200 block"
+            title={`Read more about ${post.title}`}
           >
-            <h4 className="heading-medium text-gray-900 mb-2 line-clamp-2">
-              {post.title}
-            </h4>
-            
-            <p className="text-gray-600 mb-3 line-clamp-2 text-sm">
-              {post.excerpt}
-            </p>
-            
-            <div className="flex flex-wrap gap-1 mb-3">
-              {post.tags.slice(0, 2).map((tag) => (
-                <span 
-                  key={tag}
-                  className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="aspect-video overflow-hidden">
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
             </div>
-            
-            <Link 
-              to={`/blog/${post.slug}`}
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200"
-              title={`Read more about ${post.title}`}
-            >
-              Read full post →
-            </Link>
-          </article>
+
+            <div className="p-5">
+              <h4 className="heading-medium text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
+                {post.title}
+              </h4>
+
+              <p className="text-gray-600 mb-3 line-clamp-2 text-sm">
+                {post.excerpt}
+              </p>
+
+              <div className="flex flex-wrap gap-1">
+                {post.tags.slice(0, 2).map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </section>
