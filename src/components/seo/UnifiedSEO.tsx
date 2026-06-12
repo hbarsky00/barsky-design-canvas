@@ -131,11 +131,11 @@ const UnifiedSEO: React.FC = () => {
 
         seoInput = {
           path: pathname,
-          kind: 'product',
+          kind: 'page',
           title,
           description,
           image: product.image,
-        } as SEOInput;
+        };
       } else {
         seoInput = {
           path: pathname,
