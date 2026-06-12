@@ -44,7 +44,7 @@ const frag = /* glsl */ `
     vec3 cool = mix(vec3(0.35, 0.55, 1.0), vec3(0.70, 0.55, 1.0), 0.5 + 0.5 * sin(t * 0.8));
     vec3 col = mix(cool, warm, uDay);
 
-    gl_FragColor = vec4(col, a * 0.85);
+    gl_FragColor = vec4(col, a * 1.15);
   }
 `;
 
