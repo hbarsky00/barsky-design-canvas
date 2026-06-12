@@ -1,0 +1,105 @@
+/* Hero button hover/focus FX — CSS only, themed by body[data-daytime]. */
+
+.hero-btn-fx {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.hero-btn-fx__content {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+/* Default (day) palette */
+.hero-btn-fx {
+  --fx-c1: 255, 180, 90;   /* warm amber */
+  --fx-c2: 255, 220, 140;  /* warm highlight */
+  --fx-shimmer: 255, 245, 210;
+}
+
+/* Night / evening => cool moonlight */
+body[data-daytime="night"] .hero-btn-fx,
+body[data-daytime="evening"] .hero-btn-fx {
+  --fx-c1: 120, 150, 255;
+  --fx-c2: 180, 160, 255;
+  --fx-shimmer: 220, 230, 255;
+}
+
+/* Soft radial glow behind the button */
+.hero-btn-fx__glow {
+  position: absolute;
+  inset: -14px;
+  z-index: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side, rgba(var(--fx-c2), 0.55), rgba(var(--fx-c1), 0.25) 60%, transparent 75%);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 300ms ease, transform 400ms cubic-bezier(.2,.7,.2,1);
+  filter: blur(8px);
+}
+
+/* Diagonal shimmer sweep over the button area */
+.hero-btn-fx__shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+}
+.hero-btn-fx__shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 40%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(var(--fx-shimmer), 0.55) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+}
+
+/* Trigger on hover OR keyboard focus anywhere inside (a11y) */
+.hero-btn-fx:hover .hero-btn-fx__glow,
+.hero-btn-fx:focus-within .hero-btn-fx__glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-btn-fx:hover .hero-btn-fx__shimmer,
+.hero-btn-fx:focus-within .hero-btn-fx__shimmer {
+  opacity: 1;
+}
+
+.hero-btn-fx:hover .hero-btn-fx__shimmer::before,
+.hero-btn-fx:focus-within .hero-btn-fx__shimmer::before {
+  animation: hero-btn-fx-sweep 900ms ease-out;
+}
+
+@keyframes hero-btn-fx-sweep {
+  0%   { left: -40%; }
+  100% { left: 120%; }
+}
+
+/* Accessibility: respect reduced motion — keep glow, drop sweep */
+@media (prefers-reduced-motion: reduce) {
+  .hero-btn-fx__glow {
+    transition: opacity 120ms linear;
+    transform: none !important;
+  }
+  .hero-btn-fx__shimmer,
+  .hero-btn-fx__shimmer::before {
+    display: none;
+  }
+}
