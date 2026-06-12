@@ -18,7 +18,7 @@ import SitemapGenerator from "@/components/seo/SitemapGenerator";
 import Index from "@/pages/Index";
 
 // Lazy load non-critical pages to reduce initial bundle size
-const Services = React.lazy(() => import("@/pages/Services"));
+
 const About = React.lazy(() => import("@/pages/About"));
 const Contact = React.lazy(() => import("@/pages/Contact"));
 const Blog = React.lazy(() => import("@/pages/Blog"));
@@ -104,7 +104,6 @@ function AppContent() {
               
               {/* Other routes */}
               <Route path="/projects" element={<Navigate to="/#projects" replace />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/store" element={<Store />} />

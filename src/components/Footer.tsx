@@ -45,7 +45,6 @@ const Footer: React.FC = () => {
               {[
                 { to: "/", label: "Home" },
                 { to: "/projects", label: "Projects" },
-                { to: "/services", label: "Services" },
                 { to: "/store", label: "Store" },
                 { to: "/blog", label: "Blog" },
                 { to: "/about", label: "About" },
