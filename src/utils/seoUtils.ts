@@ -10,7 +10,6 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   // High priority pages - note the trailing slash for homepage
   { path: '/', priority: 'high', changeFreq: 'weekly' },
   { path: '/projects', priority: 'high', changeFreq: 'weekly' },
-  { path: '/services', priority: 'high', changeFreq: 'monthly' },
   
   // Case study pages - high priority for SEO
   { path: '/case-studies/herbalink-mobile-herbalist-ux-design', priority: 'high', changeFreq: 'monthly' },
