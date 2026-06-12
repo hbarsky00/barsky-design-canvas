@@ -98,7 +98,9 @@ const HeroButtonFx: React.FC<HeroButtonFxProps> = ({ children, className }) => {
     mql.addEventListener?.("change", onChange);
 
     const update = () => {
-      dayRef.current = document.body.dataset.daytime === "day" ? 1 : 0;
+      const dt = document.body.dataset.daytime;
+      // day/morning => warm; night/evening => cool
+      dayRef.current = dt === "day" || dt === "morning" ? 1 : 0;
     };
     update();
     const obs = new MutationObserver(update);
