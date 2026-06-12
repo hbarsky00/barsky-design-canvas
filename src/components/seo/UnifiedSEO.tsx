@@ -109,6 +109,42 @@ const UnifiedSEO: React.FC = () => {
         };
       }
     }
+    // Handle store product pages — unique title/description per product
+    else if (pathname.startsWith('/store/product/')) {
+      const productId = pathname.replace('/store/product/', '').replace('/', '');
+      const product = products.find(p => p.id === productId);
+
+      if (product) {
+        // Title: "{name} | Barsky Design Store" — clip to 60 chars
+        const brand = ' | Barsky Design Store';
+        const maxName = 60 - brand.length;
+        const safeName = product.name.length > maxName
+          ? `${product.name.slice(0, maxName - 1).trimEnd()}…`
+          : product.name;
+        const title = `${safeName}${brand}`;
+
+        // Description: clip to 160 chars
+        const rawDesc = product.description || SEO_CONSTANTS.DEFAULT_DESCRIPTION;
+        const description = rawDesc.length > 160
+          ? `${rawDesc.slice(0, 157).trimEnd()}…`
+          : rawDesc;
+
+        seoInput = {
+          path: pathname,
+          kind: 'product',
+          title,
+          description,
+          image: product.image,
+        } as SEOInput;
+      } else {
+        seoInput = {
+          path: pathname,
+          kind: 'page',
+          title: `Store Product | ${SEO_CONSTANTS.SITE_NAME}`,
+          description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+        };
+      }
+    }
     // Handle static pages
     else {
       const staticSeo = getStaticPageSEO(pathname);
