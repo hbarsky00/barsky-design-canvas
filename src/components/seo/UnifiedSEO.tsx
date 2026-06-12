@@ -10,6 +10,7 @@ import { SEO_CONSTANTS } from "@/utils/seoConstants";
 import { buildSEO, SEOInput, BuiltSEO } from "@/utils/seo/seoBuilder";
 import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
+import { products } from "@/data/productsData";
 
 const devLog = (...args: any[]) => {
   if (import.meta.env.DEV) console.warn(...args);
