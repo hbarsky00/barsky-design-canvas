@@ -117,7 +117,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Generative surfaces</h2>
       <p>Instead of a fixed UI, let the model assemble the surface — cards, forms, tables — based on what the user just asked. This is harder to design but is where the real differentiation lives.</p>
 
-      <h2 class="text-2xl function-bold mt-8 mb-4">Confidence as a first-class element</h2>
+      <h2 class="text-2xl font-bold mt-8 mb-4">Confidence as a first-class element</h2>
       <p>Every AI output should ship with a visible signal of how much to trust it. A subtle bar, a citation, a "regenerate" affordance — pick one and use it consistently.</p>
       `
     )
