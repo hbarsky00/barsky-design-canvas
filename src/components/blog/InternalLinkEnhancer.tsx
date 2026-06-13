@@ -20,44 +20,47 @@ interface LinkRule {
  * Each rule defines keywords to match and the target post to link to
  */
 const getLinkingRules = (): LinkRule[] => [
-  // Link to portfolio red flags article
   {
-    keywords: ['portfolio', 'case study', 'case studies'],
-    targetSlug: 'portfolio-red-flags-no-interviews',
-    anchorText: 'portfolio optimization',
-    title: 'Portfolio Red Flags: Why Your UX Portfolio Isn\'t Getting You Interviews'
+    keywords: ['Claude', 'starter', 'learn'],
+    targetSlug: 'learning-ai-design-with-claude',
+    anchorText: 'learning AI design with Claude',
+    title: "Learning AI Design with Claude: A Designer's Starter Kit"
   },
-  
-  // Link to finding first UX job
   {
-    keywords: ['job search', 'career', 'networking', 'interviews'],
-    targetSlug: 'finding-first-ux-job-guide',
-    anchorText: 'UX job search strategies',
-    title: 'Finding Your First UX Job: A Senior Designer\'s Honest Guide'
+    keywords: ['prompt', 'prompting', 'prompt engineering'],
+    targetSlug: 'prompt-engineering-for-designers',
+    anchorText: 'prompt engineering for designers',
+    title: 'Prompt Engineering for Designers'
   },
-  
-  // Link to design systems article
   {
-    keywords: ['design system', 'design systems', 'components', 'documentation'],
-    targetSlug: 'design-systems-that-get-used',
-    anchorText: 'building effective design systems',
-    title: 'Building Design Systems That Actually Get Used'
+    keywords: ['AI-native', 'interface', 'interfaces', 'UX patterns'],
+    targetSlug: 'designing-ai-native-interfaces',
+    anchorText: 'designing AI-native interfaces',
+    title: 'Designing AI-Native Interfaces'
   },
-  
-  // Link to AI-enhanced UX article
   {
-    keywords: ['AI', 'artificial intelligence', 'future', 'technology', 'automation'],
-    targetSlug: 'ai-enhanced-ux-designer-future',
-    anchorText: 'AI-enhanced UX design',
-    title: 'The AI-Enhanced UX Designer: Future-Proofing Your Career'
+    keywords: ['ChatGPT', 'Gemini', 'model comparison', 'compare models'],
+    targetSlug: 'chatgpt-vs-claude-vs-gemini-for-ux',
+    anchorText: 'comparing ChatGPT, Claude, and Gemini for UX',
+    title: 'ChatGPT vs Claude vs Gemini for UX'
   },
-  
-  // Link to user research article
   {
-    keywords: ['user research', 'research', 'budget', 'testing', 'usability'],
-    targetSlug: 'user-research-shoestring-budget',
-    anchorText: 'cost-effective user research methods',
-    title: 'User Research on a Shoestring Budget: Maximum Impact, Minimum Cost'
+    keywords: ['prototype', 'prototyping', 'weekend build', 'MVP'],
+    targetSlug: 'ai-powered-prototype-weekend',
+    anchorText: 'AI-powered prototyping in a weekend',
+    title: 'AI-Powered Prototype in a Weekend'
+  },
+  {
+    keywords: ['trust', 'transparency', 'AI safety', 'reliability'],
+    targetSlug: 'designing-trust-into-ai',
+    anchorText: 'designing trust into AI',
+    title: 'Designing Trust into AI'
+  },
+  {
+    keywords: ['Figma', 'production', 'handoff', 'shipping'],
+    targetSlug: 'figma-to-production-with-ai',
+    anchorText: 'Figma to production with AI',
+    title: 'Figma to Production with AI'
   }
 ];
 
