@@ -183,16 +183,22 @@ const ParallaxHero: React.FC = () => {
     >
       {/* Flat scene overlay — single full-bleed image, crossfades over live scene */}
       <div className="parallax-scene-stack" aria-hidden>
-        {SCENES.filter((s) => s.image).map((s) => (
-          <img
-            key={s.id}
-            src={s.image as string}
-            alt=""
-            loading={s.id === sceneId ? "eager" : "lazy"}
-            decoding="async"
-            className={`parallax-scene-img ${s.id === sceneId ? "is-active" : ""}`}
-          />
-        ))}
+        {SCENES.filter((s) => s.image).map((s) => {
+          const isActive = s.id === sceneId;
+          return (
+            <img
+              key={s.id}
+              src={s.image as string}
+              alt=""
+              width={1920}
+              height={1080}
+              loading={isActive ? "eager" : "lazy"}
+              {...(isActive ? { fetchPriority: "high" as const } : {})}
+              decoding="async"
+              className={`parallax-scene-img ${isActive ? "is-active" : ""}`}
+            />
+          );
+        })}
       </div>
 
       {/* Sticky stack so only one viewport-sized scene is visible at a time */}
