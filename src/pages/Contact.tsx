@@ -12,14 +12,8 @@ const Contact: React.FC = () => {
       <main className="flex-grow pt-[calc(var(--header-height,64px)+24px)] pb-12">
         <section className="px-4 md:px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                Contact Hiram Barsky for Product Design Services
-              </h1>
-              <p className="mt-2 text-muted-foreground text-sm md:text-base">
-                Project, collaboration, or just want to say hi — pick the channel that works for you.
-              </p>
-            </div>
+            <h1 className="sr-only">Contact Hiram Barsky for Product Design Services</h1>
+
 
             <div className="rounded-2xl bg-white border border-border/60 shadow-sm overflow-hidden">
               <div className="grid md:grid-cols-[1fr_1.2fr]">
