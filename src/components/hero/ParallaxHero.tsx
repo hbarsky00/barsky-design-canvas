@@ -235,7 +235,7 @@ const ParallaxHero: React.FC = () => {
                 height: s.size,
                 borderRadius: "50%",
                 background: `rgba(255,255,255,${0.4 + s.depth * 0.4})`,
-                boxShadow: s.size === 3 ? "0 0 4px rgba(255,255,255,0.4)" : undefined,
+                boxShadow: s.size >= 3 ? `0 0 ${s.size + 1}px rgba(255,255,255,${0.25 + s.depth * 0.25})` : undefined,
                 ["--drift-x" as any]: `${s.driftX}px`,
                 ["--drift-y" as any]: `${s.driftY}px`,
                 ["--drift-dur" as any]: `${s.driftDur}s`,
