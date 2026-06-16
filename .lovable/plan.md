@@ -1,63 +1,36 @@
-## Goal
+## What the GSC screenshot is telling you
 
-Make the hero airplane react to its environment: dodge AI-generated alien spaceships that fly toward it from the opposite direction, and kill the dot/light that currently floats in front of the plane and looks like a glitch.
+These are **indexing reports**, not site-wide errors. Each row is "URLs Google tried but didn't index, for this reason." The "Pages" column is tiny (1–6 URLs each), so this is not a sitewide problem. Here's what each one means for your site specifically, and what to do.
 
-## What's wrong today (in `SkyEffects.tsx` + `themes.css`)
+### 1. Blocked by robots.txt — 1 page
+**Likely intentional.** Your `public/robots.txt` explicitly disallows the old/delisted project routes:
+`/project/splittime`, `/project/crypto`, `/project/smarterhealth`, `/project/medication-app`, `/project/gold2crypto`, `/project/dae-search`, `/project/business-management`, `/project/investor-loan-app`, `/project/qr-code-builder`, `/project/email-creation-ai`, `/project/barskyjoint`, `/project/wholesale-distribution`, `/project/roi-design-builder`, `/projects`.
 
-- The plane is a CSS-only `translateX` animation from one edge to the other — no vertical movement, no awareness of anything else.
-- A `.sky-airplane-light` blinking dot is appended as a sibling of the plane body. With the body rotated 90°, the dot lands visually in front of the nose instead of at the tail — that's the "stupid dot."
-- UFOs exist (`spawnUfo`, emoji 🛸) but they fly the same direction as nothing in particular and don't interact with the plane.
+Google found a link to one of those and respected the block. **No fix needed** — that's the point of the disallow.
 
-## Plan
+→ Action: confirm in GSC which exact URL it is. If it's one of the delisted projects above, mark "Validate fix" in GSC isn't applicable; just leave it. If it's a URL that *should* be indexed, we remove that line from robots.txt.
 
-### 1. Remove the front-of-plane dot
-In `spawnAirplane`, stop appending `sky-airplane-light`. Delete the now-unused `.sky-airplane-light` CSS block in `themes.css`. Nothing else uses it.
+### 2. Server error (5xx) — 2 pages
+Google hit a 5xx when crawling 2 URLs. Could be a transient hosting blip, the SEO edge function timing out, or a real broken route. Need the URLs to know.
 
-### 2. Generate the alien spaceship asset (Pattern A — transparent PNG)
-Use `imagegen` at `model: "standard"`, `transparent_background: true`, prompt for a **dark, saturated** classic flying saucer — chrome/obsidian hull, neon underglow, side view, nose pointing LEFT (so when it flies right-to-left toward a left-to-right plane it's "facing" the plane). Save to `src/assets/hero-alien-ship.png`. One asset, mirror via CSS `scaleX(-1)` for the opposite direction. (Per the AI PNG Hero Scenes skill: dark subject so background-removal doesn't strip it.)
+→ Action: get the 2 URLs from GSC, then curl them to see if they 5xx now. Fix only if reproducible.
 
-### 3. Spawn spaceships that target the plane
-Refactor `spawnAirplane` so each plane gets its own controller object:
+### 3. Page with redirect — 1 page
+Google found a URL that 301s to another URL. This is **normal and not a bug** — it just means the redirected URL itself doesn't get indexed (the target does). Only worth fixing if it's a URL we're linking to internally or that's in the sitemap.
 
-```text
-plane = {
-  el, dirX (+1 or -1), x, y, vx, vy, lane (top%)
-}
-```
+→ Action: get the URL, remove any internal link/sitemap entry pointing to it.
 
-Drive the plane with `requestAnimationFrame` instead of a CSS keyframe:
-- `x` advances by `vx` each frame (constant horizontal speed, same total crossing time as today: 8–18s).
-- `y` eases toward `targetY`. `targetY` defaults to its spawn lane.
+### 4. Crawled – currently not indexed — 6 pages
+Google crawled the page, decided not to index it (usually thin content, duplicate, or low authority signal). **Not an error** — Google's editorial call. Common fix is improving content quality or internal linking, not a code change.
 
-When the plane spawns, schedule 1–2 spaceships to appear from the **opposite** edge during its flight. Each ship:
-- Same rAF loop, constant horizontal velocity toward the plane.
-- Lane chosen close to the plane's current lane so a collision is plausible.
-- Rendered as the alien PNG, mirrored to face the plane.
+→ Action: get the 6 URLs to judge whether they're worth pushing for indexing or fine to leave.
 
-### 4. Dodge logic
-Every frame, for each ship, compute predicted distance between the plane and the ship a short time ahead (e.g. 0.4s). If the bounding boxes would overlap horizontally AND vertically within that window:
-- Set the plane's `targetY` to ship lane ± a dodge offset (whichever side is further from screen edges, clamped to 5%–60% top).
-- Plane tilts: apply a CSS variable `--plane-tilt` (e.g. ±12°) based on sign of `vy`, applied to the inner body so it pitches up/down while still rotated to face travel direction.
+## What I need from you
 
-Once the ship has passed the plane horizontally, `targetY` eases back to the original cruising lane. Tilt returns to 0.
+GSC's bulk URL export isn't reachable through the API I have. Two options:
 
-### 5. Cleanup
-- When the plane reaches the far edge, cancel its rAF and remove it + any associated ships still alive.
-- Reduced-motion path stays as-is (effect short-circuits, nothing spawns).
-- Keep existing star/meteor/heli/ufo loops untouched.
+**Option A (fastest):** In Search Console → Indexing → Pages, click into each of the 4 rows and copy the URLs (or hit "Export" → CSV). Paste them here and I'll diagnose + fix per row.
 
-## Files touched
+**Option B:** I can mark the robots.txt finding as expected (since the disallows are intentional) and wait for you to investigate the other 3 manually.
 
-- `src/components/hero/SkyEffects.tsx` — rewrite plane spawn + add ship spawn + rAF loop + dodge logic; remove light dot.
-- `src/styles/themes.css` — delete `.sky-airplane-light` rule; add `.sky-alien-ship` (positioning, size ~36px, optional drop-shadow glow) and a `--plane-tilt` rule on `.sky-airplane-body`.
-- `src/assets/hero-alien-ship.png` — new AI-generated transparent PNG.
-
-## Out of scope
-
-- No changes to silhouettes, sky gradient, weather, UFO emoji, helicopter, meteors, stars, or scene rotation.
-- No collision-explosion FX — just avoidance.
-- No sound.
-
-## Open question
-
-Should the plane sometimes **fail** to dodge (the ship grazes/passes through) for variety, or always succeed? Default in this plan: always succeeds — easier to tune, looks intentional rather than buggy.
+Which do you want?
