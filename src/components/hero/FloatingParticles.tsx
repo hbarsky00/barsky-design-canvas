@@ -37,16 +37,16 @@ const FloatingParticles: React.FC = () => {
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0.5],
-            y: [-20, -100, -200],
-            x: [0, Math.random() * 40 - 20, Math.random() * 60 - 30],
+            opacity: [0, particle.size > 4 ? 0.9 : 0.7, 0],
+            scale: particle.id % 2 === 0 ? [0, 1, 0.4] : [0, 1.2, 0.6],
+            y: particle.id % 3 === 0 ? [-10, -140, -60] : [-20, -80, -180],
+            x: particle.id % 2 === 0 ? [0, 30, -20] : [0, -25, 40],
           }}
           transition={{
             duration: particle.duration,
             delay: particle.delay,
             repeat: Infinity,
-            ease: "easeOut",
+            ease: "easeInOut",
           }}
         />
       ))}
