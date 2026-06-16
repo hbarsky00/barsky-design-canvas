@@ -64,16 +64,20 @@ const WeatherFX: React.FC = () => {
     const spawnFlake = () => {
       if (!spawning || mode !== "snow") return;
       const el = document.createElement("span");
-      el.className = "weather-flake";
+      const styleRoll = Math.random();
+      const classes = ["weather-flake"];
+      if (styleRoll > 0.75) classes.push("is-glowy");
+      if (styleRoll < 0.25) classes.push("is-sharp");
+      el.className = classes.join(" ");
       const leftPct = rand(-5, 105);
       el.style.left = `${leftPct}%`;
-      const dur = rand(5, 10);
+      const dur = rand(6, 12);
       el.style.animationDuration = `${dur}s`;
-      el.style.setProperty("--flake-sway", `${rand(-40, 40)}px`);
-      const size = rand(3, 7);
+      el.style.setProperty("--flake-sway", `${rand(-50, 50)}px`);
+      const size = styleRoll > 0.85 ? rand(7, 10) : rand(3, 6);
       el.style.width = `${size}px`;
       el.style.height = `${size}px`;
-      el.style.opacity = `${rand(0.55, 0.95)}`;
+      el.style.opacity = `${rand(0.35, 0.9)}`;
       append(el, dur * 1000 + 300);
       const splashT = setTimeout(() => {
         if (!root.isConnected) return;
@@ -95,7 +99,7 @@ const WeatherFX: React.FC = () => {
       if (m === "rain") {
         rainInterval = setInterval(spawnDrop, 38);
       } else if (m === "snow") {
-        snowInterval = setInterval(spawnFlake, 180);
+        snowInterval = setInterval(spawnFlake, 420);
       }
     };
 

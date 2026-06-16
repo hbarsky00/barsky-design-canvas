@@ -100,20 +100,22 @@ const ParallaxHero: React.FC = () => {
       };
     };
     const r = rng(42);
-    return Array.from({ length: 80 }, () => {
+    return Array.from({ length: 28 }, () => {
       const angle = r() * Math.PI * 2;
-      const dist = 8 + r() * 12;
+      const dist = 6 + r() * 14;
+      const sizeRoll = r();
+      const size = sizeRoll > 0.92 ? 4 : sizeRoll > 0.65 ? 3 : sizeRoll > 0.3 ? 2 : 1.5;
       return {
         x: r() * 100,
         y: r() * 85,
-        size: r() > 0.85 ? 3 : 2,
-        depth: r() * 0.6 + 0.4,
+        size,
+        depth: r() * 0.7 + 0.3,
         driftX: Math.cos(angle) * dist,
         driftY: Math.sin(angle) * dist,
-        driftDur: 6 + r() * 14,
-        driftDelay: r() * 8,
-        twinkleDur: 2 + r() * 3,
-        twinkleDelay: r() * 8,
+        driftDur: 5 + r() * 16,
+        driftDelay: r() * 10,
+        twinkleDur: 1.5 + r() * 4,
+        twinkleDelay: r() * 10,
       };
     });
   }, []);
@@ -233,7 +235,7 @@ const ParallaxHero: React.FC = () => {
                 height: s.size,
                 borderRadius: "50%",
                 background: `rgba(255,255,255,${0.4 + s.depth * 0.4})`,
-                boxShadow: s.size === 3 ? "0 0 4px rgba(255,255,255,0.4)" : undefined,
+                boxShadow: s.size >= 3 ? `0 0 ${s.size + 1}px rgba(255,255,255,${0.25 + s.depth * 0.25})` : undefined,
                 ["--drift-x" as any]: `${s.driftX}px`,
                 ["--drift-y" as any]: `${s.driftY}px`,
                 ["--drift-dur" as any]: `${s.driftDur}s`,
