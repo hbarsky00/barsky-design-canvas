@@ -26,6 +26,10 @@ const BlogLanding: React.FC = () => {
             </p>
           </motion.div>
 
+          <h2 className="heading-subsection text-gray-900 mb-8 text-center">
+            Recent Articles
+          </h2>
+
           {/* Blog Posts Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
