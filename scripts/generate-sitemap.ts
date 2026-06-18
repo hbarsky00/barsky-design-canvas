@@ -1,6 +1,6 @@
 // Runs before `vite dev` and `vite build` (predev/prebuild hooks); writes public/sitemap.xml.
-// Keeps the sitemap fresh on every deploy. Sources blog posts from src/data/blog if present,
-// and project routes from src/App.tsx so additions/removals stay in sync.
+// Single source of truth for the sitemap. Reads blog slugs from src/data/blogData.ts and
+// product IDs from src/data/productsData.ts so additions/removals stay in sync automatically.
 
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
@@ -25,24 +25,14 @@ const staticEntries: Entry[] = [
       title: "Hiram Barsky - Lead Product Designer",
     },
   },
-  { path: "/services", changefreq: "monthly", priority: "0.9" },
   { path: "/design-services/ux-ui-design", changefreq: "monthly", priority: "0.8" },
   { path: "/design-services/mobile-app-design", changefreq: "monthly", priority: "0.8" },
   { path: "/design-services/web-development", changefreq: "monthly", priority: "0.8" },
   { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/contact", changefreq: "monthly", priority: "0.7" },
   { path: "/store", changefreq: "weekly", priority: "0.7" },
-  { path: "/store/success", changefreq: "yearly", priority: "0.3" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
 ];
-
-// Routes that redirect — exclude from sitemap.
-const REDIRECT_PATHS = new Set([
-  "/project/barskyjoint",
-  "/project/roi-design-builder",
-  "/project/wholesale-distribution",
-  "/projects",
-]);
 
 // Featured projects — the only project URLs surfaced on the homepage and
 // the only ones we want indexed by search engines. Other project routes
@@ -56,13 +46,10 @@ const FEATURED_PROJECTS = [
   "/project/fire-lion",
 ];
 
-function getProjectPaths(): string[] {
-  return [...FEATURED_PROJECTS].sort();
-}
-
-// Blog slugs — read from src/data/blog if available, else fall back to known list.
+// Blog slugs — read from src/data/blogData.ts (current source of truth).
 function getBlogSlugs(): string[] {
   const candidates = [
+    "src/data/blogData.ts",
     "src/data/blogPosts.ts",
     "src/data/blog/posts.ts",
     "src/data/blog.ts",
@@ -76,26 +63,31 @@ function getBlogSlugs(): string[] {
     );
     if (slugs.length) return Array.from(new Set(slugs)).sort();
   }
-  return [
-    "finding-first-ux-job-guide",
-    "design-systems-that-get-used",
-    "ai-enhanced-ux-designer-future",
-    "user-research-shoestring-budget",
-    "built-product-without-real-data",
-    "building-products-nobody-asked-for",
-    "wireframes-to-wow-visual-hierarchy",
-    "case-study-writing",
-    "beautiful-interface-doesnt-convert",
-    "research-without-users",
-  ];
+  return [];
+}
+
+// Product IDs — read from src/data/productsData.ts.
+function getProductIds(): string[] {
+  const p = resolve("src/data/productsData.ts");
+  if (!existsSync(p)) return [];
+  const txt = readFileSync(p, "utf8");
+  const ids = Array.from(txt.matchAll(/^\s*id:\s*["'`]([a-z0-9-]+)["'`]/gim)).map(
+    (m) => m[1],
+  );
+  return Array.from(new Set(ids)).sort();
 }
 
 const entries: Entry[] = [
   ...staticEntries,
-  ...getProjectPaths().map<Entry>((path) => ({
+  ...FEATURED_PROJECTS.sort().map<Entry>((path) => ({
     path,
     changefreq: "monthly",
     priority: "0.7",
+  })),
+  ...getProductIds().map<Entry>((id) => ({
+    path: `/store/product/${id}`,
+    changefreq: "monthly",
+    priority: "0.6",
   })),
   ...getBlogSlugs().map<Entry>((slug) => ({
     path: `/blog/${slug}`,
