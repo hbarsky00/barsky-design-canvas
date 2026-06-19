@@ -101,6 +101,17 @@ const SkyEffects: React.FC = () => {
         h: 26,
       };
 
+      // Hard cleanup — guarantees the plane is removed even if rAF stalls
+      // (e.g. the tab was backgrounded mid-flight). Without this, planes
+      // accumulate over time because spawning is on setTimeout but motion
+      // is on requestAnimationFrame.
+      const planeCleanupT = setTimeout(() => {
+        if (el.parentNode) el.parentNode.removeChild(el);
+        tracked.delete(el);
+      }, (durationS + 4) * 1000);
+      timeouts.push(planeCleanupT);
+
+
       // Spawn 1–2 alien ships from the opposite direction during the flight
       type Ship = { el: HTMLImageElement; x: number; y: number; vx: number; w: number; h: number; alive: boolean };
       const ships: Ship[] = [];
@@ -260,7 +271,11 @@ const SkyEffects: React.FC = () => {
       let cancelled = false;
       const tick = () => {
         if (cancelled) return;
-        fn();
+        // Skip spawning while the tab is hidden — rAF is paused, so anything
+        // we spawn here would just accumulate in the DOM until the user returns.
+        if (typeof document === "undefined" || !document.hidden) {
+          fn();
+        }
         const t = setTimeout(tick, rand(minS, maxS) * 1000);
         timeouts.push(t);
       };
@@ -270,6 +285,7 @@ const SkyEffects: React.FC = () => {
         cancelled = true;
       };
     };
+
 
     const cancelStar = scheduleLoop(spawnShootingStar, 4, 8);
     const cancelMeteor = scheduleLoop(spawnMeteor, 15, 30);
