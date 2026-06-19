@@ -271,7 +271,11 @@ const SkyEffects: React.FC = () => {
       let cancelled = false;
       const tick = () => {
         if (cancelled) return;
-        fn();
+        // Skip spawning while the tab is hidden — rAF is paused, so anything
+        // we spawn here would just accumulate in the DOM until the user returns.
+        if (typeof document === "undefined" || !document.hidden) {
+          fn();
+        }
         const t = setTimeout(tick, rand(minS, maxS) * 1000);
         timeouts.push(t);
       };
@@ -281,6 +285,7 @@ const SkyEffects: React.FC = () => {
         cancelled = true;
       };
     };
+
 
     const cancelStar = scheduleLoop(spawnShootingStar, 4, 8);
     const cancelMeteor = scheduleLoop(spawnMeteor, 15, 30);
