@@ -101,6 +101,17 @@ const SkyEffects: React.FC = () => {
         h: 26,
       };
 
+      // Hard cleanup — guarantees the plane is removed even if rAF stalls
+      // (e.g. the tab was backgrounded mid-flight). Without this, planes
+      // accumulate over time because spawning is on setTimeout but motion
+      // is on requestAnimationFrame.
+      const planeCleanupT = setTimeout(() => {
+        if (el.parentNode) el.parentNode.removeChild(el);
+        tracked.delete(el);
+      }, (durationS + 4) * 1000);
+      timeouts.push(planeCleanupT);
+
+
       // Spawn 1–2 alien ships from the opposite direction during the flight
       type Ship = { el: HTMLImageElement; x: number; y: number; vx: number; w: number; h: number; alive: boolean };
       const ships: Ship[] = [];
