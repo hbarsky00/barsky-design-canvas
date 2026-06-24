@@ -329,10 +329,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `DAE Search`,
     description: `Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.`,
     tags: [`Enterprise`, `Data Discovery`, `Search UX`],
-    heroImage: {
-      src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
-      alt: `DAE Search Platform interface overview`,
-    },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `Analysts search 'revenue,' get 40 results, then spend 20 minutes figuring out which table is the right one. Which is current. Which is the team-of-record's. Which was deprecated three quarters ago but never cleaned up. The job isn't returning results — it's returning the result you can act on.`,
@@ -341,19 +337,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `WHAT I DID`,
       title: `What I Did`,
       description: `Semantic search over metadata, not keyword match. Tables called \`arr_monthly\` show up for 'revenue.' Cut results from 40-to-narrow-down to 4-to-pick-from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.`,
-      images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp`, alt: `Information architecture analysis of existing data systems` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp`, alt: `Initial concepts for enterprise search interface design` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png`, alt: `Search paradigm exploration and decision framework` },
-      ],
     },
     whatDidntWorkSection: {
       eyebrow: `HICCUP`,
       title: `Hiccup`,
       content: `Started by treating this as consumer search with enterprise wrapper — clean ranked list, minimal chrome. Wrong audience. Enterprise users want context, signals, density. Redesign added the kind of density I'd normally argue against. Also assumed natural-language queries would dominate. They didn't. Analysts type fragments and abbreviations. The 'I know what I want, find it fast' use case mattered more than the conversational one.`,
-      images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg`, alt: `Learning from design iterations that didn't meet enterprise needs` },
-      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
@@ -362,7 +350,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
+      image: `/images/default-og-image.jpg`,
       projectName: `DAE Search`,
       results: [],
       technologies: [],
@@ -374,11 +362,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `HerbaLink`,
     description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
-    heroVideo: {
-      src: `https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4`,
-      poster: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
-      alt: `HerbaLink booking platform overview`,
-    },
     projectLink: `http://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
@@ -404,8 +387,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: replaced filters with a guided triage intake.`,
         },
       ],
-      researchImage: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`,
-      researchImageAlt: `The American Herbalists Guild directory — the external credential source HerbaLink verifies against`,
     },
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
@@ -417,10 +398,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       workshopKickoff: ``,
       explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
-      images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `Flow exploration — credential gate sits before any browsing` },
-      ],
     },
     keyInsights: [
       {
@@ -461,30 +438,20 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `USER TESTING`,
       title: `User Testing`,
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
-      images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
-      ],
     },
     whatDidntWorkSection: {
       eyebrow: `WHAT DIDN'T WORK`,
       title: `What Didn't Work`,
       content: `The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The "Verified" badge approach was abandoned entirely in favor of the gate model.`,
-      images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
-      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
       description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
-      images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
-      ],
     },
     sections: [],
     seoData: {
-      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
+      image: `/images/default-og-image.jpg`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
