@@ -87,6 +87,7 @@ export interface SimpleCaseStudyPageProps {
   description: string;
   tags: string[];
   liveUrl?: string;
+  overviewUrl?: string;
   heroImage?: SimpleCaseStudyImage;
   blocks: SimpleCaseStudyBlock[];
 }
@@ -97,6 +98,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   description,
   tags,
   liveUrl,
+  overviewUrl,
   heroImage,
   blocks,
 }) => {
@@ -142,6 +144,14 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 className="text-primary hover:underline text-sm font-medium"
               >
                 Live: {liveUrl.replace(/^https?:\/\//, "")}
+              </a>
+            )}
+            {overviewUrl && (
+              <a
+                href={overviewUrl}
+                className="text-primary hover:underline text-sm font-medium ml-4"
+              >
+                View product overview →
               </a>
             )}
           </header>

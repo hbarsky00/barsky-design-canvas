@@ -48,6 +48,12 @@ const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/Structured
 
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
+
+// Promo / product overview pages
+const HerbalinkPromo = React.lazy(() => import("@/pages/promos/HerbalinkPromo"));
+const NudgeMePromo = React.lazy(() => import("@/pages/promos/NudgeMePromo"));
+const RoiDesignPromo = React.lazy(() => import("@/pages/promos/RoiDesignPromo"));
+const FireLionPromo = React.lazy(() => import("@/pages/promos/FireLionPromo"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
@@ -95,6 +101,13 @@ function AppContent() {
               <Route path="/project/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/project/nudgeme" element={<NudgeMeCaseStudy />} />
+
+              {/* Product overview (promo) pages */}
+              <Route path="/project/herbalink/overview" element={<HerbalinkPromo />} />
+              <Route path="/project/nudgeme/overview" element={<NudgeMePromo />} />
+              <Route path="/project/roi-design-builder/overview" element={<RoiDesignPromo />} />
+              <Route path="/project/fire-lion/overview" element={<FireLionPromo />} />
+
 
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
