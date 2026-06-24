@@ -379,6 +379,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: herbalinkProjectImage,
       alt: `HerbaLink booking platform overview`,
     },
+    heroImage: {
+      src: herbalinkProjectImage,
+      alt: `HerbaLink verified herbalist booking platform overview`,
+    },
     projectLink: `http://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
