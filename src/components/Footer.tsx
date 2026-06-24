@@ -44,6 +44,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3" role="list">
               {[
                 { to: "/", label: "Home" },
+                { to: "/case-studies", label: "Case Studies" },
                 { to: "/projects", label: "Projects" },
                 { to: "/store", label: "Store" },
                 { to: "/blog", label: "Blog" },

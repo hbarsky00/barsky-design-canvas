@@ -1,5 +1,6 @@
 import React from "react";
-import { Mail, Linkedin, Github, Calendar } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mail, Linkedin, Github, Calendar, ArrowRight } from "lucide-react";
 
 const SHIPPED = [
   { label: "CatchBuddy", desc: "Same-day pickup sports", to: "/project/catchbuddy" },
@@ -51,10 +52,13 @@ const HeroContent: React.FC = () => {
         ))}
       </div>
 
-      <div className="book-call-wrap hero-bottom-contrast">
+      <div className="book-call-wrap hero-bottom-contrast flex flex-wrap items-center gap-3">
         <a className="book-call" href="https://calendly.com/barskyuxdesignservices/30min" target="_blank" rel="noopener noreferrer">
           Book a Call
         </a>
+        <Link to="/case-studies" className="inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline opacity-90 hover:opacity-100">
+          View Case Studies <ArrowRight size={14} />
+        </Link>
       </div>
     </div>
   );
