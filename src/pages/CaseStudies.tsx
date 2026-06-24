@@ -48,7 +48,7 @@ const groups: Group[] = [
         subtitle: "Natural-language reminders that actually fire",
         description:
           "Type reminders the way you'd say them out loud. Plain English parsed into recurring schedules across browser, email, and SMS — all from one input.",
-        image: "/src/assets/projects/nudgeme.png",
+        image: nudgemeImg,
         url: "/project/nudgeme",
         category: "Behavior",
         tags: ["PWA", "NLP", "Shipped"],
