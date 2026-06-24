@@ -87,6 +87,7 @@ export interface SimpleCaseStudyPageProps {
   description: string;
   tags: string[];
   liveUrl?: string;
+  overviewUrl?: string;
   heroImage?: SimpleCaseStudyImage;
   blocks: SimpleCaseStudyBlock[];
 }
@@ -97,6 +98,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   description,
   tags,
   liveUrl,
+  overviewUrl,
   heroImage,
   blocks,
 }) => {
