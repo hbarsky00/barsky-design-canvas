@@ -77,7 +77,7 @@ const groups: Group[] = [
         subtitle: "Make the business case for design",
         description:
           "A calculator that translates design decisions into dollars. Built for designers talking to finance — board-ready reports generated in minutes, benchmarks citable by vertical.",
-        image: "/src/assets/projects/roidesigncalc.png",
+        image: roiImg,
         url: "/project/roi-design-builder",
         category: "Financial Modeling",
         tags: ["Enterprise Tool", "Shipped"],
