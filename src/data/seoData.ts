@@ -33,6 +33,12 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
     image: 'https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg'
   },
+  '/case-studies': {
+    kind: 'page',
+    title: 'Case Studies — UX Decisions, Tradeoffs & Outcomes | Barsky',
+    description: 'Selected case studies across health, financial, and enterprise — what I decided, what I cut, what shipped. Honest writeups, not portfolio fluff.',
+    image: 'https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg'
+  },
   '/about': {
     kind: 'page',
     title: 'About Hiram Barsky — 15+ Years in Design',
