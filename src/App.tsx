@@ -91,7 +91,7 @@ function AppContent() {
               <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
-              <Route path="/project/roi-design-builder" element={<Navigate to="/project/nudgeme" replace />} />
+              <Route path="/project/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/project/nudgeme" element={<NudgeMeCaseStudy />} />
 
