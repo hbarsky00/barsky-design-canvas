@@ -1,4 +1,6 @@
 import React from "react";
+import nudgemeProjectImage from "@/assets/projects/nudgeme.png";
+import roiDesignCalculatorImage from "@/assets/projects/roidesigncalc.png";
 import {
   Zap,
   BarChart4,
@@ -486,6 +488,129 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       results: [],
       technologies: [],
       path: `/project/herbalink`,
+    },
+  },
+
+  "nudgeme": {
+    id: `nudgeme`,
+    title: `NudgeMe`,
+    description: `A reminder app that parses plain English into structured schedules. Recurring rules, multi-channel delivery, installable PWA. Built on React + Supabase.`,
+    tags: [`PWA`, `Natural Language`, `Reminder UX`, `Solo Build`],
+    heroImage: {
+      src: nudgemeProjectImage,
+      alt: `NudgeMe app showing natural-language reminder input with recurring and one-time reminders`,
+    },
+    projectLink: `https://nudgeme.rip`,
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `Every reminder app makes you click through three screens before you can save the thing. By the time you're done, you've forgotten what you wanted to remember. The design job wasn't a prettier form — it was making one sentence the entire input, and trusting the parser enough that the preview screen is the only correction surface a user ever needs.`,
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `Natural-language input over a form.`,
+        description: `Chose a single sentence over the calendar-app pattern of date picker + time picker + repeat dropdown because the form is where reminders die. Tradeoff: the parser has to handle real human phrasing — slang, typos, "next tues" — and a visible preview step exists specifically so a misread can be fixed in one tap instead of a re-entry.`,
+      },
+      {
+        number: 2,
+        title: `Save first, sign up after.`,
+        description: `Chose letting strangers type a reminder before creating an account over the standard auth-wall onboarding because the friction kills the demo. Tradeoff: anonymous draft storage and a quiet account merge on signup, but I get to watch real first-use behavior instead of post-signup behavior.`,
+      },
+      {
+        number: 3,
+        title: `Block private data at the input layer.`,
+        description: `Chose pattern-matching for passwords, card numbers, and SSNs at parse time over a generic privacy disclaimer because users will type sensitive things into any free-text field eventually. Tradeoff: occasional false positives on legitimate strings, mitigated with a one-tap override.`,
+      },
+    ],
+    finalProductSection: {
+      eyebrow: `WHAT I BUILT`,
+      title: `What I Built`,
+      description: `A one-input reminder flow: type the reminder the way you'd say it out loud, preview what the parser understood, edit anything that's off, then save. The same input supports one-time reminders, recurring schedules, browser notifications, email, SMS, and PWA install behavior without turning the first screen into a settings panel.`,
+      images: [
+        { src: nudgemeProjectImage, alt: `NudgeMe reminder parser and reminder list interface` },
+      ],
+    },
+    myThoughtProcessSection: {
+      eyebrow: `AI vs. JUDGMENT`,
+      title: `AI vs. Judgment`,
+      content: `AI handled the LLM parser, the Supabase schema, the recurrence engine, the multi-channel dispatch, and the PWA install plumbing. What I wouldn't let it decide: when the parser is confident enough to skip the preview step. That's a trust call — get it wrong and silent misreads become missed reminders, which is the one failure mode the product can't survive.`,
+    },
+    whatDidntWorkSection: {
+      eyebrow: `WHAT DIDN'T WORK`,
+      title: `What Didn't Work`,
+      content: `First version auto-saved on parse with no preview. Sounded clean; produced silent misreads users only caught when the reminder didn't fire. Added the preview step back. Also tried push notifications without a PWA install — iOS Safari kills them. The "Add to Home Screen" step became a real onboarding moment, not a footnote.`,
+    },
+    outcomeSection: {
+      eyebrow: `STATUS`,
+      title: `Outcome`,
+      description: `Live at nudgeme.rip. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
+    },
+    sections: [],
+    seoData: {
+      image: nudgemeProjectImage,
+      projectName: `NudgeMe`,
+      results: [],
+      technologies: [],
+      path: `/project/nudgeme`,
+    },
+  },
+
+  "roi-design-builder": {
+    id: `roi-design-builder`,
+    title: `ROI Design Calculator`,
+    description: `A calculator that translates design decisions into dollars. Built for designers talking to finance, not designers talking to designers.`,
+    tags: [`Financial Modeling`, `Enterprise Tool`, `Design Strategy`, `Shipped`],
+    heroImage: {
+      src: roiDesignCalculatorImage,
+      alt: `ROI Design Calculator interface showing business value and payback outputs`,
+    },
+    projectLink: `https://roicalc.one/`,
+    problemCallout: {
+      eyebrow: `THE REAL PROBLEM`,
+      statement: `Designers lose budget conversations because they speak in craft and stakeholders speak in money. The brief was a tool that translates. The hard part isn't the math — it's knowing which numbers stakeholders actually trust. Industry benchmarks get challenged immediately unless they're citable. That's the core design problem this tool is solving.`,
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: `The output had to sound like finance, not design.`,
+        description: `The tool translates UX changes into revenue, savings, payback period, and total business value because those are the units stakeholders already use to make funding decisions.`,
+      },
+      {
+        number: 2,
+        title: `Benchmarks needed to be defensible by vertical.`,
+        description: `Generic industry numbers get challenged fast. I chose industry-template benchmarks over blank inputs because a model only works in the room if the assumptions can be explained and cited.`,
+      },
+      {
+        number: 3,
+        title: `The report matters as much as the calculator.`,
+        description: `A designer needs to walk into the budget conversation with a board-ready model, not a screenshot of a form. The workflow ends in an argument stakeholders can read, question, and reuse.`,
+      },
+    ],
+    finalProductSection: {
+      eyebrow: `WHAT I BUILT`,
+      title: `What I Built`,
+      description: `A financial modeling tool that turns design improvements into business cases: revenue upside, operational savings, implementation cost, payback period, and ROI. The interaction is structured around assumptions because the credibility of the model depends on showing where every number came from.`,
+      images: [
+        { src: roiDesignCalculatorImage, alt: `ROI Design Calculator dashboard translating UX assumptions into business value` },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: `WHAT I HAVEN'T SOLVED`,
+      title: `What I Haven't Solved`,
+      content: `The benchmark data problem is real. Generic stats get dismissed. The tool only works if the numbers are defensible. That tension is partially solved — not fully.`,
+    },
+    outcomeSection: {
+      eyebrow: `OUTCOME`,
+      title: `Outcome`,
+      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back.`,
+    },
+    sections: [],
+    seoData: {
+      image: roiDesignCalculatorImage,
+      projectName: `ROI Design Calculator`,
+      results: [],
+      technologies: [],
+      path: `/project/roi-design-builder`,
     },
   },
 
