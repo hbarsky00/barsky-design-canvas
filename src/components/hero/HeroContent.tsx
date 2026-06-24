@@ -39,6 +39,12 @@ const HeroContent: React.FC = () => {
         <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
       </div>
 
+      <div className="hero-bottom-contrast mb-3">
+        <Link to="/case-studies" className="inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline opacity-90 hover:opacity-100">
+          View Case Studies <ArrowRight size={14} />
+        </Link>
+      </div>
+
       <div className="social-icons hero-bottom-contrast">
         {[
           { Icon: Mail, href: "mailto:hbarsky01@gmail.com", label: "Email" },
@@ -52,13 +58,10 @@ const HeroContent: React.FC = () => {
         ))}
       </div>
 
-      <div className="book-call-wrap hero-bottom-contrast flex flex-wrap items-center gap-3">
+      <div className="book-call-wrap hero-bottom-contrast">
         <a className="book-call" href="https://calendly.com/barskyuxdesignservices/30min" target="_blank" rel="noopener noreferrer">
           Book a Call
         </a>
-        <Link to="/case-studies" className="inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline opacity-90 hover:opacity-100">
-          View Case Studies <ArrowRight size={14} />
-        </Link>
       </div>
     </div>
   );
