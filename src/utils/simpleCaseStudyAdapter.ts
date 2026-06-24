@@ -131,12 +131,15 @@ export const buildSimpleCaseStudyPageProps = (
     });
   }
 
+  const promoSlugs = new Set(["herbalink", "nudgeme", "roi-design-builder", "fire-lion"]);
+
   return {
     projectId: study.id,
     title: study.title,
     description: study.description,
     tags: study.tags,
     liveUrl: study.projectLink,
+    overviewUrl: promoSlugs.has(study.id) ? `/project/${study.id}/overview` : undefined,
     heroImage: getHeroImage(study, overrides.heroImage),
     blocks,
   };
