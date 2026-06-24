@@ -146,6 +146,14 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 Live: {liveUrl.replace(/^https?:\/\//, "")}
               </a>
             )}
+            {overviewUrl && (
+              <a
+                href={overviewUrl}
+                className="text-primary hover:underline text-sm font-medium ml-4"
+              >
+                View product overview →
+              </a>
+            )}
           </header>
 
           {heroImage && (
