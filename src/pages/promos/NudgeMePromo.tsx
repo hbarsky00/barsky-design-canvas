@@ -43,7 +43,8 @@ const NudgeMePromo: React.FC = () => (
       image={heroImg}
     />
 
-    <ProjectNav
+    <CaseStudyLinkBanner slug="nudgeme" bg="#fff" color="#111827" accent="#0D9B73" />
+      <ProjectNav
       brand={<span style={{ color: INK, fontWeight: 700 }}>NudgeMe</span>}
       links={[
         { label: "Home", href: "#hero" },

@@ -22,7 +22,8 @@ const RoiDesignPromo: React.FC = () => (
       description="A calculator that translates design decisions into dollars. Built for designers talking to finance."
       image={heroImg} />
 
-    <ProjectNav
+    <CaseStudyLinkBanner slug="roi-design-builder" bg="#0f172a" color="#fff" accent="#0ea5e9" />
+      <ProjectNav
       brand={<span style={{ color: "#111" }}>ROI Design Calculator</span>}
       links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }, { label: "About", href: "#about" }]}
       cta={{ label: "Try It Free →", href: "https://roicalc.one/" }}

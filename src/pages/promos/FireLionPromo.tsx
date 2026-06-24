@@ -24,6 +24,7 @@ const FireLionPromo: React.FC = () => {
         image={heroImg}
       />
 
+      <CaseStudyLinkBanner slug="fire-lion" bg="#0a0a0a" color="#fff" accent="#ff6b00" />
       <ProjectNav
         brand={<span style={{ color: ORANGE }}>Fire Lion</span>}
         links={[
