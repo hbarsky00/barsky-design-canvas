@@ -103,16 +103,7 @@ const groups: Group[] = [
   },
 ];
 
-// Vite asset URL resolution for src/assets paths used above
-const resolveImage = (src: string) => {
-  if (src.startsWith("/src/assets/projects/nudgeme.png")) {
-    return new URL("../assets/projects/nudgeme.png", import.meta.url).href;
-  }
-  if (src.startsWith("/src/assets/projects/roidesigncalc.png")) {
-    return new URL("../assets/projects/roidesigncalc.png", import.meta.url).href;
-  }
-  return src;
-};
+// (images imported above)
 
 const StudyCard: React.FC<{ study: Study; index: number }> = ({ study, index }) => (
   <motion.div
