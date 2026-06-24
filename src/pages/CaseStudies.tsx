@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import nudgemeImg from "@/assets/projects/nudgeme.png";
+import roiImg from "@/assets/projects/roidesigncalc.png";
 
 type Study = {
   id: string;
