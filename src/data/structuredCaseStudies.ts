@@ -376,12 +376,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
     heroVideo: {
       src: `https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4`,
-      poster: herbalinkProjectImage,
+      poster: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
       alt: `HerbaLink booking platform overview`,
-    },
-    heroImage: {
-      src: herbalinkProjectImage,
-      alt: `HerbaLink verified herbalist booking platform overview`,
     },
     projectLink: `http://herbalink.live`,
     heroMetrics: [
@@ -408,8 +404,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: replaced filters with a guided triage intake.`,
         },
       ],
-      researchImage: `/images/herbalink-promo.png`,
-      researchImageAlt: `HerbaLink credential-first booking flow for verified herbalists`,
+      researchImage: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`,
+      researchImageAlt: `The American Herbalists Guild directory — the external credential source HerbaLink verifies against`,
     },
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
@@ -422,7 +418,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
       images: [
-        { src: `/images/herbalink-promo.png`, alt: `Initial HerbaLink concept focused on the credential gate before browsing` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `Flow exploration — credential gate sits before any browsing` },
       ],
     },
     keyInsights: [
@@ -465,7 +462,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `User Testing`,
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
       images: [
-        { src: herbalinkProjectImage, alt: `HerbaLink mobile booking interface after guided intake replaced filters` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
       ],
     },
     whatDidntWorkSection: {
@@ -473,7 +470,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What Didn't Work`,
       content: `The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The "Verified" badge approach was abandoned entirely in favor of the gate model.`,
       images: [
-        { src: `/images/herbalink-promo.png`, alt: `HerbaLink early Book an Herbalist concept before the credential gate was inverted` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
       ],
     },
     outcomeSection: {
@@ -481,12 +478,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
       images: [
-        { src: herbalinkProjectImage, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
       ],
     },
     sections: [],
     seoData: {
-      image: herbalinkProjectImage,
+      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
