@@ -75,6 +75,7 @@ function AppContent() {
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
