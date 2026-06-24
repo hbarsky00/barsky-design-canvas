@@ -119,7 +119,7 @@ const StudyCard: React.FC<{ study: Study; index: number }> = ({ study, index }) 
     >
       <div className="relative overflow-hidden">
         <img
-          src={resolveImage(study.image)}
+          src={study.image}
           alt={`${study.title} — ${study.subtitle}`}
           width={800}
           height={448}
