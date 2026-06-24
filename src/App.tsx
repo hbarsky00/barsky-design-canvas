@@ -48,6 +48,12 @@ const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/Structured
 
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
+
+// Promo / product overview pages
+const HerbalinkPromo = React.lazy(() => import("@/pages/promos/HerbalinkPromo"));
+const NudgeMePromo = React.lazy(() => import("@/pages/promos/NudgeMePromo"));
+const RoiDesignPromo = React.lazy(() => import("@/pages/promos/RoiDesignPromo"));
+const FireLionPromo = React.lazy(() => import("@/pages/promos/FireLionPromo"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
