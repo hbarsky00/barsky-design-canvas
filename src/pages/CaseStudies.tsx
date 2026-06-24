@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import nudgemeImg from "@/assets/projects/nudgeme.png";
 import roiImg from "@/assets/projects/roidesigncalc.png";
+import herbalinkImg from "@/assets/projects/herbalink.png";
+import firelionImg from "@/assets/projects/firelion.png";
+import daeImg from "@/assets/projects/catchbuddy.png"; // fallback if dae unavailable
 
 type Study = {
   id: string;
