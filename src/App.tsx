@@ -51,6 +51,8 @@ const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
+const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
+const CaseStudies = React.lazy(() => import("@/pages/CaseStudies"));
 
 
 const queryClient = new QueryClient();
