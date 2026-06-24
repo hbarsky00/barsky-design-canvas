@@ -9,7 +9,7 @@ import nudgemeImg from "@/assets/projects/nudgeme.png";
 import roiImg from "@/assets/projects/roidesigncalc.png";
 import herbalinkImg from "@/assets/projects/herbalink.png";
 import firelionImg from "@/assets/projects/firelion.png";
-import daeImg from "@/assets/projects/catchbuddy.png"; // fallback if dae unavailable
+import daeImg from "@/assets/projects/catchbuddy.png";
 
 type Study = {
   id: string;
@@ -39,8 +39,7 @@ const groups: Group[] = [
         subtitle: "Verified herbalists, designed around trust",
         description:
           "A booking platform where no practitioner appears until credentials are verified against an external registry. Smaller catalog by design — honest beats exhaustive.",
-        image:
-          "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+        image: herbalinkImg,
         url: "/project/herbalink",
         category: "Healthcare",
         tags: ["Trust & Safety", "AI-Assisted", "Solo Build"],
@@ -97,7 +96,7 @@ const groups: Group[] = [
         subtitle: "A shipped game, built solo with AI",
         description:
           "A one-tap arcade runner where you spell words mid-flight to cast spells. The deletion list ended up longer than the feature list — that was the work.",
-        image: "/images/firelion-hero-title.png",
+        image: firelionImg,
         url: "/project/fire-lion",
         category: "Game Design",
         tags: ["AI-Assisted", "Solo Build"],
