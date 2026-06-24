@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { Badge } from "@/components/ui/badge";
+import ProjectSeo from "@/components/project-pages/ProjectSeo";
 
 export interface SimpleCaseStudyImage {
   src: string;
@@ -99,9 +100,24 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   heroImage,
   blocks,
 }) => {
+  const fallbackBlockImage = blocks.find((block) => {
+    const imgs = block.images ?? (block.image ? [block.image] : []);
+    return imgs.length > 0;
+  });
+  const fallbackImages = fallbackBlockImage
+    ? fallbackBlockImage.images ?? (fallbackBlockImage.image ? [fallbackBlockImage.image] : [])
+    : [];
+  const seoImage = heroImage?.src ?? fallbackImages[0]?.src;
+
   return (
     <ImageMaximizerProvider>
       <div className="min-h-screen bg-background">
+        <ProjectSeo
+          slug={projectId}
+          title={`${title} — UX Case Study`}
+          description={description}
+          image={seoImage}
+        />
         <Header />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+32px)] pb-24">
           <header className="mb-12">
