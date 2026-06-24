@@ -1,4 +1,5 @@
 import React from "react";
+import CaseStudyLinkBanner from "@/components/project-pages/CaseStudyLinkBanner";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/roidesigncalc.png";
