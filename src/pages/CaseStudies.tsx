@@ -119,7 +119,7 @@ const StudyCard: React.FC<{ study: Study; index: number }> = ({ study, index }) 
       to={study.url}
       className="block rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
     >
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden bg-muted">
         <img
           src={study.image}
           alt={`${study.title} — ${study.subtitle}`}
@@ -127,21 +127,21 @@ const StudyCard: React.FC<{ study: Study; index: number }> = ({ study, index }) 
           height={448}
           loading="lazy"
           decoding="async"
-          className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute top-4 left-4">
-          <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+          <span className="bg-primary text-primary-foreground px-2.5 py-1 rounded-full text-xs sm:text-sm font-medium">
             {study.category}
           </span>
         </div>
       </div>
 
-      <div className="p-6">
-        <h3 className="text-2xl font-black text-foreground mb-1 group-hover:text-primary transition-colors">
+      <div className="p-4 sm:p-6">
+        <h3 className="text-xl sm:text-2xl font-black text-foreground mb-1 group-hover:text-primary transition-colors">
           {study.title}
         </h3>
-        <h4 className="text-base font-semibold text-primary mb-3">{study.subtitle}</h4>
-        <p className="text-muted-foreground mb-4 line-clamp-3">{study.description}</p>
+        <h4 className="text-sm sm:text-base font-semibold text-primary mb-2 sm:mb-3">{study.subtitle}</h4>
+        <p className="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">{study.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-5">
           {study.tags.map((tag) => (
@@ -168,20 +168,20 @@ const CaseStudies: React.FC = () => {
     <>
       <Header />
       <main className="min-h-screen bg-background pt-[calc(var(--header-height,64px)+24px)]">
-        <section className="container mx-auto px-4 max-w-7xl py-12 md:py-16">
+        <section className="container mx-auto px-4 max-w-7xl py-8 sm:py-12 md:py-16">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-3xl"
           >
-            <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-3">
+            <p className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-primary mb-2 sm:mb-3">
               Case Studies
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-4 [text-wrap:balance]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-3 sm:mb-4 [text-wrap:balance]">
               The thinking behind the work.
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground">
               Live products live on the homepage. These are the case studies — what I decided,
               what I cut, what I'd do differently. Selected work across health, financial, and one
               for fun.
@@ -190,12 +190,12 @@ const CaseStudies: React.FC = () => {
         </section>
 
         {groups.map((group) => (
-          <section key={group.label} className="container mx-auto px-4 max-w-7xl pb-16">
-            <div className="mb-8 border-l-4 border-primary pl-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">{group.label}</h2>
-              <p className="text-muted-foreground mt-1">{group.blurb}</p>
+          <section key={group.label} className="container mx-auto px-4 max-w-7xl pb-10 sm:pb-16">
+            <div className="mb-6 sm:mb-8 border-l-4 border-primary pl-3 sm:pl-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{group.label}</h2>
+              <p className="text-sm sm:text-base text-muted-foreground mt-1">{group.blurb}</p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
               {group.studies.map((study, i) => (
                 <StudyCard key={study.id} study={study} index={i} />
               ))}
