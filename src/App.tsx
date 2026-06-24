@@ -102,6 +102,13 @@ function AppContent() {
               <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/project/nudgeme" element={<NudgeMeCaseStudy />} />
 
+              {/* Product overview (promo) pages */}
+              <Route path="/project/herbalink/overview" element={<HerbalinkPromo />} />
+              <Route path="/project/nudgeme/overview" element={<NudgeMePromo />} />
+              <Route path="/project/roi-design-builder/overview" element={<RoiDesignPromo />} />
+              <Route path="/project/fire-lion/overview" element={<FireLionPromo />} />
+
+
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
