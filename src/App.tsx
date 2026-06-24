@@ -51,6 +51,8 @@ const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
+const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
+const CaseStudies = React.lazy(() => import("@/pages/CaseStudies"));
 
 
 const queryClient = new QueryClient();
@@ -73,6 +75,7 @@ function AppContent() {
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
@@ -89,7 +92,7 @@ function AppContent() {
               <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
-              <Route path="/project/roi-design-builder" element={<Navigate to="/project/nudgeme" replace />} />
+              <Route path="/project/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/project/nudgeme" element={<NudgeMeCaseStudy />} />
 
