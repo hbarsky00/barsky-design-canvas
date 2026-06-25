@@ -63,6 +63,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
   const [isHovered, setIsHovered] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = () => {
