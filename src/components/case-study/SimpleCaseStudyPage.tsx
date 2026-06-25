@@ -17,6 +17,22 @@ const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
+  const isVideo = /\.(mp4|webm|mov)(\?|$)/i.test(image.src);
+  if (isVideo) {
+    return (
+      <video
+        src={image.src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={image.alt}
+        className="w-full h-auto rounded-lg"
+      />
+    );
+  }
+
   if (!image.hoverVideo) {
     return (
       <MaximizableImage
@@ -28,6 +44,7 @@ const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string 
       />
     );
   }
+
 
   const onEnter = () => {
     setPlaying(true);
