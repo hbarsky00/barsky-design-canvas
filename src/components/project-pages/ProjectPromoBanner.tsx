@@ -5,11 +5,21 @@ import { useLocation, Link } from "react-router-dom";
  * Renders a top banner on every /project/<slug> page linking to its
  * matching /case-studies/<slug> case study. Mounted globally in App.
  */
+// Only slugs that have a DISTINCT /case-studies/<slug> page in addition
+// to the /project/<slug> promo page.
+const PROMO_WITH_CASE_STUDY = new Set([
+  "herbalink",
+  "nudgeme",
+  "roi-design-builder",
+  "fire-lion",
+]);
+
 const ProjectPromoBanner: React.FC = () => {
   const { pathname } = useLocation();
   const match = pathname.match(/^\/project\/([^/]+)\/?$/);
   if (!match) return null;
   const slug = match[1];
+  if (!PROMO_WITH_CASE_STUDY.has(slug)) return null;
 
   return (
     <div
