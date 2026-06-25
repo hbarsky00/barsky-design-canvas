@@ -13,6 +13,7 @@ import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
+import ProjectPromoBanner from "@/components/project-pages/ProjectPromoBanner";
 
 // Critical page - load immediately
 import Index from "@/pages/Index";
@@ -71,6 +72,8 @@ function AppContent() {
       <UnifiedSEO />
       {/* Sitemap generator */}
       <SitemapGenerator />
+      <ProjectPromoBanner />
+      
       
       <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
