@@ -5,6 +5,8 @@ import MaximizableImage from "@/components/project/MaximizableImage";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { Badge } from "@/components/ui/badge";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
+import ProductOverviewBanner from "@/components/project-pages/ProductOverviewBanner";
+import { Link } from "react-router-dom";
 
 export interface SimpleCaseStudyImage {
   src: string;
@@ -138,6 +140,9 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
           description={description}
           image={seoImage}
         />
+        {overviewUrl && (
+          <ProductOverviewBanner slug={projectId} />
+        )}
         <Header />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+32px)] pb-24">
           <header className="mb-12">
@@ -214,6 +219,25 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
               );
             })}
           </div>
+          {overviewUrl && (
+            <aside className="mt-20 rounded-2xl border border-border bg-card p-8 text-center">
+              <p className="text-sm uppercase tracking-wide text-muted-foreground mb-2">
+                Want the short version?
+              </p>
+              <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-3">
+                See the {title} product overview
+              </h2>
+              <p className="text-base text-muted-foreground mb-6 max-w-xl mx-auto">
+                Features, screenshots, and how to try it — without the full case study.
+              </p>
+              <Link
+                to={overviewUrl}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition"
+              >
+                View product overview →
+              </Link>
+            </aside>
+          )}
         </main>
         <Footer />
       </div>
