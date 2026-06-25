@@ -126,7 +126,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
             sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 80px"
             className={cn(
               "transition-opacity duration-300",
-              videoSrc && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
+              videoSrc && videoReady && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => {
               // Image loaded successfully
@@ -141,13 +141,16 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
               ref={videoRef}
               className={cn(
                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
-                (isHovered || autoPlay) ? "opacity-100" : "opacity-0"
+                videoReady && (isHovered || autoPlay) ? "opacity-100" : "opacity-0"
               )}
               autoPlay={autoPlay}
               loop
               muted
               playsInline
               preload="metadata"
+              onLoadedData={() => setVideoReady(true)}
+              onCanPlay={() => setVideoReady(true)}
+              onError={() => setVideoReady(false)}
             >
               <source src={videoSrc} type="video/mp4" />
             </video>
