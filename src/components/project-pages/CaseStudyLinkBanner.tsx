@@ -28,7 +28,7 @@ const CaseStudyLinkBanner: React.FC<Props> = ({
       This is the product overview.
     </span>
     <Link
-      to={`/project/${slug}`}
+      to={`/case-studies/${slug}`}
       style={{ color: accent, fontWeight: 700, textDecoration: "underline" }}
     >
       Read the case study →

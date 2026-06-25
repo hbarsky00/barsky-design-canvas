@@ -139,7 +139,7 @@ export const buildSimpleCaseStudyPageProps = (
     description: study.description,
     tags: study.tags,
     liveUrl: study.projectLink,
-    overviewUrl: promoSlugs.has(study.id) ? `/project/${study.id}/overview` : undefined,
+    overviewUrl: promoSlugs.has(study.id) ? `/project/${study.id}` : undefined,
     heroImage: getHeroImage(study, overrides.heroImage),
     blocks,
   };
