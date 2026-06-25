@@ -392,8 +392,9 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   color: currentColor; opacity: 0.92;
 }
 .parallax-content .hero-name {
-  font-size: clamp(36px, 10vw, 56px); font-weight: 800; letter-spacing: .04em;
+  font-size: clamp(28px, 9vw, 56px); font-weight: 800; letter-spacing: .04em;
   color: currentColor; margin: 0; line-height: 1.05;
+  white-space: nowrap;
 }
 .parallax-content .hero-divider {
   width: 60px; height: 2px; background: currentColor; opacity: .45; margin: 12px auto; border: 0;
