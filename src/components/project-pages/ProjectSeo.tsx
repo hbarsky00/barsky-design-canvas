@@ -6,10 +6,11 @@ interface Props {
   description: string;
   image?: string;
   slug: string;
+  basePath?: "/project" | "/case-studies";
 }
 
-const ProjectSeo: React.FC<Props> = ({ title, description, image, slug }) => {
-  const url = `https://barskydesign.pro/project/${slug}`;
+const ProjectSeo: React.FC<Props> = ({ title, description, image, slug, basePath = "/project" }) => {
+  const url = `https://barskydesign.pro${basePath}/${slug}`;
   return (
     <Helmet>
       <title>{title}</title>

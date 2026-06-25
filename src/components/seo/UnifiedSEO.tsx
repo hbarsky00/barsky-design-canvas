@@ -77,9 +77,12 @@ const UnifiedSEO: React.FC = () => {
         };
       }
     }
-    // Handle project pages
-    else if (pathname.startsWith('/project/')) {
-      const projectId = pathname.replace('/project/', '').replace('/', '');
+    // Handle project promo pages and case-study detail pages
+    else if (pathname.startsWith('/project/') || pathname.startsWith('/case-studies/')) {
+      const isCaseStudyRoute = pathname.startsWith('/case-studies/');
+      const projectId = pathname
+        .replace(isCaseStudyRoute ? '/case-studies/' : '/project/', '')
+        .replace('/', '');
       const caseStudyData = getStructuredCaseStudy(projectId);
       const projectSeoOverride = getProjectSEO(projectId);
       
@@ -104,7 +107,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'project',
-          title: `Project: ${projectId} — Hiram Barsky`,
+          title: `${isCaseStudyRoute ? 'Case Study' : 'Project'}: ${projectId} — Hiram Barsky`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION
         };
       }

@@ -40,7 +40,7 @@ const groups: Group[] = [
         description:
           "A booking platform where no practitioner appears until credentials are verified against an external registry. Smaller catalog by design — honest beats exhaustive.",
         image: herbalinkImg,
-        url: "/project/herbalink",
+        url: "/case-studies/herbalink",
         category: "Healthcare",
         tags: ["Trust & Safety", "AI-Assisted", "Solo Build"],
       },
@@ -51,7 +51,7 @@ const groups: Group[] = [
         description:
           "Type reminders the way you'd say them out loud. Plain English parsed into recurring schedules across browser, email, and SMS — all from one input.",
         image: nudgemeImg,
-        url: "/project/nudgeme",
+        url: "/case-studies/nudgeme",
         category: "Behavior",
         tags: ["PWA", "NLP", "Shipped"],
       },
@@ -67,9 +67,8 @@ const groups: Group[] = [
         subtitle: "Enterprise search redesigned around trust, not relevance",
         description:
           "Semantic match with data lineage and permissions inline. From 40 results to narrow down to 4 you can act on — reframed the product from search tool to data discovery tool.",
-        image:
-          "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
-        url: "/project/dae-search",
+        image: "/lovable-uploads/dae/dashboard-search.png",
+        url: "/case-studies/dae-search",
         category: "Enterprise",
         tags: ["Data Discovery", "Search UX"],
       },
@@ -80,7 +79,7 @@ const groups: Group[] = [
         description:
           "A calculator that translates design decisions into dollars. Built for designers talking to finance — board-ready reports generated in minutes, benchmarks citable by vertical.",
         image: roiImg,
-        url: "/project/roi-design-builder",
+        url: "/case-studies/roi-design-builder",
         category: "Financial Modeling",
         tags: ["Enterprise Tool", "Shipped"],
       },
@@ -97,7 +96,7 @@ const groups: Group[] = [
         description:
           "A one-tap arcade runner where you spell words mid-flight to cast spells. The deletion list ended up longer than the feature list — that was the work.",
         image: firelionImg,
-        url: "/project/fire-lion",
+        url: "/case-studies/fire-lion",
         category: "Game Design",
         tags: ["AI-Assisted", "Solo Build"],
       },

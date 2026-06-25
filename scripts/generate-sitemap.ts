@@ -32,6 +32,7 @@ const staticEntries: Entry[] = [
   { path: "/contact", changefreq: "monthly", priority: "0.7" },
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/case-studies", changefreq: "monthly", priority: "0.8" },
 ];
 
 // Featured projects — the only project URLs surfaced on the homepage and
@@ -44,6 +45,14 @@ const FEATURED_PROJECTS = [
   "/project/nudgeme",
   "/project/ring-rival",
   "/project/fire-lion",
+];
+
+const FEATURED_CASE_STUDIES = [
+  "/case-studies/dae-search",
+  "/case-studies/fire-lion",
+  "/case-studies/herbalink",
+  "/case-studies/nudgeme",
+  "/case-studies/roi-design-builder",
 ];
 
 // Blog slugs — read from src/data/blogData.ts (current source of truth).
@@ -80,6 +89,11 @@ function getProductIds(): string[] {
 const entries: Entry[] = [
   ...staticEntries,
   ...FEATURED_PROJECTS.sort().map<Entry>((path) => ({
+    path,
+    changefreq: "monthly",
+    priority: "0.7",
+  })),
+  ...FEATURED_CASE_STUDIES.sort().map<Entry>((path) => ({
     path,
     changefreq: "monthly",
     priority: "0.7",

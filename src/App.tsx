@@ -82,31 +82,36 @@ function AppContent() {
               {/* Home route */}
               <Route path="/" element={<Index />} />
               <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/case-studies/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              <Route path="/case-studies/nudgeme" element={<NudgeMeCaseStudy />} />
+              <Route path="/case-studies/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
+              <Route path="/case-studies/fire-lion" element={<StructuredFireLionCaseStudy />} />
+              <Route path="/case-studies/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
               
               
-              {/* Structured case studies - these override the generic ProjectDetail routing */}
-              {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
-              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              {/* Project promo pages - homepage product links land here */}
+              <Route path="/project/herbalink" element={<HerbalinkPromo />} />
+              <Route path="/project/nudgeme" element={<NudgeMePromo />} />
+              <Route path="/project/roi-design-builder" element={<RoiDesignPromo />} />
+              <Route path="/project/fire-lion" element={<FireLionPromo />} />
+              
+              {/* Structured case studies still available under /case-studies/:projectId */}
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-              <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
               <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
               <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
               <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
-              <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/project/dae-search" element={<Navigate to="/case-studies/dae-search" replace />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
-              <Route path="/project/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
-              <Route path="/project/nudgeme" element={<NudgeMeCaseStudy />} />
-
-              {/* Product overview (promo) pages */}
-              <Route path="/project/herbalink/overview" element={<HerbalinkPromo />} />
-              <Route path="/project/nudgeme/overview" element={<NudgeMePromo />} />
-              <Route path="/project/roi-design-builder/overview" element={<RoiDesignPromo />} />
-              <Route path="/project/fire-lion/overview" element={<FireLionPromo />} />
+              <Route path="/project/herbalink/overview" element={<Navigate to="/project/herbalink" replace />} />
+              <Route path="/project/nudgeme/overview" element={<Navigate to="/project/nudgeme" replace />} />
+              <Route path="/project/roi-design-builder/overview" element={<Navigate to="/project/roi-design-builder" replace />} />
+              <Route path="/project/fire-lion/overview" element={<Navigate to="/project/fire-lion" replace />} />
 
 
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />

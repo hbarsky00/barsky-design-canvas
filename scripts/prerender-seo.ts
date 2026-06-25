@@ -66,6 +66,17 @@ for (const [id, seo] of Object.entries(PROJECT_SEO_MAP)) {
   });
 }
 
+// 2b) Case-study detail URLs use the same case-study metadata with the correct canonical path.
+for (const [id, seo] of Object.entries(PROJECT_SEO_MAP)) {
+  routes.push({
+    path: `/case-studies/${id}`,
+    title: seo.title,
+    description: seo.description,
+    image: seo.image,
+    type: "article",
+  });
+}
+
 // 3) Blog posts
 for (const [slug, seo] of Object.entries(BLOG_SEO_MAP)) {
   routes.push({

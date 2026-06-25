@@ -133,6 +133,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
       <div className="min-h-screen bg-background">
         <ProjectSeo
           slug={projectId}
+          basePath="/case-studies"
           title={`${title} — UX Case Study`}
           description={description}
           image={seoImage}
