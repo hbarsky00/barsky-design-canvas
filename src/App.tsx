@@ -57,6 +57,7 @@ const RoiDesignPromo = React.lazy(() => import("@/pages/promos/RoiDesignPromo"))
 const FireLionPromo = React.lazy(() => import("@/pages/promos/FireLionPromo"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
+const ValoraBetPromo = React.lazy(() => import("@/pages/promos/ValoraBetPromo"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
 const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
 const CaseStudies = React.lazy(() => import("@/pages/CaseStudies"));
