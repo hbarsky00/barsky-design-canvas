@@ -65,12 +65,17 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="overflow-hidden rounded-lg relative">
+        <div className="overflow-hidden rounded-lg relative aspect-video bg-muted">
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-auto object-cover"
+            width={1200}
+            height={675}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
           />
+
           {product.badge && (
             <div className="absolute top-4 right-4">
               <Badge className="bg-barsky-blue text-white flex items-center gap-1 px-2 py-1">
