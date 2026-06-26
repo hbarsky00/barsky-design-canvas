@@ -391,7 +391,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: replaced filters with a guided triage intake.`,
         },
       ],
+      researchImages: [
+        {
+          src: `/lovable-uploads/herbalink/connecting-herbalists.png`,
+          alt: `HerbaLink concept boards — symptom tracker, landing, and wellness services`,
+        },
+      ],
     },
+
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
       statement: `People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing for them — and the discovery experience is a misinformation field. The design job wasn't to build a bigger directory. It was to make the safe path the easy path, in a category where being wrong has real medical consequences.`,
