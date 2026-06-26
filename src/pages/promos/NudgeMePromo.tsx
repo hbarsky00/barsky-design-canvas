@@ -74,11 +74,6 @@ const NudgeMePromo: React.FC = () => (
           style={{ background: TEAL, color: "#fff", padding: "14px 26px", borderRadius: 12, fontWeight: 600, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center", boxShadow: "0 10px 30px -12px rgba(13,155,115,0.55)" }}>
           Try NudgeMe Free →
         </a>
-        <a href="#flow"
-          onClick={(e) => { e.preventDefault(); document.querySelector("#flow")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={{ border: `1.5px solid ${BORDER}`, color: INK, padding: "14px 26px", borderRadius: 12, fontWeight: 600, textDecoration: "none", background: "#fff", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
-          See How It Works
-        </a>
       </div>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         <img src={heroImg} alt="NudgeMe app showing natural-language reminder input with active recurring and one-time reminders"
