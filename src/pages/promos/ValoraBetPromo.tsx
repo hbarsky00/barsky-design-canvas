@@ -64,10 +64,6 @@ const ValoraBetPromo: React.FC = () => (
           style={{ background: ORANGE, color: "#fff", padding: "14px 26px", borderRadius: 12, fontWeight: 700, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
           Explore Markets →
         </a>
-        <a href="/case-studies/valora-bet"
-          style={{ border: `1.5px solid ${BORDER}`, color: INK, padding: "14px 26px", borderRadius: 12, fontWeight: 600, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
-          Read the Case Study
-        </a>
       </div>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         <img src={heroImg} alt="Valora Bet prediction markets dashboard"
