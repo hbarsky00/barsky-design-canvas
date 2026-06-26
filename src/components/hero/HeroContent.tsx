@@ -5,6 +5,7 @@ import { Mail, Linkedin, Github, Calendar, ArrowRight } from "lucide-react";
 const SHIPPED = [
   { label: "CatchBuddy", desc: "Same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "Verified herbalist platform", to: "/project/herbalink" },
+  { label: "NudgeMe", desc: "Natural-language reminder app", to: "/project/nudgeme" },
   { label: "Valora Bet", desc: "Social prediction markets platform", to: "/project/valora-bet" },
 ];
 
