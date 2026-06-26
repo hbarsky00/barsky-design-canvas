@@ -64,10 +64,6 @@ const RingRivalPromo: React.FC = () => (
           style={{ background: RED, color: "#fff", padding: "14px 28px", borderRadius: 4, fontWeight: 800, letterSpacing: "0.1em", textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
           START CAREER →
         </a>
-        <a href="/case-studies/ring-rival"
-          style={{ border: `1.5px solid ${BORDER}`, color: INK, padding: "14px 26px", borderRadius: 4, fontWeight: 600, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
-          Read the Case Study
-        </a>
       </div>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         <img src={heroImg} alt="Ring-Rival mobile boxing gameplay"
