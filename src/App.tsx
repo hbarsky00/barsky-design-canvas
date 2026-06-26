@@ -91,7 +91,9 @@ function AppContent() {
               <Route path="/case-studies/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/case-studies/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/case-studies/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/case-studies/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
+
               
               
               {/* Project promo pages - homepage product links land here */}
