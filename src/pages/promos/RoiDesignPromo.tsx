@@ -1,5 +1,4 @@
 import React from "react";
-import CaseStudyLinkBanner from "@/components/project-pages/CaseStudyLinkBanner";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/roidesigncalc.png";
@@ -22,7 +21,6 @@ const RoiDesignPromo: React.FC = () => (
       description="A calculator that translates design decisions into dollars. Built for designers talking to finance."
       image={heroImg} />
 
-    <CaseStudyLinkBanner slug="roi-design-builder" bg="#0f172a" color="#fff" accent="#0ea5e9" />
       <ProjectNav
       brand={<span style={{ color: "#111" }}>ROI Design Calculator</span>}
       links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }, { label: "About", href: "#about" }]}
