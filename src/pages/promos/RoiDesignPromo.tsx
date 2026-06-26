@@ -67,7 +67,7 @@ const RoiDesignPromo: React.FC = () => (
         </div>
       </div>
       <div style={{ padding: 60, display: "flex", alignItems: "center", justifyContent: "center", background: "#f8fafc" }}>
-        <img src={heroImg} alt="ROI Design Calculator interface" style={{ maxWidth: "100%", borderRadius: 12, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }} />
+        <img src={heroImg} alt="ROI Design Calculator interface" width={1600} height={1000} loading="eager" decoding="async" style={{ maxWidth: "100%", height: "auto", aspectRatio: "16 / 10", objectFit: "cover", borderRadius: 12, boxShadow: "0 20px 60px rgba(0,0,0,0.1)" }} />
       </div>
     </section>
 
