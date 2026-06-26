@@ -28,7 +28,6 @@ const FireLionPromo: React.FC = () => {
         links={[
           { label: "Home", href: "#hero" },
           { label: "Features", href: "#features" },
-          { label: "About", href: "#about" },
         ]}
         cta={{ label: "Play Free →", href: "https://firelion.me" }}
         bg="rgba(10,10,10,0.85)" textColor="#fff" backColor="rgba(255,255,255,0.4)"
@@ -68,10 +67,6 @@ const FireLionPromo: React.FC = () => {
               style={{ background: ORANGE, color: "#fff", padding: "14px 24px", borderRadius: 6, fontWeight: 700, textDecoration: "none" }}>
               Play Free →
             </a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" }); }}
-              style={{ border: "1px solid rgba(255,255,255,0.3)", color: "#fff", padding: "14px 24px", borderRadius: 6, fontWeight: 700, textDecoration: "none" }}>
-              How It Was Built
-            </a>
           </div>
         </div>
       </section>
@@ -108,29 +103,6 @@ const FireLionPromo: React.FC = () => {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" style={{ background: "#111", padding: "80px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 40 }}>
-          <div>
-            <h2 style={{ color: "#fff", fontSize: 32, fontWeight: 800, margin: "0 0 20px" }}>Why I Built This</h2>
-            <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 16, lineHeight: 1.7 }}>
-            The design job was deciding what to delete. Building features is easy with AI. Killing them is the actual work.
-          </p>
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 16, lineHeight: 1.7, marginTop: 16 }}>
-            I chose a canvas renderer over DOM sprites because framerate mattered for arcade feel, and gave up accessibility tooling.
-          </p>
-        </div>
-          <div style={{
-            background: "rgba(255,107,0,0.08)", borderLeft: `3px solid ${ORANGE}`,
-            padding: 24, alignSelf: "start",
-          }}>
-            <p style={{ color: ORANGE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>
-            <p style={{ color: "rgba(255,255,255,0.8)", fontSize: 15, lineHeight: 1.6, marginTop: 12 }}>
-              Difficulty balancing across skill levels. The game gets hard fast and there's no adaptive curve yet.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* BOTTOM CTA */}
       <section style={{ background: ORANGE, padding: "80px 24px", textAlign: "center" }}>
