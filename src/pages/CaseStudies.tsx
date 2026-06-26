@@ -84,6 +84,17 @@ const groups: Group[] = [
         category: "Financial Modeling",
         tags: ["Enterprise Tool", "Shipped"],
       },
+      {
+        id: "valora-bet",
+        title: "Valora Bet",
+        subtitle: "Social prediction markets, made playable",
+        description:
+          "Prediction markets are accurate but nobody uses them — the UI speaks trader, not human. Reframed the bet screen around a slider over honest CPMM pricing, open authoring, and clubs. Live in beta on play money.",
+        image: valoraImg,
+        url: "/case-studies/valora-bet",
+        category: "Consumer / Markets",
+        tags: ["Prediction Markets", "Solo Build", "AI-Assisted"],
+      },
     ],
   },
   {
