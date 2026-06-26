@@ -55,7 +55,7 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
           {shouldShowPlaceholder ? (
             <PlaceholderImage title="Hero Video" />
           ) : heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full rounded-sm overflow-hidden group cursor-pointer">
+            <div className="relative w-full rounded-sm overflow-hidden group cursor-pointer aspect-video bg-surface-container">
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
@@ -63,9 +63,10 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
                 height={900}
                 loading="eager"
                 decoding="async"
-                className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
+
           ) : caseStudyData.heroVideo?.src ? (
             <VideoPlayer 
               videoSrc={caseStudyData.heroVideo.src}

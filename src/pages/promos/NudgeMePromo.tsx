@@ -84,7 +84,9 @@ const NudgeMePromo: React.FC = () => (
       </div>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         <img src={heroImg} alt="NudgeMe app showing natural-language reminder input with active recurring and one-time reminders"
-          style={{ width: "100%", borderRadius: 16, boxShadow: "0 30px 80px -20px rgba(15,23,42,0.25)", border: `1px solid ${BORDER}` }} />
+          width={1600} height={1000} loading="eager" decoding="async"
+          style={{ width: "100%", height: "auto", aspectRatio: "16 / 10", objectFit: "cover", borderRadius: 16, boxShadow: "0 30px 80px -20px rgba(15,23,42,0.25)", border: `1px solid ${BORDER}` }} />
+
       </div>
     </section>
 
