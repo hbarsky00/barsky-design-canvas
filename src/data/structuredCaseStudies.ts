@@ -409,6 +409,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       workshopKickoff: ``,
       explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
+      images: [
+        {
+          src: `/lovable-uploads/herbalink/user-flow-sketch.png`,
+          alt: `HerbaLink initial sketches — user flow expectations from home to herbalist, symptoms, herb database, and community`,
+        },
+      ],
     },
     keyInsights: [
       {
@@ -435,8 +441,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `Yelp-style "Verified" badge`, description: `Scrapped in favor of a gate that controls visibility entirely.` },
       ],
       wireframeImage: {
-        src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1`,
-        alt: `HerbaLink user flow from onboarding to booking`,
+        src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
+        alt: `HerbaLink booking, symptom tracker, and profile flows`,
         caption: `Final flow — onboarding feeds a guided intake, not a search bar`,
       },
     },
@@ -444,11 +450,23 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `APPROACH & DECISION MAKING`,
       title: `My Thought Process`,
       content: `In a category dominated by misinformation, the design job is to make the safe path the easy path. Not to add warning labels to the unsafe path. Every decision was checked against: would this protect a user from the same $200-tincture mistake? That filter killed open-ended search, killed crowdsourced practitioner listings, and inverted "verified" from a badge into a gate.`,
+      images: [
+        {
+          src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
+          alt: `Booking, symptom tracking, and profile screens designed around the credential gate`,
+        },
+      ],
     },
     userTestingSection: {
       eyebrow: `USER TESTING`,
       title: `User Testing`,
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
+      images: [
+        {
+          src: `/lovable-uploads/herbalink/video-consultation.png`,
+          alt: `HerbaLink video consultation screen with live recommendations and session notes`,
+        },
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: `WHAT DIDN'T WORK`,
@@ -459,10 +477,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
       description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
+      images: [
+        {
+          src: `/lovable-uploads/herbalink/community.png`,
+          alt: `HerbaLink community page with discussions, featured experts, and trending topics`,
+        },
+      ],
     },
     sections: [],
     seoData: {
-      image: `/images/default-og-image.jpg`,
+      image: `/lovable-uploads/herbalink/hero-phones.png`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
