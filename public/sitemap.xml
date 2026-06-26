@@ -60,7 +60,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/project/business-management</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/project/catchbuddy</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/project/email-creation-ai</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -78,6 +90,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/project/investor-loan-app</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/project/nudgeme</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
@@ -85,6 +103,12 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/project/ring-rival</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/project/roi-design-builder</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
