@@ -500,8 +500,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A reminder app that parses plain English into structured schedules. Recurring rules, multi-channel delivery, installable PWA. Built on React + Supabase.`,
     tags: [`PWA`, `Natural Language`, `Reminder UX`, `Solo Build`],
     heroImage: {
-      src: nudgemeProjectImage,
-      alt: `NudgeMe app showing natural-language reminder input with recurring and one-time reminders`,
+      src: `/lovable-uploads/nudgeme/dashboard.png`,
+      alt: `NudgeMe dashboard — natural-language reminder input with active recurring and one-time reminders`,
     },
     projectLink: `https://nudgeme.rip`,
     problemCallout: {
@@ -529,25 +529,49 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `WHAT I BUILT`,
       title: `What I Built`,
       description: `A one-input reminder flow: type the reminder the way you'd say it out loud, preview what the parser understood, edit anything that's off, then save. The same input supports one-time reminders, recurring schedules, browser notifications, email, SMS, and PWA install behavior without turning the first screen into a settings panel.`,
+      images: [
+        {
+          src: `/lovable-uploads/nudgeme/input.png`,
+          alt: `NudgeMe single-input reminder screen with example prompts and Save Reminder button`,
+        },
+      ],
     },
     myThoughtProcessSection: {
       eyebrow: `AI vs. JUDGMENT`,
       title: `AI vs. Judgment`,
       content: `AI handled the LLM parser, the Supabase schema, the recurrence engine, the multi-channel dispatch, and the PWA install plumbing. What I wouldn't let it decide: when the parser is confident enough to skip the preview step. That's a trust call — get it wrong and silent misreads become missed reminders, which is the one failure mode the product can't survive.`,
+      images: [
+        {
+          src: `/lovable-uploads/nudgeme/hero.png`,
+          alt: `NudgeMe value props — recurring schedules, smart reminders, and multi-channel sync`,
+        },
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: `WHAT DIDN'T WORK`,
       title: `What Didn't Work`,
       content: `First version auto-saved on parse with no preview. Sounded clean; produced silent misreads users only caught when the reminder didn't fire. Added the preview step back. Also tried push notifications without a PWA install — iOS Safari kills them. The "Add to Home Screen" step became a real onboarding moment, not a footnote.`,
+      images: [
+        {
+          src: `/lovable-uploads/nudgeme/reminder-modal.png`,
+          alt: `NudgeMe reminder modal showing parsed recurring schedule with Done and snooze actions — the preview surface added after auto-save failed`,
+        },
+      ],
     },
     outcomeSection: {
       eyebrow: `STATUS`,
       title: `Outcome`,
       description: `Live at nudgeme.rip. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
+      images: [
+        {
+          src: `/lovable-uploads/nudgeme/design-system.png`,
+          alt: `NudgeMe design system notes — modal tokens, billing badge, and sign-out confirmation spec`,
+        },
+      ],
     },
     sections: [],
     seoData: {
-      image: nudgemeProjectImage,
+      image: `/lovable-uploads/nudgeme/dashboard.png`,
       projectName: `NudgeMe`,
       results: [],
       technologies: [],
