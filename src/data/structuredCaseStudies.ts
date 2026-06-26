@@ -363,6 +363,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
     projectLink: `http://herbalink.live`,
+    heroImage: {
+      src: `/lovable-uploads/herbalink/hero-phones.png`,
+      alt: `HerbaLink mobile screens — landing, herbalist directory, and consultation booking`,
+    },
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Credentials as a Gate`, label: `Verified against an external registry, not a badge` },
