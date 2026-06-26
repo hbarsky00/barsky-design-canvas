@@ -58,10 +58,6 @@ const RoiDesignPromo: React.FC = () => (
             style={{ background: BLUE, color: "#fff", padding: "14px 24px", borderRadius: 8, fontWeight: 700, textDecoration: "none" }}>
             Try It Free →
           </a>
-          <a href="#features" onClick={(e) => { e.preventDefault(); document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" }); }}
-            style={{ border: `1.5px solid ${BLUE}`, color: BLUE, padding: "14px 24px", borderRadius: 8, fontWeight: 700, textDecoration: "none" }}>
-            See How It Works
-          </a>
         </div>
       </div>
       <div style={{ padding: 60, display: "flex", alignItems: "center", justifyContent: "center", background: "#f8fafc" }}>
