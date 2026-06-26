@@ -28,7 +28,6 @@ const FireLionPromo: React.FC = () => {
         links={[
           { label: "Home", href: "#hero" },
           { label: "Features", href: "#features" },
-          { label: "About", href: "#about" },
         ]}
         cta={{ label: "Play Free →", href: "https://firelion.me" }}
         bg="rgba(10,10,10,0.85)" textColor="#fff" backColor="rgba(255,255,255,0.4)"
