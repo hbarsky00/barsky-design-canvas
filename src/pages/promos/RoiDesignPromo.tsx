@@ -93,21 +93,6 @@ const RoiDesignPromo: React.FC = () => (
       </div>
     </section>
 
-    {/* ABOUT */}
-    <section id="about" style={{ background: "#f8fafc", padding: "80px 24px" }}>
-      <div style={{ maxWidth: 680, margin: "0 auto" }}>
-        <h2 style={{ color: "#111", fontSize: 28, fontWeight: 800, margin: "0 0 20px" }}>Why I Built This</h2>
-        <p style={{ color: "#475569", fontSize: 16, lineHeight: 1.8 }}>
-          Designers lose budget conversations because they speak in craft and stakeholders speak in money. The brief was a tool that translates. The hard part isn't the math — it's knowing which numbers stakeholders actually trust. Industry benchmarks get challenged immediately unless they're citable. That's the core design problem this tool is solving.
-        </p>
-        <div style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 8, borderTop: `3px solid ${BLUE}`, padding: 20, marginTop: 24 }}>
-          <p style={{ color: BLUE, fontSize: 11, fontWeight: 700, letterSpacing: "0.15em", margin: 0 }}>WHAT I HAVEN'T SOLVED</p>
-          <p style={{ color: "#334155", fontSize: 15, lineHeight: 1.6, marginTop: 10 }}>
-            The benchmark data problem is real. Generic stats get dismissed. The tool only works if the numbers are defensible. That tension is partially solved — not fully.
-          </p>
-        </div>
-      </div>
-    </section>
 
     {/* BOTTOM CTA */}
     <section style={{ background: BLUE, padding: "80px 24px", textAlign: "center" }}>
