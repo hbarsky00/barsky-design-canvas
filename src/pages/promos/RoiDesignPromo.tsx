@@ -23,7 +23,7 @@ const RoiDesignPromo: React.FC = () => (
 
       <ProjectNav
       brand={<span style={{ color: "#111" }}>ROI Design Calculator</span>}
-      links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }, { label: "About", href: "#about" }]}
+      links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }]}
       cta={{ label: "Try It Free →", href: "https://roicalc.one/" }}
       bg="#fff" border="1px solid #e2e8f0" textColor="#111" backColor="rgba(0,0,0,0.35)"
       ctaBg={BLUE} ctaColor="#fff"
