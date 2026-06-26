@@ -84,7 +84,7 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
               background: ctaBg, color: ctaColor, padding: "8px 12px",
               borderRadius: 6, fontWeight: 700, fontSize: 13, textDecoration: "none",
               display: "inline-block", whiteSpace: "nowrap",
-              maxWidth: 150, overflow: "hidden", textOverflow: "ellipsis",
+              maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis",
             }}
           >
             {cta.label}
