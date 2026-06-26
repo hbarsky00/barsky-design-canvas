@@ -1,5 +1,4 @@
 import React from "react";
-import CaseStudyLinkBanner from "@/components/project-pages/CaseStudyLinkBanner";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/herbalink.png";
@@ -22,7 +21,6 @@ const HerbalinkPromo: React.FC = () => (
       description="Find a herbalist you can trust. Every practitioner verified against the American Herbalists Guild."
       image={heroImg} />
 
-    <CaseStudyLinkBanner slug="herbalink" bg="#fff" color="#2d2d2d" accent="#4a7c59" />
       <ProjectNav
       brand={<span style={{ color: SAGE, fontFamily: "Georgia, serif" }}>HerbaLink</span>}
       links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }, { label: "About", href: "#about" }]}

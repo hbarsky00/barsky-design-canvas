@@ -1,5 +1,4 @@
 import React from "react";
-import CaseStudyLinkBanner from "@/components/project-pages/CaseStudyLinkBanner";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/valorabet.png";
@@ -33,7 +32,6 @@ const ValoraBetPromo: React.FC = () => (
       image={heroImg}
     />
 
-    <CaseStudyLinkBanner slug="valora-bet" bg={BG} color={INK} accent={ORANGE} />
 
     <ProjectNav
       brand={<span style={{ color: INK, fontWeight: 700 }}>⚡ Valora Bet</span>}

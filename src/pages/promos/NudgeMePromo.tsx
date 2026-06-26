@@ -1,5 +1,4 @@
 import React from "react";
-import CaseStudyLinkBanner from "@/components/project-pages/CaseStudyLinkBanner";
 import ProjectNav from "@/components/project-pages/ProjectNav";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import heroImg from "@/assets/projects/nudgeme.png";
@@ -43,7 +42,6 @@ const NudgeMePromo: React.FC = () => (
       image={heroImg}
     />
 
-    <CaseStudyLinkBanner slug="nudgeme" bg="#fff" color="#111827" accent="#0D9B73" />
       <ProjectNav
       brand={<span style={{ color: INK, fontWeight: 700 }}>NudgeMe</span>}
       links={[
