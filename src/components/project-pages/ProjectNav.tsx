@@ -47,6 +47,7 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
 
 
         <div
+          className="hidden sm:block"
           style={{
             color: textColor, fontWeight: 700, letterSpacing: 0.04,
             fontSize: 14, flex: "1 1 auto", textAlign: "center",
@@ -56,6 +57,7 @@ const ProjectNav: React.FC<ProjectNavProps> = ({
         >
           {brand}
         </div>
+        <div className="sm:hidden" style={{ flex: "1 1 auto" }} aria-hidden="true" />
 
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0, minWidth: 0 }}>
           {links.map((l) => (
