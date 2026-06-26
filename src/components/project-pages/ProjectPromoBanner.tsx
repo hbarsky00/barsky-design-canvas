@@ -30,19 +30,23 @@ const ProjectPromoBanner: React.FC = () => {
         background: "#111",
         color: "#fff",
         padding: "10px 16px",
-        textAlign: "center",
         fontSize: 13,
         fontFamily: "Inter, system-ui, sans-serif",
         position: "relative",
         zIndex: 200,
+        display: "flex",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
       }}
     >
-      <span style={{ opacity: 0.8, marginRight: 8 }}>
-        This is the product overview.
-      </span>
+      <span style={{ opacity: 0.8, flexShrink: 0 }}>Product overview.</span>
       <Link
         to={`/case-studies/${slug}`}
-        style={{ color: "#facc15", fontWeight: 700, textDecoration: "underline" }}
+        style={{ color: "#facc15", fontWeight: 700, textDecoration: "underline", flexShrink: 0 }}
       >
         Read the full case study →
       </Link>
