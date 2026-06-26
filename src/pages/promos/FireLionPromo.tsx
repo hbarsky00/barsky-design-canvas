@@ -68,10 +68,6 @@ const FireLionPromo: React.FC = () => {
               style={{ background: ORANGE, color: "#fff", padding: "14px 24px", borderRadius: 6, fontWeight: 700, textDecoration: "none" }}>
               Play Free →
             </a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" }); }}
-              style={{ border: "1px solid rgba(255,255,255,0.3)", color: "#fff", padding: "14px 24px", borderRadius: 6, fontWeight: 700, textDecoration: "none" }}>
-              How It Was Built
-            </a>
           </div>
         </div>
       </section>
