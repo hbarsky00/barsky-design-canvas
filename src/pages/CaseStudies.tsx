@@ -9,6 +9,7 @@ import nudgemeImg from "@/assets/projects/nudgeme.png";
 import roiImg from "@/assets/projects/roidesigncalc.png";
 import herbalinkImg from "@/assets/projects/herbalink.png";
 import firelionImg from "@/assets/projects/firelion.png";
+import valoraImg from "@/assets/projects/valorabet.png";
 
 
 type Study = {
