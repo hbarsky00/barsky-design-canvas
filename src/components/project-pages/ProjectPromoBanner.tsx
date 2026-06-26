@@ -12,6 +12,7 @@ const PROMO_WITH_CASE_STUDY = new Set([
   "nudgeme",
   "roi-design-builder",
   "fire-lion",
+  "valora-bet",
 ]);
 
 const ProjectPromoBanner: React.FC = () => {
