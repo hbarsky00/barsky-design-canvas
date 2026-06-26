@@ -9,6 +9,7 @@ import nudgemeImg from "@/assets/projects/nudgeme.png";
 import roiImg from "@/assets/projects/roidesigncalc.png";
 import herbalinkImg from "@/assets/projects/herbalink.png";
 import firelionImg from "@/assets/projects/firelion.png";
+import valoraImg from "@/assets/projects/valorabet.png";
 
 
 type Study = {
@@ -82,6 +83,17 @@ const groups: Group[] = [
         url: "/case-studies/roi-design-builder",
         category: "Financial Modeling",
         tags: ["Enterprise Tool", "Shipped"],
+      },
+      {
+        id: "valora-bet",
+        title: "Valora Bet",
+        subtitle: "Social prediction markets, made playable",
+        description:
+          "Prediction markets are accurate but nobody uses them — the UI speaks trader, not human. Reframed the bet screen around a slider over honest CPMM pricing, open authoring, and clubs. Live in beta on play money.",
+        image: valoraImg,
+        url: "/case-studies/valora-bet",
+        category: "Consumer / Markets",
+        tags: ["Prediction Markets", "Solo Build", "AI-Assisted"],
       },
     ],
   },

@@ -57,6 +57,7 @@ const RoiDesignPromo = React.lazy(() => import("@/pages/promos/RoiDesignPromo"))
 const FireLionPromo = React.lazy(() => import("@/pages/promos/FireLionPromo"));
 const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
 const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
+const ValoraBetPromo = React.lazy(() => import("@/pages/promos/ValoraBetPromo"));
 const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
 const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
 const CaseStudies = React.lazy(() => import("@/pages/CaseStudies"));
@@ -90,7 +91,9 @@ function AppContent() {
               <Route path="/case-studies/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
               <Route path="/case-studies/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/case-studies/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/case-studies/valora-bet" element={<ValoraBetCaseStudy />} />
               <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
+
               
               
               {/* Project promo pages - homepage product links land here */}
@@ -110,7 +113,7 @@ function AppContent() {
               <Route path="/project/dae-search" element={<Navigate to="/case-studies/dae-search" replace />} />
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
-              <Route path="/project/valora-bet" element={<ValoraBetCaseStudy />} />
+              <Route path="/project/valora-bet" element={<ValoraBetPromo />} />
               <Route path="/project/herbalink/overview" element={<Navigate to="/project/herbalink" replace />} />
               <Route path="/project/nudgeme/overview" element={<Navigate to="/project/nudgeme" replace />} />
               <Route path="/project/roi-design-builder/overview" element={<Navigate to="/project/roi-design-builder" replace />} />
