@@ -23,7 +23,7 @@ const HerbalinkPromo: React.FC = () => (
 
       <ProjectNav
       brand={<span style={{ color: SAGE, fontFamily: "Georgia, serif" }}>HerbaLink</span>}
-      links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }, { label: "About", href: "#about" }]}
+      links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }]}
       cta={{ label: "Find an Herbalist →", href: "http://herbalink.live" }}
       bg={CREAM} border={`1px solid ${BORDER}`} textColor="#2d2d2d" backColor="rgba(0,0,0,0.3)"
       ctaBg={SAGE} ctaColor="#fff"
