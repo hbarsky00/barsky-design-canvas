@@ -106,8 +106,10 @@ function AppContent() {
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-              <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
-              <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
+              <Route path="/project/ring-rival" element={<RingRivalPromo />} />
+              <Route path="/project/catchbuddy" element={<CatchBuddyPromo />} />
+              <Route path="/case-studies/ring-rival" element={<StructuredRingRivalCaseStudy />} />
+              <Route path="/case-studies/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
               <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
               <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
               <Route path="/project/dae-search" element={<Navigate to="/case-studies/dae-search" replace />} />

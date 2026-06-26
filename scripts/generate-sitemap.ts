@@ -58,6 +58,8 @@ const FEATURED_CASE_STUDIES = [
   "/case-studies/nudgeme",
   "/case-studies/roi-design-builder",
   "/case-studies/valora-bet",
+  "/case-studies/catchbuddy",
+  "/case-studies/ring-rival",
 ];
 
 // Blog slugs — read from src/data/blogData.ts (current source of truth).
