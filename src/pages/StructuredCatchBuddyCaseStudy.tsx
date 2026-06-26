@@ -55,8 +55,9 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             How It Works
           </a>
         </div>
-        <img src={heroImg} alt="CatchBuddy app screens"
-          style={{ width: "100%", maxWidth: 900, margin: "0 auto", borderRadius: 16, boxShadow: "0 20px 60px rgba(0,0,0,0.12)", display: "block" }} />
+        <img src={heroImg} alt="CatchBuddy app screens" width={900} height={563} loading="eager" decoding="async"
+          style={{ width: "100%", height: "auto", aspectRatio: "16 / 10", objectFit: "cover", maxWidth: 900, margin: "0 auto", borderRadius: 16, boxShadow: "0 20px 60px rgba(0,0,0,0.12)", display: "block" }} />
+
       </div>
     </section>
 
