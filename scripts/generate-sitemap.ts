@@ -45,6 +45,10 @@ const FEATURED_PROJECTS = [
   "/project/nudgeme",
   "/project/ring-rival",
   "/project/fire-lion",
+  "/project/roi-design-builder",
+  "/project/business-management",
+  "/project/investor-loan-app",
+  "/project/email-creation-ai",
 ];
 
 const FEATURED_CASE_STUDIES = [
