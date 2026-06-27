@@ -6,9 +6,8 @@ export interface CaseStudyNavItem {
 
 import { structuredCaseStudies } from "@/data/structuredCaseStudies";
 import { caseStudiesData, homepageCaseStudyPreviews } from "@/data/caseStudies";
+import valoraImg from "@/assets/projects/valorabet.png";
 
-// Allow-list of case studies shown in prev/next navigation.
-// Must match the approved /case-studies/* routes.
 const ALLOWED_CASE_STUDY_IDS = [
   "herbalink",
   "roi-design-builder",
@@ -22,7 +21,7 @@ const ALLOWED_CASE_STUDY_IDS = [
 
 // Explicit image overrides for IDs not in structuredCaseStudies/seoData.
 const NAV_IMAGE_OVERRIDES: Record<string, string> = {
-  "valora-bet": "/lovable-uploads/d8a791f4-83b9-4d6a-9e2f-1cdfd6066c95.png",
+  "valora-bet": valoraImg,
 };
 
 // Build a unified, ordered list of case studies for prev/next navigation
