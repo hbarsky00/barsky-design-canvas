@@ -203,35 +203,39 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                       {p}
                     </p>
                   ))}
-                  {imgs.length > 0 && (
-                    <div
-                      className={
-                        imgs.length === 1
-                          ? "w-full"
-                          : "grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
-                      }
-                    >
-                      {imgs.map((img, idx) => (
-                        <figure
-                          key={`${img.src}-${idx}`}
-                          className="m-0 flex flex-col"
-                        >
-                          <MaximizableImage
-                            src={img.src}
-                            alt={img.alt}
-                            className="w-full"
-                            projectId={projectId}
-                            fit="contain"
-                          />
-                          {img.alt && imgs.length > 1 && (
-                            <figcaption className="mt-2 text-xs text-muted-foreground leading-snug">
-                              {img.alt}
-                            </figcaption>
-                          )}
-                        </figure>
-                      ))}
-                    </div>
-                  )}
+                  {imgs.length > 0 && (() => {
+                    const cols =
+                      imgs.length === 1
+                        ? "grid-cols-1"
+                        : imgs.length === 2
+                          ? "grid-cols-2"
+                          : imgs.length === 3
+                            ? "grid-cols-3"
+                            : "grid-cols-2 md:grid-cols-3";
+                    return (
+                      <div className={`grid ${cols} gap-3 md:gap-5`}>
+                        {imgs.map((img, idx) => (
+                          <figure
+                            key={`${img.src}-${idx}`}
+                            className="m-0 flex flex-col min-w-0"
+                          >
+                            <MaximizableImage
+                              src={img.src}
+                              alt={img.alt}
+                              className="w-full"
+                              projectId={projectId}
+                              fit="contain"
+                            />
+                            {img.alt && imgs.length > 1 && (
+                              <figcaption className="mt-2 text-[11px] md:text-xs text-muted-foreground leading-snug">
+                                {img.alt}
+                              </figcaption>
+                            )}
+                          </figure>
+                        ))}
+                      </div>
+                    );
+                  })()}
                 </section>
               );
             })}
