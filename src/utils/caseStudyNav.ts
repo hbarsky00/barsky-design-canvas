@@ -13,9 +13,17 @@ const ALLOWED_CASE_STUDY_IDS = [
   "herbalink",
   "roi-design-builder",
   "nudgeme",
+  "valora-bet",
   "fire-lion",
+  "ring-rival",
+  "catchbuddy",
   "dae-search",
 ];
+
+// Explicit image overrides for IDs not in structuredCaseStudies/seoData.
+const NAV_IMAGE_OVERRIDES: Record<string, string> = {
+  "valora-bet": "/lovable-uploads/d8a791f4-83b9-4d6a-9e2f-1cdfd6066c95.png",
+};
 
 // Build a unified, ordered list of case studies for prev/next navigation
 export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
