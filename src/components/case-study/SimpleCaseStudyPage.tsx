@@ -225,37 +225,39 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
             const items = getCaseStudyNavItems();
             const idx = items.findIndex((it) => it.id === projectId);
             if (idx === -1 || items.length < 2) return null;
-            const prev = items[(idx - 1 + items.length) % items.length];
             const next = items[(idx + 1) % items.length];
             return (
-              <nav aria-label="More case studies" className="mt-20 pt-10 border-t border-border">
-                <p className="text-sm uppercase tracking-wide text-muted-foreground mb-6 text-center">
-                  More case studies
+              <nav aria-label="Next case study" className="mt-20 pt-10 border-t border-border">
+                <p className="text-sm uppercase tracking-wide text-muted-foreground mb-6">
+                  Next case study
                 </p>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Link
-                    to={`/case-studies/${prev.id}`}
-                    className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 hover:border-primary transition"
-                  >
-                    <ArrowLeft className="w-5 h-5 text-muted-foreground shrink-0 group-hover:text-primary" />
-                    <img src={prev.image} alt="" className="w-16 h-16 object-cover rounded-md shrink-0" loading="lazy" />
+                <Link
+                  to={`/case-studies/${next.id}`}
+                  className="group block overflow-hidden rounded-2xl border border-border bg-card hover:border-primary hover:shadow-lg transition-all"
+                >
+                  <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+                    <img
+                      src={next.image}
+                      alt={next.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between gap-4 p-6">
                     <div className="min-w-0">
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground">Previous</div>
-                      <div className="font-semibold text-foreground line-clamp-2">{prev.title}</div>
+                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                        Up next
+                      </div>
+                      <div className="text-xl md:text-2xl font-display font-semibold text-foreground line-clamp-2">
+                        {next.title}
+                      </div>
                     </div>
-                  </Link>
-                  <Link
-                    to={`/case-studies/${next.id}`}
-                    className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 hover:border-primary transition sm:text-right"
-                  >
-                    <img src={next.image} alt="" className="w-16 h-16 object-cover rounded-md shrink-0 sm:order-2" loading="lazy" />
-                    <div className="min-w-0 sm:order-1 sm:ml-auto">
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground">Next</div>
-                      <div className="font-semibold text-foreground line-clamp-2">{next.title}</div>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-muted-foreground shrink-0 group-hover:text-primary sm:order-3" />
-                  </Link>
-                </div>
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary shrink-0">
+                      Read case study
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
               </nav>
             );
           })()}
