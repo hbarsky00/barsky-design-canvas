@@ -36,6 +36,7 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
     const title: string =
       structured?.title || legacy?.title || preview?.title || id;
     const image: string =
+      NAV_IMAGE_OVERRIDES[id] ||
       structured?.seoData?.image ||
       structured?.heroVideo?.poster ||
       legacy?.videoThumbnail ||
