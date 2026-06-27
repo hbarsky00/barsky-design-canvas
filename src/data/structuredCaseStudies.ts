@@ -614,16 +614,28 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `WHAT I BUILT`,
       title: `What I Built`,
       description: `A financial modeling tool that turns design improvements into business cases: revenue upside, operational savings, implementation cost, payback period, and ROI. The interaction is structured around assumptions because the credibility of the model depends on showing where every number came from.`,
+      images: [
+        { src: `/lovable-uploads/roi-design/01-landing.png`, alt: `ROI Design Calculator landing screen with industry templates and project information form` },
+        { src: `/lovable-uploads/roi-design/03-examples.png`, alt: `Example projects panel with pre-built scenarios like e-commerce checkout and SaaS dashboard redesigns` },
+        { src: `/lovable-uploads/roi-design/02-mobile-input.png`, alt: `Mobile input view with Input Data and Results tabs for entering baseline metrics on the go` },
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: `WHAT I HAVEN'T SOLVED`,
       title: `What I Haven't Solved`,
       content: `The benchmark data problem is real. Generic stats get dismissed. The tool only works if the numbers are defensible. That tension is partially solved — not fully.`,
+      images: [
+        { src: `/lovable-uploads/roi-design/04-mobile-results.png`, alt: `Empty results state explaining how baseline metrics generate a board-ready ROI report` },
+      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
       description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back.`,
+      images: [
+        { src: `/lovable-uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard showing 4.2K% ROI, $2.4M business value, and conversion, task completion, accessibility, and error reduction lifts` },
+        { src: `/lovable-uploads/roi-design/06-roi-detail.png`, alt: `Detailed ROI breakdown with revenue, savings, and payback period highlighted for stakeholder review` },
+      ],
     },
     sections: [],
     seoData: {
