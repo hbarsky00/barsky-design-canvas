@@ -80,26 +80,20 @@ const HerbalinkPromo: React.FC = () => (
       </div>
     </section>
 
-    {/* QUOTE */}
-    <section style={{ background: SAGE, padding: "80px 24px", textAlign: "center" }}>
+    {/* QUOTE + CTA */}
+    <section style={{ background: SAGE, padding: "96px 24px", textAlign: "center" }}>
       <p style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontStyle: "italic", lineHeight: 1.3, maxWidth: 800, margin: "0 auto" }}>
         "The safer path should also be the easier path."
       </p>
       <p style={{ color: "rgba(255,255,255,0.7)", marginTop: 20, fontSize: 13, letterSpacing: "0.1em", fontFamily: "Inter, sans-serif" }}>
-            — DESIGN PRINCIPLE, HERBALINK
+        — DESIGN PRINCIPLE, HERBALINK
       </p>
-    </section>
-
-
-    {/* BOTTOM CTA */}
-    <section style={{ background: SAGE, padding: "80px 24px", textAlign: "center" }}>
-      <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 800, margin: 0 }}>
-        Find an Herbalist at herbalink.live →
-      </h2>
-      <p style={{ color: "rgba(255,255,255,0.85)", marginTop: 12, fontStyle: "italic" }}>Every practitioner verified. No exceptions.</p>
+      <p style={{ color: "rgba(255,255,255,0.85)", marginTop: 48, fontStyle: "italic" }}>
+        Every practitioner verified. No exceptions.
+      </p>
       <a href="http://herbalink.live" target="_blank" rel="noopener noreferrer"
-        style={{ display: "inline-block", marginTop: 24, background: "#fff", color: SAGE, padding: "16px 32px", borderRadius: 4, fontWeight: 700, textDecoration: "none", fontFamily: "Inter, sans-serif" }}>
-        Open HerbaLink →
+        style={{ display: "inline-block", marginTop: 20, background: "#fff", color: SAGE, padding: "16px 32px", borderRadius: 4, fontWeight: 700, textDecoration: "none", fontFamily: "Inter, sans-serif" }}>
+        Find an Herbalist on HerbaLink →
       </a>
     </section>
   </div>
