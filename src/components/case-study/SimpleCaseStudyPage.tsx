@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import ProjectSeo from "@/components/project-pages/ProjectSeo";
 import ProductOverviewBanner from "@/components/project-pages/ProductOverviewBanner";
 import { Link } from "react-router-dom";
+import { getCaseStudyNavItems } from "@/utils/caseStudyNav";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export interface SimpleCaseStudyImage {
   src: string;
