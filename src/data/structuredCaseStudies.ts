@@ -350,7 +350,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/default-og-image.jpg`,
+      image: `/lovable-uploads/dae/dashboard-search.png`,
       projectName: `DAE Search`,
       results: [],
       technologies: [],
