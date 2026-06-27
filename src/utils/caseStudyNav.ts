@@ -6,16 +6,23 @@ export interface CaseStudyNavItem {
 
 import { structuredCaseStudies } from "@/data/structuredCaseStudies";
 import { caseStudiesData, homepageCaseStudyPreviews } from "@/data/caseStudies";
+import valoraImg from "@/assets/projects/valorabet.png";
 
-// Allow-list of case studies shown in prev/next navigation.
-// Must match the approved /case-studies/* routes.
 const ALLOWED_CASE_STUDY_IDS = [
   "herbalink",
   "roi-design-builder",
   "nudgeme",
+  "valora-bet",
   "fire-lion",
+  "ring-rival",
+  "catchbuddy",
   "dae-search",
 ];
+
+// Explicit image overrides for IDs not in structuredCaseStudies/seoData.
+const NAV_IMAGE_OVERRIDES: Record<string, string> = {
+  "valora-bet": valoraImg,
+};
 
 // Build a unified, ordered list of case studies for prev/next navigation
 export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
@@ -29,6 +36,7 @@ export const getCaseStudyNavItems = (): CaseStudyNavItem[] => {
     const title: string =
       structured?.title || legacy?.title || preview?.title || id;
     const image: string =
+      NAV_IMAGE_OVERRIDES[id] ||
       structured?.seoData?.image ||
       structured?.heroVideo?.poster ||
       legacy?.videoThumbnail ||
