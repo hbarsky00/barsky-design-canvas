@@ -204,16 +204,31 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                     </p>
                   ))}
                   {imgs.length > 0 && (
-                    <div className="space-y-6">
+                    <div
+                      className={
+                        imgs.length === 1
+                          ? "w-full"
+                          : "grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
+                      }
+                    >
                       {imgs.map((img, idx) => (
-                        <MaximizableImage
+                        <figure
                           key={`${img.src}-${idx}`}
-                          src={img.src}
-                          alt={img.alt}
-                          className="w-full"
-                          projectId={projectId}
-                          fit="contain"
-                        />
+                          className="m-0 flex flex-col"
+                        >
+                          <MaximizableImage
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full"
+                            projectId={projectId}
+                            fit="contain"
+                          />
+                          {img.alt && imgs.length > 1 && (
+                            <figcaption className="mt-2 text-xs text-muted-foreground leading-snug">
+                              {img.alt}
+                            </figcaption>
+                          )}
+                        </figure>
                       ))}
                     </div>
                   )}
