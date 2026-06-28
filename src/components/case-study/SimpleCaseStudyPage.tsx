@@ -192,56 +192,63 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
           <div className="space-y-16">
             {blocks.map((b) => {
               const imgs = b.images ?? (b.image ? [b.image] : []);
+              const imagesNode = imgs.length > 0 ? (() => {
+                const cols =
+                  imgs.length === 1
+                    ? "grid-cols-1"
+                    : imgs.length === 2
+                      ? "grid-cols-2"
+                      : imgs.length === 3
+                        ? "grid-cols-3"
+                        : "grid-cols-2 md:grid-cols-3";
+                return (
+                  <div className={`grid ${cols} gap-3 md:gap-5`}>
+                    {imgs.map((img, idx) => (
+                      <figure
+                        key={`${img.src}-${idx}`}
+                        className="m-0 flex flex-col min-w-0"
+                      >
+                        <MaximizableImage
+                          src={img.src}
+                          alt={img.alt}
+                          className="w-full"
+                          projectId={projectId}
+                          fit="contain"
+                        />
+                        {img.alt && imgs.length > 1 && (
+                          <figcaption className="mt-2 text-[11px] md:text-xs text-muted-foreground leading-snug">
+                            {img.alt}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                );
+              })() : null;
+              const paragraphsNode = b.paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6"
+                >
+                  {p}
+                </p>
+              ));
+              const imagesBefore = b.imagesPosition === "before";
               return (
                 <section key={b.heading}>
                   <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-4">
                     {b.heading}
                   </h2>
-                  {b.paragraphs.map((p, i) => (
-                    <p
-                      key={i}
-                      className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6"
-                    >
-                      {p}
-                    </p>
-                  ))}
-                  {imgs.length > 0 && (() => {
-                    const cols =
-                      imgs.length === 1
-                        ? "grid-cols-1"
-                        : imgs.length === 2
-                          ? "grid-cols-2"
-                          : imgs.length === 3
-                            ? "grid-cols-3"
-                            : "grid-cols-2 md:grid-cols-3";
-                    return (
-                      <div className={`grid ${cols} gap-3 md:gap-5`}>
-                        {imgs.map((img, idx) => (
-                          <figure
-                            key={`${img.src}-${idx}`}
-                            className="m-0 flex flex-col min-w-0"
-                          >
-                            <MaximizableImage
-                              src={img.src}
-                              alt={img.alt}
-                              className="w-full"
-                              projectId={projectId}
-                              fit="contain"
-                            />
-                            {img.alt && imgs.length > 1 && (
-                              <figcaption className="mt-2 text-[11px] md:text-xs text-muted-foreground leading-snug">
-                                {img.alt}
-                              </figcaption>
-                            )}
-                          </figure>
-                        ))}
-                      </div>
-                    );
-                  })()}
+                  {imagesBefore && imagesNode && (
+                    <div className="mb-6">{imagesNode}</div>
+                  )}
+                  {paragraphsNode}
+                  {!imagesBefore && imagesNode}
                 </section>
               );
             })}
           </div>
+
           {(() => {
             const items = getCaseStudyNavItems();
             const idx = items.findIndex((it) => it.id === projectId);
