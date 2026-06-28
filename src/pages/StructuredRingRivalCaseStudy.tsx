@@ -11,7 +11,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
       tags={["Game UX", "Mobile Web", "AI Opponents", "Interaction Design"]}
       liveUrl="https://rival.li"
       overviewUrl="/project/ring-rival"
-      heroImage={{ src: heroImg, alt: "Ring-Rival mobile boxing gameplay with AI opponents" }}
+      heroImage={{
+        src: "/lovable-uploads/ringrival/01-title.png",
+        alt: "Ring-Rival title screen — Mobile Boxing by Barsky Design",
+        hoverVideo: "/lovable-uploads/ringrival-hero.mp4",
+      }}
       blocks={[
         {
           heading: "The Problem",
@@ -24,10 +28,34 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
           heading: "What I Built",
           paragraphs: [
             "Ring-Rival is a zero-install mobile web boxing game with career mode, a difficulty-ordered opponent roster, AI-generated fighter identities, and touch-first fight controls tuned for quick sessions.",
-            "The interaction layer focuses on feedback: hit-stop, screen shake, haptics, visual impact states, and fast recovery so a successful punch reads instantly without turning the interface into noise.",
+            "Career mode opens on a Minor Circuit ladder — fight 1 of 4 against Glass Joe — and progresses through unique opponents like Von Kaiser and Disco Dan, each with their own stats, taunts, and visual identity.",
           ],
           images: [
-            { src: heroImg, alt: "Ring-Rival fight screen showing mobile boxing gameplay" },
+            {
+              src: "/lovable-uploads/ringrival/02-career-glass-joe.png",
+              alt: "Minor Circuit career screen showing Glass Joe with power, speed, and HP stats",
+            },
+            {
+              src: "/lovable-uploads/ringrival/03-von-kaiser.png",
+              alt: "Von Kaiser opponent in the ring with first-person red glove POV",
+            },
+          ],
+        },
+        {
+          heading: "Punch Feedback That Reads Instantly",
+          paragraphs: [
+            "The interaction layer focuses on feedback: hit-stop, screen shake, haptics, visual impact states, and fast recovery so a successful punch reads instantly without turning the interface into noise.",
+            "Stun states use a star ring above the opponent and a green stun meter to signal the opening. Background swaps from arena to starfield mark the shift into the bonus stun window, so the player knows to swing without reading text.",
+          ],
+          images: [
+            {
+              src: "/lovable-uploads/ringrival/04-disco-dan-stars.png",
+              alt: "Disco Dan stunned with a starfield background and green stun meter",
+            },
+            {
+              src: "/lovable-uploads/ringrival/05-disco-dan-stunned.png",
+              alt: "Disco Dan recoiling with stun stars above his head during a combo opening",
+            },
           ],
         },
         {
