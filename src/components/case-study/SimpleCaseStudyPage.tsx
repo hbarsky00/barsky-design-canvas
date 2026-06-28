@@ -98,6 +98,8 @@ export interface SimpleCaseStudyBlock {
   heading: string;
   paragraphs: string[];
   images?: SimpleCaseStudyImage[];
+  /** Where to render images relative to the paragraphs. Defaults to "after". */
+  imagesPosition?: "before" | "after";
   /** @deprecated use images */
   image?: SimpleCaseStudyImage;
 }
