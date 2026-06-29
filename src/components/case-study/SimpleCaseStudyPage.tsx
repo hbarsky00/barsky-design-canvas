@@ -150,6 +150,13 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
         <Header />
         <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-[calc(var(--header-height,64px)+32px)] pb-24">
           <header className="mb-12">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition mb-6"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              All case studies
+            </Link>
             <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4">
               {title}
             </h1>
