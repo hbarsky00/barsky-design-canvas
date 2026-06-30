@@ -784,8 +784,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroImage: {
-      src: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
-      alt: "DAE Search Platform interface overview",
+      src: "/images/dae/dashboard.webp",
+      alt: "DAE Search Platform dashboard overview",
     },
     heroMetrics: [
       { value: "20%", label: "ROI from Better Discovery" },
@@ -813,7 +813,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Rich metadata display with usage patterns and related content suggestions.",
         },
       ],
-      researchImages: [],
+      researchImages: [
+        {
+          src: "/images/dae/drawingouttheplan.webp",
+          alt: "Hand-drawn wireframes mapping the advanced search and data asset selection flows",
+          caption: "Early sketches mapping advanced search, entity selection, and results flows.",
+        },
+        {
+          src: "/images/dae/user_flow_process.webp",
+          alt: "DAE Search end-to-end user flow diagram",
+          caption: "End-to-end DAE search process flow from login to related content.",
+        },
+      ],
     },
     problemCallout: {
       eyebrow: "Problem",
@@ -828,7 +839,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations:
         "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
-      images: [],
+      images: [
+        {
+          src: "/images/dae/style_guide.png",
+          alt: "DAE design system style guide with color, typography, components, and icons",
+          caption: "Design system established before building search surfaces.",
+        },
+      ],
     },
     keyInsights: [
       {
@@ -838,9 +855,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png",
-            alt: "DAE search results with semantic ranking and data lineage indicators",
-            caption: "Semantic search results with data lineage and quality indicators",
+            src: "/images/dae/file.jpg",
+            alt: "Advanced search modal with All/Any filter toggle and selected entities",
+            caption: "Advanced search with All/Any combinator and selected entity filters.",
+          },
+          {
+            src: "/images/dae/image_181.png",
+            alt: "Diabetes keyword search returning 127 ranked data assets with filters",
+            caption: "Keyword search results ranked by popularity with quick filters.",
           },
         ],
       },
@@ -849,12 +871,26 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "Visual data lineage built trust",
         description:
           "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately.",
+        images: [
+          {
+            src: "/images/dae/daenewnew.png",
+            alt: "Cancer Registry data asset profile with tags, stewards, and approval status",
+            caption: "Data asset profile surfaces stewards, lineage, and access status.",
+          },
+        ],
       },
       {
         number: 3,
         title: "Smart permissions reduced friction",
         description:
           "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
+        images: [
+          {
+            src: "/images/dae/search_dropdown_for_asset.webp",
+            alt: "Welcome dashboard search with SNOMED-coded recent search terms",
+            caption: "SNOMED-coded recent searches keep users in a guided pathway.",
+          },
+        ],
       },
     ],
     // ideationSection removed to hide images
@@ -875,7 +911,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content:
         "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
-      images: [],
+      images: [
+        {
+          src: "/images/dae/Entity_Data_Recent_Search_Terms.jpg",
+          alt: "Recent search terms dropdown exposing keyword history above the data catalog",
+          caption: "Early recent-search dropdown exposed terms without context — later replaced.",
+        },
+      ],
     },
     userTestingSection: {
       title: "Validation & Testing",
@@ -905,7 +947,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
+      image: "/images/dae/dashboard.webp",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",
