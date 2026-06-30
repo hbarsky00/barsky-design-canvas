@@ -35,28 +35,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
       "the-problem": {
         text: "Users couldn't find trustworthy herbalists online due to fragmented directories and no verification system. I solved this by creating a national platform with certified practitioners and seamless booking.",
         image: {
-          src: "images/herbalink-problem.png",
+          src: "/images/default-og-image.jpg",
           alt: "Screenshot showing confusing herbalist directory before redesign"
         }
       },
       "quantified-impact": {
         text: "✅ 3x increase in booking rates ✅ 80% user satisfaction with match quality ✅ 50% faster decision-making through filters and verified reviews.",
         image: {
-          src: "images/herbalink-impact.png",
+          src: "/images/default-og-image.jpg",
           alt: "Dashboard showing user growth and bookings after relaunch"
         }
       },
       "what-didnt-work": {
         text: "Map-first layout confused users and buried expert credentials. Switching to card-based directory with prominent certifications immediately built trust and improved conversions.",
         image: {
-          src: "images/herbalink-fail.png",
+          src: "/images/default-og-image.jpg",
           alt: "Old UI design mockup with confusing map-based layout"
         }
       },
       "my-thought-process": {
         text: "I asked: what would make ME trust a health platform? Trust signals, verified reviews, and clear credentials had to come before pricing to build confidence.",
         image: {
-          src: "images/herbalink-process.png",
+          src: "/images/default-og-image.jpg",
           alt: "Wireframes showing layout for trust elements"
         }
       }
@@ -79,28 +79,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
       "the-problem": {
         text: "Co-parents fought constantly over miscommunication around pickups, events, and appointments. Courts needed a neutral platform to reduce conflict and keep focus on child needs.",
         image: {
-          src: "images/splittime-problem.png",
+          src: "/images/default-og-image.jpg",
           alt: "Court paperwork and calendar chaos in co-parenting"
         }
       },
       "quantified-impact": {
         text: "✅ 62% reduction in message volume ✅ 300% increase in calendar usage ✅ 90% of parents avoided at least one argument per month.",
         image: {
-          src: "images/splittime-impact.png",
+          src: "/images/default-og-image.jpg",
           alt: "Graph showing decrease in communication conflict"
         }
       },
       "what-didnt-work": {
         text: "Chat features amplified conflict instead of reducing it. Too many features overwhelmed stressed parents. Simplifying to calendar + permissions was the breakthrough.",
         image: {
-          src: "images/splittime-fail.png",
+          src: "/images/default-og-image.jpg",
           alt: "Old UI showing chat-heavy design that was removed"
         }
       },
       "my-thought-process": {
         text: "This wasn't about UX delight—it was emotional safety. I interviewed family lawyers and judges to design for neutrality and equal control for both parents.",
         image: {
-          src: "images/splittime-process.png",
+          src: "/images/default-og-image.jpg",
           alt: "Sketches exploring user rights and visibility in the app"
         }
       }
@@ -123,28 +123,28 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
       "the-problem": {
         text: "Teams juggled 5+ disconnected tools for sales, inventory, and customer data causing confusion and double-entry errors. No single source of truth existed for operations.",
         image: {
-          src: "images/bizmgmt-problem.png",
+          src: "/images/default-og-image.jpg",
           alt: "Flowchart of disconnected tools used before platform"
         }
       },
       "quantified-impact": {
         text: "✅ 68% reduction in manual entry errors ✅ 43% decrease in software costs ✅ 89% improvement in report accuracy.",
         image: {
-          src: "images/bizmgmt-impact.png",
+          src: "/images/default-og-image.jpg",
           alt: "Analytics dashboard showing post-launch metrics"
         }
       },
       "what-didnt-work": {
         text: "Dashboard-first approach buried important workflows. Users needed task shortcuts, not data visualization. Moving workflows to the home screen solved adoption issues immediately.",
         image: {
-          src: "images/bizmgmt-fail.png",
+          src: "/images/default-og-image.jpg",
           alt: "Wireframe of overly complex original dashboard"
         }
       },
       "my-thought-process": {
         text: "I mapped real operator workflows through workshops before designing features. The tool had to match their actual workday, not idealized data structures.",
         image: {
-          src: "images/bizmgmt-process.png",
+          src: "/images/default-og-image.jpg",
           alt: "User journey map used to align with operator workflow"
         }
       }

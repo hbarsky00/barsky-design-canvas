@@ -283,7 +283,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
     heroVideo: {
-      src: "/assets/case-studies/smarter-health/hero-video.mp4",
+      src: "",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker animation",
@@ -473,7 +473,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/assets/case-studies/smarter-health/outcome-gradient.png",
+          src: "/images/default-og-image.jpg",
           alt: "Patient dashboard with gradient overlay",
           caption: "A patient-first design that empowers users",
         },
@@ -501,7 +501,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
-      src: "/lovable-uploads/crypto-hero.mp4",
+      src: "",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
       alt: "Crypto trading platform overview",
@@ -2118,7 +2118,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
     projectLink: "https://barskyjoint.com",
     heroVideo: {
-      src: "/lovable-uploads/barskyjoint-hero.mp4",
+      src: "",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
       alt: "BarskyJoint restaurant ordering platform overview",
