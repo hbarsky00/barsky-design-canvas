@@ -95,11 +95,11 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({ title, summary, url, hashta
             variant="outline"
             className="share-button"
             onClick={() => setShowAll(true)}
-            aria-label="Additional sharing options"
-            title="Additional sharing options"
+            aria-label="Show more share options"
+            title="More"
           >
             <MoreHorizontal className="h-4 w-4" />
-            <span className="sr-only">Additional sharing options</span>
+            <span className="sr-only">More</span>
           </Button>
         )}
         <Button

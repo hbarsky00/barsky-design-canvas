@@ -49,24 +49,19 @@ const StructuredHeroImageSection: React.FC<StructuredHeroImageSectionProps> = ({
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl md:max-w-3xl mx-auto px-1 sm:px-6 lg:px-8"
+          className="max-w-2xl md:max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"
           style={{ ...videoStyle, transformStyle: "preserve-3d", willChange: "transform" }}
         >
           {shouldShowPlaceholder ? (
             <PlaceholderImage title="Hero Video" />
           ) : heroAsImage && caseStudyData.seoData?.image ? (
-            <div className="relative w-full rounded-sm overflow-hidden group cursor-pointer aspect-video bg-surface-container">
+            <div className="relative w-full rounded-lg overflow-hidden group cursor-pointer">
               <img 
                 src={caseStudyData.seoData.image} 
                 alt={caseStudyData.title}
-                width={1600}
-                height={900}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+                className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105"
               />
             </div>
-
           ) : caseStudyData.heroVideo?.src ? (
             <VideoPlayer 
               videoSrc={caseStudyData.heroVideo.src}

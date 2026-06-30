@@ -75,6 +75,82 @@ export const projectVariables: Record<string, ProjectVariable> = {
       hero: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       challenge: ["https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1"]
     }
+  },
+  
+  "barskyjoint": {
+    projectTitle: "BarskyJoint Restaurant Tech",
+    projectSubtitle: "Solving the Industry's Oldest UX Problem: One System, Two User Types",
+    timeline: "3 months",
+    role: "UX Designer & Full-Stack Developer",
+    industry: "Food Service Technology",
+    client: "BarskyJoint Café (Crown Heights, Brooklyn)",
+    projectLink: "https://barskydesign.pro/barskyjoint",
+    
+    challenge: {
+      heading: "The Impossible Choice: Speed vs. Clarity",
+      description: "Every restaurant POS forces owners to choose between serving servers or kitchen staff well. BarskyJoint was bleeding $3,200/month from this false choice.",
+      painPoints: [
+        "Owner David Barsky spending 6 hours/week fixing order mistakes: 'Either I fire someone or I close'",
+        "Servers panicked when dine-in orders appeared mixed with DoorDash in same queue",
+        "Kitchen staff reading confusing orders: 'Table 7 Burger no pickles ACTUALLY this is delivery to 456 Main St'",
+        "Industry reality: Toast, Square, Clover optimize for one use case, making the other painful"
+      ]
+    },
+    
+    process: {
+      heading: "Stakeholder Wars: When User Needs Conflict",
+      description: "Three different user groups with completely opposing needs taught me that compromise pleases nobody.",
+      steps: [
+        "**Chaos Documentation (Week 1-2)**: Spent lunch rushes watching David manually sort tickets by context—insane during busy weekends",
+        "**Stakeholder Conflict (Week 3-4)**: Servers wanted speed/muscle memory; Kitchen wanted clarity/context; David wanted one system",
+        "**Failed Compromise (Week 5-6)**: Attempted one interface for all—pleased nobody, optimized for nothing",
+        "**Breakthrough (Week 7-8)**: Different contexts need different interfaces running on same data layer",
+        "**Reality Check (Week 9-12)**: Kitchen printer died on launch day—had to route everything through tablets, discovered unexpected benefits"
+      ],
+      keyInnovations: [
+        "Dual-interface design: Touch-optimized for servers, text-heavy for kitchen, both using same data",
+        "Context-first architecture: Order destination determined interface presentation",
+        "Delivery driver interface: Clear pickup status with estimated ready times (unexpected win)"
+      ]
+    },
+    
+    solution: {
+      heading: "Two UIs, One System: Context-Driven Design",
+      description: "Proof that user conflicts aren't always compromises—sometimes they're opportunities for innovation.",
+      features: [
+        "Server Interface: Touch-optimized visual menu with table assignments prominent",
+        "Kitchen Interface: Text-heavy with destination-first layout and prep time estimates",
+        "Unified Data Layer: All interfaces update real-time from same order management system",
+        "Driver Pickup Interface: Clear order status with estimated ready times",
+        "Error Prevention: Context clarity eliminated order mix-ups between dine-in and delivery"
+      ]
+    },
+    
+    results: {
+      heading: "Industry Recognition: When Small Café Solves Big Tech Problem",
+      description: "Success attracted attention from competitors and industry publications—proof the approach works beyond one restaurant.",
+      metrics: [
+        "28% higher average ticket size (clearer customization reduced ordering friction)",
+        "15% faster kitchen times (context clarity eliminated re-reading and confusion)",
+        "$3,200/month in error costs eliminated",
+        "Zero order mix-ups between dine-in and delivery"
+      ],
+      testimonials: [
+        "\"Finally, technology that actually helps instead of creating new problems.\" - David Barsky, Owner"
+      ],
+      longTermImpact: [
+        "6-month update: BarskyJoint opened second location using same system",
+        "Featured in QSR Magazine: 'Small Café Solves Big Tech Problem'",
+        "Two competitors reached out asking to license dual-interface approach",
+        "David speaking at NYC Restaurant Week about technology solutions"
+      ]
+    },
+    
+    techStack: ["React Native", "Node.js", "MongoDB", "WebSocket", "Stripe", "Printer APIs"],
+    imageConfig: {
+      hero: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+      challenge: ["/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png"]
+    }
   }
 };
 

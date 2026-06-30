@@ -6,8 +6,8 @@ const STATIC_CACHE = 'static-v1';
 const CRITICAL_ASSETS = [
   '/',
   '/manifest.json',
-  '/images/hiram-barsky-profile.png',
-  '/images/hiram-barsky-profile.png'
+  '/images/hiram-barsky-headshot.jpg',
+  'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp'
 ];
 
 // Cache strategies

@@ -70,7 +70,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
         </h4>
 
         {decisions.map((decision, index) => (
-          <div key={index} className="border border-gray-200 rounded-sm overflow-hidden">
+          <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="bg-gray-50 p-6">
               <h5 className="font-semibold text-gray-900 mb-3">
                 Decision #{index + 1}: {decision.situation}

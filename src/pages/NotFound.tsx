@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Home } from "lucide-react";
-import BackButton from "@/components/ui/BackButton";
+import { Home, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -28,12 +27,18 @@ const NotFound: React.FC = () => {
               The page you are looking for does not exist or has been moved.
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <BackButton to="/" label="Back to Home" />
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild variant="outline">
                 <Link to="/">
                   <Home className="w-4 h-4 mr-2" />
-                  Home
+                  Back to Home
+                </Link>
+              </Button>
+              
+              <Button asChild>
+                <Link to="/" className="flex items-center">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Go Back
                 </Link>
               </Button>
             </div>

@@ -1,10 +1,21 @@
+
 import React from "react";
-import { getSimpleCaseStudyPageProps, SimpleCaseStudyPage } from "@/utils/simpleCaseStudyAdapter";
+import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
+import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 
 const StructuredHerbalinkCaseStudy: React.FC = () => {
-  const props = getSimpleCaseStudyPageProps("herbalink");
-  if (!props) return null;
-  return <SimpleCaseStudyPage {...props} />;
+  const caseStudyData = getStructuredCaseStudy("herbalink");
+  
+  if (!caseStudyData) {
+    return <div>Case study not found</div>;
+  }
+
+  return (
+    <StructuredCaseStudyLayout
+      caseStudyData={caseStudyData}
+      heroAsImage={true}
+    />
+  );
 };
 
 export default StructuredHerbalinkCaseStudy;

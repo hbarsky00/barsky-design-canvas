@@ -13,7 +13,7 @@ const AUTHOR = "Hiram Barsky";
 const DEFAULT_DESC =
   "Driving Design Strategy & Leadership | Passion for High Craft, Gen AI, Cyber & Fintech";
 const DEFAULT_IMAGE =
-  "https://barskydesign.pro/images/hiram-barsky-profile.png";
+  "https://barskydesign.pro/images/hiram-barsky-headshot.jpg";
 const TWITTER_HANDLE = "@hirambarsky";
 
 /* ── SEO Data ─────────────────────────────────────────────────────── */
@@ -32,17 +32,16 @@ const STATIC_SEO: Record<string, { title: string; description: string; image?: s
 };
 
 const PROJECT_SEO: Record<string, { title: string; description: string; image: string }> = {
-  smarterhealth: { title: "Smarter Health | Healthcare App UX Case Study — Barsky Design", description: "Healthcare app that made medication tracking 45% faster and appointment adherence 60% higher.", image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png" },
-  crypto: { title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design", description: "How I eliminated the fear that makes 60% of beginners quit before their first trade.", image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg" },
-  herbalink: { title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design", description: "HIPAA-compliant herbalist marketplace design that increased certified provider bookings 45%.", image: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png" },
-  splittime: { title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design", description: "Designing a co-parenting platform that reduces family conflict through intuitive scheduling.", image: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1" },
-  "business-management": { title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design", description: "Modular business management platform that reduced manual work 60%.", image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png" },
-  "investor-loan-app": { title: "Fintech Loan Platform | Investment App UX Case Study — Barsky Design", description: "Streamlined fintech underwriting that cut loan processing time 40%.", image: "https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png" },
-  "dae-search": { title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design", description: "Advanced search platform that helps data analysts find assets 3x faster.", image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg" },
-  "fire-lion": { title: "Fire Lion | AI-Built Game Design Case Study — Barsky Design", description: "Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.", image: "https://barskydesign.pro/images/firelion-hero-title.png" },
-  "ring-rival": { title: "Ring-Rival | AI Boxing Game Case Study — Barsky Design", description: "A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.", image: "https://barskydesign.pro/images/ringrival-hero-title.png" },
-  catchbuddy: { title: "CatchBuddy | Safe Sports Matching Case Study — Barsky Design", description: "Designing a safety-first matching loop before layering monetization.", image: "https://barskydesign.pro/images/catchbuddy-hero-landing.png" },
-  "email-creation-ai": { title: "ManuscriptRx | Regulated Pharma Email AI Case Study — Barsky Design", description: "AI handles the work between humans across a 6-step regulated email workflow.", image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png" },
+  smarterhealth: { title: "Smarter Health | Healthcare App UX Case Study — Barsky Design", description: "Healthcare app that made medication tracking 45% faster and appointment adherence 60% higher.", image: "https://barskydesign.pro/images/smarterhealth-desktop-1.webp" },
+  crypto: { title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design", description: "How I eliminated the fear that makes 60% of beginners quit before their first trade.", image: "https://barskydesign.pro/images/crypto-desktop-1.webp" },
+  herbalink: { title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design", description: "HIPAA-compliant herbalist marketplace design that increased certified provider bookings 45%.", image: "https://barskydesign.pro/images/herbalink-desktop-1.webp" },
+  splittime: { title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design", description: "Designing a co-parenting platform that reduces family conflict through intuitive scheduling.", image: "https://barskydesign.pro/images/splittime-desktop-1.webp" },
+  "business-management": { title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design", description: "Modular business management platform that reduced manual work 60%.", image: "https://barskydesign.pro/images/business-management-desktop-1.webp" },
+  "investor-loan-app": { title: "Fintech Loan Platform | Investment App UX Case Study — Barsky Design", description: "Streamlined fintech underwriting that cut loan processing time 40%.", image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp" },
+  "medication-app": { title: "Healthcare Medication App | Patient Safety UX Case Study — Barsky Design", description: "Mobile-first medication management improving adherence 35%.", image: "https://barskydesign.pro/images/medication-app-desktop-1.webp" },
+  gold2crypto: { title: "Crypto Exchange Onboarding | Fintech UX Case Study — Barsky Design", description: "Reduced crypto exchange drop-off 50% with simplified KYC.", image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp" },
+  "dae-search": { title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design", description: "Advanced search platform that helps data analysts find assets 3x faster.", image: "https://barskydesign.pro/images/dae-search-desktop-1.webp" },
+  barskyjoint: { title: "Restaurant Ordering System | Food Tech UX Case Study — Barsky Design", description: "End-to-end restaurant ordering experience that increased average ticket size 25%.", image: "https://barskydesign.pro/images/barskyjoint-desktop-1.webp" },
 };
 
 const BLOG_SEO: Record<string, { title: string; description: string; image: string }> = {

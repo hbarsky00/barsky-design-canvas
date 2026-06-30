@@ -32,7 +32,7 @@ const AboutPreview: React.FC = () => {
               </h2>
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I'm a Product Designer and frontend developer based in Clifton, NJ, 
+                  I'm a Product Designer and frontend developer based in New York, 
                   passionate about creating digital experiences that solve real user problems.
                 </p>
                 <p>

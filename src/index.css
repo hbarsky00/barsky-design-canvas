@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global pointer cursor on all interactive elements */
-button,
-[role="button"],
-a,
-summary,
-label[for],
-select,
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-input[type="checkbox"],
-input[type="radio"] {
-  cursor: pointer;
-}
-button:disabled,
-[role="button"][aria-disabled="true"],
-button[disabled] {
-  cursor: not-allowed;
-}
-
 /* Image Quality Enhancement */
 @layer utilities {
   .image-render-crisp-edges {
@@ -401,8 +381,8 @@ select:focus-visible, a:focus-visible,
   
 /* Hero responsive containers - ensures safe margins on all devices */
 .hero-container-mobile {
-  padding-left: max(4px, env(safe-area-inset-left));
-  padding-right: max(4px, env(safe-area-inset-right));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -1054,7 +1034,7 @@ body {
 
 /* Layout Normalization - Section Shell & Content Rails */
 .section-container {
-  @apply max-w-[1280px] mx-auto px-2 sm:px-6 md:px-10;
+  @apply max-w-[1280px] mx-auto px-6 md:px-10;
 }
 
 .content-rail {
@@ -1641,61 +1621,79 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
 
 /* ============================================================
    Explicit button text color wins globally
-   Uses whole-token matching ([class~="..."]) so that pseudo-prefixed
-   variants like hover:text-white or focus:!text-primary-foreground
-   do NOT trigger the always-on rule. Only the un-prefixed token
-   (or the Tailwind !important prefix form) wins.
+   If a button/link/role=button declares a text utility, that
+   foreground must win even against scoped/component overrides.
    ============================================================ */
 @layer utilities {
-  button[class~="text-white"], button[class~="!text-white"],
-  a[class~="text-white"], a[class~="!text-white"],
-  [role="button"][class~="text-white"], [role="button"][class~="!text-white"] {
+  /* Match both text-* and !text-* (Tailwind important prefix) class names */
+  button[class*="text-white"],
+  a[class*="text-white"],
+  [role="button"][class*="text-white"] {
     color: #ffffff !important;
   }
-  button[class~="text-primary-foreground"], button[class~="!text-primary-foreground"],
-  a[class~="text-primary-foreground"], a[class~="!text-primary-foreground"],
-  [role="button"][class~="text-primary-foreground"], [role="button"][class~="!text-primary-foreground"] {
+  button[class*="text-primary-foreground"],
+  a[class*="text-primary-foreground"],
+  [role="button"][class*="text-primary-foreground"] {
     color: hsl(var(--primary-foreground)) !important;
   }
-  button[class~="text-secondary-foreground"], button[class~="!text-secondary-foreground"],
-  a[class~="text-secondary-foreground"], a[class~="!text-secondary-foreground"],
-  [role="button"][class~="text-secondary-foreground"], [role="button"][class~="!text-secondary-foreground"] {
+  button[class*="text-secondary-foreground"],
+  a[class*="text-secondary-foreground"],
+  [role="button"][class*="text-secondary-foreground"] {
     color: hsl(var(--secondary-foreground)) !important;
   }
-  button[class~="text-destructive-foreground"], button[class~="!text-destructive-foreground"],
-  a[class~="text-destructive-foreground"], a[class~="!text-destructive-foreground"],
-  [role="button"][class~="text-destructive-foreground"], [role="button"][class~="!text-destructive-foreground"] {
+  button[class*="text-destructive-foreground"],
+  a[class*="text-destructive-foreground"],
+  [role="button"][class*="text-destructive-foreground"] {
     color: hsl(var(--destructive-foreground)) !important;
   }
-  button[class~="text-primary"], button[class~="!text-primary"],
-  a[class~="text-primary"], a[class~="!text-primary"],
-  [role="button"][class~="text-primary"], [role="button"][class~="!text-primary"] {
+  button[class~="text-primary"]:not([class*="-foreground"]),
+  a[class~="text-primary"]:not([class*="-foreground"]),
+  [role="button"][class~="text-primary"]:not([class*="-foreground"]) {
     color: hsl(var(--primary)) !important;
   }
-  button[class~="text-foreground"], button[class~="!text-foreground"],
-  a[class~="text-foreground"], a[class~="!text-foreground"],
-  [role="button"][class~="text-foreground"], [role="button"][class~="!text-foreground"] {
+  button[class~="text-foreground"],
+  a[class~="text-foreground"],
+  [role="button"][class~="text-foreground"] {
     color: hsl(var(--foreground)) !important;
+  }
+  /* Force SVG icons inside these buttons to inherit the enforced text color */
+  button[class*="text-white"] svg,
+  a[class*="text-white"] svg,
+  [role="button"][class*="text-white"] svg,
+  button[class*="text-primary-foreground"] svg,
+  a[class*="text-primary-foreground"] svg,
+  [role="button"][class*="text-primary-foreground"] svg,
+  button[class*="text-secondary-foreground"] svg,
+  a[class*="text-secondary-foreground"] svg,
+  [role="button"][class*="text-secondary-foreground"] svg,
+  button[class*="text-destructive-foreground"] svg,
+  a[class*="text-destructive-foreground"] svg,
+  [role="button"][class*="text-destructive-foreground"] svg,
+  button[class~="text-primary"]:not([class*="-foreground"]) svg,
+  a[class~="text-primary"]:not([class*="-foreground"]) svg,
+  [role="button"][class~="text-primary"]:not([class*="-foreground"]) svg,
+  button[class~="text-foreground"] svg,
+  a[class~="text-foreground"] svg,
+  [role="button"][class~="text-foreground"] svg {
+    color: currentColor !important;
+    stroke: currentColor !important;
   }
 }
 
 /* ============================================================
    Gradient button readability — fallback only
-   Apply light foreground when a gradient button does not
-   declare an explicit (un-prefixed) text-* utility.
+   Only apply light foreground when a gradient button does not
+   already declare an explicit text-* utility.
    ============================================================ */
 @layer utilities {
-  button[class*="bg-gradient-"]:not([class~="text-white"]):not([class~="!text-white"]):not([class~="text-primary-foreground"]):not([class~="!text-primary-foreground"]):not([class~="text-primary"]):not([class~="!text-primary"]):not([class~="text-foreground"]):not([class~="!text-foreground"]):not([class~="text-secondary-foreground"]):not([class~="!text-secondary-foreground"]):not([class~="text-destructive-foreground"]):not([class~="!text-destructive-foreground"]),
-  a[class*="bg-gradient-"]:not([class~="text-white"]):not([class~="!text-white"]):not([class~="text-primary-foreground"]):not([class~="!text-primary-foreground"]):not([class~="text-primary"]):not([class~="!text-primary"]):not([class~="text-foreground"]):not([class~="!text-foreground"]):not([class~="text-secondary-foreground"]):not([class~="!text-secondary-foreground"]):not([class~="text-destructive-foreground"]):not([class~="!text-destructive-foreground"]),
-  [role="button"][class*="bg-gradient-"]:not([class~="text-white"]):not([class~="!text-white"]):not([class~="text-primary-foreground"]):not([class~="!text-primary-foreground"]):not([class~="text-primary"]):not([class~="!text-primary"]):not([class~="text-foreground"]):not([class~="!text-foreground"]):not([class~="text-secondary-foreground"]):not([class~="!text-secondary-foreground"]):not([class~="text-destructive-foreground"]):not([class~="!text-destructive-foreground"]) {
+  button[class*="bg-gradient-"]:not([class*="text-"]),
+  a[class*="bg-gradient-"]:not([class*="text-"]),
+  [role="button"][class*="bg-gradient-"]:not([class*="text-"]) {
+    color: #ffffff !important;
+  }
+  button[class*="bg-gradient-"]:not([class*="text-"]) svg,
+  a[class*="bg-gradient-"]:not([class*="text-"]) svg,
+  [role="button"][class*="bg-gradient-"]:not([class*="text-"]) svg {
     color: #ffffff !important;
   }
 }
-
-/* Global heading font — all headings use Space Grotesk */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
-}
-
-
-

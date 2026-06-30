@@ -24,13 +24,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <img 
             src={product.image} 
             alt={product.name}
-            width={800}
-            height={450}
-            loading="lazy"
-            decoding="async"
             className="w-full h-full object-cover transition-transform hover:scale-105"
           />
-
           {product.badge && (
             <div className="absolute top-2 right-2">
               <Badge className="bg-barsky-blue text-white flex items-center gap-1 px-2 py-1">

@@ -23,7 +23,7 @@ const TechnicalImplementationSection: React.FC<TechnicalImplementationSectionPro
           <div className="inline-flex items-center rounded-full bg-slate-800 px-3 py-1 text-sm font-medium text-slate-300 mb-4">
             TECHNICAL IMPLEMENTATION
           </div>
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             How It Actually Works
           </h2>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto">
@@ -42,7 +42,7 @@ const TechnicalImplementationSection: React.FC<TechnicalImplementationSectionPro
           >
             <div className="flex items-center mb-4">
               <Code className="w-6 h-6 text-red-400 mr-3" />
-              <h3 className="text-xl font-display font-bold">Technical Challenges</h3>
+              <h3 className="text-xl font-bold">Technical Challenges</h3>
             </div>
             <ul className="space-y-3">
               {implementation.challenges.map((challenge, index) => (
@@ -64,7 +64,7 @@ const TechnicalImplementationSection: React.FC<TechnicalImplementationSectionPro
           >
             <div className="flex items-center mb-4">
               <Zap className="w-6 h-6 text-green-400 mr-3" />
-              <h3 className="text-xl font-display font-bold">Solutions Implemented</h3>
+              <h3 className="text-xl font-bold">Solutions Implemented</h3>
             </div>
             <ul className="space-y-3">
               {implementation.solutions.map((solution, index) => (
@@ -88,7 +88,7 @@ const TechnicalImplementationSection: React.FC<TechnicalImplementationSectionPro
           >
             <div className="flex items-center mb-4">
               <Shield className="w-6 h-6 text-blue-400 mr-3" />
-              <h3 className="text-xl font-display font-bold">Accessibility Standards</h3>
+              <h3 className="text-xl font-bold">Accessibility Standards</h3>
             </div>
             <ul className="space-y-3">
               {implementation.accessibility.map((item, index) => (
@@ -110,7 +110,7 @@ const TechnicalImplementationSection: React.FC<TechnicalImplementationSectionPro
           >
             <div className="flex items-center mb-4">
               <Monitor className="w-6 h-6 text-purple-400 mr-3" />
-              <h3 className="text-xl font-display font-bold">Performance Metrics</h3>
+              <h3 className="text-xl font-bold">Performance Metrics</h3>
             </div>
             <div className="space-y-4">
               <div>

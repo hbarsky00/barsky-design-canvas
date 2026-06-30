@@ -1,6 +1,5 @@
 
 import React from "react";
-import MaximizableImage from "@/components/project/MaximizableImage";
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -41,7 +40,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   };
   if (isLoomVideo || isYouTubeVideo) {
     return (
-      <div className="relative bg-white rounded-sm overflow-hidden">
+      <div className="relative bg-white rounded-lg overflow-hidden">
         <iframe
           src={getEmbedUrl(videoSrc)}
           title={title}
@@ -59,16 +58,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
   }
 
   return (
-    <MaximizableImage
-      src={thumbnailSrc}
-      alt={`${title} promotional image`}
-      className="w-full rounded-sm"
-      projectId="case-study"
-      fit="contain"
-    />
+    <div className="relative bg-white rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
+      <img
+        src={thumbnailSrc}
+        alt={`${title} promotional image`}
+        className="w-full h-full object-contain image-high-quality"
+        style={{ display: 'block' }}
+      />
+    </div>
   );
-
-
 };
 
 export default VideoPlayer;

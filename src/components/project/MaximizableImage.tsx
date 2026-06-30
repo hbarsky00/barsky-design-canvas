@@ -210,9 +210,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   //   );
   // }
 
-  const resolvedAspectRatio = aspectRatio
-    ?? (width && height ? `${width} / ${height}` : '16 / 9');
-
   return (
     <figure 
       className={`relative group overflow-hidden cursor-pointer w-full max-w-full ${className}`} 
@@ -220,9 +217,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onMouseLeave={() => setIsHovered(false)} 
       data-lovable-element="image-container" 
       data-lovable-editable="image-wrapper"
-      style={{ aspectRatio: resolvedAspectRatio }}
+      style={aspectRatio ? { aspectRatio } : undefined}
     >
-
       {imageError ? (
         <ImageErrorFallback showEditingControls={showEditingControls} originalSrc={currentSrc} />
       ) : isLoomVideo ? (

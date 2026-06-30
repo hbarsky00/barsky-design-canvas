@@ -31,5 +31,15 @@ export const projectsData: ProjectProps[] = [
     video: "herbalink-demo.mp4",
     tags: ["HealthTech", "AI/ML", "Regulatory Compliance", "COVID Response"],
     featured: true,
+  },
+  {
+    id: "barskyjoint",
+    title: "BarskyJoint: Dual-Interface Restaurant Tech",
+    description: "Solved the impossible: one system for both dine-in and takeout orders. 28% higher tickets, 15% faster kitchen times, and eliminated order confusion that was costing $3,200/month.",
+    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+    videoThumbnail: "barskyjoint-thumb.jpg",
+    video: "barskyjoint-demo.mp4",
+    tags: ["Food Service Tech", "Dual-Mode UX", "Kitchen Operations"],
+    featured: true,
   }
 ];

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
-import HeroButtonFx from "./HeroButtonFx";
 
 interface HeroActionButtonsProps {
   isVisible: boolean;
@@ -34,37 +33,32 @@ const HeroActionButtons: React.FC<HeroActionButtonsProps> = ({ isVisible }) => {
         whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
       >
-        <HeroButtonFx>
-          <Button 
-            variant="brand"
-            size="lg" 
-            onClick={handleFreeConsultation}
-            className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-bold shadow-lg hover:shadow-xl"
-          >
-            <Sparkles className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
-            <span>Get Free UX+AI Consultation</span>
-            <ArrowRight className="ml-2 h-5 w-5 lg:h-6 lg:w-6 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </HeroButtonFx>
+        <Button 
+          variant="brand"
+          size="lg" 
+          onClick={handleFreeConsultation}
+          className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-bold shadow-lg hover:shadow-xl"
+        >
+          <Sparkles className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
+          <span>Get Free UX+AI Consultation</span>
+          <ArrowRight className="ml-2 h-5 w-5 lg:h-6 lg:w-6 group-hover:translate-x-1 transition-transform" />
+        </Button>
       </motion.div>
-      
       
       <motion.div
         whileHover={{ scale: 1.05, y: -3 }}
         whileTap={{ scale: 0.98 }}
         className="hidden sm:block"
       >
-        <HeroButtonFx>
-          <Button 
-            variant="outline"
-            size="lg"
-            onClick={handleViewResults}
-            className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-semibold"
-          >
-            <span className="font-medium">See Case Studies & ROI</span>
-            <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </HeroButtonFx>
+        <Button 
+          variant="outline"
+          size="lg"
+          onClick={handleViewResults}
+          className="w-full sm:w-auto py-5 lg:py-6 px-8 lg:px-10 font-semibold"
+        >
+          <span className="font-medium">See Case Studies & ROI</span>
+          <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 group-hover:translate-x-1 transition-transform" />
+        </Button>
       </motion.div>
     </motion.div>
   );

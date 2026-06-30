@@ -97,7 +97,7 @@ class InternalLinkOptimizer {
         keywords: ['design', 'development', 'UX', 'UI', 'solution']
       },
       'blog': {
-        suggestedLinks: ['/blog', '/projects', '/contact'],
+        suggestedLinks: ['/blog', '/projects', '/services'],
         keywords: ['learn', 'insights', 'tips', 'guide']
       },
       'service': {
@@ -166,6 +166,7 @@ class InternalLinkOptimizer {
   private getLinkTextForUrl(url: string): string {
     const linkTexts: Record<string, string> = {
       '/projects': 'View our portfolio',
+      '/services': 'Learn about our services',
       '/contact': 'Get in touch',
       '/about': 'Learn more about us',
       '/blog': 'Read our insights'

@@ -30,92 +30,72 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "fire-lion",
-    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    impact: "",
-    url: "/project/fire-lion",
-    liveUrl: "https://firelion.me",
+    id: "dae-search",
+    tags: ["Enterprise", "Search", "Data Discovery"],
+    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
+    description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
+    impact: "20% ROI from Better Data Discovery",
+    url: "/project/dae-search",
     images: {
-      primary: "/images/firelion-hero-title.png",
-      alt: "Fire Lion gameplay"
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/fire-lion-hero.mp4"
+    layout: "side-by-side"
   },
   {
-    id: "ring-rival",
-    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
-    title: "Ring-Rival",
-    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
-    impact: "",
-    url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
+    id: "smarterhealth",
+    tags: ["Healthcare", "Mobile App", "UX Design"],
+    title: "Smarter Health: Helping Patients Stay on Track",
+    description: "Designed a healthcare app that simplified medication tracking and appointment management for diabetic patients. One-tap medication logging, seamless device sync, and empathy-driven design increased patient engagement by 3× and improved appointment adherence by 60%.",
+    impact: "60% ↑ Appointment Adherence",
+    url: "/project/smarterhealth",
     images: {
-      primary: "/images/ringrival-hero-title.png",
-      alt: "Ring-Rival mobile boxing gameplay"
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
+      alt: "Smarter Health app dashboard with medication tracker"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/ring-rival-hero.mp4"
+    layout: "side-by-side"
   },
   {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
+    id: "business-management",
+    tags: ["Enterprise", "Small Business", "Automation"],
+    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
+    impact: "68% Fewer Operation Errors",
+    url: "/project/business-management",
+    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "/images/catchbuddy-hero-landing.png",
-      alt: "CatchBuddy pickup sports app"
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
+      alt: "Business management warehouse operations and inventory tracking system"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/catchbuddy-hero.mp4"
+    layout: "side-by-side"
   },
+  {
+    id: "email-creation-ai",
+    tags: ["Pharma", "Gen AI", "Workflow Design"],
+    title: "40% Faster Pharma Campaigns With AI-Powered Email Creation",
+    description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
+    impact: "40% Faster Campaign Production",
+    url: "/project/email-creation-ai",
+    images: {
+      primary: "/images/email-ai-promo.png",
+      alt: "AI-powered pharma email creation workflow interface"
+    },
+    layout: "side-by-side"
+  },
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Trust & Safety"],
-    title: "HerbaLink",
-    description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
-    impact: "",
+    tags: ["Blue Sky", "Design Thinking", "GenAI"],
+    title: "HerbaLink: 3× More Bookings for Certified Herbalists",
+    description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
+    impact: "3× Practitioner Bookings",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
       primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
-  },
-  {
-    id: "email-creation-ai",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
-    title: "Email Creation AI",
-    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
-    impact: "",
-    url: "/project/email-creation-ai",
-    images: {
-      primary: "/images/email-ai-promo.png",
-      alt: "Email Creation AI workflow"
-    },
-    layout: "side-by-side",
-    video: "/lovable-uploads/email-creation-ai-hero.mp4"
-  },
-  {
-    id: "dae-search",
-    tags: ["Enterprise", "Data Discovery", "Search UX"],
-    title: "DAE Search",
-    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
-    impact: "",
-    url: "/project/dae-search",
-    images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
-      alt: "DAE Search platform interface"
-    },
-    layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
+    layout: "side-by-side"
   }
 ];
 
@@ -166,27 +146,25 @@ const CaseStudyCard: React.FC<{
           className="block h-full group cursor-pointer"
         >
           <div className="flex justify-center h-full">
-            <div className="w-full aspect-video overflow-hidden" style={{ maxWidth: '625px' }}>
-              <video 
-                src={study.video}
-                poster={study.images.primary}
-                className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                muted
-                loop
-                playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause();
-                  e.currentTarget.currentTime = 0;
-                  e.currentTarget.load();
-                }}
-              />
-            </div>
+            <video 
+              src={study.video}
+              poster={study.images.primary}
+              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              muted
+              loop
+              playsInline
+              style={{ maxWidth: '625px', height: 'auto' }}
+              onMouseEnter={(e) => e.currentTarget.play()}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+                e.currentTarget.load();
+              }}
+            />
           </div>
         </div>
       );
     }
-
     
     return (
       <div 
@@ -197,11 +175,8 @@ const CaseStudyCard: React.FC<{
           <img 
             src={study.images.primary} 
             alt={study.images.alt}
-            width={1250}
-            height={781}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
-            decoding="async"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
             style={{ maxWidth: '625px', height: 'auto' }}
           />

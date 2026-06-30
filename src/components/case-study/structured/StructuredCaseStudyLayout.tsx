@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Home } from "lucide-react";
-import BackButton from "@/components/ui/BackButton";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
@@ -64,10 +61,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
     ...(caseStudyData.keyInsights ? [{ label: "Key Insights", anchor: "#key-insights" }] : []),
+    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.ideationSection ? [
       { label: "Ideation", anchor: "#ideation" }
     ] : []),
-    ...(caseStudyData.myThoughtProcessSection ? [{ label: "My Thought Process", anchor: "#my-thought-process" }] : []),
     ...(caseStudyData.whatDidntWorkSection ? [{ label: "What Didn't Work", anchor: "#what-didnt-work" }] : []),
     ...(caseStudyData.userTestingSection ? [{ label: "Validation & Testing", anchor: "#user-testing" }] : []),
     ...(caseStudyData.finalProductSection ? [{ label: "The Result", anchor: "#the-final-product" }] : []),
@@ -91,63 +88,13 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
-          {/* Back to projects bar — clear exit from case study */}
-          <div className="section-container mb-4 flex items-center justify-between gap-3">
-            <BackButton to="/#projects" label="Back to projects" ariaLabel="Back to all projects" />
-
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Home"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-          </div>
           <div className="section-container bg-white">
-
           {/* Unified Hero Section */}
           <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
             heroAsImage={heroAsImage}
           />
           </div>
-
-          {/* Hero Metrics band */}
-          {caseStudyData.heroMetrics && caseStudyData.heroMetrics.length > 0 && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50 border-y border-border/40">
-              <section
-                id="hero-metrics"
-                data-section="hero-metrics"
-                aria-label="Hero metrics"
-                className="section-snap py-10 md:py-12"
-              >
-                <div className="section-container">
-                  <div className={`grid gap-6 ${caseStudyData.heroMetrics.length === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 md:grid-cols-3"}`}>
-                    {caseStudyData.heroMetrics.map((m, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.08 }}
-                        className="text-center px-4"
-                      >
-                        <div className="text-xl md:text-2xl font-display font-semibold text-foreground mb-1">
-                          {m.value}
-                        </div>
-                        <div className="text-sm text-muted-foreground leading-snug">
-                          {m.label}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </section>
-            </div>
-          )}
-
-
 
           {/* Project Context Section */}
           {caseStudyData.projectContext && (
@@ -214,21 +161,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </section>
           )}
 
-          {/* Ideation Section - Full width band */}
-          {caseStudyData.ideationSection && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
-              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-                <HeadingHierarchy level="h2" id="ideation-heading" className="sr-only">Ideation Section</HeadingHierarchy>
-                <IdeationSection ideationData={caseStudyData.ideationSection} />
-              </section>
-            </div>
-          )}
-
-          {/* Individual Iterations Sections */}
-          {caseStudyData.ideationSection && (
-            <IterationsSection iterations={caseStudyData.ideationSection.iterations} />
-          )}
-
           {/* My Thought Process Section */}
           {caseStudyData.myThoughtProcessSection && (
             <section 
@@ -244,6 +176,21 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 images={caseStudyData.myThoughtProcessSection.images || []}
               />
             </section>
+          )}
+
+          {/* Ideation Section - Full width band - Now appears after My Thought Process */}
+          {caseStudyData.ideationSection && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-muted/50">
+              <section id="ideation" data-section="ideation" aria-labelledby="ideation-heading" className="section-snap py-12 md:py-16 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <HeadingHierarchy level="h2" id="ideation-heading" className="sr-only">Ideation Section</HeadingHierarchy>
+                <IdeationSection ideationData={caseStudyData.ideationSection} />
+              </section>
+            </div>
+          )}
+
+          {/* Individual Iterations Sections */}
+          {caseStudyData.ideationSection && (
+            <IterationsSection iterations={caseStudyData.ideationSection.iterations} />
           )}
 
           {/* What Didn't Work Section */}
@@ -297,7 +244,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     title={caseStudyData.userTestingSection.video.title}
                     caption={caseStudyData.userTestingSection.video.caption}
                     projectId={caseStudyData.id}
-                    className="rounded-sm shadow-sm"
+                    className="rounded-lg shadow-sm"
                     hoverToPlay={true}
                     showControls={false}
                   />
@@ -343,7 +290,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
+                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                     >
                       <MaximizableImage
                         src={image.src}
@@ -421,24 +368,30 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
+                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                       >
                         {image.annotations && image.annotations.length > 0 ? (
                           <AnnotatedImage
                             src={image.src}
                             alt={image.alt}
                             annotations={image.annotations}
-                            className="w-full h-auto rounded-sm"
+                            className="w-full h-auto rounded-lg"
                           />
                         ) : (
-                          <MaximizableImage
-                            src={image.src}
-                            alt={image.alt}
-                            caption={image.caption}
-                            imageList={caseStudyData.finalProductSection.images.map(img => img.src)}
-                            currentIndex={index}
-                            className="w-full h-auto image-high-quality"
-                          />
+                          <div className="group cursor-pointer">
+                            <div className="overflow-hidden">
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
+                              />
+                            </div>
+                            {image.caption && (
+                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                                {image.caption}
+                              </div>
+                            )}
+                          </div>
                         )}
                       </motion.div>
                     ))}

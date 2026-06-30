@@ -51,19 +51,14 @@ export const EditableImage: React.FC<EditableImageProps> = ({
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative overflow-hidden rounded-sm bg-surface-container aspect-video"
+        className="relative overflow-hidden rounded-xl bg-surface-container"
       >
         <img
           src={src || "/placeholder.svg"}
           alt={alt}
-          width={1600}
-          height={900}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
           onClick={() => maximizeImage(src, alt)}
         />
-
 
         {editable && (
           <motion.div

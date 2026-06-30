@@ -25,7 +25,7 @@ const HeadingHierarchy: React.FC<HeadingHierarchyProps> = ({
   isPrimaryH1 = false
 }) => {
   const { h1Used, setH1Used } = useHeadingHierarchy();
-  const Tag = level as unknown as React.ElementType;
+  const Tag = level as keyof JSX.IntrinsicElements;
 
   // Track H1 usage for SEO compliance
   useEffect(() => {

@@ -20,33 +20,6 @@ interface RelatedProjectsProps {
 
 const allCaseStudies: CaseStudy[] = [
   {
-    id: "fire-lion",
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    image: "/images/firelion-hero-title.png",
-    url: "/project/fire-lion",
-    category: "Game Design",
-    tags: ["AI-Assisted Product", "Game Design", "Solo Build"]
-  },
-  {
-    id: "ring-rival",
-    title: "Ring-Rival",
-    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode.",
-    image: "/images/ringrival-hero-title.png",
-    url: "/project/ring-rival",
-    category: "Game Design",
-    tags: ["AI-Assisted Product", "Mobile Web", "Solo Build"]
-  },
-  {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    image: "/images/catchbuddy-hero-landing.png",
-    url: "/project/catchbuddy",
-    category: "Trust & Safety",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"]
-  },
-  {
     id: "herbalink",
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
@@ -54,6 +27,25 @@ const allCaseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     category: "Healthcare",
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]
+  },
+  {
+    id: "barskyjoint",
+    title: "BarskyJoint - Restaurant Ordering",
+    description: "Dual-format restaurant platform that increased average ticket size by 28% through menu clarity and guided customization.",
+    image: "/lovable-uploads/c38018a8-f2a2-49ee-ac88-837de2d1e82d.png",
+    url: "/project/barskyjoint",
+    category: "Restaurant Tech",
+    tags: ["Restaurant Tech", "Food Service", "Kiosk Design", "Mobile App"]
+  },
+  // investor-loan entry hidden - data preserved in structuredCaseStudies.ts
+  {
+    id: "business-management",
+    title: "Business Management App",
+    description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
+    image: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+    url: "/project/business-management",
+    category: "Enterprise",
+    tags: ["Enterprise", "CRM", "Dashboard"]
   }
 ];
 
@@ -103,10 +95,6 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
                   <img
                     src={project.image}
                     alt={project.title}
-                    width={800}
-                    height={384}
-                    loading="lazy"
-                    decoding="async"
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4">

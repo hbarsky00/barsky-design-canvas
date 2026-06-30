@@ -101,32 +101,11 @@ export const generateStructuredData = (seoData: SEOData) => {
     schemas.push(articleSchema);
   }
 
-  // Add Product schema for store product pages
-  const isProductPage = !!canonicalUrl && canonicalUrl.includes('/store/product/');
-  if (isProductPage) {
-    const productSchema: any = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: seoData.title,
-      description: seoData.description,
-      url: canonicalUrl,
-      brand: {
-        "@type": "Brand",
-        name: "Barsky Design",
-      },
-      ...(seoData.image && { image: seoData.image }),
-    };
-    schemas.push(productSchema);
-  }
-
-  // Add FAQ schema for homepage AND product pages (both render SeoFaqSection)
-  const isHomepage = !!canonicalUrl &&
-    canonicalUrl.includes('barskydesign.pro') &&
-    !canonicalUrl.includes('/blog/') &&
-    !canonicalUrl.includes('/project/') &&
-    !canonicalUrl.includes('/store/') &&
-    (canonicalUrl.endsWith('/') || canonicalUrl.endsWith('barskydesign.pro'));
-  if (isHomepage || isProductPage) {
+  // Add FAQ schema for homepage
+  if (canonicalUrl?.includes('barskydesign.pro') && 
+      !canonicalUrl?.includes('/blog/') && 
+      !canonicalUrl?.includes('/project/') &&
+      (canonicalUrl?.endsWith('/') || canonicalUrl?.endsWith('barskydesign.pro'))) {
     const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
