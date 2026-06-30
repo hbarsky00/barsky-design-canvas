@@ -165,7 +165,6 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               image={image}
               title={title}
               scale={scale}
-              onClose={onClose}
             />
 
             <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">
