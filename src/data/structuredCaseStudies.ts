@@ -911,7 +911,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content:
         "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
-      images: [],
+      images: [
+        {
+          src: "/images/dae/Entity_Data_Recent_Search_Terms.jpg",
+          alt: "Recent search terms dropdown exposing keyword history above the data catalog",
+          caption: "Early recent-search dropdown exposed terms without context — later replaced.",
+        },
+      ],
     },
     userTestingSection: {
       title: "Validation & Testing",
