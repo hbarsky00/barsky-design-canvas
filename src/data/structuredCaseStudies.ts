@@ -838,9 +838,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
-            alt: "DAE project style guide showing design system, colors, typography, and component specifications",
-            caption: "Design system and style guide for the DAE search platform",
+            src: "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png",
+            alt: "DAE search results with semantic ranking and data lineage indicators",
+            caption: "Semantic search results with data lineage and quality indicators",
           },
         ],
       },
