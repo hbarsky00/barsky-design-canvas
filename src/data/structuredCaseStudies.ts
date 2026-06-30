@@ -784,7 +784,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroImage: {
-      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      src: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
       alt: "DAE Search Platform interface overview",
     },
     heroMetrics: [
