@@ -813,12 +813,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Rich metadata display with usage patterns and related content suggestions.",
         },
       ],
-      researchImages: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp",
-          alt: "Information architecture analysis of existing data systems",
-        },
-      ],
+      researchImages: [],
     },
     problemCallout: {
       eyebrow: "Problem",
