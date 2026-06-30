@@ -828,18 +828,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations:
         "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp",
-          alt: "Initial concepts for enterprise search interface design",
-          caption: "Foundation principles guiding the enterprise data discovery platform",
-        },
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png",
-          alt: "Search paradigm exploration and decision framework",
-          caption: "Comparative analysis of search approaches for enterprise data discovery",
-        },
-      ],
+      images: [],
     },
     keyInsights: [
       {
