@@ -813,7 +813,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Rich metadata display with usage patterns and related content suggestions.",
         },
       ],
-      researchImages: [],
+      researchImages: [
+        {
+          src: "/images/dae/drawingouttheplan.webp",
+          alt: "Hand-drawn wireframes mapping the advanced search and data asset selection flows",
+          caption: "Early sketches mapping advanced search, entity selection, and results flows.",
+        },
+        {
+          src: "/images/dae/user_flow_process.webp",
+          alt: "DAE Search end-to-end user flow diagram",
+          caption: "End-to-end DAE search process flow from login to related content.",
+        },
+      ],
     },
     problemCallout: {
       eyebrow: "Problem",
