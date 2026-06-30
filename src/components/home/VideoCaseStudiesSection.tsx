@@ -64,7 +64,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
+      primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
       alt: "Business management warehouse operations and inventory tracking system"
     },
     layout: "side-by-side"
