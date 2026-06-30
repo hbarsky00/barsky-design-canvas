@@ -871,12 +871,26 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "Visual data lineage built trust",
         description:
           "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately.",
+        images: [
+          {
+            src: "/images/dae/daenewnew.png",
+            alt: "Cancer Registry data asset profile with tags, stewards, and approval status",
+            caption: "Data asset profile surfaces stewards, lineage, and access status.",
+          },
+        ],
       },
       {
         number: 3,
         title: "Smart permissions reduced friction",
         description:
           "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
+        images: [
+          {
+            src: "/images/dae/search_dropdown_for_asset.webp",
+            alt: "Welcome dashboard search with SNOMED-coded recent search terms",
+            caption: "SNOMED-coded recent searches keep users in a guided pathway.",
+          },
+        ],
       },
     ],
     // ideationSection removed to hide images
