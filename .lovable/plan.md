@@ -1,30 +1,33 @@
+## Goal
+Verify every case study page loads its images — no broken remote URLs, no missing local files.
 
+## Steps
 
-## Plan: Remove Floating Elements, Fix Hero Spacing & Section Gaps
+1. **Collect every image reference** across case study data and components:
+   - `src/data/structuredCaseStudies.ts`
+   - `src/data/caseStudies.ts`
+   - `src/components/home/VideoCaseStudiesSection.tsx`
+   - `src/components/home/FeaturedCaseStudiesSection.tsx`
+   - Any other file under `src/data/` or `src/components/case-study/` referencing `.png/.jpg/.webp/.svg` or remote hosts.
 
-### What's wrong
-1. **Build error**: `BuyMeCoffeeButton` is imported in `App.tsx` (line 9) but never used — TypeScript strict mode fails on unused imports
-2. **Buy Me a Coffee** button in `FloatingButtonGroup` overlaps mobile CTA
-3. **Hotjar script** in `index.html` injects a floating widget
-4. **Large gap** between hero and case studies sections
-5. **Hero spacing** is too loose on mobile
+2. **Classify each reference**:
+   - Local (`/images/...`, `/lovable-uploads/...`, `src/assets/...`) → check the file exists on disk.
+   - Remote (`barskyux.com`, `*.supabase.co`, `barskydesign.pro/images/...`, any other host) → run through `src/utils/imageResolver.ts` to confirm it maps to a local fallback; HEAD-check the original to record live/dead status.
 
-### Changes
+3. **Run the resolver in isolation** against every collected URL via a small Node script, producing a report with: original URL → resolved path → file exists (yes/no).
 
-**1. Fix build error + remove Buy Me a Coffee**
-- `src/App.tsx`: Remove the unused `BuyMeCoffeeButton` import (line 9)
-- `src/components/shared/BuyMeCoffeeButton.tsx`: Delete this file entirely
-- `src/components/shared/FloatingButtonGroup.tsx`: Remove the Buy Me a Coffee button, keep only the Scroll to Top button
+4. **Render-check sample**: spin up Playwright headless against `/case-studies/<slug>` for ~3 representative slugs (including `email-creation-ai`, `dae-search`, one legacy) and capture failed image requests from the network log.
 
-**2. Remove Hotjar**
-- `index.html`: Remove the Hotjar tracking script block (lines 67-77)
+5. **Produce an audit report** at `/mnt/documents/case-study-image-audit.md` listing:
+   - Total refs scanned
+   - Refs resolved to existing local files ✓
+   - Refs falling back to default OG (flag for replacement)
+   - Any unresolved/broken references with file + line number
 
-**3. Tighten hero-to-sections gap**
-- `src/components/homepage/HomepageLayout.tsx`: Reduce `space-y-2 md:space-y-6` on `<main>` to `space-y-0 md:space-y-2`, and reduce padding on the case studies `SectionTransition`
+6. **Fix only what's broken**: for any reference not covered by the resolver, either add an explicit mapping in `src/utils/imageResolver.ts` or repoint the data file to an existing local image. No new image assets created.
 
-**4. Tighten hero mobile spacing**
-- `src/components/hero/MinimalHero.tsx`: Reduce `pb-16 sm:pb-20` to `pb-6 sm:pb-10`, tighten `gap-4 sm:gap-5` to `gap-3 sm:gap-4`, reduce Continue button bottom spacing
-
-### No changes to
-- SEO system, navigation, design system tokens, colors, fonts, or content
-
+## Technical Notes
+- No new images generated or uploaded.
+- Resolver changes stay in `src/utils/imageResolver.ts`.
+- Playwright runs against the already-running dev server at `http://localhost:8080`.
+- Report is deliverable; code edits only where the audit surfaces a real miss.
