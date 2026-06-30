@@ -875,13 +875,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content:
         "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg",
-          alt: "Learning from design iterations that didn't meet enterprise needs",
-          caption: "Learning from design iterations that didn't meet enterprise user requirements",
-        },
-      ],
+      images: [],
     },
     userTestingSection: {
       title: "Validation & Testing",
