@@ -10,6 +10,7 @@ import AnimatedText from "../AnimatedText";
 import { useHeaderNavigation } from "@/components/header/useHeaderNavigation";
 import CrackOverlay from "@/components/effects/CrackOverlay";
 import { useVideoTiming } from "@/hooks/useVideoTiming";
+import { resolveImageSrc } from "@/utils/imageResolver";
 
 const MinimalHero: React.FC = () => {
   const [hasScrolledPastHero, setHasScrolledPastHero] = useState(false);
@@ -22,7 +23,7 @@ const MinimalHero: React.FC = () => {
   // Video timing hook for crack effect synchronization
   const { addTimestampTrigger } = useVideoTiming(videoRef, 3.5);
 
-  const imageUrl = 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp';
+  const imageUrl = resolveImageSrc('https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp');
   const videoUrl = 'https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runiIdLWyCYKV4_have_me_smile_at_the_scr_4838b019-f29d-486d-9a03-8725c08d3cd1_1.mp4';
 
   // Track scroll position to show/hide continue button
