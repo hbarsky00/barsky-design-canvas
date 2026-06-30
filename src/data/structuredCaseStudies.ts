@@ -855,9 +855,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png",
-            alt: "DAE search results with semantic ranking and data lineage indicators",
-            caption: "Semantic search results with data lineage and quality indicators",
+            src: "/images/dae/file.jpg",
+            alt: "Advanced search modal with All/Any filter toggle and selected entities",
+            caption: "Advanced search with All/Any combinator and selected entity filters.",
+          },
+          {
+            src: "/images/dae/image_181.png",
+            alt: "Diabetes keyword search returning 127 ranked data assets with filters",
+            caption: "Keyword search results ranked by popularity with quick filters.",
           },
         ],
       },
