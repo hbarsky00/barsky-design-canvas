@@ -33,6 +33,7 @@ const KEYWORD_MAP: Array<[string, string]> = [
   ['manuscript', '/images/email-ai-promo.png'],
   ['headshot', '/images/hiram-barsky-headshot.jpg'],
   ['hiram', '/images/hiram-barsky-headshot.jpg'],
+  ['img_20250531', '/images/hiram-barsky-headshot.jpg'],
 ];
 
 // Hosts whose images are known to be unreachable and should be remapped.
