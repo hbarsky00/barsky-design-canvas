@@ -784,7 +784,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroImage: {
-      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      src: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
       alt: "DAE Search Platform interface overview",
     },
     heroMetrics: [
@@ -813,12 +813,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "Rich metadata display with usage patterns and related content suggestions.",
         },
       ],
-      researchImages: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp",
-          alt: "Information architecture analysis of existing data systems",
-        },
-      ],
+      researchImages: [],
     },
     problemCallout: {
       eyebrow: "Problem",
@@ -833,18 +828,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations:
         "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp",
-          alt: "Initial concepts for enterprise search interface design",
-          caption: "Foundation principles guiding the enterprise data discovery platform",
-        },
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png",
-          alt: "Search paradigm exploration and decision framework",
-          caption: "Comparative analysis of search approaches for enterprise data discovery",
-        },
-      ],
+      images: [],
     },
     keyInsights: [
       {
@@ -854,9 +838,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
-            alt: "DAE project style guide showing design system, colors, typography, and component specifications",
-            caption: "Design system and style guide for the DAE search platform",
+            src: "/lovable-uploads/633cdf1a-0de5-4fbe-8c06-adc4d2c30a51.png",
+            alt: "DAE search results with semantic ranking and data lineage indicators",
+            caption: "Semantic search results with data lineage and quality indicators",
           },
         ],
       },
@@ -891,13 +875,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "",
       content:
         "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
-      images: [
-        {
-          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg",
-          alt: "Learning from design iterations that didn't meet enterprise needs",
-          caption: "Learning from design iterations that didn't meet enterprise user requirements",
-        },
-      ],
+      images: [],
     },
     userTestingSection: {
       title: "Validation & Testing",
@@ -927,7 +905,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/daenewnew.png",
+      image: "/lovable-uploads/8316c4d1-1eb7-4bbb-b3d5-5c449dbc9e84.png",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",
