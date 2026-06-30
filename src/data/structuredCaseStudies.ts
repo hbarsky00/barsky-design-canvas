@@ -839,7 +839,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations:
         "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
-      images: [],
+      images: [
+        {
+          src: "/images/dae/style_guide.png",
+          alt: "DAE design system style guide with color, typography, components, and icons",
+          caption: "Design system established before building search surfaces.",
+        },
+      ],
     },
     keyInsights: [
       {
