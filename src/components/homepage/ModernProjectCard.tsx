@@ -259,7 +259,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                 onError={(e) => {
                   const el = e.currentTarget as HTMLImageElement;
                   el.onerror = null;
-                  el.src = "/images/default-og-image.jpg";
+                  el.src = "/images/placeholder-thumb.png";
                 }}
               />
             ) : (

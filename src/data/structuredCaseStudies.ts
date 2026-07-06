@@ -283,7 +283,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-teal-50",
     heroVideo: {
-      src: "",
+      src: "/assets/case-studies/smarter-health/hero-video.mp4",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker animation",
@@ -473,7 +473,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/images/default-og-image.jpg",
+          src: "/assets/case-studies/smarter-health/outcome-gradient.png",
           alt: "Patient dashboard with gradient overlay",
           caption: "A patient-first design that empowers users",
         },
@@ -501,7 +501,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-indigo-50 to-purple-50",
     heroVideo: {
-      src: "",
+      src: "/lovable-uploads/crypto-hero.mp4",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
       alt: "Crypto trading platform overview",
@@ -784,8 +784,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
     heroImage: {
-      src: "/images/dae/dashboard.webp",
-      alt: "DAE Search Platform dashboard overview",
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search Platform interface overview",
     },
     heroMetrics: [
       { value: "20%", label: "ROI from Better Discovery" },
@@ -815,14 +815,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/images/dae/drawingouttheplan.webp",
-          alt: "Hand-drawn wireframes mapping the advanced search and data asset selection flows",
-          caption: "Early sketches mapping advanced search, entity selection, and results flows.",
-        },
-        {
-          src: "/images/dae/user_flow_process.webp",
-          alt: "DAE Search end-to-end user flow diagram",
-          caption: "End-to-end DAE search process flow from login to related content.",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp",
+          alt: "Information architecture analysis of existing data systems",
         },
       ],
     },
@@ -841,9 +835,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
       images: [
         {
-          src: "/images/dae/style_guide.png",
-          alt: "DAE design system style guide with color, typography, components, and icons",
-          caption: "Design system established before building search surfaces.",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp",
+          alt: "Initial concepts for enterprise search interface design",
+          caption: "Foundation principles guiding the enterprise data discovery platform",
+        },
+        {
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png",
+          alt: "Search paradigm exploration and decision framework",
+          caption: "Comparative analysis of search approaches for enterprise data discovery",
         },
       ],
     },
@@ -855,14 +854,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "/images/dae/file.jpg",
-            alt: "Advanced search modal with All/Any filter toggle and selected entities",
-            caption: "Advanced search with All/Any combinator and selected entity filters.",
-          },
-          {
-            src: "/images/dae/image_181.png",
-            alt: "Diabetes keyword search returning 127 ranked data assets with filters",
-            caption: "Keyword search results ranked by popularity with quick filters.",
+            src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/style_guide.webp",
+            alt: "DAE project style guide showing design system, colors, typography, and component specifications",
+            caption: "Design system and style guide for the DAE search platform",
           },
         ],
       },
@@ -871,26 +865,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         title: "Visual data lineage built trust",
         description:
           "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately.",
-        images: [
-          {
-            src: "/images/dae/daenewnew.png",
-            alt: "Cancer Registry data asset profile with tags, stewards, and approval status",
-            caption: "Data asset profile surfaces stewards, lineage, and access status.",
-          },
-        ],
       },
       {
         number: 3,
         title: "Smart permissions reduced friction",
         description:
           "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
-        images: [
-          {
-            src: "/images/dae/search_dropdown_for_asset.webp",
-            alt: "Welcome dashboard search with SNOMED-coded recent search terms",
-            caption: "SNOMED-coded recent searches keep users in a guided pathway.",
-          },
-        ],
       },
     ],
     // ideationSection removed to hide images
@@ -913,9 +893,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
       images: [
         {
-          src: "/images/dae/Entity_Data_Recent_Search_Terms.jpg",
-          alt: "Recent search terms dropdown exposing keyword history above the data catalog",
-          caption: "Early recent-search dropdown exposed terms without context — later replaced.",
+          src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg",
+          alt: "Learning from design iterations that didn't meet enterprise needs",
+          caption: "Learning from design iterations that didn't meet enterprise user requirements",
         },
       ],
     },
@@ -947,7 +927,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/images/dae/dashboard.webp",
+      image: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/daenewnew.png",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",
@@ -2138,7 +2118,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
     projectLink: "https://barskyjoint.com",
     heroVideo: {
-      src: "",
+      src: "/lovable-uploads/barskyjoint-hero.mp4",
       poster:
         "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png",
       alt: "BarskyJoint restaurant ordering platform overview",

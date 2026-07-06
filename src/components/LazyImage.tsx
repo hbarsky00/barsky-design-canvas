@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { resolveImageSrc, DEFAULT_IMAGE_FALLBACK } from '@/utils/imageResolver';
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -17,7 +16,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 export const LazyImage: React.FC<LazyImageProps> = ({
   src,
   alt,
-  fallback = DEFAULT_IMAGE_FALLBACK,
+  fallback = '',
   priority = false,
   aspectRatio,
   onLoadComplete,
@@ -83,7 +82,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       {/* Actual image */}
       {isInView && (
         <img
-          src={hasError ? fallback : resolveImageSrc(src)}
+          src={hasError ? fallback : src}
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}

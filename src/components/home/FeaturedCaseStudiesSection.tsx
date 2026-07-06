@@ -28,7 +28,7 @@ const featuredCaseStudies: FeaturedStudy[] = [
     title: "Smarter Health",
     subtitle: "Transforming Patient Anxiety Into Confident Self-Care",
     description: "Reduced patient anxiety around medication management by transforming overwhelming daily routines into confident, consistent health behaviors. Empathy-driven design helped diabetic patients trust their care plan, resulting in 3× higher engagement and 60% better adherence.",
-    image: "/images/default-og-image.jpg",
+    image: "/assets/case-studies/smarter-health/og-cover.png",
     url: "/project/smarterhealth",
     category: "Healthcare",
     impact: "60% more patients trusting their care plan",

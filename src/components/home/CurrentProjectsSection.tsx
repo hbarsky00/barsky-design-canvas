@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { resolveImageSrc } from "@/utils/imageResolver";
 
 interface CurrentProject {
   id: string;
@@ -129,7 +128,7 @@ const CurrentProjectsSection: React.FC = () => {
                     ) : (
                       <>
                         <img
-                          src={resolveImageSrc(project.thumbnailSrc)}
+                          src={project.thumbnailSrc}
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"
                           loading="lazy"

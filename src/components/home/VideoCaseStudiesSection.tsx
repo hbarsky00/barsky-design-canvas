@@ -37,7 +37,7 @@ const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/dae-search",
     images: {
-      primary: "/images/dae/daenewnew.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
     layout: "side-by-side"
@@ -50,7 +50,7 @@ const caseStudies: CaseStudy[] = [
     impact: "60% ↑ Appointment Adherence",
     url: "/project/smarterhealth",
     images: {
-      primary: "/lovable-uploads/f291f600-a3da-4d1f-8a53-70063b1b113e.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/smarterhealth/frontpage.png",
       alt: "Smarter Health app dashboard with medication tracker"
     },
     layout: "side-by-side"
@@ -64,7 +64,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/business-management",
     liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
     images: {
-      primary: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
       alt: "Business management warehouse operations and inventory tracking system"
     },
     layout: "side-by-side"
@@ -92,7 +92,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink-promo.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"
