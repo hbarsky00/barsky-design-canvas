@@ -2340,7 +2340,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
     heroImage: {
-      src: "/images/emailai-screen1-content-planning.png",
+      src: "/images/email-creation-ai/emailai-screen1-content-planning.png",
       alt: "Step 1 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active",
     },
     heroMetrics: [
@@ -2375,26 +2375,26 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "**Step 1 — Content Planning**\nThe workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards.\n*Design decision:* Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I also surfaced the PromoMats metadata warning rather than hide it, so a manager can see I understood the integration problems, not just the happy path.\n\n**Step 2 — Assemble From Approved Content**\nThe AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes.\n*Design decision:* The two sticky notes about claims libraries and PromoMats image sourcing stay visible. In a real spec, unresolved decisions need to be in the open.\n\n**Step 3 — Iterate / Edit + Quality Checks**\nThe most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off.\n*Design decision:* QC sits inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\n**Step 5 — Test Email**\nHTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop.\n*Design decision:* The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes. A deliberate guardrail, not a technical limitation.\n\n**Step 6 — Pre-MLR RV Package**\nSee \"What I Haven't Solved\" above — flagged here as the open problem rather than buried in the flow.\n\n**How I built the spec**\nI designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
       images: [
         {
-          src: "/images/emailai-screen1-content-planning.png",
+          src: "/images/email-creation-ai/emailai-screen1-content-planning.png",
           alt: "Step 1 — Content Planning: 6-step navigator with Brief Creation locked and Initiate Email Creation active",
         },
         {
-          src: "/images/emailai-screen2-assemble.png",
+          src: "/images/email-creation-ai/emailai-screen2-assemble.png",
           alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right",
         },
         {
-          src: "/images/emailai-screen3-iterate-qc.png",
+          src: "/images/email-creation-ai/emailai-screen3-iterate-qc.png",
           alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom",
         },
         {
-          src: "/images/emailai-screen6-pre-mlr.png",
+          src: "/images/email-creation-ai/emailai-screen6-pre-mlr.png",
           alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right",
         },
       ],
     },
     sections: [],
     seoData: {
-      image: "/images/email-ai-promo.png",
+      image: "/images/email-creation-ai/email-ai-promo.png",
       projectName: "ManuscriptRx — AI-Assisted Pharma Email Creation Workflow (Concept)",
       results: [
         "Self-initiated concept project",

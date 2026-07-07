@@ -21,7 +21,7 @@ const staticEntries: Entry[] = [
     changefreq: "weekly",
     priority: "1.0",
     image: {
-      loc: `${BASE_URL}/images/hiram-barsky-headshot.jpg`,
+      loc: `${BASE_URL}/images/shared/hiram-barsky-headshot.jpg`,
       title: "Hiram Barsky - Lead Product Designer",
     },
   },
