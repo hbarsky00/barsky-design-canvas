@@ -77,7 +77,7 @@ const caseStudies: CaseStudy[] = [
     impact: "40% Faster Campaign Production",
     url: "/project/email-creation-ai",
     images: {
-      primary: "/images/email-ai-promo.png",
+      primary: "/images/email-creation-ai/email-ai-promo.png",
       alt: "AI-powered pharma email creation workflow interface"
     },
     layout: "side-by-side"

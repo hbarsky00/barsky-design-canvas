@@ -77,7 +77,7 @@ const featuredCaseStudies: FeaturedStudy[] = [
     title: "Email Creation AI",
     subtitle: "40% Faster Pharma Campaigns Without Sacrificing Compliance",
     description: "Designed a 6-step AI-powered email creation workflow for a global pharma company that cut HCP campaign production time by 40% while keeping every manuscript MLR-compliant. Eliminated 3+ manual handoffs by flipping the model — AI generates the compliant draft, humans refine.",
-    image: "/images/email-ai-promo.png",
+    image: "/images/email-creation-ai/email-ai-promo.png",
     url: "/project/email-creation-ai",
     category: "Pharma",
     impact: "40% faster, 100% compliant",
