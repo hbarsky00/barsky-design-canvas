@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import AnimatedName from "./AnimatedName";
 
 interface IdentityBadgeProps {
   imageSrc: string;
@@ -62,6 +63,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
   const s = sizeMap[size];
   const Wrapper: any = to ? Link : "div";
   const [isHovered, setIsHovered] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleMouseEnter = () => {
@@ -117,12 +119,14 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
             src={imageSrc}
             alt={`${name} profile photo`}
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             width={s.imgWH}
             height={s.imgWH}
             sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 80px"
             className={cn(
               "transition-opacity duration-300",
-              videoSrc && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
+              videoSrc && videoReady && (isHovered || autoPlay) ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => {
               // Image loaded successfully
@@ -137,13 +141,16 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
               ref={videoRef}
               className={cn(
                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
-                (isHovered || autoPlay) ? "opacity-100" : "opacity-0"
+                videoReady && (isHovered || autoPlay) ? "opacity-100" : "opacity-0"
               )}
               autoPlay={autoPlay}
               loop
               muted
               playsInline
               preload="metadata"
+              onLoadedData={() => setVideoReady(true)}
+              onCanPlay={() => setVideoReady(true)}
+              onError={() => setVideoReady(false)}
             >
               <source src={videoSrc} type="video/mp4" />
             </video>
@@ -156,15 +163,14 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
       </div>
 
       <div className="flex flex-col font-display whitespace-nowrap">
-        <span
+        <AnimatedName
+          name={name}
           className={cn(
             s.name,
             "font-semibold tracking-tight leading-none",
             "text-slate-800 dark:text-slate-100"
           )}
-        >
-          {name}
-        </span>
+        />
 
         {subtitle && (
           subtitleStyle === "pill" ? (

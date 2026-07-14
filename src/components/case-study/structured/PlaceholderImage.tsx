@@ -15,7 +15,7 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
   
   return (
     <div className={cn(
-      "relative rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800",
+      "relative rounded-sm overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800",
       "min-h-[400px] md:min-h-[500px] lg:min-h-[600px]",
       "w-full",
       className

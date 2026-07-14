@@ -101,7 +101,7 @@ export const optimizeCriticalResources = () => {
   // Preload critical assets only - updated to use profile photo
   const criticalAssets = [
     '/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png', // Favicon
-    'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp', // Profile avatar
+    '/images/hiram-barsky-profile.png', // Profile avatar
   ];
 
   criticalAssets.forEach(src => {

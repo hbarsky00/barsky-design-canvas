@@ -65,7 +65,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "splittime": {
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     video: "",
-    videoThumbnail: "images/splittime/desktop-signup-1.png",
+    videoThumbnail: "images/desktop-signup-1.png",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     projectLink: "https://splittime.pro",
@@ -153,7 +153,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "email-creation-ai": {
     title: "ManuscriptRx: Designing an AI-Assisted Email Creation Workflow for Pharma",
     video: "",
-    videoThumbnail: "images/email-creation-ai/email-ai-promo.png",
+    videoThumbnail: "images/email-ai-promo.png",
     tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
     description:
       "A self-initiated concept — a 6-step AI-assisted workflow that replaces the broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
@@ -168,23 +168,23 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
     sections: {
       "the-problem": {
         text: "A global pharmaceutical company's HCP email production required 6+ disconnected tools, multiple manual handoffs between Medical Writers, Content Ops, and Brand teams, and a slow MLR review cycle that caused weeks of delays per campaign. There was no unified workflow — just fragmented steps, repeated rework, and no AI assistance to speed compliant content generation.",
-        image: { src: "images/email-creation-ai/emailai-problem.png", alt: "Diagram showing disconnected tools and manual handoff delays across the email production process" }
+        image: { src: "images/emailai-problem.png", alt: "Diagram showing disconnected tools and manual handoff delays across the email production process" }
       },
       "quantified-impact": {
         text: "✅ 40% reduction in email production time ✅ 100% compliant manuscript generation with ISI, safety links, and unsubscribe auto-appended ✅ Eliminated 3+ manual handoff steps through AI-assisted content assembly ✅ Real-time role-based review reduced revision cycles by an estimated 50%.",
-        image: { src: "images/email-creation-ai/emailai-impact.png", alt: "Before and after comparison of email production timeline showing reduced steps" }
+        image: { src: "images/emailai-impact.png", alt: "Before and after comparison of email production timeline showing reduced steps" }
       },
       "what-didnt-work": {
         text: "Early designs let users write emails freeform inside the platform. Medical Writers ignored the AI suggestions entirely and defaulted to copy-pasting from Word documents. The breakthrough came from flipping the model — the AI generates a full compliant manuscript first from an approved brief, and the human refines from there. That shift made the AI feel like acceleration rather than an obstacle.",
-        image: { src: "images/email-creation-ai/emailai-fail.png", alt: "Early wireframe showing abandoned freeform editor approach" }
+        image: { src: "images/emailai-fail.png", alt: "Early wireframe showing abandoned freeform editor approach" }
       },
       "my-thought-process": {
         text: "I mapped every role in the process — Medical Writer, Content Ops, Brand, MLR Reviewer — and designed each step around their actual approval gates, not an idealized flow. Each screen surfaces only what that role needs to act on. The AI acts as an orchestration layer: it pulls from approved briefs, appends market-specific compliance content automatically, and flags issues before they reach human review. The goal was to make compliance invisible and speed feel natural.",
-        image: { src: "images/email-creation-ai/emailai-process.png", alt: "Role-based workflow map showing each step owned by AI, Content Ops, Med Writer, and Brand" }
+        image: { src: "images/emailai-process.png", alt: "Role-based workflow map showing each step owned by AI, Content Ops, Med Writer, and Brand" }
       },
       "how-i-used-ai": {
         text: "I used Claude throughout the design process — not just as a writing tool, but as a dev handoff partner. I created structured Markdown files that documented every screen's logic, component states, role permissions, and AI behavior. These MD files gave the development team a precise spec they could follow without needing constant back-and-forth. It replaced long Slack threads with a single source of truth the AI helped me write, structure, and maintain as the product evolved.",
-        image: { src: "images/email-creation-ai/emailai-ai-method.png", alt: "Screenshot of Claude-generated MD spec file used for dev handoff" }
+        image: { src: "images/emailai-ai-method.png", alt: "Screenshot of Claude-generated MD spec file used for dev handoff" }
       }
     }
   }
@@ -195,7 +195,7 @@ export const homepageCaseStudyPreviews = [
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     tags: ["Health", "Marketplace", "Gen AI"],
-    videoThumbnail: "images/herbalink/herbalink-promo.png",
+    videoThumbnail: "images/herbalink-promo.png",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
     url: "/project/herbalink"
   },
@@ -203,7 +203,7 @@ export const homepageCaseStudyPreviews = [
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Reduced co-parenting conflict by 40% through clear scheduling and neutral communication tools.",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    videoThumbnail: "images/splittime/desktop-signup-1.png",
+    videoThumbnail: "images/desktop-signup-1.png",
     video: "https://share.shots.so/GlnqjFOJW3Rhn4p2.mp4",
     url: "/project/splittime"
   },
@@ -220,7 +220,7 @@ export const homepageCaseStudyPreviews = [
     description:
       "A self-initiated concept — a 6-step AI-assisted workflow that replaces broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
     tags: ["Concept Project", "Enterprise", "Gen AI", "Pharma", "Workflow Design"],
-    videoThumbnail: "images/email-creation-ai/email-ai-promo.png",
+    videoThumbnail: "images/email-ai-promo.png",
     video: "",
     url: "/project/email-creation-ai"
   }

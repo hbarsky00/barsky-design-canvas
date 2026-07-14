@@ -51,7 +51,11 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                 >
                   <Link to="/" className="inline-flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                     <img 
-                      alt="Hiram Barsky" 
+                      alt="Hiram Barsky"
+                      width={40}
+                      height={40}
+                      loading="lazy"
+                      decoding="async"
                       className="w-10 h-10 rounded-full object-cover border-2 border-border" 
                       src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
                     />
@@ -68,7 +72,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-center mb-12"
                 >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6">
                     {caseStudy.title}
                   </h1>
                   
@@ -130,7 +134,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                     className={`mb-20 ${isProjectPage ? 'cs-card' : ''}`}
                     style={{ scrollMarginTop: 'calc(var(--header-height, 64px) + 16px)' }}
                   >
-                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-left lg:text-center">
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-8 text-left lg:text-center">
                       {title}
                     </h2>
                     
@@ -142,7 +146,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                       </div>
                       
                       <div className="relative">
-                        <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+                        <div className="aspect-video bg-muted rounded-sm overflow-hidden shadow-lg">
                           <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
                             <div className="text-center">
                               <p className="text-muted-foreground mb-2">Image Placeholder</p>

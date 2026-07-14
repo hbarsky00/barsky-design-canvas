@@ -98,7 +98,7 @@ export const optimizeImageElement = (img: HTMLImageElement) => {
 export const preloadCriticalAssets = () => {
   const criticalAssets = [
     { href: '/favicon.ico', as: 'image' },
-    { href: 'https://barskyux.com/wp-content/uploads/2025/06/IMG_20250531_123836_952.webp', as: 'image', crossorigin: 'anonymous' }
+    { href: '/images/hiram-barsky-profile.png', as: 'image', crossorigin: 'anonymous' }
   ];
 
   criticalAssets.forEach(asset => {

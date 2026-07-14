@@ -8,7 +8,7 @@ import { Calendar, User, Clock } from 'lucide-react';
 const BlogLanding: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <main className="pt-24 pb-16">
+      <main className="pt-32 md:pt-40 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Hero Section */}
           <motion.div
@@ -25,6 +25,10 @@ const BlogLanding: React.FC = () => {
               and conversion optimization from the field.
             </p>
           </motion.div>
+
+          <h2 className="heading-subsection text-gray-900 mb-8 text-center">
+            Recent Articles
+          </h2>
 
           {/* Blog Posts Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

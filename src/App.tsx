@@ -13,18 +13,20 @@ import MaterialDesignLoader from "@/components/loading/MaterialDesignLoader";
 // Global SEO component
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
 import SitemapGenerator from "@/components/seo/SitemapGenerator";
+import ProjectPromoBanner from "@/components/project-pages/ProjectPromoBanner";
 
 // Critical page - load immediately
 import Index from "@/pages/Index";
 
 // Lazy load non-critical pages to reduce initial bundle size
-const Services = React.lazy(() => import("@/pages/Services"));
+
 const About = React.lazy(() => import("@/pages/About"));
 const Contact = React.lazy(() => import("@/pages/Contact"));
 const Blog = React.lazy(() => import("@/pages/Blog"));
 const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
 const Store = React.lazy(() => import("@/pages/Store"));
 const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
+const ProductDetailsPage = React.lazy(() => import("@/pages/ProductDetailsPage"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
 
 // Service page imports - lazy loaded
@@ -35,11 +37,32 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
 const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
-const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
-// const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy")); // HIDDEN
-// const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
+
+const ManuscriptRxCaseStudy = React.lazy(() => import("@/pages/ManuscriptRxCaseStudy"));
+const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
+const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
+const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/StructuredRingRivalCaseStudy"));
+const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
+const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
+const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
+const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/StructuredSplittimeCaseStudy"));
+
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
+
+// Promo / product overview pages
+const HerbalinkPromo = React.lazy(() => import("@/pages/promos/HerbalinkPromo"));
+const NudgeMePromo = React.lazy(() => import("@/pages/promos/NudgeMePromo"));
+const RoiDesignPromo = React.lazy(() => import("@/pages/promos/RoiDesignPromo"));
+const FireLionPromo = React.lazy(() => import("@/pages/promos/FireLionPromo"));
+const QrCodeBuilderCaseStudy = React.lazy(() => import("@/pages/QrCodeBuilderCaseStudy"));
+const ValoraBetCaseStudy = React.lazy(() => import("@/pages/ValoraBetCaseStudy"));
+const ValoraBetPromo = React.lazy(() => import("@/pages/promos/ValoraBetPromo"));
+const CatchBuddyPromo = React.lazy(() => import("@/pages/promos/CatchBuddyPromo"));
+const RingRivalPromo = React.lazy(() => import("@/pages/promos/RingRivalPromo"));
+const NudgeMeCaseStudy = React.lazy(() => import("@/pages/NudgeMeCaseStudy"));
+const RoiDesignBuilderCaseStudy = React.lazy(() => import("@/pages/RoiDesignBuilderCaseStudy"));
+const CaseStudies = React.lazy(() => import("@/pages/CaseStudies"));
 
 
 const queryClient = new QueryClient();
@@ -52,6 +75,8 @@ function AppContent() {
       <UnifiedSEO />
       {/* Sitemap generator */}
       <SitemapGenerator />
+      <ProjectPromoBanner />
+      
       
       <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
@@ -62,15 +87,43 @@ function AppContent() {
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/case-studies/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              <Route path="/case-studies/nudgeme" element={<NudgeMeCaseStudy />} />
+              <Route path="/case-studies/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
+              <Route path="/case-studies/fire-lion" element={<StructuredFireLionCaseStudy />} />
+              <Route path="/case-studies/dae-search" element={<StructuredDaeSearchCaseStudy />} />
+              <Route path="/case-studies/valora-bet" element={<ValoraBetCaseStudy />} />
+              <Route path="/case-studies/:projectId" element={<ProjectDetail />} />
+
               
               
-              {/* Structured case studies - these override the generic ProjectDetail routing */}
-              {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
-              <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
+              {/* Project promo pages - homepage product links land here */}
+              <Route path="/project/herbalink" element={<HerbalinkPromo />} />
+              <Route path="/project/nudgeme" element={<NudgeMePromo />} />
+              <Route path="/project/roi-design-builder" element={<RoiDesignPromo />} />
+              <Route path="/project/fire-lion" element={<FireLionPromo />} />
+              
+              {/* Structured case studies still available under /case-studies/:projectId */}
               <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
-              <Route path="/project/barskyjoint" element={<StructuredBarskyJointCaseStudy />} />
-              {/* <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} /> HIDDEN */}
-              <Route path="/project/investor-loan-app" element={<Navigate to="/" replace />} />
+              <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
+              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
+              <Route path="/project/ring-rival" element={<RingRivalPromo />} />
+              <Route path="/project/catchbuddy" element={<CatchBuddyPromo />} />
+              <Route path="/case-studies/ring-rival" element={<StructuredRingRivalCaseStudy />} />
+              <Route path="/case-studies/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
+              <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
+              <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
+              <Route path="/project/dae-search" element={<Navigate to="/case-studies/dae-search" replace />} />
+              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
+              <Route path="/project/qr-code-builder" element={<QrCodeBuilderCaseStudy />} />
+              <Route path="/project/valora-bet" element={<ValoraBetPromo />} />
+              <Route path="/project/herbalink/overview" element={<Navigate to="/project/herbalink" replace />} />
+              <Route path="/project/nudgeme/overview" element={<Navigate to="/project/nudgeme" replace />} />
+              <Route path="/project/roi-design-builder/overview" element={<Navigate to="/project/roi-design-builder" replace />} />
+              <Route path="/project/fire-lion/overview" element={<Navigate to="/project/fire-lion" replace />} />
+
+
               <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
@@ -83,11 +136,11 @@ function AppContent() {
               
               {/* Other routes */}
               <Route path="/projects" element={<Navigate to="/#projects" replace />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/success" element={<StoreSuccess />} />
+              <Route path="/store/product/:productId" element={<ProductDetailsPage />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               

@@ -29,7 +29,7 @@ const ProjectContextSection: React.FC<ProjectContextSectionProps> = ({ context }
           <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 mb-4">
             PROJECT CONTEXT
           </div>
-          <h2 className="text-2xl font-bold text-foreground">
+          <h2 className="text-2xl font-display font-bold text-foreground">
             The Real-World Constraints
           </h2>
         </motion.div>

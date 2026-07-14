@@ -15,7 +15,7 @@ export const SEO_CONSTANTS = {
   get BASE_URL() {
     return getDynamicBaseUrl();
   },
-  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/shared/hiram-barsky-headshot.jpg',
+  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-profile.png',
   SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',

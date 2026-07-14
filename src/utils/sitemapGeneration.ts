@@ -25,12 +25,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       changefreq: 'weekly',
       priority: 1.0
     },
-    {
-      url: `${BASE_URL}/services`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.9
-    },
     
     // Service detail pages - high priority for SEO
     {
@@ -91,12 +85,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     },
     {
       url: `${BASE_URL}/project/dae-search`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    {
-      url: `${BASE_URL}/project/barskyjoint`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.7
