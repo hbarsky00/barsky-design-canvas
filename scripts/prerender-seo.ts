@@ -177,9 +177,12 @@ function rewriteHead(html: string, r: RouteSEO): string {
   return out;
 }
 
+// Write flat files (dist/about.html, not dist/about/index.html): Netlify
+// serves <route>.html at /<route> with a 200, whereas a directory index
+// triggers a 301 to the trailing-slash URL and contradicts the canonicals.
 let written = 0;
 for (const r of routes) {
-  const outPath = resolve(DIST, r.path.replace(/^\//, ""), "index.html");
+  const outPath = resolve(DIST, `${r.path.replace(/^\//, "")}.html`);
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, rewriteHead(template, r));
   written++;
