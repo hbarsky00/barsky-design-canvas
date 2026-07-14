@@ -23,7 +23,9 @@ const ProjectSeo: React.FC<Props> = ({ title, description, image, slug, basePath
         ? mapSeo.title
         : mapSeo.title.replace(/Case Study/i, "Product Overview"))
     : title;
-  const finalDescription = mapSeo?.description ?? description;
+  const finalDescription = mapSeo
+    ? (basePath === "/case-studies" ? mapSeo.description : `Product tour: ${mapSeo.description}`)
+    : description;
   const finalImage = mapSeo?.image ?? image;
 
   return (

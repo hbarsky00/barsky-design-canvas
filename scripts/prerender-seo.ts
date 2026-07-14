@@ -12,7 +12,7 @@
 // Route inventory comes from scripts/seo-routes.ts — shared with
 // generate-sitemap.ts so sitemap URLs and prerendered files always match 1:1.
 
-import { writeFileSync, readFileSync, existsSync, mkdirSync } from "fs";
+import { writeFileSync, readFileSync, existsSync, mkdirSync, readdirSync } from "fs";
 import { resolve, dirname } from "path";
 import {
   BASE_URL,
@@ -20,7 +20,7 @@ import {
   FEATURED_PROJECTS,
   FEATURED_CASE_STUDIES,
   getBlogEntries,
-  getProductIds,
+  getProductEntries,
 } from "./seo-routes";
 import { STATIC_PAGE_SEO, PROJECT_SEO_MAP, BLOG_IMAGE_MAP, BLOG_SEO_MAP } from "../src/data/seoData";
 
@@ -76,7 +76,7 @@ for (const id of FEATURED_PROJECTS) {
   routes.push({
     path: `/project/${id}`,
     title: seo.title.replace(/Case Study/i, "Product Overview"),
-    description: seo.description,
+    description: `Product tour: ${seo.description}`,
     image: seo.image,
     type: "article",
   });
@@ -98,25 +98,39 @@ for (const id of FEATURED_CASE_STUDIES) {
   });
 }
 
-// 4) Blog posts — slug/title/excerpt from blogData.ts via seo-routes.
-for (const { slug, title, excerpt } of getBlogEntries()) {
+// 4) Blog posts — slug/title/excerpt/cover from blogData.ts via seo-routes.
+// Cover images are Vite-imported assets, so resolve each source basename to
+// its hashed file in dist/assets (e.g. ai-claude-starter-cover-B3xQ.jpg).
+const distAssets = readdirSync(resolve(DIST, "assets"));
+function resolveAssetUrl(basename: string | null): string | null {
+  if (!basename) return null;
+  const file = distAssets.find((f) => f.startsWith(`${basename}-`));
+  return file ? `${BASE_URL}/assets/${file}` : null;
+}
+
+for (const { slug, title, excerpt, coverBasename } of getBlogEntries()) {
   const override = BLOG_SEO_MAP[slug];
   routes.push({
     path: `/blog/${slug}`,
     title: override?.title || `${title}${SITE_SUFFIX}`,
     description: override?.description || excerpt,
-    image: BLOG_IMAGE_MAP[slug] || DEFAULT_IMAGE,
+    image: BLOG_IMAGE_MAP[slug] || resolveAssetUrl(coverBasename) || DEFAULT_IMAGE,
     type: "article",
   });
 }
 
-// 5) Store products
-for (const id of getProductIds()) {
+// 5) Store products — per-product name/description/image, mirroring the
+// title/description shaping UnifiedSEO applies at runtime.
+for (const { id, name, description, image } of getProductEntries()) {
+  const brand = " | Barsky Design Store";
+  const maxName = 60 - brand.length;
+  const safeName = name.length > maxName ? `${name.slice(0, maxName - 1).trimEnd()}…` : name;
+  const safeDesc = description.length > 160 ? `${description.slice(0, 157).trimEnd()}…` : description;
   routes.push({
     path: `/store/product/${id}`,
-    title: "Design Resources & Templates — Barsky",
-    description: "Professional design resources, wireframe kits, and UX templates. Instant digital downloads.",
-    image: DEFAULT_IMAGE,
+    title: `${safeName}${brand}`,
+    description: safeDesc,
+    image: image || DEFAULT_IMAGE,
     type: "website",
   });
 }

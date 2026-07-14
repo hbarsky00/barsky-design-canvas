@@ -69,13 +69,15 @@ const UnifiedSEO: React.FC = () => {
       // the title so the two routes don't emit duplicate titles to crawlers.
       const routeTitle = (title: string) =>
         isCaseStudyRoute ? title : title.replace(/Case Study/i, 'Product Overview');
+      const routeDescription = (desc: string) =>
+        isCaseStudyRoute ? desc : `Product tour: ${desc}`;
 
       if (caseStudyData && projectSeoOverride) {
         seoInput = {
           path: pathname,
           kind: 'project',
           title: routeTitle(projectSeoOverride.title!),
-          description: projectSeoOverride.description!,
+          description: routeDescription(projectSeoOverride.description!),
           image: projectSeoOverride.image!
         };
       } else if (caseStudyData) {
@@ -83,7 +85,7 @@ const UnifiedSEO: React.FC = () => {
           path: pathname,
           kind: 'project',
           title: routeTitle(caseStudyData.title),
-          description: caseStudyData.description,
+          description: routeDescription(caseStudyData.description),
           image: caseStudyData.seoData?.image
         };
       } else {
