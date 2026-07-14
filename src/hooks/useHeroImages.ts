@@ -21,17 +21,17 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const projectHeroImagesData: Record<string, { url: string; title: string }[]> = {
     "medication-app": [
       {
-        url: "/lovable-uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
+        url: "/uploads/5ebc710e-fd8f-40aa-b092-99290c136a57.png",
         title: "Medication App Task Completion Interface"
       }
     ],
     "investor-loan-app": [
       {
-        url: "/lovable-uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
+        url: "/uploads/b49f4918-37cd-4ffa-bae3-2468e22f2fce.png",
         title: "Advanced Search Functionality"
       },
       {
-        url: "/lovable-uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
+        url: "/uploads/d9596b32-c5a5-42bd-9229-db1b496aeea4.png",
         title: "Advanced Loans Orderbook Interface"
       }
     ]
@@ -70,7 +70,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const handleAddImage = () => {
     const newImage: HeroImage = {
       id: `hero-${heroImages.length}`,
-      src: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+      src: "/uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
       position: heroImages.length
     };
     setHeroImages(prev => [...prev, newImage]);

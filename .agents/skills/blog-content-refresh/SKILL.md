@@ -13,7 +13,7 @@ The portfolio blog reads exclusively from `src/data/blogData.ts` — the `.md` f
 - Every post gets a **cover image** AND at least **one inline image** placed inside the HTML content. "More images and that they make sense" is a recurring user demand — do not skip inline images.
 - Generate all images in **one parallel batch** with `imagegen--generate_image` (model `fast`, 1280×720, `.jpg`). Saving them sequentially wastes the user's time and credits.
 - Save images under `src/assets/blog/<slug-fragment>-cover.jpg` and `...-inline.jpg`. Do not reuse the legacy `src/assets/blog-*.jpg` files — they belong to the previous theme.
-- Import every image at the top of `blogData.ts` with ES6 imports. No `/lovable-uploads/` paths, no remote URLs.
+- Import every image at the top of `blogData.ts` with ES6 imports. No `/uploads/` paths, no remote URLs.
 - Inline images render via `<figure><img src="..." loading="lazy" width="1280" height="720" class="w-full h-auto rounded-xl shadow-md" /></figure>`. A small `wrap()` helper at the top of the file keeps this consistent — reuse it.
 - Apply the `strategic-principal-voice` skill to the body copy: lead with a belief shift, name the tradeoff, no banned buzzwords. Posts that read like generic Medium content are a failure.
 - Tags should be specific to the theme (e.g. "Claude", "Prompt Engineering", "AI Trust") — not generic ("Design", "Tips").

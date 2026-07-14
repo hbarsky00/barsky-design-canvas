@@ -13,11 +13,11 @@ export interface OptimizedImageMapping {
 
 // ENABLE IMAGE OPTIMIZATION - PROGRESSIVE ENHANCEMENT
 export const OPTIMIZED_IMAGE_MAP: Record<string, OptimizedImageMapping> = {
-  '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png': {
-    original: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
-    webp: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
-    webpCompressed: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
-    mobile: '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+  '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png': {
+    original: '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    webp: '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    webpCompressed: '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
+    mobile: '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png',
     width: 400,
     height: 400,
     aspectRatio: '1:1',
@@ -143,8 +143,8 @@ export const preloadCriticalImages = () => {
   if (typeof window === 'undefined') return;
 
   const criticalImages = [
-    '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Profile
-    '/lovable-uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png'  // Hero heading
+    '/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Profile
+    '/uploads/ffa8416f-51a7-4966-a274-50bf8b2a3c8c.png'  // Hero heading
   ];
 
   criticalImages.forEach(src => {

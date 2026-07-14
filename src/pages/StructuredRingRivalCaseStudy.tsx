@@ -12,9 +12,9 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
       liveUrl="https://rival.li"
       overviewUrl="/project/ring-rival"
       heroImage={{
-        src: "/lovable-uploads/ringrival/01-title.png",
+        src: "/uploads/ringrival/01-title.png",
         alt: "Ring-Rival title screen — Mobile Boxing by Barsky Design",
-        hoverVideo: "/lovable-uploads/ringrival-hero.mp4",
+        hoverVideo: "/uploads/ringrival-hero.mp4",
       }}
       blocks={[
         {
@@ -32,11 +32,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
           ],
           images: [
             {
-              src: "/lovable-uploads/ringrival/02-career-glass-joe.png",
+              src: "/uploads/ringrival/02-career-glass-joe.png",
               alt: "Minor Circuit career screen showing Glass Joe with power, speed, and HP stats",
             },
             {
-              src: "/lovable-uploads/ringrival/03-von-kaiser.png",
+              src: "/uploads/ringrival/03-von-kaiser.png",
               alt: "Von Kaiser opponent in the ring with first-person red glove POV",
             },
           ],
@@ -49,11 +49,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
           ],
           images: [
             {
-              src: "/lovable-uploads/ringrival/04-disco-dan-stars.png",
+              src: "/uploads/ringrival/04-disco-dan-stars.png",
               alt: "Disco Dan stunned with a starfield background and green stun meter",
             },
             {
-              src: "/lovable-uploads/ringrival/05-disco-dan-stunned.png",
+              src: "/uploads/ringrival/05-disco-dan-stunned.png",
               alt: "Disco Dan recoiling with stun stars above his head during a combo opening",
             },
           ],

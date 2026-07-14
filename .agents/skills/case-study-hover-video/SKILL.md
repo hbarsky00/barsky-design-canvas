@@ -11,12 +11,12 @@ Hero images on case study pages and homepage case-study cards can swap to a mute
 
 - `src/components/case-study/SimpleCaseStudyPage.tsx` — `SimpleCaseStudyImage` supports an optional `hoverVideo: string`. The `HeroHoverMedia` component fades from image to video on mouse enter / touch.
 - `src/components/home/VideoCaseStudiesSection.tsx` — homepage cards. Each entry already has a `video` field; `ModernProjectCard` auto-plays it on hover.
-- `public/lovable-uploads/<slug>-hero.mp4` — canonical location for hero hover videos.
+- `public/uploads/<slug>-hero.mp4` — canonical location for hero hover videos.
 
 ## Steps to add hover video for a case study
 
-1. Copy the uploaded mp4 to `public/lovable-uploads/<slug>-hero.mp4` using `code--copy` (slug matches the route, e.g. `firelion`, `ringrival`, `catchbuddy`).
-2. In `src/pages/Structured<Name>CaseStudy.tsx` (or `ManuscriptRxCaseStudy.tsx`), add `hoverVideo: "/lovable-uploads/<slug>-hero.mp4"` to the `heroImage` prop. Keep `src` and `alt` unchanged.
+1. Copy the uploaded mp4 to `public/uploads/<slug>-hero.mp4` using `code--copy` (slug matches the route, e.g. `firelion`, `ringrival`, `catchbuddy`).
+2. In `src/pages/Structured<Name>CaseStudy.tsx` (or `ManuscriptRxCaseStudy.tsx`), add `hoverVideo: "/uploads/<slug>-hero.mp4"` to the `heroImage` prop. Keep `src` and `alt` unchanged.
 3. In `src/components/home/VideoCaseStudiesSection.tsx`, ensure the matching entry's `video` field points to the same file.
 4. Do not touch nav, footer, copy, or other images.
 
@@ -24,5 +24,5 @@ Hero images on case study pages and homepage case-study cards can swap to a mute
 
 - Video must be muted, looping, `playsInline`, `preload="metadata"` (already handled by `HeroHoverMedia`).
 - Never replace the still hero image — the image stays as the poster; the video only shows while hovered.
-- One video per case study, always under `/lovable-uploads/`.
+- One video per case study, always under `/uploads/`.
 - File naming: `<slug>-hero.mp4` (lowercase, hyphenated slug matching the route).

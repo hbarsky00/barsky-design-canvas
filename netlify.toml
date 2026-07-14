@@ -17,6 +17,12 @@
   status = 301
   force = true
 
+# Uploads folder renamed from the Lovable-era path; old URLs stay valid.
+[[redirects]]
+  from = "/lovable-uploads/*"
+  to = "/uploads/:splat"
+  status = 301
+
 # --- Removed/renamed pages Google has indexed -> nearest live equivalent ---
 
 [[redirects]]

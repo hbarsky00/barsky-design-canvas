@@ -42,7 +42,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Fire Lion gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/fire-lion-hero.mp4"
+    video: "/uploads/fire-lion-hero.mp4"
   },
   {
     id: "ring-rival",
@@ -57,7 +57,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/ring-rival-hero.mp4"
+    video: "/uploads/ring-rival-hero.mp4"
   },
   {
     id: "catchbuddy",
@@ -72,7 +72,7 @@ const caseStudies: CaseStudy[] = [
       alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/catchbuddy-hero.mp4"
+    video: "/uploads/catchbuddy-hero.mp4"
   },
   {
     id: "herbalink",
@@ -101,7 +101,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Email Creation AI workflow"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/email-creation-ai-hero.mp4"
+    video: "/uploads/email-creation-ai-hero.mp4"
   },
   {
     id: "dae-search",
@@ -115,7 +115,7 @@ const caseStudies: CaseStudy[] = [
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
+    video: "/uploads/dae-search-hero.mp4"
   }
 ];
 

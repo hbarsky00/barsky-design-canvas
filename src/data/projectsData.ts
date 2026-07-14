@@ -26,7 +26,7 @@ export const projectsData: ProjectProps[] = [
     id: "herbalink",
     title: "HerbaLink: GenAI Health Marketplace",
     description: "Built trust in an unregulated industry: 312% booking increase by solving credential verification and enabling remote consultations during COVID-19 restrictions.",
-    image: "/lovable-uploads/0733fede-9de2-483a-8bb8-09538b044e33.png",
+    image: "/uploads/0733fede-9de2-483a-8bb8-09538b044e33.png",
     videoThumbnail: "herbalink-thumb.jpg",
     video: "herbalink-demo.mp4",
     tags: ["HealthTech", "AI/ML", "Regulatory Compliance", "COVID Response"],

@@ -28,7 +28,7 @@ const ProcessFlowSection: React.FC = () => {
           className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"
         >
           <MaximizableImage
-            src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png"
+            src="/uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png"
             alt="AI-enhanced development workflow from conversation to deployment"
             caption="AI-Enhanced Development Workflow"
             className="w-full h-auto object-contain"

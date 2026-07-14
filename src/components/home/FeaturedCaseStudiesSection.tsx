@@ -76,7 +76,7 @@ const featuredCaseStudies: FeaturedStudy[] = [
     title: "HerbaLink",
     subtitle: "Building Trust in Alternative Medicine Decisions",
     description: "Transformed patient uncertainty about alternative medicine into confident practitioner selection. AI-powered matching helped users trust they'd found the right herbalist for their needs, eliminating decision paralysis and anxiety around alternative care choices.",
-    image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
+    image: "/uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
     url: "/project/herbalink",
     category: "Healthcare",
     impact: "Eliminated practitioner selection anxiety",

@@ -10,7 +10,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/emailai-screen1-content-planning.png",
       alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
-      hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
+      hoverVideo: "/uploads/email-creation-ai-hero.mp4",
     }}
     blocks={[
       {

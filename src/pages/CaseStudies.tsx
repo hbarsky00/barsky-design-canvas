@@ -70,7 +70,7 @@ const groups: Group[] = [
         subtitle: "Enterprise search redesigned around trust, not relevance",
         description:
           "Semantic match with data lineage and permissions inline. From 40 results to narrow down to 4 you can act on — reframed the product from search tool to data discovery tool.",
-        image: "/lovable-uploads/dae/dashboard-search.png",
+        image: "/uploads/dae/dashboard-search.png",
         url: "/case-studies/dae-search",
         category: "Enterprise",
         tags: ["Data Discovery", "Search UX"],

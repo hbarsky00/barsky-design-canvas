@@ -26,8 +26,8 @@ const ModernProjectContentSection: React.FC<ModernProjectContentSectionProps> = 
   const [isEditingContent, setIsEditingContent] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
   const [sectionImages, setSectionImages] = useState<string[]>([
-    "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
-    "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+    "/uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+    "/uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
   ]);
   const [isSelecting, setIsSelecting] = useState(false);
   const showEditingControls = shouldShowEditingControls();

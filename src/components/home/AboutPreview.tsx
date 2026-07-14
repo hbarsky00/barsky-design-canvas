@@ -66,7 +66,7 @@ const AboutPreview: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
-              src={getOptimizedImageSrc("/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png", window.innerWidth <= 768)}
+              src={getOptimizedImageSrc("/uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png", window.innerWidth <= 768)}
               loading="lazy"
               fetchPriority="low"
               width="208"

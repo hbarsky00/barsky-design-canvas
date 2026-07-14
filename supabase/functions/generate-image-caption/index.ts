@@ -53,7 +53,7 @@ serve(async (req) => {
     }
 
     // Convert relative URLs to absolute URLs using request origin
-    const requestOrigin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://0fd089db-a4e5-4e17-ab5f-74878fb2d656.lovableproject.com';
+    const requestOrigin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/') || 'https://barskydesign.pro';
     const fullImageUrl = imageSrc.startsWith('http') 
       ? imageSrc 
       : `${requestOrigin}${imageSrc}`;

@@ -19,7 +19,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Three previous replacement attempts had failed because they tried to improve things officers didn't want changed.",
         ],
         images: [
-          { src: "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png", alt: "User testing session showing loan officer workflow validation" },
+          { src: "/uploads/70efa220-d524-4d37-a9de-fbec00205917.png", alt: "User testing session showing loan officer workflow validation" },
         ],
       },
       {
@@ -52,7 +52,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.",
         ],
         images: [
-          { src: "/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png", alt: "Investor loan platform user workflow and process improvements" },
+          { src: "/uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png", alt: "Investor loan platform user workflow and process improvements" },
         ],
       },
       {

@@ -67,7 +67,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Web Development — React & Frontend | Barsky',
     description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, accessible web apps that scale.',
-    image: 'https://barskydesign.pro/lovable-uploads/business-management-cover.jpg'
+    image: 'https://barskydesign.pro/uploads/business-management-cover.jpg'
   }
 };
 
@@ -96,7 +96,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "business-management": {
     title: "Enterprise Ops Platform — B2B UX Case Study",
     description: "Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.",
-    image: "https://barskydesign.pro/lovable-uploads/business-management-cover.jpg"
+    image: "https://barskydesign.pro/uploads/business-management-cover.jpg"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
@@ -116,7 +116,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
     description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
-    image: "https://barskydesign.pro/lovable-uploads/dae/dashboard-search.png"
+    image: "https://barskydesign.pro/uploads/dae/dashboard-search.png"
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
@@ -151,7 +151,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "roi-design-builder": {
     title: "ROI Design Builder — Design Value Calculator Case Study",
     description: "Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.",
-    image: "https://barskydesign.pro/lovable-uploads/roi-design/01-landing.png"
+    image: "https://barskydesign.pro/uploads/roi-design/01-landing.png"
   },
   "qr-code-builder": {
     title: "QR Code Builder — Branded QR Generator Case Study",

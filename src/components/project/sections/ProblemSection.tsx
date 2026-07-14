@@ -9,17 +9,17 @@ const ProblemSection: React.FC = () => {
   const painPoints = [
     {
       text: "Grid actions that looked clickable but did nothing (pure frustration)",
-      image: "/lovable-uploads/a5f7cbb4-e20e-42ac-af22-f9611e5994e4.png",
+      image: "/uploads/a5f7cbb4-e20e-42ac-af22-f9611e5994e4.png",
       alt: "Frustrated business owner overwhelmed by chaotic software and manual processes"
     },
     {
       text: "Endless screens that buried simple tasks in complexity",
-      image: "/lovable-uploads/98c02902-7f36-4c8a-b29e-0dace089c297.png",
+      image: "/uploads/98c02902-7f36-4c8a-b29e-0dace089c297.png",
       alt: "Developer surrounded by overwhelming code interfaces and digital complexity"
     },
     {
       text: "A system designed by people who never ran a distribution business",
-      image: "/lovable-uploads/82339ea3-2074-4095-83b2-c52489b602ef.png",
+      image: "/uploads/82339ea3-2074-4095-83b2-c52489b602ef.png",
       alt: "Business professional and warehouse worker collaborating with digital technology"
     },
     {

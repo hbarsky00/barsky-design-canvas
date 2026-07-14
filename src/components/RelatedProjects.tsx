@@ -50,7 +50,7 @@ const allCaseStudies: CaseStudy[] = [
     id: "herbalink",
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
-    image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
+    image: "/uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
     url: "/project/herbalink",
     category: "Healthcare",
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]

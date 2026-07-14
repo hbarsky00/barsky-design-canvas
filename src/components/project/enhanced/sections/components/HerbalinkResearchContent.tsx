@@ -22,7 +22,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               content=""
               contentType="section"
               onSave={() => {}}
-              images={["/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png"]}
+              images={["/uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png"]}
               onImageAdd={(imageSrc) => {
                 console.log('➕ Adding user research image:', imageSrc);
               }}
@@ -33,7 +33,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               maxImages={1}
               projectId={projectId}
               imageCaptions={{
-                "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "User research findings and analysis showing key insights from herbalist and patient interviews"
+                "/uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "User research findings and analysis showing key insights from herbalist and patient interviews"
               }}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
             />
@@ -50,7 +50,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               content=""
               contentType="section"
               onSave={() => {}}
-              images={["/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png"]}
+              images={["/uploads/fc11dcb5-634f-4317-9585-d8661064189b.png"]}
               onImageAdd={(imageSrc) => {
                 console.log('➕ Adding competitive analysis image:', imageSrc);
               }}
@@ -61,7 +61,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               maxImages={1}
               projectId={projectId}
               imageCaptions={{
-                "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Competitive analysis of wellness platforms showing market gaps and opportunities for herbalist consultation services"
+                "/uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Competitive analysis of wellness platforms showing market gaps and opportunities for herbalist consultation services"
               }}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
             />
@@ -78,7 +78,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               content=""
               contentType="section"
               onSave={() => {}}
-              images={["/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"]}
+              images={["/uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png"]}
               onImageAdd={(imageSrc) => {
                 console.log('➕ Adding key findings image:', imageSrc);
               }}
@@ -89,7 +89,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               maxImages={1}
               projectId={projectId}
               imageCaptions={{
-                "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Key research findings highlighting trust and safety requirements for herbal medicine platform design"
+                "/uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Key research findings highlighting trust and safety requirements for herbal medicine platform design"
               }}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
             />
@@ -110,7 +110,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               content=""
               contentType="section"
               onSave={() => {}}
-              images={["/lovable-uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png"]}
+              images={["/uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png"]}
               onImageAdd={(imageSrc) => {
                 console.log('➕ Adding design system image:', imageSrc);
               }}
@@ -121,7 +121,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               maxImages={1}
               projectId={projectId}
               imageCaptions={{
-                "/lovable-uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png": "Herbalink comprehensive design system emphasizing trust, accessibility, and natural wellness through calming colors and user-friendly typography"
+                "/uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png": "Herbalink comprehensive design system emphasizing trust, accessibility, and natural wellness through calming colors and user-friendly typography"
               }}
               className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
             />

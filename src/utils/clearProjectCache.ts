@@ -77,8 +77,8 @@ const clearImageCacheForProject = (projectId: string) => {
   document.querySelectorAll('img').forEach((img) => {
     const originalSrc = img.src;
     // Only clear cache for images that are likely part of this project
-    if (originalSrc && 
-        (originalSrc.includes('lovable-uploads') || 
+    if (originalSrc &&
+        (originalSrc.includes('/uploads/') ||
          originalSrc.includes(projectId) ||
          img.closest(`[data-project-id="${projectId}"]`))) {
       if (!originalSrc.includes('?v=')) {

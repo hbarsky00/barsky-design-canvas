@@ -9,7 +9,7 @@ const EvolutionSection: React.FC = () => {
       step: "1",
       title: "Excel Scripts",
       description: "Started with quick automation to solve immediate pain",
-      image: "/lovable-uploads/5dbc55b5-23eb-4f33-a9c7-152110769b20.png",
+      image: "/uploads/5dbc55b5-23eb-4f33-a9c7-152110769b20.png",
       color: "green"
     },
     {
