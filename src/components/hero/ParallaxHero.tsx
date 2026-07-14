@@ -27,6 +27,7 @@ const ParallaxHero: React.FC = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const mountainsRef = useRef<HTMLDivElement>(null);
   const [isDay, setIsDay] = useState(false);
+  const [isTwilight, setIsTwilight] = useState(false);
   const [sceneId, setSceneId] = useState<string>(DEFAULT_SCENE_ID);
   const [moonImg, setMoonImg] = useState(() => MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
   const [sunImg, setSunImg] = useState(() => SUN_PHASES[Math.floor(Math.random() * SUN_PHASES.length)]);
@@ -39,6 +40,9 @@ const ParallaxHero: React.FC = () => {
 
   useEffect(() => {
     const t = setTimeout(() => {
+      // Golden-hour pass: a warm dusk/dawn gradient washes over the sky while
+      // the day/night crossfade runs, then dissolves into the new sky.
+      setIsTwilight(true);
       setIsDay((d) => {
         if (d) {
           setMoonImg(MOON_PHASES[Math.floor(Math.random() * MOON_PHASES.length)]);
@@ -51,6 +55,14 @@ const ParallaxHero: React.FC = () => {
     }, 12000);
     return () => clearTimeout(t);
   }, [isDay]);
+
+  // Dissolve the golden-hour wash shortly after each flip. Lives in its own
+  // effect so the flip effect's cleanup (which re-runs on isDay) can't cancel it.
+  useEffect(() => {
+    if (!isTwilight) return;
+    const t = setTimeout(() => setIsTwilight(false), 3400);
+    return () => clearTimeout(t);
+  }, [isTwilight]);
 
   // Auto-rotate between live silhouette scenes (mountains <-> city) every 18s.
   // Pauses when a flat image scene is active.
@@ -181,7 +193,7 @@ const ParallaxHero: React.FC = () => {
       data-clouds={clouds}
       data-text-mode={textMode}
       aria-label="Hiram Barsky portfolio hero"
-      className={`parallax-hero ${isDay ? "is-day" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
+      className={`parallax-hero ${isDay ? "is-day" : ""} ${isTwilight ? "is-twilight" : ""} ${isFlatScene ? "has-flat-scene" : ""}`}
     >
       {/* Flat scene overlay — single full-bleed image, crossfades over live scene */}
       <div className="parallax-scene-stack" aria-hidden>
@@ -210,6 +222,8 @@ const ParallaxHero: React.FC = () => {
         <div ref={skyRef} className="parallax-sky" />
         {/* Day sky fades over night */}
         <div className="parallax-sky-day" />
+        {/* Golden-hour wash shown briefly during every day/night flip */}
+        <div className="parallax-sky-twilight" />
         {/* Sun rises during day */}
         <div className="parallax-sun" style={{ backgroundImage: `url(${sunImg})` }} />
         {/* Moon glows during night */}
