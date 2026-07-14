@@ -1,20 +1,41 @@
-# 301 Redirects for pages that redirect (fix Google Search Console issues)
+[build]
+  # Full SEO pipeline: sitemap generation -> vite build -> per-route prerendered
+  # HTML in dist/. Plain `vite build` would ship one untitled HTML shell for
+  # every URL and no fresh sitemap.
+  command = "npm run build"
+  publish = "dist"
 
-# www to non-www redirect (must be first, with force flag)
+# ---------------------------------------------------------------------------
+# Redirects. Note: prerendered pages need no rules here — dist/<route>/index.html
+# physical files are served automatically and take precedence over redirects.
+# ---------------------------------------------------------------------------
+
+# www to apex (must be first, with force flag)
 [[redirects]]
   from = "https://www.barskydesign.pro/*"
   to = "https://barskydesign.pro/:splat"
   status = 301
   force = true
 
-# Old URL redirects
+# --- Removed/renamed pages Google has indexed -> nearest live equivalent ---
+
+[[redirects]]
+  from = "/services"
+  to = "/design-services/ux-ui-design"
+  status = 301
+
+[[redirects]]
+  from = "/design-services"
+  to = "/design-services/ux-ui-design"
+  status = 301
+
 [[redirects]]
   from = "/web-development"
   to = "/design-services/web-development"
   status = 301
 
 [[redirects]]
-  from = "/project/investor-loan-app"
+  from = "/projects"
   to = "/"
   status = 301
 
@@ -24,35 +45,107 @@
   status = 301
 
 [[redirects]]
-  from = "/blog/design-system-that-gets-used"
-  to = "/blog/design-systems-that-get-used"
+  from = "/project/dae-search"
+  to = "/case-studies/dae-search"
   status = 301
 
-# Static assets
 [[redirects]]
-  from = "/lovable-uploads/*"
-  to = "/lovable-uploads/:splat"
-  status = 200
+  from = "/project/barskyjoint"
+  to = "/"
+  status = 301
 
 [[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
+  from = "/project/gold2crypto"
+  to = "/case-studies"
+  status = 301
 
 [[redirects]]
-  from = "/static/*"
-  to = "/static/:splat"
-  status = 200
+  from = "/project/medication-app"
+  to = "/case-studies"
+  status = 301
 
 [[redirects]]
-  from = "/images/*"
-  to = "/images/:splat"
-  status = 200
+  from = "/project/smarterhealth"
+  to = "/case-studies"
+  status = 301
 
-# Trailing slash redirects (prevent duplicate content)
+# --- Retired blog posts (old content replaced in 2026) -> blog index ---
+
+[[redirects]]
+  from = "/blog/finding-first-ux-job-guide"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/design-systems-that-get-used"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/design-system-that-gets-used"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/portfolio-red-flags-no-interviews"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-enhanced-ux-designer-future"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/user-research-shoestring-budget"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/built-product-without-real-data"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/building-products-nobody-asked-for"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/wireframes-to-wow-visual-hierarchy"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/case-study-writing"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-in-design"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/beautiful-interface-doesnt-convert"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/research-without-users"
+  to = "/blog"
+  status = 301
+
+# --- Trailing slash normalization (prevent duplicate content) ---
+
 [[redirects]]
   from = "/project/:project/"
   to = "/project/:project"
+  status = 301
+
+[[redirects]]
+  from = "/case-studies/:study/"
+  to = "/case-studies/:study"
   status = 301
 
 [[redirects]]
@@ -60,154 +153,34 @@
   to = "/blog/:slug"
   status = 301
 
-# Prerendered project pages (only those that exist and don't redirect)
+# --- Client-only utility routes that must keep serving the SPA with 200 ---
+
 [[redirects]]
-  from = "/project/herbalink"
-  to = "/project/herbalink/index.html"
+  from = "/store/success"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/project/splittime"
-  to = "/project/splittime/index.html"
+  from = "/admin/*"
+  to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/project/business-management"
-  to = "/project/business-management/index.html"
+  from = "/__seo-check"
+  to = "/index.html"
   status = 200
 
-[[redirects]]
-  from = "/project/barskyjoint"
-  to = "/project/barskyjoint/index.html"
-  status = 200
+# --- Everything else: serve the SPA shell with a real 404 status. ---
+# Every indexable route has a physical prerendered file (served before this
+# rule), so only unknown/delisted URLs land here. The React app still renders
+# (the catch-all route shows the NotFound page), but crawlers get an honest
+# 404 instead of an infinite supply of soft-404s.
 
-[[redirects]]
-  from = "/project/crypto"
-  to = "/project/crypto/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/smarterhealth"
-  to = "/project/smarterhealth/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/medication-app"
-  to = "/project/medication-app/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/gold2crypto"
-  to = "/project/gold2crypto/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/dae-search"
-  to = "/project/dae-search/index.html"
-  status = 200
-
-# Prerendered static pages
-[[redirects]]
-  from = "/design-services"
-  to = "/design-services/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/design-services/ux-ui-design"
-  to = "/design-services/ux-ui-design/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/design-services/mobile-app-design"
-  to = "/design-services/mobile-app-design/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/design-services/web-development"
-  to = "/design-services/web-development/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/store"
-  to = "/store/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/about/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact/index.html"
-  status = 200
-
-# Prerendered blog posts
-[[redirects]]
-  from = "/blog/finding-first-ux-job-guide"
-  to = "/blog/finding-first-ux-job-guide/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/ai-enhanced-ux-designer-future"
-  to = "/blog/ai-enhanced-ux-designer-future/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/built-product-without-real-data"
-  to = "/blog/built-product-without-real-data/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/design-systems-that-get-used"
-  to = "/blog/design-systems-that-get-used/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/case-study-writing"
-  to = "/blog/case-study-writing/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/user-research-shoestring-budget"
-  to = "/blog/user-research-shoestring-budget/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/building-products-nobody-asked-for"
-  to = "/blog/building-products-nobody-asked-for/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/wireframes-to-wow-visual-hierarchy"
-  to = "/blog/wireframes-to-wow-visual-hierarchy/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/beautiful-interface-doesnt-convert"
-  to = "/blog/beautiful-interface-doesnt-convert/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/research-without-users"
-  to = "/blog/research-without-users/index.html"
-  status = 200
-
-# SPA fallback for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-  
-[build]
-  command = "vite build"
-  publish = "dist"
-  
+  status = 404
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -215,8 +188,13 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-    
+
 [[headers]]
   for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sitemap.xml"
   [headers.values]
     Cache-Control = "no-cache"

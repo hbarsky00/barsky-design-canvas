@@ -1,15 +1,8 @@
 
-const getDynamicBaseUrl = (): string => {
-  if (typeof window !== 'undefined') {
-    const origin = window.location.origin;
-    // Ensure we're using the production domain for canonical URLs
-    if (origin.includes('lovable.app') || origin.includes('localhost')) {
-      return 'https://barskydesign.pro';
-    }
-    return origin;
-  }
-  return 'https://barskydesign.pro';
-};
+// Canonical URLs must always point at the production domain regardless of the
+// serving origin (Netlify subdomain, Lovable preview, localhost). Deriving from
+// window.location.origin leaks preview domains into canonical/og:url tags.
+const getDynamicBaseUrl = (): string => 'https://barskydesign.pro';
 
 export const SEO_CONSTANTS = {
   get BASE_URL() {

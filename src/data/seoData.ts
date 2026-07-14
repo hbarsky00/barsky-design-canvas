@@ -148,6 +148,11 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.",
     image: "https://barskydesign.pro/images/nudgeme-hero.png"
   },
+  "roi-design-builder": {
+    title: "ROI Design Builder — Design Value Calculator Case Study",
+    description: "Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.",
+    image: "https://barskydesign.pro/lovable-uploads/roi-design/01-landing.png"
+  },
   "qr-code-builder": {
     title: "QR Code Builder — Branded QR Generator Case Study",
     description: "Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.",

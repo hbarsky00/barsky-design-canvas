@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
@@ -10,6 +11,10 @@ import { Button } from "@/components/ui/button";
 const NotFound: React.FC = () => {
   return (
     <>
+      <Helmet defer={false}>
+        <title>Page Not Found — Hiram Barsky</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Header />
       
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">

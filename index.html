@@ -6,10 +6,12 @@
     <meta name="google-site-verification" content="qtRvrh4E-LoAlYx6yBRup7DFikg4HyeElgRyi-ESsPE" />
     <meta name="google-site-verification" content="vOrOr_Y5MMf82UfN5XNFGNLrFu1-_ozGvmoMIewDGMg" />
     
-    <!-- Per-page title, description, canonical, og:*, twitter:* are rendered dynamically
-         by UnifiedSEO via react-helmet-async. Keep only sitewide author/robots here. -->
-    <meta name="author" content="Hiram Barsky">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <!-- Head tags marked data-rh="true" are claimed and replaced by
+         react-helmet-async (UnifiedSEO) at hydration, so crawlers without JS
+         see the static per-route values and crawlers with JS see exactly one
+         set of tags instead of static+dynamic duplicates. -->
+    <meta data-rh="true" name="author" content="Hiram Barsky">
+    <meta data-rh="true" name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
     <!-- Additional SEO -->
     <meta name="keywords" content="UX Designer, Product Designer, AI Designer, Design Strategy, User Experience, Fintech Design, Healthcare UX, Clifton NJ">
@@ -20,20 +22,21 @@
     <link rel="icon" type="image/jpeg" href="/images/hiram-barsky-profile.png" />
     <link rel="apple-touch-icon" href="/images/hiram-barsky-profile.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hiram Barsky | Lead UX Designer | Driving Design Strategy</title>
-    <meta name="description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
+    <title>UX Designer Portfolio — Hiram Barsky</title>
+    <meta data-rh="true" name="description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
+    <link data-rh="true" rel="canonical" href="https://barskydesign.pro/" />
 
-    <!-- Static Open Graph fallback for non-JS social crawlers (LinkedIn, Slack, Facebook). Per-route OG is overridden by UnifiedSEO. -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://barskydesign.pro/" />
-    <meta property="og:title" content="Hiram Barsky | Lead UX Designer | Driving Design Strategy" />
-    <meta property="og:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
-    <meta property="og:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
-    <meta property="og:site_name" content="Hiram Barsky Design" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hiram Barsky | Lead UX Designer | Driving Design Strategy" />
-    <meta name="twitter:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
-    <meta name="twitter:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
+    <!-- Static Open Graph for non-JS crawlers (LinkedIn, Slack, Facebook); replaced at hydration via data-rh. -->
+    <meta data-rh="true" property="og:type" content="website" />
+    <meta data-rh="true" property="og:url" content="https://barskydesign.pro/" />
+    <meta data-rh="true" property="og:title" content="UX Designer Portfolio — Hiram Barsky" />
+    <meta data-rh="true" property="og:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
+    <meta data-rh="true" property="og:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
+    <meta data-rh="true" property="og:site_name" content="Hiram Barsky Design" />
+    <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+    <meta data-rh="true" name="twitter:title" content="UX Designer Portfolio — Hiram Barsky" />
+    <meta data-rh="true" name="twitter:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
+    <meta data-rh="true" name="twitter:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
     <base href="/" />
 
     <!-- Performance & Critical Resource Hints -->
@@ -115,8 +118,8 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
     
     <!-- Additional meta tags -->
-    <meta name="theme-color" content="#3B82F6" />
-    <meta name="language" content="English" />
+    <meta data-rh="true" name="theme-color" content="#3B82F6" />
+    <meta data-rh="true" name="language" content="English" />
 
     <!-- Preload LCP hero image -->
     <link rel="preload" as="image" href="/images/hiram-barsky-profile.png" fetchpriority="high" />

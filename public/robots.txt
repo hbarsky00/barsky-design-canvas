@@ -1,24 +1,7 @@
 User-agent: *
 Allow: /
-Crawl-delay: 1
-
-# De-listed project pages — not featured on the site anymore.
-# Keep them out of search results.
-Disallow: /project/splittime
-Disallow: /project/crypto
-Disallow: /project/smarterhealth
-Disallow: /project/medication-app
-Disallow: /project/gold2crypto
-Disallow: /project/dae-search
-Disallow: /project/business-management
-Disallow: /project/investor-loan-app
-Disallow: /project/qr-code-builder
-Disallow: /project/email-creation-ai
-Disallow: /project/barskyjoint
-Disallow: /project/wholesale-distribution
-Disallow: /project/roi-design-builder
-Disallow: /projects
-Disallow: /store/success
 Disallow: /admin/
+Disallow: /store/success
+Disallow: /__seo-check
 
 Sitemap: https://barskydesign.pro/sitemap.xml

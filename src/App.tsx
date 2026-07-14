@@ -28,6 +28,7 @@ const Store = React.lazy(() => import("@/pages/Store"));
 const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
 const ProductDetailsPage = React.lazy(() => import("@/pages/ProductDetailsPage"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
+const NotFound = React.lazy(() => import("@/pages/NotFound"));
 
 // Service page imports - lazy loaded
 const UxUiDesign = React.lazy(() => import("@/pages/design-services/UxUiDesign"));
@@ -151,7 +152,7 @@ function AppContent() {
               <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
               {/* Catch all - redirect to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>
