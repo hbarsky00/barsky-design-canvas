@@ -502,7 +502,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: `/uploads/nudgeme/dashboard.png`,
       alt: `NudgeMe dashboard — natural-language reminder input with active recurring and one-time reminders`,
     },
-    projectLink: `https://nudgeme.rip`,
+    projectLink: `https://nudgemeapp.netlify.app`,
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
       statement: `Every reminder app makes you click through three screens before you can save the thing. By the time you're done, you've forgotten what you wanted to remember. The design job wasn't a prettier form — it was making one sentence the entire input, and trusting the parser enough that the preview screen is the only correction surface a user ever needs.`,
@@ -560,7 +560,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `STATUS`,
       title: `Outcome`,
-      description: `Live at nudgeme.rip. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
+      description: `Live at nudgemeapp.netlify.app. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
       images: [
         {
           src: `/uploads/nudgeme/design-system.png`,
@@ -794,7 +794,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/firelion-hero-title.png`,
       alt: `Fire Lion gameplay overview`,
     },
-    projectLink: `https://firelion.me`,
+    projectLink: `https://firelion.netlify.app`,
     heroMetrics: [
       { value: `Solo Build`, label: `One designer, AI as co-builder` },
       { value: `Daily Playtests`, label: `Self + friends, real phones` },
@@ -910,7 +910,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/ringrival-hero-title.png`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
-    projectLink: `https://rival.li`,
+    projectLink: `https://ringrival.today`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, no team` },
       { value: `22s → 6s`, label: `Time to first punch after testing` },
@@ -1029,7 +1029,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/catchbuddy-hero-landing.png`,
       alt: `CatchBuddy pickup sports app overview`,
     },
-    projectLink: `https://catchbuddy.me`,
+    projectLink: `https://catchbuddy.fit`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Safety-First Architecture`, label: `Minor approval, panic button, curated meeting spots` },

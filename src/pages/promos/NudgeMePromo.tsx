@@ -49,7 +49,7 @@ const NudgeMePromo: React.FC = () => (
         { label: "Features", href: "#features" },
         { label: "How It Works", href: "#flow" },
       ]}
-      cta={{ label: "Try NudgeMe →", href: "https://nudgeme.rip" }}
+      cta={{ label: "Try NudgeMe →", href: "https://nudgemeapp.netlify.app" }}
       bg="rgba(255,255,255,0.9)"
       border={`1px solid ${BORDER}`}
       textColor={INK}
@@ -61,7 +61,7 @@ const NudgeMePromo: React.FC = () => (
     {/* HERO */}
     <section id="hero" style={{ position: "relative", padding: "96px 24px 64px", textAlign: "center", background: `linear-gradient(180deg, ${SURFACE} 0%, #fff 100%)` }}>
       <p style={{ color: TEAL, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>
-        SHIPPED PRODUCT · <span style={{ color: TEAL_DARK }}>● LIVE at nudgeme.rip</span>
+        SHIPPED PRODUCT · <span style={{ color: TEAL_DARK }}>● LIVE at nudgemeapp.netlify.app</span>
       </p>
       <h1 style={{ color: INK, fontSize: "clamp(36px,5.5vw,68px)", fontWeight: 700, lineHeight: 1.1, margin: "20px auto 16px", maxWidth: 900, letterSpacing: "-0.02em" }}>
         Remember everything.<br />Forget nothing.
@@ -70,7 +70,7 @@ const NudgeMePromo: React.FC = () => (
         Type reminders the way you'd say them out loud. NudgeMe parses natural language into recurring schedules and ships notifications across browser, email, and SMS — all from one input.
       </p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
-        <a href="https://nudgeme.rip" target="_blank" rel="noopener noreferrer"
+        <a href="https://nudgemeapp.netlify.app" target="_blank" rel="noopener noreferrer"
           style={{ background: TEAL, color: "#fff", padding: "14px 26px", borderRadius: 12, fontWeight: 600, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center", boxShadow: "0 10px 30px -12px rgba(13,155,115,0.55)" }}>
           Try NudgeMe Free →
         </a>
@@ -141,7 +141,7 @@ const NudgeMePromo: React.FC = () => (
         Stop forgetting. Start nudging.
       </h2>
       <p style={{ color: "rgba(255,255,255,0.7)", marginTop: 12, fontSize: 16 }}>Free during beta. No credit card.</p>
-      <a href="https://nudgeme.rip" target="_blank" rel="noopener noreferrer"
+      <a href="https://nudgemeapp.netlify.app" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-flex", alignItems: "center", marginTop: 28, background: TEAL, color: "#fff", padding: "16px 32px", borderRadius: 12, fontWeight: 600, textDecoration: "none", minHeight: 52, boxShadow: "0 10px 30px -10px rgba(13,155,115,0.6)" }}>
         Open NudgeMe →
       </a>

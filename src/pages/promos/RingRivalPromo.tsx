@@ -20,7 +20,7 @@ const dataPoints = [
   { k: "Status", v: "Live" },
   { k: "Latency", v: "100ms" },
   { k: "Install", v: "None" },
-  { k: "URL", v: "rival.li" },
+  { k: "URL", v: "ringrival.today" },
 ];
 
 const RingRivalPromo: React.FC = () => (
@@ -28,7 +28,7 @@ const RingRivalPromo: React.FC = () => (
     <ProjectSeo
       slug="ring-rival"
       title="Ring-Rival — Mobile Web Boxing"
-      description="Console boxing feel with zero install. AI opponents, career mode, 100ms latency in the browser. Play at rival.li."
+      description="Console boxing feel with zero install. AI opponents, career mode, 100ms latency in the browser. Play at ringrival.today."
       image={heroImg}
     />
 
@@ -39,7 +39,7 @@ const RingRivalPromo: React.FC = () => (
         { label: "Home", href: "#hero" },
         { label: "Features", href: "#features" },
       ]}
-      cta={{ label: "Fight Now →", href: "https://rival.li" }}
+      cta={{ label: "Fight Now →", href: "https://ringrival.today" }}
       bg="rgba(13,13,13,0.92)"
       textColor={INK}
       backColor="rgba(255,255,255,0.4)"
@@ -51,7 +51,7 @@ const RingRivalPromo: React.FC = () => (
     {/* HERO */}
     <section id="hero" style={{ padding: "96px 24px 64px", textAlign: "center" }}>
       <p style={{ color: RED, fontSize: 11, fontWeight: 800, letterSpacing: "0.2em", margin: 0 }}>
-        SHIPPED PRODUCT · ● LIVE at rival.li
+        SHIPPED PRODUCT · ● LIVE at ringrival.today
       </p>
       <h1 style={{ color: INK, fontSize: "clamp(36px,5.5vw,68px)", fontWeight: 900, lineHeight: 1.05, margin: "20px auto 16px", maxWidth: 900, letterSpacing: "-0.02em" }}>
         Console boxing feel.<br />Zero install.
@@ -60,7 +60,7 @@ const RingRivalPromo: React.FC = () => (
         Mobile web boxing with AI opponents, career mode, and 100ms latency — no download, tap and fight.
       </p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
-        <a href="https://rival.li" target="_blank" rel="noopener noreferrer"
+        <a href="https://ringrival.today" target="_blank" rel="noopener noreferrer"
           style={{ background: RED, color: "#fff", padding: "14px 28px", borderRadius: 4, fontWeight: 800, letterSpacing: "0.1em", textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
           START CAREER →
         </a>
@@ -107,7 +107,7 @@ const RingRivalPromo: React.FC = () => (
     <section style={{ background: RED, padding: "80px 24px", textAlign: "center" }}>
       <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, letterSpacing: "0.02em", margin: 0 }}>FIGHT NOW AT RIVAL.LI →</h2>
       <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>No download. No account. Tap and fight.</p>
-      <a href="https://rival.li" target="_blank" rel="noopener noreferrer"
+      <a href="https://ringrival.today" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-block", marginTop: 24, background: "#fff", color: RED, padding: "16px 32px", borderRadius: 4, fontWeight: 800, textDecoration: "none", letterSpacing: "0.1em" }}>
         ENTER THE RING →
       </a>

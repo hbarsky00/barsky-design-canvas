@@ -9,7 +9,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
       title="Ring-Rival — Mobile Web Boxing"
       description="A mobile web boxing game built to feel immediate in the browser: AI-generated opponents, career progression, and console-style punch feedback without an install."
       tags={["Game UX", "Mobile Web", "AI Opponents", "Interaction Design"]}
-      liveUrl="https://rival.li"
+      liveUrl="https://ringrival.today"
       overviewUrl="/project/ring-rival"
       heroImage={{
         src: "/uploads/ringrival/01-title.png",
@@ -75,7 +75,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
         {
           heading: "Where It Stands",
           paragraphs: [
-            "Ring-Rival is live at rival.li as a mobile web game. The current version proves the zero-install fight loop, career progression, and AI opponent concept; the next step is deeper progression and stronger replay incentives.",
+            "Ring-Rival is live at ringrival.today as a mobile web game. The current version proves the zero-install fight loop, career progression, and AI opponent concept; the next step is deeper progression and stronger replay incentives.",
           ],
         },
       ]}

@@ -36,7 +36,7 @@ const caseStudies: CaseStudy[] = [
     description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
     impact: "",
     url: "/project/fire-lion",
-    liveUrl: "https://firelion.me",
+    liveUrl: "https://firelion.netlify.app",
     images: {
       primary: "/images/firelion-hero-title.png",
       alt: "Fire Lion gameplay"
@@ -51,7 +51,7 @@ const caseStudies: CaseStudy[] = [
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
     url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
+    liveUrl: "https://ringrival.today",
     images: {
       primary: "/images/ringrival-hero-title.png",
       alt: "Ring-Rival mobile boxing gameplay"
@@ -66,7 +66,7 @@ const caseStudies: CaseStudy[] = [
     description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     impact: "",
     url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
+    liveUrl: "https://catchbuddy.fit",
     images: {
       primary: "/images/catchbuddy-hero-landing.png",
       alt: "CatchBuddy pickup sports app"

@@ -29,7 +29,7 @@ const FireLionPromo: React.FC = () => {
           { label: "Home", href: "#hero" },
           { label: "Features", href: "#features" },
         ]}
-        cta={{ label: "Play Free →", href: "https://firelion.me" }}
+        cta={{ label: "Play Free →", href: "https://firelion.netlify.app" }}
         bg="rgba(10,10,10,0.85)" textColor="#fff" backColor="rgba(255,255,255,0.4)"
         ctaBg={ORANGE} ctaColor="#fff" blur
       />
@@ -63,7 +63,7 @@ const FireLionPromo: React.FC = () => {
             A solo-built mobile web game where vocabulary is your weapon.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="https://firelion.me" target="_blank" rel="noopener noreferrer"
+            <a href="https://firelion.netlify.app" target="_blank" rel="noopener noreferrer"
               style={{ background: ORANGE, color: "#fff", padding: "14px 24px", borderRadius: 6, fontWeight: 700, textDecoration: "none" }}>
               Play Free →
             </a>
@@ -108,7 +108,7 @@ const FireLionPromo: React.FC = () => {
       <section style={{ background: ORANGE, padding: "80px 24px", textAlign: "center" }}>
         <h2 style={{ color: "#fff", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 900, margin: 0 }}>Play Fire Lion Free</h2>
         <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12, fontSize: 16 }}>No install. No account. Just play.</p>
-        <a href="https://firelion.me" target="_blank" rel="noopener noreferrer"
+        <a href="https://firelion.netlify.app" target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-block", marginTop: 24, background: "#fff", color: ORANGE, padding: "16px 32px", borderRadius: 6, fontWeight: 800, textDecoration: "none" }}>
           Play Now →
         </a>

@@ -39,7 +39,7 @@ const CatchBuddyPromo: React.FC = () => (
         { label: "Home", href: "#hero" },
         { label: "Features", href: "#features" },
       ]}
-      cta={{ label: "Find a Game →", href: "https://catchbuddy.me" }}
+      cta={{ label: "Find a Game →", href: "https://catchbuddy.fit" }}
       bg="#fff"
       border={`1px solid ${BORDER}`}
       textColor={INK}
@@ -51,7 +51,7 @@ const CatchBuddyPromo: React.FC = () => (
     {/* HERO */}
     <section id="hero" style={{ padding: "96px 24px 64px", textAlign: "center" }}>
       <p style={{ color: GREEN, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", margin: 0 }}>
-        SHIPPED PRODUCT · ● LIVE at catchbuddy.me
+        SHIPPED PRODUCT · ● LIVE at catchbuddy.fit
       </p>
       <h1 style={{ color: INK, fontSize: "clamp(36px,5.5vw,68px)", fontWeight: 800, lineHeight: 1.1, margin: "20px auto 16px", maxWidth: 900, letterSpacing: "-0.02em" }}>
         Find local players.<br />Play today.
@@ -60,7 +60,7 @@ const CatchBuddyPromo: React.FC = () => (
         Post a game, find partners, confirm in a few taps. Built for same-day pickup sports with safety baked in.
       </p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
-        <a href="https://catchbuddy.me" target="_blank" rel="noopener noreferrer"
+        <a href="https://catchbuddy.fit" target="_blank" rel="noopener noreferrer"
           style={{ background: GREEN, color: "#fff", padding: "14px 26px", borderRadius: 12, fontWeight: 700, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
           Find a Game →
         </a>
@@ -105,9 +105,9 @@ const CatchBuddyPromo: React.FC = () => (
 
     {/* BOTTOM CTA */}
     <section style={{ background: GREEN, padding: "80px 24px", textAlign: "center" }}>
-      <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Find a game at catchbuddy.me →</h2>
+      <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Find a game at catchbuddy.fit →</h2>
       <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>Same-day pickup sports. No commitment required.</p>
-      <a href="https://catchbuddy.me" target="_blank" rel="noopener noreferrer"
+      <a href="https://catchbuddy.fit" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-block", marginTop: 24, background: "#fff", color: GREEN, padding: "16px 32px", borderRadius: 8, fontWeight: 800, textDecoration: "none" }}>
         Open CatchBuddy →
       </a>

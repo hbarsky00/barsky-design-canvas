@@ -11,9 +11,9 @@ const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
 // prospect can open and use right now. The proof rail is the pitch.
 const liveProof = [
   { name: "HerbaLink", what: "Credential-gated herbalist booking", url: "https://herbalink.live", study: "/case-studies/herbalink" },
-  { name: "NudgeMe", what: "Natural-language reminders (PWA)", url: "https://nudgeme.rip", study: "/case-studies/nudgeme" },
+  { name: "NudgeMe", what: "Natural-language reminders (PWA)", url: "https://nudgemeapp.netlify.app", study: "/case-studies/nudgeme" },
   { name: "ROI Calculator", what: "Design value modeling for finance", url: "https://roicalc.one", study: "/case-studies/roi-design-builder" },
-  { name: "CatchBuddy", what: "Safety-first pickup sports matching", url: "https://catchbuddy.me", study: "/case-studies/catchbuddy" },
+  { name: "CatchBuddy", what: "Safety-first pickup sports matching", url: "https://catchbuddy.fit", study: "/case-studies/catchbuddy" },
 ];
 
 const services = [
