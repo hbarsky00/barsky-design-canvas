@@ -17,8 +17,8 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   },
   '/services': {
     kind: 'page',
-    title: 'UX/UI Design Services | Barsky Design',
-    description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences that drive results.',
+    title: 'Design Services That Ship — Hiram Barsky',
+    description: 'Senior product design with an AI build crew: research, UI, and working software from one person. Fintech, healthcare, and zero-to-one products.',
     image: 'https://barskydesign.pro/images/default-og-image.jpg'
   },
   '/contact': {

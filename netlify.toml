@@ -26,13 +26,8 @@
 # --- Removed/renamed pages Google has indexed -> nearest live equivalent ---
 
 [[redirects]]
-  from = "/services"
-  to = "/design-services/ux-ui-design"
-  status = 301
-
-[[redirects]]
   from = "/design-services"
-  to = "/design-services/ux-ui-design"
+  to = "/services"
   status = 301
 
 [[redirects]]
