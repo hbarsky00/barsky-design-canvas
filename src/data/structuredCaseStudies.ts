@@ -631,10 +631,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back.`,
+      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back. The example below is the kind of case it's built to make — a checkout redesign modeled at a 231% first-year ROI with every assumption visible: a 6.3% relative conversion lift, real project costs, and an honest 0% where no error data existed. Numbers a finance reviewer can challenge line by line — which is the point.`,
       images: [
-        { src: `/uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard showing 4.2K% ROI, $2.4M business value, and conversion, task completion, accessibility, and error reduction lifts` },
-        { src: `/uploads/roi-design/06-roi-detail.png`, alt: `Detailed ROI breakdown with revenue, savings, and payback period highlighted for stakeholder review` },
+        { src: `/uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard modeling a checkout redesign: 231% ROI, $464K total business value from a $140K investment, 3.6-month payback, with conversion, task completion, and accessibility lifts itemized` },
+        { src: `/uploads/roi-design/06-roi-detail.png`, alt: `ROI breakdown card: 231% return marked Strong, $230K revenue, $234K savings, 3.6-month payback, 3.3x investment multiplier` },
       ],
     },
     sections: [],
