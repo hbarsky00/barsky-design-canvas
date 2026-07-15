@@ -50,7 +50,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   // Get video for Herbalink project specifically
   const getProjectVideo = () => {
     if (projectId === "herbalink") {
-      return "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4";
+      return "/uploads/archive/herbalink-promo.mp4";
     }
     return undefined;
   };

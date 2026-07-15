@@ -83,11 +83,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+      primary: "/uploads/archive/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
+    video: "/uploads/archive/herbalink-book-a-herbalist.mp4"
   },
   {
     id: "email-creation-ai",
