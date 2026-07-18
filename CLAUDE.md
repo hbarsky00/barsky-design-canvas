@@ -22,15 +22,30 @@ The Barsky-related projects are:
   (see `netlify.toml`, `supabase/functions/seo-handler/index.ts`, `scripts/seo-routes.ts`,
   and the `.agents/skills/barskydesign-seo-canonical` skill). A secondary/legacy
   domain `https://barskyux.com` also appears in the SEO handler.
-- **`barsky.design` is a SEPARATE Netlify project** (named `barskydesign`). Nothing
-  in this checkout references the `barsky.design` domain. Whether it builds from this
-  same GitHub repo or a different source is **not yet confirmed** — verify in the
-  Netlify dashboard before assuming.
+- **`barsky.design` is a SEPARATE Netlify project** (named `barskydesign`, site id
+  `012bdb7d-13c4-457b-a1a6-585d60dfa87a`). Nothing in THIS checkout references it.
+  **Confirmed 2026-07-18:** it builds from a DIFFERENT GitHub repo —
+  **`hbarsky00/barsky_design`** (underscore), a **Next.js 16 static export**
+  (`output: "export"` → `out/`). (The repo `hbarsky00/barsky.design` with a dot is
+  EMPTY — not the source.)
+- **`barsky.design` is deployed MANUALLY via the Netlify CLI** (`deploy_source: cli`,
+  no connected GitHub repo, no branch/commit ref). ⚠️ Therefore **pushing to
+  `hbarsky00/barsky_design` does NOT update the live site** — someone must re-run
+  `netlify deploy --prod` from the `out/` build, or connect the repo to the Netlify
+  site for auto-deploy.
+
+### Netlify ↔ repo map (confirmed 2026-07-18)
+| Domain | Netlify site | Source repo | Stack | Deploy |
+|--------|--------------|-------------|-------|--------|
+| barskydesign.pro | incredible-griffin-66e664 | `barsky-design-canvas` (this repo) | Vite + React (prerender) | git-connected |
+| barsky.design | barskydesign (`012bdb7d…`) | `barsky_design` (underscore) | Next.js 16 static export | **manual CLI** |
+| hiram-barsky.com | soft-conkies-1cf4bd | (unconfirmed) | — | — |
 
 ### TODO / open questions to resolve with Hiram
-- Confirm which GitHub repo (if any) the `barsky.design` Netlify project builds from.
 - Decide the intended relationship between `barsky.design` and `barskydesign.pro`
   (separate sites? consolidate? redirect one to the other?).
+- Consider connecting `hbarsky00/barsky_design` to its Netlify site for auto-deploy
+  (currently manual CLI, so source pushes don't reach the live site).
 
 ## How to inspect Netlify from a session
 Netlify MCP tools are connected. Load them via ToolSearch, e.g.:
