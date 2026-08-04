@@ -38,7 +38,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `${blogPost.title} — ${SEO_CONSTANTS.SITE_NAME}`,
+          title: `${blogPost.title}${SEO_CONSTANTS.TITLE_SUFFIX}`,
           description: blogPost.excerpt,
           image: blogPost.coverImage,
           published: new Date(blogPost.date).toISOString(),
@@ -51,7 +51,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
+          title: `Blog Post: ${slug}${SEO_CONSTANTS.TITLE_SUFFIX}`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION
         };
       }
@@ -129,7 +129,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'page',
-          title: `Store Product | ${SEO_CONSTANTS.SITE_NAME}`,
+          title: `Store Product${SEO_CONSTANTS.TITLE_SUFFIX}`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
         };
       }
@@ -169,7 +169,11 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      <meta name="robots" content="index, follow" />
+      {/* English-only site, no regional variants — self-reference + x-default
+          is enough to satisfy hreflang hygiene without a mesh to maintain. */}
+      <link rel="alternate" hrefLang="en" href={seoData.canonical} />
+      <link rel="alternate" hrefLang="x-default" href={seoData.canonical} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />

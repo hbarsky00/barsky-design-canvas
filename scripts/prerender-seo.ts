@@ -21,6 +21,7 @@ import {
   FEATURED_CASE_STUDIES,
   getBlogEntries,
   getProductEntries,
+  bodyFilename,
 } from "./seo-routes";
 import { STATIC_PAGE_SEO, PROJECT_SEO_MAP, BLOG_IMAGE_MAP, BLOG_SEO_MAP } from "../src/data/seoData";
 
@@ -36,6 +37,37 @@ const template = readFileSync(TEMPLATE_PATH, "utf8");
 
 const DEFAULT_IMAGE = `${BASE_URL}/images/hiram-barsky-profile.png`;
 const SITE_SUFFIX = " — Hiram Barsky";
+
+// Real rendered body content, captured locally by
+// scripts/capture-prerendered-bodies.ts (a real browser, never run in CI)
+// and checked into git. Splicing it into <div id="root"> here — a plain
+// string replace in this Node-only build step — is what turns the raw HTML
+// crawlers see from an empty shell into the actual page, with zero headless
+// browser dependency in the Netlify build itself.
+const BODIES_DIR = resolve("prerendered-bodies");
+const ROOT_PLACEHOLDER = '<div id="root"><!--app-html--></div>';
+const missingBodies: string[] = [];
+
+function injectBody(html: string, routePath: string): string {
+  const bodyPath = resolve(BODIES_DIR, bodyFilename(routePath));
+  if (!existsSync(bodyPath)) {
+    missingBodies.push(routePath);
+    return html;
+  }
+  const body = readFileSync(bodyPath, "utf8");
+  let out = html.replace(ROOT_PLACEHOLDER, `<div id="root">${body}</div>`);
+
+  // Page-specific JSON-LD (Organization/Article/BlogPosting/WebPage),
+  // captured separately since it lives in <head>, not #root. Additive to
+  // the sitewide LocalBusiness/WebSite blocks already in the template —
+  // Google explicitly supports multiple JSON-LD blocks per page.
+  const schemaPath = resolve(BODIES_DIR, bodyFilename(routePath).replace(/\.html$/, ".schema.html"));
+  if (existsSync(schemaPath)) {
+    const schema = readFileSync(schemaPath, "utf8");
+    out = out.replace(/<\/head>/i, `  ${schema}\n  </head>`);
+  }
+  return out;
+}
 
 interface RouteSEO {
   path: string;
@@ -176,6 +208,20 @@ function rewriteHead(html: string, r: RouteSEO): string {
     out = out.replace(/<\/head>/i, `  ${canonicalTag}\n  </head>`);
   }
 
+  // Self-referencing hreflang + x-default. The site is English-only with no
+  // regional variants, so there's nothing to build a full hreflang mesh
+  // against — this pair just satisfies "declare what you are" hygiene and
+  // stops SEO tooling from flagging every URL as an undeclared orphan.
+  // Strip any existing hreflang tags first (the template — dist/index.html —
+  // already carries its own self-referencing pair) so per-route rewriting
+  // doesn't end up with two, one pointing at "/" and one at the real route.
+  out = out.replace(new RegExp(`\\s*<link\\s+${RH}rel=["']alternate["']\\s+hreflang=["'][^"']*["']\\s+href=["'][^"']*["']\\s*\\/?>`, "gi"), "");
+  out = out.replace(
+    /<\/head>/i,
+    `  <link data-rh="true" rel="alternate" hreflang="en" href="${url}" />\n` +
+    `  <link data-rh="true" rel="alternate" hreflang="x-default" href="${url}" />\n  </head>`,
+  );
+
   const replacements: [RegExp, string][] = [
     [metaPropRe("og:title"), `<meta data-rh="true" property="og:title" content="${t}" />`],
     [metaPropRe("og:description"), `<meta data-rh="true" property="og:description" content="${d}" />`],
@@ -198,12 +244,23 @@ let written = 0;
 for (const r of routes) {
   const outPath = resolve(DIST, `${r.path.replace(/^\//, "")}.html`);
   mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, rewriteHead(template, r));
+  writeFileSync(outPath, injectBody(rewriteHead(template, r), r.path));
   written++;
 }
+
+// Homepage keeps its static head as-is (see loop above), but still gets its
+// real body spliced into dist/index.html — the file Netlify serves at "/".
+writeFileSync(TEMPLATE_PATH, injectBody(template, "/"));
+written++;
 
 console.log(`[prerender-seo] wrote ${written} per-route HTML files in dist/`);
 if (missing.length) {
   console.error(`[prerender-seo] MISSING SEO DATA for routes: ${missing.join(", ")}`);
   process.exit(1);
+}
+if (missingBodies.length) {
+  console.warn(
+    `[prerender-seo] WARNING: no captured body for ${missingBodies.length} route(s), served as empty shell to non-JS crawlers: ${missingBodies.join(", ")}\n` +
+    `  Run \`npm run capture-bodies\` locally and commit prerendered-bodies/ to fix.`,
+  );
 }

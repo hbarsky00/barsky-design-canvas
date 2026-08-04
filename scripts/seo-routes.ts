@@ -36,6 +36,14 @@ export const FEATURED_PROJECTS = [
   "business-management",
   "investor-loan-app",
   "email-creation-ai",
+  // Un-blocked from robots.txt earlier (they were never actually disallowed
+  // for a content reason) but never finished: no prerendered file meant
+  // Netlify's (now-removed) trailing-slash rule sent them into an infinite
+  // self-redirect loop — 100% unreachable. Real pages, real seoData entries;
+  // finishing the job here instead of leaving them in limbo.
+  "crypto",
+  "splittime",
+  "qr-code-builder",
 ];
 
 // Case-study pages with explicit routes in App.tsx.
@@ -144,4 +152,24 @@ export function getProductIds(): string[] {
     (m) => m[1],
   );
   return Array.from(new Set(ids)).sort();
+}
+
+// Every route path that gets a prerendered file, in one place — shared by
+// the body-capture script (scripts/capture-prerendered-bodies.ts) and the
+// build-time splice step (scripts/prerender-seo.ts) so they can never
+// enumerate a different set of routes from each other.
+export function getAllRoutePaths(): string[] {
+  const paths = [...STATIC_PATHS];
+  for (const id of FEATURED_PROJECTS) paths.push(`/project/${id}`);
+  for (const id of FEATURED_CASE_STUDIES) paths.push(`/case-studies/${id}`);
+  for (const { slug } of getBlogEntries()) paths.push(`/blog/${slug}`);
+  for (const { id } of getProductEntries()) paths.push(`/store/product/${id}`);
+  return Array.from(new Set(paths));
+}
+
+// Deterministic, filesystem-safe filename for a route's captured body HTML,
+// e.g. "/" -> "home.html", "/blog/foo" -> "blog-foo.html".
+export function bodyFilename(routePath: string): string {
+  const slug = routePath === "/" ? "home" : routePath.replace(/^\//, "").replace(/\//g, "-");
+  return `${slug}.html`;
 }

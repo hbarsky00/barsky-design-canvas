@@ -9,7 +9,15 @@ export const SEO_CONSTANTS = {
     return getDynamicBaseUrl();
   },
   DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-profile.png',
-  SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
+  // Matches the static og:site_name in index.html — kept in sync so the
+  // client-rendered <head> (after hydration) never disagrees with what
+  // non-JS crawlers see in the raw HTML shell.
+  SITE_NAME: 'Hiram Barsky Design',
+  // Short title suffix, matching scripts/prerender-seo.ts's SITE_SUFFIX
+  // exactly. Used for blog/product titles instead of SITE_NAME so the
+  // client-rendered <title> matches the prerendered static one instead of
+  // growing a second, longer suffix on top of it.
+  TITLE_SUFFIX: ' — Hiram Barsky',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
   DEFAULT_DESCRIPTION: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',

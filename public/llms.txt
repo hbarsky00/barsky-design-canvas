@@ -1,38 +1,50 @@
 # Barsky Design
 
-> Portfolio of Hiram Barsky — Lead Product Designer & AI Innovator based in Clifton, NJ. 15+ years designing user-centered digital experiences across fintech, healthcare, and AI products.
+> Portfolio of Hiram Barsky — Lead Product & AI Designer based in Clifton, NJ. Ships design work as working software: React front ends, Supabase back ends, solo end-to-end builds.
 
 ## Pages
 
-- [Home](/): Overview, hero, featured case studies, services and contact.
-- [About](/about): Background, philosophy, and experience as a Gen-AI-first product designer.
-- [Services](/services): UX/UI design, AI integration, and product strategy services.
-- [Design Services — UX/UI](/design-services/ux-ui-design): UX research, interaction design, and UI systems.
-- [Design Services — Mobile App Design](/design-services/mobile-app-design): iOS/Android product design and prototyping.
-- [Design Services — Web Development](/design-services/web-development): Modern, AI-assisted React/Vite web builds.
-- [Store](/store): Downloadable design templates and resources.
-- [Blog](/blog): Articles on UX, design systems, AI, and career growth.
-- [Contact](/contact): Project inquiries and consultation requests.
+- [Home](https://barskydesign.pro/): Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — measurable user outcomes and product design impact.
+- [About](https://barskydesign.pro/about): Senior UX/Product Designer with 15+ years building data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.
+- [Services](https://barskydesign.pro/services): Senior product design with an AI build crew: research, UI, and working software from one person. Fintech, healthcare, and zero-to-one products.
+- [Case Studies](https://barskydesign.pro/case-studies): Selected case studies across health, financial, and enterprise — what I decided, what I cut, what shipped. Honest writeups, not portfolio fluff.
+- [Store](https://barskydesign.pro/store): Professional design resources, wireframe kits, and UX templates to accelerate product development. Instant digital downloads.
+- [Blog](https://barskydesign.pro/blog): Insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.
+- [Contact](https://barskydesign.pro/contact): Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration in Clifton, NJ and beyond.
 
 ## Case studies
 
-- [HerbaLink](/project/herbalink): Healthcare marketplace connecting users with herbalists.
-- [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict.
-- [Crypto Trading Platform](/project/crypto): Fintech UX simplifying complex trading flows.
-- [SmarterHealth](/project/smarterhealth): Healthcare experience modernization.
-- [Business Management](/project/business-management): B2B operations platform UX.
-- [Investor Loan App](/project/investor-loan-app): Fintech loan origination platform.
-- [Medication App](/project/medication-app): Healthcare medication tracking and adherence.
-- [Gold2Crypto](/project/gold2crypto): Crypto exchange onboarding for non-crypto users.
-- [DAE Search](/project/dae-search): Enterprise data discovery and search.
-- [BarskyJoint](/project/barskyjoint): Restaurant ordering system.
+- [Enterprise Data Search — UX Case Study](https://barskydesign.pro/case-studies/dae-search): Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.
+- [Fire Lion — AI-Built Game Design Case Study](https://barskydesign.pro/case-studies/fire-lion): Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.
+- [HerbaLink — Healthcare Marketplace UX Case Study](https://barskydesign.pro/case-studies/herbalink): HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.
+- [NudgeMe — Natural Language Reminder App Case Study](https://barskydesign.pro/case-studies/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
+- [ROI Design Builder — Design Value Calculator Case Study](https://barskydesign.pro/case-studies/roi-design-builder): Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.
+- [Valora Bet — Social Prediction Markets Case Study](https://barskydesign.pro/case-studies/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
+- [CatchBuddy — Safe Sports Matching Case Study](https://barskydesign.pro/case-studies/catchbuddy): Designing a safety-first matching loop before layering monetization.
+- [Ring-Rival — AI Boxing Game Case Study](https://barskydesign.pro/case-studies/ring-rival): A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.
+
+## Live products
+
+- [CatchBuddy — Safe Sports Matching Product Overview](https://barskydesign.pro/project/catchbuddy): Designing a safety-first matching loop before layering monetization.
+- [HerbaLink — Healthcare Marketplace UX Product Overview](https://barskydesign.pro/project/herbalink): HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.
+- [Valora Bet — Social Prediction Markets Product Overview](https://barskydesign.pro/project/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
+- [NudgeMe — Natural Language Reminder App Product Overview](https://barskydesign.pro/project/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
+- [Ring-Rival — AI Boxing Game Product Overview](https://barskydesign.pro/project/ring-rival): A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.
+- [Fire Lion — AI-Built Game Design Product Overview](https://barskydesign.pro/project/fire-lion): Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.
+- [ROI Design Builder — Design Value Calculator Product Overview](https://barskydesign.pro/project/roi-design-builder): Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.
+- [Enterprise Ops Platform — B2B UX Product Overview](https://barskydesign.pro/project/business-management): Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.
+- [Fintech Loan Platform — Investment UX Product Overview](https://barskydesign.pro/project/investor-loan-app): Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.
+- [ManuscriptRx — Pharma Email AI Product Overview](https://barskydesign.pro/project/email-creation-ai): AI handles the work between humans across a 6-step regulated email workflow.
+- [Crypto Trading — Fintech UX Product Overview](https://barskydesign.pro/project/crypto): How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.
+- [SplitTime — Co-Parenting App UX Product Overview](https://barskydesign.pro/project/splittime): Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.
+- [QR Code Builder — Branded QR Generator Product Overview](https://barskydesign.pro/project/qr-code-builder): Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.
 
 ## Blog
 
-- [Finding Your First UX Job](/blog/finding-first-ux-job-guide)
-- [Design Systems That Get Used](/blog/design-systems-that-get-used)
-- [Portfolio Red Flags](/blog/portfolio-red-flags-no-interviews)
-- [The AI-Enhanced UX Designer](/blog/ai-enhanced-ux-designer-future)
-- [User Research on a Shoestring Budget](/blog/user-research-shoestring-budget)
-- [AI in Design](/blog/ai-in-design)
-- [Case Study Writing](/blog/case-study-writing)
+- [Learning AI Design with Claude: A Designer's Starter Kit](https://barskydesign.pro/blog/learning-ai-design-with-claude): How to get from zero to shipping AI-assisted design work using Claude as your daily thinking partner.
+- [Prompt Engineering for Designers: From Brief to Pixel](https://barskydesign.pro/blog/prompt-engineering-for-designers): Prompts are the new design brief. Here is the structure that consistently turns a vague ask into usable output.
+- [Designing AI-Native Interfaces: Patterns Beyond the Chatbox](https://barskydesign.pro/blog/designing-ai-native-interfaces): The chat bubble is the iframe of the AI era — useful, lazy, and rarely the right answer.
+- [ChatGPT vs Claude vs Gemini for UX Workflows](https://barskydesign.pro/blog/chatgpt-vs-claude-vs-gemini-for-ux): I ran the same week of design work through all three. Here is where each one actually pulled its weight.
+- [Building Your First AI-Powered Prototype in a Weekend](https://barskydesign.pro/blog/ai-powered-prototype-weekend): A two-day plan to go from idea to a working AI prototype your users can actually click through.
+- [Designing Trust into AI: Handling Hallucinations and Uncertainty](https://barskydesign.pro/blog/designing-trust-into-ai): Users do not lose trust when AI is wrong. They lose trust when it is wrong and pretends to be sure.
+- [From Figma to Production with AI: A Modern Designer's Stack](https://barskydesign.pro/blog/figma-to-production-with-ai): The handoff is dead. Here is the AI-assisted stack I use to ship designs straight into a live React app.

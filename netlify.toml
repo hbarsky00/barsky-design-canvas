@@ -137,22 +137,18 @@
   to = "/blog"
   status = 301
 
-# --- Trailing slash normalization (prevent duplicate content) ---
-
-[[redirects]]
-  from = "/project/:project/"
-  to = "/project/:project"
-  status = 301
-
-[[redirects]]
-  from = "/case-studies/:study/"
-  to = "/case-studies/:study"
-  status = 301
-
-[[redirects]]
-  from = "/blog/:slug/"
-  to = "/blog/:slug"
-  status = 301
+# NOTE: trailing-slash-stripping rules for /project/:x/, /case-studies/:x/,
+# and /blog/:x/ used to live here and were REMOVED — confirmed via live
+# testing (2026-08-04) that Netlify's redirect matcher treats a named
+# placeholder immediately before a literal trailing slash as matching *with
+# or without* the slash. For any route with no physical prerendered file
+# (e.g. /project/crypto, /project/splittime, /project/qr-code-builder,
+# /case-studies/business-management — real React routes, just not in the
+# sitemap's "featured" subset), that made `to = "/project/:project"`
+# resolve to the exact URL requested: an infinite self-redirect loop, 100%
+# unreachable. Prerendered routes never needed this rule (an exact static
+# file match always wins over a non-forced redirect), so it was pure
+# downside. Do not re-add without testing the no-trailing-slash case live.
 
 # --- Client-only utility routes that must keep serving the SPA with 200 ---
 
@@ -189,6 +185,16 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    # unsafe-inline on script/style is required by this app's architecture:
+    # the GA bootstrap + mobile-link-fix run as inline <script> in index.html,
+    # and React's style={{...}} attributes (used extensively on promo pages)
+    # are inline styles by nature. Neither is easily nonce-able on a static
+    # Netlify deploy without per-request edge rendering, so this is a
+    # deliberate middle ground rather than a stricter policy that would
+    # silently break page styling or analytics.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
 
 [[headers]]
   for = "/index.html"
