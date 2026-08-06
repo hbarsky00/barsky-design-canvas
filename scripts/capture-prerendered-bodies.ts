@@ -45,7 +45,17 @@ const failures: string[] = [];
 
 for (const routePath of routes) {
   try {
-    await page.goto(`${base}${routePath}`, { waitUntil: "networkidle", timeout: 20000 });
+    try {
+      await page.goto(`${base}${routePath}`, { waitUntil: "networkidle", timeout: 20000 });
+    } catch {
+      // Some pages (Ring-Rival — WebGL + persistent audio/animation polling)
+      // never go fully network-idle, no matter how long you wait — this
+      // isn't a slow load, it's ongoing background activity by design.
+      // Fall back to "load" (page + initial resources ready, doesn't wait
+      // for network silence) plus a longer settle delay for hydration.
+      await page.goto(`${base}${routePath}`, { waitUntil: "load", timeout: 20000 });
+      await page.waitForTimeout(2000);
+    }
     // Let any client-only data fetches / lazy chunks settle beyond networkidle.
     await page.waitForTimeout(500);
     const html = await page.evaluate(() => document.getElementById("root")?.innerHTML ?? "");

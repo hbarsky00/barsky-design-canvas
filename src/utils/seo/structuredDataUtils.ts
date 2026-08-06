@@ -20,9 +20,17 @@ interface SEOData {
 export const generateStructuredData = (seoData: SEOData) => {
   const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
   
+  // Always WebPage — it's the page container, not the content. This used to
+  // flip to "Article" for blog/project pages, but it only ever populated
+  // `name`, never the `headline` field Article actually requires, so it
+  // shipped as a redundant, spec-incomplete duplicate of the dedicated
+  // BlogPosting/Article block below (which already has a correct, complete
+  // headline). Found via amazing-seo-skill's schema_recommended_fields.py
+  // (AEO lever 4, 2026-08-06): completeness_score 17, required field
+  // "headline" missing, on every blog post and case study.
   const baseStructuredData: any = {
     "@context": "https://schema.org",
-    "@type": seoData.type === 'article' ? "Article" : "WebPage",
+    "@type": "WebPage",
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
