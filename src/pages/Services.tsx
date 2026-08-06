@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UnifiedSEO from "@/components/seo/UnifiedSEO";
+import { SERVICES_FAQS } from "@/data/seoData";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
 
@@ -215,6 +216,23 @@ const Services: React.FC = () => (
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ — answer-first, feeds FAQPage schema via seoData.ts SERVICES_FAQS
+          (single source of truth for both this UI and the structured data,
+          so schema can never claim content that isn't actually on the page). */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-20" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-8">
+          Questions worth answering up front
+        </h2>
+        <div className="divide-y divide-border border-y border-border">
+          {SERVICES_FAQS.map((faq) => (
+            <div key={faq.question} className="py-6">
+              <h3 className="text-base font-display font-semibold text-foreground">{faq.question}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed max-w-3xl">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 

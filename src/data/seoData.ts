@@ -1,5 +1,46 @@
 import { SEO_CONSTANTS } from "@/utils/seoConstants";
-import { SEOInput } from "@/utils/seo/seoBuilder";
+import { SEOInput, FaqItem } from "@/utils/seo/seoBuilder";
+
+// Answer-first FAQ content for /services — single source of truth for both
+// the visible FAQ section (Services.tsx) and the FAQPage schema
+// (UnifiedSEO -> generateStructuredData). Every claim here is something
+// Hiram could defend on a call; no invented percentages or fabricated
+// project counts. Written 2026-08-05 (AEO lever 2) after finding the
+// schema pipeline was previously injecting fabricated FAQ content
+// (invented conversion-rate and turnaround numbers) onto the homepage
+// where no FAQ section was even visibly rendered.
+export const SERVICES_FAQS: FaqItem[] = [
+  {
+    question: "Does a designer who also builds the product cost more than hiring a designer alone?",
+    answer:
+      "There's no published flat rate — it depends on scope, and that gets settled on the call, not guessed at here. But the comparison worth making isn't \"designer\" vs \"designer who codes\" — it's paying for a design phase and then a separate development handoff, versus one person doing both with nothing lost in translation between them.",
+  },
+  {
+    question: "Can one person really design and build a whole product?",
+    answer:
+      "The proof is live, not a claim: HerbaLink, NudgeMe, CatchBuddy, Ring-Rival, Fire Lion, and this ROI calculator are all shipped products — real auth, real databases, real users — designed and built by one person. Open one and judge for yourself rather than taking a portfolio's word for it.",
+  },
+  {
+    question: "What does \"AI-assisted design\" actually mean day to day?",
+    answer:
+      "AI scaffolds the parts that are genuinely mechanical — boilerplate code, schema setup, first-draft copy variants. The calls that decide whether a product actually works — what to cut, when a parser is confident enough to skip a confirmation step, how much friction a trust-sensitive flow can tolerate — stay human. Every case study on this site names the specific call that wasn't delegated.",
+  },
+  {
+    question: "How is this different from hiring a design agency?",
+    answer:
+      "One senior person end to end, not an account team billing hours between you and the person actually doing the work. That's a real tradeoff, not a pure upside — an agency brings more hands and more disciplines at once. It's the right fit for a founder who wants direct access to whoever's making the decisions, not a fit for a project that genuinely needs a ten-person team.",
+  },
+  {
+    question: "What's the actual timeline for a new engagement?",
+    answer:
+      "Day 1 is a 30-minute call to scope the problem. Days 2 through 5 produce a working prototype of the riskiest part of the idea — not wireframes — so you know if it holds before committing real budget. From there it's weekly drops of working software, typically over 2 to 6 weeks depending on scope.",
+  },
+  {
+    question: "Is the code production-quality, or just a working prototype?",
+    answer:
+      "Both are on the table, and which one you're getting is explicit up front rather than left ambiguous. The live products linked from this page are full production builds — real payments, real authentication, real deployed infrastructure — which is the evidence that \"production-quality\" isn't just a phrase on this page.",
+  },
+];
 
 // Static page SEO data
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
@@ -19,7 +60,8 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Design Services That Ship — Hiram Barsky',
     description: 'Senior product design with an AI build crew: research, UI, and working software from one person. Fintech, healthcare, and zero-to-one products.',
-    image: 'https://barskydesign.pro/images/default-og-image.jpg'
+    image: 'https://barskydesign.pro/images/default-og-image.jpg',
+    faqs: SERVICES_FAQS,
   },
   '/contact': {
     kind: 'page',

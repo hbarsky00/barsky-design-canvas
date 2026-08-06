@@ -14,6 +14,7 @@ interface SEOData {
   modifiedTime?: string;
   author?: string;
   tags?: string[];
+  faqs?: { question: string; answer: string }[];
 }
 
 export const generateStructuredData = (seoData: SEOData) => {
@@ -125,7 +126,7 @@ export const generateStructuredData = (seoData: SEOData) => {
         name: "Hiram Barsky Design",
         logo: {
           "@type": "ImageObject",
-          url: "https://barskydesign.pro/logo.png"
+          url: "https://barskydesign.pro/images/hiram-barsky-profile.png"
         }
       },
       ...(seoData.image && { image: seoData.image })
@@ -151,43 +152,24 @@ export const generateStructuredData = (seoData: SEOData) => {
     schemas.push(productSchema);
   }
 
-  // Add FAQ schema for homepage AND product pages (both render SeoFaqSection)
-  const isHomepage = !!canonicalUrl &&
-    canonicalUrl.includes('barskydesign.pro') &&
-    !canonicalUrl.includes('/blog/') &&
-    !canonicalUrl.includes('/project/') &&
-    !canonicalUrl.includes('/store/') &&
-    (canonicalUrl.endsWith('/') || canonicalUrl.endsWith('barskydesign.pro'));
-  if (isHomepage || isProductPage) {
+  // FAQ schema is opt-in via seoData.faqs — the caller must pass the EXACT
+  // Q&A content the page actually renders. This used to be hardcoded to fire
+  // on the homepage with fabricated numbers ("boost conversion by 40%+",
+  // "measurable improvements within 2-4 weeks") that didn't correspond to
+  // any visible FAQ section on the homepage at all — a schema/content
+  // mismatch on top of invented metrics. Fixed 2026-08-05 (AEO lever 2).
+  if (seoData.faqs && seoData.faqs.length > 0) {
     const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What makes your UX design approach different?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "I combine traditional UX research with AI-powered analytics to create data-driven designs that boost conversion by 40%+. Unlike designers who rely on assumptions, I use AI to understand user behavior patterns and optimize accordingly."
-          }
+      mainEntity: seoData.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.answer,
         },
-        {
-          "@type": "Question", 
-          name: "How quickly can you deliver results?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Most clients see measurable improvements within 2-4 weeks of implementation. My AI-enhanced design process allows for rapid iteration and testing, significantly reducing time-to-market compared to traditional design approaches."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "Do you work with fintech and healthcare companies?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes, I specialize in fintech, healthcare, and SaaS applications. I have 15+ years of experience designing compliant, user-friendly interfaces for regulated industries while maintaining high conversion rates."
-          }
-        }
-      ]
+      })),
     };
     schemas.push(faqSchema);
   }
