@@ -43,6 +43,20 @@ export const generateStructuredData = (seoData: SEOData) => {
     "@type": "Organization",
     name: "Hiram Barsky Design",
     url: "https://barskydesign.pro",
+    // Same description already used sitewide (SEO_CONSTANTS.DEFAULT_DESCRIPTION)
+    // and same address already declared in the static shell's LocalBusiness
+    // block (index.html) — flagged as "recommended: missing" by the lever-4
+    // schema sweep; filled with facts already established elsewhere, not new
+    // ones. foundingDate is also recommended but skipped — no verified date
+    // for when "Hiram Barsky Design" as a branded practice started, distinct
+    // from the 15+ year career length used elsewhere.
+    description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Clifton",
+      addressRegion: "NJ",
+      addressCountry: "US",
+    },
     // /logo.png doesn't exist (404) — this is the same headshot the static
     // shell's LocalBusiness block already uses for `image`.
     logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
