@@ -70,6 +70,23 @@
   to = "/case-studies"
   status = 301
 
+# structuredCaseStudies.ts has no "business-management" entry — the page
+# component's own null-check falls back to <Navigate to="/projects">,
+# which itself redirects to a "/#projects" anchor that doesn't exist on the
+# current homepage (Projects.tsx isn't rendered anywhere). Net effect: this
+# "featured" case study silently served the homepage in its body while its
+# <head> claimed to be about an Enterprise Ops Platform — found via
+# amazing-seo-skill's schema sweep (AEO lever 6, 2026-08-06). No honest,
+# specific case-study content exists anywhere in the codebase to backfill
+# it with (the one other place with a description, projectsList.ts, has a
+# DIFFERENT fabricated stat — 68% vs seoData's 60%, neither substantiated).
+# Redirecting rather than inventing a narrative; re-feature once real
+# content exists.
+[[redirects]]
+  from = "/project/business-management"
+  to = "/case-studies"
+  status = 301
+
 # --- Retired blog posts (old content replaced in 2026) -> blog index ---
 
 [[redirects]]

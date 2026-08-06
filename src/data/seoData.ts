@@ -114,50 +114,65 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
 };
 
 // Project-specific SEO mappings
+// Every description below must match (or be a safe paraphrase of) the
+// honest description already vetted in structuredCaseStudies.ts for the
+// same id. Found 2026-08-06 (AEO lever 6): 8 of these carried specific,
+// unsubstantiated percentage claims ("45% faster", "3x faster", etc.) that
+// appear nowhere in the actual case-study content — a fabrication the
+// 2026-07-15 honesty pass fixed in the page bodies but missed here, in the
+// meta layer AI engines and search snippets actually read.
 export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
+  // smarterhealth / medication-app / gold2crypto: no live route (all three
+  // 301 to /case-studies in netlify.toml) and no real case-study content
+  // anywhere in the codebase. Entries kept only so nothing reads a
+  // fabricated stat if ever referenced; not indexed, not in any sitemap.
   "smarterhealth": {
-    title: "Smarter Health — Healthcare App UX Case Study",
-    description: "Healthcare app that made medication tracking 45% faster and lifted appointment adherence 60% for diabetic patients via empathy-driven design.",
+    title: "Smarter Health — Healthcare App UX Concept",
+    description: "An unshipped healthcare app concept — no case-study writeup exists yet for this one.",
     image: "https://barskydesign.pro/images/default-og-image.jpg"
   },
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
-    description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
+    description: "A self-initiated trading concept designed for two audiences the industry insists you have to choose between.",
     image: "https://barskydesign.pro/images/default-og-image.jpg"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
-    description: "HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.",
+    description: "Verified herbalists, designed around trust — in a category where bad advice has medical consequences. Designed, built, and shipped solo.",
     image: "https://barskydesign.pro/images/herbalink-promo.png"
   },
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
-    description: "Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.",
+    description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
     image: "https://barskydesign.pro/images/desktop-signup-1.png"
   },
+  // business-management: /project/business-management now 301s to
+  // /case-studies (netlify.toml) — structuredCaseStudies.ts has no entry
+  // for it and no honest source of real content exists anywhere in the
+  // codebase to write one from. Entry kept for the same reason as above.
   "business-management": {
-    title: "Enterprise Ops Platform — B2B UX Case Study",
-    description: "Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.",
+    title: "Enterprise Ops Platform — B2B UX Concept",
+    description: "An enterprise operations platform concept — no case-study writeup exists yet for this one.",
     image: "https://barskydesign.pro/uploads/business-management-cover.jpg"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
-    description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.",
+    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
     image: "https://barskydesign.pro/images/default-og-image.jpg"
   },
   "medication-app": {
-    title: "Medication App — Patient Safety UX Case Study",
-    description: "Mobile medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility.",
+    title: "Medication App — Patient Safety UX Concept",
+    description: "An unshipped medication-tracking app concept — no case-study writeup exists yet for this one.",
     image: "https://barskydesign.pro/images/default-og-image.jpg"
   },
   "gold2crypto": {
-    title: "Crypto Exchange Onboarding — UX Case Study",
-    description: "Reduced crypto exchange drop-off 50% with simpler KYC, progressive disclosure, and clear risk communication.",
+    title: "Crypto Exchange Onboarding — UX Concept",
+    description: "An unshipped crypto-exchange onboarding concept — no case-study writeup exists yet for this one.",
     image: "https://barskydesign.pro/images/default-og-image.jpg"
   },
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
-    description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
     image: "https://barskydesign.pro/uploads/dae/dashboard-search.png"
   },
   "fire-lion": {

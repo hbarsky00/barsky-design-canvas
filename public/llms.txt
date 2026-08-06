@@ -14,9 +14,9 @@
 
 ## Case studies
 
-- [Enterprise Data Search — UX Case Study](https://barskydesign.pro/case-studies/dae-search): Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.
+- [Enterprise Data Search — UX Case Study](https://barskydesign.pro/case-studies/dae-search): Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.
 - [Fire Lion — AI-Built Game Design Case Study](https://barskydesign.pro/case-studies/fire-lion): Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.
-- [HerbaLink — Healthcare Marketplace UX Case Study](https://barskydesign.pro/case-studies/herbalink): HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.
+- [HerbaLink — Healthcare Marketplace UX Case Study](https://barskydesign.pro/case-studies/herbalink): Verified herbalists, designed around trust — in a category where bad advice has medical consequences. Designed, built, and shipped solo.
 - [NudgeMe — Natural Language Reminder App Case Study](https://barskydesign.pro/case-studies/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
 - [ROI Design Builder — Design Value Calculator Case Study](https://barskydesign.pro/case-studies/roi-design-builder): Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.
 - [Valora Bet — Social Prediction Markets Case Study](https://barskydesign.pro/case-studies/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
@@ -26,17 +26,16 @@
 ## Live products
 
 - [CatchBuddy — Safe Sports Matching Product Overview](https://barskydesign.pro/project/catchbuddy): Designing a safety-first matching loop before layering monetization.
-- [HerbaLink — Healthcare Marketplace UX Product Overview](https://barskydesign.pro/project/herbalink): HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.
+- [HerbaLink — Healthcare Marketplace UX Product Overview](https://barskydesign.pro/project/herbalink): Verified herbalists, designed around trust — in a category where bad advice has medical consequences. Designed, built, and shipped solo.
 - [Valora Bet — Social Prediction Markets Product Overview](https://barskydesign.pro/project/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
 - [NudgeMe — Natural Language Reminder App Product Overview](https://barskydesign.pro/project/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
 - [Ring-Rival — AI Boxing Game Product Overview](https://barskydesign.pro/project/ring-rival): A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.
 - [Fire Lion — AI-Built Game Design Product Overview](https://barskydesign.pro/project/fire-lion): Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.
 - [ROI Design Builder — Design Value Calculator Product Overview](https://barskydesign.pro/project/roi-design-builder): Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.
-- [Enterprise Ops Platform — B2B UX Product Overview](https://barskydesign.pro/project/business-management): Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.
-- [Fintech Loan Platform — Investment UX Product Overview](https://barskydesign.pro/project/investor-loan-app): Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.
+- [Fintech Loan Platform — Investment UX Product Overview](https://barskydesign.pro/project/investor-loan-app): Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.
 - [ManuscriptRx — Pharma Email AI Product Overview](https://barskydesign.pro/project/email-creation-ai): AI handles the work between humans across a 6-step regulated email workflow.
-- [Crypto Trading — Fintech UX Product Overview](https://barskydesign.pro/project/crypto): How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.
-- [SplitTime — Co-Parenting App UX Product Overview](https://barskydesign.pro/project/splittime): Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.
+- [Crypto Trading — Fintech UX Product Overview](https://barskydesign.pro/project/crypto): A self-initiated trading concept designed for two audiences the industry insists you have to choose between.
+- [SplitTime — Co-Parenting App UX Product Overview](https://barskydesign.pro/project/splittime): A co-parenting app designed around the fact that every interaction is potential evidence.
 - [QR Code Builder — Branded QR Generator Product Overview](https://barskydesign.pro/project/qr-code-builder): Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.
 
 ## Blog

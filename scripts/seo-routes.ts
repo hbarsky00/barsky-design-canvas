@@ -33,7 +33,6 @@ export const FEATURED_PROJECTS = [
   "ring-rival",
   "fire-lion",
   "roi-design-builder",
-  "business-management",
   "investor-loan-app",
   "email-creation-ai",
   // Un-blocked from robots.txt earlier (they were never actually disallowed
