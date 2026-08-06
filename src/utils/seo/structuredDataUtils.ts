@@ -1,4 +1,6 @@
 
+import { SEO_CONSTANTS } from "@/utils/seoConstants";
+
 interface SEOData {
   title: string;
   description: string;
@@ -32,7 +34,14 @@ export const generateStructuredData = (seoData: SEOData) => {
     "@type": "Organization",
     name: "Hiram Barsky Design",
     url: "https://barskydesign.pro",
-    logo: "https://barskydesign.pro/logo.png",
+    // /logo.png doesn't exist (404) — this is the same headshot the static
+    // shell's LocalBusiness block already uses for `image`.
+    logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
+    // Entities elsewhere on the web that represent the same person/brand —
+    // NOT a place for product links (a product Hiram built isn't "the same
+    // entity as" Hiram Barsky Design; that relationship belongs on the
+    // product's own case-study page, not here).
+    sameAs: SEO_CONSTANTS.SOCIAL_PROFILES,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -42,7 +51,30 @@ export const generateStructuredData = (seoData: SEOData) => {
       "@type": "Person",
       name: "Hiram Barsky",
       jobTitle: "UX/UI Designer & AI Developer",
-      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
+      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS",
+      // Pulled verbatim from the skills actually listed on /about
+      // (SkillsShowcase) — real, defensible expertise areas, not a
+      // generic AEO-checklist list.
+      knowsAbout: [
+        "Product Design",
+        "User Research",
+        "Design Systems",
+        "Gen AI Integration",
+        "React Development",
+        "TypeScript",
+        "Supabase",
+        "UX Strategy",
+      ],
+      // Real employment history from /about (ProfessionalJourney) — every
+      // name here is something Hiram could defend on a call.
+      alumniOf: [
+        { "@type": "Organization", name: "PNC" },
+        { "@type": "Organization", name: "Bank of America" },
+        { "@type": "Organization", name: "Deloitte" },
+        { "@type": "Organization", name: "Tata Consultancy Services" },
+        { "@type": "Organization", name: "KPMG" },
+        { "@type": "Organization", name: "Express Scripts" },
+      ],
     },
     serviceArea: "United States",
     priceRange: "$$$"

@@ -27,10 +27,18 @@ export const SEO_CONSTANTS = {
   LOCALE: 'en_US',
   LANGUAGE: 'English',
   
-  // Social profiles
+  // Social profiles — used for entity sameAs (structuredDataUtils.ts). Every
+  // entry here must actually resolve; a dead sameAs target hurts entity
+  // resolution more than having no sameAs at all. LinkedIn returns 999 to
+  // automated requests (its standard anti-bot wall, not evidence it's dead —
+  // matches the handle used consistently across this project). github.com/
+  // hirambarsky and twitter.com/hirambarsky were both dead (404, verified
+  // with a browser UA on twitter.com and x.com) — github.com/hbarsky00 is
+  // the real one (matches this repo's own git remote). No verified Twitter/X
+  // handle exists; omitted rather than guessed — flag to Hiram if he wants
+  // one added back.
   SOCIAL_PROFILES: [
     'https://www.linkedin.com/in/hirambarsky',
-    'https://twitter.com/hirambarsky',
-    'https://github.com/hirambarsky'
+    'https://github.com/hbarsky00'
   ]
 };
