@@ -42,6 +42,46 @@ export const SERVICES_FAQS: FaqItem[] = [
   },
 ];
 
+// Answer-first FAQ content for /about — single source of truth for both the
+// visible FAQ section (About.tsx) and the FAQPage schema. Distinct angle from
+// SERVICES_FAQS: these are entity/bio questions (who Hiram is, what his
+// background actually covers), not engagement-process questions. Every fact
+// here matches what's already established and vetted elsewhere in the
+// codebase (ProfessionalJourney's employer list, PersonalStory's "15+ years"
+// line, the Organization schema's Clifton NJ address) — no new claims
+// introduced. Deliberately does NOT cite any of ProfessionalJourney's
+// per-employer percentage stats (40% engagement, 25% satisfaction, etc.) —
+// those are flagged separately in docs/aeo-log.md as unverified, and this
+// FAQ shouldn't launder them into schema. Written 2026-08-06 (AEO lever 2,
+// Cycle 2).
+export const ABOUT_FAQS: FaqItem[] = [
+  {
+    question: "Is Hiram Barsky a UX designer or a developer?",
+    answer:
+      "Both, on purpose — that's the actual differentiator, not a marketing line. He designs the interface and ships the working code behind it: HerbaLink, NudgeMe, CatchBuddy, Ring-Rival, and Fire Lion are all live products he both designed and built, not concepts handed to a separate dev team.",
+  },
+  {
+    question: "What kind of companies has Hiram Barsky designed for?",
+    answer:
+      "A run of enterprise roles before going independent: PNC, Bank of America, Deloitte, Tata Consultancy Services, KPMG, and Express Scripts — spanning banking, consulting, and healthcare-adjacent work. The employer names are real and checkable; specific performance numbers from those roles aren't published here since they can't be independently verified outside the original employer.",
+  },
+  {
+    question: "How long has Hiram Barsky been working in UX design?",
+    answer:
+      "15+ years, starting in classic UX and shifting focus over the last few years toward generative-AI-integrated product design — the same arc described on this page's own story section.",
+  },
+  {
+    question: "Where is Hiram Barsky based, and does he work with remote clients?",
+    answer:
+      "Based in Clifton, NJ, working with clients nationwide — engagements run remotely by default, the same as most of the product work shown in the case studies.",
+  },
+  {
+    question: "What industries does Hiram Barsky have direct experience in?",
+    answer:
+      "Fintech and banking (PNC, Bank of America), healthcare-adjacent (Express Scripts, plus the HerbaLink case study), and enterprise consulting (Deloitte, TCS, KPMG) — the same span reflected in the case studies linked from this site, not a generic checklist of industries.",
+  },
+];
+
 // Static page SEO data
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
@@ -62,6 +102,12 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Senior product design with an AI build crew: research, UI, and working software from one person. Fintech, healthcare, and zero-to-one products.',
     image: 'https://barskydesign.pro/images/default-og-image.jpg',
     faqs: SERVICES_FAQS,
+  },
+  '/free-audit': {
+    kind: 'page',
+    title: 'Free UX & Conversion Audit — Hiram Barsky',
+    description: 'Request a free UX and conversion audit: a written report with actionable recommendations, delivered by email in 24-48 hours, no strings attached.',
+    image: 'https://barskydesign.pro/images/default-og-image.jpg'
   },
   '/contact': {
     kind: 'page',
@@ -85,7 +131,8 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'About Hiram Barsky — 15+ Years in Design',
     description: 'Senior UX/Product Designer with 15+ years building data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
+    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png',
+    faqs: ABOUT_FAQS,
   },
   '/store': {
     kind: 'page',

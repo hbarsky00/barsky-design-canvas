@@ -14,6 +14,7 @@ export const STATIC_PATHS = [
   "/about",
   "/contact",
   "/services",
+  "/free-audit",
   "/store",
   "/blog",
   "/case-studies",

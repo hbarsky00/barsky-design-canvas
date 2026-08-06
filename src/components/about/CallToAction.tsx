@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
 
@@ -18,32 +19,21 @@ const CallToAction: React.FC = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button
-            size="lg"
-            variant="elevated"
-            onClick={() => {
-              if (typeof document !== 'undefined') {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }
-            }}
-          >
-            Start a Project
-            <ArrowRight className="w-5 h-5 ml-2" />
+          {/* Was an onClick scrollIntoView("contact") — no element with
+              id="contact" exists on this page or anywhere reachable from it,
+              so the button silently did nothing. Found while adding the
+              /about FAQ (AEO lever 2, Cycle 2). /contact is a real route. */}
+          <Button size="lg" variant="elevated" asChild>
+            <Link to="/contact">
+              Start a Project
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </Button>
-          
-          <Button
-            size="lg"
-            variant="on-dark"
-            onClick={() => {
-              if (typeof window !== 'undefined') {
-                window.open('/free-audit', '_blank');
-              }
-            }}
-          >
-            Get Free Audit
+
+          {/* /free-audit previously had no route (404) despite FreeAudit.tsx
+              and FreeAuditForm.tsx already existing — fixed in App.tsx. */}
+          <Button size="lg" variant="on-dark" asChild>
+            <Link to="/free-audit">Get Free Audit</Link>
           </Button>
         </div>
         
