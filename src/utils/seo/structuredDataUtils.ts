@@ -184,6 +184,13 @@ export const generateStructuredData = (seoData: SEOData) => {
     const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      // Matches the literal visible <h2> on both current FAQ sections
+      // (Services.tsx and AboutFaqSection.tsx) — flagged as a recommended-
+      // but-missing field by amazing-seo-skill's schema_recommended_fields.py
+      // (AEO lever 4, Cycle 2, 2026-08-07). If a future page uses a
+      // differently-worded FAQ heading, this should become per-page instead
+      // of shared.
+      name: "Questions worth answering up front",
       mainEntity: seoData.faqs.map((f) => ({
         "@type": "Question",
         name: f.question,
