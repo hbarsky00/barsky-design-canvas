@@ -4,8 +4,15 @@ import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
 
+// Jump straight to the first case-study card (id="case-study-1", already set
+// by VideoCaseStudiesSection.tsx's CaseStudyCard), not the section wrapper —
+// the wrapper's own scroll target lands on the section heading/subtitle, one
+// full scroll short of any actual card. html has a global scroll-padding-top
+// tied to --header-height, so this still clears the fixed header correctly.
 const scrollToCaseStudies = () => {
-  document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" });
+  const firstCard = document.getElementById("case-study-1");
+  const fallback = document.getElementById("case-studies");
+  (firstCard ?? fallback)?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
 const SOCIALS = [
