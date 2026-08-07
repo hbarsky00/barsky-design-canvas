@@ -270,10 +270,19 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // entry here to override a specific post.
 export const BLOG_IMAGE_MAP: Record<string, string> = {};
 
-// Optional per-slug title/description overrides for blog posts. Titles and
-// descriptions normally come from each post's title/excerpt in blogData.ts —
-// only add an entry here to override a specific post.
-export const BLOG_SEO_MAP: Record<string, { title: string; description: string; }> = {};
+// Optional per-slug title/description/modified overrides for blog posts.
+// Titles and descriptions normally come from each post's title/excerpt in
+// blogData.ts — only add an entry here to override a specific post.
+// `modified`: real ISO date of the last substantive content edit, pulled
+// from this repo's own git history — NOT auto-derived from file mtime
+// (blogData.ts holds all 7 posts in one file, so a file-level date would
+// falsely claim every post was edited whenever any one of them was).
+// Added 2026-08-07 (AEO lever 6, Cycle 2) for the two posts actually
+// tightened by the AEO citable-resource-content lever.
+export const BLOG_SEO_MAP: Record<string, { title?: string; description?: string; modified?: string; }> = {
+  "chatgpt-vs-claude-vs-gemini-for-ux": { modified: "2026-08-05" }, // commit dc4b7ffe
+  "learning-ai-design-with-claude": { modified: "2026-08-06" }, // commit 90098bc3
+};
 
 // Helper functions for getting SEO data
 export function getStaticPageSEO(path: string): Partial<SEOInput> | null {
@@ -296,11 +305,16 @@ export function getBlogSEO(slug: string): Partial<SEOInput> | null {
   const image = BLOG_IMAGE_MAP[slug];
   const seoData = BLOG_SEO_MAP[slug];
   if (!image && !seoData) return null;
-  
+
+  // Callers spread this object last over real values already set from the
+  // post itself (title/excerpt/image) — every key here must be OMITTED
+  // when unset, not included as `undefined`, or an override that only sets
+  // e.g. `modified` would silently wipe out the real title/description/image.
   return {
     kind: 'post',
-    title: seoData?.title,
-    description: seoData?.description,
-    image
+    ...(seoData?.title && { title: seoData.title }),
+    ...(seoData?.description && { description: seoData.description }),
+    ...(seoData?.modified && { modified: seoData.modified }),
+    ...(image && { image }),
   };
 }
