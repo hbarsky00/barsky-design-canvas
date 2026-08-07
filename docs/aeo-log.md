@@ -136,3 +136,47 @@ staying unrouted).
   - `ProfessionalJourney.tsx`'s employer bullets each carry a specific percentage claim (PNC: engagement +40%, satisfaction +25%; Bank of America: errors -15%, engagement +10%; Deloitte: engagement +20%; TCS: revenue +15%, support load -10%; KPMG: cost -10%, revenue +14%; Express Scripts: satisfaction/engagement +30%, turnaround -20%). Unlike the case-study stats fixed earlier this project, there's no cross-file contradiction proving these are fabricated — they read like fairly typical resume-style figures from corporate performance reviews, which may be real and defensible. Not touching them without your say-so; flagging because they're the same shape as everything else this project has been removing, and they now sit right next to a freshly-schema'd, freshly-FAQ'd About page.
 
   Verified: typecheck clean, build clean, all 40 routes recaptured (bodies + schema, `/free-audit` now has a real captured body instead of the prerender warning it started with), 129 JSON-LD blocks across the whole build (up from 126 — the new `/about` FAQPage schema), 0 invalid, `about.html`'s FAQPage block has exactly 5 questions matching the 5 rendered on the page, homepage's built GitHub link now only ever points to `hbarsky00`, `/contact` and `/free-audit` hrefs confirmed present in `about.html`'s built output, fabricated-stat sweep from prior cycles still clean.
+
+## Out-of-band: CatchBuddy de-featured pending refinement (2026-08-07)
+
+Hiram: "take catchbuddy case studies of the list for now, we have to refine
+this." Removed CatchBuddy from every promotional/discovery surface site-wide
+while leaving the underlying page, route, and case-study content untouched —
+this is a de-listing, not a deletion, so it's easy to re-add once the case
+study is reworked.
+
+Removed from: `scripts/seo-routes.ts`'s `FEATURED_PROJECTS` and
+`FEATURED_CASE_STUDIES` (drops it from the sitemap and prerendering — direct
+links to `/project/catchbuddy` and `/case-studies/catchbuddy` still resolve,
+they're just no longer indexed or promoted), the homepage's
+`FeaturedCaseStudiesSection.tsx` and `VideoCaseStudiesSection.tsx`, the
+`/case-studies` index page, the default hero's `SHIPPED` list
+(`HeroContent.tsx`) and the shared `HERO_PROJECTS` list every other hero theme
+consumes (`themes/projects.ts`), the `/services` proof rail (repointed the
+"Mobile app design" service's proof to NudgeMe alone, since it was the only
+other mobile-relevant live product already listed there), `RelatedProjects.tsx`
+(the "see also" cross-links shown on other case studies), and
+`caseStudyNav.ts` (case-study prev/next navigation).
+
+Also found CatchBuddy named by mention, not just listed, in two FAQ answers
+(`SERVICES_FAQS` and `ABOUT_FAQS` in seoData.ts — both feed directly into
+FAQPage schema, so this was live in structured data too) — a plain grep for
+"catchbuddy" across `dist/*.html` after the first build caught it. Trimmed
+both sentences to the remaining real products rather than leaving a
+half-true "proof" claim.
+
+Deliberately left untouched: `App.tsx`'s routes (page stays reachable),
+`structuredCaseStudies.ts`'s actual case-study content (that's what's being
+refined, not deleted), `seoData.ts`'s `PROJECT_SEO_MAP` entry for catchbuddy
+(harmless per-page metadata while unindexed), `ProjectPromoBanner.tsx` (still
+correctly cross-links `/project/catchbuddy` ↔ `/case-studies/catchbuddy` for
+anyone who does land there directly), and `Win98Hero.tsx` (confirmed dead
+code — no `themeId` ever selects "win98").
+
+Deleted the now-orphaned `prerendered-bodies/{project,case-studies}-catchbuddy.{html,schema.html}`
+files, matching the established convention from de-featuring
+business-management in Cycle 1.
+
+Verified: typecheck clean, build clean, 38 routes (down from 40) recaptured,
+123 JSON-LD blocks, 0 invalid, zero "catchbuddy" mentions anywhere in the
+built output outside its own two page files, sitemap.xml no longer lists it.

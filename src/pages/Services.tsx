@@ -14,7 +14,6 @@ const liveProof = [
   { name: "HerbaLink", what: "Credential-gated herbalist booking", url: "https://herbalink.live", study: "/case-studies/herbalink" },
   { name: "NudgeMe", what: "Natural-language reminders (PWA)", url: "https://nudgemeapp.netlify.app", study: "/case-studies/nudgeme" },
   { name: "ROI Calculator", what: "Design value modeling for finance", url: "https://roicalc.one", study: "/case-studies/roi-design-builder" },
-  { name: "CatchBuddy", what: "Safety-first pickup sports matching", url: "https://catchbuddy.fit", study: "/case-studies/catchbuddy" },
 ];
 
 const services = [
@@ -31,8 +30,8 @@ const services = [
     blurb:
       "iOS, Android, and installable web apps designed on real phones, not device frames in Figma. Onboarding, ergonomics, and the offline and permission edge cases that decide app-store reviews.",
     href: "/design-services/mobile-app-design",
-    proof: "CatchBuddy, NudgeMe — both live",
-    proofHref: "/case-studies/catchbuddy",
+    proof: "NudgeMe — live PWA",
+    proofHref: "/case-studies/nudgeme",
   },
   {
     title: "Design + build",

@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github, Calendar, ArrowRight } from "lucide-react";
 
+// "catchbuddy" pulled 2026-08-07 — case study being refined, see
+// scripts/seo-routes.ts's note on FEATURED_PROJECTS.
 const SHIPPED = [
-  { label: "CatchBuddy", desc: "Same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "Verified herbalist platform", to: "/project/herbalink" },
   { label: "NudgeMe", desc: "Natural-language reminder app", to: "/project/nudgeme" },
   { label: "Valora Bet", desc: "Social prediction markets platform", to: "/project/valora-bet" },

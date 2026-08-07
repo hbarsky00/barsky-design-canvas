@@ -60,21 +60,6 @@ const caseStudies: CaseStudy[] = [
     video: "/uploads/ring-rival-hero.mp4"
   },
   {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.fit",
-    images: {
-      primary: "/images/catchbuddy-hero-landing.png",
-      alt: "CatchBuddy pickup sports app"
-    },
-    layout: "side-by-side",
-    video: "/uploads/catchbuddy-hero.mp4"
-  },
-  {
     id: "herbalink",
     tags: ["Health", "Marketplace", "Trust & Safety"],
     title: "HerbaLink",

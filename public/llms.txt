@@ -20,12 +20,10 @@
 - [NudgeMe — Natural Language Reminder App Case Study](https://barskydesign.pro/case-studies/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
 - [ROI Design Builder — Design Value Calculator Case Study](https://barskydesign.pro/case-studies/roi-design-builder): Interactive calculator that turns design investment into projected ROI, helping teams make the business case for UX work.
 - [Valora Bet — Social Prediction Markets Case Study](https://barskydesign.pro/case-studies/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
-- [CatchBuddy — Safe Sports Matching Case Study](https://barskydesign.pro/case-studies/catchbuddy): Designing a safety-first matching loop before layering monetization.
 - [Ring-Rival — AI Boxing Game Case Study](https://barskydesign.pro/case-studies/ring-rival): A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.
 
 ## Live products
 
-- [CatchBuddy — Safe Sports Matching Product Overview](https://barskydesign.pro/project/catchbuddy): Designing a safety-first matching loop before layering monetization.
 - [HerbaLink — Healthcare Marketplace UX Product Overview](https://barskydesign.pro/project/herbalink): Verified herbalists, designed around trust — in a category where bad advice has medical consequences. Designed, built, and shipped solo.
 - [Valora Bet — Social Prediction Markets Product Overview](https://barskydesign.pro/project/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
 - [NudgeMe — Natural Language Reminder App Product Overview](https://barskydesign.pro/project/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.

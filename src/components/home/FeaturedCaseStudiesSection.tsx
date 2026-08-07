@@ -56,22 +56,6 @@ const featuredCaseStudies: FeaturedStudy[] = [
     }
   },
   {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    subtitle: "Same-day pickup sports, designed for trust",
-    description: "Post a game, see open games, confirm in a few taps. Safety-first architecture with minor approval, panic button, and curated meeting spots. Built solo with AI.",
-    image: "/images/catchbuddy-hero-landing.png",
-    url: "/project/catchbuddy",
-    category: "Trust & Safety",
-    impact: "Safety-first architecture, real stack shipped",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    techStack: {
-      aiTools: ["Claude", "Cursor AI"],
-      devStack: ["React", "Supabase", "Stripe"],
-      designTools: ["Figma"],
-    }
-  },
-  {
     id: "herbalink",
     title: "HerbaLink",
     subtitle: "Building Trust in Alternative Medicine Decisions",

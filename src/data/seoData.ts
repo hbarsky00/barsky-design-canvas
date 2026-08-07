@@ -18,7 +18,7 @@ export const SERVICES_FAQS: FaqItem[] = [
   {
     question: "Can one person really design and build a whole product?",
     answer:
-      "The proof is live, not a claim: HerbaLink, NudgeMe, CatchBuddy, Ring-Rival, Fire Lion, and this ROI calculator are all shipped products — real auth, real databases, real users — designed and built by one person. Open one and judge for yourself rather than taking a portfolio's word for it.",
+      "The proof is live, not a claim: HerbaLink, NudgeMe, Ring-Rival, Fire Lion, and this ROI calculator are all shipped products — real auth, real databases, real users — designed and built by one person. Open one and judge for yourself rather than taking a portfolio's word for it.",
   },
   {
     question: "What does \"AI-assisted design\" actually mean day to day?",
@@ -58,7 +58,7 @@ export const ABOUT_FAQS: FaqItem[] = [
   {
     question: "Is Hiram Barsky a UX designer or a developer?",
     answer:
-      "Both, on purpose — that's the actual differentiator, not a marketing line. He designs the interface and ships the working code behind it: HerbaLink, NudgeMe, CatchBuddy, Ring-Rival, and Fire Lion are all live products he both designed and built, not concepts handed to a separate dev team.",
+      "Both, on purpose — that's the actual differentiator, not a marketing line. He designs the interface and ships the working code behind it: HerbaLink, NudgeMe, Ring-Rival, and Fire Lion are all live products he both designed and built, not concepts handed to a separate dev team.",
   },
   {
     question: "What kind of companies has Hiram Barsky designed for?",

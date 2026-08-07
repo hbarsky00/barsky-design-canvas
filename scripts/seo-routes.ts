@@ -26,8 +26,12 @@ export const STATIC_PATHS = [
 // Featured projects — the only /project/* URLs we want indexed. Other project
 // routes still resolve for direct visits but are not in the sitemap and get no
 // prerendered file (so crawlers see them drop out of the index).
+//
+// "catchbuddy" pulled 2026-08-07 — Hiram wants the case study refined before
+// it's promoted again. Route/page/content are untouched (still reachable by
+// direct link), just off every featured/promotional surface site-wide until
+// it's re-added here.
 export const FEATURED_PROJECTS = [
-  "catchbuddy",
   "herbalink",
   "valora-bet",
   "nudgeme",
@@ -47,6 +51,7 @@ export const FEATURED_PROJECTS = [
 ];
 
 // Case-study pages with explicit routes in App.tsx.
+// "catchbuddy" pulled 2026-08-07 — see note above FEATURED_PROJECTS.
 export const FEATURED_CASE_STUDIES = [
   "dae-search",
   "fire-lion",
@@ -54,7 +59,6 @@ export const FEATURED_CASE_STUDIES = [
   "nudgeme",
   "roi-design-builder",
   "valora-bet",
-  "catchbuddy",
   "ring-rival",
 ];
 

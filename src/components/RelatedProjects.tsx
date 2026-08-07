@@ -38,15 +38,6 @@ const allCaseStudies: CaseStudy[] = [
     tags: ["AI-Assisted Product", "Mobile Web", "Solo Build"]
   },
   {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    image: "/images/catchbuddy-hero-landing.png",
-    url: "/project/catchbuddy",
-    category: "Trust & Safety",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"]
-  },
-  {
     id: "herbalink",
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
