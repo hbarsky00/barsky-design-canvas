@@ -37,8 +37,17 @@ export const SEO_CONSTANTS = {
   // the real one (matches this repo's own git remote). No verified Twitter/X
   // handle exists; omitted rather than guessed — flag to Hiram if he wants
   // one added back.
+  //
+  // LinkedIn corrected 2026-08-06 (full CTA audit): was 'hirambarsky' (no
+  // hyphen), the only place in the codebase using that slug. Every other
+  // live LinkedIn link sitewide — Footer.tsx, ContactInformation.tsx
+  // (/contact), HeroContent.tsx (homepage hero) — uses the hyphenated
+  // 'hiram-barsky'. Can't verify either via curl (LinkedIn returns 999 to
+  // bots regardless of slug), but 8-to-1 agreement across every other
+  // real, live usage is strong enough to trust over the schema's lone
+  // outlier.
   SOCIAL_PROFILES: [
-    'https://www.linkedin.com/in/hirambarsky',
+    'https://www.linkedin.com/in/hiram-barsky',
     'https://github.com/hbarsky00'
   ]
 };

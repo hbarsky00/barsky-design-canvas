@@ -21,6 +21,99 @@ Sibling log for the *other* Hiram site (barsky.design, different repo): `~/Docum
 
 ## Cycle 1 complete (2026-08-06) — all six levers done.
 
+## Out-of-band: full CTA/funnel audit (2026-08-06)
+
+Not an AEO lever — Hiram reported zero business and floated pivoting the site to
+"digital agency" framing. Pushed back (still solo; that framing would be the
+same kind of fabrication this project has been removing) and proposed auditing
+every CTA/link/form for dead conversion paths first, since the last two AEO
+cycles alone had already turned up four dead CTAs. Approved: "do it all."
+
+Swept every `<Link to>`, raw `href`, `navigate()`, `window.open()`, and
+`getElementById`/`scrollIntoView` pair in the codebase, cross-referenced
+against the real route list in `App.tsx`, and traced every flagged component
+up its import chain to confirm whether it's actually reachable from a live
+route before spending time on it.
+
+**Likely root cause of zero business, found and NOT fixable by me:** the
+`/contact` page's backend — Supabase Edge Function `send-contact-email` — is
+crashing on every single request. Confirmed by probing it directly:
+`500 WORKER_ERROR: "Function exited due to an error (please check logs)"`,
+reproduced 2x including on a bare `OPTIONS` preflight (before any form data is
+even processed) — consistent with a top-level crash, most likely
+`new Resend(Deno.env.get("RESEND_API_KEY"))` throwing because the
+`RESEND_API_KEY` secret is missing/invalid in the Supabase project. This form
+isn't only on `/contact` — `CaseStudyContactSection` embeds the same component
+on most case-study pages via `StructuredCaseStudyLayout`. **I don't have
+Supabase secrets and won't ask for them** — flagging for Hiram to check
+Supabase dashboard → Edge Functions → `send-contact-email` → Logs, and
+Project Settings → Edge Functions → Secrets. Everything else checked out
+healthy: `stripe-api-handler` (store checkout) and `process-lead` (the
+`/free-audit` form) both respond cleanly to the same probe.
+
+Real, live bugs found and fixed:
+- **`FloatingConsultationBubble`** (the homepage's floating "Book A Free
+  Consultation" button, mounted sitewide via `HomepageLayout.tsx`) required
+  BOTH `getElementById("hero")` and `getElementById("contact")` to be
+  non-null before it would ever render. Neither exists — the homepage wraps
+  the hero in `id="intro"`, not `"hero"`, and there's no homepage contact
+  section at all. The button has never been visible, on any scroll position,
+  on any visit. Repointed the visibility check to the real `id="intro"` and
+  the click handler to `navigate("/contact")` instead of a phantom scroll
+  target.
+- The wrong-GitHub-account bug fixed on the default hero theme (Cycle 2 lever
+  2) also existed independently on the Win95 easter-egg theme
+  (`Win95Hero.tsx`) — each hero theme hardcodes its own social links rather
+  than sharing one source. Fixed to `hbarsky00`.
+- **Resolved the LinkedIn slug flag from Cycle 2 lever 2.** Full sitewide
+  search found 8 live usages of the hyphenated `hiram-barsky` — including
+  `Footer.tsx` (every page) and `ContactInformation.tsx` (`/contact`) — versus
+  exactly one outlier, the unhyphenated `hirambarsky` in
+  `SEO_CONSTANTS.SOCIAL_PROFILES`. A second, independent outlier turned up in
+  the static `index.html` shell's hand-written LocalBusiness schema (the
+  original source, predating the dynamic schema, apparently never touched
+  when GitHub was corrected there in Cycle 1). Fixed both to match the
+  8-to-1 majority. Can't verify via curl either way (LinkedIn returns 999 to
+  bots regardless of slug) but this is strong enough evidence to trust over
+  a schema constant that was itself probably typed wrong originally.
+
+Found, deliberately NOT fixed — content/business calls, not mechanical bugs:
+- **`src/pages/services/{MvpValidation,AiRedesign,ConversionAudit}.tsx`** —
+  three fully-built, unrouted service pages, each full of the exact
+  fabricated-stat pattern already removed everywhere else this project
+  ("85% Faster Time to Market," "47% Average Conversion Increase," "3x Faster
+  Design Process," etc.). Left unrouted rather than wiring up fake numbers to
+  fix a 404. Would need an honest content rewrite before ever being safe to
+  route.
+- **`src/pages/LeadCapture.tsx`** (unrouted) — `LeadCaptureForm.tsx`'s
+  `handleSubmit` is entirely fake: `await new Promise(resolve =>
+  setTimeout(resolve, 1000))` then a success toast claiming "Check your email
+  in the next 10 minutes" — the data is never sent anywhere. Dead code today,
+  but a landmine if anyone ever routes this page without noticing.
+- `ProfessionalJourney.tsx`'s per-employer percentage claims — still
+  unresolved from Cycle 2 lever 2, still flagged, not touched.
+
+Confirmed dead/unreachable (traced import chains, not touched): `Hero.tsx`,
+`About.tsx`, `Contact.tsx` (the bare `components/` versions, distinct from the
+routed pages), `Win98Hero.tsx`/`Win98Window.tsx` (no `themeId` ever selects
+"win98"), `MinimalHero.tsx`, `EnhancedHero.tsx` + `EnhancedHeroBackground.tsx`
++ `HeroSocialLinks.tsx`, `AboutPreview.tsx`, `ServicesPreviewSection.tsx`,
+`QuickNavigation.tsx`, `EditableImage.tsx`, `RecentAdventuresSection.tsx`,
+`ScrollEngagement.tsx`, `ExitIntentDetector.tsx`, `ProjectDetailContent.tsx` /
+`EnhancedProjectDetail.tsx` / `ModernProjectDetail.tsx` (and their shared
+`ProjectCallToAction.tsx`, which has its own dead `/get-started` and
+`/#contact` links — inert since nothing reachable renders it),
+`ConsolidatedServicesSection.tsx` (also has a dead `/get-started` link, also
+inert), `leads/LeadCaptureForm.tsx` (a second, different fake-ish form using
+a `submit-lead` function), `ProjectContactSection.tsx`, `skip-link.tsx`.
+
+Verified: typecheck clean, build clean, 40 routes recaptured, 129 JSON-LD
+blocks, 0 invalid, GitHub link sitewide confirmed to only ever resolve to
+`hbarsky00`, LinkedIn link sitewide confirmed to only ever resolve to
+`hiram-barsky` (including the static shell), fabricated-stat sweep clean
+(the three unrouted service pages are excluded from the sweep by virtue of
+staying unrouted).
+
 ## Cycle 2 (started 2026-08-06)
 - [x] entity hardening (second pass) — 2026-08-06 — lever 1 already got a thorough pass in Cycle 1 (sameAs, knowsAbout, alumniOf, fixed dead logo/GitHub/Twitter), so this pass targeted what the Cycle-1 lever-4 schema sweep (`schema_recommended_fields.py`) had flagged and left unaddressed: Organization's `recommended.missing` was `["sameAs", "description", "address", "foundingDate"]` — `sameAs` got fixed in Cycle 1, leaving three gaps. Added `description` (reused `SEO_CONSTANTS.DEFAULT_DESCRIPTION`, the same text already used sitewide — no new copy invented) and `address` (reused the exact `PostalAddress` — Clifton, NJ, US — already declared in the static shell's LocalBusiness block in index.html, so the dynamic and static schemas now agree) to the top-level `organizationSchema` object in `structuredDataUtils.ts`. Skipped `foundingDate` — no verified date exists for when "Hiram Barsky Design" started as a branded practice (distinct from the "15+ years" career-length figure used elsewhere), and inventing one would be exactly the kind of fabrication this whole project has been removing.
 
