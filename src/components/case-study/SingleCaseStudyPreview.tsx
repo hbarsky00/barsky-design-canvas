@@ -119,10 +119,6 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
           <img 
             src={relatedStudy.images.primary} 
             alt={relatedStudy.images.alt}
-            width={1200}
-            height={675}
-            loading="lazy"
-            decoding="async"
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </div>

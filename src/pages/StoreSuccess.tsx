@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Download } from 'lucide-react';
-import BackButton from '@/components/ui/BackButton';
+import { CheckCircle, Download, ArrowLeft } from 'lucide-react';
 import { trackPageView } from '@/lib/analytics';
 
 const StoreSuccess: React.FC = () => {
@@ -82,7 +81,12 @@ const StoreSuccess: React.FC = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <BackButton to="/store" label="Back to Store" />
+                <Button asChild variant="outline">
+                  <Link to="/store" className="flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Store
+                  </Link>
+                </Button>
                 <Button asChild>
                   <Link to="/contact" className="flex items-center gap-2">
                     Need Help? Contact Us

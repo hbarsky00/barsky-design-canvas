@@ -8,8 +8,9 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     description="Enterprise search redesigned around an inconvenient truth: finding the data is only half the job. Knowing whether to trust it is the rest."
     tags={["Enterprise", "Data Discovery", "Search UX"]}
     heroImage={{
-      src: "/lovable-uploads/dae-search-hero.mp4",
-      alt: "DAE Search platform walkthrough",
+      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      alt: "DAE Search platform interface overview",
+      hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
     }}
     blocks={[
       {
@@ -19,7 +20,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "The job isn't returning results — it's returning the one result you can act on.",
         ],
         images: [
-          { src: "/lovable-uploads/dae/dashboard-search.png", alt: "DAE dashboard with recommended search terms surfacing on query" },
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
         ],
       },
       {
@@ -29,7 +30,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Data lineage lives on the result itself: where the data came from, when it last refreshed, what depends on it. One glance, not a click-through.",
         ],
         images: [
-          { src: "/lovable-uploads/dae/filter-results.png", alt: "Filterable data catalog results with therapeutic area, geography, and availability" },
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp", alt: "Information architecture analysis of existing data systems" },
         ],
       },
       {
@@ -39,8 +40,8 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Permission-aware autocomplete was built, security flagged it — the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
         ],
         images: [
-          { src: "/lovable-uploads/dae/process-flow.png", alt: "DAE Search process flow from login through related-content discovery" },
-          { src: "/lovable-uploads/dae/wireframe-sketch.png", alt: "Early hand-drawn wireframes for advanced search, entity selection, and results" },
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp", alt: "Initial concepts for enterprise search interface design" },
+          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png", alt: "Search paradigm exploration and decision framework" },
         ],
       },
       {
@@ -48,9 +49,6 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         paragraphs: [
           "Started by treating this as consumer search with an enterprise wrapper — clean ranked list, minimal chrome. Wrong audience.",
           "Enterprise users want context, signals, and density. Analysts type fragments and abbreviations, not full questions.",
-        ],
-        images: [
-          { src: "/lovable-uploads/dae/inspiration-board.png", alt: "Reference board of dense enterprise patterns informing the redesign" },
         ],
       },
       {

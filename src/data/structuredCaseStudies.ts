@@ -1,7 +1,4 @@
 import React from "react";
-import herbalinkProjectImage from "@/assets/projects/herbalink.png";
-import nudgemeProjectImage from "@/assets/projects/nudgeme.png";
-import roiDesignCalculatorImage from "@/assets/projects/roidesigncalc.png";
 import {
   Zap,
   BarChart4,
@@ -329,6 +326,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `DAE Search`,
     description: `Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.`,
     tags: [`Enterprise`, `Data Discovery`, `Search UX`],
+    heroImage: {
+      src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
+      alt: `DAE Search Platform interface overview`,
+    },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `Analysts search 'revenue,' get 40 results, then spend 20 minutes figuring out which table is the right one. Which is current. Which is the team-of-record's. Which was deprecated three quarters ago but never cleaned up. The job isn't returning results — it's returning the result you can act on.`,
@@ -337,11 +338,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `WHAT I DID`,
       title: `What I Did`,
       description: `Semantic search over metadata, not keyword match. Tables called \`arr_monthly\` show up for 'revenue.' Cut results from 40-to-narrow-down to 4-to-pick-from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.`,
+      images: [
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp`, alt: `Information architecture analysis of existing data systems` },
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp`, alt: `Initial concepts for enterprise search interface design` },
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png`, alt: `Search paradigm exploration and decision framework` },
+      ],
     },
     whatDidntWorkSection: {
       eyebrow: `HICCUP`,
       title: `Hiccup`,
       content: `Started by treating this as consumer search with enterprise wrapper — clean ranked list, minimal chrome. Wrong audience. Enterprise users want context, signals, density. Redesign added the kind of density I'd normally argue against. Also assumed natural-language queries would dominate. They didn't. Analysts type fragments and abbreviations. The 'I know what I want, find it fast' use case mattered more than the conversational one.`,
+      images: [
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg`, alt: `Learning from design iterations that didn't meet enterprise needs` },
+      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
@@ -350,7 +359,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/lovable-uploads/dae/dashboard-search.png`,
+      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
       projectName: `DAE Search`,
       results: [],
       technologies: [],
@@ -362,11 +371,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `HerbaLink`,
     description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
-    projectLink: `http://herbalink.live`,
-    heroImage: {
-      src: `/lovable-uploads/herbalink/hero-phones.png`,
-      alt: `HerbaLink mobile screens — landing, herbalist directory, and consultation booking`,
+    heroVideo: {
+      src: `https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4`,
+      poster: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
+      alt: `HerbaLink booking platform overview`,
     },
+    projectLink: `http://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Credentials as a Gate`, label: `Verified against an external registry, not a badge` },
@@ -391,14 +401,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: replaced filters with a guided triage intake.`,
         },
       ],
-      researchImages: [
-        {
-          src: `/lovable-uploads/herbalink/connecting-herbalists.png`,
-          alt: `HerbaLink concept boards — symptom tracker, landing, and wellness services`,
-        },
-      ],
+      researchImage: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`,
+      researchImageAlt: `The American Herbalists Guild directory — the external credential source HerbaLink verifies against`,
     },
-
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
       statement: `People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing for them — and the discovery experience is a misinformation field. The design job wasn't to build a bigger directory. It was to make the safe path the easy path, in a category where being wrong has real medical consequences.`,
@@ -410,10 +415,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
       images: [
-        {
-          src: `/lovable-uploads/herbalink/user-flow-sketch.png`,
-          alt: `HerbaLink initial sketches — user flow expectations from home to herbalist, symptoms, herb database, and community`,
-        },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `Flow exploration — credential gate sits before any browsing` },
       ],
     },
     keyInsights: [
@@ -441,8 +444,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `Yelp-style "Verified" badge`, description: `Scrapped in favor of a gate that controls visibility entirely.` },
       ],
       wireframeImage: {
-        src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
-        alt: `HerbaLink booking, symptom tracker, and profile flows`,
+        src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1`,
+        alt: `HerbaLink user flow from onboarding to booking`,
         caption: `Final flow — onboarding feeds a guided intake, not a search bar`,
       },
     },
@@ -450,200 +453,39 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: `APPROACH & DECISION MAKING`,
       title: `My Thought Process`,
       content: `In a category dominated by misinformation, the design job is to make the safe path the easy path. Not to add warning labels to the unsafe path. Every decision was checked against: would this protect a user from the same $200-tincture mistake? That filter killed open-ended search, killed crowdsourced practitioner listings, and inverted "verified" from a badge into a gate.`,
-      images: [
-        {
-          src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
-          alt: `Booking, symptom tracking, and profile screens designed around the credential gate`,
-        },
-      ],
     },
     userTestingSection: {
       eyebrow: `USER TESTING`,
       title: `User Testing`,
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
       images: [
-        {
-          src: `/lovable-uploads/herbalink/video-consultation.png`,
-          alt: `HerbaLink video consultation screen with live recommendations and session notes`,
-        },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
       ],
     },
     whatDidntWorkSection: {
       eyebrow: `WHAT DIDN'T WORK`,
       title: `What Didn't Work`,
       content: `The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The "Verified" badge approach was abandoned entirely in favor of the gate model.`,
+      images: [
+        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
+      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
       description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
       images: [
-        {
-          src: `/lovable-uploads/herbalink/community.png`,
-          alt: `HerbaLink community page with discussions, featured experts, and trending topics`,
-        },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/lovable-uploads/herbalink/hero-phones.png`,
+      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
       path: `/project/herbalink`,
-    },
-  },
-
-  "nudgeme": {
-    id: `nudgeme`,
-    title: `NudgeMe`,
-    description: `A reminder app that parses plain English into structured schedules. Recurring rules, multi-channel delivery, installable PWA. Built on React + Supabase.`,
-    tags: [`PWA`, `Natural Language`, `Reminder UX`, `Solo Build`],
-    heroImage: {
-      src: `/lovable-uploads/nudgeme/dashboard.png`,
-      alt: `NudgeMe dashboard — natural-language reminder input with active recurring and one-time reminders`,
-    },
-    projectLink: `https://nudgeme.rip`,
-    problemCallout: {
-      eyebrow: `THE REAL PROBLEM`,
-      statement: `Every reminder app makes you click through three screens before you can save the thing. By the time you're done, you've forgotten what you wanted to remember. The design job wasn't a prettier form — it was making one sentence the entire input, and trusting the parser enough that the preview screen is the only correction surface a user ever needs.`,
-    },
-    keyInsights: [
-      {
-        number: 1,
-        title: `Natural-language input over a form.`,
-        description: `Chose a single sentence over the calendar-app pattern of date picker + time picker + repeat dropdown because the form is where reminders die. Tradeoff: the parser has to handle real human phrasing — slang, typos, "next tues" — and a visible preview step exists specifically so a misread can be fixed in one tap instead of a re-entry.`,
-      },
-      {
-        number: 2,
-        title: `Save first, sign up after.`,
-        description: `Chose letting strangers type a reminder before creating an account over the standard auth-wall onboarding because the friction kills the demo. Tradeoff: anonymous draft storage and a quiet account merge on signup, but I get to watch real first-use behavior instead of post-signup behavior.`,
-      },
-      {
-        number: 3,
-        title: `Block private data at the input layer.`,
-        description: `Chose pattern-matching for passwords, card numbers, and SSNs at parse time over a generic privacy disclaimer because users will type sensitive things into any free-text field eventually. Tradeoff: occasional false positives on legitimate strings, mitigated with a one-tap override.`,
-      },
-    ],
-    finalProductSection: {
-      eyebrow: `WHAT I BUILT`,
-      title: `What I Built`,
-      description: `A one-input reminder flow: type the reminder the way you'd say it out loud, preview what the parser understood, edit anything that's off, then save. The same input supports one-time reminders, recurring schedules, browser notifications, email, SMS, and PWA install behavior without turning the first screen into a settings panel.`,
-      images: [
-        {
-          src: `/lovable-uploads/nudgeme/input.png`,
-          alt: `NudgeMe single-input reminder screen with example prompts and Save Reminder button`,
-        },
-      ],
-    },
-    myThoughtProcessSection: {
-      eyebrow: `AI vs. JUDGMENT`,
-      title: `AI vs. Judgment`,
-      content: `AI handled the LLM parser, the Supabase schema, the recurrence engine, the multi-channel dispatch, and the PWA install plumbing. What I wouldn't let it decide: when the parser is confident enough to skip the preview step. That's a trust call — get it wrong and silent misreads become missed reminders, which is the one failure mode the product can't survive.`,
-      images: [
-        {
-          src: `/lovable-uploads/nudgeme/hero.png`,
-          alt: `NudgeMe value props — recurring schedules, smart reminders, and multi-channel sync`,
-        },
-      ],
-    },
-    whatDidntWorkSection: {
-      eyebrow: `WHAT DIDN'T WORK`,
-      title: `What Didn't Work`,
-      content: `First version auto-saved on parse with no preview. Sounded clean; produced silent misreads users only caught when the reminder didn't fire. Added the preview step back. Also tried push notifications without a PWA install — iOS Safari kills them. The "Add to Home Screen" step became a real onboarding moment, not a footnote.`,
-      images: [
-        {
-          src: `/lovable-uploads/nudgeme/reminder-modal.png`,
-          alt: `NudgeMe reminder modal showing parsed recurring schedule with Done and snooze actions — the preview surface added after auto-save failed`,
-        },
-      ],
-    },
-    outcomeSection: {
-      eyebrow: `STATUS`,
-      title: `Outcome`,
-      description: `Live at nudgeme.rip. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
-      images: [
-        {
-          src: `/lovable-uploads/nudgeme/design-system.png`,
-          alt: `NudgeMe design system notes — modal tokens, billing badge, and sign-out confirmation spec`,
-        },
-      ],
-    },
-    sections: [],
-    seoData: {
-      image: `/lovable-uploads/nudgeme/dashboard.png`,
-      projectName: `NudgeMe`,
-      results: [],
-      technologies: [],
-      path: `/project/nudgeme`,
-    },
-  },
-
-  "roi-design-builder": {
-    id: `roi-design-builder`,
-    title: `ROI Design Calculator`,
-    description: `A calculator that translates design decisions into dollars. Built for designers talking to finance, not designers talking to designers.`,
-    tags: [`Financial Modeling`, `Enterprise Tool`, `Design Strategy`, `Shipped`],
-    heroImage: {
-      src: roiDesignCalculatorImage,
-      alt: `ROI Design Calculator interface showing business value and payback outputs`,
-    },
-    projectLink: `https://roicalc.one/`,
-    problemCallout: {
-      eyebrow: `THE REAL PROBLEM`,
-      statement: `Designers lose budget conversations because they speak in craft and stakeholders speak in money. The brief was a tool that translates. The hard part isn't the math — it's knowing which numbers stakeholders actually trust. Industry benchmarks get challenged immediately unless they're citable. That's the core design problem this tool is solving.`,
-    },
-    keyInsights: [
-      {
-        number: 1,
-        title: `The output had to sound like finance, not design.`,
-        description: `The tool translates UX changes into revenue, savings, payback period, and total business value because those are the units stakeholders already use to make funding decisions.`,
-      },
-      {
-        number: 2,
-        title: `Benchmarks needed to be defensible by vertical.`,
-        description: `Generic industry numbers get challenged fast. I chose industry-template benchmarks over blank inputs because a model only works in the room if the assumptions can be explained and cited.`,
-      },
-      {
-        number: 3,
-        title: `The report matters as much as the calculator.`,
-        description: `A designer needs to walk into the budget conversation with a board-ready model, not a screenshot of a form. The workflow ends in an argument stakeholders can read, question, and reuse.`,
-      },
-    ],
-    finalProductSection: {
-      eyebrow: `WHAT I BUILT`,
-      title: `What I Built`,
-      description: `A financial modeling tool that turns design improvements into business cases: revenue upside, operational savings, implementation cost, payback period, and ROI. The interaction is structured around assumptions because the credibility of the model depends on showing where every number came from.`,
-      images: [
-        { src: `/lovable-uploads/roi-design/01-landing.png`, alt: `ROI Design Calculator landing screen with industry templates and project information form` },
-        { src: `/lovable-uploads/roi-design/03-examples.png`, alt: `Example projects panel with pre-built scenarios like e-commerce checkout and SaaS dashboard redesigns` },
-        { src: `/lovable-uploads/roi-design/02-mobile-input.png`, alt: `Mobile input view with Input Data and Results tabs for entering baseline metrics on the go` },
-      ],
-    },
-    whatDidntWorkSection: {
-      eyebrow: `WHAT I HAVEN'T SOLVED`,
-      title: `What I Haven't Solved`,
-      content: `The benchmark data problem is real. Generic stats get dismissed. The tool only works if the numbers are defensible. That tension is partially solved — not fully.`,
-      images: [
-        { src: `/lovable-uploads/roi-design/04-mobile-results.png`, alt: `Empty results state explaining how baseline metrics generate a board-ready ROI report` },
-      ],
-    },
-    outcomeSection: {
-      eyebrow: `OUTCOME`,
-      title: `Outcome`,
-      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back.`,
-      images: [
-        { src: `/lovable-uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard showing 4.2K% ROI, $2.4M business value, and conversion, task completion, accessibility, and error reduction lifts` },
-        { src: `/lovable-uploads/roi-design/06-roi-detail.png`, alt: `Detailed ROI breakdown with revenue, savings, and payback period highlighted for stakeholder review` },
-      ],
-    },
-    sections: [],
-    seoData: {
-      image: roiDesignCalculatorImage,
-      projectName: `ROI Design Calculator`,
-      results: [],
-      technologies: [],
-      path: `/project/roi-design-builder`,
     },
   },
 

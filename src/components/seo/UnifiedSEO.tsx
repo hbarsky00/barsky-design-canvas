@@ -10,7 +10,6 @@ import { SEO_CONSTANTS } from "@/utils/seoConstants";
 import { buildSEO, SEOInput, BuiltSEO } from "@/utils/seo/seoBuilder";
 import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
-import { products } from "@/data/productsData";
 
 const devLog = (...args: any[]) => {
   if (import.meta.env.DEV) console.warn(...args);
@@ -77,12 +76,9 @@ const UnifiedSEO: React.FC = () => {
         };
       }
     }
-    // Handle project promo pages and case-study detail pages
-    else if (pathname.startsWith('/project/') || pathname.startsWith('/case-studies/')) {
-      const isCaseStudyRoute = pathname.startsWith('/case-studies/');
-      const projectId = pathname
-        .replace(isCaseStudyRoute ? '/case-studies/' : '/project/', '')
-        .replace('/', '');
+    // Handle project pages
+    else if (pathname.startsWith('/project/')) {
+      const projectId = pathname.replace('/project/', '').replace('/', '');
       const caseStudyData = getStructuredCaseStudy(projectId);
       const projectSeoOverride = getProjectSEO(projectId);
       
@@ -107,44 +103,8 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'project',
-          title: `${isCaseStudyRoute ? 'Case Study' : 'Project'}: ${projectId} — Hiram Barsky`,
+          title: `Project: ${projectId} — Hiram Barsky`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION
-        };
-      }
-    }
-    // Handle store product pages — unique title/description per product
-    else if (pathname.startsWith('/store/product/')) {
-      const productId = pathname.replace('/store/product/', '').replace('/', '');
-      const product = products.find(p => p.id === productId);
-
-      if (product) {
-        // Title: "{name} | Barsky Design Store" — clip to 60 chars
-        const brand = ' | Barsky Design Store';
-        const maxName = 60 - brand.length;
-        const safeName = product.name.length > maxName
-          ? `${product.name.slice(0, maxName - 1).trimEnd()}…`
-          : product.name;
-        const title = `${safeName}${brand}`;
-
-        // Description: clip to 160 chars
-        const rawDesc = product.description || SEO_CONSTANTS.DEFAULT_DESCRIPTION;
-        const description = rawDesc.length > 160
-          ? `${rawDesc.slice(0, 157).trimEnd()}…`
-          : rawDesc;
-
-        seoInput = {
-          path: pathname,
-          kind: 'page',
-          title,
-          description,
-          image: product.image,
-        };
-      } else {
-        seoInput = {
-          path: pathname,
-          kind: 'page',
-          title: `Store Product | ${SEO_CONSTANTS.SITE_NAME}`,
-          description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
         };
       }
     }

@@ -88,9 +88,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
               size="icon"
               className="absolute left-4 top-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 z-10"
               onClick={prevImage}
-              aria-label="Previous image"
             >
-              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+              <ChevronLeft className="h-4 w-4" />
             </Button>
 
             <Button
@@ -98,9 +97,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
               size="icon"
               className="absolute right-4 top-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 z-10"
               onClick={nextImage}
-              aria-label="Next image"
             >
-              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+              <ChevronRight className="h-4 w-4" />
             </Button>
           </>
         )}

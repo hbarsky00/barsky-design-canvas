@@ -40,9 +40,9 @@ export const getServiceUrlFromTag = (tag: string): string => {
       normalizedTag.includes('platform') ||
       normalizedTag.includes('software') ||
       normalizedTag.includes('enterprise')) {
-    return '/design-services/ux-ui-design';
+    return '/services';
   }
-
-  // Industry-specific tags - link to design services page
-  return '/design-services/ux-ui-design';
+  
+  // Industry-specific tags - link to main services page
+  return '/services';
 };

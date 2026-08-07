@@ -1,39 +1,30 @@
-No — the sitemap is not fully correct right now.
 
-What I found:
-- The canonical domain in the sitemap is correct for this project: `https://barskydesign.pro`. The SEO scanner’s advice to use the Lovable staging domain is stale/wrong for your custom domain.
-- `public/sitemap.xml` still includes a stale URL: `/services`, but `src/App.tsx` has no `/services` route.
-- The sitemap generator is reading the wrong blog-data filename, so it falls back to an old hardcoded blog list. Your current blog posts in `src/data/blogData.ts` are not what the sitemap is publishing.
-- `/store/success` is in the sitemap, but that is a post-purchase thank-you page and should not be indexed.
-- Product detail pages exist at `/store/product/:productId`, but product entries are not in the sitemap.
-- `robots.txt` blocks delisted project pages for `*` and Googlebot, but separate bot blocks like Bingbot/AI/social crawlers can accidentally bypass those disallow rules because they have their own `Allow: /` groups.
-- The older client-side sitemap utilities are out of sync with the prebuild sitemap generator, which is part of the recurring confusion.
 
-Plan to fix:
-1. Update `scripts/generate-sitemap.ts` as the single sitemap source of truth.
-   - Keep `BASE_URL = "https://barskydesign.pro"`.
-   - Remove `/services` and `/store/success`.
-   - Add `/design-services` only if the app actually has that route; otherwise leave it out.
-   - Read blog slugs from `src/data/blogData.ts`.
-   - Add product pages from `src/data/productsData.ts`.
-   - Keep only indexable featured project pages in the sitemap.
+## Plan: Remove Floating Elements, Fix Hero Spacing & Section Gaps
 
-2. Regenerate `public/sitemap.xml` from that corrected source.
-   - The checked-in sitemap will match the generator exactly.
-   - Blog URLs will match the current live blog data.
-   - Product URLs will be discoverable.
+### What's wrong
+1. **Build error**: `BuyMeCoffeeButton` is imported in `App.tsx` (line 9) but never used — TypeScript strict mode fails on unused imports
+2. **Buy Me a Coffee** button in `FloatingButtonGroup` overlaps mobile CTA
+3. **Hotjar script** in `index.html` injects a floating widget
+4. **Large gap** between hero and case studies sections
+5. **Hero spacing** is too loose on mobile
 
-3. Clean up `public/robots.txt` so crawler rules match the sitemap.
-   - Keep `Sitemap: https://barskydesign.pro/sitemap.xml`.
-   - Prevent delisted project pages from being crawled consistently.
-   - Avoid separate bot groups unintentionally overriding the disallow list.
+### Changes
 
-4. Reduce future disconnects.
-   - Leave the prebuild generator as the only authoritative sitemap mechanism.
-   - Stop relying on the stale client-side sitemap submission/generation utilities for correctness.
-   - If needed, update comments so future edits point to `scripts/generate-sitemap.ts` only.
+**1. Fix build error + remove Buy Me a Coffee**
+- `src/App.tsx`: Remove the unused `BuyMeCoffeeButton` import (line 9)
+- `src/components/shared/BuyMeCoffeeButton.tsx`: Delete this file entirely
+- `src/components/shared/FloatingButtonGroup.tsx`: Remove the Buy Me a Coffee button, keep only the Scroll to Top button
 
-5. After implementation, mark the stale SEO findings fixed with a clear explanation.
-   - Domain mismatch findings should stay fixed because `barskydesign.pro` is the correct canonical domain.
-   - Sitemap/robots findings should be marked fixed after the files are corrected.
-   - Then you can run a fresh SEO scan to verify.
+**2. Remove Hotjar**
+- `index.html`: Remove the Hotjar tracking script block (lines 67-77)
+
+**3. Tighten hero-to-sections gap**
+- `src/components/homepage/HomepageLayout.tsx`: Reduce `space-y-2 md:space-y-6` on `<main>` to `space-y-0 md:space-y-2`, and reduce padding on the case studies `SectionTransition`
+
+**4. Tighten hero mobile spacing**
+- `src/components/hero/MinimalHero.tsx`: Reduce `pb-16 sm:pb-20` to `pb-6 sm:pb-10`, tighten `gap-4 sm:gap-5` to `gap-3 sm:gap-4`, reduce Continue button bottom spacing
+
+### No changes to
+- SEO system, navigation, design system tokens, colors, fonts, or content
+

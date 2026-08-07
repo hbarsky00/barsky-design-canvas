@@ -33,12 +33,6 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
     image: 'https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg'
   },
-  '/case-studies': {
-    kind: 'page',
-    title: 'Case Studies — UX Decisions, Tradeoffs & Outcomes | Barsky',
-    description: 'Selected case studies across health, financial, and enterprise — what I decided, what I cut, what shipped. Honest writeups, not portfolio fluff.',
-    image: 'https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg'
-  },
   '/about': {
     kind: 'page',
     title: 'About Hiram Barsky — 15+ Years in Design',
@@ -137,21 +131,6 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     title: "ManuscriptRx — Pharma Email AI Case Study",
     description: "AI handles the work between humans across a 6-step regulated email workflow.",
     image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png"
-  },
-  "valora-bet": {
-    title: "Valora Bet — Social Prediction Markets Case Study",
-    description: "Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.",
-    image: "https://barskydesign.pro/images/valorabet-hero.png"
-  },
-  "nudgeme": {
-    title: "NudgeMe — Natural Language Reminder App Case Study",
-    description: "Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.",
-    image: "https://barskydesign.pro/images/nudgeme-hero.png"
-  },
-  "qr-code-builder": {
-    title: "QR Code Builder — Branded QR Generator Case Study",
-    description: "Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.",
-    image: "https://barskydesign.pro/images/qr-code-builder-hero.png"
   }
 };
 
