@@ -83,11 +83,16 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
+      // Was hosted on barskyux.com (the old WordPress site) — that domain no
+      // longer resolves at all (DNS failure, not a 404), so both this image
+      // and the video below were broken. Swapped to a real local asset
+      // already in this repo; no local HerbaLink video exists, so the video
+      // field is dropped and this card now renders the static image
+      // (same fallback path "Email Creation AI" already uses).
+      primary: "/images/herbalink-promo.png",
       alt: "HerbaLink practitioner booking interface"
     },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
+    layout: "side-by-side"
   },
   {
     id: "email-creation-ai",
@@ -111,7 +116,13 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/dae-search",
     images: {
-      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      // Was hosted on a Supabase project that's since been deprovisioned —
+      // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
+      // failure). The video itself is local and was already working; only
+      // its poster frame was broken. Extracted a real frame directly from
+      // the local video (3.5s in, where the actual product UI is visible)
+      // rather than substitute an unrelated image.
+      primary: "/images/dae-search-poster.jpg",
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",
