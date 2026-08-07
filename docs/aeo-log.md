@@ -180,3 +180,9 @@ business-management in Cycle 1.
 Verified: typecheck clean, build clean, 38 routes (down from 40) recaptured,
 123 JSON-LD blocks, 0 invalid, zero "catchbuddy" mentions anywhere in the
 built output outside its own two page files, sitemap.xml no longer lists it.
+
+- [x] citable resource content (second pass) — 2026-08-07 — Cycle 1 tightened "ChatGPT vs Claude vs Gemini for UX Workflows"; this pass picked the next weakest post for extraction: "Learning AI Design with Claude: A Designer's Starter Kit" had a strong opinionated opener but no scannable structure at all — four H2 sections with prose underneath, nothing an answer engine could lift as a direct answer to "how do I start using Claude as a designer." Added an answer-first lead sentence and a 4-item "The starter path, in order" `<ol>` right after the intro, summarizing (not just repeating) the four sections below it in imperative, numbered form — same pattern that worked for the model-comparison table in Cycle 1. Content itself was already honest (no invented stats), so nothing to strip.
+
+  Bonus: the built output shows `InternalLinkEnhancer`'s auto-linker correctly cross-linked "three-line prompt" in the new list to the "Prompt Engineering for Designers" post — working as intended, not something I added by hand.
+
+  Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, the new `<ol class="list-decimal">` confirmed present with all 4 items intact in the built HTML (one item's plain text is legitimately split by the auto-inserted internal link — checked the raw HTML directly rather than trusting a naive grep), fabricated-stat sweep clean.

@@ -47,10 +47,18 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI Design", "Claude", "Learning", "Workflow"],
     slug: "learning-ai-design-with-claude",
     content: wrap(
-      "Claude is not a magic button — it is a junior collaborator that never gets tired. The designers getting real leverage from it treat it like a teammate with a clear brief, not a search engine you yell at.",
+      "Short answer: pick one boring task, give Claude a role/goal/constraint instead of a vague ask, move that workflow into a Project once it's part of your week, then repeat with the next task. Claude is not a magic button — it is a junior collaborator that never gets tired. The designers getting real leverage from it treat it like a teammate with a clear brief, not a search engine you yell at.",
       claudeStarterInline,
       "Designer chatting with Claude AI on a laptop",
       `
+      <h2 class="text-2xl font-bold mt-8 mb-4">The starter path, in order</h2>
+      <ol class="list-decimal pl-6 mb-4">
+        <li><strong>Pick one narrow, boring task</strong> — a competitive teardown, an IA audit, empty-state copy — not "help me design."</li>
+        <li><strong>Write a three-line prompt</strong>: role, goal, constraint. No vague asks.</li>
+        <li><strong>Move it into a Claude Project</strong> once you're running it weekly, so your design system and past decisions persist instead of being re-explained every chat.</li>
+        <li><strong>Add the next task</strong> only once the first one feels boring-easy. Compound, don't sprint.</li>
+      </ol>
+
       <h2 class="text-2xl font-bold mt-8 mb-4">Start with one workflow, not the whole toolkit</h2>
       <p>Pick the most boring part of your week — competitive teardown, IA audits, writing empty states — and move only that into Claude. You learn the model's edges faster on a narrow loop than by experimenting everywhere at once.</p>
 
