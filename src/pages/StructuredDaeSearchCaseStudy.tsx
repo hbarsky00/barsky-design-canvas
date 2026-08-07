@@ -8,7 +8,11 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     description="Enterprise search redesigned around an inconvenient truth: finding the data is only half the job. Knowing whether to trust it is the rest."
     tags={["Enterprise", "Data Discovery", "Search UX"]}
     heroImage={{
-      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
+      // Was hosted on a Supabase project that's since been deprovisioned —
+      // that domain no longer resolves at all. Hiram supplied the original
+      // source files directly; restored locally rather than re-hosted
+      // externally.
+      src: "/images/dae-search/hero.jpg",
       alt: "DAE Search platform interface overview",
       hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
     }}
@@ -20,7 +24,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "The job isn't returning results — it's returning the one result you can act on.",
         ],
         images: [
-          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
+          { src: "/images/dae-search/the-problem.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
         ],
       },
       {
@@ -30,7 +34,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Data lineage lives on the result itself: where the data came from, when it last refreshed, what depends on it. One glance, not a click-through.",
         ],
         images: [
-          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp", alt: "Information architecture analysis of existing data systems" },
+          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems" },
         ],
       },
       {
@@ -40,8 +44,8 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Permission-aware autocomplete was built, security flagged it — the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
         ],
         images: [
-          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp", alt: "Initial concepts for enterprise search interface design" },
-          { src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png", alt: "Search paradigm exploration and decision framework" },
+          { src: "/images/dae-search/decisions-1.webp", alt: "Initial concepts for enterprise search interface design" },
+          { src: "/images/dae-search/decisions-2.png", alt: "Search paradigm exploration and decision framework" },
         ],
       },
       {

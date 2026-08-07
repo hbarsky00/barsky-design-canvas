@@ -118,11 +118,9 @@ const caseStudies: CaseStudy[] = [
     images: {
       // Was hosted on a Supabase project that's since been deprovisioned —
       // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
-      // failure). The video itself is local and was already working; only
-      // its poster frame was broken. Extracted a real frame directly from
-      // the local video (3.5s in, where the actual product UI is visible)
-      // rather than substitute an unrelated image.
-      primary: "/images/dae-search-poster.jpg",
+      // failure). Hiram supplied the original source file directly;
+      // restored locally (same asset used as the full case study's hero).
+      primary: "/images/dae-search/hero.jpg",
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",
