@@ -73,6 +73,16 @@ export const generateStructuredData = (seoData: SEOData) => {
     founder: {
       "@type": "Person",
       name: "Hiram Barsky",
+      // The Person entity had no url/image/sameAs of its own — only the
+      // parent Organization declared these. An engine trying to disambiguate
+      // "Hiram Barsky" as a person (not just the brand) had nothing to go
+      // on. All three reuse facts already verified elsewhere in this file
+      // (same headshot as Organization.logo, same sameAs list, /about is
+      // the page that's actually about him specifically). AEO lever 1,
+      // Cycle 3, 2026-08-07.
+      url: "https://barskydesign.pro/about",
+      image: "https://barskydesign.pro/images/hiram-barsky-profile.png",
+      sameAs: SEO_CONSTANTS.SOCIAL_PROFILES,
       jobTitle: "UX/UI Designer & AI Developer",
       description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS",
       // Pulled verbatim from the skills actually listed on /about

@@ -199,3 +199,8 @@ built output outside its own two page files, sitemap.xml no longer lists it.
   Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, both edited posts' dateModified present with the correct real dates in the built output, both posts' real headline/og:image/meta description confirmed intact (not clobbered), a third, untouched post confirmed to correctly have no dateModified at all.
 
 ## Cycle 2 complete (2026-08-07) — all six levers done.
+
+## Cycle 3 (started 2026-08-07)
+- [x] entity hardening (third pass) — 2026-08-07 — Cycles 1-2 hardened the Organization schema and the Person sub-object's knowsAbout/alumniOf, but the founder Person itself had no `url`, `image`, or `sameAs` of its own — only the parent Organization declared those, so an engine trying to disambiguate "Hiram Barsky, the person" rather than "Hiram Barsky Design, the brand" had nothing to go on. Added all three, reusing facts already verified elsewhere in the same file: `url` -> `/about` (the page that's actually about him, not the org), `image` -> the same headshot already used for `Organization.logo`, `sameAs` -> the same `SEO_CONSTANTS.SOCIAL_PROFILES` list (LinkedIn + GitHub, both corrected to their real slugs earlier this project). No new facts invented, just the existing ones properly attached to the right entity.
+
+  Verified: build clean (system was under heavy unrelated load mid-check — a typecheck and a build both briefly exceeded the 120s foreground timeout with zero actual errors, confirmed by re-running once load cleared), 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, all 38 pages' `Organization.founder` confirmed to carry `url`+`image`+`sameAs` in the built output.
