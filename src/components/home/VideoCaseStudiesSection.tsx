@@ -28,22 +28,10 @@ interface CaseStudy {
   video?: string;
 }
 
+// "fire-lion" pulled 2026-08-07 — Hiram: "were going to work on that
+// later." Route/page/content untouched, just off every featured
+// surface until it's revisited.
 const caseStudies: CaseStudy[] = [
-  {
-    id: "fire-lion",
-    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    impact: "",
-    url: "/project/fire-lion",
-    liveUrl: "https://firelion.me",
-    images: {
-      primary: "/images/firelion-hero-title.png",
-      alt: "Fire Lion gameplay"
-    },
-    layout: "side-by-side",
-    video: "/lovable-uploads/fire-lion-hero.mp4"
-  },
   {
     id: "ring-rival",
     tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],

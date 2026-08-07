@@ -18,16 +18,8 @@ interface RelatedProjectsProps {
   maxItems?: number;
 }
 
+// "fire-lion" pulled 2026-08-07 — see note in VideoCaseStudiesSection.tsx.
 const allCaseStudies: CaseStudy[] = [
-  {
-    id: "fire-lion",
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    image: "/images/firelion-hero-title.png",
-    url: "/project/fire-lion",
-    category: "Game Design",
-    tags: ["AI-Assisted Product", "Game Design", "Solo Build"]
-  },
   {
     id: "ring-rival",
     title: "Ring-Rival",
