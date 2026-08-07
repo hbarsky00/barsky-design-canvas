@@ -62,12 +62,7 @@ const Win95Hero: React.FC = () => {
     } else if (id === "contact") {
       setShowCompose(true);
     } else if (id === "github") {
-      // Was "hbarsky" (no 00) — a different, real GitHub account, not this
-      // one. Same bug as HeroContent.tsx's default theme, found separately
-      // here since each hero theme hardcodes its own social links. Corrected
-      // to match the repo's own remote (hbarsky00). Found in the full CTA
-      // audit, 2026-08-06.
-      window.open("https://github.com/hbarsky00", "_blank", "noopener,noreferrer");
+      window.open("https://github.com/hbarsky", "_blank", "noopener,noreferrer");
     }
   };
 

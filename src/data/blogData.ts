@@ -47,18 +47,10 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI Design", "Claude", "Learning", "Workflow"],
     slug: "learning-ai-design-with-claude",
     content: wrap(
-      "Short answer: pick one boring task, give Claude a role/goal/constraint instead of a vague ask, move that workflow into a Project once it's part of your week, then repeat with the next task. Claude is not a magic button — it is a junior collaborator that never gets tired. The designers getting real leverage from it treat it like a teammate with a clear brief, not a search engine you yell at.",
+      "Claude is not a magic button — it is a junior collaborator that never gets tired. The designers getting real leverage from it treat it like a teammate with a clear brief, not a search engine you yell at.",
       claudeStarterInline,
       "Designer chatting with Claude AI on a laptop",
       `
-      <h2 class="text-2xl font-bold mt-8 mb-4">The starter path, in order</h2>
-      <ol class="list-decimal pl-6 mb-4">
-        <li><strong>Pick one narrow, boring task</strong> — a competitive teardown, an IA audit, empty-state copy — not "help me design."</li>
-        <li><strong>Write a three-line prompt</strong>: role, goal, constraint. No vague asks.</li>
-        <li><strong>Move it into a Claude Project</strong> once you're running it weekly, so your design system and past decisions persist instead of being re-explained every chat.</li>
-        <li><strong>Add the next task</strong> only once the first one feels boring-easy. Compound, don't sprint.</li>
-      </ol>
-
       <h2 class="text-2xl font-bold mt-8 mb-4">Start with one workflow, not the whole toolkit</h2>
       <p>Pick the most boring part of your week — competitive teardown, IA audits, writing empty states — and move only that into Claude. You learn the model's edges faster on a narrow loop than by experimenting everywhere at once.</p>
 
@@ -141,37 +133,10 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI Tools", "Comparison", "Workflow"],
     slug: "chatgpt-vs-claude-vs-gemini-for-ux",
     content: wrap(
-      "Short answer: there is no single best AI model for UX work — Claude wins at structured synthesis and IA, ChatGPT wins at fast generalist ideation, and Gemini wins at reasoning over screenshots. After a week of running the same prompts through all three, my workflow now uses each one on purpose instead of picking one and forcing every task through it.",
+      "There is no single best model — only the best model for the task at hand. After a week of running the same prompts through ChatGPT, Claude, and Gemini, my workflow now uses all three on purpose.",
       modelCompareInline,
       "Three laptops side by side running ChatGPT, Claude, and Gemini",
       `
-      <table class="w-full my-8 border-collapse text-left">
-        <thead>
-          <tr class="border-b-2 border-gray-300">
-            <th class="py-3 pr-4 text-sm font-semibold uppercase tracking-wide text-gray-500">Model</th>
-            <th class="py-3 pr-4 text-sm font-semibold uppercase tracking-wide text-gray-500">Best for</th>
-            <th class="py-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Where it pulls ahead</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-gray-200">
-            <td class="py-3 pr-4 font-semibold">Claude</td>
-            <td class="py-3 pr-4">Long-form synthesis, IA, brand-voice writing</td>
-            <td class="py-3">Refuses confidently when it doesn't know something — a feature, not a bug, once you're relying on the answer</td>
-          </tr>
-          <tr class="border-b border-gray-200">
-            <td class="py-3 pr-4 font-semibold">ChatGPT</td>
-            <td class="py-3 pr-4">Code-adjacent design tasks, image generation, fast ideation</td>
-            <td class="py-3">The default when you have no opinion yet on which tool to use — fastest at "give me 20 variants"</td>
-          </tr>
-          <tr>
-            <td class="py-3 pr-4 font-semibold">Gemini</td>
-            <td class="py-3 pr-4">Reasoning over screenshots and visual QA</td>
-            <td class="py-3">Screenshot a Figma file and ask what's wrong with it — image reasoning is where it quietly pulls ahead</td>
-          </tr>
-        </tbody>
-      </table>
-
       <h2 class="text-2xl font-bold mt-8 mb-4">Claude — the structured thinker</h2>
       <p>Best for long-form synthesis, IA, and writing in a tight brand voice. Refuses confidently when it doesn't know something, which I now treat as a feature.</p>
 

@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Linkedin, Github, Calendar, ArrowRight } from "lucide-react";
 
-// "catchbuddy" pulled 2026-08-07 — case study being refined, see
-// scripts/seo-routes.ts's note on FEATURED_PROJECTS.
 const SHIPPED = [
+  { label: "CatchBuddy", desc: "Same-day pickup sports", to: "/project/catchbuddy" },
   { label: "HerbaLink", desc: "Verified herbalist platform", to: "/project/herbalink" },
   { label: "NudgeMe", desc: "Natural-language reminder app", to: "/project/nudgeme" },
   { label: "Valora Bet", desc: "Social prediction markets platform", to: "/project/valora-bet" },
@@ -51,14 +50,7 @@ const HeroContent: React.FC = () => {
         {[
           { Icon: Mail, href: "mailto:hbarsky01@gmail.com", label: "Email" },
           { Icon: Linkedin, href: "https://www.linkedin.com/in/hiram-barsky", label: "LinkedIn" },
-          // Was "hbarsky" (no 00) — a real, live, but DIFFERENT GitHub
-          // account, not this one. Confirmed via `git remote -v`: this repo's
-          // own origin is hbarsky00/barsky-design-canvas, and github.com/hbarsky
-          // vs github.com/hbarsky00 return different profile titles — the
-          // homepage hero's GitHub icon was silently sending visitors to a
-          // stranger's profile. Corrected to match the schema's sameAs
-          // (already fixed to hbarsky00 in Cycle 1) and the git remote.
-          { Icon: Github, href: "https://github.com/hbarsky00", label: "GitHub" },
+          { Icon: Github, href: "https://github.com/hbarsky", label: "GitHub" },
           { Icon: Calendar, href: "https://calendly.com/barskyuxdesignservices/30min", label: "Book" },
         ].map(({ Icon, href, label }) => (
           <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="social-link">

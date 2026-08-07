@@ -464,7 +464,7 @@ const ContentExport: React.FC = () => {
   
   return (
     <>
-      <Helmet defer={false}>
+      <Helmet>
         <title>Content Export - Admin</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>

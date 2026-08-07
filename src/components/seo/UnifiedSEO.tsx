@@ -1,7 +1,8 @@
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
+import { getSeoBySlug, type SeoMetaRecord } from "@/lib/supabase/seoQueries";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import { blogPosts } from "@/data/blogData";
@@ -17,13 +18,33 @@ const devLog = (...args: any[]) => {
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
+  const [dbSeo, setDbSeo] = useState<SeoMetaRecord | null>(null);
 
+  // Fetch Supabase SEO data on pathname change
+  useEffect(() => {
+    let slug = location.pathname === '/' ? 'home' : location.pathname.replace(/^\//, '').replace(/\/$/, '');
+    
+    // Extract slug from routes
+    if (location.pathname.startsWith('/project/')) {
+      slug = location.pathname.split('/project/')[1];
+    } else if (location.pathname.startsWith('/blog/')) {
+      slug = location.pathname.split('/blog/')[1];
+    }
+    
+    getSeoBySlug(slug).then(data => {
+      if (data) {
+        console.log('✅ Loaded Supabase SEO for client-side hydration:', slug);
+        setDbSeo(data);
+      }
+    });
+  }, [location.pathname]);
+  
   // Generate SEO data using unified builder
   const seoData = useMemo((): BuiltSEO => {
     const rawPathname = location?.pathname || '/';
     const pathname = resolveUrlAliases(rawPathname);
     
-    devLog('🔒 SEO UNIFIED BUILDER pathname=' + pathname + ' raw=' + rawPathname);
+    devLog('🔒 SEO UNIFIED BUILDER:', { pathname });
     
     // Build SEO input based on path type
     let seoInput: SEOInput;
@@ -38,7 +59,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `${blogPost.title}${SEO_CONSTANTS.TITLE_SUFFIX}`,
+          title: `${blogPost.title} — ${SEO_CONSTANTS.SITE_NAME}`,
           description: blogPost.excerpt,
           image: blogPost.coverImage,
           published: new Date(blogPost.date).toISOString(),
@@ -51,7 +72,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `Blog Post: ${slug}${SEO_CONSTANTS.TITLE_SUFFIX}`,
+          title: `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION
         };
       }
@@ -64,28 +85,21 @@ const UnifiedSEO: React.FC = () => {
         .replace('/', '');
       const caseStudyData = getStructuredCaseStudy(projectId);
       const projectSeoOverride = getProjectSEO(projectId);
-
-      // /project/* promo pages and /case-studies/* pages share SEO data; vary
-      // the title so the two routes don't emit duplicate titles to crawlers.
-      const routeTitle = (title: string) =>
-        isCaseStudyRoute ? title : title.replace(/Case Study/i, 'Product Overview');
-      const routeDescription = (desc: string) =>
-        isCaseStudyRoute ? desc : `Product tour: ${desc}`;
-
+      
       if (caseStudyData && projectSeoOverride) {
         seoInput = {
           path: pathname,
           kind: 'project',
-          title: routeTitle(projectSeoOverride.title!),
-          description: routeDescription(projectSeoOverride.description!),
+          title: projectSeoOverride.title!,
+          description: projectSeoOverride.description!,
           image: projectSeoOverride.image!
         };
       } else if (caseStudyData) {
         seoInput = {
           path: pathname,
           kind: 'project',
-          title: routeTitle(caseStudyData.title),
-          description: routeDescription(caseStudyData.description),
+          title: caseStudyData.title,
+          description: caseStudyData.description,
           image: caseStudyData.seoData?.image
         };
       } else {
@@ -129,7 +143,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'page',
-          title: `Store Product${SEO_CONSTANTS.TITLE_SUFFIX}`,
+          title: `Store Product | ${SEO_CONSTANTS.SITE_NAME}`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
         };
       }
@@ -154,26 +168,31 @@ const UnifiedSEO: React.FC = () => {
     }
     
     // Build final SEO data using unified builder
-    return buildSEO(seoInput);
-  }, [location?.pathname]);
+    const baseSeo = buildSEO(seoInput);
+    
+    // Merge with Supabase data if available
+    if (dbSeo) {
+      return {
+        ...baseSeo,
+        title: dbSeo.title,
+        description: dbSeo.description,
+        canonical: dbSeo.canonical_url || baseSeo.canonical,
+        image: dbSeo.og_image || baseSeo.image
+      };
+    }
+    
+    return baseSeo;
+  }, [location?.pathname, dbSeo]);
 
   const structuredData = generateStructuredData(seoData);
 
   return (
-    // defer={false} commits head changes synchronously. The default defers to
-    // requestAnimationFrame, which never fires in hidden/background tabs and
-    // can be missed by search-engine render snapshots — leaving every page
-    // with the static homepage <head>.
-    <Helmet defer={false}>
+    <Helmet>
       {/* Primary SEO Meta Tags */}
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      {/* English-only site, no regional variants — self-reference + x-default
-          is enough to satisfy hreflang hygiene without a mesh to maintain. */}
-      <link rel="alternate" hrefLang="en" href={seoData.canonical} />
-      <link rel="alternate" hrefLang="x-default" href={seoData.canonical} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="robots" content="index, follow" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />

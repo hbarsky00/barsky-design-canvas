@@ -277,11 +277,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "crypto": {
     id: `crypto`,
     title: `Trading Without Friction`,
-    description: `A self-initiated trading concept designed for two audiences the industry insists you have to choose between.`,
-    tags: [`Fintech`, `Crypto`, `Product Design`, `Self-Initiated Concept`],
-    heroImage: {
-      src: `/uploads/archive/dashboardmobileanddesktopcrypto.jpg`,
-      alt: `Crypto trading concept — dashboard on mobile and desktop`,
+    description: `A crypto trading interface designed for two audiences the industry insists you have to choose between.`,
+    tags: [`Fintech`, `Crypto`, `Product Design`, `Dual-Mode UX`],
+    heroVideo: {
+      src: `/lovable-uploads/crypto-hero.mp4`,
+      poster: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg`,
+      alt: `Crypto trading platform overview`,
     },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
@@ -292,26 +293,26 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Two modes, one platform, shared core. Beginner mode strips the chart, uses plain English, surfaces explanations next to anything that costs money. Pro mode shows the full order book and zero hand-holding. Mode is a setting, not a separate product — beginners can see Pro exists, pros can flip to Beginner to help a friend without switching accounts. Plain language as a design constraint, not a copy pass: if we couldn't explain something in one sentence, we either explained it inline or cut it from beginner mode. Total cost — including spread — sits next to the action button. Every time. Most-fought decision, one I'd defend hardest.`,
       images: [
-        { src: `/uploads/archive/competetive-2.png`, alt: `Competitor analysis exposing beginner exploitation` },
-        { src: `/uploads/archive/cryptotrade_site_map_flowchart_better.png`, alt: `User Flow Chart for Crypto App` },
-        { src: `/uploads/archive/Initial-Flow-of-screens.png`, alt: `Initial concepts challenging crypto app conventions` },
-        { src: `/uploads/archive/designthinkingupdate.png`, alt: `Design thinking process for crypto platform` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png`, alt: `Competitor analysis exposing beginner exploitation` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png`, alt: `User Flow Chart for Crypto App` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png`, alt: `Initial concepts challenging crypto app conventions` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png`, alt: `Design thinking process for crypto platform` },
       ],
     },
     whatDidntWorkSection: {
       eyebrow: `HICCUP`,
       title: `Hiccup`,
-      content: `First version of beginner mode was too protected. Confirmations everywhere, tooltips on every term, an onboarding tour that wouldn't quit. Testers felt patronized, not safe. Fix: explain on hover, confirm only above a threshold, get out of the way otherwise. Pro mode had the opposite problem — I'd cut so much that some pros couldn't find features they relied on. Density is a feature for that audience, not a bug.`,
+      content: `First version of beginner mode was too protected. Confirmations everywhere, tooltips on every term, an onboarding tour that wouldn't quit. People felt patronized, not safe. Fix: explain on hover, confirm only above a threshold, get out of the way otherwise. Pro mode had the opposite problem — I'd cut so much that some pros couldn't find features they relied on. Density is a feature for that audience, not a bug.`,
       images: [
-        { src: `/uploads/archive/Learning.jpg`, alt: `Failed prototype iterations and stakeholder feedback sessions` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg`, alt: `Failed prototype iterations and stakeholder feedback sessions` },
       ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `A concept validated in walkthroughs, not in production: pros and beginners sharing one platform without either feeling like a guest. What I didn't solve — intermediate traders fit awkwardly in both modes; a real v2 needs a third mode or per-module customization.`,
+      description: `Pros and beginners using the same platform without either feeling like it was built for the other one. That was the goal. — What I Didn't Solve: Intermediate traders fit awkwardly in either mode. A v2 would probably need a third mode or more granular customization.`,
       images: [
-        { src: `/uploads/archive/Onboarding-Section.png`, alt: `Finished crypto platform breaking industry conventions` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png`, alt: `Finished crypto platform breaking industry conventions` },
       ],
     },
     sections: [],
@@ -335,7 +336,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     finalProductSection: {
       eyebrow: `WHAT I DID`,
       title: `What I Did`,
-      description: `Semantic search over metadata, not keyword match. Tables called \`arr_monthly\` show up for 'revenue.' In the typical test query, 40 results to sift became 4 to pick from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.`,
+      description: `Semantic search over metadata, not keyword match. Tables called \`arr_monthly\` show up for 'revenue.' Cut results from 40-to-narrow-down to 4-to-pick-from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.`,
     },
     whatDidntWorkSection: {
       eyebrow: `HICCUP`,
@@ -345,11 +346,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `The shift from 'keyword match over names' to 'semantic match with lineage and permissions inline' reframed the product from a search tool into a data discovery tool. The principle worth taking away: in enterprise contexts, trustworthiness of the result matters more than relevance. Most search UX optimizes for the second.`,
+      description: `The shift from 'keyword match over names' to 'semantic match with lineage and permissions inline' reframed the product from a search tool into a data discovery tool. Different category, different success metric. The principle worth taking away: in enterprise contexts, trustworthiness of the result matters more than relevance. Most search UX optimizes for the second.`,
     },
     sections: [],
     seoData: {
-      image: `/uploads/dae/dashboard-search.png`,
+      image: `/lovable-uploads/dae/dashboard-search.png`,
       projectName: `DAE Search`,
       results: [],
       technologies: [],
@@ -359,11 +360,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "herbalink": {
     id: `herbalink`,
     title: `HerbaLink`,
-    description: `Verified herbalists, designed around trust — in a category where bad advice has medical consequences. Designed, built, and shipped solo.`,
+    description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
     projectLink: `http://herbalink.live`,
     heroImage: {
-      src: `/uploads/herbalink/hero-phones.png`,
+      src: `/lovable-uploads/herbalink/hero-phones.png`,
       alt: `HerbaLink mobile screens — landing, herbalist directory, and consultation booking`,
     },
     heroMetrics: [
@@ -392,7 +393,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: `/uploads/herbalink/connecting-herbalists.png`,
+          src: `/lovable-uploads/herbalink/connecting-herbalists.png`,
           alt: `HerbaLink concept boards — symptom tracker, landing, and wellness services`,
         },
       ],
@@ -410,7 +411,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
       images: [
         {
-          src: `/uploads/herbalink/user-flow-sketch.png`,
+          src: `/lovable-uploads/herbalink/user-flow-sketch.png`,
           alt: `HerbaLink initial sketches — user flow expectations from home to herbalist, symptoms, herb database, and community`,
         },
       ],
@@ -424,7 +425,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       {
         number: 2,
         title: `Users say "more options," they mean "more confidence in the option I pick."`,
-        description: `Every attempt to widen the early catalog made the experience worse, not better. The win came from removing anyone whose credentials couldn't be verified — even though it meant showing users a visibly smaller list.`,
+        description: `Adding 200 practitioners to the early catalog made the experience worse, not better. The win came from removing anyone whose credentials couldn't be verified — even when the catalog visibly shrank.`,
       },
       {
         number: 3,
@@ -440,7 +441,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `Yelp-style "Verified" badge`, description: `Scrapped in favor of a gate that controls visibility entirely.` },
       ],
       wireframeImage: {
-        src: `/uploads/herbalink/book-symptom-profile.png`,
+        src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
         alt: `HerbaLink booking, symptom tracker, and profile flows`,
         caption: `Final flow — onboarding feeds a guided intake, not a search bar`,
       },
@@ -448,10 +449,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: `APPROACH & DECISION MAKING`,
       title: `My Thought Process`,
-      content: `Every decision was checked against one test: would this have protected the user who bought a $200 'anxiety cure' from an uncredentialed Instagram herbalist? That test is why there's no open-ended search, no self-serve listings, and no unverified tier. Visibility itself is the credential.`,
+      content: `In a category dominated by misinformation, the design job is to make the safe path the easy path. Not to add warning labels to the unsafe path. Every decision was checked against: would this protect a user from the same $200-tincture mistake? That filter killed open-ended search, killed crowdsourced practitioner listings, and inverted "verified" from a badge into a gate.`,
       images: [
         {
-          src: `/uploads/herbalink/book-symptom-profile.png`,
+          src: `/lovable-uploads/herbalink/book-symptom-profile.png`,
           alt: `Booking, symptom tracking, and profile screens designed around the credential gate`,
         },
       ],
@@ -462,7 +463,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
       images: [
         {
-          src: `/uploads/herbalink/video-consultation.png`,
+          src: `/lovable-uploads/herbalink/video-consultation.png`,
           alt: `HerbaLink video consultation screen with live recommendations and session notes`,
         },
       ],
@@ -475,17 +476,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `A shipped booking platform where every listed practitioner has externally verified credentials and a guided intake replaces search. The catalog is smaller than the competition's on purpose: there is no unverified tier. AI scaffolded the schema, RLS policies, intake structure, and copy variants — every refusal rule stayed human.`,
+      description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
       images: [
         {
-          src: `/uploads/herbalink/community.png`,
+          src: `/lovable-uploads/herbalink/community.png`,
           alt: `HerbaLink community page with discussions, featured experts, and trending topics`,
         },
       ],
     },
     sections: [],
     seoData: {
-      image: `/uploads/herbalink/hero-phones.png`,
+      image: `/lovable-uploads/herbalink/hero-phones.png`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
@@ -499,10 +500,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A reminder app that parses plain English into structured schedules. Recurring rules, multi-channel delivery, installable PWA. Built on React + Supabase.`,
     tags: [`PWA`, `Natural Language`, `Reminder UX`, `Solo Build`],
     heroImage: {
-      src: `/uploads/nudgeme/dashboard.png`,
+      src: `/lovable-uploads/nudgeme/dashboard.png`,
       alt: `NudgeMe dashboard — natural-language reminder input with active recurring and one-time reminders`,
     },
-    projectLink: `https://nudgemeapp.netlify.app`,
+    projectLink: `https://nudgeme.rip`,
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
       statement: `Every reminder app makes you click through three screens before you can save the thing. By the time you're done, you've forgotten what you wanted to remember. The design job wasn't a prettier form — it was making one sentence the entire input, and trusting the parser enough that the preview screen is the only correction surface a user ever needs.`,
@@ -530,18 +531,18 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description: `A one-input reminder flow: type the reminder the way you'd say it out loud, preview what the parser understood, edit anything that's off, then save. The same input supports one-time reminders, recurring schedules, browser notifications, email, SMS, and PWA install behavior without turning the first screen into a settings panel.`,
       images: [
         {
-          src: `/uploads/nudgeme/input.png`,
+          src: `/lovable-uploads/nudgeme/input.png`,
           alt: `NudgeMe single-input reminder screen with example prompts and Save Reminder button`,
         },
       ],
     },
     myThoughtProcessSection: {
-      eyebrow: `APPROACH & DECISION MAKING`,
-      title: `The Call I Wouldn't Automate`,
-      content: `The parser, schema, recurrence engine, and delivery plumbing were all scaffolding AI could own. The one call it never got: when the parser is confident enough to skip the preview step. Get that wrong and silent misreads become missed reminders — the single failure mode a reminder app can't survive.`,
+      eyebrow: `AI vs. JUDGMENT`,
+      title: `AI vs. Judgment`,
+      content: `AI handled the LLM parser, the Supabase schema, the recurrence engine, the multi-channel dispatch, and the PWA install plumbing. What I wouldn't let it decide: when the parser is confident enough to skip the preview step. That's a trust call — get it wrong and silent misreads become missed reminders, which is the one failure mode the product can't survive.`,
       images: [
         {
-          src: `/uploads/nudgeme/hero.png`,
+          src: `/lovable-uploads/nudgeme/hero.png`,
           alt: `NudgeMe value props — recurring schedules, smart reminders, and multi-channel sync`,
         },
       ],
@@ -552,7 +553,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: `First version auto-saved on parse with no preview. Sounded clean; produced silent misreads users only caught when the reminder didn't fire. Added the preview step back. Also tried push notifications without a PWA install — iOS Safari kills them. The "Add to Home Screen" step became a real onboarding moment, not a footnote.`,
       images: [
         {
-          src: `/uploads/nudgeme/reminder-modal.png`,
+          src: `/lovable-uploads/nudgeme/reminder-modal.png`,
           alt: `NudgeMe reminder modal showing parsed recurring schedule with Done and snooze actions — the preview surface added after auto-save failed`,
         },
       ],
@@ -560,17 +561,17 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `STATUS`,
       title: `Outcome`,
-      description: `Live at nudgemeapp.netlify.app. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
+      description: `Live at nudgeme.rip. The product keeps the first-use loop focused on one sentence, then adds recurring reminders, browser pop-ups, email, text, and calendar sync only after the reminder is understood.`,
       images: [
         {
-          src: `/uploads/nudgeme/design-system.png`,
+          src: `/lovable-uploads/nudgeme/design-system.png`,
           alt: `NudgeMe design system notes — modal tokens, billing badge, and sign-out confirmation spec`,
         },
       ],
     },
     sections: [],
     seoData: {
-      image: `/uploads/nudgeme/dashboard.png`,
+      image: `/lovable-uploads/nudgeme/dashboard.png`,
       projectName: `NudgeMe`,
       results: [],
       technologies: [],
@@ -614,9 +615,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Built`,
       description: `A financial modeling tool that turns design improvements into business cases: revenue upside, operational savings, implementation cost, payback period, and ROI. The interaction is structured around assumptions because the credibility of the model depends on showing where every number came from.`,
       images: [
-        { src: `/uploads/roi-design/01-landing.png`, alt: `ROI Design Calculator landing screen with industry templates and project information form` },
-        { src: `/uploads/roi-design/03-examples.png`, alt: `Example projects panel with pre-built scenarios like e-commerce checkout and SaaS dashboard redesigns` },
-        { src: `/uploads/roi-design/02-mobile-input.png`, alt: `Mobile input view with Input Data and Results tabs for entering baseline metrics on the go` },
+        { src: `/lovable-uploads/roi-design/01-landing.png`, alt: `ROI Design Calculator landing screen with industry templates and project information form` },
+        { src: `/lovable-uploads/roi-design/03-examples.png`, alt: `Example projects panel with pre-built scenarios like e-commerce checkout and SaaS dashboard redesigns` },
+        { src: `/lovable-uploads/roi-design/02-mobile-input.png`, alt: `Mobile input view with Input Data and Results tabs for entering baseline metrics on the go` },
       ],
     },
     whatDidntWorkSection: {
@@ -624,16 +625,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Haven't Solved`,
       content: `The benchmark data problem is real. Generic stats get dismissed. The tool only works if the numbers are defensible. That tension is partially solved — not fully.`,
       images: [
-        { src: `/uploads/roi-design/04-mobile-results.png`, alt: `Empty results state explaining how baseline metrics generate a board-ready ROI report` },
+        { src: `/lovable-uploads/roi-design/04-mobile-results.png`, alt: `Empty results state explaining how baseline metrics generate a board-ready ROI report` },
       ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back. The example below is the kind of case it's built to make — a checkout redesign modeled at a 231% first-year ROI with every assumption visible: a 6.3% relative conversion lift, real project costs, and an honest 0% where no error data existed. Numbers a finance reviewer can challenge line by line — which is the point.`,
+      description: `The calculator gives designers a defensible financial model for budget conversations: not "design is valuable," but what value, where it comes from, what it costs, and how quickly it pays back.`,
       images: [
-        { src: `/uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard modeling a checkout redesign: 231% ROI, $464K total business value from a $140K investment, 3.6-month payback, with conversion, task completion, and accessibility lifts itemized` },
-        { src: `/uploads/roi-design/06-roi-detail.png`, alt: `ROI breakdown card: 231% return marked Strong, $230K revenue, $234K savings, 3.6-month payback, 3.3x investment multiplier` },
+        { src: `/lovable-uploads/roi-design/05-results-dashboard.png`, alt: `Results dashboard showing 4.2K% ROI, $2.4M business value, and conversion, task completion, accessibility, and error reduction lifts` },
+        { src: `/lovable-uploads/roi-design/06-roi-detail.png`, alt: `Detailed ROI breakdown with revenue, savings, and payback period highlighted for stakeholder review` },
       ],
     },
     sections: [],
@@ -652,7 +653,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A co-parenting app designed around the fact that every interaction is potential evidence.`,
     tags: [`Family Tech`, `Legal UX`, `Mobile`],
     heroImage: {
-      src: `/uploads/archive/Frame-4.jpg`,
+      src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1`,
       alt: `SplitTime co-parenting platform overview`,
     },
     projectLink: `https://splittime.pro`,
@@ -665,31 +666,36 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Structured requests, not open chat. The primary pattern is a clear ask → approve / decline / counter-propose → stamped timestamp. No room for tone, clean record if it ever needs to be one. Templates for the 80% of co-parenting communication that's the same conversation every week — pickup confirmations, expense reimbursements, schedule adjustments — strip the emotional charge out of routine messages. Change history as a first-class feature: every approval, modification, expense — timestamped and immutable. Knowing the record exists changes how people behave. Shared schedule and child profile, both parents can see everything.`,
       images: [
-        { src: `/uploads/archive/Dashboard0.jpg`, alt: `Initial Concepts & Sketches` },
-        { src: `/uploads/archive/6.Messages.png`, alt: `Messaging System` },
-        { src: `/uploads/archive/4.Expenses.png`, alt: `Expenses Tracking` },
-        { src: `/uploads/archive/5.Documents.png`, alt: `Documents Storage` },
-        { src: `/uploads/archive/3.calendar.png`, alt: `Calendar View` },
-        { src: `/uploads/archive/7.ChildProfile.png`, alt: `Child Profile` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg`, alt: `Initial Concepts & Sketches` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/wireframing-1.webp`, alt: `User Flow Explorations` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/6.Messages.png`, alt: `Messaging System` },
+        { src: `https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png`, alt: `Splittime user satisfaction metrics and communication improvements` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/4.Expenses.png`, alt: `Expenses Tracking` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/5.Documents.png`, alt: `Documents Storage` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/3.calendar.png`, alt: `Calendar View` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/7.ChildProfile.png`, alt: `Child Profile` },
       ],
     },
     whatDidntWorkSection: {
       eyebrow: `HICCUP`,
       title: `Hiccup`,
       content: `First cut had a free-form messaging feature because it felt cruel not to. Wrong — open messaging is where the conflict lives. Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one. Also tried neutral-language nudges ('did you mean to say...'). Felt patronizing in testing. Templates are the version of that idea that works.`,
+      images: [
+        { src: `https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png`, alt: `Early Splittime interface with feature overload` },
+      ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `One parent in early testing called it "the first one that didn't make me feel like I was being managed." A sample of one — but it's the exact response the structured-request model was built to produce, from the audience hardest to please.`,
+      description: `Parents testing it described it as 'the first one that didn't make me feel like I was being managed.' That's the response I was designing for.`,
       images: [
-        { src: `/uploads/archive/1.Dashboard.png`, alt: `Splittime Dashboard` },
-        { src: `/uploads/archive/2.Dashboard-Add.png`, alt: `Dashboard Add Function` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/1.Dashboard.png`, alt: `Splittime Dashboard` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/2.Dashboard-Add.png`, alt: `Dashboard Add Function` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/uploads/archive/1.Dashboard.png`,
+      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
       projectName: `SplitTime`,
       results: [],
       technologies: [],
@@ -701,23 +707,25 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `Investor Loan Platform`,
     description: `Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.`,
     tags: [`Enterprise`, `FinTech`, `Workflow Design`],
-    heroImage: {
-      src: `/uploads/archive/analysisdashboard-1.png`,
-      alt: `Investor loan platform — analysis dashboard`,
+    heroVideo: {
+      src: `investor-loan-demo.mp4`,
+      poster: `https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png`,
+      alt: `Investor Loan Platform overview`,
     },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
-      statement: `A bank running loan ops in Excel. Multi-million-dollar deals, no audit trail, no validation. Three earlier replacement attempts had stalled before rollout — each one, per the team that lived through them, because it tried to 'improve' things officers didn't want changed.`,
+      statement: `A bank running loan ops in Excel. Multi-million-dollar deals, no audit trail, no validation. Three previous replacement attempts had failed because they tried to 'improve' things officers didn't want changed.`,
     },
     finalProductSection: {
       eyebrow: `WHAT I DID`,
       title: `What I Did`,
       description: `Inline validation that catches malformed entries the moment they happen. Invisible when right, obvious when wrong. No modals, no error logs. Predictive search instead of filters — loan officers think in fragments, a name, a deal code. Bloomberg-style search beats filter panels for this audience. Guided order builder with disabled forward steps: pick the lender, then terms become editable. Feels restrictive in screenshots, less restrictive in practice. Audit trail surfaced next to the record, not buried in an admin tool. This is the feature that made compliance actually advocate for adoption.`,
       images: [
-        { src: `/uploads/archive/excelterror.jpg`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals` },
-        { src: `/uploads/archive/BookBuilder-Low-Fidelity.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
-        { src: `/uploads/archive/whiteboarding.png`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
-        { src: `/uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png`, alt: `Investor loan platform user workflow and process improvements` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/excelterror.jpg`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals` },
+        { src: `https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png`, alt: `Collage highlighting legacy manual steps and fragmentation` },
+        { src: `https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
+        { src: `https://barskyux.com/wp-content/uploads/2023/12/whiteboarding.png`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
+        { src: `/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png`, alt: `Investor loan platform user workflow and process improvements` },
       ],
     },
     whatDidntWorkSection: {
@@ -725,22 +733,22 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First version replicated too much of Excel's structure because I was trying to minimize cognitive change. Worst of both worlds — looked like Excel, didn't behave like it. Rewrite went the other direction: looked nothing like Excel, behaved like what officers actually needed. Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.`,
       images: [
-        { src: `/uploads/70efa220-d524-4d37-a9de-fbec00205917.png`, alt: `User testing session showing loan officer workflow validation` },
+        { src: `/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png`, alt: `User testing session showing loan officer workflow validation` },
       ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `Officers moved real deals onto the platform and kept them there — past the adoption wall where the three earlier attempts had died. For an Excel-replacement project, everything else depends on that outcome.`,
+      description: `Adoption happened — which for an Excel-replacement project is the only outcome that matters. Three previous attempts hadn't gotten that far.`,
       images: [
-        { src: `/uploads/archive/My-Deals-list-view.png`, alt: `My Deals list view with quick filters, status chips, and bulk actions` },
-        { src: `/uploads/archive/Loan-Deals-1.png`, alt: `Loan deals table with summary sidebar, inline validation, and audit trail` },
-        { src: `/uploads/archive/Just-Orderbook.png`, alt: `Orderbook screen emphasizing guided steps and real-time totals` },
+        { src: `https://barskyux.com/wp-content/uploads/2023/12/My-Deals-list-view.png`, alt: `My Deals list view with quick filters, status chips, and bulk actions` },
+        { src: `https://barskyux.com/wp-content/uploads/2023/12/Loan-Deals-1.png`, alt: `Loan deals table with summary sidebar, inline validation, and audit trail` },
+        { src: `https://barskyux.com/wp-content/uploads/2023/12/Just-Orderbook.png`, alt: `Orderbook screen emphasizing guided steps and real-time totals` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/uploads/archive/analysisdashboard-1.png`,
+      image: `https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png`,
       projectName: `Investor Loan Platform`,
       results: [],
       technologies: [],
@@ -790,11 +798,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A shipped game, built solo with AI. A one-tap arcade runner where you spell words mid-flight to cast spells.`,
     tags: [`AI-Assisted Product`, `Game Design`, `Mobile Web`, `Solo Build`],
     heroVideo: {
-      src: `/uploads/fire-lion-hero.mp4`,
+      src: `/lovable-uploads/fire-lion-hero.mp4`,
       poster: `/images/firelion-hero-title.png`,
       alt: `Fire Lion gameplay overview`,
     },
-    projectLink: `https://firelion.netlify.app`,
+    projectLink: `https://firelion.me`,
     heroMetrics: [
       { value: `Solo Build`, label: `One designer, AI as co-builder` },
       { value: `Daily Playtests`, label: `Self + friends, real phones` },
@@ -824,7 +832,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
-      statement: `Can a designer ship a real product solo with AI? A calculator can't answer that — game feel can't be faked with a prompt. An arcade runner can: either the core loop feels good or nobody plays a second run. Fire Lion was the falsifiable version of the test.`,
+      statement: `Most "I built X with AI" portfolios are a calculator, a to-do app, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
     },
     sprintZeroSection: {
       eyebrow: `SPRINT ZERO`,
@@ -845,8 +853,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         number: 2,
-        title: `Scaffolding was free. Feel wasn't.`,
-        description: `AI refactored 30+ files at a time and shipped particle systems in minutes. The lion still flew like a balloon until gravity, tap impulse, and the scroll curve were hand-tuned over hundreds of runs — the one part of the game no prompt could produce.`,
+        title: `AI handles the work between human decisions. It doesn't replace them.`,
+        description: `AI scaffolded Supabase schemas, Tailwind tokens, particle systems, and refactors across 30+ files at a time. Every gravity tweak, tap impulse, and difficulty threshold was still mine — hand-tuned by feel over hundreds of test runs.`,
       },
       {
         number: 3,
@@ -889,7 +897,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `A shipped game with three modes and a deletion list longer than its feature list — the game got better with every cut. Solo design end-to-end: UI, mechanics, economy, audio, art direction. A reusable AI memory file keeps each build session in context, including the isolation rules that protect Cub Mode from 2am refactors.`,
+      description: `A shipped game with three modes, real retention loops, a deletion list longer than its feature list, and a clear thesis: AI can scaffold a game in a week, but deciding which 80% to throw away is the year of design work that makes it playable. Three modes — Fire Lion, Lion Wars, Cub Mode. Solo design end-to-end — UI, mechanics, economy, audio, art direction. Ruthless deletion discipline — every cut backed by observed player behavior. Reusable AI memory file keeps the next session in perfect context.`,
     },
     sections: [],
     seoData: {
@@ -906,11 +914,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `Console boxing feel on the mobile web. Distinct AI opponents, AI-generated trash talk, career mode — built solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Mobile Web`, `Game Design`, `Solo Build`],
     heroVideo: {
-      src: `/uploads/ring-rival-hero.mp4`,
+      src: `/lovable-uploads/ring-rival-hero.mp4`,
       poster: `/images/ringrival-hero-title.png`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
-    projectLink: `https://ringrival.today`,
+    projectLink: `https://rival.li`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, no team` },
       { value: `22s → 6s`, label: `Time to first punch after testing` },
@@ -986,7 +994,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     myThoughtProcessSection: {
       eyebrow: `APPROACH & DECISION MAKING`,
       title: `My Thought Process`,
-      content: `The whole game is a series of small calibration calls no model can make: is this punch satisfying, is this opponent fun to fight, is this control discoverable. AI generated raw material — sprites, voice lines, schemas, refactors — at a speed that made hundreds of micro-iterations possible to actually test.`,
+      content: `The whole game is a series of small calibration calls that AI can't make: is this punch satisfying, is this opponent fun to fight, is this control discoverable. AI's job was to generate raw material — sprites, voice lines, schemas, refactors — at a speed that made hundreds of micro-iterations possible. My job was to be the taste filter on every output.`,
     },
     userTestingSection: {
       eyebrow: `USER TESTING`,
@@ -1022,14 +1030,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   "catchbuddy": {
     id: `catchbuddy`,
     title: `CatchBuddy`,
-    description: `Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps — designed, built, and shipped by one person.`,
+    description: `Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps. Built solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Trust & Safety`, `Mobile-First`, `Solo Build`],
     heroVideo: {
-      src: `/uploads/catchbuddy-hero.mp4`,
+      src: `/lovable-uploads/catchbuddy-hero.mp4`,
       poster: `/images/catchbuddy-hero-landing.png`,
       alt: `CatchBuddy pickup sports app overview`,
     },
-    projectLink: `https://catchbuddy.fit`,
+    projectLink: `https://catchbuddy.me`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Safety-First Architecture`, label: `Minor approval, panic button, curated meeting spots` },
@@ -1080,7 +1088,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
       {
         number: 2,
-        title: `The trust model was never delegated.`,
+        title: `AI scaffolds the schema. It doesn't decide who's allowed to post.`,
         description: `AI shipped the RLS policies, the profiles_public view, the Supabase migrations, the Stripe integration, the OAuth flow. The trust model — who gets in, who's gated, what's surfaced — was every decision I made by hand.`,
       },
       {
@@ -1127,7 +1135,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `A shipped pickup-sports platform — auth, RLS, Stripe payments, Google Calendar OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built by one person. The safety scaffolding was in from v1, not bolted on, and every removed feature traces back to observed friction in testing.`,
+      description: `A shipped pickup-sports platform with auth, RLS, Stripe payments, Google Calendar OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo with AI as a co-builder. Trust-first architecture: safety scaffolding built in from v1, not bolted on. Real stack: auth, RLS, OAuth, Stripe, Realtime, all shipped. User-driven cuts: every removed feature backed by observed friction. AI as collaborator: schema scaffolding, security review, copy drafts, edge functions.`,
       images: [
         { src: `/images/catchbuddy-pro-pricing.png`, alt: `Pro pricing — $7.99/mo or $59.99/yr, added after the safety and matching loop was stable` },
       ],

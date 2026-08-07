@@ -21,7 +21,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "herbalink": {
     title: "3x More Bookings: How I Connected Users to Certified Herbalists",
     video: "https://share.shots.so/W6ikOt0HenziCxLQ.mp4",
-    videoThumbnail: "/uploads/archive/herbalinkpromonew.png",
+    videoThumbnail: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
     tags: ["Health", "Marketplace", "Gen AI"],
     description: "Connected users to certified herbalists across the country and increased booking rates by 3x.",
     projectLink: "https://herbalink.live",
@@ -109,7 +109,7 @@ export const caseStudiesData: Record<string, CaseStudyData> = {
   "business-management": {
     title: "68% Fewer Errors: Streamlining Enterprise Operations",
     video: "https://share.shots.so/OgbJwJkcMtPo0GHV.mp4",
-    videoThumbnail: "/uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
+    videoThumbnail: "/lovable-uploads/4408b539-65ee-460c-9f7d-6303241781d0.png",
     tags: ["Enterprise", "Analytics", "Dashboard"],
     description: "Improved internal operations and reduced manual entry errors by 68% with one central tool.",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",

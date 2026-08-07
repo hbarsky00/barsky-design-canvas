@@ -5,7 +5,6 @@ import PersonalStory from "@/components/about/PersonalStory";
 import ProfessionalJourney from "@/components/about/ProfessionalJourney";
 import SkillsShowcase from "@/components/about/SkillsShowcase";
 import WorkingWithMe from "@/components/about/WorkingWithMe";
-import AboutFaqSection from "@/components/about/AboutFaqSection";
 import CallToAction from "@/components/about/CallToAction";
 
 const About: React.FC = () => {
@@ -20,7 +19,6 @@ const About: React.FC = () => {
             <ProfessionalJourney />
             <SkillsShowcase />
             <WorkingWithMe />
-            <AboutFaqSection />
             <CallToAction />
           </div>
         </main>

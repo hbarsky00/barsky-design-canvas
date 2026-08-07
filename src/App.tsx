@@ -28,9 +28,6 @@ const Store = React.lazy(() => import("@/pages/Store"));
 const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
 const ProductDetailsPage = React.lazy(() => import("@/pages/ProductDetailsPage"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
-const NotFound = React.lazy(() => import("@/pages/NotFound"));
-const Services = React.lazy(() => import("@/pages/Services"));
-const FreeAudit = React.lazy(() => import("@/pages/FreeAudit"));
 
 // Service page imports - lazy loaded
 const UxUiDesign = React.lazy(() => import("@/pages/design-services/UxUiDesign"));
@@ -133,12 +130,6 @@ function AppContent() {
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               
               {/* Service pages */}
-              <Route path="/services" element={<Services />} />
-              {/* Page + form (FreeAudit.tsx, FreeAuditForm.tsx) already existed
-                  but were never routed — the About page's "Get Free Audit"
-                  button opened this exact path and 404'd. Found while adding
-                  the /about FAQ (AEO lever 2, Cycle 2). */}
-              <Route path="/free-audit" element={<FreeAudit />} />
               <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
               <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
               <Route path="/design-services/web-development" element={<WebDevelopment />} />
@@ -160,7 +151,7 @@ function AppContent() {
               <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
               {/* Catch all - redirect to home */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>

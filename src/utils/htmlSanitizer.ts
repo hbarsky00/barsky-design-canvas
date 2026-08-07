@@ -10,10 +10,9 @@ export const sanitizeHtml = (html: string): string => {
   // Configure DOMPurify with safe options
   const cleanHtml = DOMPurify.sanitize(html, {
     ALLOWED_TAGS: [
-      'p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li',
+      'p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'code',
-      'pre', 'img', 'div', 'span', 'figure', 'figcaption',
-      'table', 'thead', 'tbody', 'tr', 'th', 'td'
+      'pre', 'img', 'div', 'span'
     ],
     ALLOWED_ATTR: [
       'href', 'target', 'rel', 'src', 'alt', 'title', 'class', 

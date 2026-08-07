@@ -12,48 +12,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://barskydesign.pro/about</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/contact</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/services</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/free-audit</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/store</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/case-studies</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/design-services/ux-ui-design</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -72,7 +30,43 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/crypto</loc>
+    <loc>https://barskydesign.pro/about</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/contact</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/store</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/case-studies</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/project/business-management</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/project/catchbuddy</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -108,12 +102,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/qr-code-builder</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/project/ring-rival</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
@@ -126,13 +114,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/splittime</loc>
+    <loc>https://barskydesign.pro/project/valora-bet</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/valora-bet</loc>
+    <loc>https://barskydesign.pro/case-studies/catchbuddy</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -192,19 +180,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/learning-ai-design-with-claude</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/prompt-engineering-for-designers</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/designing-ai-native-interfaces</loc>
+    <loc>https://barskydesign.pro/blog/ai-powered-prototype-weekend</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -216,7 +192,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/ai-powered-prototype-weekend</loc>
+    <loc>https://barskydesign.pro/blog/designing-ai-native-interfaces</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -229,6 +205,18 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/figma-to-production-with-ai</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/learning-ai-design-with-claude</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/prompt-engineering-for-designers</loc>
     <lastmod>2026-08-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

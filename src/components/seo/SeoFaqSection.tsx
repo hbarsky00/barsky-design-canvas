@@ -78,7 +78,6 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
           {
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "name": "${title.replace(/"/g, '\\"')}",
             "mainEntity": [
               ${faqs.map(faq => `
               {

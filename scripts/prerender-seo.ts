@@ -1,76 +1,40 @@
-// Runs after `vite build`: generates per-route static HTML files in dist/ with
-// proper per-page <title>, description, canonical, and og:*/twitter:* tags.
+// Postbuild step: generate per-route static HTML files in dist/ with proper
+// per-page <title>, description, canonical, and og:*/twitter:* tags.
 //
-// Why: react-helmet-async only mutates <head> after JS hydration. Search and
-// social crawlers that don't execute JS otherwise see one identical untitled
-// shell for every URL — the source of duplicate-title/description errors.
+// Why: react-helmet-async only mutates <head> after JS hydration. Social-preview
+// crawlers (LinkedIn, Slack, Facebook, Twitter, Discord, iMessage) and many AI
+// crawlers don't execute JS, so they only see the static head shipped in
+// dist/index.html. Without this step every shared link previews the homepage.
 //
-// What: copy dist/index.html to dist/<route>/index.html with head tags
-// rewritten per route. Netlify serves the physical file when present, so no
-// per-route redirect rules are needed; the SPA hydrates normally for visitors.
-//
-// Route inventory comes from scripts/seo-routes.ts — shared with
-// generate-sitemap.ts so sitemap URLs and prerendered files always match 1:1.
+// What: copy dist/index.html into dist/<route>/index.html with head tags
+// rewritten per route. Static hosts (Lovable / Cloudflare Pages) serve the
+// matching file when present, then fall back to dist/index.html for SPA routes.
+// React Router still hydrates and runs the SPA normally for human visitors.
 
-import { writeFileSync, readFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from "fs";
 import { resolve, dirname } from "path";
 import {
-  BASE_URL,
-  STATIC_PATHS,
-  FEATURED_PROJECTS,
-  FEATURED_CASE_STUDIES,
-  getBlogEntries,
-  getProductEntries,
-  bodyFilename,
-} from "./seo-routes";
-import { STATIC_PAGE_SEO, PROJECT_SEO_MAP, BLOG_IMAGE_MAP, BLOG_SEO_MAP } from "../src/data/seoData";
+  STATIC_PAGE_SEO,
+  PROJECT_SEO_MAP,
+  BLOG_SEO_MAP,
+  BLOG_IMAGE_MAP,
+} from "../src/data/seoData";
 
+const BASE_URL = "https://barskydesign.pro";
 const DIST = resolve("dist");
 const TEMPLATE_PATH = resolve(DIST, "index.html");
 
 if (!existsSync(TEMPLATE_PATH)) {
-  console.error("[prerender-seo] dist/index.html not found — run vite build first.");
-  process.exit(1);
+  console.warn("[prerender-seo] dist/index.html not found; skipping.");
+  process.exit(0);
 }
 
 const template = readFileSync(TEMPLATE_PATH, "utf8");
 
 const DEFAULT_IMAGE = `${BASE_URL}/images/hiram-barsky-profile.png`;
-const SITE_SUFFIX = " — Hiram Barsky";
-
-// Real rendered body content, captured locally by
-// scripts/capture-prerendered-bodies.ts (a real browser, never run in CI)
-// and checked into git. Splicing it into <div id="root"> here — a plain
-// string replace in this Node-only build step — is what turns the raw HTML
-// crawlers see from an empty shell into the actual page, with zero headless
-// browser dependency in the Netlify build itself.
-const BODIES_DIR = resolve("prerendered-bodies");
-const ROOT_PLACEHOLDER = '<div id="root"><!--app-html--></div>';
-const missingBodies: string[] = [];
-
-function injectBody(html: string, routePath: string): string {
-  const bodyPath = resolve(BODIES_DIR, bodyFilename(routePath));
-  if (!existsSync(bodyPath)) {
-    missingBodies.push(routePath);
-    return html;
-  }
-  const body = readFileSync(bodyPath, "utf8");
-  let out = html.replace(ROOT_PLACEHOLDER, `<div id="root">${body}</div>`);
-
-  // Page-specific JSON-LD (Organization/Article/BlogPosting/WebPage),
-  // captured separately since it lives in <head>, not #root. Additive to
-  // the sitewide LocalBusiness/WebSite blocks already in the template —
-  // Google explicitly supports multiple JSON-LD blocks per page.
-  const schemaPath = resolve(BODIES_DIR, bodyFilename(routePath).replace(/\.html$/, ".schema.html"));
-  if (existsSync(schemaPath)) {
-    const schema = readFileSync(schemaPath, "utf8");
-    out = out.replace(/<\/head>/i, `  ${schema}\n  </head>`);
-  }
-  return out;
-}
 
 interface RouteSEO {
-  path: string;
+  path: string; // route path like "/blog/foo"
   title: string;
   description: string;
   image: string;
@@ -78,16 +42,10 @@ interface RouteSEO {
 }
 
 const routes: RouteSEO[] = [];
-const missing: string[] = [];
 
-// 1) Static pages (homepage keeps dist/index.html as-is)
-for (const path of STATIC_PATHS) {
-  if (path === "/") continue;
-  const seo = STATIC_PAGE_SEO[path];
-  if (!seo) {
-    missing.push(path);
-    continue;
-  }
+// 1) Static pages
+for (const [path, seo] of Object.entries(STATIC_PAGE_SEO)) {
+  if (path === "/") continue; // homepage uses dist/index.html as-is
   routes.push({
     path,
     title: seo.title || "",
@@ -97,30 +55,19 @@ for (const path of STATIC_PATHS) {
   });
 }
 
-// 2) Featured project promo pages. Titles are varied from the case-study
-// pages (which share SEO data) so the two routes don't emit duplicate titles.
-for (const id of FEATURED_PROJECTS) {
-  const seo = PROJECT_SEO_MAP[id];
-  if (!seo) {
-    missing.push(`/project/${id}`);
-    continue;
-  }
+// 2) Projects
+for (const [id, seo] of Object.entries(PROJECT_SEO_MAP)) {
   routes.push({
     path: `/project/${id}`,
-    title: seo.title.replace(/Case Study/i, "Product Overview"),
-    description: `Product tour: ${seo.description}`,
+    title: seo.title,
+    description: seo.description,
     image: seo.image,
     type: "article",
   });
 }
 
-// 3) Case-study pages
-for (const id of FEATURED_CASE_STUDIES) {
-  const seo = PROJECT_SEO_MAP[id];
-  if (!seo) {
-    missing.push(`/case-studies/${id}`);
-    continue;
-  }
+// 2b) Case-study detail URLs use the same case-study metadata with the correct canonical path.
+for (const [id, seo] of Object.entries(PROJECT_SEO_MAP)) {
   routes.push({
     path: `/case-studies/${id}`,
     title: seo.title,
@@ -130,39 +77,32 @@ for (const id of FEATURED_CASE_STUDIES) {
   });
 }
 
-// 4) Blog posts — slug/title/excerpt/cover from blogData.ts via seo-routes.
-// Cover images are Vite-imported assets, so resolve each source basename to
-// its hashed file in dist/assets (e.g. ai-claude-starter-cover-B3xQ.jpg).
-const distAssets = readdirSync(resolve(DIST, "assets"));
-function resolveAssetUrl(basename: string | null): string | null {
-  if (!basename) return null;
-  const file = distAssets.find((f) => f.startsWith(`${basename}-`));
-  return file ? `${BASE_URL}/assets/${file}` : null;
-}
-
-for (const { slug, title, excerpt, coverBasename } of getBlogEntries()) {
-  const override = BLOG_SEO_MAP[slug];
+// 3) Blog posts
+for (const [slug, seo] of Object.entries(BLOG_SEO_MAP)) {
   routes.push({
     path: `/blog/${slug}`,
-    title: override?.title || `${title}${SITE_SUFFIX}`,
-    description: override?.description || excerpt,
-    image: BLOG_IMAGE_MAP[slug] || resolveAssetUrl(coverBasename) || DEFAULT_IMAGE,
+    title: seo.title,
+    description: seo.description,
+    image: BLOG_IMAGE_MAP[slug] || DEFAULT_IMAGE,
     type: "article",
   });
 }
 
-// 5) Store products — per-product name/description/image, mirroring the
-// title/description shaping UnifiedSEO applies at runtime.
-for (const { id, name, description, image } of getProductEntries()) {
-  const brand = " | Barsky Design Store";
-  const maxName = 60 - brand.length;
-  const safeName = name.length > maxName ? `${name.slice(0, maxName - 1).trimEnd()}…` : name;
-  const safeDesc = description.length > 160 ? `${description.slice(0, 157).trimEnd()}…` : description;
+// 4) Products — read ids from productsData.ts
+function getProductIds(): string[] {
+  const p = resolve("src/data/productsData.ts");
+  if (!existsSync(p)) return [];
+  const txt = readFileSync(p, "utf8");
+  return Array.from(new Set(
+    Array.from(txt.matchAll(/^\s*id:\s*["'`]([a-z0-9-]+)["'`]/gim)).map((m) => m[1]),
+  ));
+}
+for (const id of getProductIds()) {
   routes.push({
     path: `/store/product/${id}`,
-    title: `${safeName}${brand}`,
-    description: safeDesc,
-    image: image || DEFAULT_IMAGE,
+    title: "Design Resources & Templates — Barsky",
+    description: "Professional design resources, wireframe kits, and UX templates. Instant digital downloads.",
+    image: `${BASE_URL}/images/macbookpro.png`,
     type: "website",
   });
 }
@@ -175,18 +115,6 @@ function escapeAttr(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
-// Head tags carry data-rh="true" so react-helmet-async claims and replaces
-// them at hydration (instead of appending duplicates alongside the static set).
-const RH = `(?:data-rh=["']true["']\\s+)?`;
-
-function metaNameRe(name: string): RegExp {
-  return new RegExp(`<meta\\s+${RH}name=["']${name}["']\\s+content=["'][^"']*["']\\s*\\/?>`, "i");
-}
-
-function metaPropRe(prop: string): RegExp {
-  return new RegExp(`<meta\\s+${RH}property=["']${prop}["']\\s+content=["'][^"']*["']\\s*\\/?>`, "i");
-}
-
 function rewriteHead(html: string, r: RouteSEO): string {
   const url = `${BASE_URL}${r.path}`;
   const t = escapeAttr(r.title);
@@ -195,72 +123,52 @@ function rewriteHead(html: string, r: RouteSEO): string {
 
   let out = html;
 
+  // <title>
   out = out.replace(/<title>[\s\S]*?<\/title>/, `<title>${t}</title>`);
 
-  out = out.replace(metaNameRe("description"), `<meta data-rh="true" name="description" content="${d}" />`);
-
-  // canonical — replace if present, otherwise inject before </head>
-  const canonicalRe = new RegExp(`<link\\s+${RH}rel=["']canonical["']\\s+href=["'][^"']*["']\\s*\\/?>`, "i");
-  const canonicalTag = `<link data-rh="true" rel="canonical" href="${url}" />`;
-  if (canonicalRe.test(out)) {
-    out = out.replace(canonicalRe, canonicalTag);
-  } else {
-    out = out.replace(/<\/head>/i, `  ${canonicalTag}\n  </head>`);
-  }
-
-  // Self-referencing hreflang + x-default. The site is English-only with no
-  // regional variants, so there's nothing to build a full hreflang mesh
-  // against — this pair just satisfies "declare what you are" hygiene and
-  // stops SEO tooling from flagging every URL as an undeclared orphan.
-  // Strip any existing hreflang tags first (the template — dist/index.html —
-  // already carries its own self-referencing pair) so per-route rewriting
-  // doesn't end up with two, one pointing at "/" and one at the real route.
-  out = out.replace(new RegExp(`\\s*<link\\s+${RH}rel=["']alternate["']\\s+hreflang=["'][^"']*["']\\s+href=["'][^"']*["']\\s*\\/?>`, "gi"), "");
+  // description
   out = out.replace(
-    /<\/head>/i,
-    `  <link data-rh="true" rel="alternate" hreflang="en" href="${url}" />\n` +
-    `  <link data-rh="true" rel="alternate" hreflang="x-default" href="${url}" />\n  </head>`,
+    /<meta\s+name=["']description["']\s+content=["'][^"']*["']\s*\/?>/i,
+    `<meta name="description" content="${d}" />`,
   );
 
-  const replacements: [RegExp, string][] = [
-    [metaPropRe("og:title"), `<meta data-rh="true" property="og:title" content="${t}" />`],
-    [metaPropRe("og:description"), `<meta data-rh="true" property="og:description" content="${d}" />`],
-    [metaPropRe("og:url"), `<meta data-rh="true" property="og:url" content="${url}" />`],
-    [metaPropRe("og:image"), `<meta data-rh="true" property="og:image" content="${img}" />`],
-    [metaPropRe("og:type"), `<meta data-rh="true" property="og:type" content="${r.type}" />`],
-    [metaNameRe("twitter:title"), `<meta data-rh="true" name="twitter:title" content="${t}" />`],
-    [metaNameRe("twitter:description"), `<meta data-rh="true" name="twitter:description" content="${d}" />`],
-    [metaNameRe("twitter:image"), `<meta data-rh="true" name="twitter:image" content="${img}" />`],
+  // canonical — replace if present, otherwise inject before </head>
+  if (/<link\s+rel=["']canonical["']/i.test(out)) {
+    out = out.replace(
+      /<link\s+rel=["']canonical["']\s+href=["'][^"']*["']\s*\/?>/i,
+      `<link rel="canonical" href="${url}" />`,
+    );
+  } else {
+    out = out.replace(/<\/head>/i, `  <link rel="canonical" href="${url}" />\n  </head>`);
+  }
+
+  // og:*
+  const ogReplacements: [RegExp, string][] = [
+    [/<meta\s+property=["']og:title["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta property="og:title" content="${t}" />`],
+    [/<meta\s+property=["']og:description["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta property="og:description" content="${d}" />`],
+    [/<meta\s+property=["']og:url["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta property="og:url" content="${url}" />`],
+    [/<meta\s+property=["']og:image["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta property="og:image" content="${img}" />`],
+    [/<meta\s+property=["']og:type["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta property="og:type" content="${r.type}" />`],
   ];
-  for (const [re, rep] of replacements) out = out.replace(re, rep);
+  for (const [re, rep] of ogReplacements) out = out.replace(re, rep);
+
+  // twitter:*
+  const twReplacements: [RegExp, string][] = [
+    [/<meta\s+name=["']twitter:title["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta name="twitter:title" content="${t}" />`],
+    [/<meta\s+name=["']twitter:description["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta name="twitter:description" content="${d}" />`],
+    [/<meta\s+name=["']twitter:image["']\s+content=["'][^"']*["']\s*\/?>/i, `<meta name="twitter:image" content="${img}" />`],
+  ];
+  for (const [re, rep] of twReplacements) out = out.replace(re, rep);
 
   return out;
 }
 
-// Write flat files (dist/about.html, not dist/about/index.html): Netlify
-// serves <route>.html at /<route> with a 200, whereas a directory index
-// triggers a 301 to the trailing-slash URL and contradicts the canonicals.
 let written = 0;
 for (const r of routes) {
-  const outPath = resolve(DIST, `${r.path.replace(/^\//, "")}.html`);
+  const outPath = resolve(DIST, r.path.replace(/^\//, ""), "index.html");
   mkdirSync(dirname(outPath), { recursive: true });
-  writeFileSync(outPath, injectBody(rewriteHead(template, r), r.path));
+  writeFileSync(outPath, rewriteHead(template, r));
   written++;
 }
 
-// Homepage keeps its static head as-is (see loop above), but still gets its
-// real body spliced into dist/index.html — the file Netlify serves at "/".
-writeFileSync(TEMPLATE_PATH, injectBody(template, "/"));
-written++;
-
 console.log(`[prerender-seo] wrote ${written} per-route HTML files in dist/`);
-if (missing.length) {
-  console.error(`[prerender-seo] MISSING SEO DATA for routes: ${missing.join(", ")}`);
-  process.exit(1);
-}
-if (missingBodies.length) {
-  console.warn(
-    `[prerender-seo] WARNING: no captured body for ${missingBodies.length} route(s), served as empty shell to non-JS crawlers: ${missingBodies.join(", ")}\n` +
-    `  Run \`npm run capture-bodies\` locally and commit prerendered-bodies/ to fix.`,
-  );
-}

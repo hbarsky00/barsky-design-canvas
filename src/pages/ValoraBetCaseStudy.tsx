@@ -29,9 +29,9 @@ const ValoraBetCaseStudy: React.FC = () => {
           ],
         },
         {
-          heading: "What AI Couldn't Decide",
+          heading: "AI vs. Judgment",
           paragraphs: [
-            "The CPMM math, Supabase schemas, RLS policies, and the clubs/leaderboards plumbing were all scaffolding. The call that stayed human: how the bet screen frames a position. Get that wrong and \"social prediction\" turns into a casino UI, and the whole premise breaks.",
+            "AI scaffolded the CPMM math, Supabase schemas, RLS policies, and the clubs/leaderboards plumbing. What I wouldn't let it decide: how the bet screen frames a position. Getting that wrong turns \"social prediction\" into a casino UI, and the whole premise breaks.",
           ],
         },
         {

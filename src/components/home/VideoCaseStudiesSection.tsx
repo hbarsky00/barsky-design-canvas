@@ -36,13 +36,13 @@ const caseStudies: CaseStudy[] = [
     description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
     impact: "",
     url: "/project/fire-lion",
-    liveUrl: "https://firelion.netlify.app",
+    liveUrl: "https://firelion.me",
     images: {
       primary: "/images/firelion-hero-title.png",
       alt: "Fire Lion gameplay"
     },
     layout: "side-by-side",
-    video: "/uploads/fire-lion-hero.mp4"
+    video: "/lovable-uploads/fire-lion-hero.mp4"
   },
   {
     id: "ring-rival",
@@ -51,13 +51,28 @@ const caseStudies: CaseStudy[] = [
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
     url: "/project/ring-rival",
-    liveUrl: "https://ringrival.today",
+    liveUrl: "https://rival.li",
     images: {
       primary: "/images/ringrival-hero-title.png",
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/uploads/ring-rival-hero.mp4"
+    video: "/lovable-uploads/ring-rival-hero.mp4"
+  },
+  {
+    id: "catchbuddy",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
+    title: "CatchBuddy",
+    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
+    impact: "",
+    url: "/project/catchbuddy",
+    liveUrl: "https://catchbuddy.me",
+    images: {
+      primary: "/images/catchbuddy-hero-landing.png",
+      alt: "CatchBuddy pickup sports app"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/catchbuddy-hero.mp4"
   },
   {
     id: "herbalink",
@@ -68,11 +83,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/uploads/archive/Bookanherbalistpromomobile.png",
+      primary: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side",
-    video: "/uploads/archive/herbalink-book-a-herbalist.mp4"
+    video: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4"
   },
   {
     id: "email-creation-ai",
@@ -86,7 +101,7 @@ const caseStudies: CaseStudy[] = [
       alt: "Email Creation AI workflow"
     },
     layout: "side-by-side",
-    video: "/uploads/email-creation-ai-hero.mp4"
+    video: "/lovable-uploads/email-creation-ai-hero.mp4"
   },
   {
     id: "dae-search",
@@ -100,7 +115,7 @@ const caseStudies: CaseStudy[] = [
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",
-    video: "/uploads/dae-search-hero.mp4"
+    video: "/lovable-uploads/dae-search-hero.mp4"
   }
 ];
 

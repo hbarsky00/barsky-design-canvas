@@ -1,6 +1,4 @@
 
-import { SEO_CONSTANTS } from "@/utils/seoConstants";
-
 interface SEOData {
   title: string;
   description: string;
@@ -14,23 +12,14 @@ interface SEOData {
   modifiedTime?: string;
   author?: string;
   tags?: string[];
-  faqs?: { question: string; answer: string }[];
 }
 
 export const generateStructuredData = (seoData: SEOData) => {
   const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
   
-  // Always WebPage — it's the page container, not the content. This used to
-  // flip to "Article" for blog/project pages, but it only ever populated
-  // `name`, never the `headline` field Article actually requires, so it
-  // shipped as a redundant, spec-incomplete duplicate of the dedicated
-  // BlogPosting/Article block below (which already has a correct, complete
-  // headline). Found via amazing-seo-skill's schema_recommended_fields.py
-  // (AEO lever 4, 2026-08-06): completeness_score 17, required field
-  // "headline" missing, on every blog post and case study.
   const baseStructuredData: any = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": seoData.type === 'article' ? "Article" : "WebPage",
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
@@ -43,28 +32,7 @@ export const generateStructuredData = (seoData: SEOData) => {
     "@type": "Organization",
     name: "Hiram Barsky Design",
     url: "https://barskydesign.pro",
-    // Same description already used sitewide (SEO_CONSTANTS.DEFAULT_DESCRIPTION)
-    // and same address already declared in the static shell's LocalBusiness
-    // block (index.html) — flagged as "recommended: missing" by the lever-4
-    // schema sweep; filled with facts already established elsewhere, not new
-    // ones. foundingDate is also recommended but skipped — no verified date
-    // for when "Hiram Barsky Design" as a branded practice started, distinct
-    // from the 15+ year career length used elsewhere.
-    description: SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Clifton",
-      addressRegion: "NJ",
-      addressCountry: "US",
-    },
-    // /logo.png doesn't exist (404) — this is the same headshot the static
-    // shell's LocalBusiness block already uses for `image`.
-    logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
-    // Entities elsewhere on the web that represent the same person/brand —
-    // NOT a place for product links (a product Hiram built isn't "the same
-    // entity as" Hiram Barsky Design; that relationship belongs on the
-    // product's own case-study page, not here).
-    sameAs: SEO_CONSTANTS.SOCIAL_PROFILES,
+    logo: "https://barskydesign.pro/logo.png",
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -73,41 +41,8 @@ export const generateStructuredData = (seoData: SEOData) => {
     founder: {
       "@type": "Person",
       name: "Hiram Barsky",
-      // The Person entity had no url/image/sameAs of its own — only the
-      // parent Organization declared these. An engine trying to disambiguate
-      // "Hiram Barsky" as a person (not just the brand) had nothing to go
-      // on. All three reuse facts already verified elsewhere in this file
-      // (same headshot as Organization.logo, same sameAs list, /about is
-      // the page that's actually about him specifically). AEO lever 1,
-      // Cycle 3, 2026-08-07.
-      url: "https://barskydesign.pro/about",
-      image: "https://barskydesign.pro/images/hiram-barsky-profile.png",
-      sameAs: SEO_CONSTANTS.SOCIAL_PROFILES,
       jobTitle: "UX/UI Designer & AI Developer",
-      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS",
-      // Pulled verbatim from the skills actually listed on /about
-      // (SkillsShowcase) — real, defensible expertise areas, not a
-      // generic AEO-checklist list.
-      knowsAbout: [
-        "Product Design",
-        "User Research",
-        "Design Systems",
-        "Gen AI Integration",
-        "React Development",
-        "TypeScript",
-        "Supabase",
-        "UX Strategy",
-      ],
-      // Real employment history from /about (ProfessionalJourney) — every
-      // name here is something Hiram could defend on a call.
-      alumniOf: [
-        { "@type": "Organization", name: "PNC" },
-        { "@type": "Organization", name: "Bank of America" },
-        { "@type": "Organization", name: "Deloitte" },
-        { "@type": "Organization", name: "Tata Consultancy Services" },
-        { "@type": "Organization", name: "KPMG" },
-        { "@type": "Organization", name: "Express Scripts" },
-      ],
+      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
     },
     serviceArea: "United States",
     priceRange: "$$$"
@@ -158,7 +93,7 @@ export const generateStructuredData = (seoData: SEOData) => {
         name: "Hiram Barsky Design",
         logo: {
           "@type": "ImageObject",
-          url: "https://barskydesign.pro/images/hiram-barsky-profile.png"
+          url: "https://barskydesign.pro/logo.png"
         }
       },
       ...(seoData.image && { image: seoData.image })
@@ -184,31 +119,43 @@ export const generateStructuredData = (seoData: SEOData) => {
     schemas.push(productSchema);
   }
 
-  // FAQ schema is opt-in via seoData.faqs — the caller must pass the EXACT
-  // Q&A content the page actually renders. This used to be hardcoded to fire
-  // on the homepage with fabricated numbers ("boost conversion by 40%+",
-  // "measurable improvements within 2-4 weeks") that didn't correspond to
-  // any visible FAQ section on the homepage at all — a schema/content
-  // mismatch on top of invented metrics. Fixed 2026-08-05 (AEO lever 2).
-  if (seoData.faqs && seoData.faqs.length > 0) {
+  // Add FAQ schema for homepage AND product pages (both render SeoFaqSection)
+  const isHomepage = !!canonicalUrl &&
+    canonicalUrl.includes('barskydesign.pro') &&
+    !canonicalUrl.includes('/blog/') &&
+    !canonicalUrl.includes('/project/') &&
+    !canonicalUrl.includes('/store/') &&
+    (canonicalUrl.endsWith('/') || canonicalUrl.endsWith('barskydesign.pro'));
+  if (isHomepage || isProductPage) {
     const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      // Matches the literal visible <h2> on both current FAQ sections
-      // (Services.tsx and AboutFaqSection.tsx) — flagged as a recommended-
-      // but-missing field by amazing-seo-skill's schema_recommended_fields.py
-      // (AEO lever 4, Cycle 2, 2026-08-07). If a future page uses a
-      // differently-worded FAQ heading, this should become per-page instead
-      // of shared.
-      name: "Questions worth answering up front",
-      mainEntity: seoData.faqs.map((f) => ({
-        "@type": "Question",
-        name: f.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: f.answer,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What makes your UX design approach different?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "I combine traditional UX research with AI-powered analytics to create data-driven designs that boost conversion by 40%+. Unlike designers who rely on assumptions, I use AI to understand user behavior patterns and optimize accordingly."
+          }
         },
-      })),
+        {
+          "@type": "Question", 
+          name: "How quickly can you deliver results?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Most clients see measurable improvements within 2-4 weeks of implementation. My AI-enhanced design process allows for rapid iteration and testing, significantly reducing time-to-market compared to traditional design approaches."
+          }
+        },
+        {
+          "@type": "Question",
+          name: "Do you work with fintech and healthcare companies?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, I specialize in fintech, healthcare, and SaaS applications. I have 15+ years of experience designing compliant, user-friendly interfaces for regulated industries while maintaining high conversion rates."
+          }
+        }
+      ]
     };
     schemas.push(faqSchema);
   }
