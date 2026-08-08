@@ -126,6 +126,20 @@ const caseStudies: CaseStudy[] = [
       alt: "Investor loan analysis dashboard overview"
     },
     layout: "side-by-side"
+  },
+  {
+    id: "business-management",
+    tags: ["Enterprise", "Small Business", "Automation"],
+    title: "Blue Sky",
+    description: "Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks into one dashboard.",
+    impact: "",
+    url: "/project/business-management",
+    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
+    images: {
+      primary: "/images/business-management/hero-three-laptops.jpg",
+      alt: "Blue Sky — Customer Management, Product Catalog, and Order Management across three screens"
+    },
+    layout: "side-by-side"
   }
 ];
 
