@@ -49,9 +49,9 @@ function getProjectPaths(): string[] {
       found.add(m[1]);
     }
   }
-  ["/project/smarterhealth", "/project/medication-app", "/project/gold2crypto"].forEach((p) =>
-    found.add(p),
-  );
+  // smarterhealth/medication-app/gold2crypto/business-management all client-redirect
+  // home at runtime — no matching entry in structuredCaseStudies.ts. Soft 404s, kept
+  // out of the generated HTML. (Kept in sync with the identical fix in generate-sitemap.ts.)
   found.delete("/project/business-management");
   return Array.from(found).sort();
 }

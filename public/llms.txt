@@ -25,9 +25,6 @@
 - [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict through structured requests.
 - [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
 - [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
-- [SmarterHealth](/project/smarterhealth): Healthcare experience modernization.
-- [Medication App](/project/medication-app): Healthcare medication tracking and adherence.
-- [Gold2Crypto](/project/gold2crypto): Crypto exchange onboarding for non-crypto users.
 
 ## Blog
 

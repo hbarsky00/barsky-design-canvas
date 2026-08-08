@@ -52,11 +52,10 @@ function getProjectPaths(): string[] {
       found.add(m[1]);
     }
   }
-  // Rendered via the generic /project/:projectId catch-all — no dedicated <Route> line to match.
-  ["/project/smarterhealth", "/project/medication-app", "/project/gold2crypto"].forEach((p) =>
-    found.add(p),
-  );
-  // Always client-redirects home at runtime (no real case-study content behind it) — soft 404, keep out of the sitemap.
+  // smarterhealth/medication-app/gold2crypto/business-management all client-redirect
+  // home at runtime — none of them have a matching entry in structuredCaseStudies.ts,
+  // so the generic /project/:projectId catch-all (SimplifiedProjectDetail) always hits
+  // its "no data" Navigate fallback. Soft 404s, kept out of the sitemap.
   found.delete("/project/business-management");
   return Array.from(found).sort();
 }

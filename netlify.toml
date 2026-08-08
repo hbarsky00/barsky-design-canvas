@@ -76,21 +76,6 @@
   status = 200
 
 [[redirects]]
-  from = "/project/smarterhealth"
-  to = "/project/smarterhealth/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/medication-app"
-  to = "/project/medication-app/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/gold2crypto"
-  to = "/project/gold2crypto/index.html"
-  status = 200
-
-[[redirects]]
   from = "/project/dae-search"
   to = "/project/dae-search/index.html"
   status = 200

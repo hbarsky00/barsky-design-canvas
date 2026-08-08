@@ -113,6 +113,19 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/lovable-uploads/dae-search-hero.mp4"
+  },
+  {
+    id: "investor-loan-app",
+    tags: ["Enterprise", "FinTech", "Workflow Design"],
+    title: "Investor Loan Platform",
+    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
+    impact: "",
+    url: "/project/investor-loan-app",
+    images: {
+      primary: "/images/investor-loan-app/hero.png",
+      alt: "Investor loan analysis dashboard overview"
+    },
+    layout: "side-by-side"
   }
 ];
 
