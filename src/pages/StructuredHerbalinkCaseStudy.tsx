@@ -9,9 +9,9 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
     liveUrl="http://herbalink.live"
     heroImage={{
-      src: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png",
-      alt: "HerbaLink book-an-herbalist promo on mobile",
-      hoverVideo: "https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4",
+      // Live screenshots of the shipped app, replacing dead barskyux.com links.
+      src: "/images/herbalink/home-hero.png",
+      alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
     }}
     blocks={[
       {
@@ -21,7 +21,18 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "The design job wasn't to build a bigger directory. It was to make the safe path the easy path in a category where being wrong has real medical consequences.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png", alt: "Initial concepts and sketches focused on the credential gate, not the directory layout" },
+          { src: "/images/herbalink/find-herbalist-sketch.png", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow" },
+          { src: "/images/herbalink/sitemap.png", alt: "Full site map — the credential-gated Find Herbalists flow sits alongside account, support, and legal pages" },
+        ],
+      },
+      {
+        heading: "My Process",
+        paragraphs: [
+          "Interviewed users and herbalists first — the trust barriers came from them, not from a competitive audit.",
+          "Everything after that was ordered around outcomes over UI: identify what breaks trust, design the retention loop (onboarding, tracking, community), then validate that the simplified version still gave people confidence.",
+        ],
+        images: [
+          { src: "/images/herbalink/thought-process.png", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity" },
         ],
       },
       {
@@ -31,7 +42,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "Adding 200 unverified practitioners made the experience worse, not better.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png", alt: "Flow exploration — credential gate sits before any browsing" },
+          { src: "/images/herbalink/herbalist-directory.png", alt: "Find Herbalists directory — every listed practitioner is verified before they're visible" },
         ],
       },
       {
@@ -41,7 +52,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "Which certifications matter for which conditions, when to refuse a listing, who doesn't appear in the catalog — those were every call made by hand.",
         ],
         images: [
-          { src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1", alt: "HerbaLink user flow from onboarding to booking" },
+          { src: "/images/herbalink/booking-intake.png", alt: "Guided booking intake — a single focused question replaces open-ended search" },
         ],
       },
       {
@@ -52,8 +63,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "Open-ended search was removed entirely in favor of credential-first discovery.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png", alt: "Symptom tracker — final form, after the comprehensive version was cut" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png", alt: "HerbaLink early Book an Herbalist concept — before the credential gate was inverted" },
+          { src: "/images/herbalink/mobile-booking.png", alt: "Booking on mobile — \"We'll match you\" replaces the old filter panel" },
         ],
       },
       {
@@ -61,6 +71,9 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         paragraphs: [
           "A shipped booking platform where every listed practitioner has externally verified credentials, intake replaces search, and the safer path is also the easier one.",
           "Smaller catalog by design — honest beats exhaustive.",
+        ],
+        images: [
+          { src: "/images/herbalink/herb-detail-reviews.png", alt: "Herb library entry with real user reviews — the shipped, working platform" },
         ],
       },
     ]}

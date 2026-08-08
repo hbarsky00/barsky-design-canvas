@@ -8,7 +8,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
     description="A crypto trading interface designed for two audiences the industry insists you have to choose between."
     tags={["Fintech", "Crypto", "Product Design", "Dual-Mode UX"]}
     heroImage={{
-      src: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg",
+      src: "/images/crypto/hero.jpg",
       alt: "Crypto trading dashboard on mobile and desktop",
     }}
     blocks={[
@@ -19,7 +19,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Beginners pay for hidden fees and never graduate. Pros pay for every \"are you sure?\" tax built for someone else.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg", alt: "Failed prototype iterations and stakeholder feedback sessions" },
+          { src: "/images/crypto/learning.jpg", alt: "Failed prototype iterations and stakeholder feedback sessions" },
         ],
       },
       {
@@ -29,8 +29,8 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode shows the full order book with zero hand-holding. Mode is a setting, not a separate product.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png", alt: "Competitor analysis exposing beginner exploitation" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png", alt: "User Flow Chart for Crypto App" },
+          { src: "/images/crypto/competitive.png", alt: "Competitor analysis exposing beginner exploitation" },
+          { src: "/images/crypto/site-map.png", alt: "User Flow Chart for Crypto App" },
         ],
       },
       {
@@ -40,7 +40,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Total cost next to the action button was the most-fought decision and the one I'd defend hardest.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png", alt: "Initial concepts challenging crypto app conventions" },
+          { src: "/images/crypto/initial-flow.png", alt: "Initial concepts challenging crypto app conventions" },
         ],
       },
       {
@@ -50,7 +50,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode had the opposite problem: I'd cut so much that pros couldn't find features they relied on. Density is a feature for that audience.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png", alt: "Design thinking process for crypto platform" },
+          { src: "/images/crypto/design-thinking.png", alt: "Design thinking process for crypto platform" },
         ],
       },
       {

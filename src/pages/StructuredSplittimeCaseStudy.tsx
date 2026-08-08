@@ -9,7 +9,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
     tags={["Family Tech", "Legal UX", "Mobile"]}
     liveUrl="https://splittime.pro"
     heroImage={{
-      src: "https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1",
+      src: "/images/splittime/hero.jpg",
       alt: "SplitTime co-parenting platform overview",
     }}
     blocks={[
@@ -20,7 +20,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "The hard part isn't logistics — it's tone.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png", alt: "Early Splittime interface with feature overload" },
+          { src: "/images/splittime/early-dashboard.png", alt: "Early SplitTime dashboard concept" },
         ],
       },
       {
@@ -30,8 +30,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Templates for the 80% of co-parenting communication that's the same conversation every week strip the emotional charge out of routine messages.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg", alt: "Initial Concepts & Sketches" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/wireframing-1.webp", alt: "User Flow Explorations" },
+          { src: "/images/splittime/dashboard-concept.png", alt: "Dashboard concept exploration" },
+          { src: "/images/splittime/wireframing.webp", alt: "User Flow Explorations" },
         ],
       },
       {
@@ -41,8 +41,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Knowing the record exists changes how people communicate — it's not surveillance, it's the guardrail that makes both parties calmer.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/6.Messages.png", alt: "Messaging System" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/3.calendar.png", alt: "Calendar View" },
+          { src: "/images/splittime/messaging.png", alt: "Messaging System" },
+          { src: "/images/splittime/app-screens.png", alt: "App screens overview, including scheduling" },
         ],
       },
       {
@@ -52,9 +52,9 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one.",
         ],
         images: [
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/4.Expenses.png", alt: "Expenses Tracking" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/5.Documents.png", alt: "Documents Storage" },
-          { src: "https://barskyux.com/wp-content/uploads/2025/08/7.ChildProfile.png", alt: "Child Profile" },
+          { src: "/images/splittime/features.png", alt: "Feature and workflow breakdown" },
+          { src: "/images/splittime/documents.jpg", alt: "Documents Storage" },
+          { src: "/images/splittime/child-profile.png", alt: "Child Profile" },
         ],
       },
       {

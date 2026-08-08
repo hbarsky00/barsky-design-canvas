@@ -20,7 +20,7 @@ const currentProjects: CurrentProject[] = [
     description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/Screenshot%202025-09-26%20at%206.57.52%20PM.png"
+    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/d355adb5e73c47de8c56544b963b55c8-871b547c1e7eca93.gif"
   },
   {
     id: "inclusive-shopping-experience",
@@ -28,7 +28,8 @@ const currentProjects: CurrentProject[] = [
     description: "Developing an accessible e-commerce platform that promotes community engagement and showcases inclusive design principles through user-friendly checkout processes and community reviews.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/inclusive/goodvibesshallym.jpg"
+    // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
+    thumbnailSrc: "/images/hiram-barsky-profile.png"
   },
   {
     id: "roi-calculator",
@@ -36,7 +37,7 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/roi%20design%20calculator%20profile%20image.png"
+    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/f30542a71d55409a99c00e069b26c14b-4c00e5951d1a8e6c-full.jpg"
   },
   {
     id: "nail-salon-platform",
@@ -44,7 +45,8 @@ const currentProjects: CurrentProject[] = [
     description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/nail-salon-demo.png"
+    // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
+    thumbnailSrc: "/images/hiram-barsky-profile.png"
   },
   {
     id: "faces-of-hunger",
@@ -52,7 +54,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/faces-of-hunger.png"
+    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/1ad2ef7140384312b9777dc3f557f7ff-281af9ca1c04738a.gif"
   },
   {
     id: "crypto-app-learning",
@@ -60,7 +62,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/crypto-learning.jpg"
+    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/80a0a13cdf11424bb69be709d8c6aa2d-7520319fce021d7d.gif"
   }
 ];
 

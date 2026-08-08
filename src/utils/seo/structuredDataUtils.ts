@@ -32,7 +32,20 @@ export const generateStructuredData = (seoData: SEOData) => {
     "@type": "Organization",
     name: "Hiram Barsky Design",
     url: "https://barskydesign.pro",
-    logo: "https://barskydesign.pro/logo.png",
+    logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
+    sameAs: [
+      "https://www.linkedin.com/in/hirambarsky/",
+      "https://github.com/hbarsky00"
+    ],
+    knowsAbout: [
+      "AI-Assisted Product Design",
+      "UX/UI Design",
+      "Design Systems",
+      "React & TypeScript Development",
+      "Fintech UX",
+      "Healthcare UX",
+      "Product Strategy"
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
@@ -93,7 +106,7 @@ export const generateStructuredData = (seoData: SEOData) => {
         name: "Hiram Barsky Design",
         logo: {
           "@type": "ImageObject",
-          url: "https://barskydesign.pro/logo.png"
+          url: "https://barskydesign.pro/images/hiram-barsky-profile.png"
         }
       },
       ...(seoData.image && { image: seoData.image })

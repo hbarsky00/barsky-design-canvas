@@ -37,34 +37,27 @@ const staticEntries: Entry[] = [
 ];
 
 // Project routes — extracted from App.tsx <Route path="/project/..."> entries,
-// excluding redirects and the dynamic :projectId catch-all.
+// excluding redirects and the dynamic :projectId catch-all. Checked per-line (not a
+// fixed-width lookahead) so one route's <Navigate> can't false-positive-exclude an
+// unrelated route sitting a line or two below it — this previously dropped
+// /project/herbalink from the sitemap because /project/barskyjoint's Navigate fell
+// inside the old 400-char window.
 function getProjectPaths(): string[] {
   const appPath = resolve("src/App.tsx");
   const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
-  const re = /<Route\s+path="(\/project\/[a-z0-9-]+)"/gi;
   const found = new Set<string>();
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(src)) !== null) {
-    if (!src.slice(m.index, m.index + 400).includes("Navigate")) {
+  for (const line of src.split("\n")) {
+    const m = /<Route\s+path="(\/project\/[a-z0-9-]+)"/i.exec(line);
+    if (m && !line.includes("Navigate")) {
       found.add(m[1]);
     }
   }
-  // Known additional projects rendered via <Route path="/project/:projectId" />.
-  [
-    "/project/splittime",
-    "/project/crypto",
-    "/project/smarterhealth",
-    "/project/medication-app",
-    "/project/gold2crypto",
-    "/project/dae-search",
-    "/project/business-management",
-    
-    "/project/investor-loan-app",
-    "/project/wholesale-distribution",
-    "/project/fire-lion",
-    "/project/ring-rival",
-    "/project/catchbuddy",
-  ].forEach((p) => found.add(p));
+  // Rendered via the generic /project/:projectId catch-all — no dedicated <Route> line to match.
+  ["/project/smarterhealth", "/project/medication-app", "/project/gold2crypto"].forEach((p) =>
+    found.add(p),
+  );
+  // Always client-redirects home at runtime (no real case-study content behind it) — soft 404, keep out of the sitemap.
+  found.delete("/project/business-management");
   return Array.from(found).sort();
 }
 

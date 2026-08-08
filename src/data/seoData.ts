@@ -13,25 +13,25 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'UX Case Studies & Product Design — Barsky Design',
     description: 'UX case studies in healthcare, fintech, co-parenting, and AI platforms — measurable impact, user outcomes, and strategic design thinking.',
-    image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
+    image: 'https://barskydesign.pro/images/herbalink-promo.png'
   },
   '/services': {
     kind: 'page',
     title: 'UX/UI Design Services | Barsky Design',
     description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences that drive results.',
-    image: 'https://barskydesign.pro/images/macbookpro.png'
+    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/contact': {
     kind: 'page',
     title: 'Contact Barsky Design — UX Consulting',
     description: 'Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration in Clifton, NJ and beyond.',
-    image: 'https://barskydesign.pro/images/macbookpro.png'
+    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/blog': {
     kind: 'page',
     title: 'UX Design Blog — Product Insights | Barsky',
     description: 'Insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
-    image: 'https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg'
+    image: 'https://barskydesign.pro/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
     kind: 'page',
@@ -43,25 +43,25 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Design Resources & Templates — Barsky',
     description: 'Professional design resources, wireframe kits, and UX templates to accelerate product development. Instant digital downloads.',
-    image: 'https://barskydesign.pro/images/macbookpro.png'
+    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/design-services/ux-ui-design': {
     kind: 'page',
     title: 'UX/UI Design Services — Product Design',
     description: 'Expert UX/UI design — from user research to high-fidelity prototypes. Intuitive experiences that drive measurable business results.',
-    image: 'https://barskydesign.pro/images/herbalink-desktop-1.webp'
+    image: 'https://barskydesign.pro/images/herbalink-promo.png'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
     title: 'Mobile App Design — iOS & Android | Barsky',
     description: 'Native and cross-platform mobile app design for iOS and Android. User-centered design that increases engagement and ratings.',
-    image: 'https://barskydesign.pro/images/splittime-desktop-1.webp'
+    image: 'https://barskydesign.pro/images/catchbuddy-hero-landing.png'
   },
   '/design-services/web-development': {
     kind: 'page',
     title: 'Web Development — React & Frontend | Barsky',
     description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, accessible web apps that scale.',
-    image: 'https://barskydesign.pro/images/business-management-desktop-1.webp'
+    image: 'https://barskydesign.pro/images/dae-search/hero.jpg'
   }
 };
 
@@ -70,47 +70,47 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "smarterhealth": {
     title: "Smarter Health — Healthcare App UX Case Study",
     description: "Healthcare app that made medication tracking 45% faster and lifted appointment adherence 60% for diabetic patients via empathy-driven design.",
-    image: "https://barskydesign.pro/images/smarterhealth-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
-    image: "https://barskydesign.pro/images/crypto-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
     description: "HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.",
-    image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
+    image: "https://barskydesign.pro/images/herbalink/home-hero.png"
   },
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
     description: "Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.",
-    image: "https://barskydesign.pro/images/splittime-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "business-management": {
     title: "Enterprise Ops Platform — B2B UX Case Study",
     description: "Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.",
-    image: "https://barskydesign.pro/images/business-management-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.",
-    image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "medication-app": {
     title: "Medication App — Patient Safety UX Case Study",
     description: "Mobile medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility.",
-    image: "https://barskydesign.pro/images/medication-app-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "gold2crypto": {
     title: "Crypto Exchange Onboarding — UX Case Study",
     description: "Reduced crypto exchange drop-off 50% with simpler KYC, progressive disclosure, and clear risk communication.",
-    image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp"
+    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
     description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
-    image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
+    image: "https://barskydesign.pro/images/dae-search/hero.jpg"
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
@@ -134,21 +134,17 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   }
 };
 
-// Blog post image mappings with enhanced SEO-optimized data
+// Blog post OG-image overrides. Only list a slug here if it has a real, dedicated
+// social-share image on disk — anything else falls through to the post's own
+// coverImage (see getBlogSEO below), which is a correctly bundled asset.
+// The 5 below are the only blog-*.jpg files that actually exist, and they live at
+// the public root, not under /images/.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
-  "finding-first-ux-job-guide": "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
-  "design-systems-that-get-used": "https://barskydesign.pro/images/blog-design-systems.jpg",
-  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/images/blog-portfolio-red-flags.jpg",
-  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "https://barskydesign.pro/images/blog-user-research-budget.jpg",
-  "built-product-without-real-data": "https://barskydesign.pro/images/blog-built-product-without-real-data.jpg",
-  "building-products-nobody-asked-for": "https://barskydesign.pro/images/blog-building-products-nobody-asked-for.jpg",
-  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/blog-wireframes-to-wow-visual-hierarchy.jpg",
-  "case-study-writing": "https://barskydesign.pro/images/blog-case-study-writing.jpg",
-  "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg",
-  
-  "beautiful-interface-doesnt-convert": "https://barskydesign.pro/images/blog-beautiful-interface.jpg",
-  "research-without-users": "https://barskydesign.pro/images/blog-research-without-users.jpg"
+  "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
+  "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
+  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
+  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
+  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg"
 };
 
 // Enhanced blog post SEO data
@@ -224,11 +220,14 @@ export function getBlogSEO(slug: string): Partial<SEOInput> | null {
   const image = BLOG_IMAGE_MAP[slug];
   const seoData = BLOG_SEO_MAP[slug];
   if (!image && !seoData) return null;
-  
+
   return {
     kind: 'post',
     title: seoData?.title,
     description: seoData?.description,
-    image
+    // Omit entirely (not `image: undefined`) when there's no dedicated OG image —
+    // an explicit undefined key still overwrites the post's real coverImage when
+    // spread into seoInput in UnifiedSEO.tsx.
+    ...(image ? { image } : {}),
   };
 }

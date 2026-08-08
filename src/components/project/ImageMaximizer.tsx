@@ -9,65 +9,31 @@ interface FlipCardProps {
   image: string;
   title: string;
   scale: number;
-  onClose: () => void;
 }
 
-const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(true);
-
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => setIsOpen(true));
-    const t = setTimeout(() => setIsAnimating(false), 1100);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(t);
-    };
-  }, []);
-
-  const handleClick = () => {
-    if (isAnimating || isClosing) return;
-    setIsAnimating(true);
-    setIsClosing(true);
-    setTimeout(onClose, 500);
-  };
-
-  const transform = isOpen
-    ? `rotateX(8deg) rotateY(360deg) rotateZ(-4deg) scale(${scale})`
-    : `rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(${scale})`;
-
+const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale }) => {
   return (
     <div
-      className="relative cursor-pointer"
+      className="relative"
       style={{
         width: "min(90vw, 1200px)",
         height: "80vh",
-        perspective: "1200px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
-      onClick={handleClick}
     >
-      <div
+      <img
+        src={image}
+        alt={title}
         style={{
           width: "100%",
           height: "100%",
-          transformStyle: "preserve-3d",
-          transition: isClosing
-            ? "opacity 0.5s ease-in"
-            : "transform 1.1s cubic-bezier(0.45, 0.05, 0.15, 1.0)",
-          transform,
-          opacity: isClosing ? 0 : 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          objectFit: "contain",
+          transform: `scale(${scale})`,
+          transition: "transform 0.2s ease",
         }}
-      >
-        <img
-          src={image}
-          alt={title}
-          style={{ width: "100%", height: "100%", objectFit: "contain", pointerEvents: "none" }}
-        />
-      </div>
+      />
     </div>
   );
 };
@@ -201,7 +167,6 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               image={image}
               title={title}
               scale={scale}
-              onClose={onClose}
             />
 
             <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">

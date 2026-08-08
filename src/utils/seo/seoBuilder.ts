@@ -19,6 +19,7 @@ export type BuiltSEO = {
   description: string;
   canonical: string;
   type: 'website' | 'article';
+  kind: SEOInput['kind'];
   siteName?: string;
   robots?: string;
   image?: string;
@@ -62,6 +63,7 @@ export function buildSEO(input: SEOInput): BuiltSEO {
     description: input.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
     canonical,
     type: isArticle ? 'article' : 'website',
+    kind: input.kind,
 
     // All fields from builder - no hardcoding elsewhere
     siteName: SEO_CONSTANTS.SITE_NAME,

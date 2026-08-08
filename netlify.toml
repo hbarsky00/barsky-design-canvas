@@ -14,11 +14,6 @@
   status = 301
 
 [[redirects]]
-  from = "/project/investor-loan-app"
-  to = "/"
-  status = 301
-
-[[redirects]]
   from = "/project/wholesale-distribution"
   to = "/project/business-management"
   status = 301
@@ -60,7 +55,11 @@
   to = "/blog/:slug"
   status = 301
 
-# Prerendered project pages (only those that exist and don't redirect)
+# Prerendered project pages — this list must match scripts/inject-seo-html.ts's route
+# set exactly (business-management and barskyjoint are deliberately absent: the former
+# always client-redirects home with no real content behind it, the latter's route is a
+# <Navigate> — pointing a rewrite at a dist/.../index.html that inject-seo-html.ts never
+# generates for either would 404 at the edge).
 [[redirects]]
   from = "/project/herbalink"
   to = "/project/herbalink/index.html"
@@ -69,16 +68,6 @@
 [[redirects]]
   from = "/project/splittime"
   to = "/project/splittime/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/business-management"
-  to = "/project/business-management/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/project/barskyjoint"
-  to = "/project/barskyjoint/index.html"
   status = 200
 
 [[redirects]]
@@ -106,10 +95,35 @@
   to = "/project/dae-search/index.html"
   status = 200
 
+[[redirects]]
+  from = "/project/fire-lion"
+  to = "/project/fire-lion/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/ring-rival"
+  to = "/project/ring-rival/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/catchbuddy"
+  to = "/project/catchbuddy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/email-creation-ai"
+  to = "/project/email-creation-ai/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/project/investor-loan-app"
+  to = "/project/investor-loan-app/index.html"
+  status = 200
+
 # Prerendered static pages
 [[redirects]]
-  from = "/design-services"
-  to = "/design-services/index.html"
+  from = "/services"
+  to = "/services/index.html"
   status = 200
 
 [[redirects]]
@@ -198,6 +212,16 @@
   to = "/blog/research-without-users/index.html"
   status = 200
 
+[[redirects]]
+  from = "/blog/ai-in-design"
+  to = "/blog/ai-in-design/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/portfolio-red-flags-no-interviews"
+  to = "/blog/portfolio-red-flags-no-interviews/index.html"
+  status = 200
+
 # SPA fallback for all other routes
 [[redirects]]
   from = "/*"
@@ -205,7 +229,10 @@
   status = 200
   
 [build]
-  command = "vite build"
+  # npm run build (not a bare `vite build`) so the prebuild (sitemap.xml regeneration)
+  # and postbuild (per-route SEO HTML injection) lifecycle hooks in package.json
+  # actually run on every deploy instead of only when someone remembers to run them locally.
+  command = "npm run build"
   publish = "dist"
   
 [[headers]]
