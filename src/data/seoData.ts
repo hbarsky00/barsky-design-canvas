@@ -142,7 +142,6 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 export const BLOG_IMAGE_MAP: Record<string, string> = {
   "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
   "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
-  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/blog-portfolio-red-flags.jpg",
   "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
   "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg"
 };
@@ -156,10 +155,6 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   "design-systems-that-get-used": {
     title: "Design Systems That Actually Get Used",
     description: "Stop building design systems that get ignored. Practical governance, documentation, and adoption tactics teams actually use."
-  },
-  "portfolio-red-flags-no-interviews": {
-    title: "UX Portfolio Red Flags Killing Interviews",
-    description: "Common UX portfolio mistakes that kill your chances. What hiring managers look for and how to showcase your UX process."
   },
   "ai-enhanced-ux-designer-future": {
     title: "AI in UX Design — Leverage AI Tools",
@@ -184,10 +179,6 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   "case-study-writing": {
     title: "UX Case Studies That Win Interviews",
     description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from hundreds of portfolios."
-  },
-  "ai-in-design": {
-    title: "Future of AI in Design — 2025 View",
-    description: "How AI is transforming design work. Practical insights on tools, ethics, and career implications for designers."
   },
   "beautiful-interface-doesnt-convert": {
     title: "Why Beautiful Interfaces Don't Convert",

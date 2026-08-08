@@ -212,16 +212,6 @@
   to = "/blog/research-without-users/index.html"
   status = 200
 
-[[redirects]]
-  from = "/blog/ai-in-design"
-  to = "/blog/ai-in-design/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/portfolio-red-flags-no-interviews"
-  to = "/blog/portfolio-red-flags-no-interviews/index.html"
-  status = 200
-
 # SPA fallback for all other routes
 [[redirects]]
   from = "/*"

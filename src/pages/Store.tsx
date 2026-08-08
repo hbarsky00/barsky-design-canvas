@@ -24,7 +24,7 @@ const Store: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       
-      <main className="flex-grow pt-24">
+      <main className="flex-grow pt-[calc(var(--header-height,64px)+32px)]">
         <section className="py-12 bg-gradient-subtle">
           <div className="section-container">
             {/* Header Section */}

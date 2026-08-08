@@ -22,7 +22,7 @@ const BlogPostPage: React.FC = () => {
       <>
         <Header />
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-lg text-gray-600">Loading blog post...</p>
+          <p className="text-lg text-muted-foreground">Loading blog post...</p>
         </div>
         <Footer />
       </>
@@ -35,8 +35,8 @@ const BlogPostPage: React.FC = () => {
         <Header />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
-            <p className="text-gray-600">The blog post you're looking for doesn't exist.</p>
+            <h1 className="text-2xl font-bold text-foreground mb-4">Post Not Found</h1>
+            <p className="text-muted-foreground">The blog post you're looking for doesn't exist.</p>
           </div>
         </div>
         <Footer />
@@ -68,16 +68,16 @@ const BlogPostPage: React.FC = () => {
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-background">
         <Header />
-        
-        <main className="pt-24 pb-16">
+
+        <main className="pt-[calc(var(--header-height,64px)+32px)] pb-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.article
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              className="bg-background border border-border/10 rounded-2xl shadow-elevation-3 overflow-hidden"
             >
               {/* Featured Image */}
               {(metadata?.featuredImage || staticPost?.coverImage) && (
@@ -99,11 +99,11 @@ const BlogPostPage: React.FC = () => {
                 />
                 
                 <header className="mb-8">
-                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                  <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
                     {post.title}
                   </h1>
-                  
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
+
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
                     <span>By {metadata?.author || staticPost?.author}</span>
                     <span>•</span>
                     <time dateTime={metadata?.publishedDate || staticPost?.date}>
@@ -118,7 +118,7 @@ const BlogPostPage: React.FC = () => {
                     {(metadata?.tags || staticPost?.tags || []).map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
+                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
                       >
                         {tag}
                       </span>
@@ -128,7 +128,7 @@ const BlogPostPage: React.FC = () => {
                 
                 {/* Article Body */}
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                  <p className="text-xl text-muted-foreground leading-relaxed mb-8">
                     {metadata?.excerpt || staticPost?.excerpt}
                   </p>
                   

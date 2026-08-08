@@ -33,13 +33,11 @@
 
 - [Finding Your First UX Job](/blog/finding-first-ux-job-guide)
 - [Design Systems That Get Used](/blog/design-systems-that-get-used)
-- [Portfolio Red Flags](/blog/portfolio-red-flags-no-interviews)
 - [The AI-Enhanced UX Designer](/blog/ai-enhanced-ux-designer-future)
 - [User Research on a Shoestring Budget](/blog/user-research-shoestring-budget)
 - [Built a Product Without Real Data](/blog/built-product-without-real-data)
 - [Building Products Nobody Asked For](/blog/building-products-nobody-asked-for)
 - [Wireframes to Wow: Visual Hierarchy](/blog/wireframes-to-wow-visual-hierarchy)
 - [Case Study Writing](/blog/case-study-writing)
-- [AI in Design](/blog/ai-in-design)
 - [Why Beautiful Interfaces Don't Convert](/blog/beautiful-interface-doesnt-convert)
 - [Validating Products Without Users](/blog/research-without-users)

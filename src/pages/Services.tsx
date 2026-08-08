@@ -11,7 +11,7 @@ const Services = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden relative bg-gradient-to-b from-background via-md-sys-surface-container-low/30 to-md-sys-surface-container/20">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 pt-[calc(var(--header-height,64px)+32px)]">
         <ServicePageLayout />
       </main>
       <Footer />

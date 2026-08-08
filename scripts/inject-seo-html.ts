@@ -56,29 +56,13 @@ function getProjectPaths(): string[] {
   return Array.from(found).sort();
 }
 
+// Kept in sync with the identical fix in scripts/generate-sitemap.ts.
 function getBlogSlugs(): string[] {
-  const candidates = ["src/data/blogPosts.ts", "src/data/blog/posts.ts", "src/data/blog.ts"];
-  for (const c of candidates) {
-    const p = resolve(c);
-    if (!existsSync(p)) continue;
-    const txt = readFileSync(p, "utf8");
-    const slugs = Array.from(txt.matchAll(/slug:\s*["'`]([a-z0-9-]+)["'`]/gi)).map((m) => m[1]);
-    if (slugs.length) return Array.from(new Set(slugs)).sort();
-  }
-  return [
-    "finding-first-ux-job-guide",
-    "design-systems-that-get-used",
-    "portfolio-red-flags-no-interviews",
-    "ai-enhanced-ux-designer-future",
-    "user-research-shoestring-budget",
-    "built-product-without-real-data",
-    "building-products-nobody-asked-for",
-    "wireframes-to-wow-visual-hierarchy",
-    "case-study-writing",
-    "ai-in-design",
-    "beautiful-interface-doesnt-convert",
-    "research-without-users",
-  ];
+  const p = resolve("src/data/blogData.ts");
+  if (!existsSync(p)) return [];
+  const txt = readFileSync(p, "utf8");
+  const slugs = Array.from(txt.matchAll(/slug:\s*["'`]([a-z0-9-]+)["'`]/gi)).map((m) => m[1]);
+  return Array.from(new Set(slugs)).sort();
 }
 
 function seoInputFor(pathname: string): SEOInput {

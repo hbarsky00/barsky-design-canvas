@@ -21,7 +21,7 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "4",
+    id: "10",
     title: "Finding a UX Job in 2025 – What Works (and What Doesn't)",
     excerpt: "Lessons from breaking into UX in a crowded market — mistakes, pivots, and strategies that actually work today.",
     author: "Hiram Barsky",
@@ -1046,8 +1046,16 @@ export const blogPosts: BlogPost[] = [
       <p>Most products fail not because they're poorly built, but because they solve problems that don't exist or solve real problems in ways that don't fit how people actually work.</p>
       
       <p>You can't research your way to a guaranteed hit. But you can research your way out of building something nobody wants.</p>
-      
+
       <p>And that's a pretty good starting point.</p>
     `
   }
 ];
+
+// blogPosts above isn't in date order — every consumer that lists posts (BlogPreview,
+// BlogLanding) needs the same "most recent first" ordering, so sort once here instead
+// of each component silently trusting array order (which is how a "Latest Insights"
+// section ended up showing posts that weren't the latest).
+export const sortedBlogPosts: BlogPost[] = [...blogPosts].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
