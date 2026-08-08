@@ -73,7 +73,12 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
         />
       </div>
       
-      {visibleAnnotations.map((annotation, index) => (
+      {visibleAnnotations.map((annotation, index) => {
+        // Center-anchored tooltips clip off-screen when a dot sits near the
+        // image edge (the 192px bubble is wider than the space beside the dot
+        // on phones) — anchor edge dots' tooltips inward instead.
+        const align = annotation.x < 30 ? "left" : annotation.x > 70 ? "right" : "center";
+        return (
         <div
           key={index}
           className="absolute"
@@ -84,23 +89,27 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
           }}
         >
           {/* Callout dot */}
-          <div 
+          <div
             className={`w-4 h-4 rounded-full border-2 border-white shadow-xl drop-shadow-lg ${
               annotation.type === 'issue' ? 'bg-red-500' :
               annotation.type === 'improvement' ? 'bg-blue-500' :
               'bg-green-500'
             }`}
           />
-          
+
           {/* Always visible text */}
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10">
+          <div className={`absolute bottom-full mb-2 z-10 ${
+            align === "left" ? "left-0" : align === "right" ? "right-0" : "left-1/2 transform -translate-x-1/2"
+          }`}>
             <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-2xl drop-shadow-xl backdrop-blur-sm ring-1 ring-black/10 w-48 max-w-[192px] sm:w-52 sm:max-w-[208px] lg:w-64 lg:max-w-[256px] whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
               'bg-green-600'
             }`}>
               {getTruncatedText(annotation.text)}
-              <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-transparent ${
+              <div className={`absolute top-full w-0 h-0 border-l-4 border-r-4 border-transparent ${
+                align === "left" ? "left-2" : align === "right" ? "right-2" : "left-1/2 transform -translate-x-1/2"
+              } ${
                 annotation.type === 'issue' ? 'border-t-red-600' :
                 annotation.type === 'improvement' ? 'border-t-blue-600' :
                 'border-t-green-600'
@@ -108,7 +117,8 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
             </div>
           </div>
         </div>
-      ))}
+        );
+      })}
 
       {/* Hidden annotations indicator */}
       {hiddenCount > 0 && (

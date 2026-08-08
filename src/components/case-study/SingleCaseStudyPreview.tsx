@@ -24,39 +24,38 @@ interface CaseStudy {
   video?: string;
 }
 
-// Homepage case studies data with actual image URLs
+// "More Work" preview entries. Copy mirrors the honest homepage cards in
+// VideoCaseStudiesSection (no invented metrics), and media is local — the
+// old barskyux.com images/videos are on a domain that no longer resolves.
 const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Gen AI"],
-    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
-    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
-    impact: "+3x Booking Rate Increase",
+    tags: ["Health", "Marketplace", "Trust & Safety"],
+    title: "HerbaLink",
+    description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
+    impact: "",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/herbalinkpromonew.png",
-      secondary: "/lovable-uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-      alt: "HerbaLink app showing symptom tracker and herbalist finder"
+      primary: "/images/herbalink-promo.png",
+      alt: "HerbaLink practitioner booking interface"
     },
-    layout: "side-by-side",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.rungHHTkRnoxDQ_have_her_stop_looking_at_7775da4e-d6bf-4b3d-8ad4-6bb240f18e2a_2.mp4"
+    layout: "side-by-side"
   },
   {
     id: "splittime",
-    tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    impact: "-40% Conflict Reduction",
+    tags: ["Family Tech", "Legal UX", "Mobile"],
+    title: "SplitTime",
+    description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
+    impact: "",
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
     images: {
-      primary: "https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png",
-      secondary: "images/desktop-signup-1.png",
-      alt: "SplitTime web and mobile views showing scheduling features"
+      primary: "/images/splittime/hero.jpg",
+      secondary: "/images/desktop-signup-1.png",
+      alt: "SplitTime co-parenting platform overview"
     },
-    layout: "web-mobile",
-    video: "https://barskyux.com/wp-content/uploads/2025/08/social_u3514236419_httpss.mj_.runZlcCT8sBjuU_coparenting_app_to_help__c63b8a71-d4e2-47ae-b772-394ea1404a5b_1.mp4"
+    layout: "web-mobile"
   },
   // business-management entry removed
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts

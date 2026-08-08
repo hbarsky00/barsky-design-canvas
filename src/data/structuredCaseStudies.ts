@@ -276,11 +276,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `Trading Without Friction`,
     description: `A crypto trading interface designed for two audiences the industry insists you have to choose between.`,
     tags: [`Fintech`, `Crypto`, `Product Design`, `Dual-Mode UX`],
-    heroVideo: {
-      src: `/lovable-uploads/crypto-hero.mp4`,
-      poster: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg`,
-      alt: `Crypto trading platform overview`,
-    },
+    // heroVideo dropped: /lovable-uploads/crypto-hero.mp4 doesn't exist locally and
+    // the poster lived on a deprovisioned Supabase project. Hero falls back to
+    // seoData.image.
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `'Easy' crypto apps (Coinbase, Cash App) hide complexity and charge premium spreads. 'Pro' apps (Kraken, Binance) expose everything and assume you brought your own confidence. Both audiences get screwed differently. Beginners pay for hidden fees and never graduate. Pros pay for every 'are you sure?' tax built for someone else.`,
@@ -314,7 +312,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/crypto/dashboardmobileanddesktopcrypto.jpg`,
+      image: `/images/crypto/hero.jpg`,
       projectName: `Trading Without Friction`,
       results: [],
       technologies: [],
@@ -371,11 +369,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `HerbaLink`,
     description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
-    heroVideo: {
-      src: `https://barskyux.com/wp-content/uploads/2025/07/HerbaLink-Book-A-Herbalist-1.mp4`,
-      poster: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
-      alt: `HerbaLink booking platform overview`,
-    },
+    // heroVideo dropped: both the mp4 and its poster lived on barskyux.com, which
+    // no longer resolves. Hero falls back to seoData.image.
     projectLink: `http://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
@@ -481,7 +476,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
+      image: `/images/herbalink-promo.png`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
@@ -495,7 +490,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A co-parenting app designed around the fact that every interaction is potential evidence.`,
     tags: [`Family Tech`, `Legal UX`, `Mobile`],
     heroImage: {
-      src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2024/01/Frame-4.jpg?fit=1920%2C1080&ssl=1`,
+      src: `/images/splittime/hero.jpg`,
       alt: `SplitTime co-parenting platform overview`,
     },
     projectLink: `https://splittime.pro`,
@@ -537,7 +532,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png`,
+      image: `/images/splittime/hero.jpg`,
       projectName: `SplitTime`,
       results: [],
       technologies: [],
@@ -991,8 +986,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   // Restored 2026-08-08 from commit f3f49d7a (last real content before the site-wide
   // reverts this session dropped it) — Hiram asked for it back. Images re-sourced
   // 2026-08-08 from real project screenshots (warehouse-distro export) and moved to
-  // /public/images/business-management/; heroVideo.src is still the dead barskyux.com
-  // mp4 (no replacement video provided) — flagged, not fixed.
+  // /public/images/business-management/. The old heroVideo pointed at barskyux.com,
+  // which no longer resolves — dropped, so the hero falls back to seoData.image
+  // (the same frame the video's poster used). Re-add heroVideo if a real file lands.
   "business-management": {
     id: "business-management",
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -1000,11 +996,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
-    heroVideo: {
-      src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "/images/business-management/hero-three-laptops.jpg",
-      alt: "Blue Sky — Customer Management, Product Catalog, and Order Management across three screens"
-    },
     researchSection: {
       subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
       blurb: "Gathering insights from 47 small business owners",
