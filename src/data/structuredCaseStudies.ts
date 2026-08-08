@@ -991,6 +991,259 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: `/project/catchbuddy`,
     },
   },
+  // Restored 2026-08-08 from commit f3f49d7a (last real content before the site-wide
+  // reverts this session dropped it) — Hiram asked for it back. Images below are
+  // untouched from that commit and still point at the dead barskyux.com host, same
+  // as everything else did before this session's image-restoration passes; flagged,
+  // not fixed here.
+  "business-management": {
+    id: "business-management",
+    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
+    tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
+    heroVideo: {
+      src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
+      poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      alt: "Business management system promotional overview"
+    },
+    researchSection: {
+      subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
+      blurb: "Gathering insights from 47 small business owners",
+        emergingThemes: [
+        {
+          eyebrow: "CONSOLIDATION",
+          insight: "Scheduling, invoicing, and tasks lived in separate systems.",
+          drove: "Unified dashboard with linked records."
+        },
+        {
+          eyebrow: "AUTOMATION",
+          insight: "Recurring work (invoices, reminders) was manual.",
+          drove: "Recurrence, templates, and smart reminders."
+        },
+        {
+          eyebrow: "VISIBILITY & PRIORITY",
+          insight: "Hard to see what needs attention now.",
+          drove: "'Today' view with aging statuses and alerts."
+        }
+      ],
+      researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
+      researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
+      researchImages: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/07/AutomatedInventoryTrackingSystem-Claude-8July2025-ezgif.com-video-to-gif-converter.gif",
+          alt: "Animated workflow of automated inventory tracking system"
+        }
+      ]
+    },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement: "Small businesses often juggle disconnected tools for scheduling, invoicing, and tasks, wasting hours weekly and losing revenue."
+    },
+    sprintZeroSection: {
+      eyebrow: "0 → 1 EXPLORATION",
+      title: "Sprint Zero: Blue-Sky Thinking",
+      workshopKickoff: "Initial concept sitemap mapping core modules and navigation.",
+      explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
+      decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
+          alt: "Initial Concepts & Sketches",
+          caption: "Initial concept sitemap mapping core modules and navigation."
+        },
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755796640970-scaled.png",
+          alt: "User Flow Explorations",
+          caption: "User flow exploration detailing end-to-end operations from intake to invoicing."
+        }
+      ]
+    },
+    keyInsights: [
+      { number: 1, title: "One platform eliminates chaos", description: "Consolidating core ops cuts tool chaos." },
+      { number: 2, title: "Automation saves hours", description: "Recurring invoices and reminders save hours weekly." },
+      { number: 3, title: "Priority-at-a-glance prevents oversights", description: "A single dashboard surfaces what needs attention now." }
+    ],
+    ideationSection: {
+      subhead: "Multiple iterations on the \"run your day\" loop",
+      bubbles: [
+        { title: "Dashboard KPIs", description: "only critical alerts" },
+        { title: "Tasks", description: "Today view + smart priority" },
+        { title: "Invoices", description: "template-driven workflow" },
+        { title: "Scheduling", description: "auto-generates tasks + invoices" }
+      ],
+      iterations: [
+        {
+          label: "Iteration 1",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png",
+          alt: "Overloaded dashboard iteration",
+          blurb: "Overloaded dashboard → rejected",
+          annotations: [
+            { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
+            { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
+          ]
+        },
+        {
+          label: "Iteration 2",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png",
+          alt: "Today view clarity iteration",
+          blurb: "Today view clarity → \"Finally, something that makes sense\"",
+          annotations: [
+            { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
+            { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
+          ]
+        },
+        {
+          label: "Iteration 3",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png",
+          alt: "Template invoices iteration",
+          blurb: "Template invoices → \"This actually saves me time\"",
+          annotations: [
+            { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
+            { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
+          ]
+        },
+        {
+          label: "Iteration 4",
+          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png",
+          alt: "Scheduling integration iteration",
+          blurb: "Scheduling integration → \"I look forward to checking this\"",
+          annotations: [
+            { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
+            { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
+          ]
+        }
+      ]
+    },
+    userTestingSection: {
+      title: "User Testing & Validation",
+      description: "User Testing & Validation",
+      eyebrow: "Validation & Testing",
+      metrics: [
+        { value: "90%", label: "satisfaction" },
+        { value: "68%", label: "fewer errors" },
+        { value: "5 min", label: "daily setup time" }
+      ],
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+          alt: "User testing session showing business management workflow validation",
+          caption: "Testing sessions confirmed my unified approach significantly improved daily operations efficiency."
+        }
+      ]
+    },
+    finalProductSection: {
+      title: "The Final Product",
+      description: "Unified platform with: Smart priority dashboard, Automated invoicing, Connected scheduling, Error reduction by 68%",
+      eyebrow: "The Result",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/07/993shots_so.png",
+          alt: "Business management system final interface",
+          caption: "Complete business management platform with unified operations and automated workflows",
+          annotations: [
+            {
+              x: 20,
+              y: 25,
+              type: "feature",
+              text: "Unified dashboard eliminated tool switching"
+            },
+            {
+              x: 70,
+              y: 20,
+              type: "feature",
+              text: "Automated invoicing reduced errors by 68%"
+            },
+            {
+              x: 50,
+              y: 60,
+              type: "improvement",
+              text: "Smart priority system surfaces urgent tasks"
+            },
+            {
+              x: 80,
+              y: 80,
+              type: "feature",
+              text: "Integrated scheduling prevents double-booking"
+            }
+          ]
+        }
+      ]
+    },
+    outcomeSection: {
+      title: "Outcome",
+      description: "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"",
+      eyebrow: "Outcomes & Impact",
+      metrics: [
+        { value: "68%", label: "Fewer Errors" },
+        { value: "35%", label: "Faster Processing" },
+        { value: "90%", label: "User Satisfaction" }
+      ],
+      images: [
+        {
+          src: "https://www.loom.com/share/6b2dbd5672944f3b8bbaea71335afab7?sid=f9fa11c9-9c89-440b-bbc8-8eca0aa7c524",
+          alt: "Business management system full user journey demonstration",
+          caption: "Complete user journey showing the full process in high fidelity"
+        }
+      ]
+    },
+    myThoughtProcessSection: {
+      eyebrow: "My Thought Process",
+      title: "Approach & Decision Making",
+      content: "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
+          alt: "Business management system operational improvements and metrics",
+          annotations: [
+            { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
+            { text: "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth.", x: 75, y: 60, type: "feature" }
+          ]
+        }
+      ]
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What Didn't Work",
+      title: "Lessons Learned",
+      content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
+      images: [
+        {
+          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
+          alt: "Early business management interface with feature overload",
+          caption: "Early designs included too many customization options, overwhelming busy business owners",
+          annotations: [
+            {
+              x: 35,
+              y: 30,
+              type: "issue",
+              text: "Too many options created decision paralysis"
+            },
+            {
+              x: 60,
+              y: 50,
+              type: "issue",
+              text: "Complex settings overwhelmed users"
+            },
+            {
+              x: 50,
+              y: 75,
+              type: "improvement",
+              text: "Smart defaults with selective customization"
+            }
+          ]
+        }
+      ]
+    },
+    sections: [],
+    seoData: {
+      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+      results: ["68% Fewer Operation Errors", "35% faster processing", "90% user satisfaction", "Unified operations platform"],
+      technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
+      path: "/project/business-management"
+    }
+  },
 };
 
 

@@ -49,10 +49,10 @@ function getProjectPaths(): string[] {
       found.add(m[1]);
     }
   }
-  // smarterhealth/medication-app/gold2crypto/business-management all client-redirect
-  // home at runtime — no matching entry in structuredCaseStudies.ts. Soft 404s, kept
-  // out of the generated HTML. (Kept in sync with the identical fix in generate-sitemap.ts.)
-  found.delete("/project/business-management");
+  // smarterhealth/medication-app/gold2crypto have no matching entry in
+  // structuredCaseStudies.ts — soft 404s, kept out of the generated HTML.
+  // business-management has real data as of 2026-08-08, so it's not excluded.
+  // (Kept in sync with the identical logic in generate-sitemap.ts.)
   return Array.from(found).sort();
 }
 

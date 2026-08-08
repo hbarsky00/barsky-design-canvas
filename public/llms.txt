@@ -25,6 +25,7 @@
 - [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict through structured requests.
 - [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
 - [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
+- [Blue Sky](/project/business-management): Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks.
 
 ## Blog
 

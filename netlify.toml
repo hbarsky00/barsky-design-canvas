@@ -56,10 +56,14 @@
   status = 301
 
 # Prerendered project pages — this list must match scripts/inject-seo-html.ts's route
-# set exactly (business-management and barskyjoint are deliberately absent: the former
-# always client-redirects home with no real content behind it, the latter's route is a
-# <Navigate> — pointing a rewrite at a dist/.../index.html that inject-seo-html.ts never
-# generates for either would 404 at the edge).
+# set exactly (barskyjoint is deliberately absent: its route is a <Navigate> —
+# pointing a rewrite at a dist/.../index.html that inject-seo-html.ts never generates
+# for it would 404 at the edge).
+[[redirects]]
+  from = "/project/business-management"
+  to = "/project/business-management/index.html"
+  status = 200
+
 [[redirects]]
   from = "/project/herbalink"
   to = "/project/herbalink/index.html"

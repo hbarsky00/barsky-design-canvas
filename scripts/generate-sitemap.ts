@@ -52,11 +52,11 @@ function getProjectPaths(): string[] {
       found.add(m[1]);
     }
   }
-  // smarterhealth/medication-app/gold2crypto/business-management all client-redirect
-  // home at runtime — none of them have a matching entry in structuredCaseStudies.ts,
-  // so the generic /project/:projectId catch-all (SimplifiedProjectDetail) always hits
-  // its "no data" Navigate fallback. Soft 404s, kept out of the sitemap.
-  found.delete("/project/business-management");
+  // smarterhealth/medication-app/gold2crypto have no matching entry in
+  // structuredCaseStudies.ts, so the generic /project/:projectId catch-all
+  // (SimplifiedProjectDetail) always hits its "no data" Navigate fallback —
+  // soft 404s, kept out of the sitemap. business-management has real data as
+  // of 2026-08-08, so it's not excluded (its <Route> line above already adds it).
   return Array.from(found).sort();
 }
 
