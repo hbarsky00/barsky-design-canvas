@@ -1,5 +1,6 @@
 import React from "react";
-import { Mail, Linkedin, Github, ArrowRight, ChevronDown } from "lucide-react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { Mail, Linkedin, Github, ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
@@ -21,7 +22,28 @@ const SOCIALS = [
   { Icon: Github, href: "https://github.com/hbarsky00", label: "Hiram Barsky on GitHub", external: true },
 ];
 
+const STATS = [
+  { value: "15+ Yrs", label: "Product Design" },
+  { value: "AI-Native", label: "Design + Build" },
+  { value: "Solo Shipped", label: "Live Products" },
+];
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 const CleanHero: React.FC = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const variants = prefersReducedMotion
+    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
+    : item;
+
   return (
     <section className="relative bg-background overflow-hidden">
       {/* Fine dot-grid texture — a nod to Swiss-grid structure, not decoration for its own
@@ -33,81 +55,134 @@ const CleanHero: React.FC = () => {
           backgroundImage:
             "radial-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
-          maskImage: "radial-gradient(ellipse 70% 60% at 50% 20%, black 40%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 20%, black 40%, transparent 100%)",
+          maskImage: "radial-gradient(ellipse 80% 70% at 65% 15%, black 40%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 65% 15%, black 40%, transparent 100%)",
         }}
       />
-      {/* Brand-color glow, layered above the grid */}
+      {/* Two off-center brand glows, layered above the grid — asymmetric rather
+          than the single dead-center glow this replaced. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
-          background: "radial-gradient(680px circle at 50% 0%, hsl(var(--primary) / 0.14), transparent 60%)",
+          background:
+            "radial-gradient(620px circle at 78% 8%, hsl(var(--primary) / 0.16), transparent 60%), radial-gradient(480px circle at 8% 85%, hsl(270 80% 60% / 0.10), transparent 60%)",
         }}
       />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 pb-8">
-        <div className="flex flex-col items-center text-center gap-7">
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary/30 via-purple-500/20 to-transparent blur-md"
-            />
-            <img
-              src="/images/hiram-barsky-profile.png"
-              alt="Hiram Barsky"
-              width={112}
-              height={112}
-              loading="eager"
-              className="relative w-28 h-28 rounded-full object-cover ring-2 ring-primary/25 ring-offset-4 ring-offset-background"
-            />
-          </div>
-
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Product Design × AI
-          </div>
-
-          <div>
-            <h1 className="text-4xl sm:text-6xl font-display font-bold text-foreground tracking-tight leading-[1.05]">
-              Hiram Barsky
-            </h1>
-            <p className="mt-3 text-base sm:text-lg text-muted-foreground">
-              Lead Product &amp; AI Designer · Clifton, NJ
-            </p>
-          </div>
-
-          <p className="max-w-xl text-lg sm:text-xl text-foreground/90 font-medium">
-            I design AI-first products that ship.
-          </p>
-
-          <div className="flex flex-row flex-wrap items-center justify-center gap-3">
-            <Button variant="brand" onClick={scrollToCaseStudies} className="!w-auto">
-              See My Work <ArrowRight className="w-4 h-4" />
-            </Button>
-            <a
-              href={CALENDLY}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-auto items-center justify-center gap-2 h-12 px-6 rounded-2xl border-2 border-primary/30 text-primary font-medium hover:bg-primary/10 hover:border-primary transition-colors"
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-10">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={prefersReducedMotion ? undefined : container}
+          className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center"
+        >
+          {/* Text column */}
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 order-2 lg:order-1">
+            <motion.div
+              variants={variants}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground"
             >
-              Book a Call
-            </a>
+              Product Design × AI
+            </motion.div>
+
+            <motion.h1
+              variants={variants}
+              className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-foreground tracking-tight leading-[1.02]"
+            >
+              Hiram Barsky
+            </motion.h1>
+
+            <motion.div variants={variants} className="flex flex-col gap-1.5">
+              <p className="text-lg sm:text-xl font-display font-medium text-foreground/90">
+                Lead Product &amp; AI Designer
+              </p>
+              <p className="inline-flex items-center justify-center lg:justify-start gap-1.5 text-sm text-muted-foreground">
+                <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                Clifton, NJ
+              </p>
+            </motion.div>
+
+            <motion.p
+              variants={variants}
+              className="max-w-xl text-lg sm:text-xl text-foreground/90 font-medium"
+            >
+              I design AI-first products that ship.
+            </motion.p>
+
+            <motion.div
+              variants={variants}
+              className="flex flex-row flex-wrap items-center justify-center lg:justify-start gap-3"
+            >
+              <Button variant="brand" onClick={scrollToCaseStudies} className="!w-auto">
+                See My Work <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button variant="outline" asChild className="!w-auto">
+                <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+                  Book a Call
+                </a>
+              </Button>
+            </motion.div>
+
+            {/* Credibility strip — same label/value pattern used throughout the
+                case studies' heroMetrics, kept consistent here. */}
+            <motion.div
+              variants={variants}
+              className="flex items-center gap-6 sm:gap-8 pt-1"
+            >
+              {STATS.map(({ value, label }, i) => (
+                <div
+                  key={label}
+                  className={`flex flex-col ${i > 0 ? "pl-6 sm:pl-8 border-l border-border" : ""}`}
+                >
+                  <span className="font-display font-bold text-foreground text-base sm:text-lg leading-none">
+                    {value}
+                  </span>
+                  <span className="mt-1 text-xs text-muted-foreground whitespace-nowrap">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div variants={variants} className="flex items-center gap-3">
+              {SOCIALS.map(({ Icon, href, label, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  aria-label={label}
+                  className="p-2.5 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </motion.div>
           </div>
 
-          <div className="flex items-center gap-3">
-            {SOCIALS.map(({ Icon, href, label, external }) => (
-              <a
-                key={label}
-                href={href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                aria-label={label}
-                className="p-2.5 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-              >
-                <Icon className="w-5 h-5" />
-              </a>
-            ))}
-          </div>
-        </div>
+          {/* Photo column */}
+          <motion.div
+            variants={prefersReducedMotion ? undefined : { hidden: { opacity: 0, scale: 0.96 }, show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
+            className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
+          >
+            <div className="relative w-56 sm:w-72 lg:w-full lg:max-w-sm">
+              <div
+                aria-hidden="true"
+                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"
+              />
+              <div className="relative rounded-[1.75rem] p-1.5 bg-gradient-to-tr from-primary/40 via-purple-500/30 to-transparent">
+                <img
+                  src="/images/hiram-barsky-profile.png"
+                  alt="Hiram Barsky"
+                  width={400}
+                  height={400}
+                  loading="eager"
+                  className="w-full aspect-square rounded-[1.5rem] object-cover bg-muted"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
 
         <div className="flex justify-center pt-10 pb-2">
           <button
