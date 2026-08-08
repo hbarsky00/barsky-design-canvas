@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
+import { Award, ArrowLeft, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -26,10 +26,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       toast.error('Payment was canceled.');
     }
   }, [location]);
-
-  const handleAddToCart = () => {
-    toast.success(`Added ${product.name} to your cart!`);
-  };
 
   const handleCheckout = async () => {
     try {
@@ -117,17 +113,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             </ul>
             
             <div className="flex flex-col space-y-4">
-              <Button 
-                className="w-full py-6 text-lg" 
-                onClick={handleCheckout} 
+              {/* No cart exists — checkout via Stripe is the single purchase path */}
+              <Button
+                className="w-full py-6 text-lg"
+                onClick={handleCheckout}
                 disabled={isLoading}
               >
-                <CreditCard className="h-5 w-5 mr-2" /> 
+                <CreditCard className="h-5 w-5 mr-2" />
                 {isLoading ? "Processing..." : `Checkout ($${product.price})`}
-              </Button>
-              
-              <Button variant="outline" className="w-full py-6 text-lg" onClick={handleAddToCart}>
-                <ShoppingCart className="h-5 w-5 mr-2" /> Add to Cart
               </Button>
             </div>
           </div>

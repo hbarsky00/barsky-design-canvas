@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
@@ -60,18 +60,9 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   const [scale, setScale] = useState(1);
   const { maximizeImage } = useImageMaximizer();
   const hasMultipleImages = imageList && imageList.length > 1;
-  
-  // Debug logging
-  useEffect(() => {
-    console.log("ImageMaximizer rendered:", { 
-      image, 
-      isOpen, 
-      listLength: imageList?.length,
-      currentIndex,
-      hasMultipleImages
-    });
-  }, [image, isOpen, imageList?.length, currentIndex, hasMultipleImages]);
-  
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
   const handleZoomIn = () => {
     setScale((prevScale) => Math.min(prevScale + 0.25, 3));
   };
@@ -85,28 +76,27 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   };
   
   const handleNextImage = () => {
-    console.log("Next image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const nextIndex = (currentIndex + 1) % imageList.length;
-      console.log("Moving to next image:", nextIndex, imageList[nextIndex]);
       maximizeImage(imageList[nextIndex], title, imageList, nextIndex);
     }
   };
-  
+
   const handlePrevImage = () => {
-    console.log("Previous image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const prevIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-      console.log("Moving to previous image:", prevIndex, imageList[prevIndex]);
       maximizeImage(imageList[prevIndex], title, imageList, prevIndex);
     }
   };
-  
-  // Keyboard navigation for viewer (matching Splittime implementation)
+
+  // Keyboard navigation for viewer (matching Splittime implementation).
+  // currentIndex must be in the deps: the listener closes over it via the
+  // prev/next handlers, so without it arrow-key navigation acts on a stale
+  // index after the first move.
   useEffect(() => {
     const handleKeyboard = (event: KeyboardEvent) => {
       if (!isOpen) return;
-      
+
       switch(event.key) {
         case 'Escape':
           onClose();
@@ -117,13 +107,50 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         case 'ArrowRight':
           if (hasMultipleImages) handleNextImage();
           break;
+        case 'Tab': {
+          // Keep focus inside the dialog while it's open
+          const focusables = dialogRef.current?.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), [href]'
+          );
+          if (!focusables || focusables.length === 0) break;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+          break;
+        }
       }
     };
 
     document.addEventListener('keydown', handleKeyboard);
     return () => document.removeEventListener('keydown', handleKeyboard);
-  }, [isOpen, hasMultipleImages]);
-  
+  }, [isOpen, hasMultipleImages, currentIndex, imageList?.length]);
+
+  // Move focus into the dialog on open; restore it to the trigger on close.
+  // Restore happens in the effect cleanup because the provider unmounts this
+  // component on close (isOpen never flips to false while mounted). setTimeout
+  // rather than rAF so focus still lands when the page isn't actively painting.
+  useEffect(() => {
+    if (!isOpen) return;
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    const timer = window.setTimeout(() => {
+      const closeButton = dialogRef.current?.querySelector<HTMLElement>(
+        '[aria-label="Close image viewer"]'
+      );
+      (closeButton ?? dialogRef.current)?.focus();
+    }, 50);
+    return () => {
+      window.clearTimeout(timer);
+      previousFocusRef.current?.focus?.();
+      previousFocusRef.current = null;
+    };
+  }, [isOpen]);
+
   // Reset scale when dialog closes
   useEffect(() => {
     if (!isOpen) {
@@ -135,7 +162,12 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={title || "Image viewer"}
+          tabIndex={-1}
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 outline-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

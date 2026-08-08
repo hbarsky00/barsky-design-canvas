@@ -1,10 +1,9 @@
 
 import React from "react";
-import { ShoppingCart, Award } from "lucide-react";
+import { ArrowRight, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner";
 import { Product } from "@/types/product";
 import { Link } from "react-router-dom";
 
@@ -13,10 +12,6 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const handleAddToCart = () => {
-    toast.success(`Added ${product.name} to your cart!`);
-  };
-
   return (
     <Card className="overflow-hidden flex flex-col h-full">
       <Link to={`/store/product/${product.id}`} className="overflow-hidden block">
@@ -46,8 +41,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="text-slate-600 dark:text-slate-300 text-sm">{product.description}</p>
       </CardContent>
       <CardFooter className="pt-2 pb-4">
-        <Button className="w-full" onClick={handleAddToCart}>
-          <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
+        {/* There is no cart — purchase happens on the product page via Stripe */}
+        <Button className="w-full" asChild>
+          <Link to={`/store/product/${product.id}`}>
+            View Details <ArrowRight className="h-4 w-4 ml-2" />
+          </Link>
         </Button>
       </CardFooter>
     </Card>

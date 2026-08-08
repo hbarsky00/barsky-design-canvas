@@ -162,7 +162,13 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                           src={img.src}
                           alt={img.alt}
                           caption={img.alt}
-                          className="w-full"
+                          className={
+                            // On an odd count, let the last image span both
+                            // columns instead of dangling beside an empty cell
+                            imgs.length > 1 && imgs.length % 2 === 1 && idx === imgs.length - 1
+                              ? "w-full md:col-span-2"
+                              : "w-full"
+                          }
                           projectId={projectId}
                           fit="contain"
                         />

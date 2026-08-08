@@ -28,10 +28,6 @@ export const ImageMaximizerProvider: React.FC<ImageMaximizerProviderProps> = ({ 
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const maximizeImage = useCallback((image: string, title: string, images?: string[], index?: number) => {
-    console.log("Maximizing image:", image);
-    console.log("With title:", title);
-    if (images) console.log("Image list length:", images.length);
-    
     setMaximizedImage(image);
     setMaximizedTitle(title);
     

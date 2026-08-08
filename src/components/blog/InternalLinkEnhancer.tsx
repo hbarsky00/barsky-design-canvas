@@ -20,12 +20,12 @@ interface LinkRule {
  * Each rule defines keywords to match and the target post to link to
  */
 const getLinkingRules = (): LinkRule[] => [
-  // Link to portfolio red flags article
+  // Link to the case-study writing article
   {
     keywords: ['portfolio', 'case study', 'case studies'],
-    targetSlug: 'portfolio-red-flags-no-interviews',
+    targetSlug: 'case-study-writing',
     anchorText: 'portfolio optimization',
-    title: 'Portfolio Red Flags: Why Your UX Portfolio Isn\'t Getting You Interviews'
+    title: 'Case Studies That Win Clients – Beyond Pretty Screens'
   },
   
   // Link to finding first UX job
@@ -69,9 +69,15 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   currentSlug 
 }) => {
   const linkingRules = getLinkingRules();
-  
-  // Don't link to the current article
-  const availableRules = linkingRules.filter(rule => rule.targetSlug !== currentSlug);
+
+  // Don't link to the current article, and never emit a link to a slug that
+  // doesn't exist in blogData (a rule pointing at a deleted post otherwise
+  // becomes a silent dead link in every article that matches its keywords)
+  const availableRules = linkingRules.filter(
+    rule =>
+      rule.targetSlug !== currentSlug &&
+      blogPosts.some(post => post.slug === rule.targetSlug)
+  );
   
   const enhanceContentWithLinks = (htmlContent: string): string => {
     let linksAdded = 0;

@@ -158,21 +158,8 @@ const CaseStudyCard: React.FC<{
 
   const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
 
-  // Debug logging
-  if (study.id === 'smarterhealth') {
-    console.log('🔍 Smarter Health Debug:', {
-      studyId: study.id,
-      video: study.video,
-      primaryImage: study.images.primary,
-      showPlaceholder,
-      needsVideoPlaceholder: needsPlaceholder(study.video),
-      needsImagePlaceholder: needsPlaceholder(study.images.primary)
-    });
-  }
-
   const renderMedia = () => {
     if (showPlaceholder) {
-      console.log('📦 Rendering PlaceholderImage for:', study.title);
       return (
         <div
           onClick={() => navigate(study.url)}
@@ -198,7 +185,11 @@ const CaseStudyCard: React.FC<{
                 muted
                 loop
                 playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseEnter={(e) => {
+                  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    e.currentTarget.play();
+                  }
+                }}
                 onMouseLeave={(e) => {
                   e.currentTarget.pause();
                   e.currentTarget.currentTime = 0;
