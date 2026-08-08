@@ -32,7 +32,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
         images: [
           { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — tall, broad, defensive guard" },
-          { src: "/images/ringrival-now/trash-talk.jpg", alt: "Opponent trash talk mid-fight — \"They really signed YOU to fight me?\"" },
         ],
       },
       {
@@ -43,7 +42,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
         images: [
           { src: "/images/ringrival-knockdown.png", alt: "Knockdown — DOWN! 5 count with star burst over floored Glass Joe" },
-          { src: "/images/ringrival-now/comeback-mechanic.jpg", alt: "Knocked down against Ricky Groove — tap rapidly to get up before the count" },
         ],
       },
       {
@@ -56,7 +54,21 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         images: [
           { src: "/images/ringrival-impact-particles.png", alt: "Glass Joe getting hit — red impact particles dialed back so fighter stays visible" },
           { src: "/images/ringrival-pause-modal.png", alt: "Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow" },
-          { src: "/images/ringrival-now/disco-flurry.jpg", alt: "Disco Dan's Disco Flurry special move — completely different silhouette and personality from Glass Joe" },
+          { src: "/images/ringrival-discodan.png", alt: "Disco Dan — completely different silhouette and personality from Glass Joe" },
+        ],
+      },
+      {
+        heading: "Then → Now",
+        paragraphs: [
+          "Launch was one archetype: Glass Joe, hand-tuned until the punch felt like a punch, everything else built around him.",
+          "The roster's grown since. New opponents each ship with their own named special move and their own trash talk — not a reskin of Glass Joe. A knockdown now has a real comeback mechanic, not just a countdown.",
+        ],
+        images: [
+          { src: "/images/ringrival-glassjoe-idle.png", alt: "Launch: Glass Joe — the only fighter in the game" },
+          { src: "/images/ringrival-now/trash-talk.jpg", alt: "Now: opponent trash talk mid-fight — \"They really signed YOU to fight me?\"" },
+          { src: "/images/ringrival-now/comeback-mechanic.jpg", alt: "Now: knocked down against Ricky Groove — tap rapidly to get up before the count" },
+          { src: "/images/ringrival-now/disco-flurry.jpg", alt: "Now: Disco Dan's Disco Flurry special move, sparks and all" },
+          { src: "/images/ringrival-now/denny-frost-haymaker.jpg", alt: "Now: Denny Frost's Glass Haymaker, with opponent-specific trash talk — \"Hope you told your corner to bring a mop.\"" },
         ],
       },
       {
@@ -64,10 +76,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         paragraphs: [
           "A shipped boxing game with a 3–6 build-per-day cadence, real user cuts, and AI opponents that bait, hesitate, and tilt.",
           "AI generated the raw material. The designer was the taste filter on every output.",
-          "The roster keeps growing post-launch — new opponents like Ricky Groove and Denny Frost each ship with their own named special move and trash talk, not a reskin of Glass Joe.",
-        ],
-        images: [
-          { src: "/images/ringrival-now/denny-frost-haymaker.jpg", alt: "Denny Frost's Glass Haymaker special move, with opponent-specific trash talk — \"Hope you told your corner to bring a mop.\"" },
         ],
       },
     ]}
