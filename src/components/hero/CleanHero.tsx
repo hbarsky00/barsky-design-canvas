@@ -126,19 +126,22 @@ const CleanHero: React.FC = () => {
 
             {/* Credibility strip — same label/value pattern used throughout the
                 case studies' heroMetrics, kept consistent here. */}
+            {/* Mobile: equal-width 3-col grid so the row can never outgrow the
+                viewport (fixed flex gaps + nowrap labels clipped on ~360px
+                phones). sm+: original inline flex with divider borders. */}
             <motion.div
               variants={variants}
-              className="flex items-center gap-6 sm:gap-8 pt-1"
+              className="grid grid-cols-3 gap-2 w-full sm:w-auto sm:flex sm:items-center sm:gap-8 pt-1"
             >
               {STATS.map(({ value, label }, i) => (
                 <div
                   key={label}
-                  className={`flex flex-col ${i > 0 ? "pl-6 sm:pl-8 border-l border-border" : ""}`}
+                  className={`flex flex-col items-center text-center sm:items-start sm:text-left ${i > 0 ? "sm:pl-8 sm:border-l border-border" : ""}`}
                 >
-                  <span className="font-display font-bold text-foreground text-base sm:text-lg leading-none">
+                  <span className="font-display font-bold text-foreground text-sm sm:text-lg leading-tight sm:leading-none">
                     {value}
                   </span>
-                  <span className="mt-1 text-xs text-muted-foreground whitespace-nowrap">
+                  <span className="mt-1 text-[11px] sm:text-xs text-muted-foreground whitespace-nowrap">
                     {label}
                   </span>
                 </div>
