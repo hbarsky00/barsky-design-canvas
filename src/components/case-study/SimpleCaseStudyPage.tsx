@@ -21,6 +21,7 @@ const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string 
       <MaximizableImage
         src={image.src}
         alt={image.alt}
+        caption={image.alt}
         className="w-full"
         projectId={projectId}
         fit="contain"
@@ -52,6 +53,7 @@ const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string 
         <MaximizableImage
           src={image.src}
           alt={image.alt}
+          caption={image.alt}
           className="w-full"
           projectId={projectId}
           fit="contain"
@@ -159,6 +161,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                           key={`${img.src}-${idx}`}
                           src={img.src}
                           alt={img.alt}
+                          caption={img.alt}
                           className="w-full"
                           projectId={projectId}
                           fit="contain"

@@ -300,7 +300,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   <ProjectVideo
                     src={caseStudyData.userTestingSection.video.src}
                     title={caseStudyData.userTestingSection.video.title}
-                    caption={caseStudyData.userTestingSection.video.caption}
+                    caption={caseStudyData.userTestingSection.video.caption || caseStudyData.userTestingSection.video.title}
                     projectId={caseStudyData.id}
                     className="rounded-sm shadow-sm"
                     hoverToPlay={true}
@@ -353,7 +353,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       <MaximizableImage
                         src={image.src}
                         alt={image.alt}
-                        caption={image.caption}
+                        caption={image.caption || image.alt}
                         className="w-full h-auto object-contain image-high-quality"
                         imageList={caseStudyData.userTestingSection?.images?.map(img => img.src)}
                         currentIndex={index}
@@ -400,7 +400,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <ProjectVideo
                   src={caseStudyData.finalProductSection.video.src}
                   title={caseStudyData.finalProductSection.video.title}
-                  caption={caseStudyData.finalProductSection.video.caption}
+                  caption={caseStudyData.finalProductSection.video.caption || caseStudyData.finalProductSection.video.title}
                   className="mb-8"
                   projectId={caseStudyData.id}
                 />
@@ -439,7 +439,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                           <MaximizableImage
                             src={image.src}
                             alt={image.alt}
-                            caption={image.caption}
+                            caption={image.caption || image.alt}
                             imageList={caseStudyData.finalProductSection.images.map(img => img.src)}
                             currentIndex={index}
                             className="w-full h-auto image-high-quality"
