@@ -7,7 +7,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'home',
     title: 'UX Designer Portfolio — Hiram Barsky',
     description: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — measurable user outcomes and product design impact.',
-    image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
+    image: SEO_CONSTANTS.DEFAULT_OG_IMAGE
   },
   '/projects': {
     kind: 'page',

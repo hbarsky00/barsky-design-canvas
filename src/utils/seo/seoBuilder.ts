@@ -35,7 +35,7 @@ export type BuiltSEO = {
 };
 
 export function toAbs(url?: string): string {
-  if (!url) return SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
+  if (!url) return SEO_CONSTANTS.DEFAULT_OG_IMAGE;
   return url.startsWith("http") 
     ? url 
     : `${SEO_CONSTANTS.BASE_URL}${url.startsWith("/") ? url : `/${url}`}`;
@@ -56,7 +56,7 @@ export function buildSEO(input: SEOInput): BuiltSEO {
     : `${SEO_CONSTANTS.BASE_URL}${canonicalPath}`;
     
   const isArticle = input.kind === "project" || input.kind === "post";
-  const imageAbs = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
+  const imageAbs = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_OG_IMAGE;
 
   return {
     title: input.title ?? SEO_CONSTANTS.SITE_NAME,
