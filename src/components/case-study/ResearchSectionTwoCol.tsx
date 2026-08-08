@@ -158,7 +158,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         key={index}
                         src={image.src}
                         alt={image.alt || `Research image ${index + 1}`}
-                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : undefined}
+                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : image.alt}
                         imageList={allMedia.map(img => img.src)}
                         currentIndex={index}
                         className="shadow-elevated w-full glass-card layered-depth"

@@ -462,10 +462,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               className="section-snap mb-12 py-6 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
-              
-              {/* Full-width content since no images */}
+
               <div className="mb-12">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -509,6 +508,30 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   )}
                 </div>
               </div>
+
+              {caseStudyData.outcomeSection.images && (
+                <div className="grid gap-6 md:gap-8">
+                  {caseStudyData.outcomeSection.images.map((image, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
+                    >
+                      <MaximizableImage
+                        src={image.src}
+                        alt={image.alt}
+                        caption={image.caption || image.alt}
+                        imageList={caseStudyData.outcomeSection.images.map(img => img.src)}
+                        currentIndex={index}
+                        className="w-full h-auto image-high-quality"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </section>
           )}
 

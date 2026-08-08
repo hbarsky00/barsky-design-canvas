@@ -9,7 +9,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     tags={["Enterprise", "FinTech", "Workflow Design"]}
     heroImage={{
       src: "/images/investor-loan-app/hero.png",
-      alt: "Investor loan analysis dashboard overview",
+      alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
     }}
     blocks={[
       {
@@ -19,7 +19,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Three previous replacement attempts had failed because they tried to improve things officers didn't want changed.",
         ],
         images: [
-          { src: "/images/investor-loan-app/loan-officer.jpg", alt: "User testing session showing loan officer workflow validation" },
+          { src: "/images/investor-loan-app/excel-error.jpg", alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced" },
         ],
       },
       {
@@ -30,8 +30,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "The audit trail sits next to the record, not buried in an admin tool — this is what made compliance actually advocate for adoption.",
         ],
         images: [
-          { src: "/images/investor-loan-app/excel-error.jpg", alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals" },
-          { src: "/images/investor-loan-app/before-after.png", alt: "Collage highlighting legacy manual steps and fragmentation" },
+          { src: "/images/investor-loan-app/add-order-default.jpg", alt: "Add Order — locked until a lender is selected first, the guided order builder in action" },
+          { src: "/images/investor-loan-app/loan-officer.jpg", alt: "Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record" },
         ],
       },
       {
@@ -52,7 +52,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.",
         ],
         images: [
-          { src: "/images/investor-loan-app/user-journey.png", alt: "Investor loan platform user workflow and process improvements" },
+          { src: "/images/investor-loan-app/before-after.png", alt: "Old Excel system vs. the new Loan Central platform — the rewrite that finally looked and behaved differently from Excel" },
         ],
       },
       {
@@ -60,6 +60,11 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         paragraphs: [
           "Adoption happened — which for an Excel-replacement project is the only outcome that matters.",
           "Three previous attempts hadn't gotten that far.",
+        ],
+        images: [
+          { src: "/images/investor-loan-app/my-deals-list-view.jpg", alt: "My Deals — collaboration tools (chat, share, invite) with per-deal progress tracking" },
+          { src: "/images/investor-loan-app/manage-loan-limits.jpg", alt: "Manage Loan Limits — utilization bars, total limit, and available credit surfaced per borrower" },
+          { src: "/images/investor-loan-app/user-journey.png", alt: "The four-step workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — the flow loan officers actually adopted" },
         ],
       },
     ]}

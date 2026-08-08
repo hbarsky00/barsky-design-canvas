@@ -551,8 +551,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`Enterprise`, `FinTech`, `Workflow Design`],
     heroVideo: {
       src: `investor-loan-demo.mp4`,
-      poster: `https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png`,
-      alt: `Investor Loan Platform overview`,
+      poster: `/images/investor-loan-app/hero.png`,
+      alt: `Investor Loan Platform — Loan Deals grid and Orderbook with live comments, shown across two screens`,
     },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
@@ -563,11 +563,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Inline validation that catches malformed entries the moment they happen. Invisible when right, obvious when wrong. No modals, no error logs. Predictive search instead of filters — loan officers think in fragments, a name, a deal code. Bloomberg-style search beats filter panels for this audience. Guided order builder with disabled forward steps: pick the lender, then terms become editable. Feels restrictive in screenshots, less restrictive in practice. Audit trail surfaced next to the record, not buried in an admin tool. This is the feature that made compliance actually advocate for adoption.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/excelterror.jpg`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1756062303031-scaled.png`, alt: `Collage highlighting legacy manual steps and fragmentation` },
-        { src: `https://barskyux.com/wp-content/uploads/2023/12/BookBuilder-Low-Fidelity.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
-        { src: `https://barskyux.com/wp-content/uploads/2023/12/whiteboarding.png`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
-        { src: `/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png`, alt: `Investor loan platform user workflow and process improvements` },
+        { src: `/images/investor-loan-app/excel-error.jpg`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced` },
+        { src: `/images/investor-loan-app/book-builder-lofi.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
+        { src: `/images/investor-loan-app/whiteboarding.png`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
+        { src: `/images/investor-loan-app/loan-officer.jpg`, alt: `Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record, not buried in an admin tool` },
       ],
     },
     whatDidntWorkSection: {
@@ -575,7 +574,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First version replicated too much of Excel's structure because I was trying to minimize cognitive change. Worst of both worlds — looked like Excel, didn't behave like it. Rewrite went the other direction: looked nothing like Excel, behaved like what officers actually needed. Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.`,
       images: [
-        { src: `/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png`, alt: `User testing session showing loan officer workflow validation` },
+        { src: `/images/investor-loan-app/before-after.png`, alt: `Old Excel system vs. the new Loan Central platform — the rewrite that finally looked and behaved differently from Excel` },
       ],
     },
     outcomeSection: {
@@ -583,14 +582,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `Adoption happened — which for an Excel-replacement project is the only outcome that matters. Three previous attempts hadn't gotten that far.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2023/12/My-Deals-list-view.png`, alt: `My Deals list view with quick filters, status chips, and bulk actions` },
-        { src: `https://barskyux.com/wp-content/uploads/2023/12/Loan-Deals-1.png`, alt: `Loan deals table with summary sidebar, inline validation, and audit trail` },
-        { src: `https://barskyux.com/wp-content/uploads/2023/12/Just-Orderbook.png`, alt: `Orderbook screen emphasizing guided steps and real-time totals` },
+        { src: `/images/investor-loan-app/user-journey.png`, alt: `The loan-officer workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — validated end to end` },
       ],
     },
     sections: [],
     seoData: {
-      image: `https://barskyux.com/wp-content/uploads/2025/08/analysisdashboard-1.png`,
+      image: `/images/investor-loan-app/hero.png`,
       projectName: `Investor Loan Platform`,
       results: [],
       technologies: [],
@@ -992,10 +989,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
   },
   // Restored 2026-08-08 from commit f3f49d7a (last real content before the site-wide
-  // reverts this session dropped it) — Hiram asked for it back. Images below are
-  // untouched from that commit and still point at the dead barskyux.com host, same
-  // as everything else did before this session's image-restoration passes; flagged,
-  // not fixed here.
+  // reverts this session dropped it) — Hiram asked for it back. Images re-sourced
+  // 2026-08-08 from real project screenshots (warehouse-distro export) and moved to
+  // /public/images/business-management/; heroVideo.src is still the dead barskyux.com
+  // mp4 (no replacement video provided) — flagged, not fixed.
   "business-management": {
     id: "business-management",
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -1005,8 +1002,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
     heroVideo: {
       src: "https://barskyux.com/wp-content/uploads/2025/07/businessmanagement.mp4",
-      poster: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-      alt: "Business management system promotional overview"
+      poster: "/images/business-management/hero-three-laptops.jpg",
+      alt: "Blue Sky — Customer Management, Product Catalog, and Order Management across three screens"
     },
     researchSection: {
       subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
@@ -1028,12 +1025,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: "'Today' view with aging statuses and alerts."
         }
       ],
-      researchImage: "https://barskyux.com/wp-content/uploads/2025/07/Screenshot-2025-07-18-at-12.02.14-PM.png?v=20250122",
-      researchImageAlt: "Inventory audit screenshot showing data fragmentation across tools",
+      researchImage: "/images/business-management/competitive-landscape.jpg",
+      researchImageAlt: "Competitive landscape review — Sage X3, Zoho One, and other disconnected tools small businesses were stitching together",
       researchImages: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/07/AutomatedInventoryTrackingSystem-Claude-8July2025-ezgif.com-video-to-gif-converter.gif",
-          alt: "Animated workflow of automated inventory tracking system"
+          src: "/images/business-management/inventory-management-mobile.jpg",
+          alt: "Inventory Management — total products, low-stock alerts, and category breakdown"
         }
       ]
     },
@@ -1049,14 +1046,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/07/sitemap.png",
-          alt: "Initial Concepts & Sketches",
-          caption: "Initial concept sitemap mapping core modules and navigation."
+          src: "/images/business-management/sitemap-draft.jpg",
+          alt: "Early sitemap draft",
+          caption: "Early sitemap draft — mapping login, products, customers, orders, delivery, and recurring modules."
         },
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755796640970-scaled.png",
-          alt: "User Flow Explorations",
-          caption: "User flow exploration detailing end-to-end operations from intake to invoicing."
+          src: "/images/business-management/sitemap-refined.jpg",
+          alt: "Refined sitemap",
+          caption: "Refined structure after cleanup — same modules, corrected flow labels and terminology."
         }
       ]
     },
@@ -1076,42 +1073,42 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Iteration 1",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_0.png",
-          alt: "Overloaded dashboard iteration",
-          blurb: "Overloaded dashboard → rejected",
+          imageSrc: "/images/business-management/business-analytics-mobile.jpg",
+          alt: "Business Analytics dashboard",
+          blurb: "Business Analytics — today's sales, delivery success rate, and revenue progress in one view",
           annotations: [
-            { text: "Information overload - too many metrics at once", x: 50, y: 30, type: "issue" },
-            { text: "No clear priority hierarchy for daily tasks", x: 70, y: 60, type: "issue" }
+            { text: "Delivery success rate surfaced next to revenue, not buried in a separate report", x: 50, y: 30, type: "feature" },
+            { text: "Revenue progress chart replaces the spreadsheet owners used to keep by hand", x: 70, y: 60, type: "improvement" }
           ]
         },
         {
           label: "Iteration 2",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_1.png",
-          alt: "Today view clarity iteration",
-          blurb: "Today view clarity → \"Finally, something that makes sense\"",
+          imageSrc: "/images/business-management/recurring-orders-mobile.jpg",
+          alt: "Recurring Orders view",
+          blurb: "Recurring Orders — the \"what needs attention today\" view",
           annotations: [
-            { text: "Task prioritization system added for clarity", x: 35, y: 25, type: "feature" },
-            { text: "Today view focuses on immediate actions", x: 80, y: 50, type: "improvement" }
+            { text: "Active schedules and weekly volume surfaced at the top", x: 35, y: 25, type: "feature" },
+            { text: "Scheduled orders list replaces manual follow-up tracking", x: 80, y: 50, type: "improvement" }
           ]
         },
         {
           label: "Iteration 3",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_2.png",
-          alt: "Template invoices iteration",
-          blurb: "Template invoices → \"This actually saves me time\"",
+          imageSrc: "/images/business-management/order-management-desktop.jpg",
+          alt: "Order Management desktop view",
+          blurb: "Order Management — pending, delivered, and revenue at a glance",
           annotations: [
-            { text: "Automated invoice generation saves hours", x: 40, y: 35, type: "feature" },
-            { text: "Template system ensures consistency", x: 65, y: 65, type: "improvement" }
+            { text: "Revenue total sits next to pending/delivered counts", x: 40, y: 35, type: "feature" },
+            { text: "Recent Orders table replaces manual invoice tracking", x: 65, y: 65, type: "improvement" }
           ]
         },
         {
           label: "Iteration 4",
-          imageSrc: "https://barskyux.com/wp-content/uploads/2025/08/image_3.png",
-          alt: "Scheduling integration iteration",
-          blurb: "Scheduling integration → \"I look forward to checking this\"",
+          imageSrc: "/images/business-management/driver-management-mobile.jpg",
+          alt: "Driver Management view",
+          blurb: "Driver Management — scheduling and dispatch in one screen",
           annotations: [
-            { text: "Integrated scheduling eliminates tool switching", x: 50, y: 25, type: "feature" },
-            { text: "Linked records reduce duplicate data entry", x: 60, y: 70, type: "improvement" }
+            { text: "Active drivers and availability replace a manual dispatch call sheet", x: 50, y: 25, type: "feature" },
+            { text: "Average response time surfaced as a live metric", x: 60, y: 70, type: "improvement" }
           ]
         }
       ]
@@ -1127,9 +1124,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
-          alt: "User testing session showing business management workflow validation",
-          caption: "Testing sessions confirmed my unified approach significantly improved daily operations efficiency."
+          src: "/images/business-management/product-catalog-desktop.jpg",
+          alt: "Product Catalog desktop view",
+          caption: "Product Catalog — one of the screens walked through in testing sessions."
         }
       ]
     },
@@ -1139,33 +1136,27 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "The Result",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/07/993shots_so.png",
-          alt: "Business management system final interface",
-          caption: "Complete business management platform with unified operations and automated workflows",
+          src: "/images/business-management/final-product-four-panel.jpg",
+          alt: "Product Management, Order Management, and Driver Management shown side by side",
+          caption: "The final product — Product Management, Order Management, and Driver Management, three of the platform's core modules.",
           annotations: [
             {
-              x: 20,
-              y: 25,
+              x: 15,
+              y: 30,
               type: "feature",
-              text: "Unified dashboard eliminated tool switching"
-            },
-            {
-              x: 70,
-              y: 20,
-              type: "feature",
-              text: "Automated invoicing reduced errors by 68%"
+              text: "Product Management — inventory sources, stock levels, and reorder alerts"
             },
             {
               x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Smart priority system surfaces urgent tasks"
+              y: 30,
+              type: "feature",
+              text: "Order Management — total orders, pending count, and revenue tracking in one view"
             },
             {
-              x: 80,
-              y: 80,
+              x: 83,
+              y: 30,
               type: "feature",
-              text: "Integrated scheduling prevents double-booking"
+              text: "Driver Management — active drivers and delivery response time"
             }
           ]
         }
@@ -1182,9 +1173,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "https://www.loom.com/share/6b2dbd5672944f3b8bbaea71335afab7?sid=f9fa11c9-9c89-440b-bbc8-8eca0aa7c524",
-          alt: "Business management system full user journey demonstration",
-          caption: "Complete user journey showing the full process in high fidelity"
+          src: "/images/business-management/business-overview-dashboard.jpg",
+          alt: "Business Overview dashboard",
+          caption: "Business Overview — today's sales, total revenue, and weekly performance, the dashboard business owners check now instead of a spreadsheet."
         }
       ]
     },
@@ -1194,8 +1185,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-21-2025-01_29_46-PM.png",
-          alt: "Business management system operational improvements and metrics",
+          src: "/images/business-management/product-management-mobile.jpg",
+          alt: "Product Management on mobile",
           annotations: [
             { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
             { text: "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth.", x: 75, y: 60, type: "feature" }
@@ -1209,35 +1200,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
       images: [
         {
-          src: "https://barskyux.com/wp-content/uploads/2025/08/uxpilot-design-1755798369735-scaled.png",
-          alt: "Early business management interface with feature overload",
-          caption: "Early designs included too many customization options, overwhelming busy business owners",
-          annotations: [
-            {
-              x: 35,
-              y: 30,
-              type: "issue",
-              text: "Too many options created decision paralysis"
-            },
-            {
-              x: 60,
-              y: 50,
-              type: "issue",
-              text: "Complex settings overwhelmed users"
-            },
-            {
-              x: 50,
-              y: 75,
-              type: "improvement",
-              text: "Smart defaults with selective customization"
-            }
-          ]
+          src: "/images/business-management/tablet-customer-product.jpg",
+          alt: "Customer Management and Product Catalog on tablet",
+          caption: "Customer Management and Product Catalog — two of the screens where scope discipline mattered most."
         }
       ]
     },
     sections: [],
     seoData: {
-      image: "https://barskyux.com/wp-content/uploads/2025/08/promoimagefull.png",
+      image: "/images/business-management/hero-three-laptops.jpg",
       projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
       results: ["68% Fewer Operation Errors", "35% faster processing", "90% user satisfaction", "Unified operations platform"],
       technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
