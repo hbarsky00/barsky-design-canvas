@@ -88,9 +88,9 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     image: "https://barskydesign.pro/images/splittime/hero.jpg"
   },
   "business-management": {
-    title: "Enterprise Ops Platform — B2B UX Case Study",
-    description: "Modular business management platform that cut manual work 60% by centralizing inventory, workflows, and team analytics.",
-    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
+    title: "Blue Sky — Business Management UX Case Study",
+    description: "Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks into one dashboard.",
+    image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
@@ -165,54 +165,64 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
   "finding-first-ux-job-guide": {
-    title: "Finding a UX Job in 2025 — Barsky Design",
-    description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years.",
-    published: "2025-01-15T12:00:00Z"
+    title: "Finding a UX Job – What Actually Works — Barsky Design",
+    description: "Most portfolios fail because they're built to show range instead of depth. Real strategies for landing a UX role, from 15+ years in the field.",
+    published: "2025-01-15T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "design-systems-that-get-used": {
     title: "Building Design Systems That Actually Get Used",
     description: "Stop building design systems that get ignored. Practical governance, documentation, and adoption tactics teams actually use.",
-    published: "2025-01-08T12:00:00Z"
+    published: "2025-01-08T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "ai-enhanced-ux-designer-future": {
     title: "The AI-Enhanced UX Designer: Future-Proofing Your Career",
-    description: "Practical guide to using AI in UX design. From research synthesis to prototyping, learn how AI enhances design work.",
-    published: "2025-12-15T12:00:00Z"
+    description: "AI didn't replace UX designers — it replaced the version of the job that stopped at the mockup. Notes from shipping products with AI as a build partner.",
+    published: "2025-12-15T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "user-research-shoestring-budget": {
     title: "User Research on a Shoestring Budget",
     description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that work.",
-    published: "2025-12-01T12:00:00Z"
+    published: "2025-12-01T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "built-product-without-real-data": {
-    title: "Building Products Without Real Data",
-    description: "Why assumptions kill products and how to validate ideas with real user data. Lessons from common research pitfalls.",
-    published: "2025-05-16T12:00:00Z"
+    title: "Shipping a Product with Placeholder Data and No Marketing Budget",
+    description: "No users yet, no ad budget, no team. What actually gets a solo-built product seen — from someone who ships this way by default.",
+    published: "2025-05-16T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "building-products-nobody-asked-for": {
     title: "What I Learned Building Products Nobody Asked For",
-    description: "How to avoid building features users don't want. Strategy insights on validation, market research, and customer discovery.",
-    published: "2025-04-28T12:00:00Z"
+    description: "Ring-Rival, Fire Lion, CatchBuddy — three solo-built products nobody requested. What actually shipping them taught me that no course did.",
+    published: "2025-04-28T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "wireframes-to-wow-visual-hierarchy": {
-    title: "From Wireframes to Wow: The Psychology of Visual Hierarchy",
-    description: "Master visual hierarchy to guide user attention. Practical tips for typography, spacing, and layout that improve UX.",
-    published: "2025-10-18T12:00:00Z"
+    title: "From Wireframes to Wow: What Actually Makes Hierarchy Work",
+    description: "Visual hierarchy isn't a styling pass at the end — it's a decision about what matters, made before a single pixel moves. How I actually work through it.",
+    published: "2025-10-18T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "case-study-writing": {
     title: "Case Studies That Win Clients — Beyond Pretty Screens",
     description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from hundreds of portfolios.",
-    published: "2025-12-28T12:00:00Z"
+    published: "2025-12-28T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "beautiful-interface-doesnt-convert": {
-    title: "Why Beautiful Interfaces Don't Convert",
-    description: "Pretty designs don't guarantee conversions. The UX psychology behind why aesthetics fail and what drives user action.",
-    published: "2025-03-30T12:00:00Z"
+    title: "Why Your Beautiful Interface Doesn't Convert",
+    description: "A checkout flow can be flawless and still lose. Polish isn't the same as removing friction — where I actually put my attention now.",
+    published: "2025-03-30T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   },
   "research-without-users": {
     title: "How to Research When You Don't Have Users Yet",
     description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups.",
-    published: "2025-03-18T12:00:00Z"
+    published: "2025-03-18T12:00:00Z",
+    modified: "2026-08-08T12:00:00Z"
   }
 };
 
