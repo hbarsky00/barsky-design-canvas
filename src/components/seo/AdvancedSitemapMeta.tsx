@@ -22,7 +22,7 @@ const AdvancedSitemapMeta: React.FC = () => {
       <meta name="geo.placename" content="New York" />
       
       {/* Professional Network Links */}
-      <link rel="me" href="https://www.linkedin.com/in/hirambarsky" />
+      <link rel="me" href="https://www.linkedin.com/in/hiram-barsky" />
       <link rel="me" href="https://twitter.com/barskydesign" />
       
       {/* Advanced Technical SEO */}

@@ -81,9 +81,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <Link
                     key={link.name}
                     to={link.href}
-                    onClick={link.href.startsWith('#') ? (e) => {
+                    onClick={link.href.includes('#') ? (e) => {
                       // Allow native anchor for contact; prevent only for other anchors
-                      if (link.href !== '#contact') {
+                      if (!link.href.endsWith('#contact')) {
                         e.preventDefault();
                         handleLinkClick(link.href);
                       }

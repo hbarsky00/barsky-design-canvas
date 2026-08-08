@@ -33,7 +33,7 @@ export const SEO_CONSTANTS = {
   
   // Social profiles
   SOCIAL_PROFILES: [
-    'https://www.linkedin.com/in/hirambarsky',
+    'https://www.linkedin.com/in/hiram-barsky',
     'https://twitter.com/hirambarsky',
     'https://github.com/hbarsky00'
   ]

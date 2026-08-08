@@ -89,7 +89,7 @@ const ContactInformation: React.FC = () => {
             <Linkedin size={18} />
           </a>
           <a
-            href="https://github.com/hbarsky00/barsky-design-canvas.git"
+            href="https://github.com/hbarsky00"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-white border border-border p-2.5 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"

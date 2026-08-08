@@ -110,7 +110,7 @@ const Win98Hero: React.FC = () => {
           {[
             { Icon: Folder, label: "My Work", onClick: scrollToCaseStudies },
             { Icon: Mail, label: "Contact", to: "/contact" as const },
-            { Icon: Github, label: "GitHub", href: "https://github.dev/hbarsky00" },
+            { Icon: Github, label: "GitHub", href: "https://github.com/hbarsky00" },
           ].map(({ Icon, label, to, href, onClick }) => {
             const inner = (
               <div className="flex flex-col items-center w-16 cursor-pointer">
@@ -283,7 +283,7 @@ const Win98Hero: React.FC = () => {
             { label: "All Projects", Icon: LayoutGrid, onSelect: () => { closeStart(); scrollToCaseStudies(); } },
             { label: "Contact", Icon: Mail, onSelect: () => { closeStart(); window.location.assign("/contact"); } },
             { label: "LinkedIn", Icon: Linkedin, onSelect: () => { closeStart(); window.open("https://www.linkedin.com/in/hiram-barsky/", "_blank"); } },
-            { label: "GitHub", Icon: Github, onSelect: () => { closeStart(); window.open("https://github.dev/hbarsky00", "_blank"); } },
+            { label: "GitHub", Icon: Github, onSelect: () => { closeStart(); window.open("https://github.com/hbarsky00", "_blank"); } },
             { label: "Book a Call", Icon: Calendar, onSelect: () => { closeStart(); window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank"); } },
             { label: "Games", Icon: Gamepad2, isGames: true, onSelect: () => { setGamesOpen(true); setActiveGameIndex(0); } },
           ];

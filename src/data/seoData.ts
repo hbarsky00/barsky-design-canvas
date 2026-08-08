@@ -75,7 +75,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
-    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
+    image: "https://barskydesign.pro/images/crypto/hero.jpg"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
@@ -85,7 +85,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
     description: "Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.",
-    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
+    image: "https://barskydesign.pro/images/splittime/hero.jpg"
   },
   "business-management": {
     title: "Enterprise Ops Platform — B2B UX Case Study",
@@ -95,7 +95,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.",
-    image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
+    image: "https://barskydesign.pro/images/investor-loan-app/hero.png"
   },
   "medication-app": {
     title: "Medication App — Patient Safety UX Case Study",
@@ -114,7 +114,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
-    description: "Shipping a multi-mode game with ruthless deletion discipline and AI-scaffolded design.",
+    description: "A shipped mobile web game built solo with AI as co-builder — three modes, hand-tuned game feel, and a deletion list longer than the feature list.",
     image: "https://barskydesign.pro/images/firelion-hero-title.png"
   },
   "ring-rival": {
@@ -124,69 +124,95 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "catchbuddy": {
     title: "CatchBuddy — Safe Sports Matching Case Study",
-    description: "Designing a safety-first matching loop before layering monetization.",
+    description: "Same-day pickup sports built solo with AI — phone verification, a panic button, and curated meeting spots designed in from day one, not bolted on.",
     image: "https://barskydesign.pro/images/catchbuddy-hero-landing.png"
   },
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",
-    description: "AI handles the work between humans across a 6-step regulated email workflow.",
+    description: "A concept for AI-assisted pharma HCP email production, designed around the approval gates — AI handles the work between humans, not the decisions.",
     image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png"
   }
 };
 
 // Blog post OG-image overrides. Only list a slug here if it has a real, dedicated
-// social-share image on disk — anything else falls through to the post's own
-// coverImage (see getBlogSEO below), which is a correctly bundled asset.
-// The 5 below are the only blog-*.jpg files that actually exist, and they live at
-// the public root, not under /images/.
+// social-share image on disk that's reachable as a plain public URL — anything else
+// falls through to the post's own coverImage (see getBlogSEO below). Kept as plain
+// URL strings rather than importing blogData.ts's bundled asset imports directly,
+// because this file is also read by scripts/inject-seo-html.ts under plain tsx
+// (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
   "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
   "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
   "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg"
+  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg",
+  "case-study-writing": "https://barskydesign.pro/blog-case-study-writing.jpg",
+  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/blog-visual-hierarchy.jpg",
+  "built-product-without-real-data": "https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
+  "building-products-nobody-asked-for": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop",
+  "beautiful-interface-doesnt-convert": "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1200&h=630&fit=crop",
+  "research-without-users": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&h=630&fit=crop"
 };
 
-// Enhanced blog post SEO data
-export const BLOG_SEO_MAP: Record<string, { title: string; description: string; }> = {
+// Enhanced blog post SEO data. `published` is the real ISO date matching each
+// post's on-page date in blogData.ts — kept here (not derived from blogData.ts's
+// `date` string at runtime) for the same reason as BLOG_IMAGE_MAP: this file is
+// imported by scripts/inject-seo-html.ts under plain tsx, so it stays free of any
+// import that would drag in blogData.ts's Vite asset imports.
+//
+// Before this was wired up, every blog post's JSON-LD fell back to a hardcoded
+// `datePublished: 2024-01-01` (see structuredDataUtils.ts) regardless of the real,
+// distinct date shown on the page — identical fake dates across all 10 posts is
+// exactly the kind of templated signal that hurts trust with search/AI engines.
+export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
   "finding-first-ux-job-guide": {
     title: "Finding a UX Job in 2025 — Barsky Design",
-    description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years."
+    description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years.",
+    published: "2025-01-15T12:00:00Z"
   },
   "design-systems-that-get-used": {
-    title: "Design Systems That Actually Get Used",
-    description: "Stop building design systems that get ignored. Practical governance, documentation, and adoption tactics teams actually use."
+    title: "Building Design Systems That Actually Get Used",
+    description: "Stop building design systems that get ignored. Practical governance, documentation, and adoption tactics teams actually use.",
+    published: "2025-01-08T12:00:00Z"
   },
   "ai-enhanced-ux-designer-future": {
-    title: "AI in UX Design — Leverage AI Tools",
-    description: "Practical guide to using AI in UX design. From research synthesis to prototyping, learn how AI enhances design work."
+    title: "The AI-Enhanced UX Designer: Future-Proofing Your Career",
+    description: "Practical guide to using AI in UX design. From research synthesis to prototyping, learn how AI enhances design work.",
+    published: "2025-12-15T12:00:00Z"
   },
   "user-research-shoestring-budget": {
-    title: "Low-Budget User Research Methods",
-    description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that work."
+    title: "User Research on a Shoestring Budget",
+    description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that work.",
+    published: "2025-12-01T12:00:00Z"
   },
   "built-product-without-real-data": {
     title: "Building Products Without Real Data",
-    description: "Why assumptions kill products and how to validate ideas with real user data. Lessons from common research pitfalls."
+    description: "Why assumptions kill products and how to validate ideas with real user data. Lessons from common research pitfalls.",
+    published: "2025-05-16T12:00:00Z"
   },
   "building-products-nobody-asked-for": {
-    title: "Building Products Nobody Asked For",
-    description: "How to avoid building features users don't want. Strategy insights on validation, market research, and customer discovery."
+    title: "What I Learned Building Products Nobody Asked For",
+    description: "How to avoid building features users don't want. Strategy insights on validation, market research, and customer discovery.",
+    published: "2025-04-28T12:00:00Z"
   },
   "wireframes-to-wow-visual-hierarchy": {
-    title: "Visual Hierarchy — Wireframes to Wow",
-    description: "Master visual hierarchy to guide user attention. Practical tips for typography, spacing, and layout that improve UX."
+    title: "From Wireframes to Wow: The Psychology of Visual Hierarchy",
+    description: "Master visual hierarchy to guide user attention. Practical tips for typography, spacing, and layout that improve UX.",
+    published: "2025-10-18T12:00:00Z"
   },
   "case-study-writing": {
-    title: "UX Case Studies That Win Interviews",
-    description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from hundreds of portfolios."
+    title: "Case Studies That Win Clients — Beyond Pretty Screens",
+    description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from hundreds of portfolios.",
+    published: "2025-12-28T12:00:00Z"
   },
   "beautiful-interface-doesnt-convert": {
     title: "Why Beautiful Interfaces Don't Convert",
-    description: "Pretty designs don't guarantee conversions. The UX psychology behind why aesthetics fail and what drives user action."
+    description: "Pretty designs don't guarantee conversions. The UX psychology behind why aesthetics fail and what drives user action.",
+    published: "2025-03-30T12:00:00Z"
   },
   "research-without-users": {
-    title: "Validating Products Without Users",
-    description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups."
+    title: "How to Research When You Don't Have Users Yet",
+    description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups.",
+    published: "2025-03-18T12:00:00Z"
   }
 };
 
@@ -198,7 +224,7 @@ export function getStaticPageSEO(path: string): Partial<SEOInput> | null {
 export function getProjectSEO(projectId: string): Partial<SEOInput> | null {
   const project = PROJECT_SEO_MAP[projectId];
   if (!project) return null;
-  
+
   return {
     kind: 'project',
     title: project.title,
@@ -216,6 +242,8 @@ export function getBlogSEO(slug: string): Partial<SEOInput> | null {
     kind: 'post',
     title: seoData?.title,
     description: seoData?.description,
+    published: seoData?.published,
+    modified: seoData?.modified,
     // Omit entirely (not `image: undefined`) when there's no dedicated OG image —
     // an explicit undefined key still overwrites the post's real coverImage when
     // spread into seoInput in UnifiedSEO.tsx.

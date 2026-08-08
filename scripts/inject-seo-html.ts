@@ -75,6 +75,8 @@ function seoInputFor(pathname: string): SEOInput {
       title: override.title ?? `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
       description: override.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
       image: override.image,
+      published: override.published,
+      modified: override.modified,
     };
   }
   if (pathname.startsWith("/project/")) {

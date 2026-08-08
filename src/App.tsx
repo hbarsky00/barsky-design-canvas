@@ -96,7 +96,7 @@ function AppContent() {
               <Route path="/design-services/web-development" element={<WebDevelopment />} />
               
               {/* Other routes */}
-              <Route path="/projects" element={<Navigate to="/#projects" replace />} />
+              <Route path="/projects" element={<Navigate to="/#case-studies" replace />} />
               <Route path="/services" element={<Services />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />

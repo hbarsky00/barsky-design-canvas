@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 // Move navLinks outside the hook to prevent new array reference on every render
 const NAV_LINKS = [
-  { name: "Case Studies", href: "#case-studies" },
+  { name: "Case Studies", href: "/#case-studies" },
   { name: "Services", href: "/services" },
   { name: "Store", href: "/store" },
   { name: "Blog", href: "/blog" },
@@ -111,13 +111,14 @@ export const useHeaderNavigation = () => {
       return;
     }
     
-    if (href.startsWith('#')) {
-      const sectionId = href.substring(1);
-      
+    const hashIndex = href.indexOf('#');
+    if (hashIndex !== -1) {
+      const sectionId = href.substring(hashIndex + 1);
+
       // Special handling for contact section
       if (sectionId === 'contact') {
         const isHomepage = location.pathname === '/';
-        
+
         if (isHomepage) {
           // On homepage, scroll to contact form
           scrollToSection('contact');
@@ -127,7 +128,7 @@ export const useHeaderNavigation = () => {
         }
         return;
       }
-      
+
       // For other anchor links, scroll to the section
       scrollToSection(sectionId);
     } else if (href === '/') {
@@ -177,8 +178,9 @@ export const useHeaderNavigation = () => {
       return location.pathname === "/services" || location.pathname.startsWith("/design-services");
     }
     
-    if (link.startsWith('#')) {
-      const sectionId = link.substring(1);
+    const linkHashIndex = link.indexOf('#');
+    if (linkHashIndex !== -1) {
+      const sectionId = link.substring(linkHashIndex + 1);
       const isActive = activeSection === sectionId;
       return isActive;
     }
@@ -236,11 +238,11 @@ export const useHeaderNavigation = () => {
       if (location.pathname === '/') {
         // Get all section elements that correspond to navigation links
         const sections = navLinks
-          .filter(link => link.href.startsWith('#'))
-          .map(link => ({
-            id: link.href.substring(1),
-            element: document.getElementById(link.href.substring(1))
-          }));
+          .filter(link => link.href.includes('#'))
+          .map(link => {
+            const id = link.href.substring(link.href.indexOf('#') + 1);
+            return { id, element: document.getElementById(id) };
+          });
         
         // Simple approach: find the section whose top is closest to the middle of the viewport
         let activeSection = "home";

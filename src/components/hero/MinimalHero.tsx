@@ -338,7 +338,7 @@ const MinimalHero: React.FC = () => {
           </motion.a>
 
           <motion.a
-            href="https://github.dev/hbarsky00"
+            href="https://github.com/hbarsky00"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit GitHub"

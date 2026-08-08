@@ -74,45 +74,57 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   const availableRules = linkingRules.filter(rule => rule.targetSlug !== currentSlug);
   
   const enhanceContentWithLinks = (htmlContent: string): string => {
-    let enhancedContent = htmlContent;
     let linksAdded = 0;
     const maxLinksPerPost = 3; // SEO best practice: 2-3 internal links per post
-    
+
     // Track which rules we've already used to avoid duplicate links
     const usedRules = new Set<string>();
-    
-    for (const rule of availableRules) {
-      if (linksAdded >= maxLinksPerPost) break;
-      if (usedRules.has(rule.targetSlug)) continue;
-      
-      // Find the first occurrence of any keyword in the content
-      for (const keyword of rule.keywords) {
-        // Create a regex that matches the keyword but not if it's already in a link
-        const keywordRegex = new RegExp(
-          `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)`,
-          'i'
-        );
-        
-        if (keywordRegex.test(enhancedContent)) {
-          // Replace the first occurrence with a link
-          enhancedContent = enhancedContent.replace(
-            keywordRegex,
-            `<a href="/blog/${rule.targetSlug}" 
-               class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200"
-               title="${rule.title}"
-               rel="internal">
-               ${rule.anchorText}
-            </a>`
+
+    // Only link within prose (paragraph) segments — never inside headings.
+    // Matching keywords against raw HTML with no structural awareness previously
+    // let this rewrite heading text (e.g. a "Research Your Hierarchy" H2 became
+    // "cost-effective user research methods Your Hierarchy" because the whole
+    // matched word was replaced with the rule's anchor phrase, headings included).
+    const segments = htmlContent.split(/(<h[1-6][^>]*>[\s\S]*?<\/h[1-6]>)/i);
+
+    const enhancedSegments = segments.map((segment) => {
+      const isHeading = /^<h[1-6][^>]*>/i.test(segment);
+      if (isHeading) return segment;
+
+      let enhancedSegment = segment;
+
+      for (const rule of availableRules) {
+        if (linksAdded >= maxLinksPerPost) break;
+        if (usedRules.has(rule.targetSlug)) continue;
+
+        for (const keyword of rule.keywords) {
+          // Match the keyword but not if it's already inside a link
+          const keywordRegex = new RegExp(
+            `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)`,
+            'i'
           );
-          
-          usedRules.add(rule.targetSlug);
-          linksAdded++;
-          break; // Move to next rule after finding a match
+
+          if (keywordRegex.test(enhancedSegment)) {
+            // Wrap the matched text itself in the link — never substitute it
+            // with the rule's (differently worded) anchor phrase, which is
+            // what corrupted surrounding prose before.
+            enhancedSegment = enhancedSegment.replace(
+              keywordRegex,
+              (matchedText) =>
+                `<a href="/blog/${rule.targetSlug}" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="${rule.title}" rel="internal">${matchedText}</a>`
+            );
+
+            usedRules.add(rule.targetSlug);
+            linksAdded++;
+            break; // Move to next rule after finding a match
+          }
         }
       }
-    }
-    
-    return enhancedContent;
+
+      return enhancedSegment;
+    });
+
+    return enhancedSegments.join('');
   };
   
   const enhancedContent = enhanceContentWithLinks(content);

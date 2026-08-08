@@ -17,9 +17,13 @@ interface SEOData {
 export const generateStructuredData = (seoData: SEOData) => {
   const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
   
+  // Always WebPage here, even for posts/projects — the more specific BlogPosting
+  // or Article schema is pushed separately below with richer (headline/author/
+  // publisher) data. Emitting "Article" here too just produced two overlapping,
+  // near-duplicate Article-typed blocks on the same page for no added value.
   const baseStructuredData: any = {
     "@context": "https://schema.org",
-    "@type": seoData.type === 'article' ? "Article" : "WebPage",
+    "@type": "WebPage",
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
@@ -34,7 +38,7 @@ export const generateStructuredData = (seoData: SEOData) => {
     url: "https://barskydesign.pro",
     logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
     sameAs: [
-      "https://www.linkedin.com/in/hirambarsky/",
+      "https://www.linkedin.com/in/hiram-barsky/",
       "https://github.com/hbarsky00"
     ],
     knowsAbout: [
@@ -63,17 +67,19 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   const schemas: any[] = [baseStructuredData, organizationSchema];
 
-  // Add specific schemas based on content type
-  if (seoData.type === 'article' || seoData.kind === 'post') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+  // Add specific schemas based on content type. Discriminate on `kind`, not
+  // `type` — buildSEO() sets `type: 'article'` for BOTH posts and projects, so
+  // checking `type === 'article'` here made every case study emit a BlogPosting
+  // block in addition to its own Article block below (kind is the precise signal).
+  if (seoData.kind === 'post') {
+    const datePublished = seoData.publishedTime || seoData.published;
     const blogPostSchema: any = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      datePublished,
+      ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
       author: {
         "@type": "Person",
@@ -87,15 +93,14 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   // Add Article schema for projects/case studies (editorial content, not products)
   if (seoData.kind === 'project') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const datePublished = seoData.publishedTime || seoData.published;
     const articleSchema: any = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      datePublished,
+      ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
       author: {
         "@type": "Person",

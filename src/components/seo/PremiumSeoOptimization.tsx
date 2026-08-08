@@ -22,7 +22,7 @@ const PremiumSeoOptimization: React.FC<PremiumSeoOptimizationProps> = ({
       "telephone": "+1-201-668-4754",
       "image": "https://barskydesign.pro/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png",
       "sameAs": [
-        "https://www.linkedin.com/in/hirambarsky",
+        "https://www.linkedin.com/in/hiram-barsky",
         "https://twitter.com/barskydesign",
         "https://github.com/hirambarsky"
       ],
