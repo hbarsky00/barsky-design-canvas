@@ -48,6 +48,15 @@ const Header: React.FC = () => {
     }
   }, [isScrolled]);
 
+  // Keep the visually-hidden header (opacity-0 / translated off-screen before
+  // scrolling past the hero) out of the tab order so keyboard users don't land
+  // on invisible focused links.
+  React.useEffect(() => {
+    if (headerRef.current) {
+      headerRef.current.inert = !shouldShowHeader;
+    }
+  }, [shouldShowHeader]);
+
   return (
     <>
       <header ref={headerRef} className={cn(

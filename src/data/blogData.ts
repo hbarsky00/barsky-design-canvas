@@ -424,7 +424,7 @@ export const blogPosts: BlogPost[] = [
     `
   },
   {
-    id: "5",
+    id: "3",
     title: "How to Research When You Don't Have Users Yet",
     excerpt: "You can't interview users who don't exist yet. You can still do real research — you just have to research the problem, not your solution.",
     author: "Hiram Barsky",
