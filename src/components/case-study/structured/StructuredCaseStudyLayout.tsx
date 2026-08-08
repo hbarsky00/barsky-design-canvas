@@ -412,6 +412,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       if (img.caption) acc[img.src] = img.caption;
                       return acc;
                     }, {} as Record<string, string>)}
+                    imageAlts={caseStudyData.finalProductSection.images.reduce((acc, img) => {
+                      if (img.alt) acc[img.src] = img.alt;
+                      return acc;
+                    }, {} as Record<string, string>)}
                     imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
                       if (img.annotations) acc[img.src] = img.annotations;
                       return acc;

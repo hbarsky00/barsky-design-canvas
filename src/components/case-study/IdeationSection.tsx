@@ -57,7 +57,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
             <MaximizableImage
               src={ideationData.wireframeImage.src}
               alt={ideationData.wireframeImage.alt}
-              caption={ideationData.wireframeImage.caption}
+              caption={ideationData.wireframeImage.caption || ideationData.wireframeImage.alt}
               className="w-full h-auto rounded-sm shadow-lg"
             />
           </div>

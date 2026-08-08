@@ -10,6 +10,7 @@ import { ImageAnnotation } from "@/data/structuredCaseStudies";
 interface ProjectImageCarouselProps {
   images: string[];
   imageCaptions?: Record<string, string>;
+  imageAlts?: Record<string, string>;
   imageAnnotations?: Record<string, ImageAnnotation[]>;
   projectId?: string;
 }
@@ -17,6 +18,7 @@ interface ProjectImageCarouselProps {
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   images,
   imageCaptions = {},
+  imageAlts = {},
   imageAnnotations = {},
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -71,8 +73,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           >
             <MaximizableImage
               src={images[currentIndex]}
-              alt={`Carousel image ${currentIndex + 1}`}
-              caption={imageCaptions[images[currentIndex]]}
+              alt={imageAlts[images[currentIndex]] || `Carousel image ${currentIndex + 1}`}
+              caption={imageCaptions[images[currentIndex]] || imageAlts[images[currentIndex]]}
               annotations={imageAnnotations[images[currentIndex]]}
               imageList={images}
               currentIndex={currentIndex}

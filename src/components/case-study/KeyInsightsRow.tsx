@@ -92,13 +92,9 @@ const KeyInsightsRow: React.FC<KeyInsightsRowProps> = ({ insights, video }) => {
                   <MaximizableImage
                     src={image.src}
                     alt={image.alt}
+                    caption={image.caption || image.alt}
                     className="w-full h-auto rounded-sm shadow-sm"
                   />
-                  {image.caption && (
-                    <p className="text-sm text-muted-foreground mt-3 text-center content-rail-center">
-                      {image.caption}
-                    </p>
-                  )}
                 </div>
               ))}
             </div>

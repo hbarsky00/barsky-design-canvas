@@ -88,7 +88,7 @@ const PostLaunchSection: React.FC<PostLaunchSectionProps> = ({
                 <MaximizableImage
                   src={image.src}
                   alt={image.alt}
-                  caption={image.caption}
+                  caption={image.caption || image.alt}
                   className="w-full h-auto object-contain"
                   imageList={images.map(img => img.src)}
                   currentIndex={index}

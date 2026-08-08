@@ -62,6 +62,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
     <MaximizableImage
       src={thumbnailSrc}
       alt={`${title} promotional image`}
+      caption={`${title} promotional image`}
       className="w-full rounded-sm"
       projectId="case-study"
       fit="contain"

@@ -72,7 +72,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                     <MaximizableImage
                       src={images[0].src}
                       alt={images[0].alt}
-                      caption={images[0].caption}
+                      caption={images[0].caption || images[0].alt}
                       className="w-full rounded-sm"
                     />
                   )}
@@ -133,7 +133,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                     <MaximizableImage
                       src={images[1].src}
                       alt={images[1].alt}
-                      caption={images[1].caption}
+                      caption={images[1].caption || images[1].alt}
                       className="w-full rounded-sm"
                       fit="contain"
                     />

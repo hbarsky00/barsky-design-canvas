@@ -106,7 +106,7 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
                 <MaximizableImage
                   src={image.src}
                   alt={image.alt}
-                  caption={image.caption}
+                  caption={image.caption || image.alt}
                   fit="contain"
                   className="w-full rounded-sm shadow-sm"
                 />

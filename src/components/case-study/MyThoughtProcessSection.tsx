@@ -121,7 +121,7 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
         <MaximizableImage
           src={img.src}
           alt={img.alt}
-          caption={img.caption}
+          caption={img.caption || img.alt}
           className="w-full rounded-sm"
         />
       )}
