@@ -155,7 +155,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                     </p>
                   ))}
                   {imgs.length > 0 && (
-                    <div className="space-y-6">
+                    <div className={imgs.length > 1 ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "space-y-6"}>
                       {imgs.map((img, idx) => (
                         <MaximizableImage
                           key={`${img.src}-${idx}`}
