@@ -23,7 +23,7 @@ const SOCIALS = [
 
 const CleanHero: React.FC = () => {
   return (
-    <section className="relative bg-background border-b border-border overflow-hidden">
+    <section className="relative bg-background overflow-hidden">
       {/* Fine dot-grid texture — a nod to Swiss-grid structure, not decoration for its own
           sake. Pure CSS radial-gradient tiling, no image asset, no JS. */}
       <div

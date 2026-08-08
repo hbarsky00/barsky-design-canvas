@@ -160,9 +160,9 @@ const CaseStudyCard: React.FC<{
     if (showPlaceholder) {
       console.log('📦 Rendering PlaceholderImage for:', study.title);
       return (
-        <div 
+        <div
           onClick={() => navigate(study.url)}
-          className="block h-full cursor-pointer"
+          className="block w-full h-full cursor-pointer"
         >
           <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
         </div>
@@ -171,13 +171,13 @@ const CaseStudyCard: React.FC<{
 
     if (study.video) {
       return (
-        <div 
+        <div
           onClick={() => navigate(study.url)}
-          className="block h-full group cursor-pointer"
+          className="block w-full h-full group cursor-pointer"
         >
-          <div className="flex justify-center h-full">
+          <div className="flex w-full justify-center h-full">
             <div className="w-full aspect-video overflow-hidden" style={{ maxWidth: '625px' }}>
-              <video 
+              <video
                 src={study.video}
                 poster={study.images.primary}
                 className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
@@ -199,12 +199,12 @@ const CaseStudyCard: React.FC<{
 
     
     return (
-      <div 
+      <div
         onClick={() => navigate(study.url)}
-        className="block h-full group cursor-pointer"
+        className="block w-full h-full group cursor-pointer"
       >
-        <div className="flex justify-center h-full">
-          <img 
+        <div className="flex w-full justify-center h-full">
+          <img
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
@@ -325,18 +325,15 @@ const CaseStudyCard: React.FC<{
                             2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
               
               {/* Images Section */}
-              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
-                   style={{ marginRight: '-24px' }}>
-                <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
+              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center">
+                <div className="w-full flex items-center justify-center">
                   {renderMedia()}
                 </div>
               </div>
 
               {/* Content Section */}
-              <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
-                   style={{ 
-                     paddingLeft: '24px',
-                     paddingRight: '24px',
+              <div className="flex flex-col justify-center py-5 xl:py-6 px-6 min-w-0"
+                   style={{
                      wordWrap: 'break-word',
                      whiteSpace: 'normal'
                    }}>
