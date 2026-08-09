@@ -19,4 +19,10 @@
 
 # SPA fallback — must stay last. Does not shadow real files, so the
 # per-route HTML written by scripts/inject-seo-html.ts is still served.
-/*    /index.html   200
+#
+# Points at spa-shell.html, not index.html: index.html now carries the
+# homepage's prerendered body, so using it as the catch-all would serve
+# homepage content for every unmatched URL — a soft 200 on what should read as
+# a 404. spa-shell.html is the same shell with an empty #root, so unmatched
+# routes client-render whatever they should (including NotFound).
+/*    /spa-shell.html   200

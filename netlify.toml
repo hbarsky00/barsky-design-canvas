@@ -240,10 +240,11 @@
   status = 200
 
 # Prerendered blog posts
-# SPA fallback for all other routes
+# SPA fallback for all other routes. Mirrors public/_redirects — points at
+# spa-shell.html so unmatched URLs do not serve the homepage body.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/spa-shell.html"
   status = 200
   
 [build]

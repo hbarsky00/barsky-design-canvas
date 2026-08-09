@@ -11,7 +11,8 @@
     "postbuild": "npx tsx scripts/inject-seo-html.ts",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "capture-bodies": "npx tsx scripts/capture-prerendered-bodies.ts"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.6",

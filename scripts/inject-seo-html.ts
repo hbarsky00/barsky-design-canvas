@@ -149,13 +149,50 @@ function renderHead(seo: BuiltSEO): string {
   return lines.filter(Boolean).join("\n    ");
 }
 
-function writeRoute(template: string, pathname: string) {
+const BODIES = resolve("prerendered-bodies");
+
+/** Mirrors routeToFile() in scripts/capture-prerendered-bodies.ts. */
+function bodyFileFor(pathname: string): string {
+  const slug =
+    pathname === "/" ? "index" : pathname.replace(/^\//, "").replace(/\//g, "__");
+  return resolve(BODIES, `${slug}.html`);
+}
+
+/**
+ * Bake the captured render into #root so hydrateRoot() has something to hydrate
+ * and non-JS crawlers get real content. Missing snapshots are not fatal — the
+ * route just ships the old empty shell and still works, it's only invisible to
+ * crawlers that don't run JavaScript.
+ */
+function injectBody(html: string, pathname: string): { html: string; had: boolean } {
+  const file = bodyFileFor(pathname);
+  if (!existsSync(file)) return { html, had: false };
+
+  const body = readFileSync(file, "utf8").trim();
+  if (body.length < 500) return { html, had: false };
+
+  // index.html ships an SSR placeholder — <div id="root"><!--app-html--></div>
+  // — rather than an empty div. Both forms are handled so this keeps working if
+  // the placeholder is ever dropped from the template.
+  for (const marker of ['<div id="root"><!--app-html--></div>', '<div id="root"></div>']) {
+    if (html.includes(marker)) {
+      return { html: html.replace(marker, `<div id="root">${body}</div>`), had: true };
+    }
+  }
+
+  console.warn(`  no #root placeholder found for ${pathname} — body not injected`);
+  return { html, had: false };
+}
+
+function writeRoute(template: string, pathname: string): boolean {
   const seo = buildSEO(seoInputFor(pathname));
   const head = renderHead(seo);
-  const html = template.replace("</head>", `    ${head}\n  </head>`);
+  const withHead = template.replace("</head>", `    ${head}\n  </head>`);
+  const { html, had } = injectBody(withHead, pathname);
   const outDir = pathname === "/" ? DIST : resolve(DIST, pathname.replace(/^\//, ""));
   mkdirSync(outDir, { recursive: true });
   writeFileSync(resolve(outDir, "index.html"), html);
+  return had;
 }
 
 function main() {
@@ -172,11 +209,28 @@ function main() {
     ...getBlogSlugs().map((slug) => `/blog/${slug}`),
   ];
 
+  let prerendered = 0;
   for (const route of routes) {
-    writeRoute(template, route);
+    if (writeRoute(template, route)) prerendered++;
   }
 
-  console.log(`SEO HTML written for ${routes.length} routes.`);
+  // The SPA catch-all needs a shell with an *empty* root. Without this it would
+  // fall back to dist/index.html — which now carries the homepage's prerendered
+  // body — so every unmatched URL would serve homepage content, turning 404s
+  // into soft 200s just after we finished redirecting the last batch away.
+  writeFileSync(resolve(DIST, "spa-shell.html"), template);
+
+  console.log(
+    `SEO HTML written for ${routes.length} routes ` +
+      `(${prerendered} with prerendered bodies, ${routes.length - prerendered} head-only).`
+  );
+
+  if (prerendered === 0) {
+    console.warn(
+      "No prerendered bodies found. Run `npm run capture-bodies` locally and commit " +
+        "prerendered-bodies/ — otherwise hydrateRoot() has an empty container to hydrate."
+    );
+  }
 }
 
 main();
