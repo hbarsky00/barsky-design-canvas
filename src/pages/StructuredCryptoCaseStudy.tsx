@@ -19,7 +19,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Beginners pay for hidden fees and never graduate. Pros pay for every \"are you sure?\" tax built for someone else.",
         ],
         images: [
-          { src: "/images/crypto/learning.jpg", alt: "Failed prototype iterations and stakeholder feedback sessions" },
+          { src: "/images/crypto/competitive.png", alt: "Competitor teardown — \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence" },
         ],
       },
       {
@@ -29,8 +29,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode shows the full order book with zero hand-holding. Mode is a setting, not a separate product.",
         ],
         images: [
-          { src: "/images/crypto/competitive.png", alt: "Competitor analysis exposing beginner exploitation" },
-          { src: "/images/crypto/site-map.png", alt: "User Flow Chart for Crypto App" },
+          { src: "/images/crypto/site-map.png", alt: "The two-mode architecture — one platform, shared core, mode as a setting rather than a separate product" },
         ],
       },
       {
@@ -41,6 +40,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         ],
         images: [
           { src: "/images/crypto/initial-flow.png", alt: "Initial concepts challenging crypto app conventions" },
+          { src: "/images/crypto/design-thinking.png", alt: "The design-thinking pass that produced the two-mode constraint" },
         ],
       },
       {
@@ -50,7 +50,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode had the opposite problem: I'd cut so much that pros couldn't find features they relied on. Density is a feature for that audience.",
         ],
         images: [
-          { src: "/images/crypto/design-thinking.png", alt: "Design thinking process for crypto platform" },
+          { src: "/images/crypto/learning.jpg", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising" },
         ],
       },
       {

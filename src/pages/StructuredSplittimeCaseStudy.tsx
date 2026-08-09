@@ -20,7 +20,6 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "The hard part isn't logistics — it's tone.",
         ],
         images: [
-          { src: "/images/splittime/early-dashboard.png", alt: "Early SplitTime dashboard concept" },
         ],
       },
       {
@@ -30,8 +29,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Templates for the 80% of co-parenting communication that's the same conversation every week strip the emotional charge out of routine messages.",
         ],
         images: [
-          { src: "/images/splittime/dashboard-concept.png", alt: "Dashboard concept exploration" },
-          { src: "/images/splittime/wireframing.webp", alt: "User Flow Explorations" },
+          { src: "/images/splittime/app-screens.png", alt: "The shipped app — structured requests, shared schedule, and child profile in one place" },
+          { src: "/images/splittime/features.png", alt: "Feature and workflow breakdown of what actually shipped" },
         ],
       },
       {
@@ -41,8 +40,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Knowing the record exists changes how people communicate — it's not surveillance, it's the guardrail that makes both parties calmer.",
         ],
         images: [
-          { src: "/images/splittime/messaging.png", alt: "Messaging System" },
-          { src: "/images/splittime/app-screens.png", alt: "App screens overview, including scheduling" },
+          { src: "/images/splittime/messaging.png", alt: "Structured requests instead of open chat — ask, approve or counter, timestamped" },
         ],
       },
       {
@@ -52,9 +50,9 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one.",
         ],
         images: [
-          { src: "/images/splittime/features.png", alt: "Feature and workflow breakdown" },
-          { src: "/images/splittime/documents.jpg", alt: "Documents Storage" },
-          { src: "/images/splittime/child-profile.png", alt: "Child Profile" },
+          { src: "/images/splittime/early-dashboard.png", alt: "The first dashboard — it replicated too much of what co-parents already had" },
+          { src: "/images/splittime/dashboard-concept.png", alt: "Concept exploration from the version that tried to be a full messaging app" },
+          { src: "/images/splittime/wireframing.webp", alt: "User flow explorations from the same pass" },
         ],
       },
       {
@@ -62,6 +60,10 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
         paragraphs: [
           "Parents testing it described it as \"the first one that didn't make me feel like I was being managed.\"",
           "That's the response I was designing for.",
+        ],
+        images: [
+          { src: "/images/splittime/child-profile.png", alt: "Child profile — both parents see the same record, so nothing depends on who remembered to pass it along" },
+          { src: "/images/splittime/documents.jpg", alt: "Document storage — the shared, timestamped record parents can point at instead of arguing from memory" },
         ],
       },
     ]}

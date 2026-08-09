@@ -43,6 +43,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         images: [
           { src: "/images/investor-loan-app/book-builder-lofi.png", alt: "Low-fidelity order builder wireframe for loan workflows" },
           { src: "/images/investor-loan-app/whiteboarding.png", alt: "Whiteboard mapping of loan lifecycle from application to audit" },
+          { src: "/images/investor-loan-app/user-journey.png", alt: "The four-step workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — the flow loan officers actually adopted" },
         ],
       },
       {
@@ -64,7 +65,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         images: [
           { src: "/images/investor-loan-app/my-deals-list-view.jpg", alt: "My Deals — collaboration tools (chat, share, invite) with per-deal progress tracking" },
           { src: "/images/investor-loan-app/manage-loan-limits.jpg", alt: "Manage Loan Limits — utilization bars, total limit, and available credit surfaced per borrower" },
-          { src: "/images/investor-loan-app/user-journey.png", alt: "The four-step workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — the flow loan officers actually adopted" },
         ],
       },
     ]}
