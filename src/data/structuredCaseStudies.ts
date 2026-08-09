@@ -476,7 +476,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/herbalink-promo.png`,
+      image: `/images/herbalink/home-2026.jpg`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],

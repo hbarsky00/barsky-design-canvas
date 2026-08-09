@@ -73,7 +73,7 @@ const caseStudies: CaseStudy[] = [
       // already in this repo; no local HerbaLink video exists, so the video
       // field is dropped and this card now renders the static image
       // (same fallback path "Email Creation AI" already uses).
-      primary: "/images/herbalink-promo.png",
+      primary: "/images/herbalink/home-2026.jpg",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"

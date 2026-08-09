@@ -60,7 +60,7 @@
       },
       "areaServed": "US",
       "sameAs": [
-        "https://www.linkedin.com/in/hirambarsky/"
+        "https://www.linkedin.com/in/hiram-barsky/"
       ]
     }
     </script>
@@ -90,11 +90,15 @@
     </script>
     
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+    <!-- Google Fonts.
+         Was requesting 23 font files: Space Grotesk 300-700, Inter 100-900, and
+         all nine weights of Outfit — which isn't referenced anywhere in the app.
+         It also loaded the stylesheet with the preload/onload swap trick, so the
+         font CSS wasn't even discovered until after first paint, which is what
+         made every heading visibly change font mid-load. Now: only the two
+         families actually in tailwind.config.ts, only the weights in use, and
+         fetched in the critical path so the swap window is as short as possible. -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">

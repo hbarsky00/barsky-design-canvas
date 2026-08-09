@@ -37,7 +37,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink-promo.png",
+      primary: "/images/herbalink/home-2026.jpg",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"

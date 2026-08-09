@@ -13,7 +13,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'UX Case Studies & Product Design — Barsky Design',
     description: 'UX case studies in healthcare, fintech, co-parenting, and AI platforms — measurable impact, user outcomes, and strategic design thinking.',
-    image: 'https://barskydesign.pro/images/herbalink-promo.png'
+    image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
   },
   '/services': {
     kind: 'page',
@@ -49,7 +49,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'UX/UI Design Services — Product Design',
     description: 'Expert UX/UI design — from user research to high-fidelity prototypes. Intuitive experiences that drive measurable business results.',
-    image: 'https://barskydesign.pro/images/herbalink-promo.png'
+    image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
