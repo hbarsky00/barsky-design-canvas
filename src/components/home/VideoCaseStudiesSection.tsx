@@ -1,13 +1,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
-import SectionHeader from "@/components/shared/SectionHeader";
-import AnimatedText from "@/components/AnimatedText";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "react-router-dom";
 import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 import { shouldShowPromoImpact } from "@/utils/promoCopy";
 
@@ -126,338 +122,168 @@ const caseStudies: CaseStudy[] = [
       alt: "Investor loan analysis dashboard overview"
     },
     layout: "side-by-side"
-  },
-  {
-    id: "business-management",
-    tags: ["Enterprise", "Small Business", "Automation"],
-    title: "Blue Sky",
-    description: "Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks into one dashboard.",
-    impact: "",
-    url: "/project/business-management",
-    liveUrl: "https://in-situ-quickbooks-flow.lovable.app/",
-    images: {
-      primary: "/images/business-management/hero-three-laptops.jpg",
-      alt: "Blue Sky — Customer Management, Product Catalog, and Order Management across three screens"
-    },
-    layout: "side-by-side"
   }
 ];
 
-const CaseStudyCard: React.FC<{ 
-  study: CaseStudy; 
-  index: number;
-}> = React.memo(({ study, index }) => {
-  const isMobile = useIsMobile();
-  const navigate = useNavigate();
+/**
+ * One case study, presented editorially rather than as a card.
+ *
+ * The previous version wrapped every study in a full-bleed grey gradient panel
+ * with its own borders, and rendered the whole thing twice (a `lg:hidden`
+ * mobile copy and a separate desktop copy). That produced a stack of heavy
+ * boxes and double the DOM. This is a single responsive layout: the work is
+ * the visual, the page background is left alone, and the media side alternates
+ * so a column of studies has some rhythm.
+ */
+const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(({ study, index }) => {
   const showImpact = shouldShowPromoImpact(study.title, study.description, study.impact);
+  const mediaFirst = index % 2 === 0;
 
-  // Check if we need a placeholder for Smarter Health assets
-  const needsPlaceholder = (src?: string) => {
-    return src && src.includes('/assets/case-studies/smarter-health/');
-  };
-
-  const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
+  const needsPlaceholder = (src?: string) =>
+    Boolean(src && src.includes("/assets/case-studies/smarter-health/"));
+  const showPlaceholder =
+    needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
 
   const renderMedia = () => {
     if (showPlaceholder) {
-      return (
-        <div
-          onClick={() => navigate(study.url)}
-          className="block w-full h-full cursor-pointer"
-        >
-          <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
-        </div>
-      );
+      return <PlaceholderImage title={study.title} className="w-full h-full" />;
     }
-
     if (study.video) {
       return (
-        <div
-          onClick={() => navigate(study.url)}
-          className="block w-full h-full group cursor-pointer"
-        >
-          <div className="flex w-full justify-center h-full">
-            <div className="w-full aspect-video overflow-hidden" style={{ maxWidth: '625px' }}>
-              <video
-                src={study.video}
-                poster={study.images.primary}
-                className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                muted
-                loop
-                playsInline
-                onMouseEnter={(e) => {
-                  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-                    e.currentTarget.play();
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause();
-                  e.currentTarget.currentTime = 0;
-                  e.currentTarget.load();
-                }}
-              />
-            </div>
-          </div>
-        </div>
+        <video
+          src={study.video}
+          poster={study.images.primary}
+          className="w-full h-full object-cover object-top"
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={study.images.alt}
+          onMouseEnter={(e) => {
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+              e.currentTarget.play().catch(() => {});
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.pause();
+            e.currentTarget.currentTime = 0;
+          }}
+        />
       );
     }
-
-    
     return (
-      <div
-        onClick={() => navigate(study.url)}
-        className="block w-full h-full group cursor-pointer"
-      >
-        <div className="flex w-full justify-center h-full">
-          <img
-            src={study.images.primary} 
-            alt={study.images.alt}
-            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
-            style={{ maxWidth: '625px', height: 'auto' }}
-          />
-        </div>
-      </div>
+      <img
+        src={study.images.primary}
+        alt={study.images.alt}
+        loading="lazy"
+        className="w-full h-full object-cover object-top"
+      />
     );
   };
 
   return (
-    <motion.div
+    <motion.article
       id={`case-study-${index + 1}`}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "100px" }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="case-study-card overflow-hidden relative"
-      tabIndex={-1}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="group grid lg:grid-cols-2 gap-6 lg:gap-14 items-center"
     >
-      {/* Mobile Layout: Stacked with Premium Background */}
-      <div className="lg:hidden py-8 relative overflow-hidden"
-           style={{
-             background: `
-               linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
-               radial-gradient(circle at 50% 0%, hsl(231 92% 98% / 0.5) 0%, transparent 50%)
-             `,
-             border: "1px solid hsl(220 20% 92%)",
-             borderRadius: "24px",
-             backdropFilter: "blur(8px)"
-           }}>
-        {/* Image Section - Full Width on Mobile */}
-        <div className="relative py-4 min-h-[200px] flex items-center justify-center">
-          <div className="w-full max-w-[625px] flex justify-center">
-            {renderMedia()}
-          </div>
+      {/* Media — the work leads */}
+      <Link
+        to={study.url}
+        tabIndex={-1}
+        aria-hidden="true"
+        className={`block overflow-hidden rounded-2xl border border-border bg-muted/20 aspect-[16/10] ${
+          mediaFirst ? "" : "lg:order-2"
+        }`}
+      >
+        <div className="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+          {renderMedia()}
         </div>
+      </Link>
 
-        {/* Content Section */}
-        <div className="p-6 space-y-4">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
+      {/* Copy */}
+      <div className={`min-w-0 ${mediaFirst ? "" : "lg:order-1"}`}>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="font-display text-sm tabular-nums text-muted-foreground">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="h-px w-6 bg-border" aria-hidden="true" />
+          <div className="flex flex-wrap gap-x-3 gap-y-1 min-w-0">
             {study.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                #{tag}
-              </Badge>
+              <span
+                key={tag}
+                className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground"
+              >
+                {tag}
+              </span>
             ))}
           </div>
+        </div>
 
-          {/* Title */}
-          <AnimatedText
-            text={study.title}
-            tag="h3"
-            className="heading-subsection text-gray-900 leading-tight break-words"
-            type="word"
-            animation="slide"
-            delay={300}
-            staggerChildren={0.05}
-          />
+        <h3 className="font-display font-bold text-foreground text-2xl sm:text-3xl lg:text-4xl leading-tight mb-4">
+          <Link to={study.url} className="hover:text-primary transition-colors duration-200">
+            {study.title}
+          </Link>
+        </h3>
 
-          {/* Description */}
-          <p className="text-gray-600 text-lg leading-relaxed break-words">
-            {study.description}
-          </p>
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+          {study.description}
+        </p>
 
-          {/* Impact Metrics */}
-          {showImpact ? (
-            <div className="text-impact-metric-md">
-              {study.impact}
-            </div>
-          ) : null}
+        {showImpact ? <div className="text-impact-metric-md mb-6">{study.impact}</div> : null}
 
-          {/* CTA Buttons */}
-          <div className="flex flex-row gap-3 pt-2">
-            <Button asChild variant="case-study" className="flex-1">
-              <Link to={study.url}>View Case Study</Link>
-            </Button>
-            {study.liveUrl && (
-              <Button asChild variant="outline" className="flex-1">
-                <a 
-                  href={study.liveUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  View Live
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </Button>
-            )}
-          </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Button asChild className="!w-auto">
+            <Link to={study.url}>
+              View Case Study
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+          {study.liveUrl && (
+            <a
+              href={study.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+            >
+              View Live
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          )}
         </div>
       </div>
-
-      {/* Desktop Layout: Full-width background */}
-      <div className="hidden lg:block">
-        {/* Full-width Premium Background wrapper */}
-        <div className="w-screen relative left-1/2 -ml-[50vw] py-8 lg:py-10 overflow-hidden"
-             style={{
-               background: `
-                 linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
-                 radial-gradient(circle at 20% 50%, hsl(231 92% 98% / 0.3) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 50%, hsl(263 85% 98% / 0.2) 0%, transparent 50%)
-               `,
-               borderTop: "1px solid hsl(220 20% 92%)",
-               borderBottom: "1px solid hsl(220 20% 92%)",
-             }}>
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            {/* Desktop content grid */}
-            <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
-                            [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
-                            2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
-              
-              {/* Images Section */}
-              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center">
-                <div className="w-full flex items-center justify-center">
-                  {renderMedia()}
-                </div>
-              </div>
-
-              {/* Content Section */}
-              <div className="flex flex-col justify-center py-5 xl:py-6 px-6 min-w-0"
-                   style={{
-                     wordWrap: 'break-word',
-                     whiteSpace: 'normal'
-                   }}>
-                <div className="w-full max-w-[600px] space-y-3 break-words">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {study.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                        #{tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Title */}
-                  <AnimatedText
-                    text={study.title}
-                    tag="h3"
-                    className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
-                    type="word"
-                    animation="slide"
-                    delay={300}
-                    staggerChildren={0.05}
-                  />
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
-                    {study.description}
-                  </p>
-
-                  {/* Impact Metrics */}
-                  {showImpact ? (
-                    <div className="text-impact-metric-md mb-4">
-                      {study.impact}
-                    </div>
-                  ) : null}
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button asChild variant="case-study" className="flex-1 sm:flex-none">
-                      <Link to={study.url}>View Case Study</Link>
-                    </Button>
-                    {study.liveUrl && (
-                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                        <a 
-                          href={study.liveUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2"
-                        >
-                          View Live
-                          <ArrowRight className="w-4 h-4" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+    </motion.article>
   );
 });
 
+CaseStudyCard.displayName = "CaseStudyCard";
+
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section 
-      className="py-12 md:py-16 relative overflow-hidden" 
-      tabIndex={-1}
-      style={{
-        background: `
-          radial-gradient(circle at 10% 20%, hsl(231 92% 98% / 0.4) 0%, transparent 50%),
-          radial-gradient(circle at 90% 80%, hsl(263 85% 98% / 0.3) 0%, transparent 50%),
-          linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 99%) 100%)
-        `
-      }}
-    >
-      {/* Premium Background Elements */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
-            "radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.1) 0%, transparent 40%)",
-            "radial-gradient(circle at 60% 20%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
-          ]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
-        {/* Section Header */}
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "50px" }}
-          transition={{ duration: 0.4 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-16 md:mb-20 max-w-2xl"
         >
-          <SectionHeader
-            as="h2"
-            title="Case Studies That Drive Results"
-            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
-            subtitleClassName="max-w-4xl mx-auto"
-            titleAnimation="elastic"
-            subtitleAnimation="fade"
-            titleDelay={0}
-            subtitleDelay={0.3}
-          />
+          <h2 className="font-display font-bold text-foreground text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
+            Selected Work
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Products I designed and shipped — most of them live, all of them with the
+            decisions written down.
+          </p>
         </motion.div>
 
-        {/* Case Studies Grid */}
-        <div className="space-y-8">
+        <div className="space-y-20 md:space-y-28">
           {caseStudies.map((study, index) => (
-            <CaseStudyCard 
-              key={study.id} 
-              study={study} 
-              index={index}
-            />
+            <CaseStudyCard key={study.id} study={study} index={index} />
           ))}
         </div>
       </div>
