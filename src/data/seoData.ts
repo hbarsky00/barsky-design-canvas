@@ -146,12 +146,12 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
-  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/blog-ai-in-design.jpg",
-  "taste-is-the-whole-job": "https://barskydesign.pro/blog-visual-hierarchy.jpg",
-  "designer-who-codes-argument-is-over": "https://barskydesign.pro/blog-design-systems.jpg",
-  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/blog-finding-ux-job.jpg",
-  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/blog-case-study-writing.jpg",
-  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog-user-research-budget.jpg"
+  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/blog/two-bugs-ai-wrote-that-i-had-to-find-cover.jpg",
+  "taste-is-the-whole-job": "https://barskydesign.pro/blog/taste-is-the-whole-job-cover.jpg",
+  "designer-who-codes-argument-is-over": "https://barskydesign.pro/blog/designer-who-codes-argument-is-over-cover.jpg",
+  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/blog/shipping-got-cheap-hiring-got-harder-cover.jpg",
+  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/blog/everyones-portfolio-looks-good-now-cover.jpg",
+  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog/what-ai-changed-and-what-it-didnt-cover.jpg"
 };
 
 // Enhanced blog post SEO data. `published` is the real ISO date matching each

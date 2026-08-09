@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "August 5, 2026",
     readTime: "4 min read",
-    coverImage: "/blog-ai-in-design.jpg",
+    coverImage: "/blog/two-bugs-ai-wrote-that-i-had-to-find-cover.jpg",
     tags: ["AI", "Engineering", "Debugging"],
     slug: "two-bugs-ai-wrote-that-i-had-to-find",
     content: `
@@ -28,6 +28,11 @@ export const blogPosts: BlogPost[] = [
       <p>The two that cost me the most time on Stips, a play-money prediction market I designed and built, were both invisible to the model that wrote them. Neither was a syntax error. Neither would have been caught by a test the model could have written for itself.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Model Has No Clock</h2>
+      <figure class="my-8">
+        <img src="/blog/two-bugs-ai-wrote-that-i-had-to-find-body.jpg" alt="A calendar — the thing a language model doesn't have access to when it writes a close date" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@towfiqu999999?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Towfiqu barbhuiya</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>Stips generates markets from news on a schedule. A model reads what happened, writes a question people can take a position on, and sets a close date.</p>
 
@@ -80,7 +85,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "July 22, 2026",
     readTime: "5 min read",
-    coverImage: "/blog-visual-hierarchy.jpg",
+    coverImage: "/blog/taste-is-the-whole-job-cover.jpg",
     tags: ["AI", "Craft", "Product Design"],
     slug: "taste-is-the-whole-job",
     content: `
@@ -89,6 +94,11 @@ export const blogPosts: BlogPost[] = [
       <p>The expensive part is knowing which one is right, and being willing to throw away the other forty-nine.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Twenty-Two Seconds to Six</h2>
+      <figure class="my-8">
+        <img src="/blog/taste-is-the-whole-job-body.jpg" alt="Hand tools on a workshop wall — the craft is choosing which one to reach for" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@vatsaltyagi?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Vatsal Tyagi</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>Ring-Rival is a browser boxing game I designed and built. The first version had a splash screen, a mode select, a fighter select, and a tutorial. Twenty-two seconds from tapping the link to throwing your first punch.</p>
 
@@ -144,7 +154,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "July 9, 2026",
     readTime: "4 min read",
-    coverImage: "/blog-design-systems.jpg",
+    coverImage: "/blog/designer-who-codes-argument-is-over-cover.jpg",
     tags: ["Career", "AI", "Product Design"],
     slug: "designer-who-codes-argument-is-over",
     content: `
@@ -153,6 +163,11 @@ export const blogPosts: BlogPost[] = [
       <p>I design and build my own products. Ring-Rival, Stips, HerbaLink, CatchBuddy are all live, all built solo. I'm not an engineer and I'm not pretending to be one. What I am is the person who doesn't hand anything off.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What This Doesn't Mean</h2>
+      <figure class="my-8">
+        <img src="/blog/designer-who-codes-argument-is-over-body.jpg" alt="Hands on a keyboard — the gap between designing a thing and shipping it" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>It doesn't mean learning React so you can argue about hooks in code review. It doesn't mean you should be shipping production infrastructure at a company that has engineers to do it properly.</p>
 
@@ -211,7 +226,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "June 26, 2026",
     readTime: "4 min read",
-    coverImage: "/blog-finding-ux-job.jpg",
+    coverImage: "/blog/shipping-got-cheap-hiring-got-harder-cover.jpg",
     tags: ["Career", "Hiring", "AI"],
     slug: "shipping-got-cheap-hiring-got-harder",
     content: `
@@ -220,6 +235,11 @@ export const blogPosts: BlogPost[] = [
       <p>That's the actual disruption in design hiring. Not that AI took the jobs. That the signals hiring managers used to sort candidates stopped carrying information.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Demo Is No Longer the Proof</h2>
+      <figure class="my-8">
+        <img src="/blog/shipping-got-cheap-hiring-got-harder-body.jpg" alt="A stack of applications on a desk" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@resumegenius?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Resume Genius</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>I can build a polished, functional product in a weekend. So can a designer two years into their career. The artifact looks roughly the same either way, and it looks good, which is the problem — a good-looking artifact no longer separates anybody from anybody.</p>
 
@@ -278,7 +298,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "June 15, 2026",
     readTime: "4 min read",
-    coverImage: "/blog-case-study-writing.jpg",
+    coverImage: "/blog/everyones-portfolio-looks-good-now-cover.jpg",
     tags: ["Portfolio", "Career", "AI"],
     slug: "everyones-portfolio-looks-good-now",
     content: `
@@ -287,6 +307,11 @@ export const blogPosts: BlogPost[] = [
       <p>That's gone. Everything is well-typeset now. Every case study has a clean narrative arc and a confident opening line. The floor came up, which sounds like good news and mostly isn't, because a signal everyone can produce isn't a signal.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Polish Is Table Stakes, Not Evidence</h2>
+      <figure class="my-8">
+        <img src="/blog/everyones-portfolio-looks-good-now-body.jpg" alt="Rows of near-identical output" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">BoliviaInteligente</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>Being well-presented no longer earns you anything. It just avoids losing you something. Budget for it accordingly: get it clean, then stop, because additional polish past that point buys nothing and eats the time you should be spending on substance.</p>
 
@@ -342,13 +367,18 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "June 4, 2026",
     readTime: "4 min read",
-    coverImage: "/blog-user-research-budget.jpg",
+    coverImage: "/blog/what-ai-changed-and-what-it-didnt-cover.jpg",
     tags: ["AI", "Product Design", "Process"],
     slug: "what-ai-changed-and-what-it-didnt",
     content: `
       <p>I've been designing products for fifteen years and building them solo with AI for a while now. The changes are real. They're also narrower and more specific than either the hype or the panic suggests.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Changed: Being Wrong Got Cheap</h2>
+      <figure class="my-8">
+        <img src="/blog/what-ai-changed-and-what-it-didnt-body.jpg" alt="A designer sketching by hand" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@medbadrc?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Med Badr  Chemmaoui</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+      </figure>
+
 
       <p>This is the big one and everything else follows from it. An idea used to cost weeks to test properly, which meant you argued about it instead, which meant the loudest person in the room won a lot of arguments that should have been settled by evidence.</p>
 

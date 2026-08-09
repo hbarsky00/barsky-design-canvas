@@ -175,6 +175,24 @@ const config: Config = {
       minHeight: {
         'touch': '44px',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': 'hsl(var(--muted-foreground))',
+            '--tw-prose-headings': 'hsl(var(--foreground))',
+            '--tw-prose-bold': 'hsl(var(--foreground))',
+            '--tw-prose-links': 'hsl(var(--primary))',
+            '--tw-prose-bullets': 'hsl(var(--border))',
+            '--tw-prose-quotes': 'hsl(var(--foreground))',
+            '--tw-prose-quote-borders': 'hsl(var(--primary))',
+            maxWidth: 'none',
+            h2: { fontFamily: 'Space Grotesk, ui-sans-serif, system-ui', fontWeight: '700' },
+            h3: { fontFamily: 'Space Grotesk, ui-sans-serif, system-ui', fontWeight: '600' },
+            figure: { marginTop: '2rem', marginBottom: '2rem' },
+            figcaption: { fontSize: '0.875rem' },
+          },
+        },
+      },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui"],
         mono: ["ui-monospace", "SFMono-Regular"],
@@ -325,7 +343,13 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // @tailwindcss/typography was a dependency but was never registered here,
+    // so every `prose` class in the blog was a no-op and article bodies fell
+    // back to raw browser defaults.
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
 
 export default config;
