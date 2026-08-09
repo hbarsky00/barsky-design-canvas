@@ -63,6 +63,19 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Launch was one archetype: Glass Joe, hand-tuned until the punch felt like a punch, everything else built around him.",
           "The roster's grown since. New opponents each ship with their own named special move and their own trash talk — not a reskin of Glass Joe. A knockdown now has a real comeback mechanic, not just a countdown.",
         ],
+        videos: [
+          {
+            src: "/ring-rival-fight-frost.mp4",
+            poster: "/images/ringrival-now/denny-frost-haymaker.jpg",
+            caption:
+              "Mid-fight against Denny Frost — jabs, blocks, and a super punch charging. The hit-stop and health-bar drain in here are the hand-tuned parts no model could have written.",
+          },
+          {
+            src: "/ring-rival-fight-brenner.mp4",
+            caption:
+              "A later fight, against Klaus Brenner — bigger, heavier-hitting, and on a different rhythm entirely. Two fighters, two reads: that difference is what a roster is actually for.",
+          },
+        ],
         images: [
           { src: "/images/ringrival-glassjoe-idle.png", alt: "Launch: Glass Joe — the only fighter in the game" },
           { src: "/images/ringrival-now/trash-talk.jpg", alt: "Now: opponent trash talk mid-fight — \"They really signed YOU to fight me?\"" },

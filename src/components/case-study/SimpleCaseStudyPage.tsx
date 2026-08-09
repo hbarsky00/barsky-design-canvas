@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MaximizableImage from "@/components/project/MaximizableImage";
@@ -74,10 +74,61 @@ const HeroHoverMedia: React.FC<{ image: SimpleCaseStudyImage; projectId: string 
   );
 };
 
+export interface SimpleCaseStudyVideo {
+  src: string;
+  /** Still shown before the clip plays, and wherever autoplay is blocked. */
+  poster?: string;
+  caption: string;
+}
+
+/**
+ * Silent looping clip that plays only while it's on screen — a moving figure,
+ * not a video player. Pauses when scrolled away so a page of clips doesn't
+ * burn battery or bandwidth, and stays a still image under reduced-motion.
+ */
+const BlockVideo: React.FC<{ video: SimpleCaseStudyVideo }> = ({ video }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.play().catch(() => {});
+        else el.pause();
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <figure className="w-full">
+      <video
+        ref={ref}
+        src={video.src}
+        poster={video.poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="w-full rounded-lg border border-border"
+      />
+      <figcaption className="mt-3 text-sm text-muted-foreground">
+        {video.caption}
+      </figcaption>
+    </figure>
+  );
+};
+
 export interface SimpleCaseStudyBlock {
   heading: string;
   paragraphs: string[];
   images?: SimpleCaseStudyImage[];
+  videos?: SimpleCaseStudyVideo[];
   /** @deprecated use images */
   image?: SimpleCaseStudyImage;
 }
@@ -154,6 +205,13 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                       {p}
                     </p>
                   ))}
+                  {b.videos && b.videos.length > 0 && (
+                    <div className="space-y-6 mb-6">
+                      {b.videos.map((v) => (
+                        <BlockVideo key={v.src} video={v} />
+                      ))}
+                    </div>
+                  )}
                   {imgs.length > 0 && (
                     <div className={imgs.length > 1 ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "space-y-6"}>
                       {imgs.map((img, idx) => (
