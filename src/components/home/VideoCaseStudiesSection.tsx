@@ -90,11 +90,14 @@ const caseStudies: CaseStudy[] = [
     url: "/project/stips",
     liveUrl: "https://stips.bet",
     images: {
-      primary: "/images/stips/markets-board.jpg",
-      alt: "Stips markets board — live Yes/No prices on real-world events"
+      // Poster is the first frame of the hover clip, so hover starts seamlessly
+      primary: "/images/stips/card-poster.jpg",
+      alt: "Stips market detail — Yes at 67¢ with the payout resolved before you commit"
     },
     layout: "side-by-side",
-    video: "/stips-promo.mp4"
+    // 5s loop cut from the full walkthrough, matching the other cards' clip
+    // length. The complete 38s recording lives on the case-study page.
+    video: "/stips-card.mp4"
   },
   {
     id: "dae-search",
