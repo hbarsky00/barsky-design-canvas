@@ -14,7 +14,7 @@ const StructuredData: React.FC = () => {
     "url": "https://barskydesign.pro",
     "mainEntityOfPage": "https://barskydesign.pro",
     "telephone": "+1-201-668-4754",
-    "email": "hello@barskydesign.com",
+    "email": "hbarsky01@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "New York",

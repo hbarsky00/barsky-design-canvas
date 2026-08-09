@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -286,12 +286,8 @@ const CaseStudyCard: React.FC<{
 
           {/* CTA Buttons */}
           <div className="flex flex-row gap-3 pt-2">
-            <Button 
-              variant="case-study" 
-              className="flex-1"
-              onClick={() => navigate(study.url)}
-            >
-              View Case Study
+            <Button asChild variant="case-study" className="flex-1">
+              <Link to={study.url}>View Case Study</Link>
             </Button>
             {study.liveUrl && (
               <Button asChild variant="outline" className="flex-1">
@@ -377,12 +373,8 @@ const CaseStudyCard: React.FC<{
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button 
-                      variant="case-study" 
-                      className="flex-1 sm:flex-none"
-                      onClick={() => navigate(study.url)}
-                    >
-                      View Case Study
+                    <Button asChild variant="case-study" className="flex-1 sm:flex-none">
+                      <Link to={study.url}>View Case Study</Link>
                     </Button>
                     {study.liveUrl && (
                       <Button asChild variant="outline" className="flex-1 sm:flex-none">

@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+
+const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 export interface SimpleCaseStudyImage {
   src: string;
@@ -237,6 +241,28 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
               );
             })}
           </div>
+
+          {/* Case studies are the highest-intent page in the funnel and used to
+              end with nothing — no CTA, no way back to the other work. */}
+          <section className="mt-20 border-t border-border pt-12 text-center">
+            <h2 className="text-2xl md:text-3xl font-display font-semibold text-foreground mb-3">
+              Want something like this built?
+            </h2>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl mx-auto">
+              I design and ship products end to end. Tell me what you're working on,
+              or grab a time and we'll talk it through.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button asChild>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                  Book a Call
+                </a>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/#case-studies">See More Work</Link>
+              </Button>
+            </div>
+          </section>
         </main>
         <Footer />
       </div>

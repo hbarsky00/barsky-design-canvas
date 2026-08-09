@@ -348,19 +348,20 @@
   touch-action: manipulation;
 }
 
-/* Global focus style removal - Remove all focus indicators */
-*, *:before, *:after {
-  outline: none !important;
+/* Focus indicators.
+   Mouse and touch interactions get no ring (that's what the old blanket
+   `outline: none !important` was really after), but keyboard users must be
+   able to see where they are — WCAG 2.4.7 Focus Visible / 2.4.13 Focus
+   Appearance. Removing the indicator entirely also silently defeated the
+   image-lightbox focus trap: focus moved correctly, nothing showed it. */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
-button:focus, input:focus, textarea:focus, select:focus, a:focus,
-button:focus-visible, input:focus-visible, textarea:focus-visible, 
-select:focus-visible, a:focus-visible,
-[tabindex]:focus, [tabindex]:focus-visible,
-[role="button"]:focus, [role="button"]:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  ring: none !important;
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Mobile-specific utilities */

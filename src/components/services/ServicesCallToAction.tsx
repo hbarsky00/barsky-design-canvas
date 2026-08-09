@@ -42,7 +42,7 @@ const ServicesCallToAction = () => {
             variant="brand"
             asChild
           >
-            <Link to="/get-started" className="flex items-center justify-center">
+            <Link to="/contact" className="flex items-center justify-center">
               <Sparkles className="mr-2 h-5 w-5" />
               Get Your Custom Project Plan
               <ArrowRight className="ml-2 h-5 w-5" />

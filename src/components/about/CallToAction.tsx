@@ -1,8 +1,11 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
+
+const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 const CallToAction: React.FC = () => {
   return (
@@ -18,39 +21,27 @@ const CallToAction: React.FC = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button
-            size="lg"
-            variant="elevated"
-            onClick={() => {
-              if (typeof document !== 'undefined') {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }
-            }}
-          >
-            Start a Project
-            <ArrowRight className="w-5 h-5 ml-2" />
+          {/* Both buttons used to be no-ops: one scrolled to a #contact anchor
+              that doesn't exist on this page, the other opened /free-audit,
+              which has no route (so it landed on the homepage in a new tab). */}
+          <Button size="lg" variant="elevated" asChild>
+            <Link to="/contact">
+              Start a Project
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
           </Button>
-          
-          <Button
-            size="lg"
-            variant="on-dark"
-            onClick={() => {
-              if (typeof window !== 'undefined') {
-                window.open('/free-audit', '_blank');
-              }
-            }}
-          >
-            Get Free Audit
+
+          <Button size="lg" variant="on-dark" asChild>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              Book a Free Consultation
+            </a>
           </Button>
         </div>
         
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center text-sm">
           <div className="flex items-center gap-2">
             <Mail className="w-4 h-4" />
-            <span>hello@barskydesign.pro</span>
+            <span>hbarsky01@gmail.com</span>
           </div>
           <div className="flex items-center gap-2">
             <Phone className="w-4 h-4" />

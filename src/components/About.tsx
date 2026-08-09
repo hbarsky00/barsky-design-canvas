@@ -131,7 +131,7 @@ const About: React.FC = () => {
             {/* Contact Info */}
             <div className="mt-6 pt-6 border-t border-white/20">
               <p className="text-sm opacity-90">
-                <span className="font-medium">Email:</span> hello@barskydesign.pro | 
+                <span className="font-medium">Email:</span> hbarsky01@gmail.com | 
                 <span className="font-medium"> Phone:</span> (201) 668-4754 | 
                 <span className="font-medium"> Response:</span> 24hrs guaranteed
               </p>

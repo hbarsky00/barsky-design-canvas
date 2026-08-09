@@ -46,6 +46,7 @@ const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCry
 const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
 const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/StructuredSplittimeCaseStudy"));
 
+const NotFound = React.lazy(() => import("@/pages/NotFound"));
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 
@@ -63,7 +64,11 @@ function AppContent() {
       
       <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
+          <div
+            role="status"
+            aria-live="polite"
+            className="min-h-screen flex items-center justify-center"
+          >
             <MaterialDesignLoader size="lg" text="Loading page..." />
           </div>
         }>
@@ -113,8 +118,10 @@ function AppContent() {
               {/* SEO verification route */}
               <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
-              {/* Catch all - redirect to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Catch all — show a real 404 rather than silently redirecting
+                  home, which left users with no idea the URL was wrong (and
+                  produced soft-404s for crawlers). */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>

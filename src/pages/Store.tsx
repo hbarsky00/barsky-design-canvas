@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -76,15 +77,19 @@ const Store: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-16 text-center bg-gradient-primary text-primary-foreground rounded-2xl p-8"
+              /* bg-gradient-primary was never a defined utility — this block
+                 rendered white text on a transparent (white) background. */
+              className="mt-16 text-center bg-primary text-primary-foreground rounded-2xl p-8"
             >
               <h2 className="text-2xl font-bold mb-4">Need Something Custom?</h2>
               <p className="text-lg mb-6 opacity-90">
                 Can't find what you're looking for? Let's create a custom solution for your specific needs.
               </p>
-              <Button variant="on-dark">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Request Custom Work
+              <Button variant="on-dark" asChild>
+                <Link to="/contact">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Request Custom Work
+                </Link>
               </Button>
             </motion.div>
           </div>

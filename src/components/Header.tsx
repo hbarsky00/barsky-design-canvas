@@ -7,6 +7,7 @@ import Navigation from "./header/Navigation";
 import ProfileAvatar from "./header/ProfileAvatar";
 import { useLocation, Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { MainContentSkipLink } from "@/components/ui/skip-link";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -57,8 +58,19 @@ const Header: React.FC = () => {
     }
   }, [shouldShowHeader]);
 
+  // Give the skip link a target. There are ~29 separate <main> layouts in this
+  // app, so rather than tag each one, tag whichever main this page rendered.
+  React.useEffect(() => {
+    const main = document.querySelector("main");
+    if (main && !main.id) {
+      main.id = "main-content";
+      main.setAttribute("tabindex", "-1");
+    }
+  }, [location.pathname]);
+
   return (
     <>
+      <MainContentSkipLink />
       <header ref={headerRef} className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         "pointer-events-auto",
