@@ -25,25 +25,27 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "What I Built",
+        heading: "Building a Fighter Out of Parts",
         paragraphs: [
-          "One archetype (Glass Joe) had to feel good before any other fighter was generated.",
-          "AI produced sprites, trash talk, announcer intros, and crowd reactions. The career order — difficulty curve, fight sequencing, when each opponent appears — was built by hand across hundreds of test fights.",
+          "A fighter isn't one drawing. It's a body, two arms, two legs and a head, each a separate piece, because every one of them has to move independently — a jab extends one arm without touching the other, a knockdown drops the whole rig.",
+          "Glass Joe was the first, and he shows every seam. The torso is a single flat block. The arms are wedges hung off ball-joint shoulders with no elbow, no bicep, no forearm — one shape from shoulder to glove. The legs are parallelogram slabs that meet the hip at a hard edge, and you can see the join at the knee. One flat fill per limb, black outline, no shading anywhere.",
+          "Von Kaiser is the same construction at different proportions: the block widened into a trapezoid, the arms lengthened, the stance pushed out. That was the point of building the rig before building the roster — a new opponent should be a new silhouette and a new set of timings, not a new character drawn from scratch.",
         ],
         images: [
-          { src: "/images/ringrival-glassjoe-idle.png", alt: "Glass Joe — the one archetype that had to feel right before any other fighter got generated" },
-          { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — tall, broad, defensive guard, built once the first fighter felt right" },
+          { src: "/images/ringrival-glassjoe-idle.png", alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee" },
+          { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance" },
         ],
       },
       {
-        heading: "The Parts AI Can't Do",
+        heading: "Making a Flat Shape Land a Punch",
         paragraphs: [
-          "Hit-stop duration, screen shake amplitude, a 60ms haptic on connect, the curve of health bar drain — all hand-tuned by feel.",
-          "Where the punch button lives and how big the block zone is were settled by watching a real hand on a real phone. No model knows whether a punch feels like a punch.",
+          "The rig worked and still looked like paper. A flat wedge swinging at a flat block reads as two shapes overlapping, not as contact — so the next pass was spent putting weight into the anatomy. Arms got split into shoulder, bicep and forearm so the elbow actually bends and the glove arrives after the shoulder turns. Legs got a calf and a knee instead of a seam, and tapered toward the boot so the fighter stands on the canvas instead of floating above it. The torso stopped being one fill: pecs, ribs and abs got their own shading so a body turn reads as a body turning.",
+          "Then the hit itself. Impact particles were the first attempt and the first mistake — the initial burst was big enough to bury the fighter at the exact moment you needed to read him, so it got dialed back until it punctuated the hit instead of hiding it. Hit-stop duration, screen-shake amplitude, a 60ms haptic on connect, the curve of the health-bar drain: all tuned by hand, by feel, on a real phone.",
+          "Where the punch button lives and how big the block zone is were settled the same way — watching a real hand on a real device. No model knows whether a punch feels like a punch.",
         ],
         images: [
-          { src: "/images/ringrival-impact-particles.png", alt: "Impact particles on connect — dialed back by hand until the hit read without burying the fighter" },
-          { src: "/images/ringrival-knockdown.png", alt: "The knockdown: DOWN! and a 5 count, with the star burst timed to the hit-stop" },
+          { src: "/images/ringrival-impact-particles.png", alt: "Impact particles dialed back until they punctuated the hit instead of burying the fighter" },
+          { src: "/images/ringrival-knockdown.png", alt: "The knockdown — DOWN! and a 5 count, star burst timed to the hit-stop so the stop and the flash land together" },
         ],
       },
       {
@@ -60,8 +62,8 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "Then → Now",
         paragraphs: [
-          "Launch was one archetype: Glass Joe, hand-tuned until the punch felt like a punch, everything else built around him. A knockdown was a countdown and nothing else.",
-          "The roster's grown since. New opponents each ship with their own named special move and their own trash talk — not a reskin of Glass Joe. A knockdown now has a real comeback mechanic, not just a countdown.",
+          "Scroll back up to Glass Joe, then watch the two fights below. Same rig, same game — but the wedges are arms now. Denny Frost has a shoulder that loads before the hand moves and a torso that rotates into the punch. Klaus Brenner is built heavier on purpose: thicker through the chest, slower to reset, a different read for the player.",
+          "The roster grew the same way the anatomy did — one thing at a time. Each opponent ships with their own named special, their own trash talk, and their own rhythm, rather than a reskin of Glass Joe. A knockdown stopped being a countdown and became a comeback mechanic you can actually fight your way out of.",
         ],
         videos: [
           {
