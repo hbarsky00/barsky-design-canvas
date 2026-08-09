@@ -24,9 +24,12 @@ interface CaseStudy {
   video?: string;
 }
 
-// "fire-lion" pulled 2026-08-07 — Hiram: "were going to work on that
-// later." Route/page/content untouched, just off every featured
-// surface until it's revisited.
+// Pulled from featured work, routes/pages/content all untouched:
+//   "fire-lion"         2026-08-07 — Hiram: "were going to work on that later."
+//   "business-management" 2026-08-08 — page needs rebuilding on the current template.
+//   "email-creation-ai" 2026-08-09 — Hiram: park it as a draft, revisit later.
+// Each is still live at its own /project/<id> URL; only the homepage
+// listing is affected.
 const caseStudies: CaseStudy[] = [
   {
     id: "ring-rival",
@@ -79,18 +82,19 @@ const caseStudies: CaseStudy[] = [
     layout: "side-by-side"
   },
   {
-    id: "email-creation-ai",
-    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
-    title: "Email Creation AI",
-    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
+    id: "stips",
+    tags: ["AI-Assisted Product", "Fintech UX", "Solo Build"],
+    title: "Stips",
+    description: "Prediction markets you can actually read — play-money trading on real-world events, where the price is the probability.",
     impact: "",
-    url: "/project/email-creation-ai",
+    url: "/project/stips",
+    liveUrl: "https://stips.bet",
     images: {
-      primary: "/images/email-ai-promo.png",
-      alt: "Email Creation AI workflow"
+      primary: "/images/stips/markets-board.jpg",
+      alt: "Stips markets board — live Yes/No prices on real-world events"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/email-creation-ai-hero.mp4"
+    video: "/stips-promo.mp4"
   },
   {
     id: "dae-search",

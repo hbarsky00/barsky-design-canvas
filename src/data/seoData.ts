@@ -87,6 +87,11 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.",
     image: "https://barskydesign.pro/images/splittime/hero.jpg"
   },
+  "stips": {
+    title: "Stips — Prediction Markets UX Case Study",
+    description: "Play-money prediction markets designed so the price reads as a probability — 67¢ means 67% likely, with the payout worked out before you commit.",
+    image: "https://barskydesign.pro/images/stips/markets-board.jpg"
+  },
   "business-management": {
     title: "Blue Sky — Business Management UX Case Study",
     description: "Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks into one dashboard.",
