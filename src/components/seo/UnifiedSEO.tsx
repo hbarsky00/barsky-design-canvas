@@ -17,27 +17,13 @@ const devLog = (...args: any[]) => {
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
-  const [dbSeo, setDbSeo] = useState<SeoMetaRecord | null>(null);
+  // The seo_meta lookup that used to run here is gone. It let the database
+  // override the SEO built from src/data — but that table doesn't exist on the
+  // current Supabase project, so every navigation fired a request that came
+  // back PGRST205 and then fell through to the local data anyway. All of it
+  // now comes from src/data/seoData.ts, which is what was rendering regardless.
+  const dbSeo: SeoMetaRecord | null = null;
 
-  // Fetch Supabase SEO data on pathname change
-  useEffect(() => {
-    let slug = location.pathname === '/' ? 'home' : location.pathname.replace(/^\//, '').replace(/\/$/, '');
-    
-    // Extract slug from routes
-    if (location.pathname.startsWith('/project/')) {
-      slug = location.pathname.split('/project/')[1];
-    } else if (location.pathname.startsWith('/blog/')) {
-      slug = location.pathname.split('/blog/')[1];
-    }
-    
-    getSeoBySlug(slug).then(data => {
-      if (data) {
-        console.log('✅ Loaded Supabase SEO for client-side hydration:', slug);
-        setDbSeo(data);
-      }
-    });
-  }, [location.pathname]);
-  
   // Generate SEO data using unified builder
   const seoData = useMemo((): BuiltSEO => {
     const rawPathname = location?.pathname || '/';

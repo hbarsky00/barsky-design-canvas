@@ -1,5 +1,15 @@
-import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+// These hooks used to read page_metadata and blog_posts from Supabase to
+// override the metadata built from src/data. Neither table exists on the
+// current project, so every render fired a request that came back PGRST205 and
+// then fell through to the local data — which is what has actually been
+// rendering the site for a while now.
+//
+// Kept as hooks rather than deleted outright because BlogPostPage and BlogPost
+// both call useBlogPostMetadata and branch on `loading`. They now resolve
+// immediately with no metadata, which is exactly what the failed request did,
+// minus the round trip and the console noise.
+//
+// If a CMS lands later, this is the seam to restore.
 
 interface PageMetadata {
   title: string;
@@ -16,79 +26,10 @@ interface BlogPostMetadata {
   tags: string[];
 }
 
-export const usePageMetadata = (path: string) => {
-  const [metadata, setMetadata] = useState<PageMetadata | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('page_metadata')
-          .select('*')
-          .eq('path', path)
-          .single();
-
-        if (error && error.code !== 'PGRST116') {
-          console.error('Error fetching page metadata:', error);
-        } else if (data) {
-          setMetadata({
-            title: data.seo_title || '',
-            description: data.seo_description || '',
-            image: data.featured_image || undefined
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching page metadata:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMetadata();
-  }, [path]);
-
-  return { metadata, loading };
+export const usePageMetadata = (_path: string) => {
+  return { metadata: null as PageMetadata | null, loading: false };
 };
 
-export const useBlogPostMetadata = (slug: string) => {
-  const [metadata, setMetadata] = useState<BlogPostMetadata | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchBlogMetadata = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .eq('slug', slug)
-          .single();
-
-        if (error && error.code !== 'PGRST116') {
-          console.error('Error fetching blog post metadata:', error);
-        } else if (data) {
-          setMetadata({
-            title: data.title || '',
-            excerpt: data.excerpt || '',
-            featuredImage: data.featured_image || undefined,
-            author: data.author || 'Hiram Barsky',
-            publishedDate: data.published_date || '',
-            tags: data.tags || []
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching blog post metadata:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (slug) {
-      fetchBlogMetadata();
-    } else {
-      setLoading(false);
-    }
-  }, [slug]);
-
-  return { metadata, loading };
+export const useBlogPostMetadata = (_slug: string) => {
+  return { metadata: null as BlogPostMetadata | null, loading: false };
 };

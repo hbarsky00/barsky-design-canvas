@@ -37,6 +37,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: `${IMG}/hero-three-laptops.jpg`,
+      width: 1500,
+      height: 632,
       alt: "Blue Sky operations platform shown across three screens",
       caption: "A unified operations platform — scheduling, invoicing and tasks in one place.",
     }}
@@ -85,12 +87,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/competitive-landscape.jpg`,
+            width: 1081,
+            height: 525,
             alt: "Competitive landscape review of existing small-business tools",
             caption:
               "Competitive landscape review — Sage X3, Zoho One, and the other disconnected tools owners were stitching together.",
           },
           {
             src: `${IMG}/inventory-management-mobile.jpg`,
+            width: 390,
+            height: 819,
             alt: "Inventory Management on mobile",
             caption:
               "Inventory Management — total products, low-stock alerts, and category breakdown.",
@@ -106,12 +112,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/sitemap-draft.jpg`,
+            width: 768,
+            height: 768,
             alt: "Early sitemap draft",
             caption:
               "Early sitemap draft — mapping login, products, customers, orders, delivery, and recurring modules.",
           },
           {
             src: `${IMG}/sitemap-refined.jpg`,
+            width: 768,
+            height: 768,
             alt: "Refined sitemap",
             caption:
               "Refined structure after cleanup — same modules, corrected flow labels and terminology.",
@@ -150,6 +160,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/business-analytics-mobile.jpg`,
+            width: 390,
+            height: 1215,
             alt: "Business Analytics dashboard",
             caption:
               "Iteration 1 — Business Analytics: today's sales, delivery success rate, and revenue progress in one view.",
@@ -160,6 +172,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: `${IMG}/recurring-orders-mobile.jpg`,
+            width: 390,
+            height: 1413,
             alt: "Recurring Orders view",
             caption: "Iteration 2 — Recurring Orders: the 'what needs attention today' view.",
             notes: [
@@ -169,6 +183,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: `${IMG}/order-management-desktop.jpg`,
+            width: 1440,
+            height: 888,
             alt: "Order Management desktop view",
             caption:
               "Iteration 3 — Order Management: pending, delivered, and revenue at a glance.",
@@ -179,6 +195,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: `${IMG}/driver-management-mobile.jpg`,
+            width: 390,
+            height: 820,
             alt: "Driver Management view",
             caption: "Iteration 4 — Driver Management: scheduling and dispatch in one screen.",
             notes: [
@@ -201,6 +219,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/product-catalog-desktop.jpg`,
+            width: 1440,
+            height: 1005,
             alt: "Product Catalog desktop view",
             caption: "Product Catalog — one of the screens walked through in testing sessions.",
           },
@@ -214,6 +234,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/final-product-four-panel.jpg`,
+            width: 1395,
+            height: 857,
             alt: "Product, Order and Driver Management shown side by side",
             caption:
               "Three of the platform's core modules — Product Management, Order Management, and Driver Management.",
@@ -244,6 +266,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/business-overview-dashboard.jpg`,
+            width: 1600,
+            height: 630,
             alt: "Business Overview dashboard",
             caption:
               "Business Overview — today's sales, total revenue, and weekly performance. The dashboard owners check now instead of a spreadsheet.",
@@ -259,6 +283,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/product-management-mobile.jpg`,
+            width: 390,
+            height: 1473,
             alt: "Product Management on mobile",
             caption: "Product Management — the module owners open most.",
             notes: [
@@ -277,6 +303,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: `${IMG}/tablet-customer-product.jpg`,
+            width: 1280,
+            height: 835,
             alt: "Customer Management and Product Catalog on tablet",
             caption:
               "Customer Management and Product Catalog — two of the screens where scope discipline mattered most.",

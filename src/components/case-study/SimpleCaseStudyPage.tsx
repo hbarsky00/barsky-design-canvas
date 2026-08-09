@@ -24,9 +24,21 @@ export interface SimpleCaseStudyImage {
   caption?: string;
   /** Short observations tied to this image — what to notice, and why. */
   notes?: string[];
+  /**
+   * Intrinsic pixel size. Supplying it lets the layout tell a phone screenshot
+   * from a desktop one, reserve the right space before load, and refuse to
+   * upscale — a 390px-wide capture stretched across a 1150px column is a blurry
+   * mess, and stacked next to a 1440px desktop shot it looks like a mistake.
+   */
+  width?: number;
+  height?: number;
   /** Optional video URL that plays on hover over the image. */
   hoverVideo?: string;
 }
+
+/** Portrait only when we actually know the dimensions; assume landscape otherwise. */
+const isPortrait = (img: SimpleCaseStudyImage) =>
+  Boolean(img.width && img.height && img.height > img.width);
 
 export interface SimpleCaseStudyVideo {
   src: string;
@@ -228,6 +240,12 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
             const startIndex = imageCursor;
             imageCursor += imgs.length;
 
+            // Keep the original index so the lightbox still arrows through the
+            // page in authoring order, not display order.
+            const indexed = imgs.map((img, idx) => ({ img, idx }));
+            const portraitImgs = indexed.filter((e) => isPortrait(e.img));
+            const landscapeImgs = indexed.filter((e) => !isPortrait(e.img));
+
             return (
               <section key={b.heading} className="cs-grid mt-20 md:mt-28">
                 <div className="mb-6">
@@ -327,35 +345,51 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                   </div>
                 )}
 
-                {imgs.length > 0 && (
-                  <div
-                    className={
-                      imgs.length > 1
-                        ? "mt-10 grid grid-cols-1 gap-8 md:grid-cols-2"
-                        : "mt-10"
-                    }
-                  >
-                    {imgs.map((img, idx) => (
+                {/* Phone captures and desktop captures are laid out separately.
+                    Mixing them in one grid put a 390px-wide phone shot in a
+                    half-width cell beside a 1440px desktop shot — different
+                    shapes, wildly different scales, and it read as a pile of
+                    screenshots rather than a sequence. */}
+                {landscapeImgs.length > 0 && (
+                  <div className="mt-10 space-y-10">
+                    {landscapeImgs.map(({ img, idx }) => (
                       <CaseStudyFigure
                         key={`${img.src}-${idx}`}
                         src={img.src}
                         alt={img.alt}
                         caption={img.caption ?? img.alt}
                         notes={img.notes}
-                        inGrid={imgs.length > 1}
+                        width={img.width}
+                        height={img.height}
                         projectId={projectId}
                         imageList={allImages}
                         currentIndex={startIndex + idx}
-                        className={
-                          // On an odd count, let the last figure span both
-                          // columns instead of dangling beside an empty cell.
-                          imgs.length > 1 && imgs.length % 2 === 1 && idx === imgs.length - 1
-                            ? "md:col-span-2"
-                            : undefined
-                        }
                       />
                     ))}
                   </div>
+                )}
+
+                {portraitImgs.length > 0 && (
+                  <ul className="mt-10 flex flex-wrap items-start gap-8">
+                    {portraitImgs.map(({ img, idx }) => (
+                      <li
+                        key={`${img.src}-${idx}`}
+                        className="w-full max-w-[17rem] flex-none sm:w-[17rem]"
+                      >
+                        <CaseStudyFigure
+                          src={img.src}
+                          alt={img.alt}
+                          caption={img.caption ?? img.alt}
+                          notes={img.notes}
+                          width={img.width}
+                          height={img.height}
+                          projectId={projectId}
+                          imageList={allImages}
+                          currentIndex={startIndex + idx}
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </section>
             );

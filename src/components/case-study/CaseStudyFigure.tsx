@@ -79,12 +79,12 @@ interface CaseStudyFigureProps {
    */
   notes?: string[];
   /**
-   * Set when the figure shares a row. Portrait screenshots stretched to a
-   * half-width cell run over a thousand pixels tall and tower over whatever
-   * landscape shot sits beside them, so height is capped here. Wide shots
-   * are unaffected — their natural height sits well under the cap.
+   * Intrinsic size. Used to reserve space before load and, more importantly, to
+   * refuse to upscale: several of these captures are 390px-wide phone shots,
+   * and stretching one across a 1150px column is just a blurry rectangle.
    */
-  inGrid?: boolean;
+  width?: number;
+  height?: number;
 }
 
 /**
@@ -110,7 +110,8 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
   priority = false,
   className = "",
   notes,
-  inGrid = false,
+  width,
+  height,
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [failed, setFailed] = useState(false);
@@ -127,12 +128,13 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
         <img
           src={src}
           alt={alt}
+          width={width}
+          height={height}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
           onError={() => setFailed(true)}
-          className={`mx-auto block h-auto w-auto max-w-full ${
-            inGrid ? "max-h-[32rem]" : "max-h-[46rem]"
-          }`}
+          className="mx-auto block h-auto w-full"
+          style={width ? { maxWidth: `${width}px` } : undefined}
         />
         <span
           aria-hidden="true"
