@@ -90,13 +90,13 @@ const caseStudies: CaseStudy[] = [
     url: "/project/stips",
     liveUrl: "https://stips.bet",
     images: {
-      // Poster is the first frame of the hover clip, so hover starts seamlessly
-      primary: "/images/stips/card-poster.jpg",
-      alt: "Stips market detail — Yes at 67¢ with the payout resolved before you commit"
+      primary: "/images/stips/landing.jpg",
+      alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start"
     },
     layout: "side-by-side",
-    // 5s loop cut from the full walkthrough, matching the other cards' clip
-    // length. The complete 38s recording lives on the case-study page.
+    // Cut from 1.5s of the walkthrough so the clip opens on the landing page —
+    // the same frame as the poster above — then clicks through to the board.
+    // Short like the other cards' loops so it starts instantly on hover.
     video: "/stips-card.mp4"
   },
   {
