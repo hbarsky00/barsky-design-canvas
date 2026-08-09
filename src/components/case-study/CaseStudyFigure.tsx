@@ -23,12 +23,21 @@ export const useReveal = <T extends HTMLElement>() => {
     if (typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Only ever hide when there's a real, visible viewport to animate into.
+    // A backgrounded tab throttles timers and delivers no intersections, so a
+    // timeout alone is not a failsafe — measured live, four of five figures
+    // stayed at opacity 0 in a suspended tab. Nothing to animate for anyway
+    // if nobody is looking at it.
+    if (document.visibilityState !== "visible") return;
+    if (!window.innerWidth || !window.innerHeight) return;
+
     el.classList.add("cs-reveal");
+    const show = () => el.classList.add("is-visible");
 
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add("is-visible");
+          show();
           io.disconnect();
         }
       },
@@ -37,12 +46,14 @@ export const useReveal = <T extends HTMLElement>() => {
 
     io.observe(el);
 
-    // Belt and braces: if nothing has intersected shortly after mount (a
-    // suspended tab never fires callbacks), stop hiding it.
-    const failsafe = window.setTimeout(() => el.classList.add("is-visible"), 1200);
+    // If the tab is ever backgrounded mid-read, drop the hidden state rather
+    // than risk coming back to a blank page.
+    document.addEventListener("visibilitychange", show);
+    const failsafe = window.setTimeout(show, 1200);
 
     return () => {
       io.disconnect();
+      document.removeEventListener("visibilitychange", show);
       window.clearTimeout(failsafe);
     };
   }, []);
