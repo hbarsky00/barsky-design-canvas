@@ -10,10 +10,29 @@ interface InternalLinkEnhancerProps {
 
 interface LinkRule {
   keywords: string[];
-  targetSlug: string;
+  /** Blog slug (validated against blogData) — omit for case-study rules. */
+  targetSlug?: string;
+  /** Absolute in-app path. Derived from targetSlug when not given. */
+  href?: string;
   anchorText: string;
   title: string;
 }
+
+/**
+ * Case-study targets. Blog posts previously only ever linked to other blog
+ * posts, so the case studies — the pages that actually convert — got no
+ * internal link equity from the blog at all.
+ */
+const CASE_STUDY_RULES: LinkRule[] = [
+  { keywords: ['prediction market', 'prediction markets', 'play money'], href: '/project/stips', anchorText: 'Stips', title: 'Stips — prediction markets you can read' },
+  { keywords: ['boxing', 'game feel', 'hit-stop', 'browser game'], href: '/project/ring-rival', anchorText: 'Ring-Rival', title: 'Ring-Rival — console boxing feel on the mobile web' },
+  { keywords: ['herbalist', 'credential', 'credentials', 'practitioner'], href: '/project/herbalink', anchorText: 'HerbaLink', title: 'HerbaLink — credentials as a gate, not a badge' },
+  { keywords: ['pickup sports', 'meeting strangers', 'safety'], href: '/project/catchbuddy', anchorText: 'CatchBuddy', title: 'CatchBuddy — same-day pickup sports, designed for trust' },
+  { keywords: ['Excel', 'spreadsheet', 'system of record', 'loan'], href: '/project/investor-loan-app', anchorText: 'the Investor Loan Platform', title: 'Investor Loan Platform — replacing Excel as the system of record' },
+  { keywords: ['enterprise search', 'data discovery', 'data assets'], href: '/project/dae-search', anchorText: 'DAE Search', title: 'DAE Search — enterprise data discovery' },
+  { keywords: ['co-parenting', 'custody'], href: '/project/splittime', anchorText: 'SplitTime', title: 'SplitTime — structured requests instead of open chat' },
+  { keywords: ['deletion list', 'cut features', 'scope discipline'], href: '/project/fire-lion', anchorText: 'Fire Lion', title: 'Fire Lion — a deletion list longer than the feature list' },
+];
 
 /**
  * SEO-optimized internal linking rules
@@ -81,15 +100,14 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   // Don't link to the current article, and never emit a link to a slug that
   // doesn't exist in blogData (a rule pointing at a deleted post otherwise
   // becomes a silent dead link in every article that matches its keywords)
-  const availableRules = linkingRules.filter(
-    rule =>
-      rule.targetSlug !== currentSlug &&
-      blogPosts.some(post => post.slug === rule.targetSlug)
-  );
+  const availableRules = [...linkingRules, ...CASE_STUDY_RULES].filter(rule => {
+    if (rule.href) return true; // case-study targets are static routes
+    return rule.targetSlug !== currentSlug && blogPosts.some(post => post.slug === rule.targetSlug);
+  });
   
   const enhanceContentWithLinks = (htmlContent: string): string => {
     let linksAdded = 0;
-    const maxLinksPerPost = 3; // SEO best practice: 2-3 internal links per post
+    const maxLinksPerPost = 5; // posts now link to case studies as well as other posts
 
     // Track which rules we've already used to avoid duplicate links
     const usedRules = new Set<string>();
@@ -109,7 +127,8 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
 
       for (const rule of availableRules) {
         if (linksAdded >= maxLinksPerPost) break;
-        if (usedRules.has(rule.targetSlug)) continue;
+        const ruleKey = rule.href ?? `/blog/${rule.targetSlug}`;
+        if (usedRules.has(ruleKey)) continue;
 
         for (const keyword of rule.keywords) {
           // Match the keyword but not if it's already inside a link
@@ -125,10 +144,10 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
             enhancedSegment = enhancedSegment.replace(
               keywordRegex,
               (matchedText) =>
-                `<a href="/blog/${rule.targetSlug}" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="${rule.title}" rel="internal">${matchedText}</a>`
+                `<a href="${ruleKey}" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="${rule.title}" rel="internal">${matchedText}</a>`
             );
 
-            usedRules.add(rule.targetSlug);
+            usedRules.add(ruleKey);
             linksAdded++;
             break; // Move to next rule after finding a match
           }

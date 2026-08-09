@@ -151,7 +151,12 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
   "designer-who-codes-argument-is-over": "https://barskydesign.pro/blog/designer-who-codes-argument-is-over-cover.jpg",
   "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/blog/shipping-got-cheap-hiring-got-harder-cover.jpg",
   "everyones-portfolio-looks-good-now": "https://barskydesign.pro/blog/everyones-portfolio-looks-good-now-cover.jpg",
-  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog/what-ai-changed-and-what-it-didnt-cover.jpg"
+  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog/what-ai-changed-and-what-it-didnt-cover.jpg",
+  "what-one-person-can-ship-now": "https://barskydesign.pro/blog/what-one-person-can-ship-now-cover.jpg",
+  "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/blog/designing-for-trust-when-the-product-is-the-risk-cover.jpg",
+  "why-enterprise-tools-lose-to-excel": "https://barskydesign.pro/blog/why-enterprise-tools-lose-to-excel-cover.jpg",
+  "scope-discipline-when-building-is-cheap": "https://barskydesign.pro/blog/scope-discipline-when-building-is-cheap-cover.jpg",
+  "how-to-interview-a-designer-now": "https://barskydesign.pro/blog/how-to-interview-a-designer-now-cover.jpg"
 };
 
 // Enhanced blog post SEO data. `published` is the real ISO date matching each
@@ -165,16 +170,46 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
+  "what-one-person-can-ship-now": {
+    title: "What One Person Can Actually Ship Now",
+    description: "Four products built solo, and the four walls solo actually hits: distribution, institutional trust, operations, and nobody there to check your work.",
+    published: "2026-08-08T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
+  },
   "two-bugs-ai-wrote-that-i-had-to-find": {
     title: "Two Bugs AI Wrote That I Had to Find Myself",
     description: "Two real bugs from a product built with AI: a model with no clock generating expired dates, and row-level security that returns silence, not errors.",
     published: "2026-08-05T09:00:00Z",
     modified: "2026-08-09T12:00:00Z"
   },
+  "designing-for-trust-when-the-product-is-the-risk": {
+    title: "Designing for Trust When the Product Is the Risk",
+    description: "When being wrong costs someone their health, money, or safety, trust is the product. Credentials as a gate, safety built first, and what it costs.",
+    published: "2026-08-01T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
+  },
+  "why-enterprise-tools-lose-to-excel": {
+    title: "Why Enterprise Tools Lose to Excel",
+    description: "Your competitor is not the other vendor. It is a spreadsheet that fits exactly, never says no, and has never lost anyone's data. How to beat it.",
+    published: "2026-07-25T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
+  },
   "taste-is-the-whole-job": {
     title: "When Generating Is Free, Taste Is the Whole Job",
     description: "AI can produce fifty screens in a minute. It won't tell you to delete four of them. What taste actually is, and how Ring-Rival got twenty seconds faster.",
     published: "2026-07-22T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
+  },
+  "scope-discipline-when-building-is-cheap": {
+    title: "Scope Discipline When Building Is Cheap",
+    description: "Engineering cost used to do your prioritization for you. It stopped. Deciding what not to ship is now the only thing holding a product together.",
+    published: "2026-07-18T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
+  },
+  "how-to-interview-a-designer-now": {
+    title: "How to Interview a Designer Now",
+    description: "Every portfolio is polished and every candidate has a demo. What to ask instead: what they deleted, where the number came from, what they overrode.",
+    published: "2026-07-11T09:00:00Z",
     modified: "2026-08-09T12:00:00Z"
   },
   "designer-who-codes-argument-is-over": {
