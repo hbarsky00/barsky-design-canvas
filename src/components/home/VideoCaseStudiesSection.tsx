@@ -38,7 +38,7 @@ const caseStudies: CaseStudy[] = [
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
     url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
+    liveUrl: "https://ringrival.today",
     images: {
       primary: "/images/ringrival-hero-title.png",
       alt: "Ring-Rival mobile boxing gameplay"

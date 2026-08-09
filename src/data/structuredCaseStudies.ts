@@ -752,7 +752,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/ringrival-hero-title.png`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
-    projectLink: `https://rival.li`,
+    projectLink: `https://ringrival.today`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, no team` },
       { value: `22s → 6s`, label: `Time to first punch after testing` },
