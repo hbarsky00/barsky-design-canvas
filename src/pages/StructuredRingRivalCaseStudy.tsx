@@ -20,9 +20,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Boxing games live on consoles for a reason — tight input latency, real animation feel, AI that reads like an opponent.",
           "Doing all of that with a thumb in a browser, no install, was the constraint that made it worth building. The question wasn't \"can we ship a boxer\" — it was \"can we ship one that feels right.\"",
         ],
-        images: [
-          { src: "/images/ringrival-controls-modal.png", alt: "VS Glass Joe controls modal with input scheme" },
-        ],
       },
       {
         heading: "What I Built",
@@ -30,18 +27,12 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "One archetype (Glass Joe) had to feel good before any other fighter was generated.",
           "AI produced sprites, trash talk, announcer intros, and crowd reactions. The career order — difficulty curve, fight sequencing, when each opponent appears — was built by hand across hundreds of test fights.",
         ],
-        images: [
-          { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — tall, broad, defensive guard" },
-        ],
       },
       {
         heading: "The Parts AI Can't Do",
         paragraphs: [
           "Hit-stop duration, screen shake amplitude, a 60ms haptic on connect, the curve of health bar drain — all hand-tuned by feel.",
           "Where the punch button lives and how big the block zone is were settled by watching a real hand on a real phone. No model knows whether a punch feels like a punch.",
-        ],
-        images: [
-          { src: "/images/ringrival-knockdown.png", alt: "Knockdown — DOWN! 5 count with star burst over floored Glass Joe" },
         ],
       },
       {
@@ -51,36 +42,40 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Audio failure rate dropped from ~40% to under 2% by gating AudioContext behind the first tap.",
           "Webcam hand-tracking was technically impressive and completely wrong for the audience — removed entirely.",
         ],
+      },
+      {
+        heading: "Then",
+        paragraphs: [
+          "Launch was one archetype: Glass Joe, hand-tuned until the punch felt like a punch, everything else built around him. A knockdown was a countdown and nothing else — once you were down, the fight was effectively over.",
+        ],
         images: [
-          { src: "/images/ringrival-impact-particles.png", alt: "Glass Joe getting hit — red impact particles dialed back so fighter stays visible" },
-          { src: "/images/ringrival-pause-modal.png", alt: "Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow" },
-          { src: "/images/ringrival-discodan.png", alt: "Disco Dan — completely different silhouette and personality from Glass Joe" },
+          { src: "/images/ringrival-glassjoe-idle.png", alt: "Then: Glass Joe — the only fighter in the game at launch" },
+          { src: "/images/ringrival-knockdown.png", alt: "Then: a knockdown was just a 5 count, with no way back into the fight" },
         ],
       },
       {
-        heading: "Then → Now",
+        heading: "Now",
         paragraphs: [
-          "Launch was one archetype: Glass Joe, hand-tuned until the punch felt like a punch, everything else built around him.",
           "The roster's grown since. New opponents each ship with their own named special move and their own trash talk — not a reskin of Glass Joe. A knockdown now has a real comeback mechanic, not just a countdown.",
         ],
         videos: [
           {
             src: "/ring-rival-fight-frost.mp4",
-            poster: "/images/ringrival-now/denny-frost-haymaker.jpg",
+            poster: "/images/ringrival-now/fight-frost-poster.jpg",
             caption:
               "Mid-fight against Denny Frost — jabs, blocks, and a super punch charging. The hit-stop and health-bar drain in here are the hand-tuned parts no model could have written.",
           },
           {
             src: "/ring-rival-fight-brenner.mp4",
+            poster: "/images/ringrival-now/fight-brenner-poster.jpg",
             caption:
               "A later fight, against Klaus Brenner — bigger, heavier-hitting, and on a different rhythm entirely. Two fighters, two reads: that difference is what a roster is actually for.",
           },
         ],
         images: [
-          { src: "/images/ringrival-glassjoe-idle.png", alt: "Launch: Glass Joe — the only fighter in the game" },
           { src: "/images/ringrival-now/trash-talk.jpg", alt: "Now: opponent trash talk mid-fight — \"They really signed YOU to fight me?\"" },
           { src: "/images/ringrival-now/comeback-mechanic.jpg", alt: "Now: knocked down against Ricky Groove — tap rapidly to get up before the count" },
-          { src: "/images/ringrival-now/disco-flurry.jpg", alt: "Now: Disco Dan's Disco Flurry special move, sparks and all" },
+          { src: "/images/ringrival-now/disco-flurry.jpg", alt: "Now: Ricky Groove's Disco Flurry special move, sparks and all" },
           { src: "/images/ringrival-now/denny-frost-haymaker.jpg", alt: "Now: Denny Frost's Glass Haymaker, with opponent-specific trash talk — \"Hope you told your corner to bring a mop.\"" },
         ],
       },
