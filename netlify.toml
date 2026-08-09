@@ -7,6 +7,95 @@
   status = 301
   force = true
 
+
+# Retired blog posts (replaced 2026-08-09). The SPA catch-all serves the app
+# shell for these, so without redirects they answer 200 with a client-rendered
+# "Post Not Found" — a soft-404 that keeps them indexed. Send them to /blog.
+[[redirects]]
+  from = "/blog/two-bugs-ai-wrote-that-i-had-to-find"
+  to = "/blog/two-bugs-ai-wrote-that-i-had-to-find/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/taste-is-the-whole-job"
+  to = "/blog/taste-is-the-whole-job/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/designer-who-codes-argument-is-over"
+  to = "/blog/designer-who-codes-argument-is-over/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/shipping-got-cheap-hiring-got-harder"
+  to = "/blog/shipping-got-cheap-hiring-got-harder/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/everyones-portfolio-looks-good-now"
+  to = "/blog/everyones-portfolio-looks-good-now/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/what-ai-changed-and-what-it-didnt"
+  to = "/blog/what-ai-changed-and-what-it-didnt/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/finding-first-ux-job-guide"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/design-systems-that-get-used"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/case-study-writing"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ai-enhanced-ux-designer-future"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/user-research-shoestring-budget"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/wireframes-to-wow-visual-hierarchy"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/built-product-without-real-data"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/building-products-nobody-asked-for"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/beautiful-interface-doesnt-convert"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/research-without-users"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/blog/portfolio-red-flags-no-interviews"
+  to = "/blog"
+  status = 301
+
 # Old URL redirects
 [[redirects]]
   from = "/web-development"
@@ -20,7 +109,7 @@
 
 [[redirects]]
   from = "/blog/design-system-that-gets-used"
-  to = "/blog/design-systems-that-get-used"
+  to = "/blog"
   status = 301
 
 # Static assets
@@ -151,56 +240,6 @@
   status = 200
 
 # Prerendered blog posts
-[[redirects]]
-  from = "/blog/finding-first-ux-job-guide"
-  to = "/blog/finding-first-ux-job-guide/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/ai-enhanced-ux-designer-future"
-  to = "/blog/ai-enhanced-ux-designer-future/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/built-product-without-real-data"
-  to = "/blog/built-product-without-real-data/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/design-systems-that-get-used"
-  to = "/blog/design-systems-that-get-used/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/case-study-writing"
-  to = "/blog/case-study-writing/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/user-research-shoestring-budget"
-  to = "/blog/user-research-shoestring-budget/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/building-products-nobody-asked-for"
-  to = "/blog/building-products-nobody-asked-for/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/wireframes-to-wow-visual-hierarchy"
-  to = "/blog/wireframes-to-wow-visual-hierarchy/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/beautiful-interface-doesnt-convert"
-  to = "/blog/beautiful-interface-doesnt-convert/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/research-without-users"
-  to = "/blog/research-without-users/index.html"
-  status = 200
-
 # SPA fallback for all other routes
 [[redirects]]
   from = "/*"
