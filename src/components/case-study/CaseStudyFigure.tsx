@@ -71,6 +71,20 @@ interface CaseStudyFigureProps {
   currentIndex?: number;
   priority?: boolean;
   className?: string;
+  /**
+   * What to notice in the shot. The older studies pinned these to x/y
+   * coordinates over the image, which broke down at every width other than
+   * the one they were placed at — listing them under the figure keeps the
+   * observation and loses only the arrow.
+   */
+  notes?: string[];
+  /**
+   * Set when the figure shares a row. Portrait screenshots stretched to a
+   * half-width cell run over a thousand pixels tall and tower over whatever
+   * landscape shot sits beside them, so height is capped here. Wide shots
+   * are unaffected — their natural height sits well under the cap.
+   */
+  inGrid?: boolean;
 }
 
 /**
@@ -95,6 +109,8 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
   currentIndex = 0,
   priority = false,
   className = "",
+  notes,
+  inGrid = false,
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [failed, setFailed] = useState(false);
@@ -114,7 +130,9 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
           loading={priority ? "eager" : "lazy"}
           decoding="async"
           onError={() => setFailed(true)}
-          className="block h-auto w-full"
+          className={`mx-auto block h-auto w-auto max-w-full ${
+            inGrid ? "max-h-[32rem]" : "max-h-[46rem]"
+          }`}
         />
         <span
           aria-hidden="true"
@@ -124,9 +142,21 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
           Expand
         </span>
       </button>
-      {caption && (
+      {(caption || (notes && notes.length > 0)) && (
         <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {caption}
+          {notes && notes.length > 0 && (
+            <ul className="mt-3 space-y-1.5">
+              {notes.map((n, i) => (
+                <li key={i} className="flex gap-2">
+                  <span aria-hidden="true" className="text-primary">
+                    &bull;
+                  </span>
+                  <span>{n}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </figcaption>
       )}
     </figure>

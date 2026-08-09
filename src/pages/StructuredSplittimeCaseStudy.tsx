@@ -7,6 +7,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
     title="SplitTime"
     description="A co-parenting app designed around the fact that every interaction is potential evidence."
     tags={["Family Tech", "Legal UX", "Mobile"]}
+    meta={[{ label: "Role", value: "Lead UX Designer" }]}
     liveUrl="https://splittime.pro"
     heroImage={{
       src: "/images/splittime/hero.jpg",

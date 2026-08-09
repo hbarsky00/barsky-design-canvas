@@ -7,6 +7,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     title="Investor Loan Platform"
     description="Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow."
     tags={["Enterprise", "FinTech", "Workflow Design"]}
+    meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/investor-loan-app/hero.png",
       alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",

@@ -7,6 +7,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
     title="Fire Lion"
     description="A shipped arcade game, built solo with AI. You spell words mid-flight to cast spells — and most of the design work was deciding what to delete."
     tags={["AI-Assisted Product", "Game Design", "Mobile Web", "Solo Build"]}
+    meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://firelion.me"
     heroImage={{
       src: "/images/firelion-hero-title.png",

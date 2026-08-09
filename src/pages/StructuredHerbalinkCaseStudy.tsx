@@ -7,6 +7,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     title="HerbaLink"
     description="Verified herbalists, designed around trust. A booking platform where the credential gate is the product — not a badge."
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
+    meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="http://herbalink.live"
     heroImage={{
       // Live screenshots of the shipped app, replacing dead barskyux.com links.

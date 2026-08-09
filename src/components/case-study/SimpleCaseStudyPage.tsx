@@ -16,6 +16,14 @@ const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 export interface SimpleCaseStudyImage {
   src: string;
   alt: string;
+  /**
+   * Shown under the figure. Falls back to `alt` — fine when the alt text
+   * already reads as a caption, but they're different jobs and the older
+   * studies carry captions that say more than their alt does.
+   */
+  caption?: string;
+  /** Short observations tied to this image — what to notice, and why. */
+  notes?: string[];
   /** Optional video URL that plays on hover over the image. */
   hoverVideo?: string;
 }
@@ -27,9 +35,23 @@ export interface SimpleCaseStudyVideo {
   caption: string;
 }
 
+export interface SimpleCaseStudyQuote {
+  text: string;
+  /** Who said it. Omit for a pull-quote from the writing itself. */
+  attribution?: string;
+  /** What the quote changed about the design. */
+  response?: string;
+}
+
 export interface SimpleCaseStudyBlock {
   heading: string;
   paragraphs: string[];
+  /** Research quotes, or a line worth pulling out of the prose. */
+  quotes?: SimpleCaseStudyQuote[];
+  /** Labelled findings — a theme, and what it drove. */
+  points?: { label: string; text: string; drove?: string }[];
+  /** Outcome figures. Numbers only, never invented. */
+  stats?: { value: string; label: string }[];
   images?: SimpleCaseStudyImage[];
   videos?: SimpleCaseStudyVideo[];
   /** @deprecated use images */
@@ -234,6 +256,64 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                   ))}
                 </div>
 
+                {b.quotes && b.quotes.length > 0 && (
+                  <div className="cs-measure mt-8 space-y-6">
+                    {b.quotes.map((q, i) => (
+                      <figure key={i} className="border-l-2 border-primary/40 pl-5">
+                        <blockquote className="font-display text-lg leading-snug text-foreground md:text-xl">
+                          “{q.text}”
+                        </blockquote>
+                        {q.attribution && (
+                          <figcaption className="mt-2 text-sm text-muted-foreground">
+                            — {q.attribution}
+                          </figcaption>
+                        )}
+                        {q.response && (
+                          <p className="mt-3 text-sm text-muted-foreground">{q.response}</p>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                )}
+
+                {b.points && b.points.length > 0 && (
+                  <dl className="cs-measure mt-8 space-y-6">
+                    {b.points.map((p) => (
+                      <div key={p.label} className="border-t border-border pt-4">
+                        <dt className="mb-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                          {p.label}
+                        </dt>
+                        <dd className="text-base leading-relaxed text-foreground md:text-lg">
+                          {p.text}
+                          {p.drove && (
+                            <span className="mt-1 block text-muted-foreground">
+                              Drove: {p.drove}
+                            </span>
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                {b.stats && b.stats.length > 0 && (
+                  <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-border py-8 sm:grid-cols-3">
+                    {b.stats.map((s) => (
+                      <div key={s.label}>
+                        <dt className="sr-only">{s.label}</dt>
+                        <dd>
+                          <span className="block font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                            {s.value}
+                          </span>
+                          <span className="mt-1 block text-sm text-muted-foreground">
+                            {s.label}
+                          </span>
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
                 {b.videos && b.videos.length > 0 && (
                   <div className="mt-10 space-y-10">
                     {b.videos.map((v) => (
@@ -260,7 +340,9 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                         key={`${img.src}-${idx}`}
                         src={img.src}
                         alt={img.alt}
-                        caption={img.alt}
+                        caption={img.caption ?? img.alt}
+                        notes={img.notes}
+                        inGrid={imgs.length > 1}
                         projectId={projectId}
                         imageList={allImages}
                         currentIndex={startIndex + idx}

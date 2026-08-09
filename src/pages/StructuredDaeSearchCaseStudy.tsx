@@ -7,6 +7,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     title="DAE Search"
     description="Enterprise search redesigned around an inconvenient truth: finding the data is only half the job. Knowing whether to trust it is the rest."
     tags={["Enterprise", "Data Discovery", "Search UX"]}
+    meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       // Was hosted on a Supabase project that's since been deprovisioned —
       // that domain no longer resolves at all. Hiram supplied the original
