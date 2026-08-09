@@ -197,23 +197,25 @@ const ServicePageLayout: React.FC = () => {
               Specialized Services:
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link 
-                to="/design-services/ux-ui-design" 
+              {/* Three distinct destinations — "AI Interaction Design" and
+                  "UX/UI Design" both used to point at the same page. */}
+              <Link
+                to="/design-services/ux-ui-design"
                 className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
               >
-                AI Interaction Design
+                UX/UI Design
               </Link>
-              <Link 
-                to="/design-services/mobile-app-design" 
+              <Link
+                to="/design-services/mobile-app-design"
                 className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
               >
                 Mobile App Design
               </Link>
-              <Link 
-                to="/design-services/ux-ui-design" 
+              <Link
+                to="/design-services/web-development"
                 className="px-4 py-2 rounded-full bg-md-sys-surface-container border border-md-sys-outline-variant/30 text-body-medium text-foreground hover:bg-md-sys-primary/10 hover:border-md-sys-primary/40 transition-colors duration-300"
               >
-                UX/UI Design
+                Design + Build
               </Link>
             </div>
           </motion.div>
