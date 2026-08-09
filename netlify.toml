@@ -149,11 +149,6 @@
 # pointing a rewrite at a dist/.../index.html that inject-seo-html.ts never generates
 # for it would 404 at the edge).
 [[redirects]]
-  from = "/project/business-management"
-  to = "/project/business-management/index.html"
-  status = 200
-
-[[redirects]]
   from = "/project/herbalink"
   to = "/project/herbalink/index.html"
   status = 200

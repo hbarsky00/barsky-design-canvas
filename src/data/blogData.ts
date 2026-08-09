@@ -245,7 +245,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Consolidation Is the Real Pitch</h2>
 
-      <p>The <a href="/project/business-management" class="text-primary underline underline-offset-2 hover:text-primary/80">operations platform I designed for small businesses</a> did not win on any individual capability. Scheduling, invoicing, and tasks all existed elsewhere and mostly worked. What was killing people was that they lived in three places, so the same information got retyped and drifted apart.</p>
+      <p>The operations platform I designed for small businesses did not win on any individual capability. Scheduling, invoicing, and tasks all existed elsewhere and mostly worked. What was killing people was that they lived in three places, so the same information got retyped and drifted apart.</p>
 
       <p>Fragmentation is the one thing a spreadsheet cannot fix, because the standard response to fragmentation is another spreadsheet. Being one place beats being better at any single thing.</p>
 

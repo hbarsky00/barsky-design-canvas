@@ -45,7 +45,6 @@ export function normalizeCanonicalUrl(path: string): string {
  */
 export function resolveUrlAliases(path: string): string {
   const aliases: Record<string, string> = {
-    '/project/wholesale-distribution': '/project/business-management'
   };
   
   return aliases[path] || path;

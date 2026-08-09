@@ -72,12 +72,6 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       priority: 0.8
     },
     {
-      url: `${BASE_URL}/project/business-management`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.8
-    },
-    {
       url: `${BASE_URL}/project/medication-app`,
       lastmod: currentDate,
       changefreq: 'monthly',

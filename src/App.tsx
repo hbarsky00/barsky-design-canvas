@@ -35,7 +35,6 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
-const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 
 const ManuscriptRxCaseStudy = React.lazy(() => import("@/pages/ManuscriptRxCaseStudy"));
 const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
@@ -81,7 +80,6 @@ function AppContent() {
               {/* Structured case studies - these override the generic ProjectDetail routing */}
               {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
               <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
@@ -93,7 +91,6 @@ function AppContent() {
               <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/stips" element={<StructuredStipsCaseStudy />} />
 
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />

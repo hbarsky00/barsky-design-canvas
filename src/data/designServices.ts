@@ -199,14 +199,6 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
     ],
     proof: [
       {
-        href: "/project/business-management",
-        title: "Blue Sky",
-        image: "/images/business-management/hero-three-laptops.jpg",
-        alt: "Blue Sky unified business operations platform",
-        result:
-          "Consolidated scheduling, invoicing, and task tracking into one operations platform for small businesses drowning in disconnected tools.",
-      },
-      {
         href: "/project/email-creation-ai",
         title: "Email Creation AI",
         image: "/images/email-ai-promo.png",
