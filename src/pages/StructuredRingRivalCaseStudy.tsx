@@ -20,9 +20,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Boxing games live on consoles for a reason — tight input latency, real animation feel, AI that reads like an opponent.",
           "Doing all of that with a thumb in a browser, no install, was the constraint that made it worth building. The question wasn't \"can we ship a boxer\" — it was \"can we ship one that feels right.\"",
         ],
-        images: [
-          { src: "/images/ringrival-controls-modal.png", alt: "The control scheme, spelled out before the first fight — the whole game had to work from a thumb on glass" },
-        ],
       },
       {
         heading: "Building a Fighter Out of Parts",
@@ -54,9 +51,10 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Time-to-first-punch dropped from 22 seconds to 6 by cutting menus and tutorial screens.",
           "Audio failure rate dropped from ~40% to under 2% by gating AudioContext behind the first tap.",
           "Webcam hand-tracking was technically impressive and completely wrong for the audience — removed entirely.",
+          "What replaced the tutorial is one card: the whole control scheme on a single screen you dismiss in a tap. Everything a player needs to start throwing punches, and nothing else.",
         ],
         images: [
-          { src: "/images/ringrival-pause-modal.png", alt: "What survived the cuts: pause is three choices — Resume, Music Off, Forfeit — reachable without breaking the fight" },
+          { src: "/images/ringrival-controls-modal.png", alt: "The one card that replaced the tutorial flow — the entire control scheme on a single dismissable screen" },
         ],
       },
       {
