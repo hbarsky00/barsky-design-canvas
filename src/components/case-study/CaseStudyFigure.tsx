@@ -1,0 +1,283 @@
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Maximize2, Play } from "lucide-react";
+import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+
+/**
+ * Fades an element up as it scrolls into view. One-shot — figures don't
+ * re-animate on the way back up, which reads as twitchy on a long page.
+ *
+ * The hidden start state is applied *by this hook*, never in the markup.
+ * Doing it the other way round means a figure that starts at opacity 0 and
+ * waits for IntersectionObserver to un-hide it — so anywhere the observer
+ * doesn't fire (no IO support, a background/suspended tab, JS erroring
+ * before this runs) the case study renders blank. The animation is a nicety;
+ * the screenshots are the point. Visible is the safe default, and the class
+ * is added in a layout effect so there's no flash of the un-hidden state.
+ */
+export const useReveal = <T extends HTMLElement>() => {
+  const ref = useRef<T>(null);
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    el.classList.add("cs-reveal");
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+    );
+
+    io.observe(el);
+
+    // Belt and braces: if nothing has intersected shortly after mount (a
+    // suspended tab never fires callbacks), stop hiding it.
+    const failsafe = window.setTimeout(() => el.classList.add("is-visible"), 1200);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(failsafe);
+    };
+  }, []);
+
+  return ref;
+};
+
+interface CaseStudyFigureProps {
+  src: string;
+  alt: string;
+  caption?: string;
+  projectId?: string;
+  /** Every image on the page, so the lightbox can arrow through all of them. */
+  imageList?: string[];
+  currentIndex?: number;
+  priority?: boolean;
+  className?: string;
+}
+
+/**
+ * A product screenshot, framed.
+ *
+ * Deliberately not MaximizableImage: that component caps height at 70vh and
+ * scales to 105% on hover inside an overflow-hidden box, which letterboxes
+ * wide screenshots and then crops them the moment you point at one. For a
+ * case study the screenshot *is* the evidence, so it renders at its natural
+ * aspect and holds still.
+ *
+ * The border matters more than it looks — most of these screenshots are
+ * white-background UI on a near-white page, so without an edge they bleed
+ * into the page and lose their shape.
+ */
+const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
+  src,
+  alt,
+  caption,
+  projectId,
+  imageList,
+  currentIndex = 0,
+  priority = false,
+  className = "",
+}) => {
+  const { maximizeImage } = useImageMaximizer();
+  const [failed, setFailed] = useState(false);
+  const ref = useReveal<HTMLElement>();
+
+  return (
+    <figure ref={ref} className={`group ${className}`}>
+      <button
+        type="button"
+        onClick={() => !failed && maximizeImage(src, caption || alt, imageList ?? [src], currentIndex)}
+        aria-label={`View "${alt}" full screen`}
+        className="relative block w-full overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:shadow-lg"
+      >
+        <img
+          src={src}
+          alt={alt}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="block h-auto w-full"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-foreground/80 px-2.5 py-1.5 text-xs font-medium text-background opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+        >
+          <Maximize2 className="h-3.5 w-3.5" />
+          Expand
+        </span>
+      </button>
+      {caption && (
+        <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+};
+
+export interface CaseStudyClipProps {
+  src: string;
+  poster?: string;
+  caption: string;
+  className?: string;
+}
+
+/**
+ * Silent looping clip that plays only while on screen — a moving figure, not
+ * a video player. Pauses when scrolled away so a page of clips doesn't burn
+ * battery, and stays a still poster under reduced-motion.
+ */
+export const CaseStudyClip: React.FC<CaseStudyClipProps> = ({
+  src,
+  poster,
+  caption,
+  className = "",
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const ref = useReveal<HTMLElement>();
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.play().catch(() => {});
+        else el.pause();
+      },
+      { threshold: 0.35 }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <figure ref={ref} className={className}>
+      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="block h-auto w-full"
+        />
+      </div>
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {caption}
+      </figcaption>
+    </figure>
+  );
+};
+
+export interface HeroMediaProps {
+  src: string;
+  alt: string;
+  hoverVideo?: string;
+  projectId?: string;
+  imageList?: string[];
+}
+
+/**
+ * The opening image. When a walkthrough clip exists it plays on hover —
+ * previously with no affordance at all, so nobody knew to try. Now it says so.
+ */
+export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
+  src,
+  alt,
+  hoverVideo,
+  projectId,
+  imageList,
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const { maximizeImage } = useImageMaximizer();
+
+  const start = () => {
+    setPlaying(true);
+    videoRef.current?.play().catch(() => setPlaying(false));
+  };
+
+  const stop = () => {
+    setPlaying(false);
+    const el = videoRef.current;
+    if (el) {
+      el.pause();
+      el.currentTime = 0;
+    }
+  };
+
+  if (!hoverVideo) {
+    return (
+      <CaseStudyFigure
+        src={src}
+        alt={alt}
+        projectId={projectId}
+        imageList={imageList}
+        currentIndex={0}
+        priority
+      />
+    );
+  }
+
+  return (
+    <figure className="group">
+      <div
+        className="relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl"
+        onMouseEnter={start}
+        onMouseLeave={stop}
+      >
+        <button
+          type="button"
+          onClick={() => (playing ? stop() : start())}
+          aria-label={playing ? `Stop the ${alt} walkthrough` : `Play the ${alt} walkthrough`}
+          className="block w-full"
+        >
+          <img
+            src={src}
+            alt={alt}
+            loading="eager"
+            decoding="async"
+            className="block h-auto w-full transition-opacity duration-300"
+            style={{ opacity: playing ? 0 : 1 }}
+          />
+          <video
+            ref={videoRef}
+            src={hoverVideo}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden={!playing}
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+            style={{ opacity: playing ? 1 : 0 }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-foreground/80 px-3 py-1.5 text-xs font-medium text-background backdrop-blur-sm transition-opacity duration-300"
+            style={{ opacity: playing ? 0 : 1 }}
+          >
+            <Play className="h-3.5 w-3.5 fill-current" />
+            Hover to watch it run
+          </span>
+        </button>
+      </div>
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {alt}
+      </figcaption>
+    </figure>
+  );
+};
+
+export default CaseStudyFigure;

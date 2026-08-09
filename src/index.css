@@ -1680,3 +1680,72 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Case study reading layout
+
+   Long-form prose wants a ~65-character measure, but product screenshots
+   want room. Constraining both to one column meant 1600px-wide app
+   screenshots rendered at 720px — 45% of native — while 670px of viewport
+   sat empty on either side. Dense UI (a trading board, a dashboard) is
+   unreadable at that scale, which defeats the point of showing the work.
+
+   So the page is a grid with named tracks instead of a single max-width:
+   text keeps its measure, figures break out to the wider track, and the
+   hero can go wider still.
+   ───────────────────────────────────────────────────────────────────── */
+@layer components {
+  .cs-grid {
+    display: grid;
+    grid-template-columns:
+      [full-start] minmax(1.25rem, 1fr)
+      [wide-start] minmax(0, 15rem)
+      [text-start] min(42rem, 100% - 2.5rem)
+      [text-end] minmax(0, 15rem)
+      [wide-end] minmax(1.25rem, 1fr)
+      [full-end];
+  }
+
+  /* The page has ONE left edge. Everything — title, prose, figures — starts
+     on the wide track, and prose is held to its measure by max-width rather
+     than by a narrower column. Putting text in its own narrower track looked
+     right in isolation but gave headings and screenshots two different left
+     edges, which reads as a misalignment on every scroll. */
+  .cs-grid > * {
+    grid-column: wide;
+  }
+
+  .cs-grid > .cs-full {
+    grid-column: full;
+  }
+
+  /* Reading measure: ~65 characters at the body size. */
+  .cs-measure {
+    max-width: 42rem;
+  }
+}
+
+@layer utilities {
+  /* Figures fade up as they enter the viewport. Transform/opacity only, so
+     it stays on the compositor. */
+  .cs-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cs-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-reveal,
+    .cs-reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
