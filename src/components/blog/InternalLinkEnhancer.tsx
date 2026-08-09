@@ -20,44 +20,52 @@ interface LinkRule {
  * Each rule defines keywords to match and the target post to link to
  */
 const getLinkingRules = (): LinkRule[] => [
-  // Link to the case-study writing article
+  // Link to the portfolio article
   {
     keywords: ['portfolio', 'case study', 'case studies'],
-    targetSlug: 'case-study-writing',
-    anchorText: 'portfolio optimization',
-    title: 'Case Studies That Win Clients – Beyond Pretty Screens'
+    targetSlug: 'everyones-portfolio-looks-good-now',
+    anchorText: 'portfolios in the AI era',
+    title: 'Everyone\'s Portfolio Looks Good Now'
   },
-  
-  // Link to finding first UX job
+
+  // Link to the hiring / job market article
   {
-    keywords: ['job search', 'career', 'networking', 'interviews'],
-    targetSlug: 'finding-first-ux-job-guide',
-    anchorText: 'UX job search strategies',
-    title: 'Finding Your First UX Job: A Senior Designer\'s Honest Guide'
+    keywords: ['hiring', 'job market', 'career', 'interviews', 'juniors'],
+    targetSlug: 'shipping-got-cheap-hiring-got-harder',
+    anchorText: 'design hiring right now',
+    title: 'Shipping Got Cheap. Hiring Got Harder.'
   },
-  
-  // Link to design systems article
+
+  // Link to the designers-who-code article
   {
-    keywords: ['design system', 'design systems', 'components', 'documentation'],
-    targetSlug: 'design-systems-that-get-used',
-    anchorText: 'building effective design systems',
-    title: 'Building Design Systems That Actually Get Used'
+    keywords: ['handoff', 'front-end', 'engineers', 'build it yourself', 'shipped'],
+    targetSlug: 'designer-who-codes-argument-is-over',
+    anchorText: 'designers who build',
+    title: 'The Designer Who Codes Argument Is Over'
   },
-  
-  // Link to AI-enhanced UX article
+
+  // Link to the debugging AI-generated code article
   {
-    keywords: ['AI', 'artificial intelligence', 'future', 'technology', 'automation'],
-    targetSlug: 'ai-enhanced-ux-designer-future',
-    anchorText: 'AI-enhanced UX design',
-    title: 'The AI-Enhanced UX Designer: Future-Proofing Your Career'
+    keywords: ['bug', 'bugs', 'generated code', 'row-level security', 'verification'],
+    targetSlug: 'two-bugs-ai-wrote-that-i-had-to-find',
+    anchorText: 'debugging AI-written code',
+    title: 'Two Bugs AI Wrote That I Had to Find Myself'
   },
-  
-  // Link to user research article
+
+  // Link to the taste article
   {
-    keywords: ['user research', 'research', 'budget', 'testing', 'usability'],
-    targetSlug: 'user-research-shoestring-budget',
-    anchorText: 'cost-effective user research methods',
-    title: 'User Research on a Shoestring Budget: Maximum Impact, Minimum Cost'
+    keywords: ['taste', 'judgment', 'game feel', 'deletion', 'craft'],
+    targetSlug: 'taste-is-the-whole-job',
+    anchorText: 'taste as the differentiator',
+    title: 'When Generating Is Free, Taste Is the Whole Job'
+  },
+
+  // Link to the what-changed article
+  {
+    keywords: ['artificial intelligence', 'automation', 'AI'],
+    targetSlug: 'what-ai-changed-and-what-it-didnt',
+    anchorText: 'what AI changed about design work',
+    title: 'What AI Changed About Design Work, and What It Didn\'t'
   }
 ];
 

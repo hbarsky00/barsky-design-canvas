@@ -25,17 +25,14 @@
 - [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict through structured requests.
 - [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
 - [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
+- [Stips](/project/stips): Play-money prediction markets where the price reads as a probability — designed and built solo.
 - [Blue Sky](/project/business-management): Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks.
 
 ## Blog
 
-- [Finding Your First UX Job](/blog/finding-first-ux-job-guide)
-- [Design Systems That Get Used](/blog/design-systems-that-get-used)
-- [The AI-Enhanced UX Designer](/blog/ai-enhanced-ux-designer-future)
-- [User Research on a Shoestring Budget](/blog/user-research-shoestring-budget)
-- [Built a Product Without Real Data](/blog/built-product-without-real-data)
-- [Building Products Nobody Asked For](/blog/building-products-nobody-asked-for)
-- [Wireframes to Wow: Visual Hierarchy](/blog/wireframes-to-wow-visual-hierarchy)
-- [Case Study Writing](/blog/case-study-writing)
-- [Why Beautiful Interfaces Don't Convert](/blog/beautiful-interface-doesnt-convert)
-- [Validating Products Without Users](/blog/research-without-users)
+- [Two Bugs AI Wrote That I Had to Find Myself](/blog/two-bugs-ai-wrote-that-i-had-to-find)
+- [When Generating Is Free, Taste Is the Whole Job](/blog/taste-is-the-whole-job)
+- [The Designer Who Codes Argument Is Over](/blog/designer-who-codes-argument-is-over)
+- [Shipping Got Cheap. Hiring Got Harder.](/blog/shipping-got-cheap-hiring-got-harder)
+- [Everyone's Portfolio Looks Good Now](/blog/everyones-portfolio-looks-good-now)
+- [What AI Changed About Design Work, and What It Didn't](/blog/what-ai-changed-and-what-it-didnt)

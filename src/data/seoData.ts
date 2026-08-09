@@ -146,16 +146,12 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
-  "finding-first-ux-job-guide": "https://barskydesign.pro/blog-finding-ux-job.jpg",
-  "design-systems-that-get-used": "https://barskydesign.pro/blog-design-systems.jpg",
-  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "https://barskydesign.pro/blog-user-research-budget.jpg",
-  "case-study-writing": "https://barskydesign.pro/blog-case-study-writing.jpg",
-  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/blog-visual-hierarchy.jpg",
-  "built-product-without-real-data": "https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
-  "building-products-nobody-asked-for": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=630&fit=crop",
-  "beautiful-interface-doesnt-convert": "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=1200&h=630&fit=crop",
-  "research-without-users": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&h=630&fit=crop"
+  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/blog-ai-in-design.jpg",
+  "taste-is-the-whole-job": "https://barskydesign.pro/blog-visual-hierarchy.jpg",
+  "designer-who-codes-argument-is-over": "https://barskydesign.pro/blog-design-systems.jpg",
+  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/blog-finding-ux-job.jpg",
+  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/blog-case-study-writing.jpg",
+  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog-user-research-budget.jpg"
 };
 
 // Enhanced blog post SEO data. `published` is the real ISO date matching each
@@ -169,65 +165,41 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
-  "finding-first-ux-job-guide": {
-    title: "Finding a UX Job – What Actually Works — Barsky Design",
-    description: "Most portfolios fail because they're built to show range instead of depth. Real strategies for landing a UX role, from 15+ years in the field.",
-    published: "2025-01-15T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "two-bugs-ai-wrote-that-i-had-to-find": {
+    title: "Two Bugs AI Wrote That I Had to Find Myself",
+    description: "Two real bugs from a product built with AI: a model with no clock generating expired dates, and row-level security that returns silence, not errors.",
+    published: "2026-08-05T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   },
-  "design-systems-that-get-used": {
-    title: "Building Design Systems That Actually Get Used",
-    description: "Stop building design systems that get ignored. Practical governance, documentation, and adoption tactics teams actually use.",
-    published: "2025-01-08T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "taste-is-the-whole-job": {
+    title: "When Generating Is Free, Taste Is the Whole Job",
+    description: "AI can produce fifty screens in a minute. It won't tell you to delete four of them. What taste actually is, and how Ring-Rival got twenty seconds faster.",
+    published: "2026-07-22T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   },
-  "ai-enhanced-ux-designer-future": {
-    title: "The AI-Enhanced UX Designer: Future-Proofing Your Career",
-    description: "AI didn't replace UX designers — it replaced the version of the job that stopped at the mockup. Notes from shipping products with AI as a build partner.",
-    published: "2025-12-15T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "designer-who-codes-argument-is-over": {
+    title: "The Designer Who Codes Argument Is Over",
+    description: "The gap between a design and a running product collapsed. What owning the build actually changes about the work, and what's genuinely worth learning.",
+    published: "2026-07-09T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   },
-  "user-research-shoestring-budget": {
-    title: "User Research on a Shoestring Budget",
-    description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that work.",
-    published: "2025-12-01T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "shipping-got-cheap-hiring-got-harder": {
+    title: "Shipping Got Cheap. Hiring Got Harder.",
+    description: "A working demo used to be evidence of skill. Now anyone can build one in a weekend. What design hiring should screen for instead, from 15+ years in.",
+    published: "2026-06-26T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   },
-  "built-product-without-real-data": {
-    title: "Shipping a Product with Placeholder Data and No Marketing Budget",
-    description: "No users yet, no ad budget, no team. What actually gets a solo-built product seen — from someone who ships this way by default.",
-    published: "2025-05-16T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "everyones-portfolio-looks-good-now": {
+    title: "Everyone's Portfolio Looks Good Now",
+    description: "Polish stopped being a signal the moment it became free. What still separates a designer: live products, written-down deletions, defensible numbers.",
+    published: "2026-06-15T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   },
-  "building-products-nobody-asked-for": {
-    title: "What I Learned Building Products Nobody Asked For",
-    description: "Ring-Rival, Fire Lion, CatchBuddy — three solo-built products nobody requested. What actually shipping them taught me that no course did.",
-    published: "2025-04-28T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
-  },
-  "wireframes-to-wow-visual-hierarchy": {
-    title: "From Wireframes to Wow: What Actually Makes Hierarchy Work",
-    description: "Visual hierarchy isn't a styling pass at the end — it's a decision about what matters, made before a single pixel moves. How I actually work through it.",
-    published: "2025-10-18T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
-  },
-  "case-study-writing": {
-    title: "Case Studies That Win Clients — Beyond Pretty Screens",
-    description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from hundreds of portfolios.",
-    published: "2025-12-28T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
-  },
-  "beautiful-interface-doesnt-convert": {
-    title: "Why Your Beautiful Interface Doesn't Convert",
-    description: "A checkout flow can be flawless and still lose. Polish isn't the same as removing friction — where I actually put my attention now.",
-    published: "2025-03-30T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
-  },
-  "research-without-users": {
-    title: "How to Research When You Don't Have Users Yet",
-    description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups.",
-    published: "2025-03-18T12:00:00Z",
-    modified: "2026-08-08T12:00:00Z"
+  "what-ai-changed-and-what-it-didnt": {
+    title: "What AI Changed About Design Work, and What It Didn't",
+    description: "Building products solo with AI. What genuinely changed about design work, and the list of things that are exactly as hard as they always were.",
+    published: "2026-06-04T09:00:00Z",
+    modified: "2026-08-09T12:00:00Z"
   }
 };
 

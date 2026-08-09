@@ -9,9 +9,9 @@ const Services = () => {
   usePageIndexing();
   
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden relative bg-gradient-to-b from-background via-md-sys-surface-container-low/30 to-md-sys-surface-container/20">
+    <div className="flex flex-col min-h-screen overflow-x-hidden relative bg-background">
       <Header />
-      <main className="flex-1 pt-[calc(var(--header-height,64px)+32px)]">
+      <main className="flex-1 pt-[calc(var(--header-height,64px)+32px)] pb-24">
         <ServicePageLayout />
       </main>
       <Footer />
