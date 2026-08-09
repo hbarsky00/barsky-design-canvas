@@ -1,1 +1,22 @@
+# Netlify processes this file BEFORE netlify.toml, and first match wins.
+# The catch-all at the bottom is what makes client-side routing work, but it
+# also means any deleted URL answers 200 with the app shell. Anything that
+# should genuinely be gone has to be listed above it.
+
+# Retired blog posts (replaced 2026-08-09) -> blog index
+/blog/finding-first-ux-job-guide          /blog   301
+/blog/design-systems-that-get-used        /blog   301
+/blog/design-system-that-gets-used        /blog   301
+/blog/case-study-writing                  /blog   301
+/blog/ai-enhanced-ux-designer-future      /blog   301
+/blog/user-research-shoestring-budget     /blog   301
+/blog/wireframes-to-wow-visual-hierarchy  /blog   301
+/blog/built-product-without-real-data     /blog   301
+/blog/building-products-nobody-asked-for  /blog   301
+/blog/beautiful-interface-doesnt-convert  /blog   301
+/blog/research-without-users              /blog   301
+/blog/portfolio-red-flags-no-interviews   /blog   301
+
+# SPA fallback — must stay last. Does not shadow real files, so the
+# per-route HTML written by scripts/inject-seo-html.ts is still served.
 /*    /index.html   200
