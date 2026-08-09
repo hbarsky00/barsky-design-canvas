@@ -5,77 +5,65 @@ const StructuredStipsCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="stips"
     title="Stips"
-    description="Prediction markets you can actually read. Play-money trading on real-world events, where the price is the probability — designed and built solo."
+    description="Prediction markets you can actually read. Play money, real events, and a price that tells you the odds without making you do math."
     tags={["AI-Assisted Product", "Fintech UX", "Prediction Markets", "Solo Build"]}
     liveUrl="https://stips.bet"
     heroImage={{
       src: "/images/stips/landing.jpg",
       alt: "Stips landing — Trade on what happens next, with live Yes/No prices on real-world events",
+      hoverVideo: "/stips-promo.mp4",
     }}
     blocks={[
       {
         heading: "The Problem",
         paragraphs: [
-          "A prediction market answers one simple question: how likely is this, according to people willing to put something behind the answer? It's one of the clearest signals you can get.",
-          "Then you open one, and it's a trading terminal. Order books, bid/ask spreads, share counts, position sizing. The question is simple and the interface is not, so the people who'd get the most out of it bounce before they ever place anything.",
+          "A prediction market answers one question: how likely is this? The price tells you, because people are putting something behind the answer.",
+          "Every one I opened looked like a trading terminal. Order books, spreads, share counts, position sizing. The question is simple. The interface isn't, so most people leave before they place anything.",
         ],
       },
       {
-        heading: "Making the Price Say What It Means",
+        heading: "How the Price Works",
         paragraphs: [
-          "The whole design rests on one idea: in a market like this the price already is the probability. A share that pays out $1 if you're right, trading at 67¢, means the crowd thinks it's about 67% likely. Every other interface makes you know that. This one just says it — 67¢ and \"67% chance\" sit together, in the same control, every time a price appears.",
-          "The order ticket does the arithmetic before you commit, not after. Pick an outcome, set a stake, and it tells you what you'd get back and what the profit is if you're right — $75 at 67¢ a share returns $111.94, so you're up $36.94. No share-count math, no working out implied odds in your head.",
-          "The rules live on the market page, not in a help doc. What counts as resolved, what happens if the event is postponed, which sources decide it. If the resolution is ambiguous the whole price is meaningless, so it gets the same weight as the price itself.",
+          "The price is the probability. A share pays $1 if you're right, so 67¢ means the crowd thinks it's about 67% likely. Most platforms make you work that out yourself. I show both — 67¢ and 67% chance, in the same control, everywhere a price appears.",
+          "The ticket does the math before you commit. Put $75 on Yes at 67¢ and it tells you you'd get back $111.94, up $36.94. No share counts, no implied odds in your head.",
+          "The resolution rules sit on the market page, not in a help doc. If it isn't clear what settles the market, the price doesn't mean anything.",
         ],
         images: [
-          { src: "/images/stips/market-detail.jpg", alt: "Market detail — the price shown as both cents and percent chance, with resolution criteria on the page" },
-          { src: "/images/stips/order-ticket.jpg", alt: "Order ticket — stake, payout, and profit-if-correct all calculated before you commit" },
+          { src: "/images/stips/order-ticket.jpg", alt: "The order ticket — 67¢ and 67% chance together, with the payout and profit worked out before you buy" },
         ],
       },
       {
-        heading: "Play Money, Said Out Loud",
+        heading: "Play Money, Said Up Front",
         paragraphs: [
-          "Stips runs on play money. Everyone starts with $500 and no card, and the product never pretends otherwise — the amount field is labelled AMOUNT · PLAY MONEY at the moment you're typing a number into it, not in a disclaimer nobody reads.",
-          "That's a trust decision, not a legal one. Anything that looks like a real-money betting product while being coy about it earns exactly the suspicion it deserves. Saying it plainly at the point of entry is what makes the rest of the interface believable.",
-        ],
-        images: [
-          { src: "/images/stips/markets-board.jpg", alt: "The markets board — every card carries its Yes/No price, close date, and volume" },
+          "Everyone starts with $500 and no card. The amount field says PLAY MONEY right where you're typing the number, not in a footer nobody reads.",
+          "If something looks like real-money betting and you're vague about it, people assume the worst. So I say it up front and the rest of the interface gets believed.",
         ],
       },
       {
-        heading: "Designing for the Thumb",
+        heading: "Built for the Thumb",
         paragraphs: [
-          "Most people meet this on a phone, from a link someone sent them. So the mobile path isn't a narrowed desktop layout — placing a bet is a bottom sheet that comes up under your thumb with the outcome, the stake, the quick-add chips and the payout all in reach without scrolling.",
-          "The account wall sits at the last possible moment. A guest can browse the board, open a market, pick a side, set an amount and see exactly what they'd win — and only then does it say \"Sign up free to place this bet.\" Asking someone to register before they understand what they're registering for is how you lose them.",
+          "Most people get here from a link on their phone. So placing a bet is a sheet that slides up under your thumb — outcome, amount, quick-add chips and payout all in reach without scrolling.",
+          "The signup wall comes last. You can browse the board, open a market, pick a side, set an amount and see exactly what you'd win before it asks who you are. Asking first loses people who haven't figured out what they're signing up for.",
         ],
         images: [
-          { src: "/images/stips/mobile-board.jpg", alt: "Mobile markets board — full price and close date per card, sized for scanning with a thumb" },
-          { src: "/images/stips/mobile-bet-sheet.jpg", alt: "Mobile bet sheet — stake and payout resolved before the signup prompt appears" },
+          { src: "/images/stips/mobile-bet-sheet.jpg", alt: "The mobile bet sheet — stake and payout settled before the signup prompt appears" },
         ],
       },
       {
-        heading: "What I Got Wrong First",
+        heading: "What I Got Wrong",
         paragraphs: [
-          "The markets are generated from real news on a schedule, which meant handing a language model the job of writing a question with a close date. Models don't have a clock. Ask one for an event \"next week\" and it will happily answer relative to whenever its training data ends, so the first batches produced markets that were already expired the moment they were published. The fix was unglamorous: inject today's date into the prompt and validate every generated date before anything reaches the board.",
-          "The second one cost more time. I did most of my testing signed out, because that's the fastest way to look at a page — and signed out, the database's row-level security returns an empty result rather than an error. So a whole class of bugs that only existed for signed-in users looked, to me, like empty states working correctly. Nothing surfaced until I started testing as a real logged-in account. Guest testing hides exactly the problems your actual users have.",
-        ],
-        images: [
-          { src: "/images/stips/mobile-market-detail.jpg", alt: "The signed-out market view — the state I was testing in, which quietly hid every authenticated bug" },
+          "Markets are generated from news on a schedule, which meant an AI writing close dates. Models don't have a clock. The first batches came out already expired. The fix was boring: put today's date in the prompt and validate every date before it reaches the board.",
+          "The second one cost me more time. I did most of my testing signed out, because it's faster to just look at a page. Signed out, row-level security returns nothing instead of an error — so every bug that only existed for logged-in users looked like an empty state working correctly. I didn't find them until I started testing as a real account.",
         ],
       },
       {
         heading: "Outcome",
         paragraphs: [
-          "Stips is live at stips.bet: markets generated from the news on a schedule, prices that read as probabilities, and a full bet you can build before anyone asks who you are.",
-          "It's early and the board is small — the interesting part isn't the numbers yet, it's that the thing runs end to end. Design, front end, database, auth, and the scheduled jobs that keep the board from going stale.",
+          "Stips is live at stips.bet. Markets pulled from the news on a schedule, prices that read as probabilities, and a full bet you can build before anyone asks who you are.",
+          "It's early and the board is small. The part worth showing is that it runs end to end — design, front end, database, auth, and the scheduled jobs that keep it from going stale.",
         ],
-        videos: [
-          {
-            src: "/stips-promo.mp4",
-            poster: "/images/stips/markets-board.jpg",
-            caption:
-              "A run through the live product — browsing the board, opening a market, and building a bet from the mobile sheet.",
-          },
+        images: [
+          { src: "/images/stips/markets-board.jpg", alt: "The live board — every market carries its Yes/No price, close date and volume" },
         ],
       },
     ]}
