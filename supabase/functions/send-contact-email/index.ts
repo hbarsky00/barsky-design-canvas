@@ -4,10 +4,11 @@ import DOMPurify from "npm:isomorphic-dompurify@2.14.0";
 
 const OWNER_EMAIL = "hbarsky01@gmail.com";
 
-// Resend's shared onboarding@resend.dev sender only delivers to the address on
-// the Resend account. Set CONTACT_FROM once a domain is verified
-// (e.g. "Hiram Barsky <hello@barskydesign.pro>") and both mails go out properly.
-const FROM = Deno.env.get("CONTACT_FROM") || "Portfolio Contact <onboarding@resend.dev>";
+// barskydesign.pro is verified in Resend (DKIM + SPF, 2026-08-10), so mail goes
+// out from the domain itself. The old onboarding@resend.dev fallback could only
+// deliver to the Resend account holder, which meant visitors never got their
+// confirmation. CONTACT_FROM still overrides if the address ever changes.
+const FROM = Deno.env.get("CONTACT_FROM") || "Hiram Barsky <hello@barskydesign.pro>";
 
 // Built per request, not at module scope. `new Resend(undefined)` throws during
 // import when the key is missing, which kills the worker at boot — the caller
@@ -118,6 +119,7 @@ const handler = async (req: Request): Promise<Response> => {
       const reply = await resend.emails.send({
         from: FROM,
         to: [safeEmail],
+        reply_to: OWNER_EMAIL,
         subject: "Thank you for your message",
         html: `
           <h1>Thank you for reaching out!</h1>
