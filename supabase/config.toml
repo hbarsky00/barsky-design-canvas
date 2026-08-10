@@ -1,4 +1,10 @@
-project_id = "bqrhacrfuateckrykcsj"
+project_id = "erhjbuilzttlshmfvdeq"
+
+# Public contact form: the browser calls it anonymously with the publishable
+# key, which is not a JWT, so gateway JWT verification would reject every real
+# submission. The function does its own validation and rate limiting.
+[functions.send-contact-email]
+verify_jwt = false
 
 [functions.submit-lead]
 verify_jwt = false
