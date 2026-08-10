@@ -156,7 +156,8 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
   "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/blog/designing-for-trust-when-the-product-is-the-risk-cover.jpg",
   "why-enterprise-tools-lose-to-excel": "https://barskydesign.pro/blog/why-enterprise-tools-lose-to-excel-cover.jpg",
   "scope-discipline-when-building-is-cheap": "https://barskydesign.pro/blog/scope-discipline-when-building-is-cheap-cover.jpg",
-  "how-to-interview-a-designer-now": "https://barskydesign.pro/blog/how-to-interview-a-designer-now-cover.jpg"
+  "how-to-interview-a-designer-now": "https://barskydesign.pro/blog/how-to-interview-a-designer-now-cover.jpg",
+  "demo-works-shipping-is-different": "https://barskydesign.pro/blog/demo-works-shipping-is-different-cover.jpg"
 };
 
 // Enhanced blog post SEO data. `published` is the real ISO date matching each
@@ -170,6 +171,12 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
+  "demo-works-shipping-is-different": {
+    title: "The Demo Works. Shipping Is a Different Job.",
+    description: "A demo is the happy path with data you chose. The hard parts live where nobody demos: dates an AI got wrong, permissions that hide bugs, empty screens, and the jobs that run while you sleep.",
+    published: "2026-08-10T09:00:00Z",
+    modified: "2026-08-10T09:00:00Z"
+  },
   "what-one-person-can-ship-now": {
     title: "What One Person Can Actually Ship Now",
     description: "Four products built solo, and the four walls solo actually hits: distribution, institutional trust, operations, and nobody there to check your work.",

@@ -13,6 +13,65 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "12",
+    title: "The Demo Works. Shipping Is a Different Job.",
+    excerpt: "A demo is the happy path with data you chose. Everything that made my products hard was in the part nobody demos \u2014 dates, permissions, empty screens, and the jobs that run while you sleep.",
+    author: "Hiram Barsky",
+    date: "August 10, 2026",
+    readTime: "6 min read",
+    coverImage: "/blog/demo-works-shipping-is-different-cover.jpg",
+    tags: ["AI", "Shipping", "Product Design"],
+    slug: "demo-works-shipping-is-different",
+    content: `
+      <p>Anyone can get a demo working now. You describe the thing, the model writes it, and within an hour there is a screen that does roughly what you said. That part is genuinely solved, and pretending otherwise makes you sound like you have not been paying attention.</p>
+
+      <p>What is not solved is everything after. A demo is the happy path, run once, with data you picked because it makes the screen look right. Shipping is the same product surviving inputs you did not choose, users who are not you, and time passing. Almost everything that was hard about the products I have live was in that second category.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Model Has No Clock</h2>
+
+      <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> generates prediction markets from the news on a schedule, which means an AI is writing the close date for every market. That worked perfectly in testing. Then the first real batches came out already expired.</p>
+
+      <p>Models do not have a clock. Asked for a date a week out, they produce something that looks like a date a week out, anchored to whenever their training data thinks "now" is. In a demo you never notice, because you write one market, look at it, and move on. On a schedule, running unattended, it quietly fills the board with markets nobody can bet on.</p>
+
+      <p>The fix was boring, which is the point: put today's date in the prompt, and validate every generated date before it is allowed near the board. Ten minutes of work that only existed as a problem because the thing was actually running.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Testing As Yourself Hides Half the Product</h2>
+
+      <figure class="my-8">
+        <img src="/blog/demo-works-shipping-is-different-body.jpg" alt="Scaffolding around an unfinished building" loading="lazy" class="w-full rounded-lg" width="1400" height="940" />
+        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@reetoo?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Reto Simonet</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Unsplash</a></figcaption>
+      </figure>
+
+      <p>The second Stips bug cost me considerably more time, and it is the one I would warn anyone about.</p>
+
+      <p>I did most of my testing signed out, because it is faster to just open a page. Signed out, row-level security returns nothing rather than an error. So every bug that only existed for logged-in users looked exactly like an empty state working correctly. Pages that were broken and pages that were empty were indistinguishable, and I could not tell the difference from the outside.</p>
+
+      <p>I did not find any of it until I started testing as a real account. Not a test fixture, not a mock \u2014 an actual signed-in user clicking through the actual product. Everything I had been calling "working" for a week turned out to be a category of bug I had no way to see.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Nobody Demos an Empty Screen</h2>
+
+      <p>Every demo has data in it. That is what makes it a demo. Which means the state most new users actually hit \u2014 nothing here yet \u2014 is the one state you have never looked at.</p>
+
+      <p>On Stips, a market with no bets says "Be the first to trade" instead of rendering an empty chart, because a market nobody has touched is still worth reading; it just has to say so. On <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">HerbaLink</a>, the hard screens were never the search results. They were the ones where a practitioner had not filled in their profile yet, and the whole product is trust, so a half-empty profile is worse than no profile.</p>
+
+      <p>You do not find these by designing. You find them by using the thing on a day when it has no data in it.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Parts That Run While You Sleep</h2>
+
+      <p>The thing that separates a live product from a good prototype is usually not the interface. It is the scheduled job that keeps the content fresh, the auth that has to hold up, the database rules that decide who sees what, and the error path for when an external service is down.</p>
+
+      <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean \u2014 design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why This Matters More Than It Used To</h2>
+
+      <p>When building was expensive, the demo was the hard part, and getting one working was real evidence. Now that generating is cheap, the demo proves almost nothing \u2014 <a href="/blog/taste-is-the-whole-job" class="text-primary underline underline-offset-2 hover:text-primary/80">which is why judgment became the whole job</a>. Everyone can produce the screenshot. Far fewer people have taken something all the way to the point where strangers use it and it holds.</p>
+
+      <p>That gap is the entire difference between "I built a prototype" and <a href="/blog/what-one-person-can-ship-now" class="text-primary underline underline-offset-2 hover:text-primary/80">"I have products live that people use"</a>. It is also, conveniently, the thing that is hard to fake. You can generate a beautiful interface in an afternoon. You cannot generate the eighteen small corrections that come from a real thing being used by real people over real time.</p>
+
+      <p>If you are evaluating someone's work \u2014 or your own \u2014 the useful question is not whether the demo works. It is what broke after it shipped, and what they did about it.</p>
+    `
+  },
+  {
     id: "7",
     title: "What One Person Can Actually Ship Now",
     excerpt: "I have four products live that I built by myself. The useful version of that story is the one that includes where solo stops working, which is not where people expect.",
