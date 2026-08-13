@@ -22,7 +22,13 @@ const ScrollToTop = () => {
     const isBackForward = navigationType === 'POP';
 
     if (typeof window !== 'undefined' && isChangingPages && !hasScrollIntent && !isBackForward) {
-      window.scrollTo(0, 0);
+      // behavior: 'instant' overrides the global `scroll-behavior: smooth` on
+      // html. Without it, arriving on a new page from halfway down the last
+      // one animated the viewport all the way to the top — a visible glide
+      // over content that already belongs to a different page, and now also
+      // fighting the route fade. Anchor links still scroll smoothly; only
+      // page changes land immediately, which is what a new page should do.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
     }
   }, [pathname, state, navigationType]);
 

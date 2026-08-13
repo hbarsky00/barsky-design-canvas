@@ -1751,3 +1751,15 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+
+/* The site's one motion curve, as a utility.
+   Written here rather than as a Tailwind arbitrary value: `ease-[cubic-bezier(
+   0.22,1,0.36,1)]` was silently dropped by the JIT extractor — the sibling
+   `transition-[transform,opacity]` in the same string compiled fine, so it
+   failed quietly and the element fell back to the default easing. A named
+   utility cannot fail that way. */
+@layer utilities {
+  .ease-brand {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}

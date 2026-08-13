@@ -72,7 +72,14 @@ const Header: React.FC = () => {
     <>
       <MainContentSkipLink />
       <header ref={headerRef} className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        // transition-all animated every property on a permanently-mounted
+        // fixed element — background, border and shadow included, none of
+        // which change. Only transform and opacity do, and limiting it to
+        // those keeps the reveal on the compositor. Same curve as the route
+        // fade and the section reveals.
+        "fixed top-0 left-0 right-0 z-50",
+        "transition-[transform,opacity] duration-500 ease-brand",
+        "motion-reduce:transition-none",
         "pointer-events-auto",
         "py-3 sm:py-4",
         "md:translate-y-0",
