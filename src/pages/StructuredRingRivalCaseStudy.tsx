@@ -9,10 +9,14 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     tags={["AI-Assisted Product", "Mobile Web", "Game Design", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://ringrival.today"
+    // The opening frame is gameplay, not a trailer. What used to sit here was a
+    // cinematic of a photorealistic boxer — nothing in it existed in the game,
+    // so the first thing the page did was set the wrong expectation and the
+    // second thing it did was break it.
     heroImage={{
-      src: "/images/ringrival-hero-title.png",
-      alt: "Ring-Rival hero title screen",
-      hoverVideo: "/lovable-uploads/ring-rival-hero.mp4",
+      src: "/images/ringrival-now/card-poster.jpg",
+      alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
+      hoverVideo: "/ring-rival-fight-frost.mp4",
     }}
     blocks={[
       {
@@ -22,72 +26,56 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Building a Fighter Out of Parts",
+        heading: "How It Got Built",
         paragraphs: [
-          "A fighter isn't one drawing. It's a body, two arms, two legs and a head, each a separate piece, because each has to move on its own.",
-          "Glass Joe shows every seam. Flat block torso. Arms that are a single wedge from shoulder to glove, no elbow. Legs that meet the hip at a hard edge. One flat fill per limb, no shading anywhere. Von Kaiser is the same rig at heavier proportions — which was the point of building the rig before the roster.",
-          "It worked and still looked like paper: a flat wedge swinging at a flat block reads as two shapes overlapping, not as contact. So arms got split into shoulder, bicep and forearm, legs got a knee and a calf, and the torso got its own shading — enough that a body turn reads as a body turning.",
+          "A fighter isn't one drawing. It's a body, two arms, two legs and a head, each a separate piece, because each has to move on its own — so the rig came before the roster.",
+          "Glass Joe was the first one through it, and he shows every seam: flat block torso, arms that are a single wedge from shoulder to glove with no elbow, legs meeting the hip at a hard edge, one flat fill per limb. Von Kaiser is that same rig at heavier proportions. Getting a second fighter out of it was the test — if the rig held, the roster was a data problem instead of an art problem.",
+          "It held, and it still looked like paper. A flat wedge swinging at a flat block reads as two shapes overlapping, not as contact. So arms got split into shoulder, bicep and forearm, legs got a knee and a calf, and the torso got its own shading — enough that a body turn reads as a body turning. That loop is the whole build: generate the parts fast, throw out what doesn't read, rebuild the layer underneath.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/ringrival-glassjoe-idle.png", alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee" },
-          { src: "/images/ringrival-vonkaiser.png", alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance" },
+          {
+            src: "/images/ringrival-glassjoe-idle.png",
+            alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee",
+            caption: "Glass Joe, first fighter through the rig — one flat fill per limb, no elbow, no shading.",
+            width: 1920,
+            height: 1328,
+          },
+          {
+            src: "/images/ringrival-vonkaiser.png",
+            alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance",
+            caption: "Von Kaiser, same rig, heavier proportions. Proof the roster was data, not redrawing.",
+            width: 1920,
+            height: 1333,
+          },
         ],
       },
       {
-        heading: "Making the Hit Land",
+        heading: "The Part AI Couldn't Do",
         paragraphs: [
-          "Impact particles were the first attempt and the first mistake — the burst was big enough to bury the fighter at the exact moment you needed to read him. Dialed back until it punctuated the hit instead of hiding it.",
-          "Hit-stop duration, screen shake, a 60ms haptic on connect, the health-bar drain curve, where the punch button sits, how big the block zone is: all tuned by hand, on a real phone. No model knows whether a punch feels like a punch.",
-        ],
-        images: [
-          { src: "/images/ringrival-impact-particles.png", alt: "Impact particles dialed back until they punctuated the hit instead of burying the fighter" },
-          { src: "/images/ringrival-knockdown.png", alt: "The knockdown — DOWN! and a 5 count, star burst timed to the hit-stop so the stop and the flash land together" },
+          "Impact particles were the first attempt and the first mistake — the burst was big enough to bury the fighter at the exact moment you needed to read him.",
+          "Hit-stop duration, screen shake, a 60ms haptic on connect, the health-bar drain curve, where the punch button sits, how big the block zone is: all tuned by hand, on a real phone, over and over. No model knows whether a punch feels like a punch. AI generated the raw material at a 3–6 build-per-day cadence; the designer was the taste filter on every output.",
         ],
       },
       {
         heading: "What Got Cut",
         paragraphs: [
-          "Time-to-first-punch went from 22 seconds to 6, by cutting menus and tutorial screens.",
-          "Audio failure dropped from ~40% to under 2%, by gating AudioContext behind the first tap.",
-          "Webcam hand-tracking was technically impressive and wrong for the audience. Removed.",
-          "The tutorial became one card: the whole control scheme on a screen you dismiss in a tap.",
-        ],
-        images: [
-          { src: "/images/ringrival-controls-modal.png", alt: "The one card that replaced the tutorial flow — the entire control scheme on a single dismissable screen" },
+          "Time-to-first-punch went from 22 seconds to 6 — not by optimizing anything, by deleting the splash screen, the mode select, the fighter select and the tutorial. The tutorial became one card you dismiss in a tap.",
+          "Audio failed in roughly 40% of sessions and is under 2% now, by gating AudioContext behind the first tap. Webcam hand-tracking was technically impressive and wrong for the audience, so it went too.",
         ],
       },
       {
-        heading: "Then \u2192 Now",
+        heading: "Where It Landed",
         paragraphs: [
-          "Scroll back to Glass Joe, then watch these. Same rig — but the wedges are arms now. Denny Frost loads a shoulder before the hand moves. Klaus Brenner is heavier on purpose: slower to reset, a different read for the player.",
-          "Each opponent ships with their own special, their own trash talk and their own rhythm, rather than a reskin. A knockdown stopped being a countdown and became something you can fight your way out of.",
+          "Same rig as Glass Joe — but the wedges are arms now. Klaus Brenner is heavier on purpose: slower to reset, a different read for the player. Each opponent ships with their own special, their own trash talk and their own rhythm rather than a reskin, and a knockdown stopped being a countdown and became something you can fight your way out of.",
         ],
         videos: [
           {
-            src: "/ring-rival-fight-frost.mp4",
-            poster: "/images/ringrival-now/fight-frost-poster.jpg",
-            caption: "Denny Frost — jabs, blocks, and a super punch charging. The hit-stop and health-bar drain are the hand-tuned parts.",
-          },
-          {
             src: "/ring-rival-fight-brenner.mp4",
             poster: "/images/ringrival-now/fight-brenner-poster.jpg",
-            caption: "Klaus Brenner — bigger, heavier, on a different rhythm. Two fighters, two reads: that is what a roster is for.",
+            caption:
+              "Klaus Brenner — bigger, heavier, on a different rhythm. Two fighters, two reads: that is what a roster is for.",
           },
-        ],
-        images: [
-          { src: "/images/ringrival-now/trash-talk.jpg", alt: "Opponent trash talk mid-fight — \"They really signed YOU to fight me?\"" },
-          { src: "/images/ringrival-now/comeback-mechanic.jpg", alt: "Knocked down against Ricky Groove — tap rapidly to get up before the count" },
-          { src: "/images/ringrival-now/disco-flurry.jpg", alt: "Ricky Groove's Disco Flurry special move, sparks and all" },
-        ],
-      },
-      {
-        heading: "Outcome",
-        paragraphs: [
-          "A shipped boxing game with a 3–6 build-per-day cadence, real user cuts, and AI opponents that bait, hesitate and tilt.",
-          "AI generated the raw material. The designer was the taste filter on every output.",
-        ],
-        images: [
-          { src: "/images/ringrival-now/denny-frost-haymaker.jpg", alt: "Denny Frost's Glass Haymaker landing, with opponent-specific trash talk" },
         ],
       },
     ]}

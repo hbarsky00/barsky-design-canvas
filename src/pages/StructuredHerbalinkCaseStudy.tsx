@@ -22,8 +22,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "The design job wasn't to build a bigger directory. It was to make the safe path the easy path in a category where being wrong has real medical consequences.",
         ],
         images: [
-          { src: "/images/herbalink/find-herbalist-sketch.png", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow" },
-          { src: "/images/herbalink/sitemap.png", alt: "Full site map — the credential-gated Find Herbalists flow sits alongside account, support, and legal pages" },
+          { src: "/images/herbalink/find-herbalist-sketch.png", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", width: 1536, height: 1024 },
+          { src: "/images/herbalink/sitemap.png", alt: "Full site map — the credential-gated Find Herbalists flow sits alongside account, support, and legal pages", width: 512, height: 768 },
         ],
       },
       {

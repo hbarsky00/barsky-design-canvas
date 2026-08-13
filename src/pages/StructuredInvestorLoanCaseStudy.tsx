@@ -49,10 +49,11 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Guided order builder with disabled forward steps: pick the lender, then terms become editable. Feels restrictive in screenshots, less restrictive in practice.",
           "Bloomberg-style search was the right call for this audience — analysts who know what they want and need to find it in two keystrokes.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/investor-loan-app/book-builder-lofi.png", alt: "Low-fidelity order builder wireframe for loan workflows" },
-          { src: "/images/investor-loan-app/whiteboarding.png", alt: "Whiteboard mapping of loan lifecycle from application to audit" },
-          { src: "/images/investor-loan-app/user-journey.png", alt: "The four-step workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — the flow loan officers actually adopted" },
+          { src: "/images/investor-loan-app/book-builder-lofi.png", alt: "Low-fidelity order builder wireframe for loan workflows", width: 1529, height: 1113 },
+          { src: "/images/investor-loan-app/whiteboarding.png", alt: "Whiteboard mapping of loan lifecycle from application to audit", width: 512, height: 512 },
+          { src: "/images/investor-loan-app/user-journey.png", alt: "The four-step workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — the flow loan officers actually adopted", width: 2250, height: 1360 },
         ],
       },
       {
@@ -72,8 +73,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Three previous attempts hadn't gotten that far.",
         ],
         images: [
-          { src: "/images/investor-loan-app/my-deals-list-view.jpg", alt: "My Deals — collaboration tools (chat, share, invite) with per-deal progress tracking" },
-          { src: "/images/investor-loan-app/manage-loan-limits.jpg", alt: "Manage Loan Limits — utilization bars, total limit, and available credit surfaced per borrower" },
+          { src: "/images/investor-loan-app/my-deals-list-view.jpg", alt: "My Deals — collaboration tools (chat, share, invite) with per-deal progress tracking", width: 1440, height: 716 },
+          { src: "/images/investor-loan-app/manage-loan-limits.jpg", alt: "Manage Loan Limits — utilization bars, total limit, and available credit surfaced per borrower", width: 1080, height: 1097 },
         ],
       },
     ]}

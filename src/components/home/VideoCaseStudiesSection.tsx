@@ -40,11 +40,15 @@ const caseStudies: CaseStudy[] = [
     url: "/project/ring-rival",
     liveUrl: "https://ringrival.today",
     images: {
-      primary: "/images/ringrival-hero-title.png",
+      // Was the title screen still + an AI-generated cinematic of a
+      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
+      // fighter. Now the card shows the thing you actually get — first-person
+      // gloves, opponent trash talk, the super-punch meter.
+      primary: "/images/ringrival-now/card-poster.jpg",
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/ring-rival-hero.mp4"
+    video: "/ring-rival-card.mp4"
   },
   {
     id: "catchbuddy",

@@ -52,10 +52,11 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "The Quick Start wizard was over-engineered — users wanted to skip it.",
           "Apple, Outlook, and ICS calendar support were built and then cut as a maintenance tax for a feature users barely used.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/catchbuddy-find-players.png", alt: "Find Players list with 92% and 81% match scores" },
-          { src: "/images/catchbuddy-signup-minor-gate.png", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow" },
-          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter" },
+          { src: "/images/catchbuddy-find-players.png", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404 },
+          { src: "/images/catchbuddy-signup-minor-gate.png", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398 },
+          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378 },
         ],
       },
       {

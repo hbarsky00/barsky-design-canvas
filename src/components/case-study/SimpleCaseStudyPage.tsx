@@ -37,9 +37,18 @@ export interface SimpleCaseStudyImage {
   hoverVideo?: string;
 }
 
-/** Portrait only when we actually know the dimensions; assume landscape otherwise. */
+/**
+ * Portrait only when we actually know the dimensions; assume landscape otherwise.
+ *
+ * The test is a phone-shaped ratio, not merely `height > width`. A 1080×1097
+ * desktop capture is one pixel off square and was being filed as portrait,
+ * which dropped a dense data table into the 270px phone rail — unreadable.
+ * Real phone screenshots come in around 1.3–2.2; anything squarer is a desktop
+ * shot that happens to be tall.
+ */
+const PORTRAIT_RATIO = 1.25;
 const isPortrait = (img: SimpleCaseStudyImage) =>
-  Boolean(img.width && img.height && img.height > img.width);
+  Boolean(img.width && img.height && img.height / img.width >= PORTRAIT_RATIO);
 
 export interface SimpleCaseStudyVideo {
   src: string;
@@ -71,6 +80,14 @@ export interface SimpleCaseStudyBlock {
   /** Outcome figures. Numbers only, never invented. */
   stats?: { value: string; label: string }[];
   images?: SimpleCaseStudyImage[];
+  /**
+   * "pair" puts landscape images side by side instead of stacking them full
+   * width. Two shots that only mean something *against each other* — a before
+   * and an after, one rig at two proportions — have to be visible at the same
+   * time or the comparison never happens. Stacked, the reader scrolls past a
+   * wall of near-identical screenshots and reads it as padding.
+   */
+  imageLayout?: "stack" | "pair";
   videos?: SimpleCaseStudyVideo[];
   /** @deprecated use images */
   image?: SimpleCaseStudyImage;
@@ -366,7 +383,13 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                     shapes, wildly different scales, and it read as a pile of
                     screenshots rather than a sequence. */}
                 {landscapeImgs.length > 0 && (
-                  <div className="mt-10 space-y-10">
+                  <div
+                    className={
+                      b.imageLayout === "pair"
+                        ? "mt-10 grid gap-6 sm:grid-cols-2 sm:items-start"
+                        : "mt-10 space-y-10"
+                    }
+                  >
                     {landscapeImgs.map(({ img, idx }) => (
                       <CaseStudyFigure
                         key={`${img.src}-${idx}`}

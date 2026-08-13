@@ -44,9 +44,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Permission state is a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely made people think the data didn't exist.",
           "Permission-aware autocomplete was built, security flagged it — the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/dae-search/decisions-1.webp", alt: "Initial concepts for enterprise search interface design" },
-          { src: "/images/dae-search/decisions-2.png", alt: "Search paradigm exploration and decision framework" },
+          { src: "/images/dae-search/decisions-1.webp", alt: "Initial concepts for enterprise search interface design", width: 1733, height: 1274 },
+          { src: "/images/dae-search/decisions-2.png", alt: "Search paradigm exploration and decision framework", width: 1920, height: 969 },
         ],
       },
       {
