@@ -11,6 +11,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/investor-loan-app/hero.png",
       alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
+      hoverVideo: "/investor-loan-deals.mp4",
     }}
     blocks={[
       {
@@ -30,8 +31,15 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Predictive search instead of filters: loan officers think in name fragments and deal codes, not filter panels.",
           "The audit trail sits next to the record, not buried in an admin tool — this is what made compliance actually advocate for adoption.",
         ],
+        videos: [
+          {
+            src: "/investor-loan-add-order.mp4",
+            poster: "/images/investor-loan-app/add-order-poster.jpg",
+            caption:
+              "Add Order. The add, duplicate and remove controls stay disabled until a lender is chosen; remove the last line and it falls back to telling you why, rather than showing an empty form.",
+          },
+        ],
         images: [
-          { src: "/images/investor-loan-app/add-order-default.jpg", alt: "Add Order — locked until a lender is selected first, the guided order builder in action" },
           { src: "/images/investor-loan-app/loan-officer.jpg", alt: "Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record" },
         ],
       },
