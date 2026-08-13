@@ -63,8 +63,16 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "The comprehensive symptom diary was cut to a single follow-up question — users opened the full version twice and abandoned it.",
           "Open-ended search was removed entirely in favor of credential-first discovery.",
         ],
+        videos: [
+          {
+            src: "/herbalink-before.mp4",
+            poster: "/images/herbalink/before-poster.jpg",
+            caption:
+              "Before: search by name or specialty, then filter by Specialty and Health Concerns. It works, and it still asks someone who doesn't know what they need to describe what they need.",
+          },
+        ],
         images: [
-          { src: "/images/herbalink/mobile-booking.png", alt: "Booking on mobile — \"We'll match you\" replaces the old filter panel" },
+          { src: "/images/herbalink/mobile-booking.png", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question instead of a search box and two filter menus." },
         ],
       },
       {
