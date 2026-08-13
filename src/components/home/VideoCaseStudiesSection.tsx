@@ -271,14 +271,14 @@ CaseStudyCard.displayName = "CaseStudyCard";
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="pt-8 md:pt-14 pb-20 md:pb-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="mb-16 md:mb-20 max-w-2xl"
+          className="mb-12 md:mb-16 max-w-2xl"
         >
           <h2 className="font-display font-bold text-foreground text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
             Selected Work

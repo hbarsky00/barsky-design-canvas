@@ -47,11 +47,17 @@ const HomepageLayout: React.FC = () => {
         <div className="space-y-2 md:space-y-6">
         
         <section id="case-studies" tabIndex={-1} className="scroll-offset">
-          <LazySection threshold={0.05} fallback={<div className="min-h-[60vh] animate-pulse bg-muted/20 rounded-lg" />}>
-            <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
+          {/* Not LazySection. This is the first thing under the hero, so every
+              visitor scrolls into it — gating it on an IntersectionObserver
+              only guaranteed a placeholder-then-content swap, which is the
+              odd empty band that used to sit between the hero and the work.
+              Suspense still code-splits it; it just starts fetching on mount
+              instead of waiting to be scrolled at. */}
+          <Suspense fallback={<div className="min-h-[40vh]" aria-hidden="true" />}>
+            <SectionTransition variant="fade" delay={0.05} intensity={0.3}>
               <LazyVideoCaseStudiesSection />
             </SectionTransition>
-          </LazySection>
+          </Suspense>
         </section>
         
         {/* Keep current projects section outside 3D container to prevent cutting off */}

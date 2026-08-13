@@ -67,10 +67,15 @@ const CleanHero: React.FC = () => {
         style={{
           background:
             "radial-gradient(620px circle at 78% 8%, hsl(var(--primary) / 0.16), transparent 60%), radial-gradient(480px circle at 8% 85%, hsl(270 80% 60% / 0.10), transparent 60%)",
+          // The lower glow used to stop dead at the section edge, drawing a
+          // visible horizontal seam across the page. Fading it out before the
+          // boundary lets the hero dissolve into what follows.
+          maskImage: "linear-gradient(to bottom, black 60%, transparent 97%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 97%)",
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-10">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-4">
         <motion.div
           initial="hidden"
           animate="show"
@@ -187,7 +192,7 @@ const CleanHero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        <div className="flex justify-center pt-10 pb-2">
+        <div className="flex justify-center pt-6 pb-0">
           <button
             type="button"
             onClick={scrollToCaseStudies}
