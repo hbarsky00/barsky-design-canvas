@@ -1,4 +1,6 @@
 import React, { Suspense } from "react";
+import { MotionConfig, motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -53,6 +55,35 @@ const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 
 const queryClient = new QueryClient();
 
+/**
+ * A short fade-and-lift on every route change.
+ *
+ * Navigation used to be an instant DOM swap: hard cut, spinner, content
+ * popping in at the top. Keying on pathname gives each page its own mount, so
+ * it arrives rather than appears.
+ *
+ * Fade-in only, not AnimatePresence mode="wait" — routes are lazy, and waiting
+ * on an exit while the chunk resolves holds the old page on screen and makes
+ * navigation feel slower than it is.
+ *
+ * The y offset is 8px: enough to read as movement, small enough that it never
+ * competes with the scroll-linked reveals further down the page. Under
+ * reduced-motion, MotionConfig strips the transform and keeps the opacity.
+ */
+const RouteFade: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { pathname } = useLocation();
+  return (
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 function AppContent() {
   return (
     <>
@@ -64,14 +95,18 @@ function AppContent() {
       
       <SpatialNavigationWrapper isNavigating={false}>
         <Suspense fallback={
+          /* Was a full-screen spinner with "Loading page...". Between two
+             already-cached route chunks it flashed for a frame or two, which
+             reads as a stutter rather than progress. A blank hold of the same
+             height is calmer, and the fade below covers the arrival. */
           <div
             role="status"
             aria-live="polite"
-            className="min-h-screen flex items-center justify-center"
-          >
-            <MaterialDesignLoader size="lg" text="Loading page..." />
-          </div>
+            aria-label="Loading page"
+            className="min-h-screen"
+          />
         }>
+            <RouteFade>
             <Routes>
               {/* Home route */}
               <Route path="/" element={<Index />} />
@@ -122,6 +157,7 @@ function AppContent() {
                   produced soft-404s for crawlers). */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </RouteFade>
           </Suspense>
         </SpatialNavigationWrapper>
         
@@ -132,6 +168,15 @@ function AppContent() {
 
 function App() {
   return (
+    /* One switch for every motion component in the app. There are ~130
+       whileInView animations across ~70 components and only three of them
+       checked useReducedMotion individually, so anyone with the OS setting on
+       was still getting the full slide-up treatment. reducedMotion="user"
+       makes framer-motion honour the preference everywhere: transforms are
+       dropped, opacity is kept, and nothing has to be audited component by
+       component. The CSS block in index.css only ever covered scroll-behavior
+       and scroll-snap; it cannot reach JS-driven transforms. */
+    <MotionConfig reducedMotion="user">
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <HeadingHierarchyProvider>
@@ -141,6 +186,7 @@ function App() {
         </HeadingHierarchyProvider>
       </HelmetProvider>
     </QueryClientProvider>
+    </MotionConfig>
   );
 }
 
