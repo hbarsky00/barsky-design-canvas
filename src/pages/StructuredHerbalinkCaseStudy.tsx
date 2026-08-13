@@ -13,6 +13,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       // Live screenshots of the shipped app, replacing dead barskyux.com links.
       src: "/images/herbalink/home-hero.png",
       alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
+      // Full booking-demo capture: directory → booking → checkout → herb library.
+      hoverVideo: "/herbalink-demo.mp4",
     }}
     blocks={[
       {

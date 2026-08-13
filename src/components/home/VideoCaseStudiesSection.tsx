@@ -74,16 +74,15 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      // Was hosted on barskyux.com (the old WordPress site) — that domain no
-      // longer resolves at all (DNS failure, not a 404), so both this image
-      // and the video below were broken. Swapped to a real local asset
-      // already in this repo; no local HerbaLink video exists, so the video
-      // field is dropped and this card now renders the static image
-      // (same fallback path "Email Creation AI" already uses).
-      primary: "/images/herbalink/home-2026.jpg",
+      // The old barskyux.com-hosted video died with that domain; this card sat
+      // static ever since. Hiram's booking-demo capture (Aug 2026) restores
+      // the hover loop — poster is its first frame so hover continues the
+      // same scene instead of jumping.
+      primary: "/images/herbalink/card-poster-home.jpg",
       alt: "HerbaLink practitioner booking interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/herbalink-card.mp4"
   },
   {
     id: "stips",
@@ -94,13 +93,14 @@ const caseStudies: CaseStudy[] = [
     url: "/project/stips",
     liveUrl: "https://stips.bet",
     images: {
-      primary: "/images/stips/landing.jpg",
-      alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start"
+      primary: "/images/stips/card-poster-home.jpg",
+      alt: "Stips markets board — live prices on real-world events"
     },
     layout: "side-by-side",
-    // Cut from 1.5s of the walkthrough so the clip opens on the landing page —
-    // the same frame as the poster above — then clicks through to the board.
-    // Short like the other cards' loops so it starts instantly on hover.
+    // The old cut spent its first four seconds parked on the static landing
+    // page, so hovering looked like nothing happened. This one opens on the
+    // markets board already scrolling — motion from the first frame, and the
+    // poster is that same frame.
     video: "/stips-card.mp4"
   },
   {
@@ -129,7 +129,10 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/investor-loan-app",
     images: {
-      primary: "/images/investor-loan-app/hero.png",
+      // Poster is the video's own first frame — the source clip had ~100px of
+      // grey mock-frame baked into the top and bottom; it's cropped out of
+      // both now, so no more letterboxed card.
+      primary: "/images/investor-loan-app/card-poster-home.jpg",
       alt: "Investor loan analysis dashboard overview"
     },
     layout: "side-by-side",

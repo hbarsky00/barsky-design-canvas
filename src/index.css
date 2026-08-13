@@ -1791,9 +1791,14 @@ h1, h2, h3, h4, h5, h6 {
     grid-column: full;
   }
 
-  /* Reading measure: ~65 characters at the body size. */
+  /* Text spans the same track as the media. There used to be a 42rem
+     "reading measure" here — typographically orthodox, but on a 1150px
+     content track it left more empty page than paragraph, and every case
+     study read as a thin ribbon of text beside a void. Hiram's call: no
+     half-page text, anywhere. The grid still caps line length at the wide
+     track, which stays within reason on laptop widths. */
   .cs-measure {
-    max-width: 42rem;
+    max-width: none;
   }
 }
 
