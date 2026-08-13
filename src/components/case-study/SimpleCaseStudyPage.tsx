@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import CaseStudyFigure, {
   CaseStudyClip,
   CaseStudyHeroMedia,
+  CaseStudyWalkthrough,
 } from "@/components/case-study/CaseStudyFigure";
 import { getCaseStudyNeighbours } from "@/data/caseStudyIndex";
 
@@ -45,6 +46,11 @@ export interface SimpleCaseStudyVideo {
   /** Still shown before the clip plays, and wherever autoplay is blocked. */
   poster?: string;
   caption: string;
+  /**
+   * Set for a video with a voice track. It renders with controls and sound,
+   * and waits to be played, instead of looping silently in the background.
+   */
+  narrated?: boolean;
 }
 
 export interface SimpleCaseStudyQuote {
@@ -334,14 +340,23 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
 
                 {b.videos && b.videos.length > 0 && (
                   <div className="mt-10 space-y-10">
-                    {b.videos.map((v) => (
-                      <CaseStudyClip
-                        key={v.src}
-                        src={v.src}
-                        poster={v.poster}
-                        caption={v.caption}
-                      />
-                    ))}
+                    {b.videos.map((v) =>
+                      v.narrated ? (
+                        <CaseStudyWalkthrough
+                          key={v.src}
+                          src={v.src}
+                          poster={v.poster}
+                          caption={v.caption}
+                        />
+                      ) : (
+                        <CaseStudyClip
+                          key={v.src}
+                          src={v.src}
+                          poster={v.poster}
+                          caption={v.caption}
+                        />
+                      )
+                    )}
                   </div>
                 )}
 

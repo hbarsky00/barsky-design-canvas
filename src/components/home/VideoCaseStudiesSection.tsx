@@ -59,7 +59,7 @@ const caseStudies: CaseStudy[] = [
       alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/catchbuddy-hero.mp4"
+    video: "/catchbuddy-card.mp4"
   },
   {
     id: "herbalink",

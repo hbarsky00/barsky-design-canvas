@@ -224,6 +224,50 @@ export const CaseStudyClip: React.FC<CaseStudyClipProps> = ({
   );
 };
 
+export interface CaseStudyWalkthroughProps {
+  src: string;
+  poster?: string;
+  caption: string;
+  className?: string;
+}
+
+/**
+ * A narrated walkthrough — the opposite of CaseStudyClip in every way that
+ * matters. Clips are silent, looping, autoplaying wallpaper; this one has a
+ * voice track, so it keeps its sound, waits to be asked, and shows real
+ * controls. Autoplaying audio at a reader is hostile, and muting it would
+ * throw away the entire reason the video exists.
+ *
+ * preload="none" because these are minutes long and megabytes heavy: nobody
+ * should pay to download a walkthrough they never press play on.
+ */
+export const CaseStudyWalkthrough: React.FC<CaseStudyWalkthroughProps> = ({
+  src,
+  poster,
+  caption,
+  className = "",
+}) => {
+  const ref = useReveal<HTMLElement>();
+
+  return (
+    <figure ref={ref} className={className}>
+      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+        <video
+          src={src}
+          poster={poster}
+          controls
+          playsInline
+          preload="none"
+          className="block h-auto w-full"
+        />
+      </div>
+      <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        {caption}
+      </figcaption>
+    </figure>
+  );
+};
+
 export interface HeroMediaProps {
   src: string;
   alt: string;

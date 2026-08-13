@@ -12,7 +12,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/catchbuddy-hero-landing.png",
       alt: "CatchBuddy pickup sports landing hero",
-      hoverVideo: "/lovable-uploads/catchbuddy-hero.mp4",
+      hoverVideo: "/catchbuddy-card.mp4",
     }}
     blocks={[
       {
@@ -63,6 +63,15 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         paragraphs: [
           "A shipped platform with auth, RLS, Stripe, Google OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo.",
           "Trust-first architecture, built in from v1, not bolted on.",
+        ],
+        videos: [
+          {
+            src: "/catchbuddy-walkthrough.mp4",
+            poster: "/images/catchbuddy-walkthrough-poster.jpg",
+            narrated: true,
+            caption:
+              "The full walkthrough, with me talking through it — posting a game, picking a park, equipment and preferences, then the safety layer: emergency contacts, phone verification, and the minor gate.",
+          },
         ],
       },
     ]}
