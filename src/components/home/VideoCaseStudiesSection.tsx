@@ -128,7 +128,8 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/investor-loan-app/hero.png",
       alt: "Investor loan analysis dashboard overview"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/investor-loan-deals-card.mp4"
   }
 ];
 
