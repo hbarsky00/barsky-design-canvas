@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { useLocation } from "react-router-dom";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,25 +31,47 @@ const ContactForm: React.FC = () => {
 
   const [fallbackVisible, setFallbackVisible] = useState(false);
 
+  /**
+   * Netlify Forms, not a Supabase edge function.
+   *
+   * The old path died the way free-tier infrastructure dies: the Supabase
+   * project paused after ~7 days idle, its subdomain stopped resolving, and
+   * every submission failed silently for as long as that lasted. Netlify
+   * already serves this site, so its form handler has nothing to wake up.
+   *
+   * The POST is url-encoded to "/" with a form-name field — that is the shape
+   * Netlify's handler expects, and "/" is a real file rather than something the
+   * SPA catch-all rewrites.
+   */
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
+      .join("&");
+
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.functions.invoke("send-contact-email", { body: values });
-      if (error) throw error;
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", "bot-field": "", ...values }),
+      });
+      // fetch only rejects on network failure, so a 404 from a form Netlify
+      // never registered would otherwise read as success.
+      if (!res.ok) throw new Error(`form POST returned ${res.status}`);
+
       toast({
         title: "Thanks for reaching out!",
         description: "Your message has been received. I'll get back to you soon.",
         duration: 5000,
       });
       form.reset();
+      setFallbackVisible(false);
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Never send someone away with nothing. The backend went down once
-      // already — a paused Supabase project — and for as long as it was down
-      // this branch told every visitor "try again later" and gave them no
-      // other way to reach Hiram. A failed submit has to hand over the direct
-      // address, and the message they already typed has to survive: the form
-      // is deliberately not reset in this branch, so it is still there to copy.
+      // Never send someone away with nothing. A failed submit has to hand over
+      // the direct address, and the message they already typed has to survive —
+      // the form is deliberately not reset here so it is still there to copy.
       toast({
         title: "That didn't send — email me directly",
         description: "hbarsky01@gmail.com — your message is still in the form, copy it across.",
@@ -73,7 +94,25 @@ const ContactForm: React.FC = () => {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4"
+        >
+          {/* Netlify needs the form name in the payload; the honeypot is a
+              field a person never sees and a bot fills in. Both are submitted
+              by the fetch in onSubmit, so these are here for the no-JS case
+              and for parity with the detection stub in index.html. */}
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              Leave this empty: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </label>
+          </p>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}

@@ -133,6 +133,29 @@
     <link rel="preload" as="image" href="/images/hiram-barsky-profile.png" fetchpriority="high" />
 </head>
   <body>
+    <!--
+      Netlify Forms detection stub.
+
+      Netlify's build bot scans the deployed HTML for forms; it never executes
+      JavaScript, so a form that only exists inside the React bundle is invisible
+      to it and every POST comes back 404. This hidden copy is what registers the
+      form and its field names at deploy time. The real, styled form is the React
+      one, which POSTs to it.
+
+      Why this exists at all: the contact form used to run through a Supabase
+      edge function, and Supabase's free tier paused the project after ~7 days
+      idle. A paused project stops resolving, so the form died silently and
+      stayed dead. Netlify Forms is part of the host that already serves the
+      site — there is no second service to keep awake.
+    -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
     
