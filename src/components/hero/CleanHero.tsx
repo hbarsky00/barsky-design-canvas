@@ -241,7 +241,7 @@ const CleanHero: React.FC = () => {
               />
               <div className="relative rounded-[1.75rem] p-1.5 bg-gradient-to-tr from-primary/40 via-purple-500/30 to-transparent">
                 <img
-                  src="/images/hiram-barsky-profile.png"
+                  src="/images/hiram-barsky-profile.webp"
                   alt="Hiram Barsky"
                   width={400}
                   height={400}

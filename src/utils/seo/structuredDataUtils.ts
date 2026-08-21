@@ -161,6 +161,8 @@ export const generateStructuredData = (seoData: SEOData) => {
     const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      name: "Working with Hiram Barsky — common questions",
+      inLanguage: "en-US",
       mainEntity: [
         // Answers are the claims Hiram would make on a call. The previous
         // versions promised "conversion by 40%+" and "measurable improvements

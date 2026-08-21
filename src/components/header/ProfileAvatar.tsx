@@ -5,7 +5,7 @@ import { useScrollToHomeTop } from "@/hooks/useScrollToHomeTop";
 import { useHeaderNavigation } from "./useHeaderNavigation";
 
 const ProfileAvatar: React.FC = () => {
-  const imageUrl = '/images/hiram-barsky-profile.png';
+  const imageUrl = '/images/hiram-barsky-profile.webp';
 
   const { setIsIntentionalScrolling } = useHeaderNavigation();
   

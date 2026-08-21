@@ -69,14 +69,14 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/ringrival-sprite-sheet-1.png",
+            src: "/images/ringrival-sprite-sheet-1.webp",
             width: 1100,
             height: 1100,
             alt: "Glass Joe's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Glass Jaw), wind-up, block and hurt",
             caption: "Glass Joe. Lean, nervous, and his special is the Glass Jaw, which is exactly as bad for him as it sounds.",
           },
           {
-            src: "/images/ringrival-sprite-sheet-2.png",
+            src: "/images/ringrival-sprite-sheet-2.webp",
             width: 1100,
             height: 1100,
             alt: "Von Kaiser's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Kaiser Barrage), wind-up, block and hurt",
