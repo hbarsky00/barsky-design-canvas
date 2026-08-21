@@ -11,6 +11,7 @@ import CaseStudyFigure, {
   CaseStudyWalkthrough,
 } from "@/components/case-study/CaseStudyFigure";
 import { getCaseStudyNeighbours } from "@/data/caseStudyIndex";
+import FloatingScrollToTopButton from "@/components/FloatingScrollToTopButton";
 
 const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
@@ -498,6 +499,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
         </main>
 
         <Footer />
+        <FloatingScrollToTopButton />
       </div>
     </ImageMaximizerProvider>
   );
