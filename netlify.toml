@@ -1,3 +1,16 @@
+# Netlify's Pretty URLs defaults to on, which 301s /project/stips to
+# /project/stips/ whenever a directory index exists. Every canonical tag and
+# every sitemap entry here uses the slashless form, so Google was crawling the
+# canonical URL, receiving a 301, and filing the page under "Page with
+# redirect" — which is what put ~15 live pages in that report.
+#
+# Off means /project/stips serves its index.html directly with a 200. The
+# trailing-slash rules further down still catch anyone who arrives with one and
+# consolidate them onto the slashless canonical, so there is exactly one URL
+# per page and no hop on the one we advertise.
+[build.processing]
+  pretty_urls = false
+
 # 301 Redirects for pages that redirect (fix Google Search Console issues)
 
 # www to non-www redirect (must be first, with force flag)

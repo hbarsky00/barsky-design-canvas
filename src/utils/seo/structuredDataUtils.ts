@@ -162,20 +162,25 @@ export const generateStructuredData = (seoData: SEOData) => {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
+        // Answers are the claims Hiram would make on a call. The previous
+        // versions promised "conversion by 40%+" and "measurable improvements
+        // within 2-4 weeks" — numbers that trace to nothing in this codebase,
+        // sitting in structured data, which is the format an answer engine is
+        // most likely to quote back verbatim.
         {
           "@type": "Question",
-          name: "What makes your UX design approach different?",
+          name: "What makes your design approach different?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "I combine traditional UX research with AI-powered analytics to create data-driven designs that boost conversion by 40%+. Unlike designers who rely on assumptions, I use AI to understand user behavior patterns and optimize accordingly."
+            text: "I design and build. The front end ships in React and TypeScript, written by me, so what I hand over is a working product rather than a file someone else has to interpret. That closes the gap where most design intent gets lost, and it means I can test an idea in a real browser on a real phone instead of arguing about it in a review."
           }
         },
         {
-          "@type": "Question", 
-          name: "How quickly can you deliver results?",
+          "@type": "Question",
+          name: "What does AI-assisted design actually mean day to day?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Most clients see measurable improvements within 2-4 weeks of implementation. My AI-enhanced design process allows for rapid iteration and testing, significantly reducing time-to-market compared to traditional design approaches."
+            text: "AI produces the raw material fast — screens, variations, working code — which moves the bottleneck from making things to judging them. The work is deciding what to keep. On Ring-Rival that meant cutting time-to-first-punch from 22 seconds to 6 by deleting the splash screen, mode select, fighter select and tutorial. No model tells you which four things to delete."
           }
         },
         {
@@ -183,7 +188,7 @@ export const generateStructuredData = (seoData: SEOData) => {
           name: "Do you work with fintech and healthcare companies?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes, I specialize in fintech, healthcare, and SaaS applications. I have 15+ years of experience designing compliant, user-friendly interfaces for regulated industries while maintaining high conversion rates."
+            text: "Most of my 15+ years has been in regulated enterprise software — PNC, Bank of America, Deloitte, KPMG, AstraZeneca — across finance, healthcare and pharma. That work comes with accessibility conformance, audit trails and compliance review as constraints from the start, not as a pass at the end."
           }
         }
       ]
