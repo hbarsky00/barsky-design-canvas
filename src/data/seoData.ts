@@ -75,22 +75,22 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
-    image: "https://barskydesign.pro/images/crypto/hero.jpg"
+    image: "https://barskydesign.pro/images/og/crypto.png"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
     description: "HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.",
-    image: "https://barskydesign.pro/images/herbalink/home-hero.png"
+    image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
     description: "Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.",
-    image: "https://barskydesign.pro/images/splittime/hero.jpg"
+    image: "https://barskydesign.pro/images/og/splittime.png"
   },
   "stips": {
     title: "Stips — Prediction Markets UX Case Study",
     description: "Play-money prediction markets designed so the price reads as a probability — 67¢ means 67% likely, with the payout worked out before you commit.",
-    image: "https://barskydesign.pro/images/stips/markets-board.jpg"
+    image: "https://barskydesign.pro/images/og/stips.png"
   },
   "business-management": {
     title: "Blue Sky — Business Management UX Case Study",
@@ -100,7 +100,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.",
-    image: "https://barskydesign.pro/images/investor-loan-app/hero.png"
+    image: "https://barskydesign.pro/images/og/investor-loan-app.png"
   },
   "medication-app": {
     title: "Medication App — Patient Safety UX Case Study",
@@ -115,22 +115,22 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
     description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
-    image: "https://barskydesign.pro/images/dae-search/hero.jpg"
+    image: "https://barskydesign.pro/images/og/dae-search.png"
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
     description: "A shipped mobile web game built solo with AI as co-builder — three modes, hand-tuned game feel, and a deletion list longer than the feature list.",
-    image: "https://barskydesign.pro/images/firelion-hero-title.png"
+    image: "https://barskydesign.pro/images/og/fire-lion.png"
   },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
     description: "A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.",
-    image: "https://barskydesign.pro/images/ringrival-hero-title.png"
+    image: "https://barskydesign.pro/images/og/ring-rival.png"
   },
   "catchbuddy": {
     title: "CatchBuddy — Safe Sports Matching Case Study",
     description: "Same-day pickup sports built solo with AI — phone verification, a panic button, and curated meeting spots designed in from day one, not bolted on.",
-    image: "https://barskydesign.pro/images/catchbuddy-hero-landing.png"
+    image: "https://barskydesign.pro/images/og/catchbuddy.png"
   },
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",

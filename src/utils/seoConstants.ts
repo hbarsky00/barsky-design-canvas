@@ -20,7 +20,7 @@ export const SEO_CONSTANTS = {
   // fallback was the 896x1195 portrait headshot, which every share preview
   // (Slack, iMessage, LinkedIn, X) was center-cropping or squashing into a
   // landscape frame despite buildSEO() declaring 1200x630 for it.
-  DEFAULT_OG_IMAGE: 'https://barskydesign.pro/images/og-image.png',
+  DEFAULT_OG_IMAGE: 'https://barskydesign.pro/images/og/site.png',
   SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
