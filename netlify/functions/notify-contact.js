@@ -10,6 +10,12 @@
  * This runs after the Netlify Forms POST has already succeeded, so the
  * submission is stored no matter what happens in here. Worst case is a missing
  * notification, never a lost message.
+ *
+ * ESM export, not `exports.handler`: package.json sets "type": "module", so a
+ * .js file here is an ES module and the CommonJS form dies at load with
+ * "module is not defined in ES module scope". That is also, retrospectively,
+ * why the submission-created version produced nothing — it was bundled fine
+ * and crashed on every invocation, somewhere I could not read.
  */
 const TO = "hbarsky01@gmail.com";
 const FROM = "Barsky Design <hello@barskydesign.pro>";
@@ -17,7 +23,7 @@ const FROM = "Barsky Design <hello@barskydesign.pro>";
 const esc = (v) =>
   String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "POST only" };
   }
