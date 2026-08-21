@@ -80,7 +80,7 @@ const CleanHero: React.FC = () => {
         }}
       />
 
-      <div className="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16">
+      <div className="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <motion.div
           initial="hidden"
           animate="show"
@@ -181,7 +181,7 @@ const CleanHero: React.FC = () => {
             {/* Was capped at max-w-sm, which left the photo shorter than the
                 text beside it and opened a dead wedge under it. Sized to the
                 column now, so both sides finish together. */}
-            <div className="hero-photo relative w-56 sm:w-72 lg:w-full lg:max-w-none">
+            <div className="hero-photo relative w-56 sm:w-72 lg:w-full lg:max-w-[30rem]">
               <div
                 aria-hidden="true"
                 className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"

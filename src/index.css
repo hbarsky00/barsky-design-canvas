@@ -1815,6 +1815,25 @@ h1, h2, h3, h4, h5, h6 {
    Kept low-saturation on purpose — this is a backdrop for screenshots of
    real products, and anything stronger would start competing with them.
    ───────────────────────────────────────────────────────────────────── */
+/* The hero owns the first screen. It is the only thing above the fold —
+   nothing from the next section should peek in underneath it.
+
+   100svh, not 100vh: on mobile 100vh is measured against the *expanded*
+   viewport, so the browser chrome overlaps the bottom of the section and
+   crops it. svh is the small-viewport unit and stays correct whether the
+   URL bar is showing or hidden. vh is kept as the fallback for anything
+   that doesn't know svh. */
+.hero-canvas {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-canvas > .hero-shell {
+  width: 100%;
+}
+
 .hero-canvas {
   background-image: linear-gradient(
     to bottom,
@@ -1899,54 +1918,6 @@ h1, h2, h3, h4, h5, h6 {
       hsl(var(--background)) 22%,
       hsl(var(--background)) 100%
     );
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Short laptop viewports.
-
-   The hero was sized for a tall display. On a 13" laptop the browser
-   viewport is roughly 700-740px, and at that height the "Selected Work"
-   heading landed exactly on the fold — sliced through the middle of the
-   letterforms, which reads as broken rather than as a hint to scroll.
-   Measured: fine at 780px and up, clipped at 740px and below.
-
-   So the hero's vertical rhythm compresses on short screens instead of
-   being fixed. The heading clears the fold at every height, and on tall
-   displays nothing changes.
-   ───────────────────────────────────────────────────────────────────── */
-@media (max-height: 820px) {
-  .hero-canvas .hero-shell {
-    padding-top: 2rem;
-    padding-bottom: 0;
-  }
-  .hero-canvas .hero-scroll-cue {
-    padding-top: 0.25rem;
-  }
-  .work-section {
-    padding-top: 0.5rem;
-  }
-}
-
-/* Shortest tier — a 13" laptop with a bookmarks bar lands near 700px, where
-   the heading was still catching the fold by a few pixels. */
-@media (max-height: 740px) {
-  .hero-canvas .hero-shell {
-    padding-top: 1rem;
-    padding-bottom: 0;
-  }
-  /* The scroll cue is what pushed the heading onto the fold at this height,
-     and it is the least useful thing on screen when the work is already
-     visible underneath. */
-  .hero-canvas .hero-scroll-cue {
-    display: none;
-  }
-  /* The photo is the tallest thing in the hero, so it sets the floor on how
-     short the section can get. Capping it here is what actually buys the
-     last few pixels; padding alone had run out of room. */
-  .hero-canvas .hero-photo {
-    max-width: 21rem;
-    margin-left: auto;
   }
 }
 
