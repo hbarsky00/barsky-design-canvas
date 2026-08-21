@@ -230,6 +230,11 @@ export function extractRoot(dom: string): string | null {
  */
 function stashMedia(): Array<[string, string]> {
   const stash = resolve(".capture-media-stash");
+  // A run killed mid-flight (Ctrl-C, a harness timeout) never reaches its
+  // finally block, leaving media in the stash and dist/ short of it. Clear any
+  // leftovers first so the next run starts from a known state rather than
+  // stashing an already-gutted tree.
+  rmSync(stash, { recursive: true, force: true });
   mkdirSync(stash, { recursive: true });
   const moved: Array<[string, string]> = [];
   const walk = (dir: string) => {

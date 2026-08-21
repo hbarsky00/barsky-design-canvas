@@ -32,8 +32,8 @@ const AboutPreview: React.FC = () => {
               </h2>
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I'm a Product Designer and frontend developer based in Clifton, NJ, 
-                  passionate about creating digital experiences that solve real user problems.
+                  I'm a Product Designer and frontend developer. I work remotely with
+                  teams anywhere, from New Jersey on US Eastern time.
                 </p>
                 <p>
                   My approach combines user research, iterative design, and technical 

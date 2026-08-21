@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-blue-vibrant font-medium" aria-label="Location">Location:</span>
-                <span className="text-neutral-50">Clifton, NJ</span>
+                <span className="text-neutral-50">Remote worldwide · New Jersey, US</span>
               </li>
             </ul>
             

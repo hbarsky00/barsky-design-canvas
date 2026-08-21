@@ -24,7 +24,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/contact': {
     kind: 'page',
     title: 'Contact Barsky Design — UX Consulting',
-    description: 'Ready to transform your product? Book a call to discuss your vision, UX challenges, or collaboration in Clifton, NJ and beyond.',
+    description: 'Tell me what you are building. I work remotely with teams anywhere, on US Eastern time, and reply to everything myself.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/blog': {
@@ -36,7 +36,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/about': {
     kind: 'page',
     title: 'About Hiram Barsky — 15+ Years in Design',
-    description: 'Senior UX/Product Designer with 15+ years building data-driven, AI-powered platforms. Based in Clifton, NJ, serving clients nationwide.',
+    description: '15+ years designing and shipping software in regulated industries — PNC, Bank of America, Deloitte, KPMG, AstraZeneca. I design the product and write the front end. Remote, worldwide.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/store': {

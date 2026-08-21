@@ -53,9 +53,14 @@ const ContactInformation: React.FC = () => {
           </div>
           <div>
             <div className="text-xs font-medium text-foreground/70 uppercase tracking-wide">
-              Location
+              Where
             </div>
-            <div className="text-sm text-foreground">Clifton, NJ</div>
+            {/* "Location: Clifton, NJ" answered a question nobody asked and
+                implied a service area that does not exist. What a prospect
+                actually needs is the timezone and whether distance is a
+                problem. */}
+            <div className="text-sm text-foreground">Remote, worldwide</div>
+            <div className="text-xs text-muted-foreground">New Jersey · US Eastern (ET)</div>
           </div>
         </div>
 
