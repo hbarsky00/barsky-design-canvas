@@ -58,6 +58,31 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "One Sheet Per Fighter",
+        paragraphs: [
+          "Because the rig is shared, I don't draw a fighter. I generate their sheet: ready, jab, cross, hook, uppercut, special, wind-up, block, hurt. Same nine slots, same joints, every opponent.",
+          "Eight of those the fight code can count on. The ninth is theirs alone — Glass Joe's is the Glass Jaw, Brenner's is the Kaiser Barrage. That one slot is the difference between a roster and a palette swap.",
+          "It also means adding an opponent isn't a new art job. It's the rig at their proportions, and a sheet generated off it.",
+        ],
+        imageLayout: "pair",
+        images: [
+          {
+            src: "/images/ringrival-sprite-sheet-1.png",
+            width: 1100,
+            height: 1100,
+            alt: "Glass Joe's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Glass Jaw), wind-up, block and hurt",
+            caption: "Glass Joe. Lean, nervous, and his special is the Glass Jaw.",
+          },
+          {
+            src: "/images/ringrival-sprite-sheet-2.png",
+            width: 1100,
+            height: 1100,
+            alt: "Klaus Brenner's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Kaiser Barrage), wind-up, block and hurt",
+            caption: "Klaus Brenner. Same nine slots, heavier build, and the Kaiser Barrage in the special.",
+          },
+        ],
+      },
+      {
         heading: "What Got Cut",
         paragraphs: [
           "Time-to-first-punch went from 22 seconds to 6 — not by optimizing anything, by deleting the splash screen, the mode select, the fighter select and the tutorial. The tutorial became one card you dismiss in a tap.",
