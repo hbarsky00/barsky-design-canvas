@@ -250,6 +250,8 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                   src={heroImage.src}
                   alt={heroImage.alt}
                   hoverVideo={heroImage.hoverVideo}
+                  width={heroImage.width}
+                  height={heroImage.height}
                   projectId={projectId}
                   imageList={allImages}
                 />

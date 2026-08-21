@@ -9,9 +9,15 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     tags={["Enterprise", "FinTech", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/investor-loan-app/hero.png",
-      alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
+      // A frame from the hover video, so hovering continues the shot instead of
+      // cutting from a 4:3 studio mockup to a 2.05 screen recording — which is
+      // what the two-monitors hero.png did, and why the clip played back
+      // cropped and magnified.
+      src: "/images/investor-loan-app/hero-poster.jpg",
+      alt: "Loan Deals grid — every deal's amount, borrower, participants and progress on one screen",
       hoverVideo: "/investor-loan-deals.mp4",
+      width: 1474,
+      height: 720,
     }}
     blocks={[
       {
@@ -20,9 +26,9 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "A bank running loan ops in Excel. Multi-million-dollar deals, no audit trail, no validation.",
           "Three previous replacement attempts had failed because they tried to improve things officers didn't want changed.",
         ],
-        images: [
-          { src: "/images/investor-loan-app/excel-error.jpg", alt: "Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced" },
-        ],
+        // The standalone Excel screenshot lived here, and the same spreadsheet
+        // is already the left half of the old-vs-new comparison further down.
+        // One showing of it is the point; two is filler.
       },
       {
         heading: "What I Built",

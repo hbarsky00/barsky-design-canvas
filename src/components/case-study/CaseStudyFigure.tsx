@@ -274,11 +274,23 @@ export interface HeroMediaProps {
   hoverVideo?: string;
   projectId?: string;
   imageList?: string[];
+  /** Intrinsic size of the still. Sets the box the video plays inside. */
+  width?: number;
+  height?: number;
 }
 
 /**
  * The opening image. When a walkthrough clip exists it plays on hover —
  * previously with no affordance at all, so nobody knew to try. Now it says so.
+ *
+ * The video is `object-contain`, not `object-cover`. Cover let the still image
+ * dictate the box and then cropped the video to fill it: the investor hero was
+ * a 4:3 studio mockup wrapped around a 2.05 screen recording, so hovering
+ * chopped 35% off the clip's width and scaled the rest up about 1.55× — it read
+ * as a broken zoom, because it was one. Contain fails safe instead: a
+ * mismatched clip letterboxes rather than magnifying. The real fix is upstream
+ * — every hero poster here is a frame lifted out of its own hover video, so the
+ * two share an aspect ratio exactly and contain has nothing to letterbox.
  */
 export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
   src,
@@ -286,6 +298,8 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
   hoverVideo,
   projectId,
   imageList,
+  width,
+  height,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -310,6 +324,8 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
       <CaseStudyFigure
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         projectId={projectId}
         imageList={imageList}
         currentIndex={0}
@@ -334,6 +350,8 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
           <img
             src={src}
             alt={alt}
+            width={width}
+            height={height}
             loading="eager"
             decoding="async"
             className="block h-auto w-full transition-opacity duration-300"
@@ -347,7 +365,7 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
             playsInline
             preload="metadata"
             aria-hidden={!playing}
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+            className="pointer-events-none absolute inset-0 h-full w-full object-contain transition-opacity duration-300"
             style={{ opacity: playing ? 1 : 0 }}
           />
           <span
