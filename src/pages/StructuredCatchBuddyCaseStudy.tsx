@@ -10,9 +10,9 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://catchbuddy.me"
     heroImage={{
-      src: "/images/catchbuddy-hero-poster.jpg",
-      width: 1152,
-      height: 720,
+      src: "/images/catchbuddy-hero-landing.png",
+      width: 1960,
+      height: 1380,
       alt: "CatchBuddy pickup sports landing hero",
       hoverVideo: "/catchbuddy-card.mp4",
     }}

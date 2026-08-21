@@ -9,15 +9,11 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     tags={["Enterprise", "FinTech", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      // A frame from the hover video, so hovering continues the shot instead of
-      // cutting from a 4:3 studio mockup to a 2.05 screen recording — which is
-      // what the two-monitors hero.png did, and why the clip played back
-      // cropped and magnified.
-      src: "/images/investor-loan-app/hero-poster.jpg",
-      alt: "Loan Deals grid — every deal's amount, borrower, participants and progress on one screen",
+      src: "/images/investor-loan-app/hero.png",
+      alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
       hoverVideo: "/investor-loan-deals.mp4",
-      width: 1474,
-      height: 720,
+      width: 1500,
+      height: 1125,
     }}
     blocks={[
       {

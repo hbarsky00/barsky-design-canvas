@@ -283,14 +283,12 @@ export interface HeroMediaProps {
  * The opening image. When a walkthrough clip exists it plays on hover —
  * previously with no affordance at all, so nobody knew to try. Now it says so.
  *
- * The video is `object-contain`, not `object-cover`. Cover let the still image
- * dictate the box and then cropped the video to fill it: the investor hero was
- * a 4:3 studio mockup wrapped around a 2.05 screen recording, so hovering
- * chopped 35% off the clip's width and scaled the rest up about 1.55× — it read
- * as a broken zoom, because it was one. Contain fails safe instead: a
- * mismatched clip letterboxes rather than magnifying. The real fix is upstream
- * — every hero poster here is a frame lifted out of its own hover video, so the
- * two share an aspect ratio exactly and contain has nothing to letterbox.
+ * The video is `object-contain`, not `object-cover`. Cover cropped the clip to
+ * fill whatever box the still image happened to define: the investor hero is a
+ * 4:3 studio mockup and its clip is a 2.05 screen recording, so hovering chopped
+ * 35% off the clip's width and scaled the rest up about 1.55×. Contain keeps the
+ * whole frame at its own proportions inside the same box — the still's size is
+ * left alone, the video just fits into it instead of being magnified.
  */
 export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
   src,
