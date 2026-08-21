@@ -4,6 +4,7 @@
 
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
+import { getBlogSEO } from "../src/data/seoData";
 
 const BASE_URL = "https://barskydesign.pro";
 const today = new Date().toISOString().slice(0, 10);
@@ -85,6 +86,11 @@ const entries: Entry[] = [
     path: `/blog/${slug}`,
     changefreq: "monthly",
     priority: "0.6",
+    // A post's real dates, so lastmod carries a signal. Stamping every URL
+    // with today's date is worse than omitting it: it claims 32 pages all
+    // changed on the same day, every deploy, which trains crawlers to
+    // ignore the field.
+    lastmod: getBlogSEO(slug)?.modified || getBlogSEO(slug)?.published,
   })),
 ];
 
@@ -92,7 +98,7 @@ function urlBlock(e: Entry): string {
   const lines = [
     "  <url>",
     `    <loc>${BASE_URL}${e.path}</loc>`,
-    `    <lastmod>${today}</lastmod>`,
+    `    <lastmod>${e.lastmod || today}</lastmod>`,
     e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
     e.priority ? `    <priority>${e.priority}</priority>` : null,
   ];

@@ -16,6 +16,10 @@ interface SEOData {
 
 export const generateStructuredData = (seoData: SEOData) => {
   const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
+  const publishedDate = seoData.publishedTime || seoData.published;
+  // Fall back to the publish date rather than emitting today's — a dateModified
+  // that moves every deploy tells crawlers the page changed when it didn't.
+  const modifiedDate = seoData.modifiedTime || publishedDate;
   
   // Always WebPage here, even for posts/projects — the more specific BlogPosting
   // or Article schema is pushed separately below with richer (headline/author/
@@ -27,7 +31,14 @@ export const generateStructuredData = (seoData: SEOData) => {
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
-    ...(seoData.image && { image: seoData.image })
+    inLanguage: "en-US",
+    isPartOf: { "@type": "WebSite", "@id": "https://barskydesign.pro/#website" },
+    ...(seoData.image && {
+      image: seoData.image,
+      primaryImageOfPage: { "@type": "ImageObject", url: seoData.image },
+    }),
+    ...(publishedDate && { datePublished: publishedDate }),
+    ...(modifiedDate && { dateModified: modifiedDate }),
   };
 
   // Add Organization schema for all pages
@@ -61,6 +72,14 @@ export const generateStructuredData = (seoData: SEOData) => {
       jobTitle: "UX/UI Designer & AI Developer",
       description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
     },
+    description:
+      "Lead product designer specialising in AI-first and enterprise software. 15+ years across fintech, healthcare and pharma, designing and shipping end to end.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Clifton",
+      addressRegion: "NJ",
+      addressCountry: "US",
+    },
     serviceArea: "United States",
     priceRange: "$$$"
   };
@@ -85,6 +104,17 @@ export const generateStructuredData = (seoData: SEOData) => {
         "@type": "Person",
         name: seoData.author || "Hiram Barsky"
       },
+      publisher: {
+        "@type": "Organization",
+        name: "Hiram Barsky Design",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://barskydesign.pro/images/hiram-barsky-profile.png",
+        },
+      },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+      articleSection: seoData.tags?.[0] || "Design",
+      inLanguage: "en-US",
       ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
       ...(seoData.image && { image: seoData.image })
     };
@@ -114,6 +144,10 @@ export const generateStructuredData = (seoData: SEOData) => {
           url: "https://barskydesign.pro/images/hiram-barsky-profile.png"
         }
       },
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+      articleSection: "Case Study",
+      inLanguage: "en-US",
+      ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
       ...(seoData.image && { image: seoData.image })
     };
     schemas.push(articleSchema);
