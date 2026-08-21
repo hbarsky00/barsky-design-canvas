@@ -61,6 +61,15 @@ const ContactForm: React.FC = () => {
       // never registered would otherwise read as success.
       if (!res.ok) throw new Error(`form POST returned ${res.status}`);
 
+      // Netlify has stored the submission by this point. Fire the notification
+      // separately and never let it fail the submit — if the email does not
+      // go out, the message is still safe in the Netlify dashboard.
+      fetch("/.netlify/functions/notify-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      }).catch((e) => console.error("notification failed (submission is stored):", e));
+
       toast({
         title: "Thanks for reaching out!",
         description: "Your message has been received. I'll get back to you soon.",
