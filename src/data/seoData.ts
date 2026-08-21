@@ -146,18 +146,18 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
-  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/blog/two-bugs-ai-wrote-that-i-had-to-find-cover.jpg",
-  "taste-is-the-whole-job": "https://barskydesign.pro/blog/taste-is-the-whole-job-cover.jpg",
-  "designer-who-codes-argument-is-over": "https://barskydesign.pro/blog/designer-who-codes-argument-is-over-cover.jpg",
-  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/blog/shipping-got-cheap-hiring-got-harder-cover.jpg",
-  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/blog/everyones-portfolio-looks-good-now-cover.jpg",
-  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/blog/what-ai-changed-and-what-it-didnt-cover.jpg",
-  "what-one-person-can-ship-now": "https://barskydesign.pro/blog/what-one-person-can-ship-now-cover.jpg",
-  "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/blog/designing-for-trust-when-the-product-is-the-risk-cover.jpg",
-  "why-enterprise-tools-lose-to-excel": "https://barskydesign.pro/blog/why-enterprise-tools-lose-to-excel-cover.jpg",
-  "scope-discipline-when-building-is-cheap": "https://barskydesign.pro/blog/scope-discipline-when-building-is-cheap-cover.jpg",
-  "how-to-interview-a-designer-now": "https://barskydesign.pro/blog/how-to-interview-a-designer-now-cover.jpg",
-  "demo-works-shipping-is-different": "https://barskydesign.pro/blog/demo-works-shipping-is-different-cover.jpg"
+  "demo-works-shipping-is-different": "https://barskydesign.pro/images/og/blog-demo-works-shipping-is-different.png",
+  "designer-who-codes-argument-is-over": "https://barskydesign.pro/images/og/blog-designer-who-codes-argument-is-over.png",
+  "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/images/og/blog-designing-for-trust-when-the-product-is-the-risk.png",
+  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/images/og/blog-everyones-portfolio-looks-good-now.png",
+  "how-to-interview-a-designer-now": "https://barskydesign.pro/images/og/blog-how-to-interview-a-designer-now.png",
+  "scope-discipline-when-building-is-cheap": "https://barskydesign.pro/images/og/blog-scope-discipline-when-building-is-cheap.png",
+  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/images/og/blog-shipping-got-cheap-hiring-got-harder.png",
+  "taste-is-the-whole-job": "https://barskydesign.pro/images/og/blog-taste-is-the-whole-job.png",
+  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/images/og/blog-two-bugs-ai-wrote-that-i-had-to-find.png",
+  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/images/og/blog-what-ai-changed-and-what-it-didnt.png",
+  "what-one-person-can-ship-now": "https://barskydesign.pro/images/og/blog-what-one-person-can-ship-now.png",
+  "why-enterprise-tools-lose-to-excel": "https://barskydesign.pro/images/og/blog-why-enterprise-tools-lose-to-excel.png",
 };
 
 // Enhanced blog post SEO data. `published` is the real ISO date matching each

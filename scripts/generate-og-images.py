@@ -175,10 +175,47 @@ CASE_STUDIES = [
      "FinTech", "/images/crypto/hero.jpg"),
 ]
 
+def blog_posts():
+    """
+    Read the posts out of blogData.ts rather than restating them here.
+
+    Duplicating twelve titles and excerpts into this script would guarantee
+    they drift the first time a post is edited, and the failure is silent —
+    the card keeps rendering, just with last month's headline on it.
+    """
+    import re
+
+    src = (ROOT / "src" / "data" / "blogData.ts").read_text()
+    posts, seen = [], set()
+    for m in re.finditer(r"\bslug:\s*[`\"']([a-z0-9-]+)[`\"']", src):
+        slug = m.group(1)
+        if slug in seen:
+            continue
+        seen.add(slug)
+        window = src[max(0, m.start() - 1600): m.start() + 1600]
+        title = re.search(r"title:\s*[`\"']([^`\"']+)", window)
+        excerpt = re.search(r"excerpt:\s*[`\"']([^`\"']+)", window)
+        art = re.search(r"coverImage:\s*[`\"']([^`\"']+)", window)
+        if not (title and art):
+            print(f"   ! skipping {slug}: no title or cover in blogData.ts")
+            continue
+        posts.append((slug, title.group(1), (excerpt.group(1) if excerpt else ""), art.group(1)))
+    return posts
+
+
 if __name__ == "__main__":
     print("Case study cards:")
     for slug, title, desc, tag, art in CASE_STUDIES:
         card(title, desc, tag, art, f"{slug}.png")
+
+    print("Blog cards:")
+    for slug, title, excerpt, art_path in blog_posts():
+        # One sentence is all that fits at a legible size; the excerpts run
+        # long, so cut at the first full stop rather than mid-clause.
+        first = excerpt.split(". ")[0].strip()
+        if first and not first.endswith("."):
+            first += "."
+        card(title, first, "Writing", art_path, f"blog-{slug}.png")
 
     print("Site card:")
     card("I design AI-first products that ship.",
