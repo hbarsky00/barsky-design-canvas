@@ -1818,18 +1818,66 @@ h1, h2, h3, h4, h5, h6 {
 .hero-canvas {
   background-image: linear-gradient(
     to bottom,
-    hsl(var(--primary) / 0.07) 0%,
-    hsl(var(--background)) 42%,
-    hsl(270 60% 60% / 0.05) 78%,
-    hsl(var(--muted) / 0.55) 100%
+    hsl(var(--primary) / 0.10) 0%,
+    hsl(var(--background)) 46%,
+    hsl(270 60% 60% / 0.07) 80%,
+    hsl(var(--muted) / 0.85) 100%
   );
+}
+
+/* The two brand glows drift on long, offset loops. Nothing above the fold
+   moved before this, so the page read as a screenshot of itself. Slow enough
+   (22s and 28s, deliberately coprime so they never resync into a visible
+   pulse) that it registers as atmosphere rather than animation. Transform and
+   opacity only — no layout, no paint, stays on the compositor. */
+@keyframes hero-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(-4%, 3%, 0) scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(5%, -4%, 0) scale(1);
+    opacity: 0.8;
+  }
+}
+
+.hero-aurora {
+  will-change: transform, opacity;
+}
+
+.hero-aurora-a {
+  animation: hero-drift-a 22s ease-in-out infinite;
+}
+
+.hero-aurora-b {
+  animation: hero-drift-b 28s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora {
+    animation: none;
+    will-change: auto;
+  }
 }
 
 .work-canvas {
   background-image: linear-gradient(
     to bottom,
-    hsl(var(--muted) / 0.55) 0%,
-    hsl(var(--background)) 22%,
+    hsl(var(--muted) / 0.85) 0%,
+    hsl(var(--background)) 26%,
     hsl(var(--background)) 100%
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { Mail, Linkedin, Github, ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
@@ -59,23 +59,28 @@ const CleanHero: React.FC = () => {
           WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 65% 15%, black 40%, transparent 100%)",
         }}
       />
-      {/* Two off-center brand glows, layered above the grid — asymmetric rather
-          than the single dead-center glow this replaced. */}
+      {/* Two off-center brand glows, layered above the grid. They drift on a
+          slow loop now — the page was completely static above the fold, so
+          nothing on screen suggested it was alive. Transform-only, so it stays
+          on the compositor, and it stops entirely under reduced-motion. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="hero-aurora hero-aurora-a pointer-events-none absolute -inset-24"
         style={{
           background:
-            "radial-gradient(620px circle at 78% 8%, hsl(var(--primary) / 0.16), transparent 60%), radial-gradient(480px circle at 8% 85%, hsl(270 80% 60% / 0.10), transparent 60%)",
-          // The lower glow used to stop dead at the section edge, drawing a
-          // visible horizontal seam across the page. Fading it out before the
-          // boundary lets the hero dissolve into what follows.
-          maskImage: "linear-gradient(to bottom, black 60%, transparent 97%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 97%)",
+            "radial-gradient(620px circle at 78% 12%, hsl(var(--primary) / 0.20), transparent 62%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="hero-aurora hero-aurora-b pointer-events-none absolute -inset-24"
+        style={{
+          background:
+            "radial-gradient(520px circle at 12% 82%, hsl(270 80% 60% / 0.16), transparent 62%)",
         }}
       />
 
-      <div className="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div className="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16">
         <motion.div
           initial="hidden"
           animate="show"
@@ -195,17 +200,10 @@ const CleanHero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        <div className="hero-scroll-cue flex justify-center pt-6 pb-0">
-          <button
-            type="button"
-            onClick={scrollToCaseStudies}
-            aria-label="Scroll to case studies"
-            className="flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground
-                       hover:text-primary hover:bg-primary/10 transition-colors motion-safe:animate-bounce"
-          >
-            <ChevronDown className="w-6 h-6" />
-          </button>
-        </div>
+        {/* The chevron used to live here, floating alone in ~200px of empty
+            page between the socials row and Selected Work. It duplicated the
+            "See My Work" button directly above it, so it bought nothing and
+            cost the biggest dead band on the homepage. */}
       </div>
     </section>
   );
