@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { Mail, Linkedin, Github, ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
@@ -159,11 +159,10 @@ const CleanHero: React.FC = () => {
 
             <motion.div variants={variants} className="flex flex-col gap-1.5">
               <p className="text-lg sm:text-xl font-display font-medium text-foreground/90">
-                Lead Product &amp; AI Designer
+                Lead UX Designer
               </p>
-              <p className="inline-flex items-center justify-center lg:justify-start gap-1.5 text-sm text-muted-foreground">
-                <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
-                Clifton, NJ
+              <p className="text-sm text-muted-foreground">
+                Enterprise &amp; AI products · Available for new work
               </p>
             </motion.div>
 
@@ -171,7 +170,7 @@ const CleanHero: React.FC = () => {
               variants={variants}
               className="max-w-xl text-lg sm:text-xl text-foreground/90 font-medium"
             >
-              I design AI-first products that ship.
+              I design the product and build it. You get working software, not a handoff.
             </motion.p>
 
             <motion.div

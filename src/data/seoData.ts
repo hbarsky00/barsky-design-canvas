@@ -5,8 +5,8 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
     kind: 'home',
-    title: 'UX Designer Portfolio — Hiram Barsky',
-    description: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — measurable user outcomes and product design impact.',
+    title: 'Hiram Barsky — I Design AI Products and Ship Them',
+    description: 'I design AI-first products and write the front end myself, so you get working software instead of a handoff. 15+ years in regulated enterprise software — PNC, Bank of America, Deloitte, KPMG, AstraZeneca.',
     image: SEO_CONSTANTS.DEFAULT_OG_IMAGE
   },
   '/projects': {
@@ -17,8 +17,8 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   },
   '/services': {
     kind: 'page',
-    title: 'UX/UI Design Services | Barsky Design',
-    description: 'From user research to high-impact product design, I help teams turn complex ideas into simple, intuitive experiences that drive results.',
+    title: 'What I Can Build For You — Hiram Barsky',
+    description: 'Design and build, end to end: product design, React and TypeScript front end, database and auth. One person, no handoff round-trip, working software at the end of it.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/contact': {
