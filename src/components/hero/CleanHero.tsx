@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { Mail, Linkedin, Github, ArrowRight, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
@@ -28,14 +28,52 @@ const STATS = [
   { value: "Solo Shipped", label: "Live Products" },
 ];
 
+const BRAND_EASE = [0.22, 1, 0.36, 1] as const;
+
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: BRAND_EASE } },
+};
+
+/**
+ * The name arrives a word at a time, each one rising out of a blur.
+ *
+ * A plain opacity fade on a 7xl headline is the single most generic entrance
+ * on the web — it reads as "the page loaded" rather than as anything anyone
+ * chose. Blur-to-sharp gives the letterforms somewhere to travel from, and
+ * per-word stagger means the eye tracks left to right the way it is about to
+ * read anyway.
+ */
+const nameGroup: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+};
+
+const nameWord: Variants = {
+  hidden: { opacity: 0, y: 32, filter: "blur(14px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: BRAND_EASE },
+  },
+};
+
+/** The photo settles in from slightly back and off-axis, not just scaled. */
+const photoIn: Variants = {
+  hidden: { opacity: 0, scale: 0.92, rotate: -1.5, y: 24 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    y: 0,
+    transition: { duration: 1, ease: BRAND_EASE, delay: 0.15 },
+  },
 };
 
 const CleanHero: React.FC = () => {
@@ -65,18 +103,26 @@ const CleanHero: React.FC = () => {
           on the compositor, and it stops entirely under reduced-motion. */}
       <div
         aria-hidden="true"
-        className="hero-aurora hero-aurora-a pointer-events-none absolute -inset-24"
+        className="hero-aurora hero-aurora-a pointer-events-none absolute -inset-32"
         style={{
           background:
-            "radial-gradient(620px circle at 78% 12%, hsl(var(--primary) / 0.20), transparent 62%)",
+            "radial-gradient(700px circle at 76% 14%, hsl(var(--primary) / 0.30), transparent 60%)",
         }}
       />
       <div
         aria-hidden="true"
-        className="hero-aurora hero-aurora-b pointer-events-none absolute -inset-24"
+        className="hero-aurora hero-aurora-b pointer-events-none absolute -inset-32"
         style={{
           background:
-            "radial-gradient(520px circle at 12% 82%, hsl(270 80% 60% / 0.16), transparent 62%)",
+            "radial-gradient(600px circle at 14% 80%, hsl(270 80% 60% / 0.26), transparent 60%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="hero-aurora hero-aurora-c pointer-events-none absolute -inset-32"
+        style={{
+          background:
+            "radial-gradient(560px circle at 48% 96%, hsl(190 85% 55% / 0.18), transparent 62%)",
         }}
       />
 
@@ -97,10 +143,18 @@ const CleanHero: React.FC = () => {
             </motion.div>
 
             <motion.h1
-              variants={variants}
+              variants={prefersReducedMotion ? variants : nameGroup}
               className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-foreground tracking-tight leading-[1.02]"
             >
-              Hiram Barsky
+              {["Hiram", "Barsky"].map((word) => (
+                <motion.span
+                  key={word}
+                  variants={prefersReducedMotion ? undefined : nameWord}
+                  className="inline-block mr-[0.25em] last:mr-0"
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.h1>
 
             <motion.div variants={variants} className="flex flex-col gap-1.5">
@@ -175,13 +229,13 @@ const CleanHero: React.FC = () => {
 
           {/* Photo column */}
           <motion.div
-            variants={prefersReducedMotion ? undefined : { hidden: { opacity: 0, scale: 0.96 }, show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
+            variants={prefersReducedMotion ? undefined : photoIn}
             className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
           >
             {/* Was capped at max-w-sm, which left the photo shorter than the
                 text beside it and opened a dead wedge under it. Sized to the
                 column now, so both sides finish together. */}
-            <div className="hero-photo relative w-56 sm:w-72 lg:w-full lg:max-w-[30rem]">
+            <div className="hero-photo hero-float relative w-56 sm:w-72 lg:w-full lg:max-w-[30rem]">
               <div
                 aria-hidden="true"
                 className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"
@@ -200,11 +254,21 @@ const CleanHero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* The chevron used to live here, floating alone in ~200px of empty
-            page between the socials row and Selected Work. It duplicated the
-            "See My Work" button directly above it, so it bought nothing and
-            cost the biggest dead band on the homepage. */}
       </div>
+
+      {/* Absolutely positioned, so it sits at the foot of the full-height hero
+          without adding a single pixel to the layout — the version that used
+          to be in normal flow is what opened the dead band this replaced. */}
+      <button
+        type="button"
+        onClick={scrollToCaseStudies}
+        aria-label="Scroll to case studies"
+        className="hero-cue absolute bottom-7 left-1/2 z-10 flex h-11 w-11 -translate-x-1/2 items-center justify-center
+                   rounded-full text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary
+                   motion-safe:animate-bounce"
+      >
+        <ChevronDown className="h-6 w-6" />
+      </button>
     </section>
   );
 };

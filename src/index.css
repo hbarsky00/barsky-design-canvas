@@ -1844,19 +1844,22 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-/* The two brand glows drift on long, offset loops. Nothing above the fold
-   moved before this, so the page read as a screenshot of itself. Slow enough
-   (22s and 28s, deliberately coprime so they never resync into a visible
-   pulse) that it registers as atmosphere rather than animation. Transform and
-   opacity only — no layout, no paint, stays on the compositor. */
+/* The glows drift. The first pass at this was too polite to notice — 4%
+   travel at 0.20 alpha, which is indistinguishable from a still image unless
+   you stare. These move roughly twice as far, sit brighter, and there are
+   three of them on coprime periods (19s / 25s / 31s) so the composite never
+   repeats a recognisable pattern.
+
+   Transform and opacity only. No layout, no paint, entirely on the
+   compositor, and off completely under prefers-reduced-motion. */
 @keyframes hero-drift-a {
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.85;
+    opacity: 0.75;
   }
   50% {
-    transform: translate3d(-4%, 3%, 0) scale(1.12);
+    transform: translate3d(-9%, 7%, 0) scale(1.25);
     opacity: 1;
   }
 }
@@ -1864,12 +1867,37 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes hero-drift-b {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1.08);
+    transform: translate3d(0, 0, 0) scale(1.18);
     opacity: 1;
   }
   50% {
-    transform: translate3d(5%, -4%, 0) scale(1);
-    opacity: 0.8;
+    transform: translate3d(11%, -8%, 0) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes hero-drift-c {
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0) scale(1.05);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate3d(8%, -6%, 0) scale(1.22);
+    opacity: 0.95;
+  }
+}
+
+/* A slow rise and fall on the portrait, so the right-hand column is not the
+   one dead thing on an otherwise moving screen. 6px is small enough that it
+   reads as breathing rather than as an animation asking for attention. */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
   }
 }
 
@@ -1878,15 +1906,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-aurora-a {
-  animation: hero-drift-a 22s ease-in-out infinite;
+  animation: hero-drift-a 19s ease-in-out infinite;
 }
 
 .hero-aurora-b {
-  animation: hero-drift-b 28s ease-in-out infinite;
+  animation: hero-drift-b 25s ease-in-out infinite;
+}
+
+.hero-aurora-c {
+  animation: hero-drift-c 31s ease-in-out infinite;
+}
+
+.hero-float {
+  animation: hero-float 7s ease-in-out infinite;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-aurora {
+  .hero-aurora,
+  .hero-float,
+  .hero-cue {
     animation: none;
     will-change: auto;
   }
