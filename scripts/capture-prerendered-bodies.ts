@@ -143,7 +143,17 @@ function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
       { stdio: ["ignore", "pipe", "ignore"] }
     );
 
-    const cleanupProfile = () => rmSync(profile, { recursive: true, force: true });
+    // Chrome is still flushing into its profile when we SIGKILL it, so an
+    // immediate recursive delete races the writes and throws ENOTEMPTY — which
+    // took down a whole 32-route run after the DOM had already been captured.
+    // A leftover directory under /tmp is not worth failing a capture over.
+    const cleanupProfile = () => {
+      try {
+        rmSync(profile, { recursive: true, force: true, maxRetries: 3, retryDelay: 150 });
+      } catch {
+        /* best effort — /tmp is swept by the OS */
+      }
+    };
 
     let out = "";
     let settled = false;
