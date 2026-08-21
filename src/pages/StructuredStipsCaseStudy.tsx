@@ -17,10 +17,10 @@ const StructuredStipsCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
           "A prediction market answers one question: how likely is this? The price tells you, because people are putting something behind the answer.",
-          "Every one I opened looked like a trading terminal — order books, spreads, share counts, position sizing. The question is simple; the interface isn't, so people leave before placing anything.",
+          "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. The question underneath is simple and the screen in front of you is not, so people leave before placing anything.",
           "So the pitch is the product in one line: buy Yes or No on real events, every share pays $1 if you're right. $500 to start, no card, and it says play money on the way in.",
         ],
         images: [
@@ -57,17 +57,17 @@ const StructuredStipsCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "What I Got Wrong",
+        heading: "Two Things I Got Wrong",
         paragraphs: [
-          "Markets are generated from news on a schedule, which meant an AI writing close dates. Models don't have a clock. The first batches came out already expired. The fix was boring: put today's date in the prompt and validate every date before it reaches the board.",
-          "The second cost more. I tested signed out because it's faster — and signed out, row-level security returns nothing instead of an error, so every logged-in bug looked like an empty state working correctly. I didn't find them until I tested as a real account.",
+          "Markets get generated from the news on a schedule, which means an AI is writing the close dates. Models have no clock. My first batches came out already expired, which is a very silly way to launch a prediction market. The fix was boring. Put today's date in the prompt, then validate every date before it reaches the board.",
+          "The second one cost me more. I was testing signed out because it is faster. Signed out, row-level security quietly returns nothing rather than an error, so every bug that only happens when you are logged in just looked like an empty state behaving correctly. I did not find any of them until I started testing as a real account.",
         ],
       },
       {
-        heading: "Outcome",
+        heading: "Where It Landed",
         paragraphs: [
           "Stips is live at stips.bet — markets pulled from the news on a schedule, prices that read as probabilities, and a full bet you can build before anyone asks who you are.",
-          "It's early and the board is small. What's worth showing is that it runs end to end: design, front end, database, auth, and the scheduled jobs that keep it from going stale.",
+          "It is early and the board is small, and I would rather say that than dress it up. What is worth showing is that the whole thing runs end to end. Design, front end, database, auth, and the scheduled jobs that stop the board going stale while nobody is looking.",
         ],
       },
     ]}

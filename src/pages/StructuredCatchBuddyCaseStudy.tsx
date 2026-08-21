@@ -5,7 +5,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="catchbuddy"
     title="CatchBuddy"
-    description="Same-day pickup sports, designed for trust. Post a game, find players, confirm in a few taps — built solo with AI as a co-builder."
+    description="Getting two strangers to agree to meet at a park is the easy part. Getting them to feel safe doing it is the product."
     tags={["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://catchbuddy.me"
@@ -18,41 +18,42 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
-          "Pickup sports are dying in cities. Existing apps assume commitment, schedules, and recurring teams. Most people want one game this weekend, not a season.",
-          "The real product wasn't another scheduling tool — it was a way to lower the friction and safety risk of two strangers agreeing to meet at a park.",
+          "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season. They want commitment, a schedule, a recurring team. Most people just want a game on Saturday.",
+          "So the thing I actually had to solve wasn't scheduling. It was two strangers agreeing to meet at a park, and both of them feeling fine about it.",
         ],
         images: [
           { src: "/images/catchbuddy-post-game.png", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee" },
         ],
       },
       {
-        heading: "Safety Is the Product",
+        heading: "Safety Wasn't a Feature, It Was the Whole Thing",
         paragraphs: [
-          "Minors require a verified parent before they can post. The panic button reaches every in-game screen. Public meeting spots are curated, not crowdsourced.",
-          "None of that came from a prompt — those are product calls about who's actually going to use this and what could go wrong.",
+          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game. And the meeting spots are a list I curated, not somewhere any user can drop a pin.",
+          "That last one gets argued with a lot. Letting people add their own locations is more flexible and it is obviously the wrong call here.",
+          "None of that came out of a prompt. Those are decisions about who actually shows up to this thing and what happens on the day it goes wrong.",
         ],
         images: [
           { src: "/images/catchbuddy-choose-park.png", alt: "Choose a Park — searchable list with distance and amenities" },
         ],
       },
       {
-        heading: "What AI Did vs. What I Did",
+        heading: "What AI Did, and What It Couldn't",
         paragraphs: [
-          "AI shipped the RLS policies, Supabase migrations, Stripe integration, and OAuth flow.",
-          "The trust model — who gets in, who's gated, what's surfaced — was every decision made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
+          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow. That is real work and it did it fast.",
+          "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
           { src: "/images/catchbuddy-equipment-prefs.png", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle" },
         ],
       },
       {
-        heading: "What Got Cut",
+        heading: "What I Cut",
         paragraphs: [
-          "\"Matches\" was renamed to \"Browse\" and \"Players\" after testers consistently read it as Tinder-like.",
-          "The Quick Start wizard was over-engineered — users wanted to skip it.",
-          "Apple, Outlook, and ICS calendar support were built and then cut as a maintenance tax for a feature users barely used.",
+          "Testers kept reading \"Matches\" as a dating thing, which is not what anybody needed here. It is \"Browse\" and \"Players\" now.",
+          "I built a Quick Start wizard that nobody wanted. Testers skipped it every time, so I stopped making them skip it.",
+          "Apple, Outlook and ICS calendar support all got built, then all got cut. Barely anyone used them and I was going to be maintaining three integrations forever for that.",
         ],
         imageLayout: "pair",
         images: [
@@ -62,10 +63,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Outcome",
+        heading: "Where It Landed",
         paragraphs: [
-          "A shipped platform with auth, RLS, Stripe, Google OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo.",
-          "Trust-first architecture, built in from v1, not bolted on.",
+          "It shipped. Auth, RLS, Stripe, Google OAuth, realtime updates, the minor-approval flow and the curated meeting spots, designed and built by me.",
+          "The safety layer went in first, in v1, which is the only reason it holds together. Bolting that on afterwards never works.",
         ],
         videos: [
           {

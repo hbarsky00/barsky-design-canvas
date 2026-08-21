@@ -5,7 +5,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="ring-rival"
     title="Ring-Rival"
-    description="Console boxing feel on the mobile web. Distinct AI opponents, generated trash talk, career mode — built solo with AI as a co-builder."
+    description="I wanted to know if a browser could feel like a console boxing game. Finding out took a lot of deleting."
     tags={["AI-Assisted Product", "Mobile Web", "Game Design", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://ringrival.today"
@@ -20,31 +20,32 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
-          "Boxing games live on consoles for a reason: tight input latency, real animation feel, AI that reads like an opponent. Doing that with a thumb in a browser, no install, was the constraint that made it worth building.",
+          "Every boxing game I've liked was on a console, and there's a reason for that. The punch has to land the instant your thumb moves. The animation has to read as a body hitting another body. The opponent has to feel like it's thinking. You get none of that for free in a browser.",
+          "I wanted to see if I could get it anyway. No install, no app store, just a link you open on your phone.",
         ],
       },
       {
-        heading: "How It Got Built",
+        heading: "Building a Fighter Out of Parts",
         paragraphs: [
-          "A fighter isn't one drawing. It's a body, two arms, two legs and a head, each a separate piece, because each has to move on its own — so the rig came before the roster.",
-          "Glass Joe was the first one through it, and he shows every seam: flat block torso, arms that are a single wedge from shoulder to glove with no elbow, legs meeting the hip at a hard edge, one flat fill per limb. Von Kaiser is that same rig at heavier proportions. Getting a second fighter out of it was the test — if the rig held, the roster was a data problem instead of an art problem.",
-          "It held, and it still looked like paper. A flat wedge swinging at a flat block reads as two shapes overlapping, not as contact. So arms got split into shoulder, bicep and forearm, legs got a knee and a calf, and the torso got its own shading — enough that a body turn reads as a body turning. That loop is the whole build: generate the parts fast, throw out what doesn't read, rebuild the layer underneath.",
+          "A fighter isn't a drawing. It's a body, two arms, two legs and a head, all separate, because they all have to move on their own. So I built the rig before I built anyone to put in it.",
+          "Glass Joe went through it first, and you can see every seam. Flat block for a torso. Each arm one wedge from shoulder to glove, no elbow in it. Legs meeting the hip at a hard edge, one flat colour per limb. Then I ran Von Kaiser through the same rig at heavier proportions, and that was the real test. If the rig held for a second fighter, I could add fighters as data instead of drawing each one by hand.",
+          "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping, not like contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn actually reads as a turn. That is the loop the whole thing runs on. Make the parts fast, throw out whatever doesn't read, go rebuild the layer underneath it.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/ringrival-glassjoe-idle.png",
             alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee",
-            caption: "Glass Joe, first fighter through the rig — one flat fill per limb, no elbow, no shading.",
+            caption: "Glass Joe, first one through the rig. One flat colour per limb, no elbow, no shading anywhere.",
             width: 1920,
             height: 1328,
           },
           {
             src: "/images/ringrival-vonkaiser.png",
             alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance",
-            caption: "Von Kaiser, same rig, heavier proportions. Proof the roster was data, not redrawing.",
+            caption: "Von Kaiser. Same rig, heavier build. This is the one that told me the rig would hold.",
             width: 1920,
             height: 1333,
           },
@@ -53,16 +54,17 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "The Part AI Couldn't Do",
         paragraphs: [
-          "Impact particles were the first attempt and the first mistake — the burst was big enough to bury the fighter at the exact moment you needed to read him.",
-          "Hit-stop duration, screen shake, a 60ms haptic on connect, the health-bar drain curve, where the punch button sits, how big the block zone is: all tuned by hand, on a real phone, over and over. No model knows whether a punch feels like a punch. AI generated the raw material at a 3–6 build-per-day cadence; the designer was the taste filter on every output.",
+          "My first go at making a punch land used impact particles, and it was the wrong call. The burst was so big it buried the fighter at the exact moment you needed to see him get hit.",
+          "After that I stopped guessing. How long the game freezes on contact. How hard the screen shakes. A 60ms buzz in your hand when you connect. How fast the health bar drains. Where the punch button sits, how big the block zone is. I tuned every one of those by hand, on a real phone, over and over, until it felt right.",
+          "There is no model you can ask whether a punch feels like a punch. AI gave me raw material at three to six builds a day. Deciding what to keep was the whole job.",
         ],
       },
       {
         heading: "One Sheet Per Fighter",
         paragraphs: [
-          "Because the rig is shared, I don't draw a fighter. I generate their sheet: ready, jab, cross, hook, uppercut, special, wind-up, block, hurt. Same nine slots, same joints, every opponent.",
-          "Eight of those the fight code can count on. The ninth is theirs alone — Glass Joe's is the Glass Jaw, Von Kaiser's is the Kaiser Barrage. That one slot is the difference between a roster and a palette swap.",
-          "It also means adding an opponent isn't a new art job. It's the rig at their proportions, and a sheet generated off it.",
+          "Because the rig is shared, I don't draw a fighter anymore. I generate their sheet. Ready, jab, cross, hook, uppercut, special, wind-up, block, hurt. Same nine poses, same joints, every time.",
+          "Eight of those the fight code can count on. The ninth belongs to the fighter. Glass Joe's is the Glass Jaw. Von Kaiser's is the Kaiser Barrage. That one slot is what stops a roster feeling like the same guy in different colours.",
+          "It also means adding an opponent isn't an art project. It's the rig at their proportions and a sheet off the back of it.",
         ],
         imageLayout: "pair",
         images: [
@@ -71,35 +73,37 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
             width: 1100,
             height: 1100,
             alt: "Glass Joe's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Glass Jaw), wind-up, block and hurt",
-            caption: "Glass Joe. Lean, nervous, and his special is the Glass Jaw.",
+            caption: "Glass Joe. Lean, nervous, and his special is the Glass Jaw, which is exactly as bad for him as it sounds.",
           },
           {
             src: "/images/ringrival-sprite-sheet-2.png",
             width: 1100,
             height: 1100,
             alt: "Von Kaiser's generated pose sheet, labelled ready, jab, cross, hook, uppercut, special (Kaiser Barrage), wind-up, block and hurt",
-            caption: "Von Kaiser. Same nine slots, heavier build, and the Kaiser Barrage in the special.",
+            caption: "Von Kaiser. Same nine slots, and the Kaiser Barrage sitting where Glass Joe keeps his glass jaw.",
           },
         ],
       },
       {
-        heading: "What Got Cut",
+        heading: "What I Deleted",
         paragraphs: [
-          "Time-to-first-punch went from 22 seconds to 6 — not by optimizing anything, by deleting the splash screen, the mode select, the fighter select and the tutorial. The tutorial became one card you dismiss in a tap.",
-          "Audio failed in roughly 40% of sessions and is under 2% now, by gating AudioContext behind the first tap. Webcam hand-tracking was technically impressive and wrong for the audience, so it went too.",
+          "It used to take 22 seconds to throw your first punch. Now it takes 6. I didn't optimise anything to get there. I deleted the splash screen, the mode select, the fighter select and the tutorial. What's left of the tutorial is one card, and you make it go away with a tap.",
+          "Audio was failing in about 40% of sessions and I had no idea, because nothing ever errored. Browsers block sound until you interact with the page, and the game was starting its audio on load. Moving that behind the first tap took it under 2%.",
+          "I also built webcam hand-tracking. It worked, and it was genuinely impressive. It was also completely wrong for someone playing on their phone on a couch, so I cut it.",
         ],
       },
       {
         heading: "Where It Landed",
         paragraphs: [
-          "Same rig as Glass Joe — but the wedges are arms now. Klaus Brenner is heavier on purpose: slower to reset, a different read for the player. Each opponent ships with their own special, their own trash talk and their own rhythm rather than a reskin, and a knockdown stopped being a countdown and became something you can fight your way out of.",
+          "Same rig Glass Joe came out of, but the wedges are arms now. Klaus Brenner is heavier on purpose, slower to reset, so you have to read him differently than the others.",
+          "Every opponent has their own special, their own trash talk and their own rhythm instead of being a reskin. And getting knocked down stopped being a countdown you sit and watch. It became something you can fight your way out of.",
         ],
         videos: [
           {
             src: "/ring-rival-fight-brenner.mp4",
             poster: "/images/ringrival-now/fight-brenner-poster.jpg",
             caption:
-              "Klaus Brenner — bigger, heavier, on a different rhythm. Two fighters, two reads: that is what a roster is for.",
+              "Klaus Brenner. Bigger, heavier, and on a rhythm you have to learn separately. That is the point of having a roster.",
           },
         ],
       },

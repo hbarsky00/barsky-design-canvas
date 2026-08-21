@@ -21,30 +21,30 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
-          "Analysts search \"revenue,\" get 40 results, then spend 20 minutes figuring out which table is current, which is the team-of-record's, and which was deprecated three quarters ago but never cleaned up.",
-          "The job isn't returning results — it's returning the one result you can act on.",
+          "An analyst searches \"revenue\" and gets 40 results back. Then the real work starts: twenty minutes of figuring out which table is current, which one belongs to the team of record, and which was deprecated three quarters ago and never cleaned up.",
+          "They were never short of results. They were short of a result they could act on.",
         ],
         images: [
           { src: "/images/dae-search/the-problem.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
         ],
       },
       {
-        heading: "What I Built",
+        heading: "Putting the Answer on the Result",
         paragraphs: [
-          "Semantic search over metadata, not keyword match — tables called `arr_monthly` surface for \"revenue.\" Results cut from 40-to-narrow-down to 4-to-pick-from.",
-          "Data lineage lives on the result itself: where the data came from, when it last refreshed, what depends on it. One glance, not a click-through.",
+          "First I made the search actually understand the question. It runs semantically over the metadata rather than matching keywords, so a table called `arr_monthly` comes back when you type \"revenue.\" That alone took a result set from 40 things to narrow down to about 4 to choose between.",
+          "Then I put the lineage on the result itself. Where it came from, when it last refreshed, what depends on it. You read it in the list instead of clicking through to find out.",
         ],
         images: [
           { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems" },
         ],
       },
       {
-        heading: "The Decisions That Mattered",
+        heading: "The Two Calls That Mattered",
         paragraphs: [
-          "Permission state is a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely made people think the data didn't exist.",
-          "Permission-aware autocomplete was built, security flagged it — the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
+          "Restricted results stay visible, with a lock on them and a one-click request for access. We tried hiding them and it backfired badly. People concluded the data did not exist and went off to rebuild it themselves.",
+          "I also built permission-aware autocomplete, and security killed it. They were right. The suggestions were leaking the existence of restricted datasets to anyone who typed enough of the name to pattern-match it.",
         ],
         imageLayout: "pair",
         images: [
@@ -53,17 +53,17 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "What I Got Wrong First",
+        heading: "What I Got Wrong",
         paragraphs: [
-          "Started by treating this as consumer search with an enterprise wrapper — clean ranked list, minimal chrome. Wrong audience.",
-          "Enterprise users want context, signals, and density. Analysts type fragments and abbreviations, not full questions.",
+          "I started out treating this like consumer search with an enterprise skin on it. Clean ranked list, minimal chrome, get out of the way. Wrong audience entirely.",
+          "These people want density. They want signals crammed into the row. And they do not type questions, they type fragments and internal abbreviations, because they already know what they are looking for.",
         ],
       },
       {
-        heading: "Outcome",
+        heading: "Where It Landed",
         paragraphs: [
-          "The shift from keyword match to semantic search with lineage and permissions inline reframed the product from a search tool to a data discovery tool.",
-          "In enterprise contexts, trustworthiness of a result matters more than relevance. Most search UX optimizes for the second.",
+          "Moving from keyword matching to semantic search, with lineage and permissions sitting inline, changed what the thing actually is. It stopped being a search box and became the place you go to find out whether data is worth using.",
+          "The lesson I took off it: inside a company, whether you can trust a result matters more than how relevant it is. Almost all search design optimises for the second one.",
         ],
       },
     ]}

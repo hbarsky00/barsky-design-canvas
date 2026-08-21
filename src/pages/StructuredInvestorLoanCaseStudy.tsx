@@ -17,7 +17,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
           "A bank was running its loan operations in Excel. Deals worth millions of dollars, no audit trail, no validation, and no way to tell who changed what.",
           "Three teams had already tried to replace it and failed. I spent a while figuring out why before I designed anything, and the answer was the same every time: they all tried to improve parts of the job the loan officers never asked to have improved.",
@@ -92,7 +92,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Outcome",
+        heading: "Where It Landed",
         paragraphs: [
           "They adopted it. On a project to replace a spreadsheet that is the only outcome that counts, and three attempts before mine never got there.",
         ],

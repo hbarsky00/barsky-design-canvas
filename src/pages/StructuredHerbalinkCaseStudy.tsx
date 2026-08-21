@@ -5,7 +5,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="herbalink"
     title="HerbaLink"
-    description="Verified herbalists, designed around trust. A booking platform where the credential gate is the product — not a badge."
+    description="The hard part was never search. It was making sure the person you found is real, in a category where being wrong lands on someone's health."
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="http://herbalink.live"
@@ -18,10 +18,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "The Problem",
+        heading: "Why I Built It",
         paragraphs: [
-          "People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing — and the discovery experience is a misinformation field.",
-          "The design job wasn't to build a bigger directory. It was to make the safe path the easy path in a category where being wrong has real medical consequences.",
+          "People go looking for a herbalist because of anxiety, or fatigue, or something their doctor has not been able to help with. Then they land in a swamp. Anyone can claim anything, and the person searching has no way to tell the difference.",
+          "So my job was never to build a bigger directory. It was to make the safe path the easy one, in a category where getting it wrong lands on someone's health.",
         ],
         images: [
           { src: "/images/herbalink/find-herbalist-sketch.png", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", width: 1536, height: 1024 },
@@ -29,41 +29,41 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "My Process",
+        heading: "I Started By Asking, Not Auditing",
         paragraphs: [
-          "Interviewed users and herbalists first — the trust barriers came from them, not from a competitive audit.",
-          "Everything after that was ordered around outcomes over UI: identify what breaks trust, design the retention loop (onboarding, tracking, community), then validate that the simplified version still gave people confidence.",
+          "I talked to users and to practising herbalists before I designed anything. Every trust barrier I ended up building around came out of those conversations, not out of studying what competitors were doing.",
+          "After that the order was always the same. Work out what breaks trust, design the loop that brings someone back, then check that the simplified version still leaves people feeling confident before adding anything to it.",
         ],
         images: [
           { src: "/images/herbalink/thought-process.png", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity" },
         ],
       },
       {
-        heading: "Verified as a Gate, Not a Badge",
+        heading: "Verification Is a Door, Not a Sticker",
         paragraphs: [
-          "Most directories let anyone list and then badge profiles that pass a basic check. Inverting that — no practitioner visible until verified against the American Herbalists Guild — produces a smaller, more honest catalog.",
-          "Adding 200 unverified practitioners made the experience worse, not better.",
+          "Most directories let anyone list, then put a little badge on the ones that passed a check. I flipped it. Nobody is visible at all until they are verified against the American Herbalists Guild. You end up with a smaller catalogue and a far more honest one.",
+          "I tested it the other way round. Adding 200 unverified practitioners made the product worse, because now every listing needed a judgement call from the one person who came here specifically because they could not make one.",
         ],
         images: [
           { src: "/images/herbalink/herbalist-directory.png", alt: "Find Herbalists directory — every listed practitioner is verified before they're visible" },
         ],
       },
       {
-        heading: "What AI Did vs. What I Did",
+        heading: "What AI Did, and What It Couldn't",
         paragraphs: [
-          "AI handled Supabase schemas, RLS policies, edge functions, the symptom intake structure, and copy variants.",
-          "Which certifications matter for which conditions, when to refuse a listing, who doesn't appear in the catalog — those were every call made by hand.",
+          "AI handled the Supabase schemas, the RLS policies, the edge functions, the structure of the symptom intake and a pile of copy variants.",
+          "Which certifications actually matter for which conditions, when to turn a listing down, who never appears in the catalogue at all. Those I made myself, every time.",
         ],
         images: [
           { src: "/images/herbalink/booking-intake.png", alt: "Guided booking intake — a single focused question replaces open-ended search" },
         ],
       },
       {
-        heading: "What Got Cut",
+        heading: "What I Cut",
         paragraphs: [
-          "The original filter panel was replaced with guided triage intake after a tester said \"this feels like WebMD.\"",
-          "The comprehensive symptom diary was cut to a single follow-up question — users opened the full version twice and abandoned it.",
-          "Open-ended search was removed entirely in favor of credential-first discovery.",
+          "A tester told me the filter panel felt like WebMD, which is about the worst thing you can say about a health product. It is guided intake now.",
+          "I built a full symptom diary. People opened it twice and never came back. It is one follow-up question now.",
+          "I also took out open-ended search completely. Asking someone to describe what they need assumes they already know, and the whole reason they are here is that they do not.",
         ],
         videos: [
           {
@@ -78,10 +78,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Outcome",
+        heading: "Where It Landed",
         paragraphs: [
-          "A shipped booking platform where every listed practitioner has externally verified credentials, intake replaces search, and the safer path is also the easier one.",
-          "Smaller catalog by design — honest beats exhaustive.",
+          "It shipped. Every practitioner on it has credentials verified outside the platform, intake replaced search, and the safer route is now also the faster one.",
+          "The catalogue is smaller than it could be, on purpose. In this category honest beats exhaustive.",
         ],
         images: [
           { src: "/images/herbalink/herb-detail-reviews.png", alt: "Herb library entry with real user reviews — the shipped, working platform" },
