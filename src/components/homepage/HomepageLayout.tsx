@@ -35,7 +35,11 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
       <Header />
       
-      <main className="space-y-0 md:space-y-2 relative z-10">
+      {/* space-y-2 put an 8px band of bare page background between the hero and
+          the work section. Invisible while everything was the same flat colour;
+          the moment the two got gradients that are built to meet, it showed up
+          as a hairline seam across the join. */}
+      <main className="space-y-0 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">

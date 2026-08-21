@@ -278,7 +278,7 @@ CaseStudyCard.displayName = "CaseStudyCard";
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="pt-8 md:pt-14 pb-20 md:pb-28 bg-background">
+    <section className="work-section work-canvas pt-8 md:pt-14 pb-20 md:pb-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

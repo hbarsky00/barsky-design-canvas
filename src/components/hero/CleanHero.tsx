@@ -45,7 +45,7 @@ const CleanHero: React.FC = () => {
     : item;
 
   return (
-    <section className="relative bg-background overflow-hidden">
+    <section className="hero-canvas relative overflow-hidden">
       {/* Fine dot-grid texture — a nod to Swiss-grid structure, not decoration for its own
           sake. Pure CSS radial-gradient tiling, no image asset, no JS. */}
       <div
@@ -75,15 +75,15 @@ const CleanHero: React.FC = () => {
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-4">
+      <div className="hero-shell relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <motion.div
           initial="hidden"
           animate="show"
           variants={prefersReducedMotion ? undefined : container}
-          className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center"
+          className="grid lg:grid-cols-[1fr_0.82fr] gap-8 lg:gap-14 items-center"
         >
           {/* Text column */}
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-6 order-2 lg:order-1">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left gap-5 order-2 lg:order-1">
             <motion.div
               variants={variants}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground"
@@ -173,7 +173,10 @@ const CleanHero: React.FC = () => {
             variants={prefersReducedMotion ? undefined : { hidden: { opacity: 0, scale: 0.96 }, show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
             className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
           >
-            <div className="relative w-56 sm:w-72 lg:w-full lg:max-w-sm">
+            {/* Was capped at max-w-sm, which left the photo shorter than the
+                text beside it and opened a dead wedge under it. Sized to the
+                column now, so both sides finish together. */}
+            <div className="hero-photo relative w-56 sm:w-72 lg:w-full lg:max-w-none">
               <div
                 aria-hidden="true"
                 className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"
@@ -192,7 +195,7 @@ const CleanHero: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        <div className="flex justify-center pt-6 pb-0">
+        <div className="hero-scroll-cue flex justify-center pt-6 pb-0">
           <button
             type="button"
             onClick={scrollToCaseStudies}
