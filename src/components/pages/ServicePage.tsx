@@ -21,7 +21,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ title, description, children 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              className="bg-white rounded-xs shadow-xl overflow-hidden"
             >
               <div className="p-8 lg:p-12">
                 <header className="mb-8">

@@ -17,11 +17,11 @@ const SpittimeResearchContent: React.FC = () => {
         
         {/* Mobile Promo Image */}
         <div>
-          <div className="relative w-full rounded-lg overflow-hidden shadow-lg bg-gray-100">
+          <div className="relative w-full rounded-xs overflow-hidden shadow-lg bg-gray-100">
             <img
               src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
               alt="SplitTime mobile application promotional image"
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-xs"
             />
           </div>
         </div>

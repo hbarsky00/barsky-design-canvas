@@ -159,7 +159,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
           >
             {/* Image Section */}
             <div className="order-2 lg:order-1">
-              <div className="relative bg-muted/20 rounded-xl overflow-hidden min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
+              <div className="relative bg-muted/20 rounded-xs overflow-hidden min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
                 {renderMedia()}
               </div>
             </div>

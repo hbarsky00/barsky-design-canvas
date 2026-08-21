@@ -210,7 +210,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(
         to={study.url}
         tabIndex={-1}
         aria-hidden="true"
-        className={`block overflow-hidden rounded-2xl border border-border bg-muted/20 aspect-[16/10] ${
+        className={`block overflow-hidden rounded-xs border border-border bg-muted/20 aspect-[16/10] ${
           mediaFirst ? "" : "lg:order-2"
         }`}
       >

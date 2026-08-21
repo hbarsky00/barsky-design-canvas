@@ -123,7 +123,7 @@ const CaseStudyFigure: React.FC<CaseStudyFigureProps> = ({
         type="button"
         onClick={() => !failed && maximizeImage(src, caption || alt, imageList ?? [src], currentIndex)}
         aria-label={`View "${alt}" full screen`}
-        className="relative block w-full overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:shadow-lg"
+        className="relative block w-full overflow-hidden rounded-xs border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:shadow-lg"
       >
         <img
           src={src}
@@ -205,7 +205,7 @@ export const CaseStudyClip: React.FC<CaseStudyClipProps> = ({
 
   return (
     <figure ref={ref} className={className}>
-      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <div className="overflow-hidden rounded-xs border border-border bg-card shadow-sm">
         <video
           ref={videoRef}
           src={src}
@@ -251,7 +251,7 @@ export const CaseStudyWalkthrough: React.FC<CaseStudyWalkthroughProps> = ({
 
   return (
     <figure ref={ref} className={className}>
-      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <div className="overflow-hidden rounded-xs border border-border bg-card shadow-sm">
         <video
           src={src}
           poster={poster}
@@ -335,7 +335,7 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
   return (
     <figure className="group">
       <div
-        className="relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl"
+        className="relative overflow-hidden rounded-xs border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl"
         onMouseEnter={start}
         onMouseLeave={stop}
       >

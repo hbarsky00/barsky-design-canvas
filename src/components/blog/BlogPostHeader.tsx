@@ -43,7 +43,7 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({ post }) => {
       
       {/* Cover Image */}
       {post.coverImage && (
-        <div className="mb-6 rounded-lg overflow-hidden">
+        <div className="mb-6 rounded-xs overflow-hidden">
           <img 
             src={post.coverImage} 
             alt={post.title}

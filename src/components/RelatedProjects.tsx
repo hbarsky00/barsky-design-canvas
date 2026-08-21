@@ -89,7 +89,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
             >
               <Link
                 to={project.url}
-                className="group block rounded-2xl border transition-all duration-300 overflow-hidden bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
+                className="group block rounded-xs border transition-all duration-300 overflow-hidden bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -119,7 +119,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
                     {project.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium"
+                        className="bg-primary/10 text-primary px-2 py-1 rounded-xs text-xs font-medium"
                       >
                         {tag}
                       </span>

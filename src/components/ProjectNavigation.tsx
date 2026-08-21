@@ -61,12 +61,12 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {prevProject && (
           <button
             onClick={handlePrevProject}
-            className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+            className="group flex items-center gap-3 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
             aria-label={`Previous project: ${prevProject.title}`}
           >
             <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1 flex-shrink-0" />
-            <div className="relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-16 h-16 flex-shrink-0">
+            <div className="relative rounded-xs overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-16 h-16 flex-shrink-0">
               <OptimizedImage
                 src={prevProject.image}
                 alt={prevProject.title}
@@ -85,11 +85,11 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {nextProject && (
           <button
             onClick={handleNextProject}
-            className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+            className="group flex items-center gap-3 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
             aria-label={`Next project: ${nextProject.title}`}
           >
-            <div className="relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-16 h-16 flex-shrink-0">
+            <div className="relative rounded-xs overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-16 h-16 flex-shrink-0">
               <OptimizedImage 
                 src={nextProject.image} 
                 alt={nextProject.title}
@@ -113,12 +113,12 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           {prevProject && (
             <button
               onClick={handlePrevProject}
-              className="group flex items-center gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
+              className="group flex items-center gap-4 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
               type="button"
               aria-label={`Previous project: ${prevProject.title}`}
             >
               <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-              <div className="relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
+              <div className="relative rounded-xs overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
                 <OptimizedImage
                   src={prevProject.image}
                   alt={prevProject.title}
@@ -139,7 +139,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           {nextProject && (
             <button
               onClick={handleNextProject}
-              className="group flex items-center justify-end gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+              className="group flex items-center justify-end gap-4 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
               type="button"
               aria-label={`Next project: ${nextProject.title}`}
             >
@@ -147,7 +147,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
                 <p className="text-sm text-barsky-text/70">Next Project</p>
                 <p className="font-medium">{nextProject.title}</p>
               </div>
-              <div className="relative rounded-md overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
+              <div className="relative rounded-xs overflow-hidden border border-gray-200 dark:border-gray-800 transition-all group-hover:border-barsky-blue shadow-sm group-hover:shadow-md w-[250px] h-[250px]">
                 <OptimizedImage 
                   src={nextProject.image} 
                   alt={nextProject.title}

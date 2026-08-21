@@ -17,7 +17,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
       <div className="space-y-6">
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">User Research</span></h4>
-          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
+          <div className="rounded-xs bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -35,7 +35,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               imageCaptions={{
                 "/lovable-uploads/e885cc25-4dee-44c9-bed4-c01c97dfefde.png": "User research findings and analysis showing key insights from herbalist and patient interviews"
               }}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="rounded-xs shadow-elevated-lg w-full overflow-hidden"
             />
           </div>
           <p>
@@ -45,7 +45,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
 
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Competitive Analysis</span></h4>
-          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
+          <div className="rounded-xs bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -63,7 +63,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               imageCaptions={{
                 "/lovable-uploads/fc11dcb5-634f-4317-9585-d8661064189b.png": "Competitive analysis of wellness platforms showing market gaps and opportunities for herbalist consultation services"
               }}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="rounded-xs shadow-elevated-lg w-full overflow-hidden"
             />
           </div>
           <p>
@@ -73,7 +73,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
 
         <div>
           <h4 className="text-lg font-medium text-gray-800 mb-3"><span className="font-bold">Key Findings</span></h4>
-          <div className="rounded-xl bg-card border border-border p-4 shadow-sm mb-4">
+          <div className="rounded-xs bg-card border border-border p-4 shadow-sm mb-4">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -91,7 +91,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               imageCaptions={{
                 "/lovable-uploads/1f8118aa-5998-40f1-9c7b-09888e31bbdf.png": "Key research findings highlighting trust and safety requirements for herbal medicine platform design"
               }}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="rounded-xs shadow-elevated-lg w-full overflow-hidden"
             />
           </div>
           <p>
@@ -105,7 +105,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
           <p>
             Created a comprehensive design system built for natural wellness experiences, emphasizing trust, accessibility, and user empowerment through carefully chosen color palettes and typography that reflect the organic nature of herbal wellness.
           </p>
-          <div className="rounded-xl bg-card border border-border p-4 shadow-sm">
+          <div className="rounded-xs bg-card border border-border p-4 shadow-sm">
             <EnhancedContentEditor
               content=""
               contentType="section"
@@ -123,7 +123,7 @@ const HerbalinkResearchContent: React.FC<HerbalinkResearchContentProps> = ({
               imageCaptions={{
                 "/lovable-uploads/a8ef8ea7-ae55-4f15-8f9b-13dcf5efe9d1.png": "Herbalink comprehensive design system emphasizing trust, accessibility, and natural wellness through calming colors and user-friendly typography"
               }}
-              className="rounded-xl shadow-elevated-lg w-full overflow-hidden"
+              className="rounded-xs shadow-elevated-lg w-full overflow-hidden"
             />
           </div>
         </div>
