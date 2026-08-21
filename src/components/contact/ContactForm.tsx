@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,6 +22,7 @@ const ContactForm: React.FC = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const shouldAutoFocus = location.pathname === "/contact";
 
   const form = useForm<ContactFormValues>({
@@ -67,6 +68,19 @@ const ContactForm: React.FC = () => {
       });
       form.reset();
       setFallbackVisible(false);
+
+      // Land them back on the homepage rather than on a spent form.
+      //
+      // A toast fired on the page you are already looking at is easy to miss —
+      // nothing else on screen changed, so there is no signal the submit did
+      // anything. Moving the page is the confirmation. The Toaster is mounted
+      // at the app root, so the message travels with them and is still on
+      // screen when they arrive, and the route transition already scrolls to
+      // the top on a non-POP navigation.
+      //
+      // Only on success: a failed submit keeps them here, with what they typed
+      // still in the fields.
+      window.setTimeout(() => navigate("/"), 600);
     } catch (error) {
       console.error("Error submitting form:", error);
       // Never send someone away with nothing. A failed submit has to hand over
