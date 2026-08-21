@@ -60,7 +60,7 @@ const ModernProjectChallenge: React.FC<ModernProjectChallengeProps> = ({
                       const itemImage = getImageForListItem(itemText);
                       
                       return (
-                        <div key={itemIndex} className="flex flex-col bg-blue-50/30 p-3 rounded-lg border border-blue-100/50">
+                        <div key={itemIndex} className="flex flex-col bg-blue-50/30 p-3 rounded-xs border border-blue-100/50">
                           <div className="flex items-start mb-3">
                             <span className="text-primary mr-3 font-bold mt-0.5">•</span>
                             <span className="text-gray-700 text-sm leading-relaxed">{itemText}</span>

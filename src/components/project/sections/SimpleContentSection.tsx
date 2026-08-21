@@ -65,7 +65,7 @@ const SimpleContentSection: React.FC<SimpleContentSectionProps> = ({
               <img
                 src={images[0]}
                 alt={`${title} image 1`}
-                className="rounded-lg shadow-elevated w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                className="rounded-xs shadow-elevated w-full glass-card layered-depth cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
               />
               <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                 {imageCaptions[images[0]] || `${title} supporting image`}

@@ -67,7 +67,7 @@ const ProblemSection: React.FC = () => {
                 duration: 0.5,
                 delay: index * 0.1
               }} 
-              className="bg-red-50 p-6 rounded-xl border border-red-200 hover:shadow-lg transition-all duration-300 flex flex-col"
+              className="bg-red-50 p-6 rounded-xs border border-red-200 hover:shadow-lg transition-all duration-300 flex flex-col"
             >
               <div className="flex-1 mb-4">
                 <p className="text-gray-800 leading-relaxed text-base font-medium">{pain.text}</p>

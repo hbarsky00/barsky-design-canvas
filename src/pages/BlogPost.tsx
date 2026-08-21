@@ -77,7 +77,7 @@ const BlogPostPage: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-background border border-border/10 rounded-2xl shadow-elevation-3 overflow-hidden"
+              className="bg-background border border-border/10 rounded-xs shadow-elevation-3 overflow-hidden"
             >
               {/* Featured Image */}
               {(metadata?.featuredImage || staticPost?.coverImage) && (

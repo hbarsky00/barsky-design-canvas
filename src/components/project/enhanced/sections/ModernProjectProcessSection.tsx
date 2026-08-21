@@ -90,7 +90,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
         projectId={projectId}
       />
       
-      <div className="rounded-xl bg-card border border-border p-6 shadow-sm">
+      <div className="rounded-xs bg-card border border-border p-6 shadow-sm">
         <div className="prose prose-lg text-muted-foreground leading-relaxed max-w-none">
           {details.process.split('\n\n').map((paragraph, index) => {
             // Check if this is a main header (like "Design Process & Methodology:")
@@ -127,7 +127,7 @@ const ModernProjectProcessSection: React.FC<ModernProjectProcessSectionProps> = 
                       const itemImage = getImageForListItem(itemText);
                       
                       return (
-                        <div key={itemIndex} className="flex flex-col bg-background p-3 rounded-lg border border-border/50">
+                        <div key={itemIndex} className="flex flex-col bg-background p-3 rounded-xs border border-border/50">
                           <div className="flex items-start mb-3">
                             <span className="text-primary mr-3 mt-1 font-bold">•</span>
                             <span className="text-muted-foreground text-sm leading-relaxed">{itemText}</span>

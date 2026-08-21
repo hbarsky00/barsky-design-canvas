@@ -29,7 +29,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {recentPosts.map(post => <article key={post.id} className="bg-background border border-border/10 rounded-2xl shadow-elevation-2 overflow-hidden hover:shadow-elevation-4 transition-shadow duration-300">
+          {recentPosts.map(post => <article key={post.id} className="bg-background border border-border/10 rounded-xs shadow-elevation-2 overflow-hidden hover:shadow-elevation-4 transition-shadow duration-300">
               <Link to={`/blog/${post.slug}`} className="block aspect-video w-full overflow-hidden bg-muted">
                 <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" />
               </Link>

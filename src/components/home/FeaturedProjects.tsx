@@ -45,7 +45,7 @@ const FeaturedProjects: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }} 
               className="group relative"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
+              <div className="bg-white rounded-xs shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Project Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img 

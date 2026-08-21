@@ -89,7 +89,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
             >
               <Link
                 to={project.url}
-                className="group block rounded-2xl border transition-all duration-300 overflow-hidden bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
+                className="group block rounded-xs border transition-all duration-300 overflow-hidden bg-background border-outline/10 hover:border-primary/30 hover:shadow-md"
               >
                 <div className="relative overflow-hidden">
                   <img

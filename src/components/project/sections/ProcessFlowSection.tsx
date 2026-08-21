@@ -25,7 +25,7 @@ const ProcessFlowSection: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8 }}
-          className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200"
+          className="bg-white rounded-xs p-8 shadow-xl border border-gray-200"
         >
           <MaximizableImage
             src="/lovable-uploads/3b9c3f8c-f435-4a25-94fe-f760ae0f4af1.png"

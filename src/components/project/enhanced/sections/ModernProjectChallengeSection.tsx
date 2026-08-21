@@ -62,7 +62,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="rounded-2xl bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
+      className="rounded-xs bg-card border border-border shadow-elevated p-4 sm:p-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
     >
       <h2 id="challenge-heading" className="sr-only">Challenge Section</h2>
       
@@ -92,7 +92,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
             imageList={challengeImages}
             currentIndex={0}
             projectId={projectId}
-            className="w-full h-auto object-cover rounded-lg"
+            className="w-full h-auto object-cover rounded-xs"
           />
           
           {/* Second image */}
@@ -103,7 +103,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
             imageList={challengeImages}
             currentIndex={1}
             projectId={projectId}
-            className="w-full h-auto object-cover rounded-lg"
+            className="w-full h-auto object-cover rounded-xs"
           />
         </div>
       )}
@@ -127,7 +127,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               alt="Herbalist consultation illustration showing the challenge of trust-building between practitioner and patient"
               caption="Trust-building consultation process between herbalist and patient"
               projectId={projectId}
-              className="w-full h-auto object-cover rounded-lg shadow-lg"
+              className="w-full h-auto object-cover rounded-xs shadow-lg"
             />
             
             <MaximizableImage
@@ -157,7 +157,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
               alt="The Problem illustration showing user frustration with unreliable information, finding practitioners, tracking progress, and poor interfaces"
               caption="Key challenges users face: unreliable information, difficulty finding practitioners, tracking progress, and poor interfaces"
               projectId={projectId}
-              className="w-full h-auto object-cover rounded-lg shadow-lg"
+              className="w-full h-auto object-cover rounded-xs shadow-lg"
             />
             
             <MaximizableImage
@@ -203,7 +203,7 @@ const ModernProjectChallengeSection: React.FC<ModernProjectChallengeSectionProps
                    title={imageCaptions[item] || `Challenge video ${isSpittimeProject ? index + 3 : index + 1}`}
                    caption={imageCaptions[item] || `Challenge video ${isSpittimeProject ? index + 3 : index + 1}`}
                    projectId={projectId}
-                   className="w-full rounded-lg shadow-elevated-lg bg-white p-4"
+                   className="w-full rounded-xs shadow-elevated-lg bg-white p-4"
                  />
                ) : (
                  <MaximizableImage

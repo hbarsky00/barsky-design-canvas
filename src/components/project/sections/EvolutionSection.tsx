@@ -62,7 +62,7 @@ const EvolutionSection: React.FC = () => {
               }} 
               className="relative"
             >
-              <div className="bg-white rounded-3xl p-6 shadow-xl border-2 border-gray-100 hover:shadow-2xl transition-all duration-300">
+              <div className="bg-white rounded-xs p-6 shadow-xl border-2 border-gray-100 hover:shadow-2xl transition-all duration-300">
                 <div className={`w-12 h-12 bg-${phase.color}-500 text-white rounded-full flex items-center justify-center font-bold text-lg mb-6`}>
                   {phase.step}
                 </div>
