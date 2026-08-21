@@ -99,7 +99,7 @@ function sanitize(html: string): string {
 
 let launchSeq = 0;
 
-function dumpDom(url: string, timeoutMs = 75000): Promise<string> {
+function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
   return new Promise((resolvePromise, reject) => {
     // A fresh profile per launch. Sharing one directory across routes meant a
     // SIGKILLed Chrome left renderers holding the profile lock, and every
@@ -119,7 +119,14 @@ function dumpDom(url: string, timeoutMs = 75000): Promise<string> {
         "--disable-sync",
         "--disable-default-apps",
         `--user-data-dir=${profile}`,
-        "--virtual-time-budget=10000",
+        // Case-study pages carry several <video preload="metadata"> elements.
+        // Chrome's virtual clock does not advance past pending media fetches,
+        // so those routes never hit the budget and sat until the wall timeout —
+        // 22 of 32 routes failed that way, every one of them a page with video
+        // or a heavy hero. The DOM is all we want here, so refuse the bytes.
+        "--blink-settings=imagesEnabled=false",
+        "--disable-remote-fonts",
+        "--virtual-time-budget=15000",
         "--dump-dom",
         url,
       ],

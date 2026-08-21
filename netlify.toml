@@ -8,7 +8,15 @@
 # trailing-slash rules further down still catch anyone who arrives with one and
 # consolidate them onto the slashless canonical, so there is exactly one URL
 # per page and no hop on the one we advertise.
+#
+# pretty_urls lives under [build.processing.html], not [build.processing].
+# Put in the parent table Netlify silently ignores it — the deploy went green
+# and /project/stips kept answering 301, which is how the first attempt at this
+# fix looked like it worked.
 [build.processing]
+  skip_processing = false
+
+[build.processing.html]
   pretty_urls = false
 
 # 301 Redirects for pages that redirect (fix Google Search Console issues)

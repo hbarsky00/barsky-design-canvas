@@ -17,6 +17,24 @@
 /blog/research-without-users              /blog   301
 /blog/portfolio-red-flags-no-interviews   /blog   301
 
+# Soft 404s reported by Search Console 2026-08-21. None of these paths have
+# ever existed on this site — they're links from an older structure or from
+# elsewhere — but the SPA catch-all below answers every unmatched URL with 200
+# and a client-rendered Not Found, which Google reads as a soft 404 rather than
+# a missing page. Redirecting them turns each one into a clean signal.
+
+# /case-studies/* was never this site's URL shape; the work lives under /project/*
+/case-studies/ring-rival        /project/ring-rival   301
+/case-studies/roi-design-builder  /projects           301
+/case-studies/*                 /projects             301
+
+# Posts that don't exist here. The trust one has a real counterpart; the other
+# two have no close match, so they go to the index rather than to a post that
+# only vaguely resembles what the link promised.
+/blog/designing-trust-into-ai      /blog/designing-for-trust-when-the-product-is-the-risk   301
+/blog/figma-to-production-with-ai  /blog   301
+/blog/designing-ai-native-interfaces  /blog   301
+
 # Blue Sky / business-management taken down 2026-08-09 (Hiram: "take it down,
 # we'll fuck with it later"). The page and its data are still in the repo, just
 # not routed. Both URLs were indexed, so send them to the work index rather
