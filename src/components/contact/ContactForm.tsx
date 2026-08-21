@@ -30,6 +30,8 @@ const ContactForm: React.FC = () => {
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
 
+  const [fallbackVisible, setFallbackVisible] = useState(false);
+
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
@@ -43,12 +45,19 @@ const ContactForm: React.FC = () => {
       form.reset();
     } catch (error) {
       console.error("Error submitting form:", error);
+      // Never send someone away with nothing. The backend went down once
+      // already — a paused Supabase project — and for as long as it was down
+      // this branch told every visitor "try again later" and gave them no
+      // other way to reach Hiram. A failed submit has to hand over the direct
+      // address, and the message they already typed has to survive: the form
+      // is deliberately not reset in this branch, so it is still there to copy.
       toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
+        title: "That didn't send — email me directly",
+        description: "hbarsky01@gmail.com — your message is still in the form, copy it across.",
         variant: "destructive",
-        duration: 5000,
+        duration: 15000,
       });
+      setFallbackVisible(true);
     } finally {
       setIsSubmitting(false);
     }
