@@ -277,6 +277,12 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    # Flagged by the security-headers checker. Referrer-Policy keeps the full
+    # URL from leaking to third parties on outbound clicks while still sending
+    # the origin, which is what analytics attribution needs. Permissions-Policy
+    # denies hardware this site never asks for.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     
 [[headers]]
   for = "/index.html"

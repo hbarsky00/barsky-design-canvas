@@ -24,7 +24,7 @@
 // committed snapshots go stale and crawlers keep seeing the old text.
 
 import { spawn, spawnSync } from "child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync, readdirSync, renameSync } from "fs";
 import { resolve } from "path";
 
 const PORT = 4199;
@@ -126,6 +126,16 @@ function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
         // or a heavy hero. The DOM is all we want here, so refuse the bytes.
         "--blink-settings=imagesEnabled=false",
         "--disable-remote-fonts",
+        // Every route that failed has <video preload="metadata"> on it; the ten
+        // that succeeded were blog posts, which have none. Chrome's virtual
+        // clock is paused while network fetches are outstanding, and a media
+        // range request that never settles pauses it forever — so those routes
+        // burned the whole wall timeout instead of reaching the budget.
+        // The videos share the page's origin, so no Chrome host rule can single
+        // them out — they are stashed out of dist/ for the duration of the run
+        // instead (see stashMedia below), which turns each request into an
+        // immediate 404 and lets virtual time advance.
+        "--force-prefers-reduced-motion",
         "--virtual-time-budget=15000",
         "--dump-dom",
         url,
@@ -136,24 +146,40 @@ function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
     const cleanupProfile = () => rmSync(profile, { recursive: true, force: true });
 
     let out = "";
-    child.stdout.on("data", (d) => (out += d.toString()));
+    let settled = false;
 
-    const timer = setTimeout(() => {
+    const finish = (fn: () => void) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
       child.kill("SIGKILL");
       cleanupProfile();
-      reject(new Error(`timed out after ${timeoutMs}ms`));
+      fn();
+    };
+
+    // Resolve on the DOM, not on the process.
+    //
+    // --dump-dom writes the serialised document and then, on any page heavy
+    // enough to keep a task queue warm, simply does not exit. Waiting for
+    // 'close' meant 22 of 32 routes were killed at the wall timeout *after*
+    // they had already produced a complete, correct DOM — the capture was
+    // working and the harness was throwing the result away. Measured on
+    // /project/ring-rival: 50,959 bytes of correct markup, still running at
+    // 45s. The closing tag is the real completion signal.
+    child.stdout.on("data", (d) => {
+      out += d.toString();
+      if (out.trimEnd().endsWith("</html>")) finish(() => resolvePromise(out));
+    });
+
+    const timer = setTimeout(() => {
+      // Partial output past the opening shell is still worth nothing — a
+      // truncated body would be baked into the page as if it were whole.
+      finish(() => reject(new Error(`timed out after ${timeoutMs}ms`)));
     }, timeoutMs);
 
-    child.on("close", () => {
-      clearTimeout(timer);
-      cleanupProfile();
-      resolvePromise(out);
-    });
-    child.on("error", (e) => {
-      clearTimeout(timer);
-      cleanupProfile();
-      reject(e);
-    });
+    // Still handle a clean exit, for pages that do terminate normally.
+    child.on("close", () => finish(() => resolvePromise(out)));
+    child.on("error", (e) => finish(() => reject(e)));
   });
 }
 
@@ -178,6 +204,44 @@ export function extractRoot(dom: string): string | null {
     }
   }
   return null;
+}
+
+/**
+ * Move every video out of dist/ for the duration of the capture.
+ *
+ * Chrome's virtual clock is paused while network fetches are outstanding, and
+ * a <video preload="metadata"> range request that never settles pauses it
+ * indefinitely — which is why 22 of 32 routes burned the full wall timeout
+ * rather than hitting their budget, and why the ten that succeeded were all
+ * blog posts (the only pages here with no video on them).
+ *
+ * A missing file 404s instantly, the <video> element still renders in the DOM
+ * exactly as authored, and the DOM is the entire output of this step.
+ */
+function stashMedia(): Array<[string, string]> {
+  const stash = resolve(".capture-media-stash");
+  mkdirSync(stash, { recursive: true });
+  const moved: Array<[string, string]> = [];
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = resolve(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (/\.(mp4|webm|mov)$/i.test(entry.name)) {
+        const to = resolve(stash, entry.name);
+        renameSync(full, to);
+        moved.push([to, full]);
+      }
+    }
+  };
+  walk(resolve("dist"));
+  return moved;
+}
+
+function restoreMedia(moved: Array<[string, string]>) {
+  for (const [from, to] of moved) {
+    if (existsSync(from)) renameSync(from, to);
+  }
+  rmSync(resolve(".capture-media-stash"), { recursive: true, force: true });
 }
 
 async function main() {
@@ -217,6 +281,9 @@ async function main() {
     process.exit(1);
   }
 
+  const stashed = stashMedia();
+  console.log(`Stashed ${stashed.length} media files for the run.`);
+
   const failures: string[] = [];
   let written = 0;
 
@@ -248,6 +315,9 @@ async function main() {
     }
   } finally {
     preview.kill("SIGKILL");
+    // Always put the videos back, including on a crash — leaving dist/ short of
+    // its media would ship a build with every video 404ing.
+    restoreMedia(stashed);
   }
 
   console.log(`\nCaptured ${written}/${routes.length} routes.`);
