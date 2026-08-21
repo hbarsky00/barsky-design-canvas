@@ -65,18 +65,25 @@
     }
     </script>
 
-    <!-- WebSite JSON-LD with SearchAction -->
+    <!-- WebSite JSON-LD.
+         No SearchAction: it advertised https://barskydesign.pro/?s={search_term_string}
+         and this site has no search. Google took the template literally and
+         crawled /?s={search_term_string}, which the SPA catch-all answered 200 —
+         one self-inflicted duplicate of the homepage, reported back as
+         "Alternate page with proper canonical tag". Declaring a sitelinks
+         searchbox you cannot service is worse than declaring none.
+         description and inLanguage were the two fields the schema checker
+         flagged as missing here. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://barskydesign.pro/#website",
       "name": "Barsky Design",
       "url": "https://barskydesign.pro/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://barskydesign.pro/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "description": "Portfolio of Hiram Barsky, lead product and AI designer. Case studies from shipped AI-first products and enterprise software.",
+      "inLanguage": "en-US",
+      "publisher": { "@type": "Organization", "name": "Hiram Barsky Design" }
     }
     </script>
     

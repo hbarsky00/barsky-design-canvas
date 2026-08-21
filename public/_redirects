@@ -23,6 +23,17 @@
 # and a client-rendered Not Found, which Google reads as a soft 404 rather than
 # a missing page. Redirecting them turns each one into a clean signal.
 
+# /get-started was a CTA URL on an earlier version of the site and is still
+# linked from outside. Booking a call is what it promised, so send it to the
+# page that does that rather than let the catch-all answer 200 with a
+# client-rendered Not Found.
+/get-started    /contact    301
+
+# Literal "$1" — an old redirect rule written Apache-style instead of with
+# Netlify's :splat, so the placeholder itself got crawled. The rule is long
+# gone but the URL is still in Google's index answering 200.
+/$1             /           301
+
 # /case-studies/* was never this site's URL shape; the work lives under /project/*
 /case-studies/ring-rival        /project/ring-rival   301
 /case-studies/roi-design-builder  /projects           301
