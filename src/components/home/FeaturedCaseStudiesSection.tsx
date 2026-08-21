@@ -134,7 +134,7 @@ const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study
        className="group"
        style={{ ...containerStyle, transformStyle: 'preserve-3d', willChange: 'transform' }}
      >
-       <div className="rounded-xs border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20">
+       <div className="rounded-2xl border transition-all duration-300 overflow-hidden transform hover:-translate-y-2 bg-white/95 border-gray-200/80 hover:border-primary/30 hover:shadow-lg hover:shadow-gray-200/20">
           {/* Image Section - Clickable */}
           <Link to={study.url} className="block relative overflow-hidden">
             <img

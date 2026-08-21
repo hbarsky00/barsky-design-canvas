@@ -61,7 +61,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {prevProject && (
           <button
             onClick={handlePrevProject}
-            className="group flex items-center gap-3 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+            className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
             aria-label={`Previous project: ${prevProject.title}`}
           >
@@ -85,7 +85,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         {nextProject && (
           <button
             onClick={handleNextProject}
-            className="group flex items-center gap-3 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+            className="group flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
             type="button"
             aria-label={`Next project: ${nextProject.title}`}
           >
@@ -113,7 +113,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           {prevProject && (
             <button
               onClick={handlePrevProject}
-              className="group flex items-center gap-4 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
+              className="group flex items-center gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm"
               type="button"
               aria-label={`Previous project: ${prevProject.title}`}
             >
@@ -139,7 +139,7 @@ const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
           {nextProject && (
             <button
               onClick={handleNextProject}
-              className="group flex items-center justify-end gap-4 p-4 rounded-xs border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
+              className="group flex items-center justify-end gap-4 p-4 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/40 hover:bg-gray-50 dark:hover:bg-gray-800/60 hover:text-barsky-blue transition-colors cursor-pointer shadow-sm w-full"
               type="button"
               aria-label={`Next project: ${nextProject.title}`}
             >

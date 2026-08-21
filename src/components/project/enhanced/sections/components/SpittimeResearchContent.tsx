@@ -21,7 +21,7 @@ const SpittimeResearchContent: React.FC = () => {
             <img
               src="https://barskyux.com/wp-content/uploads/2025/08/mobilepromo.png"
               alt="SplitTime mobile application promotional image"
-              className="w-full h-auto object-cover rounded-xs"
+              className="w-full h-auto object-cover rounded-lg"
             />
           </div>
         </div>

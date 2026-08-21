@@ -149,7 +149,7 @@ const ServicePageLayout: React.FC = () => {
               <Link
                 key={p.href}
                 to={p.href}
-                className="group block rounded-xl border border-border overflow-hidden hover:border-primary/40 transition-colors duration-200"
+                className="group block rounded-xs border border-border overflow-hidden hover:border-primary/40 transition-colors duration-200"
               >
                 <div className="grid sm:grid-cols-[220px_1fr]">
                   <div className="bg-muted/40 overflow-hidden">

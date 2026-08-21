@@ -34,7 +34,7 @@ const BlogLanding: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-background border border-border/10 rounded-xs shadow-elevation-2 overflow-hidden hover:shadow-elevation-4 transition-shadow duration-300"
+                className="bg-background border border-border/10 rounded-2xl shadow-elevation-2 overflow-hidden hover:shadow-elevation-4 transition-shadow duration-300"
               >
                 {/* Featured Image */}
                 {post.coverImage && (

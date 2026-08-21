@@ -45,7 +45,7 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ duration: 0.8, delay: index * 0.2 }} 
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-xs shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg border border-blue-200 hover:shadow-xl transition-all duration-300"
             >
               <div className="text-4xl mb-6 text-center">{feature.visual}</div>
               <h3 className="text-xl font-bold text-neutral-900 mb-4 text-center">{feature.title}</h3>
@@ -67,7 +67,7 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   src="https://www.loom.com/embed/0bf47ee2418c46dd9196ec72afad5a39?sid=c5f0df22-3e30-4ac2-8ffe-39e5cfb4b08d"
-                  className="absolute inset-0 w-full h-full rounded-xs"
+                  className="absolute inset-0 w-full h-full rounded-lg"
                   frameBorder="0"
                   allowFullScreen
                   title="First rendition of design for Splittime app"
@@ -85,7 +85,7 @@ const SplittimeCoordinationSolution: React.FC<SplittimeCoordinationSolutionProps
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8, delay: 0.6 }} 
-          className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-xs text-center text-white"
+          className="mt-16 bg-gradient-to-r from-blue-500 to-indigo-500 p-8 rounded-3xl text-center text-white"
         >
           <h3 className="text-2xl font-bold mb-4 !text-white">Conflict Reduction Approach</h3>
           <p className="text-lg max-w-3xl mx-auto font-normal white-text-nuclear">

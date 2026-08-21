@@ -64,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="overflow-hidden rounded-lg relative">
+        <div className="overflow-hidden rounded-xs relative">
           <img 
             src={product.image} 
             alt={product.name}
