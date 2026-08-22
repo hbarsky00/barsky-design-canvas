@@ -10,9 +10,12 @@ const StructuredStipsCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://stips.bet"
     heroImage={{
-      // Poster is a frame from the walkthrough, so hover starts seamlessly.
-      src: "/images/stips/card-poster.jpg",
-      alt: "Stips market detail — Yes at 67¢ with the payout worked out before you buy",
+      // Was card-poster.jpg, which is 99.9% identical to the order-ticket
+      // screenshot further down — the hero and a body image were the same
+      // screen. The board is what the product actually is, and it looks like
+      // nothing else on the page.
+      src: "/images/stips/landing.jpg",
+      alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
     }}
     blocks={[
@@ -22,9 +25,6 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "A prediction market answers one question: how likely is this? The price tells you, because people are putting something behind the answer.",
           "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. The question underneath is simple and the screen in front of you is not, so people leave before placing anything.",
           "So the pitch is the product in one line: buy Yes or No on real events, every share pays $1 if you're right. $500 to start, no card, and it says play money on the way in.",
-        ],
-        images: [
-          { src: "/images/stips/landing.jpg", alt: "The landing page — the whole idea in one line, with $500 play money and no card to start" },
         ],
       },
       {
@@ -37,23 +37,23 @@ const StructuredStipsCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "The Market",
+        heading: "The Market, Before and After You Pick",
         paragraphs: [
-          "The price is the probability: a share pays $1, so 67¢ means the crowd thinks it's about 67% likely. Most platforms make you work that out. I show both, in the same control, everywhere a price appears.",
-          "Resolution rules sit on the market page, not in a help doc — what settles it, what happens if the event is postponed, which sources decide. If that isn't clear, the price doesn't mean anything.",
+          "Same screen, two states. On the left nothing is chosen yet, so the panel just shows you both prices and what they mean in plain percentages. On the right I have picked Yes and put $75 on it, and the panel has done the arithmetic: $111.94 back if I am right, $36.94 of that is profit.",
+          "That is the whole reason the ticket exists. Nobody should have to work out what 67¢ a share means for their stake in their head, and if you make them, they will either guess or leave.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/stips/market-detail.jpg", alt: "The market page — the price as both cents and percent, with the resolution rules on the page" },
-        ],
-      },
-      {
-        heading: "The Ticket",
-        paragraphs: [
-          "The ticket does the math before you commit: $75 on Yes at 67¢ returns $111.94, up $36.94. No share counts, no implied odds in your head. The amount field says PLAY MONEY right where you type the number.",
-          "The signup wall comes last — pick a side, set an amount, see exactly what you'd win, all before it asks who you are.",
-        ],
-        images: [
-          { src: "/images/stips/order-ticket.jpg", alt: "The order ticket — stake, payout and profit-if-correct all settled before you buy" },
+          {
+            src: "/images/stips/market-detail.jpg",
+            alt: "Stips market page before choosing an outcome — Yes 67¢, No 33¢, with the resolution rules underneath",
+            caption: "Before: both prices, the rules that settle it, and no maths asked of you yet.",
+          },
+          {
+            src: "/images/stips/order-ticket.jpg",
+            alt: "The same market with Yes selected and $75 staked — to win $111.94, profit if correct $36.94",
+            caption: "After: stake picked, payout and profit worked out before you commit a cent.",
+          },
         ],
       },
       {
@@ -66,8 +66,9 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "Stips is live at stips.bet — markets pulled from the news on a schedule, prices that read as probabilities, and a full bet you can build before anyone asks who you are.",
-          "It is early and the board is small, and I would rather say that than dress it up. What is worth showing is that the whole thing runs end to end. Design, front end, database, auth, and the scheduled jobs that stop the board going stale while nobody is looking.",
+          "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, and that's on purpose — I wanted people to learn how a prediction market reads without putting anything real on the table.",
+          "What isn't fake is what you're betting on. The markets get pulled from actual news on a schedule, so the board fills with the same things people already argue about — a fight card, a rate decision, an election, whether a company ships something by a date. Real questions, real close dates, real resolution criteria written on the page. Play money sitting on top of a board that behaves like the real thing.",
+          "Right now the job is getting people to try it. That's the honest state of it — the product works end to end, design through front end through database, auth and the scheduled jobs that keep the board from going stale while nobody's looking. Getting it in front of people is what I'm working on.",
         ],
       },
     ]}
