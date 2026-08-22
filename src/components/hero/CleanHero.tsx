@@ -262,7 +262,12 @@ const CleanHero: React.FC = () => {
         type="button"
         onClick={scrollToCaseStudies}
         aria-label="Scroll to case studies"
-        className="hero-cue absolute bottom-7 left-1/2 z-10 flex h-11 w-11 -translate-x-1/2 items-center justify-center
+        // Centred with left-0/right-0/mx-auto, not left-1/2 + -translate-x-1/2.
+        // animate-bounce animates `transform`, which replaces the centring
+        // translate outright — measured at 390px the chevron sat exactly 22px
+        // (half its own width) right of centre. Margin centring is immune to
+        // whatever the animation does to transform.
+        className="hero-cue absolute bottom-7 left-0 right-0 z-10 mx-auto flex h-11 w-11 items-center justify-center
                    rounded-full text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary
                    motion-safe:animate-bounce"
       >
