@@ -53,6 +53,12 @@
 /project/business-management     /projects   301
 /project/wholesale-distribution  /projects   301
 
+# SplitTime hidden 2026-08-22 (splittime.pro is dead). This rule has to live
+# HERE, not only in netlify.toml: this file is processed first and its catch-all
+# on the last line matches before netlify.toml is ever consulted, so a 301 that
+# exists only in the toml never fires for a path this file does not name.
+/project/splittime               /projects   301
+
 # SPA fallback — must stay last. Does not shadow real files, so the
 # per-route HTML written by scripts/inject-seo-html.ts is still served.
 #
