@@ -92,7 +92,7 @@ const ExitIntentDetector: React.FC<ExitIntentDetectorProps> = ({
                 Wait! Before you go...
               </h3>
               <p className="text-gray-600 mb-6">
-                See how I've helped clients boost conversions by 40%+ with AI-powered UX design.
+                Take a look at what I&apos;ve designed and built — five products live right now.
               </p>
               
               <div className="space-y-3">

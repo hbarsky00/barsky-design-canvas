@@ -53,6 +53,10 @@ export const generateStructuredData = (seoData: SEOData) => {
       "https://github.com/hbarsky00"
     ],
     knowsAbout: [
+      "SaaS Product Design and Development",
+      "Web Application Development",
+      "Mobile App Design and Development",
+      "Internal Tools and Admin Interfaces",
       "AI-Assisted Product Design",
       "UX/UI Design",
       "Design Systems",
@@ -69,11 +73,11 @@ export const generateStructuredData = (seoData: SEOData) => {
     founder: {
       "@type": "Person",
       name: "Hiram Barsky",
-      jobTitle: "UX/UI Designer & AI Developer",
-      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
+      jobTitle: "Product Designer & Software Developer",
+      description: "Designs and develops SaaS, web apps, mobile apps and internal tools. 15+ years in fintech, healthcare and enterprise software."
     },
     description:
-      "Lead product designer specialising in AI-first and enterprise software. 15+ years across fintech, healthcare and pharma, designing and shipping end to end.",
+      "Design and development of SaaS, web apps, mobile apps and internal tools \u2014 one person, start to finish. 15+ years across fintech, healthcare and pharma.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Clifton",

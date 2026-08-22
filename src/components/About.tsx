@@ -38,8 +38,9 @@ const About: React.FC = () => {
           {/* Streamlined Introduction */}
           <div className="text-center mb-12">
             <p className="text-xl text-barsky-text mb-6 leading-relaxed">
-              Lead UX Designer with 15+ years creating AI-enhanced digital experiences. 
-              I turn complex user problems into simple, profitable solutions.
+              I design and develop software: SaaS, web apps, mobile apps, and the internal
+              tools nobody else wants to touch. 15+ years of it, most in regulated industries
+              where getting it wrong has consequences.
             </p>
             
             {/* Key Results Grid */}
@@ -108,8 +109,8 @@ const About: React.FC = () => {
               staggerChildren={0.08}
             />
             <p className="mb-6 text-lg">
-              Join 47+ successful projects that achieved 40%+ conversion improvements 
-              through AI-enhanced UX design.
+              15+ years designing and developing software in regulated industries, and five
+              products of my own live right now. Tell me what you are building.
             </p>
             <Button
               onClick={() => {

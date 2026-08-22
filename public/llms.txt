@@ -1,15 +1,15 @@
 # Barsky Design
 
-> Portfolio of Hiram Barsky — Lead Product Designer & AI Innovator based in Clifton, NJ. 15+ years designing user-centered digital experiences across fintech, healthcare, and AI products.
+> Hiram Barsky designs and develops SaaS, web apps, mobile apps and internal tools — one person, from product design through React front end, database and launch. 15+ years across fintech, healthcare and pharma. Remote, working with teams anywhere.
 
 ## Pages
 
 - [Home](/): Overview, hero, featured case studies, services and contact.
-- [About](/about): Background, philosophy, and experience as a Gen-AI-first product designer.
-- [Services](/services): UX/UI design, AI integration, and product strategy services.
+- [About](/about): Background and 15+ years designing and developing software in regulated industries.
+- [Services](/services): What he designs and develops — SaaS, web apps, mobile apps, internal tools.
 - [Design Services — UX/UI](/design-services/ux-ui-design): UX research, interaction design, and UI systems.
-- [Design Services — Mobile App Design](/design-services/mobile-app-design): iOS/Android product design and prototyping.
-- [Design Services — Web Development](/design-services/web-development): Modern, AI-assisted React/Vite web builds.
+- [Design Services — Mobile App Design](/design-services/mobile-app-design): iOS and Android app design, plus the build to go with it.
+- [Design Services — Web Development](/design-services/web-development): React and TypeScript web apps, designed and built by the same person.
 - [Store](/store): Downloadable design templates and resources.
 - [Blog](/blog): Articles on UX, design systems, AI, and career growth.
 - [Contact](/contact): Project inquiries and consultation requests.

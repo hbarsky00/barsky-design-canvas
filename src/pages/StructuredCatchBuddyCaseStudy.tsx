@@ -8,7 +8,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     description="Getting two strangers to agree to meet at a park is the easy part. Getting them to feel safe doing it is the product."
     tags={["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
-    liveUrl="https://catchbuddy.me"
+    liveUrl="https://catchbuddy.fit"
     heroImage={{
       src: "/images/catchbuddy-hero-landing.png",
       width: 1960,

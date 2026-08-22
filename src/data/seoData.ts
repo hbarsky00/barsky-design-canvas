@@ -5,62 +5,62 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/': {
     kind: 'home',
-    title: 'Hiram Barsky — I Design AI Products and Ship Them',
-    description: 'I design AI-first products and write the front end myself, so you get working software instead of a handoff. 15+ years in regulated enterprise software — PNC, Bank of America, Deloitte, KPMG, AstraZeneca.',
+    title: 'I Design and Develop SaaS, Apps & Internal Tools',
+    description: 'I design and develop SaaS, web apps, mobile apps and internal tools. One person, start to finish: design, front end, database, launch. Five live now.',
     image: SEO_CONSTANTS.DEFAULT_OG_IMAGE
   },
   '/projects': {
     kind: 'page',
-    title: 'UX Case Studies & Product Design — Barsky Design',
-    description: 'UX case studies in healthcare, fintech, co-parenting, and AI platforms — measurable impact, user outcomes, and strategic design thinking.',
+    title: 'Case Studies — Products I Designed and Built',
+    description: 'Case studies from 15+ years: SaaS, mobile apps, internal tools and marketplaces. The decisions, the trade-offs, and what I cut along the way.',
     image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
   },
   '/services': {
     kind: 'page',
-    title: 'What I Can Build For You — Hiram Barsky',
-    description: 'Design and build, end to end: product design, React and TypeScript front end, database and auth. One person, no handoff round-trip, working software at the end of it.',
+    title: 'What I Design and Develop — Hiram Barsky',
+    description: 'SaaS, web apps, mobile apps and internal tools. Product design, React and TypeScript front end, database and auth. One person, no handoff round-trip.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/contact': {
     kind: 'page',
-    title: 'Contact Barsky Design — UX Consulting',
-    description: 'Tell me what you are building. I work remotely with teams anywhere, on US Eastern time, and reply to everything myself.',
+    title: 'Contact — Tell Me What You Are Building',
+    description: 'SaaS, an app, or the internal tool nobody wants to touch. I work remotely with teams anywhere, on US Eastern time, and reply to everything myself.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/blog': {
     kind: 'page',
-    title: 'UX Design Blog — Product Insights | Barsky',
-    description: 'Insights on UX design, AI integration, design systems, and product strategy — practical lessons from 15+ years in the field.',
+    title: 'Blog — Designing and Building Software',
+    description: 'Notes on designing and developing software as one person: AI-assisted workflow, design systems, and what shipping solo actually takes.',
     image: 'https://barskydesign.pro/blog-ai-enhanced-ux.jpg'
   },
   '/about': {
     kind: 'page',
-    title: 'About Hiram Barsky — 15+ Years in Design',
-    description: '15+ years designing and shipping software in regulated industries — PNC, Bank of America, Deloitte, KPMG, AstraZeneca. I design the product and write the front end. Remote, worldwide.',
+    title: 'About Hiram Barsky — Designer and Developer',
+    description: '15+ years designing and developing software in regulated industries: PNC, Bank of America, Deloitte, KPMG, AstraZeneca. I design it and I build it.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/store': {
     kind: 'page',
     title: 'Design Resources & Templates — Barsky',
-    description: 'Professional design resources, wireframe kits, and UX templates to accelerate product development. Instant digital downloads.',
+    description: 'Wireframe kits and UX templates pulled from my own product work. Instant digital downloads.',
     image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
   },
   '/design-services/ux-ui-design': {
     kind: 'page',
-    title: 'UX/UI Design Services — Product Design',
-    description: 'Expert UX/UI design — from user research to high-fidelity prototypes. Intuitive experiences that drive measurable business results.',
+    title: 'UX/UI Design Services — Hiram Barsky',
+    description: 'Product design from research through high-fidelity UI: user flows, wireframes, prototypes, and the design system that keeps it consistent as it grows.',
     image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
-    title: 'Mobile App Design — iOS & Android | Barsky',
-    description: 'Native and cross-platform mobile app design for iOS and Android. User-centered design that increases engagement and ratings.',
+    title: 'Mobile App Design and Development',
+    description: 'iOS and Android app design, plus the build to go with it. Designed and developed end to end by one person, from first sketch to the store listing.',
     image: 'https://barskydesign.pro/images/catchbuddy-hero-landing.png'
   },
   '/design-services/web-development': {
     kind: 'page',
-    title: 'Web Development — React & Frontend | Barsky',
-    description: 'Custom web development with React, TypeScript, and modern frameworks. Fast, responsive, accessible web apps that scale.',
+    title: 'Web Development — React & TypeScript',
+    description: 'Custom web apps in React and TypeScript: front end, database, auth and deploy. Fast, accessible, and built by the same person who designed it.',
     image: 'https://barskydesign.pro/images/dae-search/hero.jpg'
   }
 };

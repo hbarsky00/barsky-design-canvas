@@ -21,10 +21,10 @@ export const SEO_CONSTANTS = {
   // (Slack, iMessage, LinkedIn, X) was center-cropping or squashing into a
   // landscape frame despite buildSEO() declaring 1200x630 for it.
   DEFAULT_OG_IMAGE: 'https://barskydesign.pro/images/og/site.png',
-  SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
+  SITE_NAME: 'Hiram Barsky | I Design and Develop Software',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
-  DEFAULT_DESCRIPTION: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',
+  DEFAULT_DESCRIPTION: 'I design and develop SaaS, web apps, mobile apps and internal tools. One person, start to finish: design, front end, database and launch.',
   
   // Meta tag defaults
   THEME_COLOR: '#3B82F6',

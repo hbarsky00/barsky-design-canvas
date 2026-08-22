@@ -14,17 +14,17 @@ const ServicesCallToAction = () => {
         </div>
         
         <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
-          Start Your AI-Enhanced Project Today
+          Tell me what you want built
         </h2>
         
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Get a personalized project plan with AI-powered analysis, competitive insights, and a clear roadmap to 40%+ improvement.
+          A free call to scope it, then a written proposal with the work and the price in it. If I&apos;m not the right fit, I&apos;ll say so on the call.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <CheckCircle className="h-4 w-4 text-green-600" />
-            <span>24-hour response time</span>
+            <span>I reply to everything myself</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <CheckCircle className="h-4 w-4 text-green-600" />

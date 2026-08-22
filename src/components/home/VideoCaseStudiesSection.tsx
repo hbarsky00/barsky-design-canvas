@@ -57,7 +57,7 @@ const caseStudies: CaseStudy[] = [
     description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     impact: "",
     url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
+    liveUrl: "https://catchbuddy.fit",
     images: {
       primary: "/images/catchbuddy-hero-landing.png",
       alt: "CatchBuddy pickup sports app"

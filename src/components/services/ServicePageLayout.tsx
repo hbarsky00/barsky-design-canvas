@@ -71,7 +71,7 @@ const ServicePageLayout: React.FC = () => {
         >
           <motion.div variants={variants}>
             <Badge variant="secondary" className="mb-5">
-              Product Design × AI
+              Design &amp; Development
             </Badge>
           </motion.div>
 
@@ -79,7 +79,7 @@ const ServicePageLayout: React.FC = () => {
             variants={variants}
             className="font-display font-bold text-foreground tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6"
           >
-            I design AI-first products, and I build them
+            I design and develop the whole product
           </motion.h1>
 
           <motion.p

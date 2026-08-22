@@ -23,9 +23,9 @@ const SOCIALS = [
 ];
 
 const STATS = [
-  { value: "15+ Yrs", label: "Product Design" },
-  { value: "AI-Native", label: "Design + Build" },
-  { value: "Solo Shipped", label: "Live Products" },
+  { value: "15+ Yrs", label: "In Software" },
+  { value: "Design + Dev", label: "One Person" },
+  { value: "5 Live", label: "Products Now" },
 ];
 
 const BRAND_EASE = [0.22, 1, 0.36, 1] as const;
@@ -139,7 +139,7 @@ const CleanHero: React.FC = () => {
               variants={variants}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground"
             >
-              Product Design × AI
+              Design &amp; Development
             </motion.div>
 
             <motion.h1
@@ -159,10 +159,10 @@ const CleanHero: React.FC = () => {
 
             <motion.div variants={variants} className="flex flex-col gap-1.5">
               <p className="text-lg sm:text-xl font-display font-medium text-foreground/90">
-                Lead UX Designer
+                I design and develop software
               </p>
               <p className="text-sm text-muted-foreground">
-                Enterprise &amp; AI products · Available for new work
+                SaaS · Web apps · Mobile · Internal tools · Available now
               </p>
             </motion.div>
 

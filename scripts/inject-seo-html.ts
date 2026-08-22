@@ -176,7 +176,7 @@ function injectBody(html: string, pathname: string): { html: string; had: boolea
   // the placeholder is ever dropped from the template.
   for (const marker of ['<div id="root"><!--app-html--></div>', '<div id="root"></div>']) {
     if (html.includes(marker)) {
-      return { html: html.replace(marker, `<div id="root">${body}</div>`), had: true };
+      return { html: html.replace(marker, () => `<div id="root">${body}</div>`), had: true };
     }
   }
 
@@ -187,7 +187,7 @@ function injectBody(html: string, pathname: string): { html: string; had: boolea
 function writeRoute(template: string, pathname: string): boolean {
   const seo = buildSEO(seoInputFor(pathname));
   const head = renderHead(seo);
-  const withHead = template.replace("</head>", `    ${head}\n  </head>`);
+  const withHead = template.replace("</head>", () => `    ${head}\n  </head>`);
   const { html, had } = injectBody(withHead, pathname);
   const outDir = pathname === "/" ? DIST : resolve(DIST, pathname.replace(/^\//, ""));
   mkdirSync(outDir, { recursive: true });

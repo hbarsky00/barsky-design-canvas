@@ -18,11 +18,11 @@ const BlogLanding: React.FC = () => {
             className="text-center mb-16"
           >
             <h1 className="heading-section text-foreground mb-6">
-              UX Design & AI Insights
+              Designing and Developing Software
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Expert insights on AI-enhanced UX design, accessibility compliance,
-              and conversion optimization from the field.
+              Notes from building products end to end: AI-assisted workflow, design systems,
+              and what shipping solo actually takes.
             </p>
           </motion.div>
 

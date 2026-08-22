@@ -871,7 +871,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/catchbuddy-hero-landing.png`,
       alt: `CatchBuddy pickup sports app overview`,
     },
-    projectLink: `https://catchbuddy.me`,
+    projectLink: `https://catchbuddy.fit`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Safety-First Architecture`, label: `Minor approval, panic button, curated meeting spots` },
