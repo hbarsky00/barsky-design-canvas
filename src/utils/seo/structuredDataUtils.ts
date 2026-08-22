@@ -1,4 +1,6 @@
 
+import { homepageFaqs } from "@/data/seoFaqs";
+
 interface SEOData {
   title: string;
   description: string;
@@ -157,49 +159,28 @@ export const generateStructuredData = (seoData: SEOData) => {
     schemas.push(articleSchema);
   }
 
-  // Add FAQ schema for homepage
-  if (canonicalUrl?.includes('barskydesign.pro') && 
-      !canonicalUrl?.includes('/blog/') && 
+  // Add FAQ schema for homepage.
+  //
+  // Generated from seoFaqs — the same array SeoFaqSection renders — rather than
+  // a separate hardcoded list. Google requires FAQPage markup to match the
+  // question-and-answer content actually visible on the page; this file used to
+  // declare three questions while the visible section showed eight different
+  // ones, so neither matched the other. One source now feeds both.
+  if (canonicalUrl?.includes('barskydesign.pro') &&
+      !canonicalUrl?.includes('/blog/') &&
       !canonicalUrl?.includes('/project/') &&
       (canonicalUrl?.endsWith('/') || canonicalUrl?.endsWith('barskydesign.pro'))) {
-    const faqSchema: any = {
+    schemas.push({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       name: "Working with Hiram Barsky — common questions",
       inLanguage: "en-US",
-      mainEntity: [
-        // Answers are the claims Hiram would make on a call. The previous
-        // versions promised "conversion by 40%+" and "measurable improvements
-        // within 2-4 weeks" — numbers that trace to nothing in this codebase,
-        // sitting in structured data, which is the format an answer engine is
-        // most likely to quote back verbatim.
-        {
-          "@type": "Question",
-          name: "What makes your design approach different?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "I design and build. The front end ships in React and TypeScript, written by me, so what I hand over is a working product rather than a file someone else has to interpret. That closes the gap where most design intent gets lost, and it means I can test an idea in a real browser on a real phone instead of arguing about it in a review."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "What does AI-assisted design actually mean day to day?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "AI produces the raw material fast — screens, variations, working code — which moves the bottleneck from making things to judging them. The work is deciding what to keep. On Ring-Rival that meant cutting time-to-first-punch from 22 seconds to 6 by deleting the splash screen, mode select, fighter select and tutorial. No model tells you which four things to delete."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "Do you work with fintech and healthcare companies?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Most of my 15+ years has been in regulated enterprise software — PNC, Bank of America, Deloitte, KPMG, AstraZeneca — across finance, healthcare and pharma. That work comes with accessibility conformance, audit trails and compliance review as constraints from the start, not as a pass at the end."
-          }
-        }
-      ]
-    };
-    schemas.push(faqSchema);
+      mainEntity: homepageFaqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
   }
 
   return schemas.length === 1 ? schemas[0] : schemas;

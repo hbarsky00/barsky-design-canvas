@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import CleanHero from "@/components/hero/CleanHero";
 import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
+import SeoFaqSection from "@/components/seo/SeoFaqSection";
+import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
@@ -14,9 +16,7 @@ import {
   LazyVideoCaseStudiesSection,
   LazyRecentAdventuresSection,
   LazyContactForm,
-  LazySeoFaqSection,
   LazyBlogPreview,
-  LazyInternalLinkingEnhancer,
   LazyExitIntentDetector,
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
@@ -101,27 +101,23 @@ const HomepageLayout: React.FC = () => {
           </SectionTransition>
         </LazySection>
         
-        <LazySection>
-          <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
-            <section id="faq" tabIndex={-1} className="scroll-offset">
-              <LazySeoFaqSection 
-                title="Frequently Asked Questions"
-                faqs={homepageFaqs}
-              />
-            </section>
-          </SectionTransition>
-        </LazySection>
+        <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+          <section id="faq" tabIndex={-1} className="scroll-offset">
+            <SeoFaqSection
+              title="Frequently Asked Questions"
+              faqs={homepageFaqs}
+            />
+          </section>
+        </SectionTransition>
 
-        <LazySection>
-          <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
-            <section id="internal-linking" tabIndex={-1} className="scroll-offset">
-              <LazyInternalLinkingEnhancer 
-                currentPage="home" 
-                showRelatedLinks={true}
-              />
-            </section>
-          </SectionTransition>
-        </LazySection>
+        <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
+          <section id="internal-linking" tabIndex={-1} className="scroll-offset">
+            <InternalLinkingEnhancer
+              currentPage="home"
+              showRelatedLinks={true}
+            />
+          </section>
+        </SectionTransition>
         </div>
       </main>
       

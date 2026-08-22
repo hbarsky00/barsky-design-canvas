@@ -42,7 +42,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/store': {
     kind: 'page',
     title: 'Design Resources & Templates — Barsky',
-    description: 'Wireframe kits and UX templates pulled from my own product work. Instant digital downloads.',
+    description: 'Wireframe kits and UX templates pulled from my own product work — the files I actually use, not stock. Instant download, yours to keep and edit.',
     image: 'https://barskydesign.pro/images/og/page-store.png'
   },
   '/design-services/ux-ui-design': {
@@ -119,7 +119,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
-    description: "A shipped boxing game with distinct AI opponents, generated trash talk, and hand-tuned game feel.",
+    description: "A shipped boxing game: distinct AI opponents, generated trash talk, hand-tuned feel. Time-to-first-punch cut from 22 seconds to 6 by deleting four screens.",
     image: "https://barskydesign.pro/images/og/ring-rival.png"
   },
   "catchbuddy": {

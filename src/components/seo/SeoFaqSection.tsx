@@ -21,7 +21,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
   className = ""
 }) => {
   return (
-    <section id="faq-section" className={`min-h-screen flex flex-col justify-center py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 relative ${className}`}>
+    <section id="faq-section" className={`py-12 md:py-16 relative ${className}`}>
       <div className="container px-4 mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
           <SectionHeader
             as="h2"
             title={title}
-            subtitle="Common questions about AI-Enhanced UX Design and Frontend Gen AI Development"
+            subtitle="What people ask before hiring someone to design and build their product"
           />
         </motion.div>
 
@@ -72,26 +72,6 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
         </div>
       </div>
 
-      {/* Structured Data for FAQ */}
-      <script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              ${faqs.map(faq => `
-              {
-                "@type": "Question",
-                "name": "${faq.question}",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "${faq.answer.replace(/"/g, '\\"')}"
-                }
-              }`).join(',')}
-            ]
-          }
-        `}
-      </script>
     </section>
   );
 };
