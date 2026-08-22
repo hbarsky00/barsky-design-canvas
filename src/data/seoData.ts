@@ -69,17 +69,17 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
 export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
   "smarterhealth": {
     title: "Smarter Health — Healthcare App UX Case Study",
-    description: "Healthcare app that made medication tracking 45% faster and lifted appointment adherence 60% for diabetic patients via empathy-driven design.",
+    description: "A medication-tracking app for diabetic patients, designed around what people actually do between appointments rather than what a dashboard wants to show them.",
     image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
-    description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
+    description: "Turning a commodity-to-crypto trading flow into something a first-timer can follow, by designing for the fear rather than around it.",
     image: "https://barskydesign.pro/images/og/crypto.png"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
-    description: "HIPAA-compliant herbalist marketplace that lifted certified provider bookings 45% and patient retention 30% via trustworthy UX.",
+    description: "A booking platform for verified herbalists, built solo end to end. Nobody is listed until their credentials check out — the design problem was trust, not search.",
     image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
@@ -94,27 +94,27 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "business-management": {
     title: "Blue Sky — Business Management UX Case Study",
-    description: "Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks into one dashboard.",
+    description: "One operations platform replacing scheduling, invoicing and task tracking spread across separate tools for small businesses.",
     image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
-    description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.",
+    description: "Replacing Excel as the system of record for multi-million-dollar loan deals, without anyone losing the workflow they already had.",
     image: "https://barskydesign.pro/images/og/investor-loan-app.png"
   },
   "medication-app": {
     title: "Medication App — Patient Safety UX Case Study",
-    description: "Mobile medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility.",
+    description: "Mobile medication management — smart reminders, barcode scanning, and visibility for the caregiver as well as the patient.",
     image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "gold2crypto": {
     title: "Crypto Exchange Onboarding — UX Case Study",
-    description: "Reduced crypto exchange drop-off 50% with simpler KYC, progressive disclosure, and clear risk communication.",
+    description: "A crypto exchange onboarding flow rebuilt around simpler KYC, progressive disclosure, and saying plainly what the risks are.",
     image: "https://barskydesign.pro/images/hiram-barsky-profile.png"
   },
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
-    description: "Advanced search platform with faceted filters and relevance tuning that helps analysts find trustworthy data 3x faster.",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
     image: "https://barskydesign.pro/images/og/dae-search.png"
   },
   "fire-lion": {
