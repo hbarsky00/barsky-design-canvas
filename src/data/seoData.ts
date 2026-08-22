@@ -13,55 +13,55 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     kind: 'page',
     title: 'Case Studies — Products I Designed and Built',
     description: 'Case studies from 15+ years: SaaS, mobile apps, internal tools and marketplaces. The decisions, the trade-offs, and what I cut along the way.',
-    image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
+    image: 'https://barskydesign.pro/images/og/page-projects.png'
   },
   '/services': {
     kind: 'page',
     title: 'What I Design and Develop — Hiram Barsky',
     description: 'SaaS, web apps, mobile apps and internal tools. Product design, React and TypeScript front end, database and auth. One person, no handoff round-trip.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
+    image: 'https://barskydesign.pro/images/og/page-services.png'
   },
   '/contact': {
     kind: 'page',
     title: 'Contact — Tell Me What You Are Building',
     description: 'SaaS, an app, or the internal tool nobody wants to touch. I work remotely with teams anywhere, on US Eastern time, and reply to everything myself.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
+    image: 'https://barskydesign.pro/images/og/page-contact.png'
   },
   '/blog': {
     kind: 'page',
     title: 'Blog — Designing and Building Software',
     description: 'Notes on designing and developing software as one person: AI-assisted workflow, design systems, and what shipping solo actually takes.',
-    image: 'https://barskydesign.pro/blog-ai-enhanced-ux.jpg'
+    image: 'https://barskydesign.pro/images/og/page-blog.png'
   },
   '/about': {
     kind: 'page',
     title: 'About Hiram Barsky — Designer and Developer',
     description: '15+ years designing and developing software in regulated industries: PNC, Bank of America, Deloitte, KPMG, AstraZeneca. I design it and I build it.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
+    image: 'https://barskydesign.pro/images/og/page-about.png'
   },
   '/store': {
     kind: 'page',
     title: 'Design Resources & Templates — Barsky',
     description: 'Wireframe kits and UX templates pulled from my own product work. Instant digital downloads.',
-    image: 'https://barskydesign.pro/images/hiram-barsky-profile.png'
+    image: 'https://barskydesign.pro/images/og/page-store.png'
   },
   '/design-services/ux-ui-design': {
     kind: 'page',
     title: 'UX/UI Design Services — Hiram Barsky',
     description: 'Product design from research through high-fidelity UI: user flows, wireframes, prototypes, and the design system that keeps it consistent as it grows.',
-    image: 'https://barskydesign.pro/images/herbalink/home-2026.jpg'
+    image: 'https://barskydesign.pro/images/og/service-ux-ui-design.png'
   },
   '/design-services/mobile-app-design': {
     kind: 'page',
     title: 'Mobile App Design and Development',
     description: 'iOS and Android app design, plus the build to go with it. Designed and developed end to end by one person, from first sketch to the store listing.',
-    image: 'https://barskydesign.pro/images/catchbuddy-hero-landing.png'
+    image: 'https://barskydesign.pro/images/og/service-mobile-app-design.png'
   },
   '/design-services/web-development': {
     kind: 'page',
     title: 'Web Development — React & TypeScript',
     description: 'Custom web apps in React and TypeScript: front end, database, auth and deploy. Fast, accessible, and built by the same person who designed it.',
-    image: 'https://barskydesign.pro/images/dae-search/hero.jpg'
+    image: 'https://barskydesign.pro/images/og/service-web-development.png'
   }
 };
 
@@ -79,7 +79,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
-    description: "A booking platform for verified herbalists, built solo end to end. Nobody is listed until their credentials check out — the design problem was trust, not search.",
+    description: "A booking platform for verified herbalists, built solo end to end. Nobody is listed until their credentials check out — the problem was trust, not search.",
     image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
@@ -130,7 +130,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",
     description: "A concept for AI-assisted pharma HCP email production, designed around the approval gates — AI handles the work between humans, not the decisions.",
-    image: "https://barskydesign.pro/images/emailai-screen1-content-planning.png"
+    image: "https://barskydesign.pro/images/og/email-creation-ai.png"
   }
 };
 
@@ -168,7 +168,7 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
   "demo-works-shipping-is-different": {
     title: "The Demo Works. Shipping Is a Different Job.",
-    description: "A demo is the happy path with data you chose. The hard parts live where nobody demos: dates an AI got wrong, permissions that hide bugs, empty screens, and the jobs that run while you sleep.",
+    description: "A demo is the happy path with data you chose. The hard parts live where nobody demos: dates, permissions, empty screens, and jobs that run while you sleep.",
     published: "2026-08-10T09:00:00Z",
     modified: "2026-08-10T09:00:00Z"
   },

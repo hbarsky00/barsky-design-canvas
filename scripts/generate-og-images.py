@@ -173,6 +173,45 @@ CASE_STUDIES = [
     ("crypto", "Gold2Crypto",
      "Turning a commodity trading flow into something a first-timer can follow.",
      "FinTech", "/images/crypto/hero.jpg"),
+    ("email-creation-ai", "ManuscriptRx",
+     "AI-assisted pharma email built to survive a six-step regulated review.",
+     "Pharma \u00b7 AI", "/images/emailai-screen1-content-planning.png"),
+]
+
+
+# Static and service pages. The 2026-08 OG pass covered case studies and blog
+# posts only, so these nine were still falling back to whatever hero image the
+# page happened to use — including the 480x640 portrait headshot, which every
+# share preview (LinkedIn, Slack, iMessage, X) letterboxed or centre-cropped,
+# and which was identical across /about, /contact, /services and /store.
+STATIC_PAGES = [
+    ("page-about", "About Hiram Barsky",
+     "15+ years designing and developing software in regulated industries.",
+     "About", "/images/hiram-barsky-profile.png"),
+    ("page-contact", "Tell me what you are building",
+     "SaaS, an app, or the internal tool nobody wants to touch. Remote, worldwide.",
+     "Contact", "/images/herbalink/card-poster-home.jpg"),
+    ("page-services", "What I design and develop",
+     "SaaS, web apps, mobile apps and internal tools. One person, start to finish.",
+     "Services", "/images/stips/card-poster-home.jpg"),
+    ("page-projects", "Products I designed and built",
+     "Case studies from 15+ years: the decisions, the trade-offs, and what I cut.",
+     "Case Studies", "/images/ringrival-now/card-poster.jpg"),
+    ("page-blog", "Designing and developing software",
+     "Notes on AI-assisted workflow, design systems, and what shipping solo takes.",
+     "Blog", "/images/dae-search/hero.jpg"),
+    ("page-store", "Design resources and templates",
+     "Wireframe kits and UX templates pulled from my own product work.",
+     "Store", "/images/herbalink/home-2026.jpg"),
+    ("service-ux-ui-design", "UX/UI Design",
+     "Research through high-fidelity UI, and the design system that holds it together.",
+     "Service", "/images/herbalink/home-2026.jpg"),
+    ("service-mobile-app-design", "Mobile App Design & Development",
+     "iOS and Android app design, plus the build to go with it.",
+     "Service", "/images/catchbuddy-hero-landing.png"),
+    ("service-web-development", "Web Development",
+     "React and TypeScript web apps, built by the person who designed them.",
+     "Service", "/images/dae-search/hero.jpg"),
 ]
 
 def blog_posts():
@@ -206,6 +245,10 @@ def blog_posts():
 if __name__ == "__main__":
     print("Case study cards:")
     for slug, title, desc, tag, art in CASE_STUDIES:
+        card(title, desc, tag, art, f"{slug}.png")
+
+    print("Static & service page cards:")
+    for slug, title, desc, tag, art in STATIC_PAGES:
         card(title, desc, tag, art, f"{slug}.png")
 
     print("Blog cards:")
