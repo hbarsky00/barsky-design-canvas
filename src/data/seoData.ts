@@ -92,11 +92,6 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Play-money prediction markets designed so the price reads as a probability — 67¢ means 67% likely, with the payout worked out before you commit.",
     image: "https://barskydesign.pro/images/og/stips.png"
   },
-  "business-management": {
-    title: "Blue Sky — Business Management UX Case Study",
-    description: "One operations platform replacing scheduling, invoicing and task tracking spread across separate tools for small businesses.",
-    image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg"
-  },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
     description: "Replacing Excel as the system of record for multi-million-dollar loan deals, without anyone losing the workflow they already had.",

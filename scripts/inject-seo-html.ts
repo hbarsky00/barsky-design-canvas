@@ -51,7 +51,8 @@ function getProjectPaths(): string[] {
   }
   // smarterhealth/medication-app/gold2crypto have no matching entry in
   // structuredCaseStudies.ts — soft 404s, kept out of the generated HTML.
-  // business-management has real data as of 2026-08-08, so it's not excluded.
+  // business-management and splittime were retired/hidden 2026-08-22 — neither has
+  // a <Route> line any more, so neither is picked up here.
   // (Kept in sync with the identical logic in generate-sitemap.ts.)
   return Array.from(found).sort();
 }

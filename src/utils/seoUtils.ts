@@ -18,7 +18,6 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/case-studies/investor-loan-portfolio-management', priority: 'high', changeFreq: 'monthly' },
   
   
-  { path: '/case-studies/business-management-solution', priority: 'high', changeFreq: 'monthly' },
   { path: '/case-studies/medication-app', priority: 'medium', changeFreq: 'monthly' },
   { path: '/case-studies/gold2crypto', priority: 'medium', changeFreq: 'monthly' },
   { path: '/case-studies/dae-search', priority: 'medium', changeFreq: 'monthly' },
