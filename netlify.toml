@@ -126,9 +126,19 @@
   to = "/design-services/web-development"
   status = 301
 
+# Blue Sky / business-management retired 2026-08-22. It had no <Route> left, so
+# /project/business-management answered 200 with a 404 body (a soft 404 Google
+# keeps indexed) and this redirect was pointing straight into it. Both now land
+# on /projects. The case-study data stays in structuredCaseStudies.ts so the page
+# can be rebuilt on the current template later.
 [[redirects]]
   from = "/project/wholesale-distribution"
-  to = "/project/business-management"
+  to = "/projects"
+  status = 301
+
+[[redirects]]
+  from = "/project/business-management"
+  to = "/projects"
   status = 301
 
 [[redirects]]
@@ -177,10 +187,13 @@
   to = "/project/herbalink/index.html"
   status = 200
 
+# SplitTime hidden 2026-08-22 (splittime.pro is dead). A 301 is required, not
+# just removing the route: /project/:projectId would otherwise still render it
+# from structuredCaseStudies.ts. Page file kept so it can come back.
 [[redirects]]
   from = "/project/splittime"
-  to = "/project/splittime/index.html"
-  status = 200
+  to = "/projects"
+  status = 301
 
 [[redirects]]
   from = "/project/crypto"

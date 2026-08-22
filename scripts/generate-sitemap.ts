@@ -56,8 +56,9 @@ function getProjectPaths(): string[] {
   // smarterhealth/medication-app/gold2crypto have no matching entry in
   // structuredCaseStudies.ts, so the generic /project/:projectId catch-all
   // (SimplifiedProjectDetail) always hits its "no data" Navigate fallback —
-  // soft 404s, kept out of the sitemap. business-management has real data as
-  // of 2026-08-08, so it's not excluded (its <Route> line above already adds it).
+  // soft 404s, kept out of the sitemap. business-management and splittime are
+  // retired/hidden as of 2026-08-22: neither has a <Route> line any more, so
+  // neither is picked up here, and netlify.toml 301s both to /projects.
   return Array.from(found).sort();
 }
 

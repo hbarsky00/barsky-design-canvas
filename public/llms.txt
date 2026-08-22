@@ -22,11 +22,9 @@
 - [Ring-Rival](/project/ring-rival): AI-assisted boxing game with distinct AI opponents and generated trash talk.
 - [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
 - [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
-- [SplitTime](/project/splittime): Co-parenting coordination app reducing conflict through structured requests.
 - [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
 - [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
 - [Stips](/project/stips): Play-money prediction markets where the price reads as a probability — designed and built solo.
-- [Blue Sky](/project/business-management): Unified operations platform for small businesses — cut manual errors 68% by consolidating scheduling, invoicing, and tasks.
 
 ## Blog
 

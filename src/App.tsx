@@ -41,7 +41,6 @@ const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/Structured
 const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
 const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
 const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
-const StructuredSplittimeCaseStudy = React.lazy(() => import("@/pages/StructuredSplittimeCaseStudy"));
 const StructuredStipsCaseStudy = React.lazy(() => import("@/pages/StructuredStipsCaseStudy"));
 
 const NotFound = React.lazy(() => import("@/pages/NotFound"));
@@ -163,7 +162,6 @@ function AppContent() {
               <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
               <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
               <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
-              <Route path="/project/splittime" element={<StructuredSplittimeCaseStudy />} />
               <Route path="/project/stips" element={<StructuredStipsCaseStudy />} />
 
               
