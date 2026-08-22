@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .capture-media-stash/
+
+# Local Claude permissions — machine-specific, never commit (public repo)
+.claude/settings.local.json

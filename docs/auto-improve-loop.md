@@ -82,6 +82,23 @@ Not good: redesigning something that already works because a checklist said so.
 He has pushed back hard on unrequested changes. One deliberate improvement,
 verified in the browser at 375px and 1440px in both themes, then stop.
 
+## Permissions
+
+`.claude/settings.local.json` in this repo pre-approves everything this loop
+needs — build, capture, tsc, the audit scripts, git through `push origin main`,
+and curl for live verification — so an unattended run does not stop on a
+permission prompt with nobody there to click it. It is gitignored: this repo is
+public and the file is machine-specific.
+
+It also has a `deny` list. Force-push, `reset --hard`, `rm -rf` and any change to
+the git remote are blocked outright. An unattended agent should never be able to
+do those, and bolt.new force-pushing over the Stips repo is the reason that is
+not hypothetical.
+
+If a run ever does pause on a prompt, the durable fix is to hit "Run now" on the
+task once from the Scheduled sidebar — approvals granted during a run are stored
+on the task itself and reused by every future run.
+
 ## Known-open items
 
 - `LazySection` gates children behind an IntersectionObserver, so anything
