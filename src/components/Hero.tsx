@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
                     asChild
                     className="relative"
                   >
-                    <Link to="/projects">
+                    <Link to="/#case-studies">
                       View Projects
                       {/* Attention indicator */}
                       <motion.span
@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
           
           <FloatingElement yAmount={8} duration={2} className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block">
             <BounceWrapper intensity="medium">
-              <Link to="/projects" aria-label="Scroll to projects">
+              <Link to="/#case-studies" aria-label="Scroll to projects">
                 <ArrowDownCircle className="w-10 h-10 text-barsky-blue" />
               </Link>
             </BounceWrapper>

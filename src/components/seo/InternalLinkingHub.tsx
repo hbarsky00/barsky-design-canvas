@@ -84,7 +84,7 @@ const InternalLinkingHub: React.FC = () => {
         },
         {
           text: "All Projects Portfolio",
-          url: "/projects",
+          url: "/#case-studies",
           description: "View complete design portfolio"
         }
       ]

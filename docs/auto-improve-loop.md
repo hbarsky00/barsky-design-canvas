@@ -20,6 +20,12 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
    - the `amazing-seo-skill` checkers in
      `~/Documents/.claude/skills/amazing-seo-skill/scripts/` for schema,
      links, images, security headers
+   - the `claude-seo` skill (`/seo audit <url>`, installed 2026-08-22 at
+     `~/.claude/skills/seo`, v2.2.4) and its 30 sub-skills — seo-technical,
+     seo-schema, seo-geo, seo-content, seo-images, seo-sitemap and the rest.
+     It carries its own Chromium, so it can measure Core Web Vitals for real
+     rather than inferring them. Use it and `amazing-seo-skill` together and
+     reconcile where they disagree; neither is automatically right
    - for design: build, open the preview, and actually look — desktop AND
      mobile (375px), light AND dark
 4. **Do ONE substantial thing.** Not ten small ones. A run that ships one real

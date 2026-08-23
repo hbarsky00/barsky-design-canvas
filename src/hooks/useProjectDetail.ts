@@ -61,7 +61,7 @@ export const useProjectDetail = (projectId: string | undefined): UseProjectDetai
       const errorMsg = `Project not found with ID: ${projectId}`;
       console.error(errorMsg);
       setError(errorMsg);
-      navigate("/projects");
+      navigate("/#case-studies");
     } else if (!details) {
       const errorMsg = `Project details not found for ID: ${projectId}`;
       console.error(errorMsg);

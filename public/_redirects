@@ -36,8 +36,8 @@
 
 # /case-studies/* was never this site's URL shape; the work lives under /project/*
 /case-studies/ring-rival        /project/ring-rival   301
-/case-studies/roi-design-builder  /projects           301
-/case-studies/*                 /projects             301
+/case-studies/roi-design-builder  /#case-studies      301
+/case-studies/*                 /#case-studies        301
 
 # Posts that don't exist here. The trust one has a real counterpart; the other
 # two have no close match, so they go to the index rather than to a post that
@@ -50,14 +50,29 @@
 # we'll fuck with it later"). The page and its data are still in the repo, just
 # not routed. Both URLs were indexed, so send them to the work index rather
 # than let the SPA answer 200 with a client-rendered Not Found.
-/project/business-management     /projects   301
-/project/wholesale-distribution  /projects   301
+/project/business-management     /#case-studies   301
+/project/wholesale-distribution  /#case-studies   301
 
 # SplitTime hidden 2026-08-22 (splittime.pro is dead). This rule has to live
 # HERE, not only in netlify.toml: this file is processed first and its catch-all
 # on the last line matches before netlify.toml is ever consulted, so a 301 that
 # exists only in the toml never fires for a path this file does not name.
-/project/splittime               /projects   301
+/project/splittime               /#case-studies   301
+
+# /projects was never a page. It was a client-side <Navigate> to /#case-studies,
+# which means React had to boot before anything happened — so the URL answered
+# 200 with an empty #root, while still carrying index,follow, a self-referential
+# canonical, its own OG card and sitemap priority 0.9. Every non-JS crawler and
+# answer engine saw a blank document at the site's most-linked URL after the
+# homepage, and the five rules above were funnelling retired-URL equity into it.
+#
+# It is a redirect, so it belongs here rather than in the router. Forced (301!)
+# because rules in this file do not shadow real files by default, and this must
+# fire even if a stale projects/index.html ever survives into a deploy.
+#
+# The work itself is not moving: /#case-studies is the homepage section that has
+# always been the real index, and /project/* detail pages are untouched.
+/projects                        /#case-studies   301!
 
 # SPA fallback — must stay last. Does not shadow real files, so the
 # per-route HTML written by scripts/inject-seo-html.ts is still served.

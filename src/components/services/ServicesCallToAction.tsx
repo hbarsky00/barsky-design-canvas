@@ -54,7 +54,7 @@ const ServicesCallToAction = () => {
             size="lg"
             asChild
           >
-            <Link to="/projects" className="flex items-center justify-center">
+            <Link to="/#case-studies" className="flex items-center justify-center">
               View More Projects
             </Link>
           </Button>

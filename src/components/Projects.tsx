@@ -40,7 +40,7 @@ const Projects: React.FC = () => {
         )}
         
         <div className="text-center mt-12">
-          <Link to="/projects">
+          <Link to="/#case-studies">
             <Button 
               size="lg"
               variant="outline"

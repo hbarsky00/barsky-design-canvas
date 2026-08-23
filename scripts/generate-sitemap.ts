@@ -34,7 +34,10 @@ const staticEntries: Entry[] = [
   { path: "/contact", changefreq: "monthly", priority: "0.7" },
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/projects", changefreq: "weekly", priority: "0.9" },
+  // "/projects" is gone from here on purpose: it 301s to /#case-studies.
+  // A sitemap must only list canonical 200s, and this one answered 200 with an
+  // empty body at priority 0.9 — the strongest crawl signal on the site pointed
+  // at nothing.
 ];
 
 // Project routes — extracted from App.tsx <Route path="/project/..."> entries,

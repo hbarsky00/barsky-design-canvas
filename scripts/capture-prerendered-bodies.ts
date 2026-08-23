@@ -48,7 +48,9 @@ function getRoutes(): string[] {
     "/contact",
     "/store",
     "/blog",
-    "/projects",
+    // No "/projects" — it 301s to /#case-studies now. It was a client-side
+    // <Navigate>, so it rendered nothing and failed capture on every single
+    // run; the "1 head-only" route in the build output was always this.
   ];
 
   const appSrc = readFileSync(resolve("src/App.tsx"), "utf8");

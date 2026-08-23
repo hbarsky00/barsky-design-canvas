@@ -10,7 +10,7 @@ const AdvancedSitemapMeta: React.FC = () => {
       {/* Content Discovery */}
       <meta name="web-crawl-frequency" content="weekly" />
       <meta name="content-update-frequency" content="weekly" />
-      <meta name="priority-pages" content="/,/projects,/contact" />
+      <meta name="priority-pages" content="/,/services,/contact" />
       
       {/* Advanced Crawl Hints */}
       <meta name="crawl-depth" content="3" />

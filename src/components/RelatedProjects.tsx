@@ -144,7 +144,7 @@ const RelatedProjects: React.FC<RelatedProjectsProps> = ({
           className="text-center mt-12"
         >
           <Link
-            to="/projects"
+            to="/#case-studies"
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
           >
             View All Projects

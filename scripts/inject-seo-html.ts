@@ -32,7 +32,9 @@ const STATIC_PATHS = [
   "/contact",
   "/store",
   "/blog",
-  "/projects",
+  // "/projects" is deliberately absent: it 301s to /#case-studies in
+  // public/_redirects. Generating SEO'd HTML for it published an indexable,
+  // self-canonical page with an empty body.
 ];
 
 // Kept in sync with scripts/generate-sitemap.ts's getProjectPaths/getBlogSlugs —

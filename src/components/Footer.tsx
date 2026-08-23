@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="inline-block py-3 px-2 -mx-2 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/#case-studies" className="inline-block py-3 px-2 -mx-2 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Projects
                 </Link>
               </li>

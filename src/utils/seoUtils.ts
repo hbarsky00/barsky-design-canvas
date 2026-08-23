@@ -9,7 +9,7 @@ export interface PageIndexingConfig {
 export const pageIndexingConfigs: PageIndexingConfig[] = [
   // High priority pages - note the trailing slash for homepage
   { path: '/', priority: 'high', changeFreq: 'weekly' },
-  { path: '/projects', priority: 'high', changeFreq: 'weekly' },
+  // '/projects' removed — it 301s to /#case-studies (see public/_redirects).
   { path: '/services', priority: 'high', changeFreq: 'monthly' },
   
   // Case study pages - high priority for SEO
