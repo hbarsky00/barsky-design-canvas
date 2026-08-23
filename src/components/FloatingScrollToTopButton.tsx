@@ -56,7 +56,7 @@ const FloatingScrollToTopButton: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-6 left-6 z-40"
+          className="fixed bottom-6 right-6 z-40"
         >
           <Button
             onClick={scrollToTop}
