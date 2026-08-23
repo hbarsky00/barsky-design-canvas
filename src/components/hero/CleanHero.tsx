@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Mail, Linkedin, Github, ArrowRight, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
@@ -16,8 +17,18 @@ const scrollToCaseStudies = () => {
   (firstCard ?? fallback)?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
+// The mail icon goes to the contact form, not to mailto:. A mailto: hands the
+// visitor off to whatever mail client their machine has configured — which on a
+// lot of desktops is nothing at all, so the click dies with no feedback and the
+// enquiry is simply lost. The form is verified working end to end (Netlify Forms
+// -> notify-contact -> Resend), so it reaches Hiram either way and it cannot
+// fail silently on the visitor's side.
+//
+// /contact rather than the homepage "#contact" anchor: that section sits inside
+// a LazySection, so its id is not in the DOM until someone has scrolled to it,
+// and jumping to an anchor that does not exist yet does nothing at all.
 const SOCIALS = [
-  { Icon: Mail, href: "mailto:hbarsky01@gmail.com", label: "Email Hiram Barsky", external: false },
+  { Icon: Mail, href: "/contact", label: "Contact Hiram Barsky", internal: true },
   { Icon: Linkedin, href: "https://www.linkedin.com/in/hiram-barsky", label: "Hiram Barsky on LinkedIn", external: true },
   { Icon: Github, href: "https://github.com/hbarsky00", label: "Hiram Barsky on GitHub", external: true },
 ];
@@ -212,17 +223,25 @@ const CleanHero: React.FC = () => {
             </motion.div>
 
             <motion.div variants={variants} className="flex items-center gap-3">
-              {SOCIALS.map(({ Icon, href, label, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  aria-label={label}
-                  className="p-2.5 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+              {SOCIALS.map(({ Icon, href, label, external, internal }) => {
+                const cls =
+                  "p-3 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors";
+                return internal ? (
+                  <Link key={label} to={href} aria-label={label} className={cls}>
+                    <Icon className="w-5 h-5" />
+                  </Link>
+                ) : (
+                  <a
+                    key={label}
+                    href={href}
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    aria-label={label}
+                    className={cls}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </motion.div>
           </div>
 

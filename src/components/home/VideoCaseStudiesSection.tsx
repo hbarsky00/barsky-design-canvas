@@ -262,7 +262,7 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(
               href={study.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 min-h-[44px] px-2 -mx-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
             >
               View Live
               <ArrowUpRight className="h-4 w-4" />
