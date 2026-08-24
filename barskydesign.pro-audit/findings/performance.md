@@ -116,3 +116,52 @@ should have been quoted as a result. Take the median of three, always.
 - **Field data.** Everything here is lab. CrUX returned nothing and PSI was
   rate-limited all session. Real user data would settle the LCP question that
   three lab runs could not.
+
+
+## Route coverage — issue 3, as of 2026-08-24
+
+| Route | baseline | now (2 runs) | LCP now | LCP phase |
+|---|---|---|---|---|
+| `/` | 56 / 29.6 s | 98, 77, 76 | 2.1-5.9 s | render delay solved |
+| `/project/herbalink` | 68 / 6.9 s | 65, 76 | 5.2-6.8 s | render delay 6,113 ms (90%) |
+| `/blog` | 65 / 10.5 s | 72, 66 | 5.7-6.3 s | render delay 4,641 ms (82%) |
+
+**Issue 3 is improved but NOT closed.** LCP still fails the 2.5 s threshold on
+every route measured.
+
+### What the remaining delay is NOT
+
+Ruled out by measurement, so nobody repeats the search:
+
+- **Not animation.** `SimpleCaseStudyPage` imports no motion library at all; its
+  hero is plain HTML. The homepage fix does not apply here.
+- **Not missing prerender.** `/project/herbalink` serves 48,210 bytes with the
+  `<h1>` and the LCP `<p>` both present in the raw HTML and a non-empty `#root`.
+- **Not images.** On `/blog` the LCP image has 259 ms of load time against
+  4,641 ms of render delay.
+- **Not main-thread work.** TBT is 10 ms.
+- **Not fonts being unpreloaded.** Case studies carry both font preloads and the
+  self-hosted stylesheet.
+
+### What it actually is
+
+**FCP on `/project/herbalink` is 4.2 s.** Nothing paints until then, so LCP
+cannot be early no matter what the LCP element is. Against 656 ms TTFB and only
+325 ms of render-blocking CSS, the rest is round trips on Lighthouse's simulated
+slow-4G: 48 KB HTML, then 30 KB CSS, then ~69 KB of preloaded fonts, each
+costing latency before anything renders.
+
+That is a critical-path problem, and the honest fixes are:
+
+1. **Inline critical CSS**, eliminating a render-blocking round trip. The
+   trade-off is real: 30 KB inlined per page stops being cacheable across
+   navigations, so it needs measuring, not assuming.
+2. **TTFB at ~650 ms** for static files on a CDN is high. Worth checking
+   Netlify cache headers before touching anything in the app.
+3. **Reconsider preloading fonts on content pages.** With `font-display: swap`
+   the text renders in a fallback anyway, so ~69 KB of high-priority bandwidth
+   competes with the CSS that actually gates first paint. This one is genuinely
+   ambiguous and needs an A/B, not an opinion.
+
+None of these is another image pass. Continuing to compress assets would not
+move this number.
