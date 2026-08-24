@@ -298,11 +298,15 @@
     # the origin, which is what analytics attribution needs. Permissions-Policy
     # denies hardware this site never asks for.
     Referrer-Policy = "strict-origin-when-cross-origin"
-    # REPORT-ONLY on purpose. The browser evaluates this and reports what it
-    # would have blocked without blocking anything, so a mistake here cannot
-    # take the site down. Violations go to the csp-report function. Once the
-    # reports come back clean this becomes Content-Security-Policy.
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://www.google-analytics.com https://images.unsplash.com; media-src 'self' blob:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.supabase.co; frame-src 'self' https://www.loom.com https://www.youtube-nocookie.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests; report-uri /.netlify/functions/csp-report;"
+    # ENFORCED as of 2026-08-24. It ran report-only first, and was verified
+    # clean in a real browser across the homepage, /contact and a case study:
+    # zero "Refused to load" violations. The only CSP console message was
+    # 'upgrade-insecure-requests is ignored when delivered in a report-only
+    # policy', which enforcing this is precisely what fixes.
+    # Google's font origins were dropped from style-src/font-src when the fonts
+    # were self-hosted, and cdn.loom.com never needed an entry once those
+    # thumbnails moved in-house.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://www.google-analytics.com https://images.unsplash.com; media-src 'self' blob:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.supabase.co; frame-src 'self' https://www.loom.com https://www.youtube-nocookie.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests; report-uri /.netlify/functions/csp-report;"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     
 [[headers]]

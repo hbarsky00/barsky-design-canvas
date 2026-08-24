@@ -187,10 +187,19 @@ function injectBody(html: string, pathname: string): { html: string; had: boolea
   return { html, had: false };
 }
 
+// The hero-photo preload lives in index.html, which is the template for EVERY
+// route — so /project/herbalink and every blog post were also preloading the
+// homepage hero at high priority. Measured on the live site: a 40 KB fetch on
+// every page that never uses it, and Chrome logging "preloaded using link
+// preload but not used". Strip it everywhere except the homepage.
+const HERO_PRELOAD =
+  /\n\s*<link rel="preload" as="image" href="\/images\/hiram-barsky-profile-576\.webp"[\s\S]*?\/>/;
+
 function writeRoute(template: string, pathname: string): boolean {
   const seo = buildSEO(seoInputFor(pathname));
   const head = renderHead(seo);
-  const withHead = template.replace("</head>", () => `    ${head}\n  </head>`);
+  const base = pathname === "/" ? template : template.replace(HERO_PRELOAD, "");
+  const withHead = base.replace("</head>", () => `    ${head}\n  </head>`);
   const { html, had } = injectBody(withHead, pathname);
   const outDir = pathname === "/" ? DIST : resolve(DIST, pathname.replace(/^\//, ""));
   mkdirSync(outDir, { recursive: true });

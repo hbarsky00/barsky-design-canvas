@@ -14,7 +14,28 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+# anthropic-ai is the legacy token. ClaudeBot (training/crawl) and Claude-User
+# (a user asking Claude to fetch a page) are the current ones — kept alongside
+# rather than replacing it, since old tokens cost nothing to leave in.
 User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# OAI-SearchBot is the crawler behind ChatGPT search citations — distinct from
+# GPTBot (training) and ChatGPT-User (a user-triggered fetch). This is the one
+# that matters most for being named in an answer.
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google-Extended governs Gemini and AI Overviews grounding. It is NOT a
+# ranking signal and disallowing it does not affect Search — allowing it is
+# what makes the site eligible to be cited in AI Overviews.
+User-agent: Google-Extended
 Allow: /
 
 User-agent: Claude-Web
