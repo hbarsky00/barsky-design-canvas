@@ -24,8 +24,6 @@
     <base href="/" />
     
     <!-- Performance & Critical Resource Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Critical CSS -->
     <style>
@@ -120,7 +118,14 @@
          made every heading visibly change font mid-load. Now: only the two
          families actually in tailwind.config.ts, only the weights in use, and
          fetched in the critical path so the swap window is as short as possible. -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Self-hosted fonts. The Google Fonts stylesheet measured 796 ms of
+         render-blocking time in Lighthouse, and cost two extra origins
+         (googleapis + gstatic) of DNS + TLS before a single glyph arrived.
+         The two faces above the fold are preloaded; unicode-range in
+         fonts.css keeps the browser from fetching subsets it does not need. -->
+    <link rel="preload" href="/fonts/SpaceGrotesk-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/fonts/fonts.css">
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">

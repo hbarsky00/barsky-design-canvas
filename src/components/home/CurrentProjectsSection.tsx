@@ -20,7 +20,7 @@ const currentProjects: CurrentProject[] = [
     description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
-    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/d355adb5e73c47de8c56544b963b55c8-871b547c1e7eca93.gif"
+    thumbnailSrc: "/images/projects/d355adb5e73c.webp"
   },
   {
     id: "inclusive-shopping-experience",
@@ -37,7 +37,7 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/f30542a71d55409a99c00e069b26c14b-4c00e5951d1a8e6c-full.jpg"
+    thumbnailSrc: "/images/projects/f30542a71d55.webp"
   },
   {
     id: "nail-salon-platform",
@@ -54,7 +54,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/1ad2ef7140384312b9777dc3f557f7ff-281af9ca1c04738a.gif"
+    thumbnailSrc: "/images/projects/1ad2ef714038.webp"
   },
   {
     id: "crypto-app-learning",
@@ -62,7 +62,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "https://cdn.loom.com/sessions/thumbnails/80a0a13cdf11424bb69be709d8c6aa2d-7520319fce021d7d.gif"
+    thumbnailSrc: "/images/projects/80a0a13cdf11.webp"
   }
 ];
 
