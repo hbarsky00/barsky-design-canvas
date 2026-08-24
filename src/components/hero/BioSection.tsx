@@ -59,9 +59,9 @@ const BioSection: React.FC = () => {
                 <div className="bg-blue-50/50 rounded-lg p-6 mt-8 text-center">
                   <h3 className="font-semibold text-lg text-gray-900 mb-3">Recent Focus</h3>
                   <p className="text-center">
-                    Currently specializing in AI-enhanced user experiences and helping businesses 
-                    integrate intelligent features that genuinely improve user workflows without 
-                    adding complexity.
+                    Designing and building products with AI as part of the toolchain — it makes
+                    the raw material cheap, which moves the work to deciding what to keep. Five
+                    products of my own are live right now, all built that way.
                   </p>
                 </div>
               </div>

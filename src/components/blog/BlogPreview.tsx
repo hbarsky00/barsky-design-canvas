@@ -24,7 +24,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
           <SectionHeader
             as="h2"
             title="Latest Insights"
-            subtitle="Expert perspectives on AI-enhanced design, accessibility, and conversion optimization"
+            subtitle="Notes on designing and developing software with AI in the loop — what it changes, and what it doesn't"
           />
         )}
 
