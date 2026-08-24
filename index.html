@@ -136,7 +136,10 @@
     <meta name="language" content="English" />
 
     <!-- Preload LCP hero image -->
-    <link rel="preload" as="image" href="/images/hiram-barsky-profile.png" fetchpriority="high" />
+    <!-- Preload the WebP, not the PNG. This preloaded a 492 KB PNG at high
+         priority that nothing on the page renders — it competed directly with
+         the real LCP element, which is the 99 KB .webp below. -->
+    <link rel="preload" as="image" href="/images/hiram-barsky-profile.webp" fetchpriority="high" />
 </head>
   <body>
     <!--
