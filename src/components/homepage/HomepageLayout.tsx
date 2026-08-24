@@ -11,7 +11,6 @@ import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
 import { useBounceReduction } from "@/hooks/useBounceReduction";
-import LazySection from "@/components/lazy/LazySection";
 import {
   LazyVideoCaseStudiesSection,
   LazyRecentAdventuresSection,
@@ -71,13 +70,13 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <LazySection>
-          <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
-            <section id="adventures" tabIndex={-1} className="scroll-offset">
+        <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
+          <section id="adventures" tabIndex={-1} className="scroll-offset">
+            <Suspense fallback={<div className="h-32" />}>
               <LazyRecentAdventuresSection />
-            </section>
-          </SectionTransition>
-        </LazySection>
+            </Suspense>
+          </section>
+        </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.2} intensity={0.3}>
           <section id="bio" tabIndex={-1} className="scroll-offset">
@@ -85,21 +84,21 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <LazySection>
-          <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
-            <section id="contact" tabIndex={-1} className="scroll-offset">
+        <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+          <section id="contact" tabIndex={-1} className="scroll-offset">
+            <Suspense fallback={<div className="h-32" />}>
               <LazyContactForm />
-            </section>
-          </SectionTransition>
-        </LazySection>
+            </Suspense>
+          </section>
+        </SectionTransition>
         
-        <LazySection>
-          <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-background py-8 md:py-12">
-            <section id="blog" tabIndex={-1} className="scroll-offset">
+        <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-background py-8 md:py-12">
+          <section id="blog" tabIndex={-1} className="scroll-offset">
+            <Suspense fallback={<div className="h-32" />}>
               <LazyBlogPreview />
-            </section>
-          </SectionTransition>
-        </LazySection>
+            </Suspense>
+          </section>
+        </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
           <section id="faq" tabIndex={-1} className="scroll-offset">
