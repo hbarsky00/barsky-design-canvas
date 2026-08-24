@@ -53,7 +53,7 @@ const OriginalCaseStudyLayout: React.FC<OriginalCaseStudyLayoutProps> = ({
                     <img 
                       alt="Hiram Barsky" 
                       className="w-10 h-10 rounded-full object-cover border-2 border-border" 
-                      src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.png" 
+                      src="/lovable-uploads/e52a884d-0e2f-4470-aae9-56e65adb2de0.webp" 
                     />
                     <div className="text-left">
                       <div className="text-sm font-medium text-foreground">Hiram Barsky</div>

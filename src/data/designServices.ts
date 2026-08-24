@@ -69,7 +69,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/investor-loan-app",
         title: "Investor Loan Platform",
-        image: "/images/investor-loan-app/hero.png",
+        image: "/images/investor-loan-app/hero.webp",
         alt: "Investor loan analysis dashboard",
         result:
           "Replaced Excel as the system of record for multi-million-dollar loan deals — without anyone losing the workflow they relied on.",
@@ -77,7 +77,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/dae-search",
         title: "DAE Search",
-        image: "/images/dae-search/hero.jpg",
+        image: "/images/dae-search/hero.webp",
         alt: "DAE Search enterprise data discovery interface",
         result:
           "Enterprise search rebuilt around the harder half of the job: knowing whether the data you found is trustworthy.",
@@ -85,7 +85,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/herbalink",
         title: "HerbaLink",
-        image: "/images/herbalink/home-hero.png",
+        image: "/images/herbalink/home-hero.webp",
         alt: "HerbaLink practitioner booking interface",
         result:
           "Inverted 'verified' from a badge into a gate, so the safer path is also the easier one.",
@@ -139,7 +139,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/ring-rival",
         title: "Ring-Rival",
-        image: "/images/ringrival-hero-title.png",
+        image: "/images/ringrival-hero-title.webp",
         alt: "Ring-Rival mobile boxing game",
         result:
           "Cut time-to-first-punch from 22 seconds to 6 by removing menus, and dropped the audio failure rate from ~40% to under 2%.",
@@ -147,7 +147,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/catchbuddy",
         title: "CatchBuddy",
-        image: "/images/catchbuddy-hero-landing.png",
+        image: "/images/catchbuddy-hero-landing.webp",
         alt: "CatchBuddy pickup sports app",
         result:
           "Same-day pickup sports designed around trust and safety first — post a game, see open games, confirm in a few taps.",
@@ -201,7 +201,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
       {
         href: "/project/email-creation-ai",
         title: "Email Creation AI",
-        image: "/images/email-ai-promo.png",
+        image: "/images/email-ai-promo.webp",
         alt: "Email Creation AI workflow",
         result:
           "AI-assisted pharma email production designed around the approval gates — the regulated workflow, not the model.",

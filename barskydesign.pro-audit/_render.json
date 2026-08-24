@@ -1,0 +1,87 @@
+{
+  "url": "https://barskydesign.pro/",
+  "status_code": 200,
+  "content": "\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"google-site-verification\" content=\"qtRvrh4E-LoAlYx6yBRup7DFikg4HyeElgRyi-ESsPE\" />\n    \n    <!-- Per-page title, description, canonical, og:*, twitter:* are rendered dynamically\n         by UnifiedSEO via react-helmet-async. Keep only sitewide author/robots here. -->\n    <meta name=\"author\" content=\"Hiram Barsky\">\n    <meta name=\"robots\" content=\"index, follow, max-image-preview:large, max-snippet:-1, max-vid...",
+  "raw_content": "\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"google-site-verification\" content=\"qtRvrh4E-LoAlYx6yBRup7DFikg4HyeElgRyi-ESsPE\" />\n    \n    <!-- Per-page title,...",
+  "is_spa": false,
+  "extracted_text": "Ring-Rival\nConsole boxing feel on the mobile web \u2014 distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.\nI design and develop software\nSaaS \u00b7 Web apps \u00b7 Mobile \u00b7 Internal tools \u00b7 Available now\nI design the product and build it. You get working software, not a handoff.\nProducts I designed and shipped \u2014 most of them live, all of them with the decisions written down.\nSame-day pickup sports, designed for trust. Post a game, see open games, confirm in a few ...",
+  "publication_date": "2025-09-19",
+  "accessibility_tree": null,
+  "headers": {
+    "Accept-Ranges": "bytes",
+    "Age": "9",
+    "Cache-Control": "public,max-age=0,must-revalidate",
+    "Cache-Status": "\"Netlify Edge\"; hit; ttl=31535992",
+    "Content-Encoding": "br",
+    "Content-Length": "14818",
+    "Content-Security-Policy-Report-Only": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://images.unsplash.com; media-src 'self' blob:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.supabase.co; frame-src 'self' https://www.loom.com https://www.youtube-nocookie.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests; report-uri /.netlify/functions/csp-report;",
+    "Content-Type": "text/html; charset=UTF-8",
+    "Date": "Sun, 23 Aug 2026 23:10:14 GMT",
+    "Etag": "\"7b18468da950b23c9660fcb8a7826c37-ssl-df\"",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Server": "Netlify",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+    "Vary": "Accept-Encoding",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Nf-Request-Id": "01M0RE73A6NV5G81TAD9JB9AJB",
+    "X-Xss-Protection": "1; mode=block"
+  },
+  "redirect_chain": [],
+  "console_errors": [],
+  "render_diagnostics": [],
+  "render_engine": null,
+  "render_ms": null,
+  "mode_used": "raw",
+  "error": null,
+  "structured_data": {
+    "block_count": 3,
+    "processed_count": 3,
+    "total_bytes": 7749,
+    "truncated": false,
+    "blocks": [
+      {
+        "index": 1,
+        "size_bytes": 1287,
+        "valid": true,
+        "types": [
+          "GeoCoordinates",
+          "LocalBusiness",
+          "OpeningHoursSpecification",
+          "Person",
+          "PostalAddress"
+        ],
+        "types_truncated": false
+      },
+      {
+        "index": 2,
+        "size_bytes": 474,
+        "valid": true,
+        "types": [
+          "Organization",
+          "WebSite"
+        ],
+        "types_truncated": false
+      },
+      {
+        "index": 3,
+        "size_bytes": 5988,
+        "valid": true,
+        "types": [
+          "Answer",
+          "ContactPoint",
+          "FAQPage",
+          "ImageObject",
+          "Organization",
+          "Person",
+          "PostalAddress",
+          "Question",
+          "WebPage",
+          "WebSite"
+        ],
+        "types_truncated": false
+      }
+    ]
+  }
+}

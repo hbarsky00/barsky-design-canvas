@@ -56,7 +56,7 @@ type DynamicSeoProps = BlogPostSeoProps | PageSeoProps | ProjectSeoProps | Servi
 const DynamicSeo: React.FC<DynamicSeoProps> = (props) => {
   const location = useLocation();
   const baseUrl = BASE_URL;
-  const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png`;
+  const defaultImage = `${BASE_URL}/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.webp`;
   
   const toAbsoluteUrl = (url?: string): string => {
     if (!url) return defaultImage;

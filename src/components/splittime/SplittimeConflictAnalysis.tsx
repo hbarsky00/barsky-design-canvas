@@ -76,7 +76,7 @@ const SplittimeConflictAnalysis: React.FC<SplittimeConflictAnalysisProps> = ({
           >
             <figure className="project-image-container">
               <img 
-                src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.png" 
+                src="/lovable-uploads/8df95f0b-a722-43da-af7d-a3b9e05a1118.webp" 
                 alt="Communication interface designed to reduce family conflict" 
                 className="clickable-image w-full h-[500px] object-cover shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 onClick={() => onImageClick('splittime-conflict-1')}
@@ -93,7 +93,7 @@ const SplittimeConflictAnalysis: React.FC<SplittimeConflictAnalysisProps> = ({
             
             <figure className="project-image-container mt-8">
               <img 
-                src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.png" 
+                src="/lovable-uploads/448a9776-8ef2-421b-a68c-5451bbc5f823.webp" 
                 alt="Splittime app interface showing key features and solutions for co-parenting coordination" 
                 className="clickable-image w-full h-auto object-contain shadow-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 onClick={() => onImageClick('splittime-features-1')}

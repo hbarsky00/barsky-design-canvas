@@ -37,10 +37,10 @@ f = lambda p, s: ImageFont.truetype(str(p), s)
 # a showcase pointing at a dead domain is worse than no showcase.
 PRODUCTS = [
     ("Ring-Rival", "ringrival.today", "Mobile boxing, no install", "/images/ringrival-now/card-poster.jpg"),
-    ("Stips", "stips.bet", "Prediction markets you can read", "/images/stips/markets-board.jpg"),
+    ("Stips", "stips.bet", "Prediction markets you can read", "/images/stips/markets-board.webp"),
     ("HerbaLink", "herbalink.live", "Verified herbalists, trust-first", "/images/herbalink/card-poster-home.jpg"),
-    ("CatchBuddy", "catchbuddy.fit", "Pickup sports, safety by design", "/images/catchbuddy-hero-landing.png"),
-    ("Fire Lion", "firelion.me", "Canvas arcade in a browser", "/images/firelion-hero-title.png"),
+    ("CatchBuddy", "catchbuddy.fit", "Pickup sports, safety by design", "/images/catchbuddy-hero-landing.webp"),
+    ("Fire Lion", "firelion.me", "Canvas arcade in a browser", "/images/firelion-hero-title.webp"),
 ]
 
 

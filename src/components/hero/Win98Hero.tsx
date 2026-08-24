@@ -64,7 +64,7 @@ const Win98Hero: React.FC = () => {
   }, []);
 
   const imageUrl =
-    "/images/hiram-barsky-profile.png";
+    "/images/hiram-barsky-profile.webp";
 
   const scrollToCaseStudies = () => {
     const target =
@@ -209,11 +209,11 @@ const Win98Hero: React.FC = () => {
                 {/* Case study thumbnails grid */}
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { id: "case-study-1", label: "Fire Lion", img: "/images/firelion-hero-title.png" },
-                    { id: "case-study-2", label: "Ring-Rival", img: "/images/ringrival-hero-title.png" },
-                    { id: "case-study-3", label: "CatchBuddy", img: "/images/catchbuddy-hero-landing.png" },
+                    { id: "case-study-1", label: "Fire Lion", img: "/images/firelion-hero-title.webp" },
+                    { id: "case-study-2", label: "Ring-Rival", img: "/images/ringrival-hero-title.webp" },
+                    { id: "case-study-3", label: "CatchBuddy", img: "/images/catchbuddy-hero-landing.webp" },
                     { id: "case-study-4", label: "HerbaLink", img: "https://barskyux.com/wp-content/uploads/2025/08/Bookanherbalistpromomobile.png" },
-                    { id: "case-study-5", label: "Email Creation AI", img: "/images/email-ai-promo.png" },
+                    { id: "case-study-5", label: "Email Creation AI", img: "/images/email-ai-promo.webp" },
                     { id: "case-study-6", label: "DAE Search", img: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg" },
                   ].map((c) => (
                     <a

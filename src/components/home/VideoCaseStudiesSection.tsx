@@ -59,7 +59,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/catchbuddy",
     liveUrl: "https://catchbuddy.fit",
     images: {
-      primary: "/images/catchbuddy-hero-landing.png",
+      primary: "/images/catchbuddy-hero-landing.webp",
       alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
@@ -115,7 +115,7 @@ const caseStudies: CaseStudy[] = [
       // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
       // failure). Hiram supplied the original source file directly;
       // restored locally (same asset used as the full case study's hero).
-      primary: "/images/dae-search/hero.jpg",
+      primary: "/images/dae-search/hero.webp",
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",

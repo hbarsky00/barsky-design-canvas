@@ -24,7 +24,7 @@ const allCaseStudies: CaseStudy[] = [
     id: "ring-rival",
     title: "Ring-Rival",
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode.",
-    image: "/images/ringrival-hero-title.png",
+    image: "/images/ringrival-hero-title.webp",
     url: "/project/ring-rival",
     category: "Game Design",
     tags: ["AI-Assisted Product", "Mobile Web", "Solo Build"]
@@ -33,7 +33,7 @@ const allCaseStudies: CaseStudy[] = [
     id: "catchbuddy",
     title: "CatchBuddy",
     description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    image: "/images/catchbuddy-hero-landing.png",
+    image: "/images/catchbuddy-hero-landing.webp",
     url: "/project/catchbuddy",
     category: "Trust & Safety",
     tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"]
@@ -42,7 +42,7 @@ const allCaseStudies: CaseStudy[] = [
     id: "herbalink",
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
-    image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
+    image: "/lovable-uploads/21ed3f67-cf04-4117-b956-425f6a473789.webp",
     url: "/project/herbalink",
     category: "Healthcare",
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]

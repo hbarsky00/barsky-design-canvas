@@ -9,7 +9,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/emailai-screen1-content-planning.png",
+      src: "/images/emailai-screen1-content-planning.webp",
       alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
     }}
@@ -38,7 +38,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "\"Send Preview to Brand\" doesn't appear until the AI checklist passes.",
         ],
         images: [
-          { src: "/images/emailai-screen3-iterate-qc.png", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom" },
+          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom" },
         ],
       },
       {
@@ -48,7 +48,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "PromoMats integration warning stays visible on screen. Unresolved decisions in the open, not hidden.",
         ],
         images: [
-          { src: "/images/emailai-screen6-pre-mlr.png", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right" },
+          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right" },
         ],
       },
       {

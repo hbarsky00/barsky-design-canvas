@@ -11,7 +11,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     liveUrl="http://herbalink.live"
     heroImage={{
       // Live screenshots of the shipped app, replacing dead barskyux.com links.
-      src: "/images/herbalink/home-hero.png",
+      src: "/images/herbalink/home-hero.webp",
       alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
@@ -25,8 +25,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/herbalink/find-herbalist-sketch.png", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
-          { src: "/images/herbalink/thought-process.png", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations." },
+          { src: "/images/herbalink/find-herbalist-sketch.webp", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
+          { src: "/images/herbalink/thought-process.webp", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations." },
         ],
       },
       {
@@ -36,7 +36,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "I tested it the other way round. Adding 200 unverified practitioners made the product worse, because then every listing needed a judgement call from the one person who came here specifically because they couldn't make one.",
         ],
         images: [
-          { src: "/images/herbalink/herbalist-directory.png", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified" },
+          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified" },
         ],
       },
       {
@@ -67,7 +67,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/herbalink/herb-detail-reviews.png",
+            src: "/images/herbalink/herb-detail-reviews.webp",
             alt: "Herb library entry for Ashwagandha — description, benefits, preparation, precautions, and an education-not-medical-advice notice",
             caption:
               "The herb library is the part with real content in it. The reviews under it are placeholder, sitting there until there are people to write real ones.",

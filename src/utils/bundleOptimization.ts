@@ -57,7 +57,7 @@ export const removeUnusedCSS = () => {
 export const preloadCriticalAssets = () => {
   const criticalAssets = [
     '/lovable-uploads/8988ca53-0352-4c9a-aa4f-0936db72f7f3.png', // Profile image
-    '/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png', // Hero image
+    '/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.webp', // Hero image
   ];
 
   criticalAssets.forEach(asset => {

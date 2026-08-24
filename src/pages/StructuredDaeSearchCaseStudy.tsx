@@ -13,7 +13,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       // that domain no longer resolves at all. Hiram supplied the original
       // source files directly; restored locally rather than re-hosted
       // externally.
-      src: "/images/dae-search/hero.jpg",
+      src: "/images/dae-search/hero.webp",
       width: 1763,
       height: 1121,
       alt: "DAE Search platform interface overview",
@@ -27,7 +27,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "They were never short of results. They were short of a result they could act on.",
         ],
         images: [
-          { src: "/images/dae-search/the-problem.jpg", alt: "Learning from design iterations that didn't meet enterprise needs" },
+          { src: "/images/dae-search/the-problem.webp", alt: "Learning from design iterations that didn't meet enterprise needs" },
         ],
       },
       {

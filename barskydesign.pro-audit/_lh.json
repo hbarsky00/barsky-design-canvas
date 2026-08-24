@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "error": "unlighthouse timed out after 600s",
+  "output_dir": "barskydesign.pro-audit/lighthouse"
+}

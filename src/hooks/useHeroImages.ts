@@ -70,7 +70,7 @@ export const useHeroImages = ({ projectId }: UseHeroImagesProps) => {
   const handleAddImage = () => {
     const newImage: HeroImage = {
       id: `hero-${heroImages.length}`,
-      src: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.png",
+      src: "/lovable-uploads/e67e58d9-abe3-4159-b57a-fc76a77537eb.webp",
       position: heroImages.length
     };
     setHeroImages(prev => [...prev, newImage]);

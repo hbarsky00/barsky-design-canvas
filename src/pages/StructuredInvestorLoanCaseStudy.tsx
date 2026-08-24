@@ -9,7 +9,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     tags={["Enterprise", "FinTech", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/investor-loan-app/hero.png",
+      src: "/images/investor-loan-app/hero.webp",
       alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
       hoverVideo: "/investor-loan-deals.mp4",
       width: 1500,
@@ -32,7 +32,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/investor-loan-app/whiteboarding.png",
+            src: "/images/investor-loan-app/whiteboarding.webp",
             alt: "Whiteboard mapping of the loan lifecycle from application through to audit",
             caption: "Mapping the lifecycle first, so I knew what Excel was really doing for them.",
             width: 512,
@@ -46,7 +46,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             height: 1113,
           },
           {
-            src: "/images/investor-loan-app/user-journey.png",
+            src: "/images/investor-loan-app/user-journey.webp",
             alt: "The four-step workflow: select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid",
             caption: "The four steps, written down. Officers read this and said yes, that is what I do.",
             width: 2250,
@@ -72,7 +72,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/investor-loan-app/loan-officer.jpg",
+            src: "/images/investor-loan-app/loan-officer.webp",
             alt: "Cashless Rolls Orderbook with the comments panel open, audit trail surfaced next to the record",
           },
         ],
@@ -85,7 +85,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/investor-loan-app/before-after.png",
+            src: "/images/investor-loan-app/before-after.webp",
             alt: "Old Excel system next to the new Loan Central platform",
             caption: "The rewrite that finally stopped pretending to be Excel.",
           },

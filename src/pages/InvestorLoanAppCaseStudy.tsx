@@ -59,7 +59,7 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
     phase: "Discover",
     title: "Portfolio Intelligence Hub",
     description: "Comprehensive dashboard showing real-time portfolio performance, cash flow analysis, and investment metrics across all properties with interactive data visualization.",
-    image: investorLoanGalleryImages[0] || "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.png"
+    image: investorLoanGalleryImages[0] || "/lovable-uploads/70efa220-d524-4d37-a9de-fbec00205917.webp"
   }, {
     phase: "Analyze",
     title: "Investment Performance Analytics",
@@ -237,14 +237,14 @@ const InvestorLoanAppCaseStudy: React.FC = () => {
                 delay: 0.3
               }} className="relative">
                   <figure className="project-image-container">
-                    <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.png"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[300px] shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
+                    <img src="/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.webp" alt={investorLoanImageCaptions["/lovable-uploads/6e0291a5-2519-4b89-8402-44a9b8a27cf0.webp"] || "Complex investment workflow showing the challenges of manual portfolio management and tracking"} className="w-full h-[300px] shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       User Process Flow
                     </figcaption>
                   </figure>
                   
                   <figure className="project-image-container mt-8">
-                    <img src="/lovable-uploads/b0818367-7247-4c42-80b6-c4b8a33d8367.png" alt="Loan Central deals dashboard showing borrower information and deal status tracking" className="w-full h-auto shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
+                    <img src="/lovable-uploads/b0818367-7247-4c42-80b6-c4b8a33d8367.webp" alt="Loan Central deals dashboard showing borrower information and deal status tracking" className="w-full h-auto shadow-2xl object-contain cursor-pointer transition-transform duration-200 hover:scale-[1.02]" />
                     <figcaption className="text-sm text-gray-600 italic mt-2 text-center">
                       High Fidelity Loan Central Dashboard
                     </figcaption>

@@ -37,7 +37,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink/home-2026.jpg",
+      primary: "/images/herbalink/home-2026.webp",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side"
@@ -51,8 +51,8 @@ const caseStudies: CaseStudy[] = [
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
     images: {
-      primary: "/images/splittime/hero.jpg",
-      secondary: "/images/desktop-signup-1.png",
+      primary: "/images/splittime/hero.webp",
+      secondary: "/images/desktop-signup-1.webp",
       alt: "SplitTime co-parenting platform overview"
     },
     layout: "web-mobile"

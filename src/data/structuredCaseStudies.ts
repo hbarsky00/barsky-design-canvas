@@ -312,7 +312,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/crypto/hero.jpg`,
+      image: `/images/crypto/hero.webp`,
       projectName: `Trading Without Friction`,
       results: [],
       technologies: [],
@@ -476,7 +476,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/herbalink/home-2026.jpg`,
+      image: `/images/herbalink/home-2026.webp`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
@@ -490,7 +490,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A co-parenting app designed around the fact that every interaction is potential evidence.`,
     tags: [`Family Tech`, `Legal UX`, `Mobile`],
     heroImage: {
-      src: `/images/splittime/hero.jpg`,
+      src: `/images/splittime/hero.webp`,
       alt: `SplitTime co-parenting platform overview`,
     },
     projectLink: `https://splittime.pro`,
@@ -532,7 +532,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/splittime/hero.jpg`,
+      image: `/images/splittime/hero.webp`,
       projectName: `SplitTime`,
       results: [],
       technologies: [],
@@ -546,7 +546,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`Enterprise`, `FinTech`, `Workflow Design`],
     heroVideo: {
       src: `investor-loan-demo.mp4`,
-      poster: `/images/investor-loan-app/hero.png`,
+      poster: `/images/investor-loan-app/hero.webp`,
       alt: `Investor Loan Platform — Loan Deals grid and Orderbook with live comments, shown across two screens`,
     },
     problemCallout: {
@@ -558,10 +558,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Inline validation that catches malformed entries the moment they happen. Invisible when right, obvious when wrong. No modals, no error logs. Predictive search instead of filters — loan officers think in fragments, a name, a deal code. Bloomberg-style search beats filter panels for this audience. Guided order builder with disabled forward steps: pick the lender, then terms become editable. Feels restrictive in screenshots, less restrictive in practice. Audit trail surfaced next to the record, not buried in an admin tool. This is the feature that made compliance actually advocate for adoption.`,
       images: [
-        { src: `/images/investor-loan-app/excel-error.jpg`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced` },
+        { src: `/images/investor-loan-app/excel-error.webp`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced` },
         { src: `/images/investor-loan-app/book-builder-lofi.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
-        { src: `/images/investor-loan-app/whiteboarding.png`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
-        { src: `/images/investor-loan-app/loan-officer.jpg`, alt: `Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record, not buried in an admin tool` },
+        { src: `/images/investor-loan-app/whiteboarding.webp`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
+        { src: `/images/investor-loan-app/loan-officer.webp`, alt: `Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record, not buried in an admin tool` },
       ],
     },
     whatDidntWorkSection: {
@@ -569,7 +569,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First version replicated too much of Excel's structure because I was trying to minimize cognitive change. Worst of both worlds — looked like Excel, didn't behave like it. Rewrite went the other direction: looked nothing like Excel, behaved like what officers actually needed. Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.`,
       images: [
-        { src: `/images/investor-loan-app/before-after.png`, alt: `Old Excel system vs. the new Loan Central platform — the rewrite that finally looked and behaved differently from Excel` },
+        { src: `/images/investor-loan-app/before-after.webp`, alt: `Old Excel system vs. the new Loan Central platform — the rewrite that finally looked and behaved differently from Excel` },
       ],
     },
     outcomeSection: {
@@ -577,12 +577,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `Adoption happened — which for an Excel-replacement project is the only outcome that matters. Three previous attempts hadn't gotten that far.`,
       images: [
-        { src: `/images/investor-loan-app/user-journey.png`, alt: `The loan-officer workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — validated end to end` },
+        { src: `/images/investor-loan-app/user-journey.webp`, alt: `The loan-officer workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — validated end to end` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/images/investor-loan-app/hero.png`,
+      image: `/images/investor-loan-app/hero.webp`,
       projectName: `Investor Loan Platform`,
       results: [],
       technologies: [],
@@ -595,7 +595,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.`,
     tags: [`Enterprise`, `Gen AI`, `Pharma`, `Workflow Design`],
     heroImage: {
-      src: `/images/emailai-screen1-content-planning.png`,
+      src: `/images/emailai-screen1-content-planning.webp`,
       alt: `Step 1 — Content Planning: 6-step workflow navigator with Brief Creation locked and Initiate Email Creation active`,
     },
     problemCallout: {
@@ -608,8 +608,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description: `Six-step workflow, each step has a clear owner and a clear gate. Brief Creation locked as 'Outside pilot scope' — the brief exists upstream. Saying that out loud is more useful than pretending I'd designed it. PromoMats integration warning stays visible on screen. Unresolved decisions in the open, not hidden. QC sits inline with editing, not after. AI auto-pass + Content Ops + Med Writer signoff happen while the writer is still in the content. 'Send Preview to Brand Team' doesn't appear until the AI checklist passes. Wrong action not available > warning when you take it. Designed every screen in Figma, then used Claude to write a Markdown spec per screen — purpose, states, role permissions, AI behavior, edge cases. Spec went to dev.`,
       images: [
         { src: `/images/emailai-screen2-assemble.png`, alt: `Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right` },
-        { src: `/images/emailai-screen3-iterate-qc.png`, alt: `Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom` },
-        { src: `/images/emailai-screen6-pre-mlr.png`, alt: `Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right` },
+        { src: `/images/emailai-screen3-iterate-qc.webp`, alt: `Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom` },
+        { src: `/images/emailai-screen6-pre-mlr.webp`, alt: `Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right` },
       ],
     },
     outcomeSection: {
@@ -619,7 +619,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/emailai-screen1-content-planning.png`,
+      image: `/images/emailai-screen1-content-planning.webp`,
       projectName: `ManuscriptRx`,
       results: [],
       technologies: [],
@@ -633,7 +633,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`AI-Assisted Product`, `Game Design`, `Mobile Web`, `Solo Build`],
     heroVideo: {
       src: `/lovable-uploads/fire-lion-hero.mp4`,
-      poster: `/images/firelion-hero-title.png`,
+      poster: `/images/firelion-hero-title.webp`,
       alt: `Fire Lion gameplay overview`,
     },
     projectLink: `https://firelion.me`,
@@ -661,7 +661,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: removed every pre-run friction point. Tap FLY is the only path in.`,
         },
       ],
-      researchImage: `/images/firelion-gameplay-lavagod.png`,
+      researchImage: `/images/firelion-gameplay-lavagod.webp`,
       researchImageAlt: `Main runner gameplay, Lava God form, Wave 5, invincibility power-up`,
     },
     problemCallout: {
@@ -675,8 +675,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations: `The spelling mechanic — words cast spells — was only added after the tap-to-fly felt right. Every later system (combos, bosses, modes) was layered on top of a verified core loop.`,
       decisionPoint: `Build the smallest possible playable loop first — one tap, one lion, no words, no worlds, no audio — and only add a mechanic after the core gesture feels good.`,
       images: [
-        { src: `/images/firelion-spelling-lightning.png`, alt: `Lightning Strike spell casting from spelling MN` },
-        { src: `/images/firelion-spelling-combo.png`, alt: `Spelling CRAP over a lava forge anvil, 5× combo` },
+        { src: `/images/firelion-spelling-lightning.webp`, alt: `Lightning Strike spell casting from spelling MN` },
+        { src: `/images/firelion-spelling-combo.webp`, alt: `Spelling CRAP over a lava forge anvil, 5× combo` },
       ],
     },
     keyInsights: [
@@ -704,7 +704,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `Boss fights rebuilt`, description: `From damage-sponge to telegraphed attacks with 3-second cinematic intros.` },
       ],
       wireframeImage: {
-        src: `/images/firelion-lionwars-combat.png`,
+        src: `/images/firelion-lionwars-combat.webp`,
         alt: `Lion Wars naval combat, wave 1 of 7, lava cavern backdrop`,
         caption: `Lion Wars — built as a between-worlds mode, then pulled because it broke flow`,
       },
@@ -719,8 +719,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `User Testing`,
       description: `Tested with friends and family on real iOS and Android phones, plus daily self-playtests (minimum 10 runs per day). Qualitative changes that shipped from feedback: "Why is the first board always the same boss?" → randomized world order per run. "I can never revive." → full rewrite of revive UI and availability logic. "The lion flies too slowly at the start." → killed the slow-start mechanic. "It's stupid I can't move left and right in Cub Mode." → added horizontal movement.`,
       images: [
-        { src: `/images/firelion-cubmode-sunset.png`, alt: `Cub Mode sunset scene — kept isolated from the main game so refactors never break it` },
-        { src: `/images/firelion-cubmode-ocean.png`, alt: `Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state` },
+        { src: `/images/firelion-cubmode-sunset.webp`, alt: `Cub Mode sunset scene — kept isolated from the main game so refactors never break it` },
+        { src: `/images/firelion-cubmode-ocean.webp`, alt: `Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state` },
       ],
     },
     whatDidntWorkSection: {
@@ -735,7 +735,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/firelion-hero-title.png`,
+      image: `/images/firelion-hero-title.webp`,
       projectName: `Fire Lion`,
       results: [],
       technologies: [],
@@ -749,7 +749,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`AI-Assisted Product`, `Mobile Web`, `Game Design`, `Solo Build`],
     heroVideo: {
       src: `/lovable-uploads/ring-rival-hero.mp4`,
-      poster: `/images/ringrival-hero-title.png`,
+      poster: `/images/ringrival-hero-title.webp`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
     projectLink: `https://ringrival.today`,
@@ -777,7 +777,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: an EmotionEngine where opponents bait, hesitate, and tilt based on how the player is doing.`,
         },
       ],
-      researchImage: `/images/ringrival-glassjoe-idle.png`,
+      researchImage: `/images/ringrival-glassjoe-idle.webp`,
       researchImageAlt: `Glass Joe idle stance — started with one opponent, two buttons, a health bar before adding anything else`,
     },
     problemCallout: {
@@ -792,7 +792,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint: `Verify game feel on a single archetype (Glass Joe) before generating any other fighters. If a punch doesn't feel good against the easiest opponent, no amount of AI sprite generation will save the project.`,
       images: [
         { src: `/images/ringrival-controls-modal.png`, alt: `VS Glass Joe controls modal with input scheme` },
-        { src: `/images/ringrival-vonkaiser.png`, alt: `Von Kaiser — tall, broad, defensive guard` },
+        { src: `/images/ringrival-vonkaiser.webp`, alt: `Von Kaiser — tall, broad, defensive guard` },
       ],
     },
     keyInsights: [
@@ -820,7 +820,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `AI opponent rhythm`, description: `Rewritten from fixed-interval punches to the EmotionEngine — bait, hesitate, tilt.` },
       ],
       wireframeImage: {
-        src: `/images/ringrival-knockdown.png`,
+        src: `/images/ringrival-knockdown.webp`,
         alt: `Knockdown — DOWN! 5 count with star burst over floored Glass Joe`,
         caption: `Hit-stop, star burst, count timing — all hand-tuned by feel`,
       },
@@ -835,8 +835,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `User Testing`,
       description: `Tested in person and remotely on iOS and Android phones, ages 14–47, with screen and face recording. Key changes from observation: time-to-first-punch dropped from 22s to 6s by cutting menus and tutorial screens. Audio failure rate dropped from ~40% to under 2% by gating AudioContext resume behind the first tap. Webcam hand-tracking and AR mode were cut — half the testers refused the camera prompt and bounced.`,
       images: [
-        { src: `/images/ringrival-impact-particles.png`, alt: `Glass Joe getting hit — red impact particles dialed back so fighter stays visible` },
-        { src: `/images/ringrival-pause-modal.png`, alt: `Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow` },
+        { src: `/images/ringrival-impact-particles.webp`, alt: `Glass Joe getting hit — red impact particles dialed back so fighter stays visible` },
+        { src: `/images/ringrival-pause-modal.webp`, alt: `Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow` },
       ],
     },
     whatDidntWorkSection: {
@@ -854,7 +854,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `/images/ringrival-hero-title.png`,
+      image: `/images/ringrival-hero-title.webp`,
       projectName: `Ring-Rival`,
       results: [],
       technologies: [],
@@ -868,7 +868,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`AI-Assisted Product`, `Trust & Safety`, `Mobile-First`, `Solo Build`],
     heroVideo: {
       src: `/lovable-uploads/catchbuddy-hero.mp4`,
-      poster: `/images/catchbuddy-hero-landing.png`,
+      poster: `/images/catchbuddy-hero-landing.webp`,
       alt: `CatchBuddy pickup sports app overview`,
     },
     projectLink: `https://catchbuddy.fit`,
@@ -896,7 +896,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: rewrote navigation as "Browse" and "Players" instead of "Matches."`,
         },
       ],
-      researchImage: `/images/catchbuddy-signin.png`,
+      researchImage: `/images/catchbuddy-signin.webp`,
       researchImageAlt: `Sign-in screen with the CatchBuddy brand — first trust signal before anything is asked`,
     },
     problemCallout: {
@@ -910,8 +910,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations: `Step 1 — pick a sport. Five options, no menu, no friction. Step 2 — pick a park: curated venues only; no arbitrary GPS pins. Step 3 — equipment + preferences: small signals that cut down on missed expectations.`,
       decisionPoint: `Ship the minimum viable trust loop — post a game, see games, confirm a match — and only then layer in the safety scaffolding (phone verification, panic button, minor approval). No discovery without trust signals in place.`,
       images: [
-        { src: `/images/catchbuddy-post-game.png`, alt: `Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee` },
-        { src: `/images/catchbuddy-choose-park.png`, alt: `Choose a Park — searchable list with distance and amenities` },
+        { src: `/images/catchbuddy-post-game.webp`, alt: `Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee` },
+        { src: `/images/catchbuddy-choose-park.webp`, alt: `Choose a Park — searchable list with distance and amenities` },
       ],
     },
     keyInsights: [
@@ -939,7 +939,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `iOS geolocation flow`, description: `Rebuilt with a city-dropdown fallback after half of testers denied location.` },
       ],
       wireframeImage: {
-        src: `/images/catchbuddy-equipment-prefs.png`,
+        src: `/images/catchbuddy-equipment-prefs.webp`,
         alt: `Equipment and preferences — "I'll bring a football," no-contact toggle`,
         caption: `Step 3 — equipment + preferences. Small signals that cut down on missed expectations`,
       },
@@ -954,8 +954,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `User Testing`,
       description: `Tested with friends, family, and parents reviewing the minor-approval flow on real iOS and Android phones. Changes from observation: "Matches" → "Browse" and "Players" — users read "Matches" as Tinder-like. Toast stacking — auto-dismiss after 3 seconds. Bottom nav layout shift — fixed to grid-cols-5 to prevent jumps when badges appear. Calendar OAuth state — rewrote with HMAC-SHA256 signing after CSRF vulnerability was caught. Demo data leakage — separated demo matches into their own query path with a Demo badge.`,
       images: [
-        { src: `/images/catchbuddy-find-players.png`, alt: `Find Players list with 92% and 81% match scores — proximity + time heuristic surfaced as percentages users instantly understand` },
-        { src: `/images/catchbuddy-signup-minor-gate.png`, alt: `Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow` },
+        { src: `/images/catchbuddy-find-players.webp`, alt: `Find Players list with 92% and 81% match scores — proximity + time heuristic surfaced as percentages users instantly understand` },
+        { src: `/images/catchbuddy-signup-minor-gate.webp`, alt: `Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow` },
       ],
     },
     whatDidntWorkSection: {
@@ -971,12 +971,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `A shipped pickup-sports platform with auth, RLS, Stripe payments, Google Calendar OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo with AI as a co-builder. Trust-first architecture: safety scaffolding built in from v1, not bolted on. Real stack: auth, RLS, OAuth, Stripe, Realtime, all shipped. User-driven cuts: every removed feature backed by observed friction. AI as collaborator: schema scaffolding, security review, copy drafts, edge functions.`,
       images: [
-        { src: `/images/catchbuddy-pro-pricing.png`, alt: `Pro pricing — $7.99/mo or $59.99/yr, added after the safety and matching loop was stable` },
+        { src: `/images/catchbuddy-pro-pricing.webp`, alt: `Pro pricing — $7.99/mo or $59.99/yr, added after the safety and matching loop was stable` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/images/catchbuddy-hero-landing.png`,
+      image: `/images/catchbuddy-hero-landing.webp`,
       projectName: `CatchBuddy`,
       results: [],
       technologies: [],

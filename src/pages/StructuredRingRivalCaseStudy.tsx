@@ -36,14 +36,14 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/ringrival-glassjoe-idle.png",
+            src: "/images/ringrival-glassjoe-idle.webp",
             alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee",
             caption: "Glass Joe, first one through the rig. One flat colour per limb, no elbow, no shading anywhere.",
             width: 1920,
             height: 1328,
           },
           {
-            src: "/images/ringrival-vonkaiser.png",
+            src: "/images/ringrival-vonkaiser.webp",
             alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance",
             caption: "Von Kaiser. Same rig, heavier build. This is the one that told me the rig would hold.",
             width: 1920,

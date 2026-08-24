@@ -20,14 +20,14 @@ const PROOF = [
   {
     href: "/project/ring-rival",
     title: "Ring-Rival",
-    image: "/images/ringrival-hero-title.png",
+    image: "/images/ringrival-hero-title.webp",
     alt: "Ring-Rival mobile boxing game title screen",
     line: "Console boxing feel in a mobile browser. Time-to-first-punch cut from 22 seconds to 6 by deleting everything in the way.",
   },
   {
     href: "/project/investor-loan-app",
     title: "Investor Loan Platform",
-    image: "/images/investor-loan-app/hero.png",
+    image: "/images/investor-loan-app/hero.webp",
     alt: "Investor loan analysis dashboard",
     line: "Replaced Excel as the system of record for multi-million-dollar loan deals. Three previous attempts had failed.",
   },

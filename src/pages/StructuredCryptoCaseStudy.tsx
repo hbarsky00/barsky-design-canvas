@@ -9,7 +9,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
     tags={["Fintech", "Crypto", "Product Design", "Dual-Mode UX"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/crypto/hero.jpg",
+      src: "/images/crypto/hero.webp",
       alt: "Crypto trading dashboard on mobile and desktop",
     }}
     blocks={[
@@ -20,7 +20,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Beginners pay for hidden fees and never graduate. Pros pay for every \"are you sure?\" tax built for someone else.",
         ],
         images: [
-          { src: "/images/crypto/competitive.png", alt: "Competitor teardown — \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence" },
+          { src: "/images/crypto/competitive.webp", alt: "Competitor teardown — \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence" },
         ],
       },
       {
@@ -30,7 +30,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode shows the full order book with zero hand-holding. Mode is a setting, not a separate product.",
         ],
         images: [
-          { src: "/images/crypto/site-map.png", alt: "The two-mode architecture — one platform, shared core, mode as a setting rather than a separate product" },
+          { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture — one platform, shared core, mode as a setting rather than a separate product" },
         ],
       },
       {
@@ -40,8 +40,8 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Total cost next to the action button was the most-fought decision and the one I'd defend hardest.",
         ],
         images: [
-          { src: "/images/crypto/initial-flow.png", alt: "Initial concepts challenging crypto app conventions" },
-          { src: "/images/crypto/design-thinking.png", alt: "The design-thinking pass that produced the two-mode constraint" },
+          { src: "/images/crypto/initial-flow.webp", alt: "Initial concepts challenging crypto app conventions" },
+          { src: "/images/crypto/design-thinking.webp", alt: "The design-thinking pass that produced the two-mode constraint" },
         ],
       },
       {
@@ -51,7 +51,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode had the opposite problem: I'd cut so much that pros couldn't find features they relied on. Density is a feature for that audience.",
         ],
         images: [
-          { src: "/images/crypto/learning.jpg", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising" },
+          { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising" },
         ],
       },
       {

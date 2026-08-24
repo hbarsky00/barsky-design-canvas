@@ -10,7 +10,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     liveUrl="https://splittime.pro"
     heroImage={{
-      src: "/images/splittime/hero.jpg",
+      src: "/images/splittime/hero.webp",
       alt: "SplitTime co-parenting platform overview",
     }}
     blocks={[
@@ -30,8 +30,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Templates for the 80% of co-parenting communication that's the same conversation every week strip the emotional charge out of routine messages.",
         ],
         images: [
-          { src: "/images/splittime/app-screens.png", alt: "The shipped app — structured requests, shared schedule, and child profile in one place" },
-          { src: "/images/splittime/features.png", alt: "Feature and workflow breakdown of what actually shipped" },
+          { src: "/images/splittime/app-screens.webp", alt: "The shipped app — structured requests, shared schedule, and child profile in one place" },
+          { src: "/images/splittime/features.webp", alt: "Feature and workflow breakdown of what actually shipped" },
         ],
       },
       {
@@ -51,7 +51,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one.",
         ],
         images: [
-          { src: "/images/splittime/early-dashboard.png", alt: "The first dashboard — it replicated too much of what co-parents already had" },
+          { src: "/images/splittime/early-dashboard.webp", alt: "The first dashboard — it replicated too much of what co-parents already had" },
           { src: "/images/splittime/dashboard-concept.png", alt: "Concept exploration from the version that tried to be a full messaging app" },
           { src: "/images/splittime/wireframing.webp", alt: "User flow explorations from the same pass" },
         ],
@@ -64,7 +64,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
         ],
         images: [
           { src: "/images/splittime/child-profile.png", alt: "Child profile — both parents see the same record, so nothing depends on who remembered to pass it along" },
-          { src: "/images/splittime/documents.jpg", alt: "Document storage — the shared, timestamped record parents can point at instead of arguing from memory" },
+          { src: "/images/splittime/documents.webp", alt: "Document storage — the shared, timestamped record parents can point at instead of arguing from memory" },
         ],
       },
     ]}

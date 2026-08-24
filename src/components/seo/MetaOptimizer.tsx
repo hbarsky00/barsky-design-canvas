@@ -16,7 +16,7 @@ const MetaOptimizer: React.FC<MetaOptimizerProps> = ({
   title,
   description,
   url,
-  image = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.png',
+  image = 'https://barskydesign.pro/lovable-uploads/e8d40a32-b582-44f6-b417-48bdd5c5b6eb.webp',
   noIndex = false
 }) => {
   // Ensure description is optimal length (150-160 characters)

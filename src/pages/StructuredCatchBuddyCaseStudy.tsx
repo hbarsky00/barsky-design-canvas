@@ -10,7 +10,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://catchbuddy.fit"
     heroImage={{
-      src: "/images/catchbuddy-hero-landing.png",
+      src: "/images/catchbuddy-hero-landing.webp",
       width: 1960,
       height: 1380,
       alt: "CatchBuddy pickup sports landing hero",
@@ -24,7 +24,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "So the thing I actually had to solve wasn't scheduling. It was two strangers agreeing to meet at a park, and both of them feeling fine about it.",
         ],
         images: [
-          { src: "/images/catchbuddy-post-game.png", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee" },
+          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee" },
         ],
       },
       {
@@ -35,7 +35,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "None of that came out of a prompt. Those are decisions about who actually shows up to this thing and what happens on the day it goes wrong.",
         ],
         images: [
-          { src: "/images/catchbuddy-choose-park.png", alt: "Choose a Park — searchable list with distance and amenities" },
+          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities" },
         ],
       },
       {
@@ -45,7 +45,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
-          { src: "/images/catchbuddy-equipment-prefs.png", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle" },
+          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle" },
         ],
       },
       {
@@ -57,8 +57,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/catchbuddy-find-players.png", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404 },
-          { src: "/images/catchbuddy-signup-minor-gate.png", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398 },
+          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404 },
+          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398 },
           { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378 },
         ],
       },

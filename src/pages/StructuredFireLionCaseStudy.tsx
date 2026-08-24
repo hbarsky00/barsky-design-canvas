@@ -10,7 +10,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://firelion.me"
     heroImage={{
-      src: "/images/firelion-hero-title.png",
+      src: "/images/firelion-hero-title.webp",
       alt: "Fire Lion hero title screen",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
     }}
@@ -22,7 +22,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "The harder question — can a designer ship a real product solo with AI? — needed a harder answer. Game feel can't be faked with a prompt.",
         ],
         images: [
-          { src: "/images/firelion-spelling-lightning.png", alt: "Lightning Strike spell casting from spelling MN" },
+          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN" },
         ],
       },
       {
@@ -32,7 +32,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Three modes emerged from real play: Fire Lion (tense, escalating), Lion Wars (strategic), Cub Mode (low-stakes recovery). Each lives in its own isolated component so late-night AI sessions never break the others.",
         ],
         images: [
-          { src: "/images/firelion-spelling-combo.png", alt: "Spelling CRAP over a lava forge anvil, 5× combo" },
+          { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo" },
         ],
       },
       {
@@ -42,7 +42,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Every gravity tweak, tap impulse, and difficulty curve was hand-tuned across hundreds of test runs. Building features is easy with AI. Killing them is the actual design work.",
         ],
         images: [
-          { src: "/images/firelion-lionwars-combat.png", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop" },
+          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop" },
         ],
       },
       {
@@ -52,8 +52,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "The deletion list ended up longer than the feature list. The game got better with every cut.",
         ],
         images: [
-          { src: "/images/firelion-cubmode-sunset.png", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it" },
-          { src: "/images/firelion-cubmode-ocean.png", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state" },
+          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it" },
+          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state" },
         ],
       },
       {

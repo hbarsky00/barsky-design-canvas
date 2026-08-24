@@ -41,7 +41,7 @@ const SplittimeImpactMetrics: React.FC<SplittimeImpactMetricsProps> = ({
         <div className="mb-16 grid lg:grid-cols-2 gap-8 items-center">
           <figure className="project-image-container">
             <img 
-              src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.png" 
+              src="/lovable-uploads/cd385ebc-e187-4a1e-b0af-58bcbbd17fdb.webp" 
               alt="Happy family showing successful co-parenting collaboration and family harmony" 
               className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
               onClick={() => onImageClick('splittime-harmony-1')}
@@ -58,7 +58,7 @@ const SplittimeImpactMetrics: React.FC<SplittimeImpactMetricsProps> = ({
           
           <figure className="project-image-container">
             <img 
-              src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.png" 
+              src="/lovable-uploads/7c381aef-4b14-4b6e-ab5d-00248808e4dc.webp" 
               alt="Splittime results and impact metrics showing measurable improvements in co-parenting outcomes" 
               className="clickable-image w-full h-96 object-cover shadow-xl mx-auto cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
               onClick={() => onImageClick('splittime-results-1')}

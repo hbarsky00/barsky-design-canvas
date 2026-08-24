@@ -101,7 +101,7 @@ export const optimizeCriticalResources = () => {
   // Preload critical assets only - updated to use profile photo
   const criticalAssets = [
     '/lovable-uploads/0021bf49-27e4-46b8-b948-ecdcd831a773.png', // Favicon
-    '/images/hiram-barsky-profile.png', // Profile avatar
+    '/images/hiram-barsky-profile.webp', // Profile avatar
   ];
 
   criticalAssets.forEach(src => {

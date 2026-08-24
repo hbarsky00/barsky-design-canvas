@@ -33,7 +33,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Every market carries its price, close date and volume on the card, so you can scan the board without opening anything. Markets with no bets yet say \"Be the first to trade\" rather than showing an empty chart.",
         ],
         images: [
-          { src: "/images/stips/markets-board.jpg", alt: "The board — price, close date and volume on every card" },
+          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card" },
         ],
       },
       {
