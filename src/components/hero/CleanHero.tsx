@@ -254,12 +254,20 @@ const CleanHero: React.FC = () => {
                 className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"
               />
               <div className="relative rounded-[1.75rem] p-1.5 bg-gradient-to-tr from-primary/40 via-purple-500/30 to-transparent">
+                {/* Responsive: this renders at 224px on mobile, 288px at sm and
+                    480px at lg. A single 720x960 file meant phones downloaded
+                    ~2.5x the pixels they could show, on the LCP element. The
+                    variants are pre-cropped square, so the pixels object-cover
+                    would have discarded are never sent either. */}
                 <img
-                  src="/images/hiram-barsky-profile.webp"
+                  src="/images/hiram-barsky-profile-576.webp"
+                  srcSet="/images/hiram-barsky-profile-448.webp 448w, /images/hiram-barsky-profile-576.webp 576w, /images/hiram-barsky-profile-960.webp 960w"
+                  sizes="(min-width: 1024px) 480px, (min-width: 640px) 288px, 224px"
                   alt="Hiram Barsky"
-                  width={400}
-                  height={400}
+                  width={480}
+                  height={480}
                   loading="eager"
+                  fetchPriority="high"
                   className="w-full aspect-square rounded-[1.5rem] object-cover bg-muted"
                 />
               </div>

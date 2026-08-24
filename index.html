@@ -139,7 +139,9 @@
     <!-- Preload the WebP, not the PNG. This preloaded a 492 KB PNG at high
          priority that nothing on the page renders — it competed directly with
          the real LCP element, which is the 99 KB .webp below. -->
-    <link rel="preload" as="image" href="/images/hiram-barsky-profile.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/hiram-barsky-profile-576.webp"
+          imagesrcset="/images/hiram-barsky-profile-448.webp 448w, /images/hiram-barsky-profile-576.webp 576w, /images/hiram-barsky-profile-960.webp 960w"
+          imagesizes="(min-width: 1024px) 480px, (min-width: 640px) 288px, 224px" fetchpriority="high" />
 </head>
   <body>
     <!--

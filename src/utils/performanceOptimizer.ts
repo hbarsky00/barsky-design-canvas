@@ -97,8 +97,10 @@ export const optimizeImageElement = (img: HTMLImageElement) => {
  */
 export const preloadCriticalAssets = () => {
   const criticalAssets = [
-    { href: '/favicon.ico', as: 'image' },
-    { href: '/images/hiram-barsky-profile.webp', as: 'image', crossorigin: 'anonymous' }
+    { href: '/favicon.ico', as: 'image' }
+    // The hero photo is preloaded from index.html with a full imagesrcset, which
+    // fires far earlier than this JS can run. Preloading it again here just
+    // fetched a second, non-responsive copy of the LCP image.
   ];
 
   criticalAssets.forEach(asset => {
