@@ -112,8 +112,18 @@ on the task itself and reused by every future run.
   and internal-linking were unwrapped 2026-08-22. **adventures, contact and
   blog are still wrapped and still invisible** — unwrapping them is a real
   performance trade (form libraries, media), so weigh it, do not just do it.
-- `/projects` has no prerendered body — it fails capture every run. Worth a
-  proper diagnosis rather than another shrug.
+- ~~`/projects` has no prerendered body — it fails capture every run.~~
+  **Resolved 2026-08-23.** It was never a page: a client-side `<Navigate>` that
+  served 200 with an empty body while carrying index/follow, a self-canonical,
+  sitemap priority 0.9 and five inbound `_redirects` rules. Now a real 301 to
+  `/#case-studies`, delisted everywhere. See the out-of-rotation entry in
+  `docs/aeo-log.md`.
+- **Never run this loop while another agent is working in this repo.** On
+  2026-08-23 a concurrent session ran a catch-all `git add` and swept this
+  loop's in-progress edits into its own unrelated commit, then pushed. Both
+  sessions also fought over headless Chrome and `vite preview --strictPort
+  4199`, which is why `/` would not capture. Check `git log` and
+  `pgrep -f 'vite preview'` before starting.
 - `usePageIndexing` injects `<meta name="crawl-priority">` and
   `<meta name="fetch-priority">` on three pages. Neither is a real meta tag.
   It also console.logs on every navigation in production.

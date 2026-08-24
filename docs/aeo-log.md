@@ -44,6 +44,110 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
 - [ ] 5 llms.txt / cross-web consistency
 - [ ] 6 content freshness / gap-fill
 
+### Out of rotation — 2026-08-23 — `/projects` was an indexable empty page
+
+Not one of the six levers, so no box ticked; lever 3 is still next. This was the
+known-open "/projects fails capture every run" item, and the shrug was hiding a
+real defect rather than a flaky script.
+
+**Diagnosed.** `/projects` was never a page. `App.tsx` routed it to
+`<Navigate to="/#case-studies" replace />`, a *client-side* redirect, so the URL
+answered **200 with an empty `<div id="root">`** — nothing happened until React
+booted. Meanwhile the SEO layer treated it as a first-class page:
+
+- `robots: index, follow` and a self-referential canonical to `/projects`
+- its own title, description and OG card (`page-projects.png`)
+- **sitemap priority 0.9** — the strongest crawl signal on the site after `/`
+- the most internally-linked URL after the homepage: the footer link on *every*
+  page, the hero (×2), the services CTAs, `RelatedProjects`, `InternalLinkingHub`
+- and **five `_redirects` rules pointed at it** — `/case-studies/*`,
+  `/case-studies/roi-design-builder`, `/project/business-management`,
+  `/project/wholesale-distribution`, `/project/splittime`
+
+So every retired-URL 301 on this site, and every footer link on every page, was
+funnelling crawlers and link equity into a blank document. For a JS-capable
+crawler it read as a soft 404 that contradicted its own canonical; for the
+answer engines this loop exists to serve — which mostly do not run JS — the
+site's second-strongest URL was empty.
+
+**Considered and rejected: build a real `/projects` index.** The homepage lists
+6 case studies; 9 `/project/*` routes are live, so an index looked additive. It
+is not allowed: `VideoCaseStudiesSection.tsx` records that Hiram deliberately
+pulled `fire-lion` (2026-08-07, "were going to work on that later") and
+`email-creation-ai` (2026-08-09, "park it as a draft") from featured work. An
+index page would re-feature exactly what he parked, and the honest remaining set
+duplicates the homepage. The settled editorial decision is that
+`/#case-studies` **is** the work index — so the fix is to honour that at the
+HTTP layer instead of publishing a page that pretends otherwise.
+
+**Changed.**
+- `public/_redirects` — `/projects  /#case-studies  301!`, above the catch-all.
+  Forced, because rules in that file do not shadow real files by default and
+  this must fire even if a stale `projects/index.html` survives into a deploy.
+- The same file — repointed all five rules above from `/projects` to
+  `/#case-studies`, so none of them is a 301→301 chain any more.
+- Delisted `/projects` from the four places that published it:
+  `scripts/inject-seo-html.ts` (stops generating the empty page),
+  `scripts/capture-prerendered-bodies.ts` (it could never capture a `<Navigate>`
+  — this route *was* the perpetual failure), `scripts/generate-sitemap.ts`, and
+  `pageIndexingConfigs` in `src/utils/seoUtils.ts`.
+- Repointed every internal `to="/projects"` to `/#case-studies` — `Footer`,
+  `Hero` (×2), `Projects`, `RelatedProjects`, `SimplifiedProjectDetail`,
+  `ConsolidatedServicesSection`, `ServicesCallToAction`, `InternalLinkingHub`,
+  `useProjectDetail`. `to="/#case-studies"` was already the established pattern
+  (header nav, case-study pages, service pages) and `App.tsx` has the hash-scroll
+  handler, so this needed no new mechanism.
+- Left the `<Navigate>` route in `App.tsx` as an in-app fallback. The server 301
+  catches every hard navigation; this only covers a stale in-app link.
+
+**Measured.** Build output went from `31 routes (30 prerendered, 1 head-only)`
+to `30 routes (30 prerendered, 0 head-only)` — the head-only route was always
+this one. Live, with `curl` and no `-L`:
+
+| URL | before | after |
+|---|---|---|
+| `/projects` | 200, empty body | **301 → `/#case-studies`** |
+| `/case-studies/*` | 301 → empty page | **301 → `/#case-studies`** |
+| `/case-studies/roi-design-builder` | 301 → empty page | **301 → `/#case-studies`** |
+| `/project/business-management` | 301 → empty page | **301 → `/#case-studies`** |
+| `/project/wholesale-distribution` | 301 → empty page | **301 → `/#case-studies`** |
+| `/project/splittime` | 301 → empty page | **301 → `/#case-studies`** |
+
+Live sitemap: 31 → **30** URLs, `/projects` absent. Served HTML (no JS) on `/`,
+`/about`, `/services`, `/blog`: **0** occurrences of `href="/projects"`,
+`/#case-studies` present on each, bodies still 42–89 kB. Verified against
+barskydesign.pro, not a local build.
+
+**FLAGGED — two sessions were writing this repo at once.** This run's edits were
+swept into `d86d52e1 "Add claude-seo to the loop's diagnosis toolkit"` (19:05),
+a commit from a *different* concurrent session that ran a catch-all `git add`
+over an in-progress working tree; that session then pushed the WebP/font
+overhaul (21:04–21:44) and my change went live with it. The change is correct
+and verified live, but it is committed under an unrelated message and was never
+reviewed as its own diff. The same collision explains the capture trouble below:
+two sessions running headless Chrome and `vite preview --strictPort 4199`
+against the same `dist/` at the same time. **If this loop is ever scheduled
+alongside another agent on this repo, they will corrupt each other's commits.**
+
+**Capture.** 29/30 routes recaptured cleanly (the footer href changed on every
+page, so every snapshot was stale). `/` timed out repeatedly under the
+contention above; the concurrent session's own capture at 21:23 produced a clean
+homepage snapshot, and the live check confirms 0 stale hrefs on `/`, so the
+served homepage is correct. Not a shortcut worth repeating — recapture `/` on a
+quiet machine next run and confirm.
+
+**Also found, deliberately not acted on** (one substantial thing per run):
+- `capture-prerendered-bodies.ts` leaks `.capture-media-stash` if the process is
+  SIGKILLed — its `finally` never runs, so `dist/` is left with **zero videos**
+  and the next run's `stashMedia()` opens with `rmSync(stash)`. `public/` is the
+  source of truth so nothing is lost, but the failure mode looks like data loss
+  and cost this run real time. Worth a guard that restores on startup.
+- `StructuredCaseStudyLayout.tsx` links to `/#projects`; the homepage section id
+  is `case-studies`. That anchor has never matched anything.
+- `AdvancedSitemapMeta.tsx` emitted `priority-pages="/,/projects,/contact"`.
+  Repointed to `/services` in passing, but none of that component's `<meta>`
+  tags are real — same class of fiction as the `usePageIndexing` known-open item.
+
 ### Flagged for Hiram — facts only he has
 
 - **Hourly rate.** The old FAQ published "$150-250/hour". Nothing verified it,

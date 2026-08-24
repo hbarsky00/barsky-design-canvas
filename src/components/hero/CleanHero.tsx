@@ -75,18 +75,6 @@ const nameWord: Variants = {
   },
 };
 
-/** The photo settles in from slightly back and off-axis, not just scaled. */
-const photoIn: Variants = {
-  hidden: { opacity: 0, scale: 0.92, rotate: -1.5, y: 24 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    y: 0,
-    transition: { duration: 1, ease: BRAND_EASE, delay: 0.15 },
-  },
-};
-
 const CleanHero: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();
   const variants = prefersReducedMotion
@@ -245,11 +233,18 @@ const CleanHero: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Photo column */}
-          <motion.div
-            variants={prefersReducedMotion ? undefined : photoIn}
-            className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
-          >
+          {/* Photo column — deliberately NOT animated in.
+              This image is the LCP element. The page is prerendered, so the
+              browser paints it almost immediately; running a framer-motion
+              entrance on it meant hydration set opacity:0 on content that was
+              already on screen, then faded it back. Lighthouse measured the
+              result as 4,428 ms of LCP "render delay" — 70% of a 6.3 s LCP —
+              against only 864 ms of actual load time. An entrance animation on
+              prerendered content is not a reveal; it is hiding something the
+              user can already see. The text beside it still animates, and the
+              slow `hero-float` CSS loop still runs, so the section keeps its
+              life without the LCP cost. */}
+          <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
             {/* Was capped at max-w-sm, which left the photo shorter than the
                 text beside it and opened a dead wedge under it. Sized to the
                 column now, so both sides finish together. */}
@@ -269,7 +264,7 @@ const CleanHero: React.FC = () => {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
 
       </div>
