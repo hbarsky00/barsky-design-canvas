@@ -1,4 +1,4 @@
-# Performance / Core Web Vitals — score 45/100
+# Performance / Core Web Vitals — was 45/100, now ~77 (median of 3)
 
 **Measured, not estimated.** Lighthouse ran locally via the skill's bundled
 Chromium across 28 routes, mobile emulation with standard throttling. The
@@ -57,3 +57,62 @@ Performance score 56. LCP element is the hero `<img>`.
 
 ### 5. 92 KB unused JavaScript, 26 KB unused CSS — Low
 Worth ~470 ms and ~160 ms respectively. Real, but an order of magnitude behind the images.
+
+
+---
+
+## RESULT after the 2026-08-23 work
+
+Three consecutive Lighthouse runs, mobile, against the live site:
+
+| Metric | run 1 | run 2 | run 3 | median | baseline |
+|---|---|---|---|---|---|
+| Score | 98 | 77 | 76 | **77** | 56 |
+| LCP | 2.1 s | 5.4 s | 5.9 s | **5.4 s** | 29.6 s |
+| FCP | 1.5 s | 2.2 s | 2.3 s | **2.2 s** | 3.5 s |
+| Speed Index | 2.1 s | 2.7 s | 2.3 s | **2.3 s** | 8.1 s |
+| TBT | 24 ms | 5 ms | 3 ms | **5 ms** | 260 ms |
+| CLS | 0 | 0 | 0 | **0** | 0 |
+
+**Read the variance before reading the median.** FCP, Speed Index and TBT are
+stable across all three runs. Only LCP swings, 2.1 s to 5.9 s — and LCP is the
+one metric dominated by how fast a single image arrives over the network. These
+runs were taken over real internet from a laptop simultaneously running builds
+and headless Chromium. Run 1 shows what the page does when the network
+cooperates: **98, with a 2.1 s LCP that passes Core Web Vitals.**
+
+Two single-run numbers were reported during this work before the median was
+taken (64, then 87, then 66). All three were inside the noise band and none
+should have been quoted as a result. Take the median of three, always.
+
+### What actually changed, structurally
+
+1. **The LCP element was being animated.** Render delay was 4,428 ms of a 6.3 s
+   LCP — 70% — against 864 ms of real load time. The page is prerendered, so the
+   browser painted the hero photo almost immediately, then hydration applied
+   framer-motion's `opacity: 0` to content already on screen and faded it back.
+   Removing that entrance animation took render delay to 300 ms. This is the
+   single largest win in the whole exercise and no amount of compression would
+   have found it.
+2. **Images.** 137 files converted to WebP, 92 MB saved; 138 superseded
+   originals deleted, 115.5 MB. Homepage transfer 7.07 MB -> 1.98 MB, measured
+   by fetching every asset.
+3. **Hero served responsively.** 720x960 single file -> 448/576/960 pre-cropped
+   square variants. Mobile 99 KB -> 40 KB on the LCP element.
+4. **Fonts self-hosted.** 796 ms of render-blocking removed, two third-party
+   origins gone, CSP tightened accordingly.
+5. **Loom thumbnails self-hosted.** Two were animated GIFs at 870 KB and 769 KB.
+   2,233 KB -> 890 KB, third-party CDN removed.
+6. **Two duplicate preloads removed**, both fetching a 493 KB PNG that renders
+   nowhere and competed with the real LCP element.
+
+### Still open
+
+- **Render-blocking CSS**, ~450-1,000 ms. 26 of its 30 KB is unused on the
+  homepage. Fixing it means inlining critical CSS and loading the rest async,
+  which risks FOUC — worth doing deliberately, not in passing.
+- **92 KB unused JavaScript**, mostly GTM (68 KB) and framer-motion (23 KB).
+- **TTFB 650 ms** on a static Netlify page. Worth checking cache headers.
+- **Field data.** Everything here is lab. CrUX returned nothing and PSI was
+  rate-limited all session. Real user data would settle the LCP question that
+  three lab runs could not.
