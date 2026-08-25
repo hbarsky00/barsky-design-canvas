@@ -58,9 +58,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The other thing I couldn't design away: Android will not let you authorise screen capture once and reuse it. Consent is single-use, so the system dialog appears on every single recording. I wanted that gone and it isn't mine to remove — so the flow is built to make it feel like one deliberate step rather than an interruption.",
           "I also caught the build asking for permission to draw over other apps, which I never wanted. It comes in from a dependency rather than from my code. It's blocked in release builds, and I check the actual APK after every upgrade instead of trusting that it stayed blocked.",
         ],
-        images: [
-          { src: "/images/recast/android-library.webp", alt: "Recast on Android — the recording library on a phone", caption: "Android first, because that's the phone I actually carry." },
-        ],
       },
       {
         heading: "I Found a Leak by Signing Up as a Stranger",
