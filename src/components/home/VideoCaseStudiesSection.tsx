@@ -62,7 +62,11 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/recast/landing-hero.webp",
       alt: "Recast — record it once, send a link"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    // Real footage Hiram recorded of the Mac app, trimmed to the eight seconds
+    // that are the whole pitch: recording running, stop, the player opening
+    // immediately from the local file with Copy Link already there.
+    video: "/recast-card.mp4"
   },
   {
     id: "catchbuddy",
