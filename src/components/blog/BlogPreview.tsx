@@ -46,8 +46,14 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                   </div>
                 </div>
 
+                {/* The cover image and the "read more" link were clickable but
+                    the headline was not — the inverse of the bug on /blog, and
+                    just as confusing. A headline that looks like a link should
+                    be one. */}
                 <h3 className="heading-medium md:text-xl text-foreground mb-3 line-clamp-2 leading-tight">
-                  {post.title}
+                  <Link to={`/blog/${post.slug}`} className="transition-colors hover:text-primary">
+                    {post.title}
+                  </Link>
                 </h3>
 
                 <p className="text-muted-foreground mb-4 line-clamp-3 text-sm md:text-base">

@@ -36,13 +36,18 @@ const BlogLanding: React.FC = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-background border border-border/10 rounded-xs shadow-elevation-2 overflow-hidden hover:shadow-elevation-4 transition-shadow duration-300"
               >
-                {/* Featured Image */}
+                {/* The whole card is one link. Only the <h3> used to be, so
+                    clicking the cover image — the biggest, most obviously
+                    clickable thing on the card — did nothing at all. One Link
+                    wrapping everything keeps a single tab stop and one
+                    accessible name rather than several competing ones. */}
+                <Link to={`/blog/${post.slug}`} className="group block">
                 {post.coverImage && (
                   <div className="w-full h-48 overflow-hidden">
                     <img
                       src={post.coverImage}
                       alt={post.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -61,13 +66,8 @@ const BlogLanding: React.FC = () => {
                     ))}
                   </div>
 
-                  <h3 className="heading-card text-foreground mb-3 line-clamp-2">
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {post.title}
-                    </Link>
+                  <h3 className="heading-card text-foreground mb-3 line-clamp-2 transition-colors group-hover:text-primary">
+                    {post.title}
                   </h3>
 
                   <p className="text-muted-foreground mb-4 line-clamp-3">
@@ -90,6 +90,7 @@ const BlogLanding: React.FC = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </motion.article>
             ))}
           </div>
