@@ -9,6 +9,15 @@ const StructuredRecastCaseStudy: React.FC = () => (
     tags={["Product Design", "Cross-Platform", "Native + Web", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://recastvid.com"
+    // The tight headline crop, not the full-page capture that was here before.
+    // A 1440px screenshot of a dense dark UI is unreadable in a ~350px column,
+    // which is what made the mobile view bad. This crop still reads at 350px —
+    // checked by scaling it and looking, not by assuming.
+    heroImage={{
+      src: "/images/recast/card-hero.webp",
+      alt: "Recast — Record it once. Send a link.",
+      hoverVideo: "/recast-card.mp4",
+    }}
     blocks={[
       {
         heading: "Why I Built It",
