@@ -15,10 +15,15 @@
  * critical CSS for a case study is not critical CSS for the homepage.
  */
 import Beasties from "beasties";
-import { readFileSync, writeFileSync, statSync } from "node:fs";
-import { globSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { execSync } from "node:child_process";
+
+// NOTE: .nvmrc pins Node 18.18.0 for Netlify. `globSync` was not exported from
+// node:fs until Node 22, so importing it here threw at module load on the build
+// server — postbuild failed, the build failed, and nothing deployed for several
+// commits while local builds on Node 22 kept passing. It was never even used.
+// Keep this file to Node 18 APIs.
 
 const DIST = resolve("dist");
 const files = execSync(`find ${DIST} -name "*.html" -not -path "*/assets/*"`, { encoding: "utf8" })
