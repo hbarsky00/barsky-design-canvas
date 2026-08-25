@@ -9,19 +9,12 @@ const StructuredRecastCaseStudy: React.FC = () => (
     tags={["Product Design", "Cross-Platform", "Native + Web", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://recastvid.com"
-    heroImage={{
-      src: "/images/recast/landing-hero.webp",
-      alt: "Recast landing page — Record it once. Send a link.",
-    }}
     blocks={[
       {
         heading: "Why I Built It",
         paragraphs: [
           "Half the messages I write would be better as thirty seconds of me talking over my screen. The tools that do that either want a login before the other person can watch, or they put a watermark on it, or they cap you at five minutes and then ask for a card.",
           "So the whole product is one sentence: record it once, send a link. Whoever you send it to presses play. No account, no app, no meeting.",
-        ],
-        images: [
-          { src: "/images/recast/how-it-works.webp", alt: "How it works — record from the app, trim the dead air, send the link" },
         ],
       },
       {
@@ -74,9 +67,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "At one point Recast had three different looks at the same time — a warm editorial share page, a purple Material web library, and a third thing on Android. Every screen had been reviewed on its own and passed. Nobody had put them side by side.",
           "I found it because I opened the app and the website next to each other and they didn't look related. Now a change isn't finished until it exists on both.",
         ],
-        images: [
-          { src: "/images/recast/pricing.webp", alt: "Pricing on the Recast site — free tier and paid storage plans" },
-        ],
       },
       {
         heading: "Where It Is Now",
@@ -84,9 +74,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "Live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both. The website handles the library, playback, sharing and downloads.",
           "It sells storage, not features — a free tier and paid plans above it. Entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. It's deliberately the boring answer: the thing you pay for is the thing that actually costs me money.",
           "This one is here for the engineering decisions more than the pixels. Deleting the recorder, the offline playback rule, the ordering bug Android's docs get wrong, the leak I found by being a stranger to my own product. That's the part that transfers.",
-        ],
-        images: [
-          { src: "/images/recast/download.webp", alt: "The Recast download page — Mac and Android builds" },
         ],
       },
     ]}

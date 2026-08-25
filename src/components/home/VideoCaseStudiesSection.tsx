@@ -59,7 +59,10 @@ const caseStudies: CaseStudy[] = [
     url: "/project/recast",
     liveUrl: "https://recastvid.com",
     images: {
-      primary: "/images/recast/landing-hero.webp",
+      // Tight crop on the headline, not the full 1440px page capture. On a
+      // phone the card is ~350px wide and there is no hover, so the whole
+      // screenshot became an unreadable smudge — this crop still reads.
+      primary: "/images/recast/card-hero.webp",
       alt: "Recast — record it once, send a link"
     },
     layout: "side-by-side",
