@@ -13,9 +13,13 @@ const StructuredRecastCaseStudy: React.FC = () => (
     // A 1440px screenshot of a dense dark UI is unreadable in a ~350px column,
     // which is what made the mobile view bad. This crop still reads at 350px —
     // checked by scaling it and looking, not by assuming.
+    // The Mac app's own recording panel, lifted from Hiram's screen recording
+    // and set on the app's dark ground. The landing-page crop that was here
+    // showed the pitch; this shows the product. Cropped to the panel exactly —
+    // a looser crop caught a card sitting behind it and read as an artifact.
     heroImage={{
-      src: "/images/recast/card-hero.webp",
-      alt: "Recast — Record it once. Send a link.",
+      src: "/images/recast/mac-app.webp",
+      alt: "The Recast Mac app — Full Screen, Window or Area, camera and mic toggles, Start Recording",
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
