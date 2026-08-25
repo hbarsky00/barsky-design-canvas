@@ -16,7 +16,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/recast/card-hero.webp",
       alt: "Recast — Record it once. Send a link.",
-      hoverVideo: "/recast-card.mp4",
     }}
     blocks={[
       {
@@ -41,14 +40,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The rule I set: you press stop, the video plays immediately from the file on your device, and the upload happens behind it. Playback never waits for the network. If you're on a plane it still works.",
           "I broke my own rule in the Mac app without noticing. The function that queued a finished recording was async and awaited the entire upload before it opened the player window. On a good connection you'd never catch it. Offline, you pressed stop and stared at nothing until the request timed out.",
           "It returns in a millisecond or two now and uploads in a detached task. I also found the first upload after launch was eating five to eight seconds of framework setup, so the app warms that up when it starts instead of paying for it the moment you press stop.",
-        ],
-        videos: [
-          {
-            src: "/recast-demo.mp4",
-            poster: "/images/recast/demo-poster.webp",
-            caption:
-              "The Mac app, unedited: pick the screen, record, stop. The player opens on the local file straight away — note it says the file is still on this Mac — and the share link is already there.",
-          },
         ],
       },
       {
