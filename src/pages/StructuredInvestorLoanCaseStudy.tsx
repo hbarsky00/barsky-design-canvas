@@ -15,6 +15,11 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
       width: 1500,
       height: 1125,
     }}
+    relatedPost={{
+      slug: "you-dont-replace-excel-by-being-better",
+      title: "You Don't Replace Excel by Being Better Than Excel",
+      blurb: "A bank was running multi-million-dollar loan deals in spreadsheets. The software that replaces that has to lose to Excel on flexibility and win on\u2026",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

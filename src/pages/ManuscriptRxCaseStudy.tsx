@@ -13,6 +13,11 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
     }}
+    relatedPost={{
+      slug: "design-for-the-approval-gates",
+      title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
+      blurb: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are\u2026",
+    }}
     blocks={[
       {
         heading: "The Problem",

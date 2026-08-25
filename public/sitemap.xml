@@ -120,8 +120,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/a-to-do-app-doesnt-prove-anything</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/beginner-or-pro-is-a-false-choice</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/demo-works-shipping-is-different</loc>
     <lastmod>2026-08-10T09:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/design-for-the-approval-gates</loc>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -144,6 +162,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/finding-the-data-is-half-the-job</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/how-to-interview-a-designer-now</loc>
     <lastmod>2026-08-09T12:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -151,6 +175,12 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/i-just-wanted-to-send-someone-a-video</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/if-you-make-people-do-math</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -174,8 +204,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/the-work-is-deleting-not-generating</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/two-bugs-ai-wrote-that-i-had-to-find</loc>
     <lastmod>2026-08-09T12:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/verification-is-a-door-not-a-sticker</loc>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -192,8 +234,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/when-trust-is-the-product</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/why-enterprise-tools-lose-to-excel</loc>
     <lastmod>2026-08-09T12:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/you-dont-replace-excel-by-being-better</loc>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

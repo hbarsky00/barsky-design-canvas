@@ -16,6 +16,11 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
     }}
+    relatedPost={{
+      slug: "verification-is-a-door-not-a-sticker",
+      title: "Verification Is a Door, Not a Sticker",
+      blurb: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that \u2014 nobody is visible until they're verified \u2014 gives you a\u2026",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

@@ -19,6 +19,11 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       alt: "DAE Search platform interface overview",
       hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
     }}
+    relatedPost={{
+      slug: "finding-the-data-is-half-the-job",
+      title: "Finding the Data Is Half the Job",
+      blurb: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part\u2026",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

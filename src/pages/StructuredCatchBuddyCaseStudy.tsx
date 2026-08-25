@@ -16,6 +16,11 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       alt: "CatchBuddy pickup sports landing hero",
       hoverVideo: "/catchbuddy-card.mp4",
     }}
+    relatedPost={{
+      slug: "when-trust-is-the-product",
+      title: "When Trust Is the Product, It Can't Be a Feature",
+      blurb: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product \u2014 and it's not something you\u2026",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

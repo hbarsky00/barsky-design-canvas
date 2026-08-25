@@ -12,6 +12,11 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       src: "/images/crypto/hero.webp",
       alt: "Crypto trading dashboard on mobile and desktop",
     }}
+    relatedPost={{
+      slug: "beginner-or-pro-is-a-false-choice",
+      title: "Beginner or Pro Is a False Choice, and Both Sides Pay for It",
+      blurb: "Easy apps hide complexity and charge for it. Pro apps expose everything and assume confidence you may not have. The split is a business decision\u2026",
+    }}
     blocks={[
       {
         heading: "The Problem",

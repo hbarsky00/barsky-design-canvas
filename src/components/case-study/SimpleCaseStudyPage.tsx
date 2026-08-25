@@ -101,6 +101,14 @@ export interface SimpleCaseStudyPageProps {
   tags: string[];
   liveUrl?: string;
   heroImage?: SimpleCaseStudyImage;
+  /**
+   * The blog post that argues this project's point in general terms.
+   * Paragraphs render as plain text here, so a link inside the prose is not
+   * possible — this gives the study a first-class way to point at the writing,
+   * and the post links back, so the pair reinforce each other instead of each
+   * being a dead end.
+   */
+  relatedPost?: { slug: string; title: string; blurb?: string };
   blocks: SimpleCaseStudyBlock[];
   /**
    * Optional facts for the header rail — Role, Timeline, Stack, and so on.
@@ -162,6 +170,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
   tags,
   liveUrl,
   heroImage,
+  relatedPost,
   blocks,
   meta,
 }) => {
@@ -472,6 +481,32 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 )}
               </div>
             </nav>
+          )}
+
+          {/* ── The essay behind this project ───────────────────────── */}
+          {relatedPost && (
+            <section className="cs-grid mt-20">
+              <Link
+                to={`/blog/${relatedPost.slug}`}
+                className="group block rounded-2xl border border-border bg-card px-6 py-8 transition-colors hover:border-primary/40 md:px-10 md:py-10"
+              >
+                <span className="mb-2 block font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                  The thinking behind it
+                </span>
+                <span className="block font-display text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary md:text-2xl">
+                  {relatedPost.title}
+                </span>
+                {relatedPost.blurb && (
+                  <span className="mt-2 block text-base leading-relaxed text-muted-foreground">
+                    {relatedPost.blurb}
+                  </span>
+                )}
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                  Read the post
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </section>
           )}
 
           {/* ── Closing CTA ─────────────────────────────────────────── */}

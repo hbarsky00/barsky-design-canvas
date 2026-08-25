@@ -18,6 +18,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
       hoverVideo: "/ring-rival-fight-frost.mp4",
     }}
+    relatedPost={{
+      slug: "the-work-is-deleting-not-generating",
+      title: "The Work Is Deleting, Not Generating",
+      blurb: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do\u2026",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

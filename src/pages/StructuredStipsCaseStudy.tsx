@@ -18,6 +18,11 @@ const StructuredStipsCaseStudy: React.FC = () => (
       alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
     }}
+    relatedPost={{
+      slug: "if-you-make-people-do-math",
+      title: "If You Make People Do Maths, They Guess or They Leave",
+      blurb: "A price of 67\u00a2 tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.",
+    }}
     blocks={[
       {
         heading: "Why I Built It",

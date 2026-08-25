@@ -14,6 +14,11 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       alt: "Fire Lion hero title screen",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
     }}
+    relatedPost={{
+      slug: "a-to-do-app-doesnt-prove-anything",
+      title: "A To-Do App Doesn't Prove Anything",
+      blurb: "Most \\u201cI built this with AI\\u201d portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something\u2026",
+    }}
     blocks={[
       {
         heading: "The Problem",

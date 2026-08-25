@@ -13,6 +13,362 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "14",
+    title: "The Work Is Deleting, Not Generating",
+    excerpt: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part for you.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/ringrival-glassjoe-idle.webp",
+    tags: ["AI", "Product Design", "Shipping"],
+    slug: "the-work-is-deleting-not-generating",
+    content: `
+<p>Generating things is no longer the hard part. Describe a screen and you get a screen. Describe a feature and you get a feature. The constraint that shaped design work for twenty years — that making things was slow and expensive — is largely gone.</p>
+
+<p>What replaced it's worse to sit with, because it doesn't look like work. The bottleneck now is judgement: deciding which of the things you can have, you should actually keep.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Twenty-Two Seconds of Nothing</h2>
+
+<p>I built a boxing game for the mobile web. The first version opened with a splash screen, then a mode select, then a fighter select, then a tutorial. Every one of those was reasonable. Every one existed in games I had played.</p>
+
+<p>It took <strong>twenty-two seconds</strong> from tapping the link to throwing a punch. On a phone, from a link someone sent you, twenty-two seconds is an eternity. People were leaving before the game started.</p>
+
+<p>I deleted all four screens. Time to first punch went to <strong>six seconds</strong>. Nothing was added. The game got better by having less of itself in the way.</p>
+
+<img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Model Will Happily Build All Four</h2>
+
+<p>Here's the part that actually matters now. If I had asked for a splash screen, a mode select, a fighter select and a tutorial, I would have got all four, quickly, and they would have been fine. The model has no opinion about whether they should exist.</p>
+
+<p>It can't tell you that a fighter select is dead weight when there are three fighters and the first one is the obvious choice. It can't tell you that a tutorial is an admission the controls aren't obvious. Those are judgements about a specific product for specific people, and they only come from watching someone use the thing.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Cheap Generation Makes Deleting Harder</h2>
+
+<p>There is a trap in this. When something took two days to build, cutting it was easy — you could see the cost of keeping it. When it took ninety seconds, it feels free to leave in. It's not free. The user pays for it in attention every single time.</p>
+
+<p>So the discipline I've ended up with is the opposite of what the tools encourage. Generate freely, because it costs nothing. Then be ruthless, because the thing that costs is the shipped surface area, and that hasn't got cheaper at all.</p>
+
+<p>The full build — sprite pipeline, opponent behaviour, the parts AI genuinely couldn't do — is in the <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival case study</a>.</p>
+`
+  },
+  {
+    id: "15",
+    title: "When Trust Is the Product, It Can't Be a Feature",
+    excerpt: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product \u2014 and it's not something you bolt on near the end.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/catchbuddy-hero-landing.webp",
+    tags: ["Product Design", "Trust & Safety", "Shipping"],
+    slug: "when-trust-is-the-product",
+    content: `
+<p>Most products treat safety as a section. There's a settings page, a reporting flow, a policy document nobody reads, and everyone agrees it's important in the way people agree flossing is important.</p>
+
+<p>That works right up until trust <em>is</em> the thing you're selling. Then it stops being a section and becomes the shape of every screen.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Real Problem Was Never Scheduling</h2>
+
+<p>I built an app for pickup sports. The obvious framing is logistics: who is playing, where, at what time. Calendars, notifications, a map.</p>
+
+<p>That framing is wrong. Scheduling is genuinely easy, and the existing apps do it fine. The reason nobody uses them is that they assume you want a season — a commitment, a recurring team, a roster. Most people want a game on Saturday.</p>
+
+<p>Strip that away and what is left is the actual problem: <strong>two strangers agreeing to meet at a park, and both of them feeling fine about it.</strong> Everything else is a detail of that.</p>
+
+<img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">What That Changes</h2>
+
+<p>Once you accept that, design decisions stop being about efficiency and start being about reassurance. Who is this person. Have they shown up before. Is this a public place. What happens if it goes badly.</p>
+
+<p>None of those questions are answered by a faster flow. Some of them are answered by a <em>slower</em> one — a step that exists purely so the person on the other side has something to go on.</p>
+
+<p>That is the part that gets cut in a normal design review, because it looks like friction and friction is the enemy. It's only the enemy when the thing you're optimising for is speed. Here the thing being optimised is somebody's willingness to get in the car.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Test</h2>
+
+<p>The question I kept coming back to wasn't "is this easy" but "would I send my kid to this". That's a harder bar and it rules out designs that test well on every conventional metric.</p>
+
+<p>If trust is the product, the honest version of your roadmap has safety at the top and the clever features underneath, not the other way round. Most roadmaps have it the other way round.</p>
+
+<p>The specifics — the age gate, what I cut, what testers skipped every time — are in the <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy case study</a>.</p>
+`
+  },
+  {
+    id: "16",
+    title: "If You Make People Do Maths, They Guess or They Leave",
+    excerpt: "A price of 67\u00a2 tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "4 min read",
+    coverImage: "/images/stips/markets-board.webp",
+    tags: ["Product Design", "Fintech UX", "Shipping"],
+    slug: "if-you-make-people-do-math",
+    content: `
+<p>A prediction market answers one question: how likely is this? The price is the answer. A share at 67¢ pays out $1 if the event happens, so the market is telling you it thinks there's a 67% chance.</p>
+
+<p>That is elegant, and it's why the whole mechanism exists. It's also arithmetic, and arithmetic is where products lose people.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Every Interface I Opened Looked Like a Terminal</h2>
+
+<p>Order books. Spreads. Share counts. Position sizing. The underlying question is simple — how likely is this — and the screen in front of you is not. People leave before placing anything, and the ones who stay are the ones who already knew.</p>
+
+<p>Everyone calls that a learning curve and bolts on a tutorial. It's not a learning curve. It's the product asking you to do a calculation it could have done itself.</p>
+
+<img src="/images/stips/order-ticket.jpg" alt="Order ticket — $75 on Yes, showing $111.94 back and $36.94 profit before you commit" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Show the Answer, Not the Inputs</h2>
+
+<p>So the order ticket does the work. Pick Yes, put <strong>$75</strong> on it, and the panel tells you what happens: <strong>$111.94 back if you're right, $36.94 of that's profit.</strong> Not a share count. Not a spread. The two numbers you actually wanted.</p>
+
+<p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, one of two things happens — they guess, or they leave. Both are your fault, not theirs.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">This Generalises Further Than Finance</h2>
+
+<p>Anywhere your interface shows a rate, a ratio, a per-unit price or a percentage, ask what the person is actually going to do with it. Usually they're going to multiply it by something to get a number they care about. You already know both values. Show them the result.</p>
+
+<p>The unit price is for comparing. The total is for deciding. Most screens show the first and make you derive the second.</p>
+
+<p>How the board, the market page and the ticket fit together — plus two things I got wrong — is in the <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips case study</a>.</p>
+`
+  },
+  {
+    id: "17",
+    title: "Finding the Data Is Half the Job",
+    excerpt: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part nobody designed.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/dae-search/hero.webp",
+    tags: ["Enterprise UX", "Product Design", "Search"],
+    slug: "finding-the-data-is-half-the-job",
+    content: `
+<p>Enterprise search gets measured on relevance. Did the right rows come back, how fast, ranked how well. By that measure the system I was asked to look at worked fine.</p>
+
+<p>It was still costing people their afternoons.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Forty Results Is Not an Answer</h2>
+
+<p>An analyst searches <em>revenue</em> and gets <strong>forty results</strong> back. Then the real work starts. Which table is current. Which one was deprecated but never deleted. Which one the finance team actually uses. Which one has the definition of revenue this question needs.</p>
+
+<p>That is <strong>twenty minutes</strong> of asking colleagues, opening tables, and eventually picking one on a hunch. The search took half a second. The decision took the rest of the morning.</p>
+
+<img src="/images/dae-search/the-problem.webp" alt="The problem — forty results, and no way to tell which table is current" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Trust Is a Design Problem, Not a Data Problem</h2>
+
+<p>The instinct is to fix this upstream — better governance, cleaner catalogues, someone to deprecate old tables properly. Worth doing, and it never finishes. Meanwhile the analyst still has forty results.</p>
+
+<p>The design answer is different: put the trust signals <em>on the result</em>, where the decision is being made. How fresh is it. Who owns it. How many people query it. Is it certified. Does it look abandoned.</p>
+
+<p>None of that's new information. It exists in the metadata already. It was just kept somewhere the person deciding never looked.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Question Behind the Question</h2>
+
+<p>Every search interface assumes the user's question is "where is it". Often the real question is "which of these should I believe". Those need different screens.</p>
+
+<p>If your users routinely find something and then go and ask a human whether to trust it, that conversation is a missing feature, not a cultural quirk.</p>
+
+<p>What I built, the two calls that changed it, and what I got wrong are in the <a href="/project/dae-search" class="text-primary underline underline-offset-2 hover:text-primary/80">DAE Search case study</a>.</p>
+`
+  },
+  {
+    id: "18",
+    title: "Verification Is a Door, Not a Sticker",
+    excerpt: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that \u2014 nobody is visible until they're verified \u2014 gives you a smaller catalogue and a far more honest one.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/herbalink/herbalist-directory.webp",
+    tags: ["Trust & Safety", "Product Design", "Healthcare"],
+    slug: "verification-is-a-door-not-a-sticker",
+    content: `
+<p>There are two ways to handle verification in a marketplace, and they look similar on a feature list.</p>
+
+<p>The common one: anyone can list, and the ones who pass a check get a badge. The catalogue is big, and the reader does the sorting.</p>
+
+<p>The other one: nobody is visible until they're verified. The catalogue is smaller, and the platform does the sorting.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Why the Badge Fails</h2>
+
+<p>A badge assumes the reader knows what its absence means. They do not. An unbadged listing reads as "not checked yet", not as "we couldn't confirm this person is who they say they are".</p>
+
+<p>Worse, it puts the judgement back on the person least equipped to make it. In a health category, that person came to you <em>because</em> they couldn't tell the difference. Handing them a mixed list and a badge system is handing back the exact problem they arrived with.</p>
+
+<img src="/images/herbalink/mobile-booking-guided.webp" alt="Booking on mobile — one guided question replaces the filter panel" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">I Tested It the Other Way</h2>
+
+<p>I tried adding a couple of hundred unverified practitioners to see how the product felt with a fuller catalogue. It felt worse. Every listing now needed a judgement call from the one person who came here specifically because they couldn't make one.</p>
+
+<p>Smaller and honest beat bigger and ambiguous, and it wasn't close.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Cost, Stated Plainly</h2>
+
+<p>This choice has a real price and I am not going to pretend otherwise. A gated directory grows slowly, because every listing is work. Mine is currently empty of practitioners — the product is built and verified sign-ups haven't happened yet.</p>
+
+<p>That's the trade, and I'll own it. A badge system would have given me a full-looking directory much faster, and it would have been full of people I couldn't vouch for. In a category where being wrong lands on someone's health, I would rather have the empty version.</p>
+
+<p>The research, what I cut, and where it actually stands are in the <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">HerbaLink case study</a>.</p>
+`
+  },
+  {
+    id: "19",
+    title: "You Don't Replace Excel by Being Better Than Excel",
+    excerpt: "A bank was running multi-million-dollar loan deals in spreadsheets. The software that replaces that has to lose to Excel on flexibility and win on the thing Excel can't do at all.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/investor-loan-app/hero.webp",
+    tags: ["Enterprise UX", "Fintech UX", "Product Design"],
+    slug: "you-dont-replace-excel-by-being-better",
+    content: `
+<p>A bank was running its loan operations in Excel. Deals worth millions of dollars. No audit trail, no validation, no way to tell who changed what or when.</p>
+
+<p>Your first reaction is that this is madness. The better question is why it survived, because it survived against every enterprise system that bank already owned.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Excel Wins on the Thing People Feel</h2>
+
+<p>A spreadsheet does exactly what you tell it, immediately, with no ceremony. Add a column. Paste a block. Restructure the whole thing on a phone call. Nothing asks you to file a change request.</p>
+
+<p>Enterprise software loses that fight on purpose — structure is the point — but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
+
+<img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Win on What Excel Cannot Do at All</h2>
+
+<p>You won't out-flexible a spreadsheet. What a spreadsheet genuinely can't do is tell you who changed the rate at 4pm on Thursday, or stop someone typing a number that can't be true, or show the same deal to two people without one of them holding a stale copy.</p>
+
+<p>Those aren't features you sell on a slide. They are the things that turn a spreadsheet into a liability the moment a deal goes wrong — and in lending, deals go wrong.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Keep the Workflow, Change the Substrate</h2>
+
+<p>The mistake I've watched teams make is treating migration as an opportunity to fix how people work. It's not. The people doing the work built that process against real constraints, and most of it's load-bearing.</p>
+
+<p>Match the shape of what they do now, then add the things only real software can give them. Ask them to change one thing at a time, and let the audit trail be the argument.</p>
+
+<p>How that mapped onto the actual screens is in the <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">Investor Loan Platform case study</a>.</p>
+`
+  },
+  {
+    id: "20",
+    title: "Beginner or Pro Is a False Choice, and Both Sides Pay for It",
+    excerpt: "Easy apps hide complexity and charge for it. Pro apps expose everything and assume confidence you may not have. The split is a business decision dressed up as a design one.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "4 min read",
+    coverImage: "/images/crypto/hero.webp",
+    tags: ["Fintech UX", "Product Design", "Design Systems"],
+    slug: "beginner-or-pro-is-a-false-choice",
+    content: `
+<p>Every trading product picks a side. The easy ones hide the machinery: big buttons, few numbers, a reassuring tone. The pro ones expose all of it: order books, depth charts, slippage settings.</p>
+
+<p>The industry treats this as a segmentation strategy. It's closer to a tax, and both segments pay it.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">What Each Side Actually Pays</h2>
+
+<p><strong>Beginners pay in spread.</strong> The simplicity is real, and it's funded by a worse price than the one on the pro venue. The interface that protects you from complexity is also the interface that stops you seeing what you were charged.</p>
+
+<p><strong>Pros pay in friction.</strong> Every confirmation step, every are-you-sure, every hand-holding tooltip was designed for someone else and can't be turned off. They are paying, in time and clicks, for a safety net built to somebody else's size.</p>
+
+<p>Neither group is being served well. Each is subsidising the other's assumptions.</p>
+
+<img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Progressive Disclosure Is Not a Compromise</h2>
+
+<p>The reason products fork into two apps is that "serving both" gets read as "average the two", which produces something nobody wants. That's a failure of execution, not of the idea.</p>
+
+<p>The version that works is a single surface with one honest default and everything else one deliberate step away. The beginner never has to see the depth chart. The pro never has to click through a wizard to reach it. Nothing is hidden — it's layered.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Question to Ask</h2>
+
+<p>When someone tells you a product has to pick an audience, ask what specifically breaks if it does not. Often the honest answer is "the pricing model" rather than "the interface".</p>
+
+<p>Worth knowing, because it means the constraint is commercial and can be argued with, instead of being a law of design that cannot.</p>
+
+<p>The flows and the system that came out of it are in the <a href="/project/crypto" class="text-primary underline underline-offset-2 hover:text-primary/80">Gold2Crypto case study</a>.</p>
+`
+  },
+  {
+    id: "21",
+    title: "A To-Do App Doesn't Prove Anything",
+    excerpt: "Most \\u201cI built this with AI\\u201d portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that has to feel right?",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "4 min read",
+    coverImage: "/images/firelion-cubmode-sunset.webp",
+    tags: ["AI", "Solo Building", "Game Design"],
+    slug: "a-to-do-app-doesnt-prove-anything",
+    content: `
+<p>Search for portfolios built with AI and you get a wall of the same three projects. A calculator. A to-do app. A weather dashboard. Clean, competent, forgettable.</p>
+
+<p>They are all safe in the same way: nothing about them has to <em>feel</em> like anything. A to-do app either saves the item or it does not. There's no version of it that works but feels wrong.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Game Feel Cannot Be Prompted</h2>
+
+<p>So I built an arcade game. You spell words mid-flight to cast spells, which means timing, responsiveness and difficulty curve all have to land or the whole thing is unpleasant to touch.</p>
+
+<p>That's the whole point of picking it. You can't describe your way to good game feel. There's no prompt for "make the jump satisfying". You build it, play it, notice it's slightly wrong, and change one number. Then again. Then again.</p>
+
+<img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Most of the Work Was Deleting</h2>
+
+<p>The model was genuinely fast at producing mechanics. It would happily give me another mode, another power-up, another system. Each one worked in isolation.</p>
+
+<p>Almost all of them made the game worse, because a game isn't a list of features — it's a small number of things that combine well. Scope discipline was most of the design work, and it's the part that no amount of generation speed helps with.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Pick the Project That Can Fail</h2>
+
+<p>If you want to know whether someone can ship with AI, look at whether they picked something that could have come out bad. A to-do app can't really fail. A game can fail while every individual piece works.</p>
+
+<p>That gap — between working and being good — is where the design job now lives, and it's exactly what a safe portfolio project is built to avoid.</p>
+
+<p>What shipped, and what I cut to get there, is in the <a href="/project/fire-lion" class="text-primary underline underline-offset-2 hover:text-primary/80">Fire Lion case study</a>.</p>
+`
+  },
+  {
+    id: "22",
+    title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
+    excerpt: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally required to do.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/images/emailai-screen1-content-planning.webp",
+    tags: ["AI", "Enterprise UX", "Healthcare"],
+    slug: "design-for-the-approval-gates",
+    content: `
+<p>A regulated pharma email touches a medical writer, content operations, brand, medical-legal-regulatory review, and CRM. Each of those works in a different tool. <strong>Two weeks to send one email is considered normal.</strong></p>
+
+<p>Look at that and the AI pitch writes itself: generate the email. That's the wrong end of the problem.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Slow Part Is Not the Writing</h2>
+
+<p>Writing the copy was never two weeks. The two weeks is handoffs — packaging work for the next team, waiting, receiving comments in a format that doesn't match the tool you work in, and reassembling.</p>
+
+<p>Automating the writing compresses the fastest step in the chain. You end up with a first draft in ten seconds and a two-week review, which is where you started.</p>
+
+<img src="/images/emailai-screen6-pre-mlr.webp" alt="Pre-MLR review — the packet assembled the way the reviewers expect it" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Gates Are Not Inefficiency</h2>
+
+<p>It is tempting to treat regulatory review as friction to be designed away. It's not friction. It's the point. Somebody has to be accountable for what a pharmaceutical company tells a doctor, and that accountability is legally personal.</p>
+
+<p>So the design rule I ended up with: <strong>the AI's job is the work between humans, not the work humans do.</strong> Assemble the packet. Pull the approved claim library. Pre-check the obvious failures before the reviewer sees it. Carry comments back without a copy-paste round trip.</p>
+
+<p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Where This Applies Beyond Pharma</h2>
+
+<p>Any workflow with a sign-off has this shape — legal, finance, clinical, safety. The instinct is to point the model at the reviewed artefact. The gain is almost always in the space around the review instead.</p>
+
+<p>Ask which steps exist because somebody must be accountable, and leave those alone. Everything else is fair game.</p>
+
+<p>The six-step flow and what I haven't solved are in the <a href="/project/email-creation-ai" class="text-primary underline underline-offset-2 hover:text-primary/80">ManuscriptRx case study</a>.</p>
+`
+  },
+  {
     id: "13",
     title: "I Just Wanted to Send Someone a Video",
     excerpt: "Recording your screen is free. Sending it to someone is what everybody charges for \u2014 with watermarks, five-minute caps, and a sign-in wall in front of the person you sent it to.",

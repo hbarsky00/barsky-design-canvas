@@ -146,6 +146,15 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
+  "the-work-is-deleting-not-generating": "https://barskydesign.pro/images/og/blog-the-work-is-deleting-not-generating.png",
+  "when-trust-is-the-product": "https://barskydesign.pro/images/og/blog-when-trust-is-the-product.png",
+  "if-you-make-people-do-math": "https://barskydesign.pro/images/og/blog-if-you-make-people-do-math.png",
+  "finding-the-data-is-half-the-job": "https://barskydesign.pro/images/og/blog-finding-the-data-is-half-the-job.png",
+  "verification-is-a-door-not-a-sticker": "https://barskydesign.pro/images/og/blog-verification-is-a-door-not-a-sticker.png",
+  "you-dont-replace-excel-by-being-better": "https://barskydesign.pro/images/og/blog-you-dont-replace-excel-by-being-better.png",
+  "beginner-or-pro-is-a-false-choice": "https://barskydesign.pro/images/og/blog-beginner-or-pro-is-a-false-choice.png",
+  "a-to-do-app-doesnt-prove-anything": "https://barskydesign.pro/images/og/blog-a-to-do-app-doesnt-prove-anything.png",
+  "design-for-the-approval-gates": "https://barskydesign.pro/images/og/blog-design-for-the-approval-gates.png",
   "i-just-wanted-to-send-someone-a-video": "https://barskydesign.pro/images/og/blog-i-just-wanted-to-send-someone-a-video.png",
   "demo-works-shipping-is-different": "https://barskydesign.pro/images/og/blog-demo-works-shipping-is-different.png",
   "designer-who-codes-argument-is-over": "https://barskydesign.pro/images/og/blog-designer-who-codes-argument-is-over.png",
@@ -172,6 +181,51 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
+  "the-work-is-deleting-not-generating": {
+    title: "The Work Is Deleting, Not Generating",
+    description: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part\u2026",
+    published: "2026-08-25"
+  },
+  "when-trust-is-the-product": {
+    title: "When Trust Is the Product, It Can't Be a Feature",
+    description: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product \u2014 and it's not something you bolt on\u2026",
+    published: "2026-08-25"
+  },
+  "if-you-make-people-do-math": {
+    title: "If You Make People Do Maths, They Guess or They Leave",
+    description: "A price of 67\u00a2 tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.",
+    published: "2026-08-25"
+  },
+  "finding-the-data-is-half-the-job": {
+    title: "Finding the Data Is Half the Job",
+    description: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part nobody\u2026",
+    published: "2026-08-25"
+  },
+  "verification-is-a-door-not-a-sticker": {
+    title: "Verification Is a Door, Not a Sticker",
+    description: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that \u2014 nobody is visible until they're verified \u2014 gives you a smaller\u2026",
+    published: "2026-08-25"
+  },
+  "you-dont-replace-excel-by-being-better": {
+    title: "You Don't Replace Excel by Being Better Than Excel",
+    description: "A bank was running multi-million-dollar loan deals in spreadsheets. The software that replaces that has to lose to Excel on flexibility and win on the\u2026",
+    published: "2026-08-25"
+  },
+  "beginner-or-pro-is-a-false-choice": {
+    title: "Beginner or Pro Is a False Choice, and Both Sides Pay for It",
+    description: "Easy apps hide complexity and charge for it. Pro apps expose everything and assume confidence you may not have. The split is a business decision dressed\u2026",
+    published: "2026-08-25"
+  },
+  "a-to-do-app-doesnt-prove-anything": {
+    title: "A To-Do App Doesn't Prove Anything",
+    description: "Most \\u201cI built this with AI\\u201d portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that\u2026",
+    published: "2026-08-25"
+  },
+  "design-for-the-approval-gates": {
+    title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
+    description: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally\u2026",
+    published: "2026-08-25"
+  },
   "i-just-wanted-to-send-someone-a-video": {
     title: "I Just Wanted to Send Someone a Video",
     description: "Recording your screen is free. Sending it is what everyone charges for — watermarks, five-minute caps, a sign-in wall for your viewer.",

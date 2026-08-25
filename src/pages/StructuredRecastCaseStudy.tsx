@@ -17,6 +17,11 @@ const StructuredRecastCaseStudy: React.FC = () => (
       src: "/images/recast/card-hero.webp",
       alt: "Recast — Record it once. Send a link.",
     }}
+    relatedPost={{
+      slug: "i-just-wanted-to-send-someone-a-video",
+      title: "I Just Wanted to Send Someone a Video",
+      blurb: "Recording your screen is free. Sending it is what everyone charges for \u2014 watermarks, five-minute caps, a sign-in wall for your viewer.",
+    }}
     blocks={[
       {
         heading: "Why I Built It",
