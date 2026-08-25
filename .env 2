@@ -1,0 +1,5 @@
+SITE_URL="https://barskydesign.pro"
+VITE_SITE_URL="https://barskydesign.pro"
+VITE_SUPABASE_PROJECT_ID="bqrhacrfuateckrykcsj"
+VITE_SUPABASE_PUBLISHABLE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxcmhhY3JmdWF0ZWNrcnlrY3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNjY3NjMsImV4cCI6MjA4Mzc0Mjc2M30.Stdlf0Q3Jp-Nu5acglyOA8I5HtKGeVMmDK23BIU-QGQ"
+VITE_SUPABASE_URL="https://bqrhacrfuateckrykcsj.supabase.co"

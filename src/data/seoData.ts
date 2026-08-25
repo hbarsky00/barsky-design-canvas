@@ -117,6 +117,11 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "A shipped mobile web game built solo with AI as co-builder — three modes, hand-tuned game feel, and a deletion list longer than the feature list.",
     image: "https://barskydesign.pro/images/og/fire-lion.png"
   },
+  "recast": {
+    title: "Recast — Cross-Platform Screen Recorder Case Study",
+    description: "Record once, send a link. Native Mac and Android capture with a web library — including the browser recorder I built, then deleted.",
+    image: "https://barskydesign.pro/images/og/recast.png"
+  },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
     description: "A shipped boxing game: distinct AI opponents, generated trash talk, hand-tuned feel. Time-to-first-punch cut from 22 seconds to 6 by deleting four screens.",

@@ -216,6 +216,11 @@
   status = 200
 
 [[redirects]]
+  from = "/project/recast"
+  to = "/project/recast/index.html"
+  status = 200
+
+[[redirects]]
   from = "/project/catchbuddy"
   to = "/project/catchbuddy/index.html"
   status = 200

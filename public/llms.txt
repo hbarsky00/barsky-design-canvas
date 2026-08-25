@@ -19,6 +19,7 @@
 - [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
 - [DAE Search](/project/dae-search): Enterprise data discovery and search, redesigned around trust in the result, not just relevance.
 - [CatchBuddy](/project/catchbuddy): Same-day pickup sports, designed for trust and safety.
+- [Recast](/project/recast): Record once, send a link — native Mac and Android capture with a web library, built solo.
 - [Ring-Rival](/project/ring-rival): AI-assisted boxing game with distinct AI opponents and generated trash talk.
 - [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
 - [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
