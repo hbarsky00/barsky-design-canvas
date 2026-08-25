@@ -158,6 +158,20 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/investor-loan-deals-card.mp4"
+  },
+  {
+    // Never pulled — it was simply never added here. Hiram spotted it missing.
+    id: "crypto",
+    tags: ["Fintech UX", "Crypto", "Dual-Mode UX"],
+    title: "Gold2Crypto",
+    description: "A crypto trading interface for two audiences the industry insists you have to choose between — beginners paying hidden spreads, pros paying an are-you-sure tax.",
+    impact: "",
+    url: "/project/crypto",
+    images: {
+      primary: "/images/crypto/hero.webp",
+      alt: "Gold2Crypto trading interface — one platform serving beginners and pros"
+    },
+    layout: "side-by-side"
   }
 ];
 
