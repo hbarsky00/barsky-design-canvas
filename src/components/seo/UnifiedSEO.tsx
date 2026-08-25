@@ -68,7 +68,14 @@ const UnifiedSEO: React.FC = () => {
       const caseStudyData = getStructuredCaseStudy(projectId);
       const projectSeoOverride = getProjectSEO(projectId);
       
-      if (caseStudyData && projectSeoOverride) {
+      // An explicit PROJECT_SEO_MAP entry is authoritative on its own. It used
+      // to require structured case-study data alongside it, which meant a study
+      // built with SimpleCaseStudyPage — where the content is passed as props
+      // and never lands in structuredCaseStudies.ts — fell through to the
+      // generic "Project: <id>" fallback the moment React hydrated. The served
+      // HTML was correct (inject-seo-html reads the same map), so the title
+      // only broke after hydration, which is why it went unnoticed on /stips.
+      if (projectSeoOverride) {
         seoInput = {
           path: pathname,
           kind: 'project',
