@@ -51,6 +51,20 @@ const caseStudies: CaseStudy[] = [
     video: "/ring-rival-card.mp4"
   },
   {
+    id: "recast",
+    tags: ["Product Design", "Cross-Platform", "Native + Web"],
+    title: "Recast",
+    description: "Record it once, send a link. Native capture on Mac and Android with a web library — including the browser recorder I built and then deleted.",
+    impact: "",
+    url: "/project/recast",
+    liveUrl: "https://recastvid.com",
+    images: {
+      primary: "/images/recast/landing-hero.webp",
+      alt: "Recast — record it once, send a link"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "catchbuddy",
     tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
     title: "CatchBuddy",
