@@ -55,7 +55,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           },
         ],
         images: [
-          { src: "/images/herbalink/mobile-booking.png", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question." },
+          { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question." },
         ],
       },
       {
