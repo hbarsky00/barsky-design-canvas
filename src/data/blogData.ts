@@ -13,6 +13,66 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "13",
+    title: "I Just Wanted to Send Someone a Video",
+    excerpt: "Recording your screen is free. Sending it to someone is what everybody charges for \u2014 with watermarks, five-minute caps, and a sign-in wall in front of the person you sent it to.",
+    author: "Hiram Barsky",
+    date: "August 25, 2026",
+    readTime: "5 min read",
+    coverImage: "/blog/send-someone-a-video-cover.jpg",
+    tags: ["Product Design", "Shipping", "Tools"],
+    slug: "i-just-wanted-to-send-someone-a-video",
+    content: `
+      <p>Half the messages I write would be better as thirty seconds of me talking over my screen. Not a meeting. Not a document. Just: here is the thing, here is what I mean, watch it whenever.</p>
+
+      <p>Your computer already does this. macOS records the screen. Windows records the screen. Your phone records the screen. The recording part has been free and built in for years.</p>
+
+      <p>The part nobody gives you is everything after you press stop.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Charge Is Never for the Recording</h2>
+
+      <p>Try to send that clip to someone. The file is 200 MB, so email rejects it. You put it in Drive and now they need permission. You use a proper tool instead and you meet the actual business model: a watermark across your face, a cap that cuts you off at five minutes, or a sign-in wall in front of the person you sent it to \u2014 who did not ask for an account, they asked for a video.</p>
+
+      <p>None of those limits exist because recording is expensive. Recording costs nothing; your operating system does it for free. They exist because the recording is the hook and the sending is the product.</p>
+
+      <p>What actually costs money is storage and bandwidth. Keeping your files. Streaming them to whoever opens the link. That is a real, boring, per-gigabyte cost, and it is the only line item that scales with how much you use something.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">So I Built the Version I Wanted</h2>
+
+      <p>I made <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> because I wanted the convenience without the tax. It records on your Mac or your Android phone, uploads while you are still talking, and hands you a link. Whoever you send it to presses play. No account, no app, no meeting.</p>
+
+      <p>The pricing follows from that one idea: <strong>recording, sharing and downloads are identical on every plan, and nothing is watermarked.</strong> The only thing that changes is how much you can keep. Free gives you a gigabyte, which is about half an hour of video. Above that it is $9 a month for 50 GB, or $20 for 250 GB.</p>
+
+      <p>You are not paying to remove a watermark. You are not paying to record for six minutes instead of five. You are paying for storage, because storage is the thing that costs me money.</p>
+
+      <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs my-8" />
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Convenience Is a Design Problem, Not a Feature List</h2>
+
+      <p>The thing I cared most about is not on any pricing page. When you press stop, the video plays <em>immediately</em>, from the file already on your device, while the upload runs behind it. You are not watching a progress bar to find out whether the take was any good.</p>
+
+      <p>That sounds obvious. It is not what most tools do, and I know because I got it wrong in my own app first \u2014 the Mac version quietly waited for the whole upload before opening the player. On a fast connection you would never notice. On a plane you pressed stop and stared at nothing.</p>
+
+      <p>Offline still works now. The local file is the source of truth until the upload finishes. That is the actual convenience: the gap between finishing a thought and sending it is a few seconds, and nothing in the middle asks you for anything.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What It Is Not</h2>
+
+      <p>It is not an editor. There is a trim, and that is deliberate \u2014 if you are cutting between takes and adding captions, you want a real editor and Recast is the wrong tool.</p>
+
+      <p>It runs on Mac and Android today. On iPhone you add it to your Home Screen and record with the iPhone's own screen recorder; the upload and the link work the same way, but there is no native iOS app yet.</p>
+
+      <p>And it is one person's product. I designed it, built it, and I am the one who fixes it. That is the honest trade for the price.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The Test I Would Apply to Anything</h2>
+
+      <p>When a tool charges you, look at whether the thing you are paying for is the thing that costs the company money. If the fee is for removing an obstacle they invented \u2014 a watermark, a timer, a login for your viewer \u2014 you are paying for the obstacle, not for the service.</p>
+
+      <p>If it is for storage, bandwidth, or somebody's time, that is a real cost and a fair ask.</p>
+
+      <p>I built <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> on the second version of that. You can <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">try it free</a> and never pay me anything, and that is fine \u2014 a gigabyte covers a lot of thirty-second explanations.</p>
+    `
+  },
+  {
     id: "12",
     title: "The Demo Works. Shipping Is a Different Job.",
     excerpt: "A demo is the happy path with data you chose. Everything that made my products hard was in the part nobody demos \u2014 dates, permissions, empty screens, and the jobs that run while you sleep.",

@@ -146,6 +146,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
+  "i-just-wanted-to-send-someone-a-video": "https://barskydesign.pro/images/og/blog-i-just-wanted-to-send-someone-a-video.png",
   "demo-works-shipping-is-different": "https://barskydesign.pro/images/og/blog-demo-works-shipping-is-different.png",
   "designer-who-codes-argument-is-over": "https://barskydesign.pro/images/og/blog-designer-who-codes-argument-is-over.png",
   "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/images/og/blog-designing-for-trust-when-the-product-is-the-risk.png",
@@ -171,6 +172,11 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
+  "i-just-wanted-to-send-someone-a-video": {
+    title: "I Just Wanted to Send Someone a Video",
+    description: "Recording your screen is free. Sending it is what everyone charges for — watermarks, five-minute caps, a sign-in wall for your viewer.",
+    published: "2026-08-25"
+  },
   "demo-works-shipping-is-different": {
     title: "The Demo Works. Shipping Is a Different Job.",
     description: "A demo is the happy path with data you chose. The hard parts live where nobody demos: dates, permissions, empty screens, and jobs that run while you sleep.",
