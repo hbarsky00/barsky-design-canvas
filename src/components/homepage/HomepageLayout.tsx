@@ -64,13 +64,13 @@ const HomepageLayout: React.FC = () => {
         </section>
         
         {/* Keep current projects section outside 3D container to prevent cutting off */}
-        <SectionTransition variant="fade" delay={0.1} intensity={0.3}>
+        <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="current-projects" tabIndex={-1} className="scroll-offset">
             <CurrentProjectsSection />
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
+        <SectionTransition variant="fade" delay={0.15} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
           <section id="adventures" tabIndex={-1} className="scroll-offset">
             <Suspense fallback={<div className="h-32" />}>
               <LazyRecentAdventuresSection />
@@ -78,7 +78,7 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.2} intensity={0.3}>
+        <SectionTransition variant="fade" delay={0.2} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="bio" tabIndex={-1} className="scroll-offset">
             <BioSection />
           </section>
