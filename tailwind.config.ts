@@ -186,18 +186,18 @@ const config: Config = {
             '--tw-prose-quotes': 'hsl(var(--foreground))',
             '--tw-prose-quote-borders': 'hsl(var(--primary))',
             maxWidth: 'none',
-            h2: { fontFamily: 'Space Grotesk, ui-sans-serif, system-ui', fontWeight: '700' },
-            h3: { fontFamily: 'Space Grotesk, ui-sans-serif, system-ui', fontWeight: '600' },
+            h2: { fontFamily: 'Fraunces, ui-serif, Georgia, serif', fontWeight: '700' },
+            h3: { fontFamily: 'Fraunces, ui-serif, Georgia, serif', fontWeight: '600' },
             figure: { marginTop: '2rem', marginBottom: '2rem' },
             figcaption: { fontSize: '0.875rem' },
           },
         },
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui"],
         mono: ["ui-monospace", "SFMono-Regular"],
-        display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
-        body: ["Inter", "ui-sans-serif", "system-ui"],
+        display: ["Fraunces", "ui-serif", "Georgia", "serif"],
+        body: ["IBM Plex Sans", "ui-sans-serif", "system-ui"],
       },
       keyframes: {
         "accordion-down": {

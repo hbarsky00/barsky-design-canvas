@@ -24,20 +24,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PUB = ROOT / "public"
 OUT = PUB / "images" / "og"
-FONTS = Path.home() / "Library" / "Fonts"
+# Fonts live in the repo now, not ~/Library/Fonts — card generation should
+# not depend on what happens to be installed on one machine.
+FONTS = ROOT / "scripts" / "fonts"
 
 W, H = 1200, 630
 
 # Pulled from the site's own tokens (src/index.css :root)
-INK = (14, 16, 22)
-INK_SOFT = (150, 158, 178)
+INK = (26, 21, 18)          # warm near-black, matches the site ground
+INK_SOFT = (176, 162, 152)  # warm grey
 WHITE = (255, 255, 255)
-PRIMARY = (49, 79, 246)      # --md-sys-color-primary
-ACCENT = (150, 92, 214)      # tertiary / purple
+PRIMARY = (188, 72, 36)      # --md-sys-color-primary, hsl(14 68% 44%)
+ACCENT = (198, 126, 42)      # warm amber, replaces the purple tertiary
 
-DISPLAY = FONTS / "SpaceGrotesk-700.ttf"
-BODY = FONTS / "Inter-400.ttf"
-LABEL = FONTS / "Inter-600.ttf"
+DISPLAY = FONTS / "Fraunces-700.ttf"
+BODY = FONTS / "IBMPlexSans-400.ttf"
+LABEL = FONTS / "IBMPlexSans-600.ttf"
 
 
 def font(path, size):

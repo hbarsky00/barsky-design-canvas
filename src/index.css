@@ -37,7 +37,7 @@
   /* Material Design 3.0 Color System - Light Theme - Award-Winning Color Palette */
   
   /* Primary Colors - Deep Blue with Sophisticated Purple Undertones */
-  --md-sys-color-primary: 231 92% 58%;
+  --md-sys-color-primary: 14 68% 44%;
   --md-sys-color-on-primary: 0 0% 100%;
   --md-sys-color-primary-container: 231 100% 96%;
   --md-sys-color-on-primary-container: 231 100% 8%;
@@ -62,14 +62,14 @@
   
   /* Surface Colors - Premium Glass-like Surfaces */
   --md-sys-color-surface-dim: 220 15% 88%;
-  --md-sys-color-surface: 0 0% 99%;
+  --md-sys-color-surface: 38 30% 98%;
   --md-sys-color-surface-bright: 0 0% 100%;
   --md-sys-color-surface-container-lowest: 0 0% 100%;
   --md-sys-color-surface-container-low: 220 20% 97%;
   --md-sys-color-surface-container: 220 25% 95%;
   --md-sys-color-surface-container-high: 220 30% 93%;
   --md-sys-color-surface-container-highest: 220 35% 91%;
-  --md-sys-color-on-surface: 220 15% 8%;
+  --md-sys-color-on-surface: 24 14% 12%;
   --md-sys-color-on-surface-variant: 220 12% 28%;
   
   /* Outline Colors - Sophisticated Borders */

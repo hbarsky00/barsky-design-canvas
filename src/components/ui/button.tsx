@@ -24,8 +24,8 @@ const buttonVariants = cva(
         "on-image": "bg-black/40 !text-primary-foreground border-2 border-white/20 shadow-elevation-3 hover:bg-black/60 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         
         // Premium brand variants - ALL gradient buttons use text-white with standard colors
-        brand: "bg-gradient-to-r from-primary via-blue-600 to-purple-600 !text-primary-foreground hover:shadow-glow-hover hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-8 h-12 font-bold transform transition-all duration-300 relative overflow-hidden",
-        default: "bg-gradient-to-r from-primary to-blue-600 !text-primary-foreground hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
+        brand: "bg-gradient-to-r from-primary via-primary to-[hsl(32_78%_46%)] !text-primary-foreground hover:shadow-glow-hover hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-8 h-12 font-bold transform transition-all duration-300 relative overflow-hidden",
+        default: "bg-primary !text-primary-foreground hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
         secondary: "bg-secondary !text-secondary-foreground hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium border border-border/30",
         ghost: "!text-primary hover:bg-primary/10 hover:scale-[1.02] rounded-2xl px-4 h-12 font-medium relative",
         link: "!text-primary underline-offset-4 hover:underline bg-transparent h-auto p-0",

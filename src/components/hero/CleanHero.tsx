@@ -113,7 +113,7 @@ const CleanHero: React.FC = () => {
         className="hero-aurora hero-aurora-b pointer-events-none absolute -inset-32"
         style={{
           background:
-            "radial-gradient(600px circle at 14% 80%, hsl(270 80% 60% / 0.26), transparent 60%)",
+            "radial-gradient(600px circle at 14% 80%, hsl(32 82% 52% / 0.22), transparent 60%)",
         }}
       />
       <div
@@ -121,7 +121,7 @@ const CleanHero: React.FC = () => {
         className="hero-aurora hero-aurora-c pointer-events-none absolute -inset-32"
         style={{
           background:
-            "radial-gradient(560px circle at 48% 96%, hsl(190 85% 55% / 0.18), transparent 62%)",
+            "radial-gradient(560px circle at 48% 96%, hsl(355 55% 52% / 0.16), transparent 62%)",
         }}
       />
 
@@ -251,9 +251,9 @@ const CleanHero: React.FC = () => {
             <div className="hero-photo hero-float relative w-56 sm:w-72 lg:w-full lg:max-w-[30rem]">
               <div
                 aria-hidden="true"
-                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-purple-500/15 to-transparent blur-2xl"
+                className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-primary/25 via-[hsl(32_82%_52%)]/18 to-transparent blur-2xl"
               />
-              <div className="relative rounded-[1.75rem] p-1.5 bg-gradient-to-tr from-primary/40 via-purple-500/30 to-transparent">
+              <div className="relative rounded-[1.75rem] p-1.5 bg-gradient-to-tr from-primary/40 via-[hsl(32_82%_52%)]/28 to-transparent">
                 {/* Responsive: this renders at 224px on mobile, 288px at sm and
                     480px at lg. A single 720x960 file meant phones downloaded
                     ~2.5x the pixels they could show, on the LCP element. The
