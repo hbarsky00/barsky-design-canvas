@@ -224,7 +224,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
               {post.tags.slice(0, 2).map((tag) => (
                 <span 
                   key={tag}
-                  className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                  className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full"
                 >
                   {tag}
                 </span>

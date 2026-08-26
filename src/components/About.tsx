@@ -89,7 +89,7 @@ const About: React.FC = () => {
               />
               <div className="flex flex-wrap gap-2">
                 {essentialTools.map((tool, index) => (
-                  <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                  <span key={index} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
                     {tool}
                   </span>
                 ))}

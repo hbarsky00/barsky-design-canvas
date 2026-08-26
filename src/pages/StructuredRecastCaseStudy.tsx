@@ -42,6 +42,10 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "What replaced it is a boundary I now hold to: the apps record, the website stores and shares. The Record button on the site is a launcher — it opens the native app and falls back to a download if you don't have it yet. There is no browser-capture fallback and there won't be one.",
           "Deleting working code you already built is the part of this job nobody puts in a portfolio. It was still the right call.",
         ],
+        images: [
+          { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab." },
+          { src: "/images/recast/web-library.webp", alt: "The Recast web library — recordings with durations, dates and a Shared badge", caption: "The other half of the boundary: the site holds everything, and never records." },
+        ],
       },
       {
         heading: "Stop Should Mean Watch",
@@ -49,6 +53,9 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The rule I set: you press stop, the video plays immediately from the file on your device, and the upload happens behind it. Playback never waits for the network. If you're on a plane it still works.",
           "I broke my own rule in the Mac app without noticing. The function that queued a finished recording was async and awaited the entire upload before it opened the player window. On a good connection you'd never catch it. Offline, you pressed stop and stared at nothing until the request timed out.",
           "It returns in a millisecond or two now and uploads in a detached task. I also found the first upload after launch was eating five to eight seconds of framework setup, so the app warms that up when it starts instead of paying for it the moment you press stop.",
+        ],
+        images: [
+          { src: "/images/recast/player-copy-link.webp", alt: "The player opening on the just-finished recording, with Copy Link and Show in Finder", caption: "The moment after stop. It says the file is still on this Mac, and the link is already there." },
         ],
       },
       {

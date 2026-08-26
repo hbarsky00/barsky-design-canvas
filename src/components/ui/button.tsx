@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         // Ultra-Modern Premium Button Variants - Using standard primary color for proper gradient support
-        filled: "bg-gradient-to-r from-primary to-purple-600 !text-primary-foreground hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-6 h-12 font-semibold backdrop-blur-sm",
+        filled: "bg-gradient-to-r from-primary to-[hsl(32_78%_46%)] !text-primary-foreground hover:shadow-glow hover:scale-[1.02] active:scale-[0.98] rounded-2xl px-6 h-12 font-semibold backdrop-blur-sm",
         "filled-tonal": "bg-secondary !text-secondary-foreground hover:shadow-elevation-2 hover:scale-[1.02] rounded-2xl px-6 h-12 font-medium",
         elevated: "bg-gradient-to-br from-white to-gray-100 !text-primary shadow-elevation-2 hover:shadow-elevation-4 hover:scale-[1.02] rounded-2xl px-6 h-12 border border-white/50 backdrop-blur-sm",
         outlined: "border-2 border-primary/30 !text-primary hover:bg-primary hover:!text-primary-foreground hover:border-primary hover:scale-[1.02] hover:shadow-glow rounded-2xl px-6 h-12 font-medium backdrop-blur-sm",
@@ -18,7 +18,7 @@ const buttonVariants = cva(
         destructive: "bg-gradient-to-r from-destructive to-red-500 !text-destructive-foreground hover:shadow-glow-hover hover:scale-[1.02] rounded-2xl px-6 h-12 font-semibold",
         
         // Award-winning enhanced variants with premium effects
-        "case-study": "border-2 border-primary/30 bg-transparent !text-primary hover:bg-gradient-to-r hover:from-primary hover:to-purple-600 hover:!text-primary-foreground hover:border-transparent hover:shadow-glow hover:scale-[1.05] active:scale-[0.95] rounded-2xl transition-all duration-500 ease-out [&_svg]:transition-all [&_svg]:duration-300 relative overflow-hidden backdrop-blur-sm font-semibold",
+        "case-study": "border-2 border-primary/30 bg-transparent !text-primary hover:bg-gradient-to-r hover:from-primary hover:to-[hsl(32_78%_46%)] hover:!text-primary-foreground hover:border-transparent hover:shadow-glow hover:scale-[1.05] active:scale-[0.95] rounded-2xl transition-all duration-500 ease-out [&_svg]:transition-all [&_svg]:duration-300 relative overflow-hidden backdrop-blur-sm font-semibold",
         "high-contrast": "bg-gradient-to-br from-gray-900 to-gray-800 !text-primary-foreground shadow-elevation-3 hover:shadow-elevation-5 hover:scale-[1.02] rounded-2xl font-bold",
         "on-dark": "bg-white/10 !text-primary-foreground border-2 border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         "on-image": "bg-black/40 !text-primary-foreground border-2 border-white/20 shadow-elevation-3 hover:bg-black/60 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",

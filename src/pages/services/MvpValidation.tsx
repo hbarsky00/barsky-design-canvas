@@ -119,7 +119,7 @@ const MvpValidation: React.FC = () => {
                 User testing revealed critical UX issues in checkout flow. Post-validation improvements 
                 led to 45% increase in conversion rates.
               </p>
-              <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+              <Badge variant="secondary" className="bg-primary/10 text-primary">
                 45% conversion boost
               </Badge>
             </div>

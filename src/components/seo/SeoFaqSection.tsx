@@ -60,7 +60,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
                   {faq.keywords.map((keyword, kIndex) => (
                     <span
                       key={kIndex}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full"
                     >
                       {keyword}
                     </span>

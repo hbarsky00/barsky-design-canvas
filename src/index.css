@@ -1143,7 +1143,7 @@ body {
   @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-foreground;
 }
 
-/* All headings and display text - Space Grotesk */
+/* All headings and display text */
 .heading {
   @apply font-display font-bold;
 }
@@ -1173,7 +1173,7 @@ body {
   @apply text-xl font-display font-bold;
 }
 
-/* Button and UI element text - Space Grotesk */
+/* Button and UI element text */
 .btn-text {
   @apply font-display font-medium;
 }
@@ -1750,9 +1750,12 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
   }
 }
 
-/* Global heading font — all headings use Space Grotesk */
+/* Global heading font. Catches headings that don't carry `font-display`
+   themselves. Deliberately NOT !important — that was the bug: it beat the
+   font-display utility, so the switch to Fraunces silently never applied to
+   any heading on the site. */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
+  font-family: Fraunces, ui-serif, Georgia, serif;
 }
 
 
@@ -1844,7 +1847,7 @@ h1, h2, h3, h4, h5, h6 {
     to bottom,
     hsl(var(--primary) / 0.10) 0%,
     hsl(var(--background)) 46%,
-    hsl(270 60% 60% / 0.07) 80%,
+    hsl(32 78% 46% / 0.07) 80%,
     hsl(var(--muted) / 0.85) 100%
   );
 }
@@ -1951,7 +1954,7 @@ h1, h2, h3, h4, h5, h6 {
       to bottom,
       hsl(var(--primary) / 0.12) 0%,
       hsl(var(--background)) 45%,
-      hsl(270 60% 55% / 0.08) 80%,
+      hsl(32 78% 46% / 0.08) 80%,
       hsl(var(--muted) / 0.35) 100%
     );
   }

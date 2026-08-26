@@ -49,7 +49,7 @@ const FreeAudit: React.FC = () => {
             and improvements possible for your website. Many clients see immediate wins just from 
             implementing the free recommendations.
           </p>
-          <Badge variant="secondary" className="bg-blue-100 text-blue-800">
+          <Badge variant="secondary" className="bg-primary/10 text-primary">
             No strings attached • No sales pitch • Pure value
           </Badge>
         </section>

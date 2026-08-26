@@ -73,7 +73,7 @@ const LinkedInAuditForm: React.FC = () => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-8">
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
           <Linkedin className="w-4 h-4" />
           Professional Optimization
         </div>

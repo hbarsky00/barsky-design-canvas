@@ -31,6 +31,32 @@ const config: Config = {
         'desktop': {'min': '1024px'},
       },
       colors: {
+        /* The site's palette is rust + gold. A lot of legacy markup still asks
+           for Tailwind's stock blue/indigo/violet/purple, and chasing every
+           one of those ~300 call sites by hand is how strays survive a
+           redesign. Remapping the cool families onto brand ramps fixes them
+           all at once, keeps the 50->900 lightness relationships intact, and
+           means a future stray `text-blue-600` still lands on-brand.
+           600 is the text-safe step in each ramp (>=4.5:1 on the light
+           ground); the brighter steps are for fills and gradients. */
+        blue: {
+          50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)",
+          300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)",
+          600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)",
+          900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)",
+        },
+        purple: {
+          50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)",
+          300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)",
+          600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)",
+          900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)",
+        },
+        indigo: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
+        violet: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
+        fuchsia: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
+        sky: { 50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)", 300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)", 600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)", 900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)" },
+        cyan: { 50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)", 300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)", 600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)", 900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)" },
+
         // Legacy color mappings for compatibility
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

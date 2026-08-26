@@ -12,7 +12,7 @@ const HeroDescription: React.FC<HeroDescriptionProps> = ({
   isVisible
 }) => {
   const credentials = [
-    { icon: Award, text: "Google UX Certificate", color: "bg-blue-100 text-blue-800" },
+    { icon: Award, text: "Google UX Certificate", color: "bg-primary/10 text-primary" },
     { icon: Shield, text: "WCAG 2.1 Certified", color: "bg-green-100 text-green-800" },
     { icon: Sparkles, text: "AI Integration Expert", color: "bg-purple-100 text-purple-800" }
   ];

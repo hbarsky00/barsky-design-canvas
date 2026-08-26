@@ -39,7 +39,7 @@ const SkillsShowcase: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-4 font-display">{category.category}</h3>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <Badge key={skillIndex} variant="secondary" className="bg-blue-100 text-blue-800">
+                  <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary">
                     {skill}
                   </Badge>
                 ))}

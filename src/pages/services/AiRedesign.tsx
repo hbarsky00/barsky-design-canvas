@@ -63,7 +63,7 @@ const AiRedesign: React.FC = () => {
                 <p className="text-gray-700 mb-3">{phase.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {phase.tools.map((tool, toolIndex) => (
-                    <Badge key={toolIndex} variant="secondary" className="bg-blue-100 text-blue-800 text-xs">
+                    <Badge key={toolIndex} variant="secondary" className="bg-primary/10 text-primary text-xs">
                       {tool}
                     </Badge>
                   ))}
