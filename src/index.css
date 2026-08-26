@@ -1699,35 +1699,40 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
    do NOT trigger the always-on rule. Only the un-prefixed token
    (or the Tailwind !important prefix form) wins.
    ============================================================ */
+/* Scoped away from :hover / :focus-visible. These !important overrides
+   set the resting colour, but !important also outranks every Tailwind
+   hover: variant — so `text-primary hover:text-primary-foreground` kept
+   blue text on a blue hover fill and the label disappeared. Reported on
+   the contact CTA; it affected every button using that pattern. */
 @layer utilities {
-  button[class~="text-white"], button[class~="!text-white"],
-  a[class~="text-white"], a[class~="!text-white"],
-  [role="button"][class~="text-white"], [role="button"][class~="!text-white"] {
+  button[class~="text-white"]:not(:hover):not(:focus-visible), button[class~="!text-white"]:not(:hover):not(:focus-visible),
+  a[class~="text-white"]:not(:hover):not(:focus-visible), a[class~="!text-white"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-white"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-white"]:not(:hover):not(:focus-visible) {
     color: #ffffff !important;
   }
-  button[class~="text-primary-foreground"], button[class~="!text-primary-foreground"],
-  a[class~="text-primary-foreground"], a[class~="!text-primary-foreground"],
-  [role="button"][class~="text-primary-foreground"], [role="button"][class~="!text-primary-foreground"] {
+  button[class~="text-primary-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-primary-foreground"]:not(:hover):not(:focus-visible),
+  a[class~="text-primary-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-primary-foreground"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-primary-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-primary-foreground"]:not(:hover):not(:focus-visible) {
     color: hsl(var(--primary-foreground)) !important;
   }
-  button[class~="text-secondary-foreground"], button[class~="!text-secondary-foreground"],
-  a[class~="text-secondary-foreground"], a[class~="!text-secondary-foreground"],
-  [role="button"][class~="text-secondary-foreground"], [role="button"][class~="!text-secondary-foreground"] {
+  button[class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible),
+  a[class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible) {
     color: hsl(var(--secondary-foreground)) !important;
   }
-  button[class~="text-destructive-foreground"], button[class~="!text-destructive-foreground"],
-  a[class~="text-destructive-foreground"], a[class~="!text-destructive-foreground"],
-  [role="button"][class~="text-destructive-foreground"], [role="button"][class~="!text-destructive-foreground"] {
+  button[class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible),
+  a[class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible) {
     color: hsl(var(--destructive-foreground)) !important;
   }
-  button[class~="text-primary"], button[class~="!text-primary"],
-  a[class~="text-primary"], a[class~="!text-primary"],
-  [role="button"][class~="text-primary"], [role="button"][class~="!text-primary"] {
+  button[class~="text-primary"]:not(:hover):not(:focus-visible), button[class~="!text-primary"]:not(:hover):not(:focus-visible),
+  a[class~="text-primary"]:not(:hover):not(:focus-visible), a[class~="!text-primary"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-primary"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-primary"]:not(:hover):not(:focus-visible) {
     color: hsl(var(--primary)) !important;
   }
-  button[class~="text-foreground"], button[class~="!text-foreground"],
-  a[class~="text-foreground"], a[class~="!text-foreground"],
-  [role="button"][class~="text-foreground"], [role="button"][class~="!text-foreground"] {
+  button[class~="text-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-foreground"]:not(:hover):not(:focus-visible),
+  a[class~="text-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-foreground"]:not(:hover):not(:focus-visible),
+  [role="button"][class~="text-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-foreground"]:not(:hover):not(:focus-visible) {
     color: hsl(var(--foreground)) !important;
   }
 }

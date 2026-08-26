@@ -72,7 +72,7 @@ const BlogPostPage: React.FC = () => {
         <Header />
 
         <main className="pt-[calc(var(--header-height,64px)+32px)] pb-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.article
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ const BlogPostPage: React.FC = () => {
               )}
               
               {/* Article Content */}
-              <div className="p-8 lg:p-12">
+              <div className="p-5 sm:p-8 lg:p-12">
                 {/* SEO Breadcrumbs */}
                 <BlogBreadcrumbs 
                   currentTitle={post.title} 
@@ -127,14 +127,14 @@ const BlogPostPage: React.FC = () => {
                 </header>
                 
                 {/* Article Body */}
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+                <div className="prose sm:prose-lg max-w-none">
+                  <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8">
                     {metadata?.excerpt || staticPost?.excerpt}
                   </p>
                   
                   {/* Enhanced blog content with internal SEO links */}
                   {staticPost?.content && (
-                    <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary">
+                    <div className="prose sm:prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary">
                       <InternalLinkEnhancer 
                         content={staticPost.content} 
                         currentSlug={staticPost.slug} 
