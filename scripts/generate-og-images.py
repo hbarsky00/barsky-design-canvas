@@ -148,6 +148,9 @@ def card(title, desc, tag, art_path, out_name):
 
 
 CASE_STUDIES = [
+    ("bz-essentials", "BZ Essentials",
+     "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app.",
+     "Enterprise", "/images/bz-essentials/card-hero.webp"),
     ("ring-rival", "Ring-Rival",
      "Console boxing feel on the mobile web. Built solo with AI as a co-builder.",
      "AI-Assisted Product", "/images/ringrival-now/card-poster.jpg"),

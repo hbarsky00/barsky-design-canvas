@@ -51,6 +51,21 @@ const caseStudies: CaseStudy[] = [
     video: "/ring-rival-card.mp4"
   },
   {
+    id: "bz-essentials",
+    tags: ["Enterprise", "Information Architecture", "Solo Build"],
+    title: "BZ Essentials",
+    description: "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app, not a filter nobody opens.",
+    impact: "",
+    url: "/project/bz-essentials",
+    liveUrl: "https://az-essentials.netlify.app",
+    images: {
+      primary: "/images/bz-essentials/card-hero.webp",
+      alt: "BZ Essentials — enterprise knowledge portal home"
+    },
+    layout: "side-by-side",
+    video: "/bz-essentials-card.mp4"
+  },
+  {
     id: "recast",
     tags: ["Product Design", "Cross-Platform", "Native + Web"],
     title: "Recast",

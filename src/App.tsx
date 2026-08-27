@@ -39,6 +39,7 @@ const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/Structu
 const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
 const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/StructuredRingRivalCaseStudy"));
 const StructuredRecastCaseStudy = React.lazy(() => import("@/pages/StructuredRecastCaseStudy"));
+const StructuredBzEssentialsCaseStudy = React.lazy(() => import("@/pages/StructuredBzEssentialsCaseStudy"));
 const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
 const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
 const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
@@ -160,6 +161,7 @@ function AppContent() {
               <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
               <Route path="/project/recast" element={<StructuredRecastCaseStudy />} />
+              <Route path="/project/bz-essentials" element={<StructuredBzEssentialsCaseStudy />} />
               <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
               <Route path="/project/email-creation-ai" element={<ManuscriptRxCaseStudy />} />
               <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />

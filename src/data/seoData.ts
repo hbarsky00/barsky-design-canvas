@@ -122,6 +122,11 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Record once, send a link. Native Mac and Android capture with a web library — including the browser recorder I built, then deleted.",
     image: "https://barskydesign.pro/images/og/recast.png"
   },
+  "bz-essentials": {
+    title: "BZ Essentials — Enterprise Knowledge Portal Case Study",
+    description: "An internal knowledge portal built from a client PRD, where region is a lens over the whole app instead of a filter nobody opens.",
+    image: "https://barskydesign.pro/images/og/bz-essentials.png"
+  },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
     description: "A shipped boxing game: distinct AI opponents, generated trash talk, hand-tuned feel. Time-to-first-punch cut from 22 seconds to 6 by deleting four screens.",
