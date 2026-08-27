@@ -69,3 +69,101 @@ body. Fix what is measurably broken. Do not redesign what works.
     combined with modern AI development skills" — the same retired positioning
     as the footer tagline, in a longer paragraph that needs a real rewrite
     rather than a swap. Flagged for the next content-oriented run.
+
+- **2026-08-27 — blog reading measure, all 22 post routes.** Design was the
+  staler half (design last ran 2026-08-22, AEO 2026-08-23), and 22 blog routes
+  plus a new case study had shipped on 08-25 with no design pass over them.
+
+  **Diagnosed first, and the SEO half came back clean**, which is why this run
+  went to design: `seo_audit_all_routes.py` reported `PROBLEMS: 0` across all 41
+  routes (title, description, OG image, canonical, 0 shared OG cards), the
+  sitemap carried all 41 URLs, and schema was healthy — `BlogPosting` +
+  `BreadcrumbList` on posts, `Article` on projects, `FAQPage` on `/`.
+
+  **Measured line length** (`characters ÷ rendered lines`, paragraphs over 200
+  chars, on `/blog/taste-is-the-whole-job`):
+
+  | viewport | column | font | chars/line | target |
+  |---|---|---|---|---|
+  | 375px | 277px | 18px/32 | **31** | 35–45 mobile |
+  | 1440px | 734px | 18px/32 | **72–84** | 45–75 |
+
+  Wrong at *both* ends from one cause: a fixed `max-w-4xl` shell, `prose-lg`
+  pinned at 18px regardless of viewport, and `p-8 lg:p-12` with no mobile
+  step-down — 96px of horizontal padding on a 375px screen, 26% of the viewport.
+
+  **Changed** — no new visual language; the case-study layout
+  (`StructuredCaseStudySection.tsx`) already ships `p-3 sm:p-8 lg:p-12`, so the
+  blog just never got the responsive step the rest of the site has:
+  - `pages/BlogPost.tsx` — `p-8 lg:p-12` → `p-5 sm:p-8 lg:p-12`.
+  - `pages/BlogPost.tsx` — `max-w-4xl` → `max-w-3xl` on the article shell. This
+    is what fixes the desktop end; nothing else was over-wide.
+  - `pages/BlogPost.tsx` — both `prose prose-lg` → `prose sm:prose-lg`, and the
+    lead paragraph `text-xl` → `text-lg sm:text-xl`. 16px/28 on phones, 18px/32
+    from `sm:` up.
+  - `blog/InternalLinkEnhancer.tsx` — a **third** `prose prose-lg` wrapper lives
+    here and renders the actual article body. Missing it left the body at 18px
+    while the two outer wrappers had already stepped down; found by walking the
+    computed-style chain, not by reading the JSX. Now `prose sm:prose-lg`.
+  - `blog/InternalLinkEnhancer.tsx` — related-posts grid
+    `md:grid-cols-2 lg:grid-cols-3` → `sm:grid-cols-2`. Narrowing the shell had
+    squeezed those cards to 186px; this is a fix for a regression this run
+    introduced, not a second improvement.
+
+  **Result**, same method, against the rebuilt site, confirmed on two posts:
+
+  | viewport | column | font | chars/line |
+  |---|---|---|---|
+  | 375px | 301px | 16px/28 | **35–40** |
+  | 1440px | 606px | 18px/32 | **57–71** |
+
+  No horizontal overflow at either width. Related-post cards 186px → 291px.
+  `npx tsc --noEmit` clean, `npm run build` clean at 41/41 prerendered.
+  Recaptured all 41 routes (0 failures — `/projects` stayed resolved) and
+  re-verified in the **built** HTML, not the source: all 22 `dist/blog/*` carry
+  `prose sm:prose-lg`, `grid sm:grid-cols-2`, `p-5 sm:p-8 lg:p-12` and
+  `max-w-3xl`, with 0 stale occurrences of the old classes.
+
+  **Checked and deliberately not acted on: dark mode.** A forced `.dark` class
+  shows real failures on blog posts — `text-gray-900` on the dark surface at
+  **1.02:1**, in-body links at 2.97:1, 14 hardcoded `gray-*` classes with no
+  `dark:` variant. None of it is user-reachable: `ThemeToggle.tsx` is a no-op
+  ("theme is forced to light via ThemeProvider") and the one
+  `prefers-color-scheme: dark` block in `index.css` only restyles two decorative
+  gradients. Measured in the theme users actually get, blog posts have **zero**
+  contrast failures — the tag pills composite to 4.95:1. Recording this so a
+  future run does not spend itself fixing a dead code path.
+
+  **FLAGGED — a second session was writing this repo throughout this run**, the
+  same collision as 2026-08-23, and it happened again anyway because nothing
+  enforces the rule. It ran `capture-prerendered-bodies` concurrently with mine,
+  modified `.gitignore`, and swept my in-progress edits into two commits of its
+  own: `BlogPost.tsx` into `7e4bc3e2 "Fix button labels vanishing on hover"`
+  (already pushed), and `InternalLinkEnhancer.tsx` into `e3bfca30 "Make the blog
+  prerenders agree with the component that generates them"` — whose message
+  reasons about my half-finished edits as though they were pre-existing repo
+  state, because it could not know another agent was mid-change. The work is
+  correct and verified, but **none of this run's rationale is in its own commit**;
+  this log entry is the only record. Also cost real time: a `prepareOutDir` build
+  failure and a snapshot set that dropped to "7 prerendered, 34 head-only"
+  mid-run were both that session's capture racing mine over `dist/` and
+  `vite preview --strictPort 4199`.
+
+  **Left open:**
+  - `prose prose-lg` is still fixed-size in ~25 other places (project sections,
+    case-study sections, `About`, `ServicePage`, `SeoFaqSection`). Those sit in
+    different containers with different widths, so they need measuring on their
+    own terms rather than a find-and-replace. The blog was the acute case.
+  - `components/blog/BlogPostPage.tsx` is a dead duplicate of
+    `pages/BlogPost.tsx` — same component name, imported by nothing
+    (`/blog/:slug` routes to `pages/BlogPost.tsx`). It still carries the old
+    `p-8 lg:p-12` and `prose prose-lg`. Left alone: deleting is out of scope for
+    a design run, but it will keep showing up in greps and inviting edits to a
+    file that never renders.
+  - **FLAGGED, content not design:** `/blog/what-one-person-can-ship-now` says
+    "I have four products live that I built by myself" twice. The loop's hard
+    rules enumerate five live products (firelion.me, catchbuddy.fit,
+    herbalink.live, stips.bet, ringrival.today). Either the post is stale or the
+    count is deliberately a subset — that is Hiram's call, not a silent edit.
+  - Breadcrumbs on posts wrap "UX Design Blog" onto two lines at 375px while the
+    truncated title sits beside it. Cosmetic, pre-existing, not touched.
