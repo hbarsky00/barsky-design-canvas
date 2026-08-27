@@ -1,81 +1,23 @@
 import { ProjectVariable } from "./types";
 
-export const projectVariables: Record<string, ProjectVariable> = {
-  "business-management": {
-    projectTitle: "WholeTech Operations Platform",
-    projectSubtitle: "Saving a $2.8M Distribution Company from Bankruptcy",
-    timeline: "4 months (Crisis timeline)",
-    role: "Lead UX Designer & Technical Consultant",
-    industry: "B2B Distribution & Logistics",
-    client: "MetroWholesale Distribution",
-    projectLink: "https://barskydesign.pro/business-management",
-    
-    challenge: {
-      heading: "Crisis Management: 90 Days to Prevent Bankruptcy",
-      description: "March 2023: A family business hemorrhaging $47,000/month faced closure after three failed software implementations.",
-      painPoints: [
-        "Frank Morrison (67, owner) was considering bankruptcy after 23 years—three vendors had failed to deliver working solutions",
-        "The breaking point: $89,000 order shipped to wrong address, threatening relationship with largest client (40% of revenue)",
-        "Real constraints: Part-time IT 'team' (owner's nephew), $15,000 remaining budget, 90 days before bank called loan",
-        "Manual cross-referencing of 4 spreadsheets for every order led to 12 errors per week costing thousands"
-      ]
-    },
-    
-    process: {
-      heading: "Stakeholder Management Under Extreme Pressure",
-      description: "When failure means losing a 23-year-old family business, every design decision is life-or-death.",
-      steps: [
-        "**Crisis Assessment (Week 1-2)**: Spent 3 days in warehouse watching Frank manually cross-reference spreadsheets—discovered vendors replicated chaos instead of fixing it",
-        "**Stakeholder Wars (Week 3-6)**: Frank terrified of 'fancy software' after 3 failures; Jake (nephew IT) saw new system as criticism of his Excel mastery",
-        "**Trust Building**: Had to prove value with paper prototypes first—Frank wouldn't touch computer until I showed ROI on napkins",
-        "**Technical Constraints (Week 7-12)**: Built MVP with no backend—smart forms that looked like their process but eliminated duplication",
-        "**Launch Crisis (Week 13-16)**: First week disaster when Jake entered wrong tax codes, nearly lost $12,000; had to add safeguards without offending"
-      ],
-      keyInnovations: [
-        "Designed interface to look exactly like paper forms, then gradually introduced efficiency improvements",
-        "Made Jake the 'data migration specialist' to convert resistance into ownership",
-        "Translated UX wins into business language for bank meetings ('reduced processing time' = 'faster cash flow')"
-      ]
-    },
-    
-    solution: {
-      heading: "Gradual Innovation: Familiar Interface, Revolutionary Backend",
-      description: "Success came from making powerful technology feel comfortable to a 67-year-old who'd been burned three times.",
-      features: [
-        "Paper-form UI that prevented errors while maintaining familiar workflow",
-        "Integrated inventory, orders, and shipping in one system (previously 4 separate spreadsheets)",
-        "Automated error checking that caught mistakes before they became $12,000 problems",
-        "Real-time reporting that Jake could use to become the office hero (caught supplier overcharges)",
-        "QuickBooks integration that eliminated double-entry and reconciliation headaches"
-      ]
-    },
-    
-    results: {
-      heading: "From Bankruptcy to Acquisition in 18 Months",
-      description: "Numbers tell part of the story. The real victory: Frank took his first vacation in 5 years.",
-      metrics: [
-        "68% reduction in order errors (from 12 errors/week to 4 errors/month)",
-        "45% faster order processing (3.2 hours to 1.8 hours average)",
-        "$89,000 revenue recovered through improved client relationships",
-        "Frank hired first full-time employee in 3 years"
-      ],
-      testimonials: [
-        "\"Three companies failed us. Hiram didn't just build software—he understood that our livelihood was on the line.\" - Frank Morrison, Owner"
-      ],
-      longTermImpact: [
-        "18-month update: MetroWholesale was acquired by regional distributor",
-        "Frank credited the 'computer system that finally worked' as key factor in sale",
-        "Jake became local Excel-to-web expert, now consults for other small businesses",
-        "Frank still prints digital orders 'just to be safe'—but system prevents wrong entry"
-      ]
-    },
-    
-    techStack: ["React", "Node.js", "PostgreSQL", "TypeScript", "QuickBooks API", "PDF Generation"],
-    imageConfig: {
-      hero: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
-      challenge: ["https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1"]
-    }
-  }
-};
+/**
+ * Empty on purpose.
+ *
+ * This held one entry, "business-management", and every fact in it was
+ * invented: a named client ("Frank Morrison, 67, owner"), a colleague
+ * ("Jake"), a bankruptcy, an acquisition eighteen months later, and figures
+ * like "$89,000 revenue recovered" and "68% reduction in order errors" —
+ * none of which Hiram could stand behind on a call.
+ *
+ * It rendered nowhere: /project/business-management has been a 301 to
+ * /#case-studies since 2026-08-09, so the fabricated copy was never served.
+ * It stayed in a public repo, though, one wiring change away from the site.
+ *
+ * The shape stays exported because project-details/index.ts maps over it and
+ * every consumer already guards with `|| null`. Real projects belong in
+ * src/data/structuredCaseStudies.ts or their own page component; nothing
+ * should go in here that isn't sourced.
+ */
+export const projectVariables: Record<string, ProjectVariable> = {};
 
 export * from "./types";

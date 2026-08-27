@@ -10,12 +10,9 @@ const dynamicProjectDetails: Record<string, ProjectDetails> = {};
 Object.keys(projectVariables).forEach(projectId => {
   const variables = projectVariables[projectId];
   if (variables) {
-    console.log(`🔧 Generating dynamic project details for: ${projectId}`);
     dynamicProjectDetails[projectId] = generateProjectDetailsFromVariables(variables);
   }
 });
-
-console.log('📋 Dynamic project details generated:', Object.keys(dynamicProjectDetails));
 
 export const projectDetails: Record<string, ProjectDetails> = {
   // ONLY dynamic projects generated from variables - NO hardcoded content
