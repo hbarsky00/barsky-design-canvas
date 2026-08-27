@@ -167,7 +167,7 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   
   return (
     <div 
-      className="prose prose-lg max-w-none"
+      className="prose sm:prose-lg max-w-none"
       dangerouslySetInnerHTML={{ __html: sanitizedContent }}
     />
   );
@@ -206,7 +206,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
         Related UX Design Articles
       </h3>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 gap-6">
         {relatedPosts.map((post) => (
           <article 
             key={post.id}
