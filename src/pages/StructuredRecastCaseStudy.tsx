@@ -19,7 +19,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
     // a looser crop caught a card sitting behind it and read as an artifact.
     heroImage={{
       src: "/images/recast/mac-app.webp",
-      alt: "The Recast Mac app — Full Screen, Window or Area, camera and mic toggles, Start Recording",
+      alt: "The Recast recorder panel floating over a browser page — Full Screen, Window or Area, camera and mic toggles, Start Recording",
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
