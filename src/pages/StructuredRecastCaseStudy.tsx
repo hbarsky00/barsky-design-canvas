@@ -55,7 +55,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It returns in a millisecond or two now and uploads in a detached task. I also found the first upload after launch was eating five to eight seconds of framework setup, so the app warms that up when it starts instead of paying for it the moment you press stop.",
         ],
         images: [
-          { src: "/images/recast/player-copy-link.webp", alt: "The player opening on the just-finished recording, with Copy Link and Show in Finder", caption: "The moment after stop. It says the file is still on this Mac, and the link is already there." },
+          { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller." },
         ],
       },
       {
@@ -73,6 +73,9 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The database rule that lets a share link work was written to allow reading any recording marked shareable. It was never narrowed to the one link being opened, so it applied to everyone at once.",
           "The fix in the product is that nothing ownership-sensitive trusts that rule any more — every query that returns your library or counts your storage filters by your user id explicitly. The lesson is the one worth keeping: a permission rule written for one screen will be read by every other screen too, and the only way to find that is to become a new user and look.",
         ],
+        images: [
+          { src: "/images/recast/signin.webp", alt: "The Recast sign-in card with an email field, a password field and a Create an account link", caption: "The door I went back through as a stranger. Everything on the other side of it was supposed to be empty." },
+        ],
       },
       {
         heading: "Three Apps, One Identity",
@@ -87,6 +90,9 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "Live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both. The website handles the library, playback, sharing and downloads.",
           "It sells storage, not features — a free tier and paid plans above it. Entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. It's deliberately the boring answer: the thing you pay for is the thing that actually costs me money.",
           "This one is here for the engineering decisions more than the pixels. Deleting the recorder, the offline playback rule, the ordering bug Android's docs get wrong, the leak I found by being a stranger to my own product. That's the part that transfers.",
+        ],
+        images: [
+          { src: "/images/recast/landing-light.webp", alt: "recastvid.com — Record it once. Send a link. with Get Recast and Sign in buttons above a How it works section", caption: "recastvid.com as it stands: one sentence, one button, and the apps doing the actual work behind it." },
         ],
       },
     ]}
