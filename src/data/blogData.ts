@@ -293,7 +293,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "21",
     title: "A To-Do App Doesn't Prove Anything",
-    excerpt: "Most \\u201cI built this with AI\\u201d portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that has to feel right?",
+    excerpt: "Most “I built this with AI” portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that has to feel right?",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "4 min read",

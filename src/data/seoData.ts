@@ -218,7 +218,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   },
   "a-to-do-app-doesnt-prove-anything": {
     title: "A To-Do App Doesn't Prove Anything",
-    description: "Most \\u201cI built this with AI\\u201d portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that\u2026",
+    description: "Most “I built this with AI” portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that\u2026",
     published: "2026-08-25"
   },
   "design-for-the-approval-gates": {

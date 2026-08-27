@@ -16,22 +16,38 @@
 
 ## Case studies
 
-- [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
-- [DAE Search](/project/dae-search): Enterprise data discovery and search, redesigned around trust in the result, not just relevance.
 - [CatchBuddy](/project/catchbuddy): Same-day pickup sports, designed for trust and safety.
+- [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
+- [DAE Search](/project/dae-search): Enterprise data discovery and search, redesigned around trust in the result, not just relevance.
+- [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
+- [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
+- [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
+- [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
 - [Recast](/project/recast): Record once, send a link — native Mac and Android capture with a web library, built solo.
 - [Ring-Rival](/project/ring-rival): AI-assisted boxing game with distinct AI opponents and generated trash talk.
-- [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
-- [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
-- [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
-- [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
 - [Stips](/project/stips): Play-money prediction markets where the price reads as a probability — designed and built solo.
 
 ## Blog
 
-- [Two Bugs AI Wrote That I Had to Find Myself](/blog/two-bugs-ai-wrote-that-i-had-to-find)
-- [When Generating Is Free, Taste Is the Whole Job](/blog/taste-is-the-whole-job)
-- [The Designer Who Codes Argument Is Over](/blog/designer-who-codes-argument-is-over)
-- [Shipping Got Cheap. Hiring Got Harder.](/blog/shipping-got-cheap-hiring-got-harder)
-- [Everyone's Portfolio Looks Good Now](/blog/everyones-portfolio-looks-good-now)
-- [What AI Changed About Design Work, and What It Didn't](/blog/what-ai-changed-and-what-it-didnt)
+- [The Work Is Deleting, Not Generating](/blog/the-work-is-deleting-not-generating): AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away — and no model will do that part for you.
+- [When Trust Is the Product, It Can't Be a Feature](/blog/when-trust-is-the-product): Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product — and it's not something you bolt on near the end.
+- [If You Make People Do Maths, They Guess or They Leave](/blog/if-you-make-people-do-math): A price of 67¢ tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.
+- [Finding the Data Is Half the Job](/blog/finding-the-data-is-half-the-job): An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes — deciding which table to trust — is the part nobody designed.
+- [Verification Is a Door, Not a Sticker](/blog/verification-is-a-door-not-a-sticker): Most directories let anyone list, then put a badge on whoever checked out. Flipping that — nobody is visible until they're verified — gives you a smaller catalogue and a far more honest one.
+- [You Don't Replace Excel by Being Better Than Excel](/blog/you-dont-replace-excel-by-being-better): A bank was running multi-million-dollar loan deals in spreadsheets. The software that replaces that has to lose to Excel on flexibility and win on the thing Excel can't do at all.
+- [Beginner or Pro Is a False Choice, and Both Sides Pay for It](/blog/beginner-or-pro-is-a-false-choice): Easy apps hide complexity and charge for it. Pro apps expose everything and assume confidence you may not have. The split is a business decision dressed up as a design one.
+- [A To-Do App Doesn't Prove Anything](/blog/a-to-do-app-doesnt-prove-anything): Most “I built this with AI” portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that has to feel right?
+- [In Regulated Work, Design for the Gates — Not the AI](/blog/design-for-the-approval-gates): A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally required to do.
+- [I Just Wanted to Send Someone a Video](/blog/i-just-wanted-to-send-someone-a-video): Recording your screen is free. Sending it to someone is what everybody charges for — with watermarks, five-minute caps, and a sign-in wall in front of the person you sent it to.
+- [The Demo Works. Shipping Is a Different Job.](/blog/demo-works-shipping-is-different): A demo is the happy path with data you chose. Everything that made my products hard was in the part nobody demos — dates, permissions, empty screens, and the jobs that run while you sleep.
+- [What One Person Can Actually Ship Now](/blog/what-one-person-can-ship-now): I have four products live that I built by myself. The useful version of that story is the one that includes where solo stops working, which is not where people expect.
+- [Two Bugs AI Wrote That I Had to Find Myself](/blog/two-bugs-ai-wrote-that-i-had-to-find): Both came out of Stips, both looked perfectly correct, and neither was something the model could have caught on its own. One was about time. One was about permissions.
+- [Designing for Trust When the Product Is the Risk](/blog/designing-for-trust-when-the-product-is-the-risk): Most software fails softly. Some of it fails into someone's health, money, or safety. When being wrong has consequences, trust stops being a layer and becomes the product.
+- [Why Enterprise Tools Lose to Excel](/blog/why-enterprise-tools-lose-to-excel): Your real competitor is not the other vendor in the bake-off. It is a spreadsheet one person built, everyone trusts, and nobody can be forced to abandon.
+- [When Generating Is Free, Taste Is the Whole Job](/blog/taste-is-the-whole-job): Producing options was never the bottleneck. Ring-Rival got good because I deleted things a model would have been happy to keep building.
+- [Scope Discipline When Building Is Cheap](/blog/scope-discipline-when-building-is-cheap): Engineering cost used to do your prioritization for you. It stopped. Deciding what not to ship is now the only constraint holding a product together.
+- [How to Interview a Designer Now](/blog/how-to-interview-a-designer-now): Every portfolio is polished and every candidate has a shipped demo. What I would ask to find out whether there is judgment behind the artifacts.
+- [The Designer Who Codes Argument Is Over](/blog/designer-who-codes-argument-is-over): Not because everyone won the debate, but because the gap between a design and a running product collapsed. Here's what that changes in practice.
+- [Shipping Got Cheap. Hiring Got Harder.](/blog/shipping-got-cheap-hiring-got-harder): A working demo used to be evidence. Now anyone can produce one in a weekend, and the design job market is still figuring out what to screen for instead.
+- [Everyone's Portfolio Looks Good Now](/blog/everyones-portfolio-looks-good-now): Polish stopped being a signal the moment it became free. What's left is the stuff a model can't produce for you: constraints, deletions, and decisions you can defend.
+- [What AI Changed About Design Work, and What It Didn't](/blog/what-ai-changed-and-what-it-didnt): Two years of building products solo with AI. The changes are real and specific, and so is the list of things that are exactly as hard as they always were.

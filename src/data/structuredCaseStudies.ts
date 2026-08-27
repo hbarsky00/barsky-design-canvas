@@ -305,7 +305,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `Pros and beginners using the same platform without either feeling like it was built for the other one. That was the goal. — What I Didn't Solve: Intermediate traders fit awkwardly in either mode. A v2 would probably need a third mode or more granular customization.`,
+      description: `Nothing here shipped, and that is worth saying plainly rather than letting the screens imply otherwise. What exists is the reasoning: the teardown of who each pricing model is really charging, the decision to make mode a setting instead of a second product, and the cost-next-to-the-button rule. The gap I never closed is the intermediate trader, who is wrong in both modes — past hand-holding, not yet fluent in an order book. That needs a third mode or per-control customisation, which is a harder problem than the one I solved.`,
       images: [
         { src: `https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png`, alt: `Finished crypto platform breaking industry conventions` },
       ],
