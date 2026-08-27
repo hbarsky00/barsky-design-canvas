@@ -12,7 +12,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/bz-essentials/home.webp",
       alt: "BZ Essentials home — hero, quick access panel, and the four entry points into the portal",
-      hoverVideo: "/bz-essentials-card.mp4",
     }}
     blocks={[
       {
@@ -21,6 +20,14 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "This started as a requirements document for an internal knowledge portal — the place a marketing team goes to find the process, the template or the guideline they're supposed to be following.",
           "A PRD can describe an information architecture in a way that sounds fine and falls apart the moment it's clickable. So I built it. Three domains, four categories under each, and a set of documents with the metadata a real one would carry: owner, department, version, status, region, attachments, related items.",
           "It's a prototype under a made-up brand, and the footer says so. What's real is the structure and the behaviour underneath it.",
+        ],
+        videos: [
+          {
+            src: "/bz-essentials-walkthrough.mp4",
+            poster: "/images/bz-essentials/walkthrough-poster.jpg",
+            caption:
+              "The full portal end to end: home, the region switch changing what is visible, a domain landing with live counts, a document page with its metadata and related records, and faceted search.",
+          },
         ],
         images: [
           { src: "/images/bz-essentials/ia.webp", alt: "Information architecture — three domains with four categories each, and Search & Browse as a fourth entry point", caption: "The structure the spec described, drawn out. Every count on it is one the app actually computes." },
@@ -68,14 +75,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "It's live at az-essentials.netlify.app and you can click all of it — the region switch, the domains, the facets, the document pages.",
           "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample rather than a full library, the brand is invented, and there's no authentication or CMS behind it. Nothing here is an official system for anyone.",
           "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision is the one I'd defend — it only looks obvious once you've seen the version where it's a filter nobody opens.",
-        ],
-        videos: [
-          {
-            src: "/bz-essentials-walkthrough.mp4",
-            poster: "/images/bz-essentials/walkthrough-poster.jpg",
-            caption:
-              "The full portal end to end: home, the region switch changing what is visible, a domain landing with live counts, a document page with its metadata and related records, and faceted search.",
-          },
         ],
       },
     ]}
