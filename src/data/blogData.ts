@@ -710,7 +710,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>What changed it was putting the audit trail next to the record. Not in a separate history view, not exported on request. Right there, so anyone could see who changed what and when without asking a person for it.</p>
 
-      <p>That one decision moved compliance from the group slowing adoption to the group arguing for it, because the spreadsheet could not do it at all. We stopped competing on being a better place to store the data and started competing on something a spreadsheet is structurally incapable of. That is the only kind of argument that wins.</p>
+      <p>That one decision moved compliance from the group slowing adoption to the group arguing for it, because the spreadsheet could not do it at all. I stopped competing on being a better place to store the data and started competing on something a spreadsheet is structurally incapable of. That is the only kind of argument that wins.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is a Separate Product Problem From Access</h2>
 

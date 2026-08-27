@@ -44,7 +44,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         paragraphs: [
           "The most-fought decision, and the one I'd defend hardest. The full cost of the trade, spread included, sits next to the action button on every order. Not in a drawer, not behind an info icon, not on the confirmation screen after you've already decided.",
           "It's unpopular internally for an obvious reason: the spread is the revenue, and putting a number next to a button is the fastest way to make someone reconsider pressing it. The argument I'd make is that the hidden version only works while people don't know, and the day they find out you've taught them the product was designed against them.",
-          "The second rule was plain language as a constraint rather than a copy pass at the end. If we couldn't explain a thing in one sentence, it either got explained inline or it came out of beginner mode entirely. That killed features, which is what a real constraint does.",
+          "The second rule was plain language as a constraint rather than a copy pass at the end. If I couldn't explain a thing in one sentence, it either got explained inline or it came out of beginner mode entirely. That killed features, which is what a real constraint does.",
         ],
         images: [
           { src: "/images/crypto/initial-flow.webp", alt: "Initial concepts challenging crypto app conventions" },

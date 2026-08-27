@@ -48,7 +48,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "The Two Calls That Mattered",
         paragraphs: [
-          "Restricted results stay visible, with a lock on them and a one-click request for access. We tried hiding them and it backfired badly. People concluded the data did not exist and went off to rebuild it themselves.",
+          "Restricted results stay visible, with a lock on them and a one-click request for access. I tried hiding them and it backfired badly. People concluded the data did not exist and went off to rebuild it themselves.",
           "I also built permission-aware autocomplete, and security killed it. They were right. The suggestions were leaking the existence of restricted datasets to anyone who typed enough of the name to pattern-match it.",
         ],
         imageLayout: "pair",
