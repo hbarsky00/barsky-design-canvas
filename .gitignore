@@ -29,3 +29,6 @@ dist-ssr
 
 # macOS/iCloud conflict copies ("about 2.html") — never real output
 prerendered-bodies/* [0-9]*.html
+
+# iCloud conflict copies of env files
+.env [0-9]*
