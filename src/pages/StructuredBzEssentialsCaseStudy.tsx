@@ -30,7 +30,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           },
         ],
         images: [
-          { src: "/images/bz-essentials/ia.webp", alt: "Information architecture — three domains with four categories each, and Search & Browse as a fourth entry point", caption: "The structure the spec described, drawn out. Every count on it is one the app actually computes." },
+          { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow — Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary; search skips the hierarchy once you have it." },
         ],
       },
       {
@@ -41,7 +41,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "The rule that makes it work is small. Content marked Both is always visible, and everything else has to match the region you're in. That means switching to US doesn't hide most of the portal, it adds the US-specific material on top of the shared set — which is the behaviour people expect and the opposite of what a naive equality check would do.",
         ],
         images: [
-          { src: "/images/bz-essentials/region.webp", alt: "Region visibility matrix — content tagged Both stays visible in either region, while Global-only and US-only content swaps", caption: "One line decides it. Get that line wrong and switching region empties the portal instead of narrowing it." },
           { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number." },
         ],
       },
@@ -53,6 +52,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "Related documents sit at the bottom as real links between records, not a \"you might also like\" strip. In a compliance context the related item is usually the thing that governs the one you're reading, which is worth more than a recommendation.",
         ],
         images: [
+          { src: "/images/bz-essentials/design-system.webp", alt: "Design system — Inter, the gray ground and white surface, four accent pairs, region and status badges, the single card shape and the eight components", caption: "Four accents, one card shape, eight components. The region lens is a context provider rather than a prop threaded through all of them." },
           { src: "/images/bz-essentials/document.webp", alt: "A document page — cover, status and region badges, attachments with sizes, keywords and tags, and the details panel", caption: "The download is there. It is not the first thing, because it is not the first question." },
         ],
       },
@@ -63,9 +63,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "So the front door is three domains, each with its own colour and its own landing page, and search sits alongside them as the fourth option rather than the only one.",
           "Search is then built for the other half of the audience — the people who know exactly what they want. Facets for business area, region, document type and status, filtering a live result count, because in this kind of library the useful question is usually \"approved templates for the US\" and not a keyword at all.",
         ],
-        imageLayout: "pair",
         images: [
-          { src: "/images/bz-essentials/concepts.webp", alt: "Two entry concepts compared — search-first, rejected, against browse-first with search alongside", caption: "The version I didn't build, next to the one I did." },
           { src: "/images/bz-essentials/search.webp", alt: "Search and browse — faceted filters for business area, region, document type and status beside a result grid", caption: "Facets, not a smarter keyword match. The filters are the query." },
         ],
       },
