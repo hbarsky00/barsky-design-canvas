@@ -13,6 +13,50 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: "23",
+    title: "A Filter Nobody Opens Isn't a Feature",
+    excerpt: "Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it \u2014 because they never opened the menu.",
+    author: "Hiram Barsky",
+    date: "August 27, 2026",
+    readTime: "4 min read",
+    coverImage: "/images/bz-essentials/process-flow.webp",
+    tags: ["Enterprise", "Information Architecture", "UX"],
+    slug: "a-filter-nobody-opens",
+    content: `
+<p>I was building an internal knowledge portal from a client spec. Somewhere in the requirements was a line that looked routine: some documents apply globally, some apply only to the US.</p>
+
+<p>The obvious way to build that is a filter. Add a region control to the search page, default it sensibly, done in an afternoon. I nearly did exactly that.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Person Who Needs It Never Opens the Menu</h2>
+
+<p>Here's what stopped me. Think about who actually gets hurt by regional content being wrong. It isn't the person carefully working through search filters — that person is already being deliberate, and they'll spot the mismatch.</p>
+
+<p>It's the person who got a link in Slack. They click it, they land on a document, they read it, they follow it. They never touched search. A filter on the search page does nothing for them at all, because they never went near it.</p>
+
+<p>So the thing I'd have shipped would have protected the users who needed it least, and left the ones who needed it most exactly where they started. It would also have looked complete on a requirements checklist, which is the part that bothers me.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">A Lens Instead</h2>
+
+<p>What I built instead is a lens over the whole application. You set your region once, in the header, and every surface reads through it — the counts on the category cards, the featured lists, the search results, the badge on an individual document. There's nowhere you can be where it isn't applied.</p>
+
+<p>That's a small technical change. It's a context provider rather than a prop, and one function decides visibility. The design decision is where to put the control, not how to write it.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Rule Is Where It Gets Interesting</h2>
+
+<p>The naive version of that function is an equality check: show this document if its region matches mine. Write that and switching to US empties most of the portal, because the bulk of the content is shared and shared content is tagged neither Global nor US.</p>
+
+<p>So content gets three states, not two, and the rule reads: visible if it's tagged Both, or if it matches the region you're in. Now switching to US <em>adds</em> the US-specific material on top of everything shared, instead of hiding the portal. That's what people expect, and it's one clause different from the version that breaks.</p>
+
+<p>I'd argue that's the whole shape of this kind of problem. The technical part is trivial and the two versions look nearly identical in a diff. One of them makes the product feel broken, and you only find out which by using it as somebody who doesn't already know where everything is.</p>
+
+<h2 class="text-2xl font-bold mt-8 mb-4">What Transfers</h2>
+
+<p>Any time you're about to put a scoping control in a filter menu — region, permission, team, environment, tenant — ask who gets hurt when it's wrong, and then ask whether that person ever opens filters. If the answer is no, a filter isn't the feature. It's a place to put the feature so it looks handled.</p>
+
+<p>The full build, including the information architecture and the design system it runs on, is written up in the <a href="/project/bz-essentials" class="text-primary underline">BZ Essentials case study</a>.</p>
+    `,
+  },
+  {
     id: "14",
     title: "The Work Is Deleting, Not Generating",
     excerpt: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part for you.",

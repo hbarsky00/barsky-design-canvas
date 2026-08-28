@@ -9,6 +9,11 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     tags={["Enterprise", "Information Architecture", "Design Systems", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://az-essentials.netlify.app"
+    relatedPost={{
+      slug: "a-filter-nobody-opens",
+      title: "A Filter Nobody Opens Isn't a Feature",
+      blurb: "Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it\u2026",
+    }}
     heroImage={{
       src: "/images/bz-essentials/home.webp",
       alt: "BZ Essentials home — hero, quick access panel, and the four entry points into the portal",

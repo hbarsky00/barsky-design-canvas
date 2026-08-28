@@ -151,6 +151,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
 // because this file is also read by scripts/inject-seo-html.ts under plain tsx
 // (no Vite asset-loader), which can't resolve `@/assets/*.jpg` imports.
 export const BLOG_IMAGE_MAP: Record<string, string> = {
+  "a-filter-nobody-opens": "https://barskydesign.pro/images/og/blog-a-filter-nobody-opens.png",
   "the-work-is-deleting-not-generating": "https://barskydesign.pro/images/og/blog-the-work-is-deleting-not-generating.png",
   "when-trust-is-the-product": "https://barskydesign.pro/images/og/blog-when-trust-is-the-product.png",
   "if-you-make-people-do-math": "https://barskydesign.pro/images/og/blog-if-you-make-people-do-math.png",
@@ -186,6 +187,11 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // distinct date shown on the page — identical fake dates across all 10 posts is
 // exactly the kind of templated signal that hurts trust with search/AI engines.
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published: string; modified?: string; }> = {
+  "a-filter-nobody-opens": {
+    title: "A Filter Nobody Opens Isn't a Feature",
+    description: "Some content is global, some regional. Put that in a filter menu and the person who most needs it never sees it, because they arrived from a link.",
+    published: "2026-08-27"
+  },
   "the-work-is-deleting-not-generating": {
     title: "The Work Is Deleting, Not Generating",
     description: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part\u2026",

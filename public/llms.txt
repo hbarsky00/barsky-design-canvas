@@ -30,6 +30,7 @@
 
 ## Blog
 
+- [A Filter Nobody Opens Isn't a Feature](/blog/a-filter-nobody-opens): Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it — because they never opened the menu.
 - [The Work Is Deleting, Not Generating](/blog/the-work-is-deleting-not-generating): AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away — and no model will do that part for you.
 - [When Trust Is the Product, It Can't Be a Feature](/blog/when-trust-is-the-product): Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product — and it's not something you bolt on near the end.
 - [If You Make People Do Maths, They Guess or They Leave](/blog/if-you-make-people-do-math): A price of 67¢ tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.
