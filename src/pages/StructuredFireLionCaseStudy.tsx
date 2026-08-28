@@ -10,8 +10,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://firelion.me"
     heroImage={{
-      src: "/images/firelion-hero-title.webp",
-      alt: "Fire Lion hero title screen",
+      src: "/images/firelion-hero-triptych.webp",
+      alt: "Fire Lion in play — the hold-to-fly prompt, the lion mid-flight, and a boulder incoming",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
     }}
     relatedPost={{
