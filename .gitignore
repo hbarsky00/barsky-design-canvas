@@ -32,3 +32,14 @@ prerendered-bodies/* [0-9]*.html
 
 # iCloud conflict copies of env files
 .env [0-9]*
+
+# macOS/iCloud conflict copies of media and source
+**/* [0-9].png
+**/* [0-9].jpg
+**/* [0-9].jpeg
+**/* [0-9].webp
+**/* [0-9].mp4
+**/* [0-9].mov
+**/* [0-9].css
+**/* [0-9].ts
+**/* [0-9].tsx
