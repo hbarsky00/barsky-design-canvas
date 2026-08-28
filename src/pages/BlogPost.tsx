@@ -8,6 +8,7 @@ import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from '@/components/blog/InternalLinkEnhancer';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
+import Comments from '@/components/blog/Comments';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -146,6 +147,8 @@ const BlogPostPage: React.FC = () => {
                   {staticPost && (
                     <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
                   )}
+
+              {post && <Comments slug={post.slug} />}
                 </div>
               </div>
             </motion.article>

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from './InternalLinkEnhancer';
+import Comments from './Comments';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
 
 const BlogPostPage: React.FC = () => {
@@ -144,6 +145,8 @@ const BlogPostPage: React.FC = () => {
                   {staticPost && (
                     <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
                   )}
+
+                    {staticPost && <Comments slug={staticPost.slug} />}
                 </div>
               </div>
             </motion.article>
