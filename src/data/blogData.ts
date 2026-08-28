@@ -35,7 +35,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>So the thing I'd have shipped would have protected the users who needed it least, and left the ones who needed it most exactly where they started. It would also have looked complete on a requirements checklist, which is the part that bothers me.</p>
 
-<img src="/images/bz-essentials/home.webp" alt="BZ Essentials home — three domains and search as the four ways in" class="w-full rounded-xs my-8" />
+<img src="/images/bz-essentials/domain.webp" alt="A domain landing — four categories with counts that are computed through the region lens, so they change when you switch" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">A Lens Instead</h2>
 
