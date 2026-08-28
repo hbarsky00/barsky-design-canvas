@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "August 27, 2026",
     readTime: "4 min read",
-    coverImage: "/images/bz-essentials/process-flow.webp",
+    coverImage: "/images/bz-essentials/home.webp",
     tags: ["Enterprise", "Information Architecture", "UX"],
     slug: "a-filter-nobody-opens",
     content: `
@@ -35,6 +35,8 @@ export const blogPosts: BlogPost[] = [
 
 <p>So the thing I'd have shipped would have protected the users who needed it least, and left the ones who needed it most exactly where they started. It would also have looked complete on a requirements checklist, which is the part that bothers me.</p>
 
+<img src="/images/bz-essentials/home.webp" alt="BZ Essentials home — three domains and search as the four ways in" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">A Lens Instead</h2>
 
 <p>What I built instead is a lens over the whole application. You set your region once, in the header, and every surface reads through it — the counts on the category cards, the featured lists, the search results, the badge on an individual document. There's nowhere you can be where it isn't applied.</p>
@@ -48,6 +50,8 @@ export const blogPosts: BlogPost[] = [
 <p>So content gets three states, not two, and the rule reads: visible if it's tagged Both, or if it matches the region you're in. Now switching to US <em>adds</em> the US-specific material on top of everything shared, instead of hiding the portal. That's what people expect, and it's one clause different from the version that breaks.</p>
 
 <p>I'd argue that's the whole shape of this kind of problem. The technical part is trivial and the two versions look nearly identical in a diff. One of them makes the product feel broken, and you only find out which by using it as somebody who doesn't already know where everything is.</p>
+
+<img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What Transfers</h2>
 
@@ -87,6 +91,8 @@ export const blogPosts: BlogPost[] = [
 
 <p>It can't tell you that a fighter select is dead weight when there are three fighters and the first one is the obvious choice. It can't tell you that a tutorial is an admission the controls aren't obvious. Those are judgements about a specific product for specific people, and they only come from watching someone use the thing.</p>
 
+<img src="/images/ringrival-vonkaiser.webp" alt="Von Kaiser on the shared rig at heavier proportions — the test that proved fighters could be data" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">Cheap Generation Makes Deleting Harder</h2>
 
 <p>There is a trap in this. When something took two days to build, cutting it was easy — you could see the cost of keeping it. When it took ninety seconds, it feels free to leave in. It's not free. The user pays for it in attention every single time.</p>
@@ -121,6 +127,8 @@ export const blogPosts: BlogPost[] = [
 
 <img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs my-8" />
 
+<img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">What That Changes</h2>
 
 <p>Once you accept that, design decisions stop being about efficiency and start being about reassurance. Who is this person. Have they shown up before. Is this a public place. What happens if it goes badly.</p>
@@ -128,6 +136,8 @@ export const blogPosts: BlogPost[] = [
 <p>None of those questions are answered by a faster flow. Some of them are answered by a <em>slower</em> one — a step that exists purely so the person on the other side has something to go on.</p>
 
 <p>That is the part that gets cut in a normal design review, because it looks like friction and friction is the enemy. It's only the enemy when the thing you're optimising for is speed. Here the thing being optimised is somebody's willingness to get in the car.</p>
+
+<img src="/images/catchbuddy-choose-park.webp" alt="Choose a Park — a curated list with distance and amenities, not a drop-a-pin map" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Test</h2>
 
@@ -167,6 +177,8 @@ export const blogPosts: BlogPost[] = [
 
 <p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, one of two things happens — they guess, or they leave. Both are your fault, not theirs.</p>
 
+<img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">This Generalises Further Than Finance</h2>
 
 <p>Anywhere your interface shows a rate, a ratio, a per-unit price or a percentage, ask what the person is actually going to do with it. Usually they're going to multiply it by something to get a number they care about. You already know both values. Show them the result.</p>
@@ -199,6 +211,8 @@ export const blogPosts: BlogPost[] = [
 
 <img src="/images/dae-search/the-problem.webp" alt="The problem — forty results, and no way to tell which table is current" class="w-full rounded-xs my-8" />
 
+<img src="/images/dae-search/what-i-built.webp" alt="Lineage on the result itself — where a table came from, when it refreshed, what depends on it" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is a Design Problem, Not a Data Problem</h2>
 
 <p>The instinct is to fix this upstream — better governance, cleaner catalogues, someone to deprecate old tables properly. Worth doing, and it never finishes. Meanwhile the analyst still has forty results.</p>
@@ -206,6 +220,8 @@ export const blogPosts: BlogPost[] = [
 <p>The design answer is different: put the trust signals <em>on the result</em>, where the decision is being made. How fresh is it. Who owns it. How many people query it. Is it certified. Does it look abandoned.</p>
 
 <p>None of that's new information. It exists in the metadata already. It was just kept somewhere the person deciding never looked.</p>
+
+<img src="/images/dae-search/decisions-1.webp" alt="Early concepts for the enterprise search result row" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Question Behind the Question</h2>
 
@@ -247,6 +263,8 @@ export const blogPosts: BlogPost[] = [
 
 <p>Smaller and honest beat bigger and ambiguous, and it wasn't close.</p>
 
+<img src="/images/herbalink/herbalist-directory.webp" alt="The HerbaLink directory — a smaller catalogue, because nothing unverified is listed at all" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">The Cost, Stated Plainly</h2>
 
 <p>This choice has a real price and I am not going to pretend otherwise. A gated directory grows slowly, because every listing is work. Mine is currently empty of practitioners — the product is built and verified sign-ups haven't happened yet.</p>
@@ -278,6 +296,8 @@ export const blogPosts: BlogPost[] = [
 <p>Enterprise software loses that fight on purpose — structure is the point — but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
 
 <img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs my-8" />
+
+<img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Win on What Excel Cannot Do at All</h2>
 
@@ -319,6 +339,8 @@ export const blogPosts: BlogPost[] = [
 
 <img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs my-8" />
 
+<img src="/images/crypto/competitive.webp" alt="Competitor teardown — easy apps hide the spread, pro apps assume confidence you may not have" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">Progressive Disclosure Is Not a Compromise</h2>
 
 <p>The reason products fork into two apps is that "serving both" gets read as "average the two", which produces something nobody wants. That's a failure of execution, not of the idea.</p>
@@ -356,6 +378,8 @@ export const blogPosts: BlogPost[] = [
 <p>That's the whole point of picking it. You can't describe your way to good game feel. There's no prompt for "make the jump satisfying". You build it, play it, notice it's slightly wrong, and change one number. Then again. Then again.</p>
 
 <img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs my-8" />
+
+<img src="/images/firelion-lionwars-combat.webp" alt="Lion Wars — the strategic mode, isolated in its own component so refactors cannot reach it" class="w-full rounded-xs my-8" />
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Most of the Work Was Deleting</h2>
 
@@ -403,6 +427,8 @@ export const blogPosts: BlogPost[] = [
 
 <p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
 
+<img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs my-8" />
+
 <h2 class="text-2xl font-bold mt-8 mb-4">Where This Applies Beyond Pharma</h2>
 
 <p>Any workflow with a sign-off has this shape — legal, finance, clinical, safety. The instinct is to point the model at the reviewed artefact. The gain is almost always in the space around the review instead.</p>
@@ -437,7 +463,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>What actually costs money is storage and bandwidth. Keeping your files. Streaming them to whoever opens the link. That is a real, boring, per-gigabyte cost, and it is the only line item that scales with how much you use something.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">So I Built the Version I Wanted</h2>
+      <img src="/images/recast/launcher-modal.webp" alt="The Record button hands off to the native app or takes a file — it never opens a capture tab" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">So I Built the Version I Wanted</h2>
 
       <p>I made <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> because I wanted the convenience without the tax. It records on your Mac or your Android phone, uploads while you are still talking, and hands you a link. Whoever you send it to presses play. No account, no app, no meeting.</p>
 
@@ -447,7 +475,9 @@ export const blogPosts: BlogPost[] = [
 
       <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs my-8" />
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Convenience Is a Design Problem, Not a Feature List</h2>
+      <img src="/images/recast/web-library.webp" alt="The web library — the site stores and shares, and never records" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Convenience Is a Design Problem, Not a Feature List</h2>
 
       <p>The thing I cared most about is not on any pricing page. When you press stop, the video plays <em>immediately</em>, from the file already on your device, while the upload runs behind it. You are not watching a progress bar to find out whether the take was any good.</p>
 
@@ -522,7 +552,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean \u2014 design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Why This Matters More Than It Used To</h2>
+      <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Why This Matters More Than It Used To</h2>
 
       <p>When building was expensive, the demo was the hard part, and getting one working was real evidence. Now that generating is cheap, the demo proves almost nothing \u2014 <a href="/blog/taste-is-the-whole-job" class="text-primary underline underline-offset-2 hover:text-primary/80">which is why judgment became the whole job</a>. Everyone can produce the screenshot. Far fewer people have taken something all the way to the point where strangers use it and it holds.</p>
 
@@ -586,7 +618,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>That is the loop solo is built for. Ship it, watch one real person use it, delete what they ignored, do it again. AI compressed the build step hard enough that the loop is now cheap to run, which is the best thing about the current moment.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Honest Summary</h2>
+      <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Honest Summary</h2>
 
       <p>One person can now build a product that works, holds real data, handles permissions, and does not fall over. That is new and it is not a small thing.</p>
 
@@ -629,7 +663,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe — a current price, who holds an office, whether a service still exists, what your schema looks like today — gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Row-Level Security Doesn't Throw, It Filters</h2>
+      <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Row-Level Security Doesn't Throw, It Filters</h2>
 
       <p>Second bug, different flavor. Stips runs on Postgres with row-level security. I did most of my testing signed out, because signing in was slower and I was moving fast.</p>
 
@@ -659,6 +695,7 @@ export const blogPosts: BlogPost[] = [
       <p>The assumption I see people make is that because generation got cheap, checking got cheap with it. It didn't. Writing the market generator took an afternoon. Trusting the market generator took another week, and that week was almost entirely me building the checks that would tell me when it was wrong.</p>
 
       <p>That ratio is the actual shape of the work now. Less typing. The same amount of judgment, concentrated into fewer decisions that matter more.</p>
+    <p>Both of these came out of building <a href="/project/stips" class="text-primary underline">the Stips case study</a>.</p>
     `
   },
   {
@@ -710,7 +747,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>What moved it was the audit trail sitting next to the record instead of in a separate log nobody opened. Compliance could see who changed what without asking anyone, so compliance stopped being the obstacle and started advocating for the tool. Visibility bought adoption. No amount of interface polish had.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">What This Costs You</h2>
+      <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">What This Costs You</h2>
 
       <p>All of it is slower and none of it demos well. A verification gate means fewer listings at launch. Showing uncertainty means your numbers look less impressive than a competitor willing to round up. Designing safety first means the first release does less.</p>
 
@@ -768,7 +807,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Fragmentation is the one thing a spreadsheet cannot fix, because the standard response to fragmentation is another spreadsheet. Being one place beats being better at any single thing.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Design Rules I Actually Use Here</h2>
+      <img src="/images/investor-loan-app/loan-officer.webp" alt="The orderbook with the audit trail next to the record, rather than in an admin tool nobody opens" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Design Rules I Actually Use Here</h2>
 
       <ul class="list-disc pl-6 mb-4">
         <li>Day one cannot be an empty screen. If the first task is manual entry of everything they already have, the spreadsheet stays open next to your tool and you have lost.</li>
@@ -812,7 +853,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Taste is knowing which good practice doesn't apply here.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Bug Nobody Would Have Reported</h2>
+      <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Bug Nobody Would Have Reported</h2>
 
       <p>Around forty percent of Ring-Rival sessions had no sound. Browsers block audio until the user does something, and the game was trying to start its AudioContext on load. It's under two percent now, because audio initialization waits for the first tap.</p>
 
@@ -849,6 +892,7 @@ export const blogPosts: BlogPost[] = [
       <p>Ship something. Watch a real person use it. Cut what they ignored. Repeat until your instinct about what to cut starts being right before you test it.</p>
 
       <p>There's no faster path. AI compressed the build step so hard that this loop is now cheap to run, which is genuinely the best thing about the current moment. You can be wrong on Tuesday and fixed by Wednesday. What you can't do is skip being wrong.</p>
+    <p>The deletions this is drawn from are written up in <a href="/project/ring-rival" class="text-primary underline">the Ring-Rival case study</a>.</p>
     `
   },
   {
@@ -904,7 +948,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>If a feature only survives on the grounds that it was easy to build, that is not a reason. That is the absence of one.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Deleting After You Ship Got Easier</h2>
+      <img src="/images/firelion-spelling-combo.webp" alt="Fire Lion mid-combo — what survived after the daily missions, streaks and upgrade screens were cut" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Deleting After You Ship Got Easier</h2>
 
       <p>The one genuine gift here is that sunk cost mostly evaporated. I used to fight to keep things that had consumed a month of team time, because removing them felt like admitting waste and someone had to sit through that conversation.</p>
 
@@ -970,7 +1016,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Somebody who accepts the first plausible answer will do that on your product too, every day, at speed.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">The One Thing I Would Not Skip</h2>
+      <img src="/images/investor-loan-app/my-deals-list-view.jpg" alt="My Deals — the screen loan officers recognised as their own job, which is the answer an interview should surface" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The One Thing I Would Not Skip</h2>
 
       <p>Ask what they would fight for. Not what they believe about design in general. What in this specific piece of work they would defend if a senior person told them to change it, and what happened the last time that occurred.</p>
 
@@ -1003,7 +1051,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>It means you can take your own idea all the way to something a stranger can use, without a second person's calendar in the way. That's the whole claim.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Handoff Was Always the Expensive Part</h2>
+      <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Handoff Was Always the Expensive Part</h2>
 
       <p>I spent years in banks and enterprises where the gap between "designed" and "shipped" was measured in quarters. Most of that time wasn't build time. It was translation. Writing specs describing behavior that would have taken ten minutes to demonstrate. Answering questions about edge cases in a document instead of in the product. Watching a decision get quietly reinterpreted three steps downstream and finding out months later.</p>
 
@@ -1047,6 +1097,7 @@ export const blogPosts: BlogPost[] = [
       <p>What replaces it is more interesting work and more responsibility for the result. When you own it end to end, you can't say the engineers ruined it. It shipped the way you built it.</p>
 
       <p>That's a better trade than it sounds like. It's also not optional much longer.</p>
+    <p>What that looks like end to end is in <a href="/project/recast" class="text-primary underline">the Recast case study</a>.</p>
     `
   },
   {
@@ -1077,7 +1128,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Those questions survive because you can only answer them by having lived through it.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Junior Pipeline Has a Real Problem</h2>
+      <img src="/images/herbalink/herbalist-directory.webp" alt="A product that works with nobody on it — the kind of outcome a portfolio usually hides" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">The Junior Pipeline Has a Real Problem</h2>
 
       <p>The tasks juniors used to learn on are the tasks AI does best. Building out the rest of the screens once the pattern is set. Producing variations. Cleaning up a component library. Writing the first draft of anything.</p>
 
@@ -1119,6 +1172,7 @@ export const blogPosts: BlogPost[] = [
       <p>Stop optimizing the artifact. It's already at parity with everyone else's. Put a live URL on your site, be specific about what you cut and why, and go into every conversation able to defend one number you moved and one call you got wrong.</p>
 
       <p>The market is harder. It's not closed. It's just stopped rewarding the things it used to reward automatically.</p>
+    <p>For a worked example, including one that did not find its audience, see <a href="/project/herbalink" class="text-primary underline">the HerbaLink case study</a>.</p>
     `
   },
   {
@@ -1145,7 +1199,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Being well-presented no longer earns you anything. It just avoids losing you something. Budget for it accordingly: get it clean, then stop, because additional polish past that point buys nothing and eats the time you should be spending on substance.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Put the Live URL First</h2>
+      <img src="/images/bz-essentials/design-system.webp" alt="A design system documented from the code it actually runs on, rather than a mood board" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Put the Live URL First</h2>
 
       <p>A working product someone can open is the single hardest thing to fake, and it's still rare. Ring-Rival, Stips, HerbaLink, CatchBuddy are all live. Anyone can go use them, find the rough edges, and form their own opinion.</p>
 
@@ -1188,6 +1244,7 @@ export const blogPosts: BlogPost[] = [
       <p>Every claim on your site is now a question in an interview. If AI wrote a section you can't defend line by line, cut it. Getting caught not knowing your own case study is worse than having a shorter one.</p>
 
       <p>Three projects you can defend completely beats eight that look impressive from a distance. That was always true. It's just enforceable now.</p>
+    <p>The decisions behind one of these, documented from the code, are in <a href="/project/bz-essentials" class="text-primary underline">the BZ Essentials case study</a>.</p>
     `
   },
   {
@@ -1214,7 +1271,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>Now you build it and look. The cost of finding out you were wrong dropped enough that finding out is usually faster than debating. That changes how you should work, not just how fast you work.</p>
 
-      <h2 class="text-2xl font-bold mt-8 mb-4">Changed: The Deliverable Is the Product</h2>
+      <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs my-8" />
+
+<h2 class="text-2xl font-bold mt-8 mb-4">Changed: The Deliverable Is the Product</h2>
 
       <p>I don't make specs for other people to implement. The design ends when the thing is live. That collapses a whole category of work — annotations, handoff documents, the meetings that exist to clarify the handoff documents — and it moves the accountability with it. Nobody else touched it, so nobody else is responsible for how it came out.</p>
 
@@ -1253,6 +1312,7 @@ export const blogPosts: BlogPost[] = [
       <p>They don't fail because the build was bad. They fail because the problem wasn't real, or was real but shaped differently than anyone assumed. AI does nothing about that. It just gets you to the point of discovering it sooner and with less money spent, which is a genuine improvement and not a solution.</p>
 
       <p>The work is what it always was: figure out what's actually worth building, then build only that. The second half got dramatically easier. The first half didn't move.</p>
+    <p>The clearest example of the split is in <a href="/project/ring-rival" class="text-primary underline">the Ring-Rival case study</a>.</p>
     `
   }
 ];
