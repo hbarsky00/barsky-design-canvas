@@ -85,6 +85,15 @@ const StructuredRecastCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "The tokens are the reason the Mac app and the website still look related. Every contrast pair in here was measured rather than eyeballed, and light and dark are both declared so the app follows your OS.",
+        ],
+        images: [
+          { src: "/images/recast/design-system.webp", alt: "Recast's design tokens — Fraunces and Instrument Sans, the warm paper palette with measured contrast, the 4px scale, and the rules-not-boxes decision", caption: "One token file, mirrored into the mobile app value for value. Copying it literally is the only thing that stops two surfaces of one product drifting apart." },
+        ],
+      },
+      {
         heading: "Where It Is Now",
         paragraphs: [
           "Live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both. The website handles the library, playback, sharing and downloads.",

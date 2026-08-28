@@ -64,6 +64,15 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "There is no unverified state in this colour system because there are no unverified listings in the product. The palette ended up recording the verification decision as much as the code does.",
+        ],
+        images: [
+          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens — forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions." },
+        ],
+      },
+      {
         heading: "Where It Actually Is",
         paragraphs: [
           "On hiatus, and I'll say why plainly. The product is built and it works — verification gate, guided intake, booking, herb library, the database and auth underneath all of it. The directory is empty because no herbalists have signed up yet.",

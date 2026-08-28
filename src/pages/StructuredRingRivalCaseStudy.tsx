@@ -98,6 +98,15 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "Every colour comes in a pair: the state at rest and the same state ten percent lighter on impact. Colour and brightness changing together reads faster than either on its own, which is the entire requirement in a fight.",
+        ],
+        images: [
+          { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens — Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands." },
+        ],
+      },
+      {
         heading: "Where It Landed",
         paragraphs: [
           "Same rig Glass Joe came out of, but the wedges are arms now. Klaus Brenner is heavier on purpose, slower to reset, so you have to read him differently than the others.",

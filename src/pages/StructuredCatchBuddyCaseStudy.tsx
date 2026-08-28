@@ -68,6 +68,15 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "The palette is warm deliberately. A trust product that looks like a fintech dashboard reads as a company rather than a neighbour, and the safety states had to sit inside the same system from v1 instead of arriving later as status chips.",
+        ],
+        images: [
+          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration." },
+        ],
+      },
+      {
         heading: "Where It Landed",
         paragraphs: [
           "It shipped. Auth, RLS, Stripe, Google OAuth, realtime updates, the minor-approval flow and the curated meeting spots, designed and built by me.",

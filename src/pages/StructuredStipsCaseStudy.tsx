@@ -69,6 +69,15 @@ const StructuredStipsCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "A board of prices only has four things to say — yes, no, neutral, closing. Every one of those colours is measured against the surface it is actually painted on, because the previous set was tuned by eye and all four failed.",
+        ],
+        images: [
+          { src: "/images/stips/design-system.webp", alt: "Stips design tokens — Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair." },
+        ],
+      },
+      {
         heading: "Where It Landed",
         paragraphs: [
           "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, and that's on purpose — I wanted people to learn how a prediction market reads without putting anything real on the table.",

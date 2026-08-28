@@ -71,6 +71,15 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything — everything else, the gravity and the tap feel, was hand-tuned on a phone.",
+        ],
+        images: [
+          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens — Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy." },
+        ],
+      },
+      {
         heading: "Where It Landed",
         paragraphs: [
           "It's live at firelion.me and it's finished enough to hand to someone without explaining anything first.",
