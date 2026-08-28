@@ -18,8 +18,8 @@ const StructuredRecastCaseStudy: React.FC = () => (
     // showed the pitch; this shows the product. Cropped to the panel exactly —
     // a looser crop caught a card sitting behind it and read as an artifact.
     heroImage={{
-      src: "/images/recast/mac-app.webp",
-      alt: "The Recast recorder panel floating over a browser page — Full Screen, Window or Area, camera and mic toggles, Start Recording",
+      src: "/images/recast/landing-light.webp",
+      alt: "recastvid.com — Record it once. Send a link. The product's front door, in light mode",
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
@@ -101,7 +101,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "This one is here for the engineering decisions more than the pixels. Deleting the recorder, the offline playback rule, the ordering bug Android's docs get wrong, the leak I found by being a stranger to my own product. That's the part that transfers.",
         ],
         images: [
-          { src: "/images/recast/landing-light.webp", alt: "recastvid.com — Record it once. Send a link. with Get Recast and Sign in buttons above a How it works section", caption: "recastvid.com as it stands: one sentence, one button, and the apps doing the actual work behind it." },
+          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window — Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms; the website never captures anything." },
         ],
       },
     ]}
