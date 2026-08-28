@@ -20,6 +20,7 @@ import {
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
 import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
+import WordOfMouthSection from "@/components/home/WordOfMouthSection";
 
 const HomepageLayout: React.FC = () => {
   
@@ -84,7 +85,13 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.22} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+          <section id="word-of-mouth" tabIndex={-1} className="scroll-offset">
+            <WordOfMouthSection />
+          </section>
+        </SectionTransition>
+        
+        <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="contact" tabIndex={-1} className="scroll-offset">
             <Suspense fallback={<div className="h-32" />}>
               <LazyContactForm />
@@ -92,7 +99,7 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
           <section id="blog" tabIndex={-1} className="scroll-offset">
             <Suspense fallback={<div className="h-32" />}>
               <LazyBlogPreview />
@@ -100,7 +107,7 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="faq" tabIndex={-1} className="scroll-offset">
             <SeoFaqSection
               title="Frequently Asked Questions"
@@ -109,7 +116,7 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
 
-        <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
           <section id="internal-linking" tabIndex={-1} className="scroll-offset">
             <InternalLinkingEnhancer
               currentPage="home"
