@@ -9,8 +9,8 @@ const ManuscriptRxCaseStudy: React.FC = () => (
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/emailai-screen1-content-planning.webp",
-      alt: "Step 1 — 6-step workflow navigator, Brief Creation locked, Initiate Email Creation active",
+      src: "/images/emailai-hero-pair.webp",
+      alt: "The six-step workflow navigator beside the assemble step — Brief Creation locked, approved content pulled in on the right",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
     }}
     relatedPost={{

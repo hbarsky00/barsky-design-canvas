@@ -9,7 +9,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     tags={["Enterprise", "FinTech", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/investor-loan-app/hero.webp",
+      src: "/images/investor-loan-app/loan-officer.webp",
       alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
       hoverVideo: "/investor-loan-deals.mp4",
       width: 1500,
@@ -77,8 +77,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/investor-loan-app/loan-officer.webp",
-            alt: "Cashless Rolls Orderbook with the comments panel open, audit trail surfaced next to the record",
+            src: "/images/investor-loan-app/hero.webp",
+            alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
           },
         ],
       },

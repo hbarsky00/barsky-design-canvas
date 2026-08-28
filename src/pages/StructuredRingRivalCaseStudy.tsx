@@ -14,7 +14,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     // so the first thing the page did was set the wrong expectation and the
     // second thing it did was break it.
     heroImage={{
-      src: "/images/ringrival-now/card-poster.jpg",
+      src: "/images/ringrival-now/hero-triptych.webp",
       alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
       hoverVideo: "/ring-rival-fight-frost.mp4",
     }}
