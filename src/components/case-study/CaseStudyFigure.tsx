@@ -64,7 +64,13 @@ export const useReveal = <T extends HTMLElement>() => {
 interface CaseStudyFigureProps {
   src: string;
   alt: string;
-  caption?: string;
+  /**
+   * Required on purpose. `alt` and `caption` are different jobs: alt is the
+   * description a screen reader reads instead of the image, a caption is the
+   * line a sighted reader reads underneath it. Making this optional is how a
+   * page ends up with alt text printed as prose, so the type refuses.
+   */
+  caption: string;
   projectId?: string;
   /** Every image on the page, so the lightbox can arrow through all of them. */
   imageList?: string[];
@@ -271,6 +277,9 @@ export const CaseStudyWalkthrough: React.FC<CaseStudyWalkthroughProps> = ({
 export interface HeroMediaProps {
   src: string;
   alt: string;
+  /** Same rule as every other figure on the page: the opening image gets a
+   *  real caption, not its own alt text repeated underneath it. */
+  caption: string;
   hoverVideo?: string;
   projectId?: string;
   imageList?: string[];
@@ -293,6 +302,7 @@ export interface HeroMediaProps {
 export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
   src,
   alt,
+  caption,
   hoverVideo,
   projectId,
   imageList,
@@ -322,6 +332,7 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
       <CaseStudyFigure
         src={src}
         alt={alt}
+        caption={caption}
         width={width}
         height={height}
         projectId={projectId}
@@ -377,7 +388,7 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
         </button>
       </div>
       <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">
-        {alt}
+        {caption}
       </figcaption>
     </figure>
   );

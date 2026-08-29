@@ -18,6 +18,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       height: 1121,
       alt: "DAE Search platform interface overview",
       hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
+      caption: "Search across the data catalogue, with the trust signals moved onto the result instead of a click away from it.",
     }}
     relatedPost={{
       slug: "finding-the-data-is-half-the-job",
@@ -32,7 +33,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "They were never short of results. They were short of a result they could act on.",
         ],
         images: [
-          { src: "/images/dae-search/the-problem.webp", alt: "Learning from design iterations that didn't meet enterprise needs" },
+          { src: "/images/dae-search/the-problem.webp", alt: "Learning from design iterations that didn't meet enterprise needs", caption: "Forty results and no way to tell which table is current. The search worked; the twenty minutes after it are the actual job." },
         ],
       },
       {
@@ -42,7 +43,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Then I put the lineage on the result itself. Where it came from, when it last refreshed, what depends on it. You read it in the list instead of clicking through to find out.",
         ],
         images: [
-          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems" },
+          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems", caption: "Lineage on the result itself — where a table came from, when it last refreshed, what depends on it. Read in the list, not after a click." },
         ],
       },
       {
@@ -53,8 +54,8 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/dae-search/decisions-1.webp", alt: "Initial concepts for enterprise search interface design", width: 1733, height: 1274 },
-          { src: "/images/dae-search/decisions-2.png", alt: "Search paradigm exploration and decision framework", width: 1920, height: 969 },
+          { src: "/images/dae-search/decisions-1.webp", alt: "Initial concepts for enterprise search interface design", width: 1733, height: 1274, caption: "Early concepts for the result row, from when I was still designing consumer search with an enterprise skin on it." },
+          { src: "/images/dae-search/decisions-2.png", alt: "Search paradigm exploration and decision framework", width: 1920, height: 969, caption: "The version that admitted this audience wants density. They type fragments and internal abbreviations, not questions." },
         ],
       },
       {

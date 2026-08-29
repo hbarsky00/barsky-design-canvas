@@ -17,6 +17,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       src: "/images/ringrival-now/hero-triptych.webp",
       alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
       hoverVideo: "/ring-rival-fight-frost.mp4",
+      caption: "Mid-fight: gloves, a blocking opponent, trash talk and the super meter. Gameplay as the opening frame, because the cinematic that used to sit here promised a game that didn't exist.",
     }}
     relatedPost={{
       slug: "the-work-is-deleting-not-generating",

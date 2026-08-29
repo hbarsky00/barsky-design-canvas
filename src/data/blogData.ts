@@ -7,6 +7,12 @@ export interface BlogPost {
   date: string;
   readTime: string;
   coverImage: string;
+  /**
+   * The caption printed under the cover image. Required — every image on this
+   * site carries a caption that says something the picture alone doesn't, and
+   * the lead image is the one most people actually look at.
+   */
+  coverCaption: string;
   tags: string[];
   slug: string;
 }
@@ -20,6 +26,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 27, 2026",
     readTime: "4 min read",
     coverImage: "/images/bz-essentials/home.webp",
+    coverCaption: "The portal's front door. The regional rule this post is about applies to every screen behind it, not just the one with the filter on it.",
     tags: ["Enterprise", "Information Architecture", "UX"],
     slug: "a-filter-nobody-opens",
     content: `
@@ -35,7 +42,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>So the thing I'd have shipped would have protected the users who needed it least, and left the ones who needed it most exactly where they started. It would also have looked complete on a requirements checklist, which is the part that bothers me.</p>
 
-<img src="/images/bz-essentials/domain.webp" alt="A domain landing — four categories with counts that are computed through the region lens, so they change when you switch" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/bz-essentials/domain.webp" alt="A domain landing — four categories with counts that are computed through the region lens, so they change when you switch" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Every count on this page is computed through the region lens, so they change when you switch. A number that lies is worse than no number.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">A Lens Instead</h2>
 
@@ -51,7 +61,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>I'd argue that's the whole shape of this kind of problem. The technical part is trivial and the two versions look nearly identical in a diff. One of them makes the product feel broken, and you only find out which by using it as somebody who doesn't already know where everything is.</p>
 
-<img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Search is where the filter would have lived. It's still here — for the people who came looking, which was never the group at risk.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What Transfers</h2>
 
@@ -68,6 +81,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/ringrival-glassjoe-idle.webp",
+    coverCaption: "Glass Joe, the first fighter through the rig — flat blocks and wedge arms. Almost everything after this was subtraction.",
     tags: ["AI", "Product Design", "Shipping"],
     slug: "the-work-is-deleting-not-generating",
     content: `
@@ -83,7 +97,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>I deleted all four screens. Time to first punch went to <strong>six seconds</strong>. Nothing was added. The game got better by having less of itself in the way.</p>
 
-<img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One sheet per fighter, every frame in a fixed grid. Generating these was the cheap part; deciding which frames survived was not.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Model Will Happily Build All Four</h2>
 
@@ -91,7 +108,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>It can't tell you that a fighter select is dead weight when there are three fighters and the first one is the obvious choice. It can't tell you that a tutorial is an admission the controls aren't obvious. Those are judgements about a specific product for specific people, and they only come from watching someone use the thing.</p>
 
-<img src="/images/ringrival-vonkaiser.webp" alt="Von Kaiser on the shared rig at heavier proportions — the test that proved fighters could be data" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/ringrival-vonkaiser.webp" alt="Von Kaiser on the shared rig at heavier proportions — the test that proved fighters could be data" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Von Kaiser on the same rig at heavier proportions. Once a second fighter held, fighters could be data instead of drawings.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Cheap Generation Makes Deleting Harder</h2>
 
@@ -110,6 +130,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/catchbuddy-hero-landing.webp",
+    coverCaption: "CatchBuddy's front door. Getting two strangers to a park is the easy half; this post is about the other one.",
     tags: ["Product Design", "Trust & Safety", "Shipping"],
     slug: "when-trust-is-the-product",
     content: `
@@ -125,9 +146,15 @@ export const blogPosts: BlogPost[] = [
 
 <p>Strip that away and what is left is the actual problem: <strong>two strangers agreeing to meet at a park, and both of them feeling fine about it.</strong> Everything else is a detail of that.</p>
 
-<img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Match scores on the player cards. The label used to say Matches, and testers read it as a dating app every single time.</figcaption>
+</figure>
 
-<img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The 13+ gate at sign-up. Safety that arrives in v1 shapes the product; safety bolted on later is just a settings screen.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What That Changes</h2>
 
@@ -137,7 +164,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>That is the part that gets cut in a normal design review, because it looks like friction and friction is the enemy. It's only the enemy when the thing you're optimising for is speed. Here the thing being optimised is somebody's willingness to get in the car.</p>
 
-<img src="/images/catchbuddy-choose-park.webp" alt="Choose a Park — a curated list with distance and amenities, not a drop-a-pin map" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/catchbuddy-choose-park.webp" alt="Choose a Park — a curated list with distance and amenities, not a drop-a-pin map" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A curated list of parks with distance and amenities. You can't drop your own pin, and the restriction is the feature.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Test</h2>
 
@@ -156,6 +186,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "4 min read",
     coverImage: "/images/stips/markets-board.webp",
+    coverCaption: "A board of prices. Every one of them is a probability, and almost nobody converts it in their head.",
     tags: ["Product Design", "Fintech UX", "Shipping"],
     slug: "if-you-make-people-do-math",
     content: `
@@ -169,7 +200,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Everyone calls that a learning curve and bolts on a tutorial. It's not a learning curve. It's the product asking you to do a calculation it could have done itself.</p>
 
-<img src="/images/stips/order-ticket.jpg" alt="Order ticket — $75 on Yes, showing $111.94 back and $36.94 profit before you commit" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/stips/order-ticket.jpg" alt="Order ticket — $75 on Yes, showing $111.94 back and $36.94 profit before you commit" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">$75 on Yes, and the panel has already worked out $111.94 back with $36.94 of profit. Nobody should do that arithmetic in their head.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Show the Answer, Not the Inputs</h2>
 
@@ -177,7 +211,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, one of two things happens — they guess, or they leave. Both are your fault, not theirs.</p>
 
-<img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Price, close date and volume on every card, so the odds read at a glance instead of after a calculation.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">This Generalises Further Than Finance</h2>
 
@@ -196,6 +233,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/dae-search/hero.webp",
+    coverCaption: "Enterprise search rebuilt around whether you can trust a result, rather than how relevant it is.",
     tags: ["Enterprise UX", "Product Design", "Search"],
     slug: "finding-the-data-is-half-the-job",
     content: `
@@ -209,9 +247,15 @@ export const blogPosts: BlogPost[] = [
 
 <p>That is <strong>twenty minutes</strong> of asking colleagues, opening tables, and eventually picking one on a hunch. The search took half a second. The decision took the rest of the morning.</p>
 
-<img src="/images/dae-search/the-problem.webp" alt="The problem — forty results, and no way to tell which table is current" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/dae-search/the-problem.webp" alt="The problem — forty results, and no way to tell which table is current" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Forty results, all plausible, none of them saying which table is current. The search worked — that's the problem.</figcaption>
+</figure>
 
-<img src="/images/dae-search/what-i-built.webp" alt="Lineage on the result itself — where a table came from, when it refreshed, what depends on it" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/dae-search/what-i-built.webp" alt="Lineage on the result itself — where a table came from, when it refreshed, what depends on it" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Lineage moved onto the result row: where the table came from, when it last refreshed, what depends on it.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is a Design Problem, Not a Data Problem</h2>
 
@@ -221,7 +265,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>None of that's new information. It exists in the metadata already. It was just kept somewhere the person deciding never looked.</p>
 
-<img src="/images/dae-search/decisions-1.webp" alt="Early concepts for the enterprise search result row" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/dae-search/decisions-1.webp" alt="Early concepts for the enterprise search result row" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Early result-row concepts, from the pass where I was still designing consumer search with enterprise paint on it.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Question Behind the Question</h2>
 
@@ -240,6 +287,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/herbalink/herbalist-directory.webp",
+    coverCaption: "A directory where verification is the entry condition. Everything visible here already passed it.",
     tags: ["Trust & Safety", "Product Design", "Healthcare"],
     slug: "verification-is-a-door-not-a-sticker",
     content: `
@@ -255,7 +303,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Worse, it puts the judgement back on the person least equipped to make it. In a health category, that person came to you <em>because</em> they couldn't tell the difference. Handing them a mixed list and a badge system is handing back the exact problem they arrived with.</p>
 
-<img src="/images/herbalink/mobile-booking-guided.webp" alt="Booking on mobile — one guided question replaces the filter panel" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/herbalink/mobile-booking-guided.webp" alt="Booking on mobile — one guided question replaces the filter panel" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One guided question in place of a filter panel. Filters assume you already know what you need, which is the reason you're here.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">I Tested It the Other Way</h2>
 
@@ -263,7 +314,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Smaller and honest beat bigger and ambiguous, and it wasn't close.</p>
 
-<img src="/images/herbalink/herbalist-directory.webp" alt="The HerbaLink directory — a smaller catalogue, because nothing unverified is listed at all" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/herbalink/herbalist-directory.webp" alt="The HerbaLink directory — a smaller catalogue, because nothing unverified is listed at all" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A deliberately smaller catalogue. Nothing unverified is listed at all, so there's no badge left for anyone to interpret.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Cost, Stated Plainly</h2>
 
@@ -282,6 +336,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/investor-loan-app/hero.webp",
+    coverCaption: "The platform that finally replaced the spreadsheet — by losing to it on flexibility and winning on the record.",
     tags: ["Enterprise UX", "Fintech UX", "Product Design"],
     slug: "you-dont-replace-excel-by-being-better",
     content: `
@@ -295,9 +350,15 @@ export const blogPosts: BlogPost[] = [
 
 <p>Enterprise software loses that fight on purpose — structure is the point — but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
 
-<img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The loan journey end to end, from intake to close. Mapped first, so I could see what the spreadsheet was actually holding together.</figcaption>
+</figure>
 
-<img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The spreadsheet next to the platform that replaced it. The win wasn't features — it was becoming the system of record.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Win on What Excel Cannot Do at All</h2>
 
@@ -322,6 +383,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "4 min read",
     coverImage: "/images/crypto/hero.webp",
+    coverCaption: "One account in two modes, on a phone and a desktop. The split the industry sells as segmentation.",
     tags: ["Fintech UX", "Product Design", "Design Systems"],
     slug: "beginner-or-pro-is-a-false-choice",
     content: `
@@ -337,9 +399,15 @@ export const blogPosts: BlogPost[] = [
 
 <p>Neither group is being served well. Each is subsidising the other's assumptions.</p>
 
-<img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One platform serving both audiences without forking the product. The mode is a setting, not a second app.</figcaption>
+</figure>
 
-<img src="/images/crypto/competitive.webp" alt="Competitor teardown — easy apps hide the spread, pro apps assume confidence you may not have" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/crypto/competitive.webp" alt="Competitor teardown — easy apps hide the spread, pro apps assume confidence you may not have" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The teardown: easy apps hide the spread, pro apps assume confidence you may not have. Both charge for the same decision.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Progressive Disclosure Is Not a Compromise</h2>
 
@@ -364,6 +432,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "4 min read",
     coverImage: "/images/firelion-cubmode-sunset.webp",
+    coverCaption: "Cub Mode in Fire Lion. A game fails visibly, which is exactly why it's worth building to prove something.",
     tags: ["AI", "Solo Building", "Game Design"],
     slug: "a-to-do-app-doesnt-prove-anything",
     content: `
@@ -377,9 +446,15 @@ export const blogPosts: BlogPost[] = [
 
 <p>That's the whole point of picking it. You can't describe your way to good game feel. There's no prompt for "make the jump satisfying". You build it, play it, notice it's slightly wrong, and change one number. Then again. Then again.</p>
 
-<img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Spelling a word mid-flight to cast a spell. If this felt wrong everyone would know instantly, which is exactly why I picked it.</figcaption>
+</figure>
 
-<img src="/images/firelion-lionwars-combat.webp" alt="Lion Wars — the strategic mode, isolated in its own component so refactors cannot reach it" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/firelion-lionwars-combat.webp" alt="Lion Wars — the strategic mode, isolated in its own component so refactors cannot reach it" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Lion Wars in its own isolated component, so a refactor in one mode can't quietly break the other two.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Most of the Work Was Deleting</h2>
 
@@ -404,6 +479,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/images/emailai-screen1-content-planning.webp",
+    coverCaption: "Content planning, step one of six. Every step names the human who owns it, and the AI works in the space between them.",
     tags: ["AI", "Enterprise UX", "Healthcare"],
     slug: "design-for-the-approval-gates",
     content: `
@@ -417,7 +493,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Automating the writing compresses the fastest step in the chain. You end up with a first draft in ten seconds and a two-week review, which is where you started.</p>
 
-<img src="/images/emailai-screen6-pre-mlr.webp" alt="Pre-MLR review — the packet assembled the way the reviewers expect it" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/emailai-screen6-pre-mlr.webp" alt="Pre-MLR review — the packet assembled the way the reviewers expect it" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The packet assembled the way reviewers expect it. The AI's job ends exactly where legal accountability starts.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Gates Are Not Inefficiency</h2>
 
@@ -427,7 +506,10 @@ export const blogPosts: BlogPost[] = [
 
 <p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
 
-<img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs my-8" />
+<figure class="my-8">
+  <img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs" />
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">QC inline with editing rather than after it, so a rejection arrives while there's still context to act on.</figcaption>
+</figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Where This Applies Beyond Pharma</h2>
 
@@ -446,6 +528,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 25, 2026",
     readTime: "5 min read",
     coverImage: "/blog/send-someone-a-video-cover.jpg",
+    coverCaption: "Recording your screen is free. Sending it is the part everyone charges for.",
     tags: ["Product Design", "Shipping", "Tools"],
     slug: "i-just-wanted-to-send-someone-a-video",
     content: `
@@ -463,7 +546,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>What actually costs money is storage and bandwidth. Keeping your files. Streaming them to whoever opens the link. That is a real, boring, per-gigabyte cost, and it is the only line item that scales with how much you use something.</p>
 
-      <img src="/images/recast/launcher-modal.webp" alt="The Record button hands off to the native app or takes a file — it never opens a capture tab" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/recast/launcher-modal.webp" alt="The Record button hands off to the native app or takes a file — it never opens a capture tab" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The Record button hands you to the native app or takes a file. There's no browser-capture fallback, on purpose.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">So I Built the Version I Wanted</h2>
 
@@ -473,9 +559,15 @@ export const blogPosts: BlogPost[] = [
 
       <p>You are not paying to remove a watermark. You are not paying to record for six minutes instead of five. You are paying for storage, because storage is the thing that costs me money.</p>
 
-      <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Press stop and the player opens on the local file immediately, share link already there. The upload happens behind it.</figcaption>
+      </figure>
 
-      <img src="/images/recast/web-library.webp" alt="The web library — the site stores and shares, and never records" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/recast/web-library.webp" alt="The web library — the site stores and shares, and never records" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The other half of the boundary: the site stores and shares, and never records.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Convenience Is a Design Problem, Not a Feature List</h2>
 
@@ -510,6 +602,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 10, 2026",
     readTime: "6 min read",
     coverImage: "/blog/demo-works-shipping-is-different-cover.jpg",
+    coverCaption: "The distance between a thing that runs and a thing you can hand to a stranger.",
     tags: ["AI", "Shipping", "Product Design"],
     slug: "demo-works-shipping-is-different",
     content: `
@@ -529,7 +622,7 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/blog/demo-works-shipping-is-different-body.jpg" alt="Scaffolding around an unfinished building" loading="lazy" class="w-full rounded-lg" width="1400" height="940" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@reetoo?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Reto Simonet</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A demo is the scaffolding. Everything that makes it safe to stand on gets built after the screenshot. <span class="opacity-70">Photo by <a href="https://unsplash.com/@reetoo?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Reto Simonet</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Unsplash</a></span></figcaption>
       </figure>
 
       <p>The second Stips bug cost me considerably more time, and it is the one I would warn anyone about.</p>
@@ -552,7 +645,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean \u2014 design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
 
-      <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Resolution rules written on the market page. A demo never has to answer for how a thing settles; a product does.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Why This Matters More Than It Used To</h2>
 
@@ -571,6 +667,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 8, 2026",
     readTime: "5 min read",
     coverImage: "/blog/what-one-person-can-ship-now-cover.jpg",
+    coverCaption: "What one person can carry end to end now — and the point where that still runs out.",
     tags: ["AI", "Solo Building", "Product Design"],
     slug: "what-one-person-can-ship-now",
     content: `
@@ -581,7 +678,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What Fits Inside One Head Now</h2>
       <figure class="my-8">
         <img src="/blog/what-one-person-can-ship-now-body.jpg" alt="A row of empty desk chairs — the team a solo builder does not have" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@bruskrd?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Brusk Dede</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The team a solo builder doesn't have. What changed is how much of that work now fits into one person's day. <span class="opacity-70">Photo by <a href="https://unsplash.com/@bruskrd?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Brusk Dede</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> is a play-money prediction market with accounts, a database enforcing row-level security, market resolution, and a scheduled job that reads the news and writes new markets without me touching it. That is not a landing page with a waitlist attached. It is a running system with state, permissions, and a job that keeps going while I sleep.</p>
@@ -618,7 +715,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>That is the loop solo is built for. Ship it, watch one real person use it, delete what they ignored, do it again. AI compressed the build step hard enough that the loop is now cheap to run, which is the best thing about the current moment.</p>
 
-      <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One person's product, designed, built and shipped end to end — including all the parts nobody ever sees.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Honest Summary</h2>
 
@@ -637,6 +737,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 5, 2026",
     readTime: "4 min read",
     coverImage: "/blog/two-bugs-ai-wrote-that-i-had-to-find-cover.jpg",
+    coverCaption: "Two bugs that shipped because the model was confident and I wasn't reading closely enough.",
     tags: ["AI", "Engineering", "Debugging"],
     slug: "two-bugs-ai-wrote-that-i-had-to-find",
     content: `
@@ -647,7 +748,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Model Has No Clock</h2>
       <figure class="my-8">
         <img src="/blog/two-bugs-ai-wrote-that-i-had-to-find-body.jpg" alt="A calendar — the thing a language model doesn't have access to when it writes a close date" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@towfiqu999999?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Towfiqu barbhuiya</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The thing a language model doesn't have: today's date. It will write you a close date anyway. <span class="opacity-70">Photo by <a href="https://unsplash.com/@towfiqu999999?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Towfiqu barbhuiya</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -663,7 +764,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe — a current price, who holds an office, whether a service still exists, what your schema looks like today — gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
 
-      <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The board where markets generated with no sense of today's date turned up already expired.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Row-Level Security Doesn't Throw, It Filters</h2>
 
@@ -706,6 +810,7 @@ export const blogPosts: BlogPost[] = [
     date: "August 1, 2026",
     readTime: "4 min read",
     coverImage: "/blog/designing-for-trust-when-the-product-is-the-risk-cover.jpg",
+    coverCaption: "When meeting a stranger is the product, trust can't be a feature you add in v2.",
     tags: ["Product Design", "Trust", "Healthcare"],
     slug: "designing-for-trust-when-the-product-is-the-risk",
     content: `
@@ -718,7 +823,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">A Credential Is a Gate, Not a Badge</h2>
       <figure class="my-8">
         <img src="/blog/designing-for-trust-when-the-product-is-the-risk-body.jpg" alt="A padlock on a gate — verification that actually blocks something, rather than a badge that decorates it" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@dizzydizz?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Zaqy Al Fattah</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Verification that actually blocks something, rather than a badge that decorates a listing. <span class="opacity-70">Photo by <a href="https://unsplash.com/@dizzydizz?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Zaqy Al Fattah</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>HerbaLink connects people with herbalists. The obvious design is a checkmark next to a name and an upload form somewhere in settings. I built the other version, where credentials are the gate.</p>
@@ -747,7 +852,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>What moved it was the audit trail sitting next to the record instead of in a separate log nobody opened. Compliance could see who changed what without asking anyone, so compliance stopped being the obstacle and started advocating for the tool. Visibility bought adoption. No amount of interface polish had.</p>
 
-      <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The small disclosures two strangers trade before meeting. Trust gets built out of specifics, not reassurance.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What This Costs You</h2>
 
@@ -764,6 +872,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 25, 2026",
     readTime: "4 min read",
     coverImage: "/blog/why-enterprise-tools-lose-to-excel-cover.jpg",
+    coverCaption: "Every enterprise tool is competing with a spreadsheet somebody already knows how to use.",
     tags: ["Enterprise", "Product Design", "Adoption"],
     slug: "why-enterprise-tools-lose-to-excel",
     content: `
@@ -774,7 +883,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What the Spreadsheet Is Actually Beating You On</h2>
       <figure class="my-8">
         <img src="/blog/why-enterprise-tools-lose-to-excel-body.jpg" alt="A desk covered in paperwork — the workflow an enterprise tool is really competing against" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The workflow an enterprise tool is really competing against — not the last tool, the habit. <span class="opacity-70">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>It fits the work exactly, because the person doing the work built it. Not approximately. Exactly, down to the column they added last Thursday for the one deal that behaves differently from every other deal.</p>
@@ -807,7 +916,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Fragmentation is the one thing a spreadsheet cannot fix, because the standard response to fragmentation is another spreadsheet. Being one place beats being better at any single thing.</p>
 
-      <img src="/images/investor-loan-app/loan-officer.webp" alt="The orderbook with the audit trail next to the record, rather than in an admin tool nobody opens" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/investor-loan-app/loan-officer.webp" alt="The orderbook with the audit trail next to the record, rather than in an admin tool nobody opens" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The audit trail next to the record instead of in an admin tool nobody opens. That's what made compliance argue for the platform.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Design Rules I Actually Use Here</h2>
 
@@ -831,6 +943,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 22, 2026",
     readTime: "5 min read",
     coverImage: "/blog/taste-is-the-whole-job-cover.jpg",
+    coverCaption: "When generating is free, the scarce thing is knowing which output to keep.",
     tags: ["AI", "Craft", "Product Design"],
     slug: "taste-is-the-whole-job",
     content: `
@@ -841,7 +954,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Twenty-Two Seconds to Six</h2>
       <figure class="my-8">
         <img src="/blog/taste-is-the-whole-job-body.jpg" alt="Hand tools on a workshop wall — the craft is choosing which one to reach for" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@vatsaltyagi?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Vatsal Tyagi</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When every tool is within reach, the craft is knowing which one to pick up. <span class="opacity-70">Photo by <a href="https://unsplash.com/@vatsaltyagi?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Vatsal Tyagi</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -853,7 +966,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Taste is knowing which good practice doesn't apply here.</p>
 
-      <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong; it just felt wrong.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Bug Nobody Would Have Reported</h2>
 
@@ -903,6 +1019,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 18, 2026",
     readTime: "4 min read",
     coverImage: "/blog/scope-discipline-when-building-is-cheap-cover.jpg",
+    coverCaption: "Building got cheap. Deciding what not to build is now the expensive half.",
     tags: ["Product Design", "AI", "Craft"],
     slug: "scope-discipline-when-building-is-cheap",
     content: `
@@ -913,7 +1030,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Bill You Still Get</h2>
       <figure class="my-8">
         <img src="/blog/scope-discipline-when-building-is-cheap-body.jpg" alt="A handwritten list on a notebook — deciding what stays and what gets crossed off" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The list matters less than the crossings-out. Deciding what doesn't get built is the expensive part now. <span class="opacity-70">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>Build time was never the real price of a feature. It was the part you could see.</p>
@@ -948,7 +1065,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>If a feature only survives on the grounds that it was easy to build, that is not a reason. That is the absence of one.</p>
 
-      <img src="/images/firelion-spelling-combo.webp" alt="Fire Lion mid-combo — what survived after the daily missions, streaks and upgrade screens were cut" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/firelion-spelling-combo.webp" alt="Fire Lion mid-combo — what survived after the daily missions, streaks and upgrade screens were cut" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">What was left after the daily missions, streaks and upgrade screens came out. The game got better every time I cut one.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Deleting After You Ship Got Easier</h2>
 
@@ -967,6 +1087,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 11, 2026",
     readTime: "4 min read",
     coverImage: "/blog/how-to-interview-a-designer-now-cover.jpg",
+    coverCaption: "Portfolios stopped separating people. What you ask in the room has to do that work now.",
     tags: ["Hiring", "Career", "AI"],
     slug: "how-to-interview-a-designer-now",
     content: `
@@ -977,7 +1098,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Stop Grading the Artifact</h2>
       <figure class="my-8">
         <img src="/blog/how-to-interview-a-designer-now-body.jpg" alt="Two people working through a problem at a whiteboard" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@kaleidico?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Kaleidico</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part of an interview worth keeping: watching someone reason in front of you, instead of reviewing what they shipped. <span class="opacity-70">Photo by <a href="https://unsplash.com/@kaleidico?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Kaleidico</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>A portfolio used to be evidence of two things at once: this person can produce work at this level, and this person cared enough to finish. Both inferences were reliable for a long time and <a href="/blog/everyones-portfolio-looks-good-now" class="text-primary underline underline-offset-2 hover:text-primary/80">neither one survived polish becoming free</a>. A demo has the same problem. <a href="/blog/shipping-got-cheap-hiring-got-harder" class="text-primary underline underline-offset-2 hover:text-primary/80">A working prototype used to prove somebody had the skill to build it</a>, and now it proves they had a weekend.</p>
@@ -1016,7 +1137,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Somebody who accepts the first plausible answer will do that on your product too, every day, at speed.</p>
 
-      <img src="/images/investor-loan-app/my-deals-list-view.jpg" alt="My Deals — the screen loan officers recognised as their own job, which is the answer an interview should surface" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/investor-loan-app/my-deals-list-view.jpg" alt="My Deals — the screen loan officers recognised as their own job, which is the answer an interview should surface" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The screen loan officers recognised as their own job. Getting there is what an interview should be trying to surface.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The One Thing I Would Not Skip</h2>
 
@@ -1033,6 +1157,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 9, 2026",
     readTime: "4 min read",
     coverImage: "/blog/designer-who-codes-argument-is-over-cover.jpg",
+    coverCaption: "The argument didn't get won. The gap it was about closed.",
     tags: ["Career", "AI", "Product Design"],
     slug: "designer-who-codes-argument-is-over",
     content: `
@@ -1043,7 +1168,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What This Doesn't Mean</h2>
       <figure class="my-8">
         <img src="/blog/designer-who-codes-argument-is-over-body.jpg" alt="Hands on a keyboard — the gap between designing a thing and shipping it" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The gap between designing a thing and shipping it, which used to be somebody else's problem. <span class="opacity-70">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1051,7 +1176,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>It means you can take your own idea all the way to something a stranger can use, without a second person's calendar in the way. That's the whole claim.</p>
 
-      <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window — designed and built by the same person, which is why the seams line up.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Handoff Was Always the Expensive Part</h2>
 
@@ -1108,6 +1236,7 @@ export const blogPosts: BlogPost[] = [
     date: "June 26, 2026",
     readTime: "4 min read",
     coverImage: "/blog/shipping-got-cheap-hiring-got-harder-cover.jpg",
+    coverCaption: "More people shipping polished work, and fewer signals left to tell them apart.",
     tags: ["Career", "Hiring", "AI"],
     slug: "shipping-got-cheap-hiring-got-harder",
     content: `
@@ -1118,7 +1247,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Demo Is No Longer the Proof</h2>
       <figure class="my-8">
         <img src="/blog/shipping-got-cheap-hiring-got-harder-body.jpg" alt="A stack of applications on a desk" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@resumegenius?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Resume Genius</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">More applicants, all of them shipping polished work. The screen that used to filter people stopped filtering. <span class="opacity-70">Photo by <a href="https://unsplash.com/@resumegenius?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Resume Genius</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1128,7 +1257,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Those questions survive because you can only answer them by having lived through it.</p>
 
-      <img src="/images/herbalink/herbalist-directory.webp" alt="A product that works with nobody on it — the kind of outcome a portfolio usually hides" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/herbalink/herbalist-directory.webp" alt="A product that works with nobody on it — the kind of outcome a portfolio usually hides" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A product that works with nobody on it. That's the kind of outcome a portfolio usually leaves out.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Junior Pipeline Has a Real Problem</h2>
 
@@ -1183,6 +1315,7 @@ export const blogPosts: BlogPost[] = [
     date: "June 15, 2026",
     readTime: "4 min read",
     coverImage: "/blog/everyones-portfolio-looks-good-now-cover.jpg",
+    coverCaption: "When every portfolio looks good, looking good stops being the thing being measured.",
     tags: ["Portfolio", "Career", "AI"],
     slug: "everyones-portfolio-looks-good-now",
     content: `
@@ -1193,13 +1326,16 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Polish Is Table Stakes, Not Evidence</h2>
       <figure class="my-8">
         <img src="/blog/everyones-portfolio-looks-good-now-body.jpg" alt="Rows of near-identical output" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">BoliviaInteligente</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When everything is well-made, being well-made stops telling anyone anything. <span class="opacity-70">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">BoliviaInteligente</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
       <p>Being well-presented no longer earns you anything. It just avoids losing you something. Budget for it accordingly: get it clean, then stop, because additional polish past that point buys nothing and eats the time you should be spending on substance.</p>
 
-      <img src="/images/bz-essentials/design-system.webp" alt="A design system documented from the code it actually runs on, rather than a mood board" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/bz-essentials/design-system.webp" alt="A design system documented from the code it actually runs on, rather than a mood board" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A design system documented from the code it actually runs on, rather than a mood board that never shipped.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Put the Live URL First</h2>
 
@@ -1255,6 +1391,7 @@ export const blogPosts: BlogPost[] = [
     date: "June 4, 2026",
     readTime: "4 min read",
     coverImage: "/blog/what-ai-changed-and-what-it-didnt-cover.jpg",
+    coverCaption: "What actually moved in design work, and what stayed exactly where it was.",
     tags: ["AI", "Product Design", "Process"],
     slug: "what-ai-changed-and-what-it-didnt",
     content: `
@@ -1263,7 +1400,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Changed: Being Wrong Got Cheap</h2>
       <figure class="my-8">
         <img src="/blog/what-ai-changed-and-what-it-didnt-body.jpg" alt="A designer sketching by hand" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-2 text-sm text-gray-500">Photo by <a href="https://unsplash.com/@medbadrc?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Med Badr  Chemmaoui</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part that didn't change: deciding what's worth making, before anything gets made. <span class="opacity-70">Photo by <a href="https://unsplash.com/@medbadrc?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Med Badr  Chemmaoui</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1271,7 +1408,10 @@ export const blogPosts: BlogPost[] = [
 
       <p>Now you build it and look. The cost of finding out you were wrong dropped enough that finding out is usually faster than debating. That changes how you should work, not just how fast you work.</p>
 
-      <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs my-8" />
+      <figure class="my-8">
+        <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs" />
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine poses per fighter, generated fast and then hand-tuned until a punch read as a punch. AI did the volume; the tuning was mine.</figcaption>
+      </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Changed: The Deliverable Is the Product</h2>
 

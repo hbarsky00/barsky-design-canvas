@@ -20,6 +20,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/recast/landing-light.webp",
       alt: "recastvid.com — Record it once. Send a link. The product's front door, in light mode",
+      caption: "The front door, in light mode. Record it once, send a link — the whole product is that sentence.",
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",

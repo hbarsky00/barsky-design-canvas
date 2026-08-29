@@ -6,10 +6,11 @@
   "scripts": {
     "predev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "dev": "vite",
-    "prebuild": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
+    "prebuild": "node scripts/check-image-captions.mjs && npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "build": "vite build",
     "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
+    "check:captions": "node scripts/check-image-captions.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "capture-bodies": "npx tsx scripts/capture-prerendered-bodies.ts"

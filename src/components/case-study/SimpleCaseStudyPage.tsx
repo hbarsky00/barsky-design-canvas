@@ -19,11 +19,13 @@ export interface SimpleCaseStudyImage {
   src: string;
   alt: string;
   /**
-   * Shown under the figure. Falls back to `alt` — fine when the alt text
-   * already reads as a caption, but they're different jobs and the older
-   * studies carry captions that say more than their alt does.
+   * Shown under the figure. REQUIRED, and deliberately not optional — there
+   * used to be a `?? alt` fallback here and half the studies quietly took it,
+   * printing a screen-reader description under the image where a caption
+   * should have been. Alt says what the picture *is*; a caption says what it
+   * *proves*. Every image on this site carries one.
    */
-  caption?: string;
+  caption: string;
   /** Short observations tied to this image — what to notice, and why. */
   notes?: string[];
   /**
@@ -259,6 +261,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 <CaseStudyHeroMedia
                   src={heroImage.src}
                   alt={heroImage.alt}
+                  caption={heroImage.caption}
                   hoverVideo={heroImage.hoverVideo}
                   width={heroImage.width}
                   height={heroImage.height}
@@ -407,7 +410,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                         key={`${img.src}-${idx}`}
                         src={img.src}
                         alt={img.alt}
-                        caption={img.caption ?? img.alt}
+                        caption={img.caption}
                         notes={img.notes}
                         width={img.width}
                         height={img.height}
@@ -429,7 +432,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                         <CaseStudyFigure
                           src={img.src}
                           alt={img.alt}
-                          caption={img.caption ?? img.alt}
+                          caption={img.caption}
                           notes={img.notes}
                           width={img.width}
                           height={img.height}

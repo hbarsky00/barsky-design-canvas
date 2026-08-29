@@ -12,6 +12,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/splittime/hero.webp",
       alt: "SplitTime co-parenting platform overview",
+      caption: "A shared record both parents can point at, instead of a chat thread they can both argue about.",
     }}
     blocks={[
       {
@@ -30,8 +31,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Templates for the 80% of co-parenting communication that's the same conversation every week strip the emotional charge out of routine messages.",
         ],
         images: [
-          { src: "/images/splittime/app-screens.webp", alt: "The shipped app — structured requests, shared schedule, and child profile in one place" },
-          { src: "/images/splittime/features.webp", alt: "Feature and workflow breakdown of what actually shipped" },
+          { src: "/images/splittime/app-screens.webp", alt: "The shipped app — structured requests, shared schedule, and child profile in one place", caption: "What shipped: structured requests, the shared schedule and the child profile, in one place." },
+          { src: "/images/splittime/features.webp", alt: "Feature and workflow breakdown of what actually shipped", caption: "The workflow underneath — ask, then approve, decline or counter, then a stamped timestamp. Templates cover the 80% that's the same conversation every week." },
         ],
       },
       {
@@ -41,7 +42,7 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Knowing the record exists changes how people communicate — it's not surveillance, it's the guardrail that makes both parties calmer.",
         ],
         images: [
-          { src: "/images/splittime/messaging.png", alt: "Structured requests instead of open chat — ask, approve or counter, timestamped" },
+          { src: "/images/splittime/messaging.png", alt: "Structured requests instead of open chat — ask, approve or counter, timestamped", caption: "Structured requests instead of open chat. There's no room left for tone, and what remains is a clean record." },
         ],
       },
       {
@@ -51,9 +52,9 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one.",
         ],
         images: [
-          { src: "/images/splittime/early-dashboard.webp", alt: "The first dashboard — it replicated too much of what co-parents already had" },
-          { src: "/images/splittime/dashboard-concept.png", alt: "Concept exploration from the version that tried to be a full messaging app" },
-          { src: "/images/splittime/wireframing.webp", alt: "User flow explorations from the same pass" },
+          { src: "/images/splittime/early-dashboard.webp", alt: "The first dashboard — it replicated too much of what co-parents already had", caption: "The first dashboard, which replicated too much of what co-parents already had." },
+          { src: "/images/splittime/dashboard-concept.png", alt: "Concept exploration from the version that tried to be a full messaging app", caption: "The version that tried to be a full messaging app. Open messaging is exactly where the conflict lives." },
+          { src: "/images/splittime/wireframing.webp", alt: "User flow explorations from the same pass", caption: "Flow explorations from the same pass, before free-form messaging came out entirely." },
         ],
       },
       {
@@ -63,8 +64,8 @@ const StructuredSplittimeCaseStudy: React.FC = () => (
           "That's the response I was designing for.",
         ],
         images: [
-          { src: "/images/splittime/child-profile.png", alt: "Child profile — both parents see the same record, so nothing depends on who remembered to pass it along" },
-          { src: "/images/splittime/documents.webp", alt: "Document storage — the shared, timestamped record parents can point at instead of arguing from memory" },
+          { src: "/images/splittime/child-profile.png", alt: "Child profile — both parents see the same record, so nothing depends on who remembered to pass it along", caption: "Both parents read the same record, so nothing depends on who remembered to pass it along." },
+          { src: "/images/splittime/documents.webp", alt: "Document storage — the shared, timestamped record parents can point at instead of arguing from memory", caption: "Shared, timestamped storage — something to point at instead of arguing from memory." },
         ],
       },
     ]}

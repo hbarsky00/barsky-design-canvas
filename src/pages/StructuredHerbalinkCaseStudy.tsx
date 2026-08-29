@@ -15,6 +15,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
+      caption: "The promise on the front door is the practitioner, not the size of the catalogue. Everything behind it is gated on that being true.",
     }}
     relatedPost={{
       slug: "verification-is-a-door-not-a-sticker",
@@ -41,7 +42,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "I tested it the other way round. Adding 200 unverified practitioners made the product worse, because then every listing needed a judgement call from the one person who came here specifically because they couldn't make one.",
         ],
         images: [
-          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified" },
+          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild." },
         ],
       },
       {

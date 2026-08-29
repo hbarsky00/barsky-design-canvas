@@ -17,6 +17,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
       src: "/images/stips/landing.jpg",
       alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
+      caption: "$500 of play money and a plain question. It says play money on the way in, before anyone has to ask.",
     }}
     relatedPost={{
       slug: "if-you-make-people-do-math",
@@ -38,7 +39,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Every market carries its price, close date and volume on the card, so you can scan the board without opening anything. Markets with no bets yet say \"Be the first to trade\" rather than showing an empty chart.",
         ],
         images: [
-          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card" },
+          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart." },
         ],
       },
       {

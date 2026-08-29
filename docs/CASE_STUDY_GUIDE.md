@@ -86,7 +86,11 @@ Order on the page is fixed by the layout component. You don't control order from
 12. **`postLaunchSection`** — Long-tail metrics (`timeframe`, `usage`, `retention`, `businessImpact`).
 13. **`technicalImplementation`** — Challenges, solutions, accessibility, performance.
 
-All image arrays accept the same shape: `{ src, alt, caption?, annotations?: ImageAnnotation[] }`. Annotations are pin overlays positioned by `{ x, y }` percent.
+All image arrays accept the same shape: `{ src, alt, caption, annotations?: ImageAnnotation[] }`. Annotations are pin overlays positioned by `{ x, y }` percent.
+
+> **`caption` is required, not optional.** Every image in a case study or a blog
+> post must carry a caption, and it must not be a copy of its alt text.
+> `npm run build` fails otherwise. See [IMAGE_CAPTIONS.md](IMAGE_CAPTIONS.md).
 
 ---
 

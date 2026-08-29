@@ -12,6 +12,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       src: "/images/emailai-hero-pair.webp",
       alt: "The six-step workflow navigator beside the assemble step — Brief Creation locked, approved content pulled in on the right",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
+      caption: "Six steps, each naming the human who owns it. Brief Creation is greyed out because I didn't research it, not because it's coming later.",
     }}
     relatedPost={{
       slug: "design-for-the-approval-gates",
@@ -34,7 +35,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "That one constraint decided everything else on the screen. It's also the part I'd argue hardest for, because it's the difference between a tool that survives compliance review and a demo that doesn't.",
         ],
         images: [
-          { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right" },
+          { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for." },
         ],
       },
       {
@@ -45,7 +46,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
         ],
         images: [
-          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom" },
+          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "QC sits beside the editor instead of after it, so a rejection lands while the writer still has the context to fix it." },
         ],
       },
       {
@@ -56,7 +57,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "Both of those are me choosing to show the edges of what I actually know. In regulated work that's not modesty, it's the thing that makes the rest of the proposal credible.",
         ],
         images: [
-          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right" },
+          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "HTML and metadata generated, previewed at both sizes before a reviewer ever sees it. The unresolved PromoMats warning is left on screen on purpose." },
         ],
       },
       {

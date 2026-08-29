@@ -82,13 +82,22 @@ const BlogPostPage: React.FC = () => {
             >
               {/* Featured Image */}
               {(metadata?.featuredImage || staticPost?.coverImage) && (
-                <div className="w-full h-96 overflow-hidden">
-                  <img
-                    src={metadata?.featuredImage || staticPost?.coverImage}
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <figure className="w-full">
+                  <div className="h-96 w-full overflow-hidden">
+                    <img
+                      src={metadata?.featuredImage || staticPost?.coverImage}
+                      alt={post.title}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  {/* Every image on this site gets a caption. The cover is no
+                      exception — it is the one image every reader sees. */}
+                  {staticPost?.coverCaption && (
+                    <figcaption className="px-5 pt-3 text-sm leading-relaxed text-muted-foreground sm:px-8 lg:px-12">
+                      {staticPost.coverCaption}
+                    </figcaption>
+                  )}
+                </figure>
               )}
               
               {/* Article Content */}
@@ -148,7 +157,10 @@ const BlogPostPage: React.FC = () => {
                     <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
                   )}
 
-              {post && <Comments slug={post.slug} />}
+                  {/* Keyed off the route slug, not `post` — `post` may be the
+                      database metadata record, which carries no slug at all,
+                      and Comments would have queried for `undefined`. */}
+                  {slug && <Comments slug={slug} />}
                 </div>
               </div>
             </motion.article>

@@ -15,6 +15,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       height: 1380,
       alt: "CatchBuddy pickup sports landing hero",
       hoverVideo: "/catchbuddy-card.mp4",
+      caption: "A game on Saturday, not a season. The whole front door is aimed at the person who wants one afternoon.",
     }}
     relatedPost={{
       slug: "when-trust-is-the-product",
@@ -29,7 +30,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "So the thing I actually had to solve wasn't scheduling. It was two strangers agreeing to meet at a park, and both of them feeling fine about it.",
         ],
         images: [
-          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee" },
+          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for." },
         ],
       },
       {
@@ -40,7 +41,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "None of that came out of a prompt. Those are decisions about who actually shows up to this thing and what happens on the day it goes wrong.",
         ],
         images: [
-          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities" },
+          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point." },
         ],
       },
       {
@@ -50,7 +51,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
-          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle" },
+          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet — who's bringing a ball, and whether this is contact or not." },
         ],
       },
       {
@@ -62,9 +63,9 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404 },
-          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398 },
-          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378 },
+          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "Match scores on the player cards. It's called Players now, because testers kept reading \"Matches\" as a dating app." },
+          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "The 13+ gate at sign-up — the first checkpoint in the minor-protection flow, in v1 rather than bolted on later." },
+          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number that decides whether you get a game, not a vanity counter." },
         ],
       },
       {

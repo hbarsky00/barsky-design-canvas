@@ -17,6 +17,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/bz-essentials/home.webp",
       alt: "BZ Essentials home — hero, quick access panel, and the four entry points into the portal",
+      caption: "Three domains as the front door, search as the fourth option. You can't search for a process whose name you don't know yet.",
     }}
     blocks={[
       {

@@ -14,6 +14,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
       hoverVideo: "/investor-loan-deals.mp4",
       width: 1500,
       height: 1125,
+      caption: "The deals grid and the orderbook, with the audit trail sitting next to the record instead of in an admin tool nobody opens.",
     }}
     relatedPost={{
       slug: "you-dont-replace-excel-by-being-better",
@@ -79,6 +80,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           {
             src: "/images/investor-loan-app/hero.webp",
             alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
+            caption: "Predictive search in place of filter panels. Loan officers think in name fragments and deal codes, and want the deal on screen in two keystrokes.",
           },
         ],
       },
@@ -107,12 +109,14 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             alt: "My Deals with chat, share and invite, and per-deal progress tracking",
             width: 1440,
             height: 716,
+            caption: "My Deals — the screen loan officers recognised as their own job, which is why this attempt got adopted and three before it didn't.",
           },
           {
             src: "/images/investor-loan-app/manage-loan-limits.jpg",
             alt: "Manage Loan Limits with utilization bars, total limit and available credit per borrower",
             width: 1080,
             height: 1097,
+            caption: "Utilisation, total limit and available credit per borrower. These are the numbers the spreadsheet was holding with no validation behind them.",
           },
         ],
       },
