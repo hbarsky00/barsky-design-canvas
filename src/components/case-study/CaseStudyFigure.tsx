@@ -176,6 +176,9 @@ export interface CaseStudyClipProps {
   poster?: string;
   caption: string;
   className?: string;
+  /** Intrinsic size. Same no-upscaling rule the figures follow. */
+  width?: number;
+  height?: number;
 }
 
 /**
@@ -188,6 +191,8 @@ export const CaseStudyClip: React.FC<CaseStudyClipProps> = ({
   poster,
   caption,
   className = "",
+  width,
+  height,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const ref = useReveal<HTMLElement>();
@@ -211,11 +216,16 @@ export const CaseStudyClip: React.FC<CaseStudyClipProps> = ({
 
   return (
     <figure ref={ref} className={className}>
-      <div className="overflow-hidden rounded-xs border border-border bg-card shadow-sm">
+      <div
+        className="mx-auto overflow-hidden rounded-xs border border-border bg-card shadow-sm"
+        style={width ? { maxWidth: `${width}px` } : undefined}
+      >
         <video
           ref={videoRef}
           src={src}
           poster={poster}
+          width={width}
+          height={height}
           muted
           loop
           playsInline

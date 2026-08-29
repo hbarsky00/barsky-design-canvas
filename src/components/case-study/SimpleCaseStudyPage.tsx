@@ -63,6 +63,13 @@ export interface SimpleCaseStudyVideo {
    * and waits to be played, instead of looping silently in the background.
    */
   narrated?: boolean;
+  /**
+   * Intrinsic size, same job as on an image: refuse to upscale. A 430px-wide
+   * phone capture blown across a 1150px column is a soft rectangle two
+   * thousand pixels tall.
+   */
+  width?: number;
+  height?: number;
 }
 
 export interface SimpleCaseStudyQuote {
@@ -386,6 +393,8 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                           src={v.src}
                           poster={v.poster}
                           caption={v.caption}
+                          width={v.width}
+                          height={v.height}
                         />
                       )
                     )}

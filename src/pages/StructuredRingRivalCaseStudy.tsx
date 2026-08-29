@@ -26,6 +26,23 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
+        heading: "What I'm Working On Right Now",
+        paragraphs: [
+          "The star punch. You bank stars by landing counters, and the meter above the gloves is what you spend them from. Getting the meter, the wind-up and the hit to agree with each other is the whole job \u2014 if the star burns a frame before the punch connects, the reward stops feeling earned and starts feeling scripted.",
+          "This is a phone capture of the current build, title screen through to a knockdown against Tor Volkov. It is the newest thing on this page and it is not finished.",
+        ],
+        videos: [
+          {
+            src: "/ring-rival-star-punch.mp4",
+            poster: "/images/ringrival-now/star-punch-poster.jpg",
+            width: 430,
+            height: 820,
+            caption:
+              "Star punch landing on Tor Volkov, straight into the count. Recorded on a phone at the size it is actually played, because that is the only screen the timing has to feel right on.",
+          },
+        ],
+      },
+      {
         heading: "Why I Built It",
         paragraphs: [
           "Every boxing game I've liked was on a console, and there's a reason for that. The punch has to land the instant your thumb moves. The animation has to read as a body hitting another body. The opponent has to feel like it's thinking. You get none of that for free in a browser.",
