@@ -148,6 +148,101 @@ quiet machine next run and confirm.
   Repointed to `/services` in passing, but none of that component's `<meta>`
   tags are real — same class of fiction as the `usePageIndexing` known-open item.
 
+### Out of rotation — 2026-08-29 — `/about` was still publishing invented client outcomes
+
+SEO/AEO was the staler half (AEO last ran 2026-08-23, design 2026-08-27). Lever
+3 is still next and stays unticked: this was not a lever, it was a hard-rule
+violation found while diagnosing, and it outranked the rotation.
+
+**Diagnosed.** Route meta is clean (`seo_audit_all_routes.py`: 43 routes, 0
+problems; llms.txt scores 90/100, 43/43 links valid), so the weakness was not
+technical. Measuring served word count per route put `/about` at **461 words** —
+the thinnest page on the site apart from `/store` and `/contact`, and it is the
+page an answer engine reads to decide who Hiram is. Reading what those 461 words
+actually said turned up the real problem.
+
+The "Professional Journey" on `/about`, and the identical experience section on
+the **homepage**, were crediting Hiram with thirteen performance percentages
+attributed to six named employers:
+
+| employer | claim |
+|---|---|
+| PNC | "boosting engagement by 40% and raising satisfaction scores by 25%" |
+| Bank of America | "cutting errors by 15% and lifting engagement by 10%" |
+| Deloitte | "Elevated platform engagement by 20%" |
+| Tata Consultancy Services | "drove a 15% revenue lift"; "reducing support workload by 10%" |
+| KPMG | "reduced client costs by 10% and increased platform revenue by 14%" |
+| Express Scripts | "improved satisfaction and engagement by 30%, while cutting project turnaround by 20%" |
+
+Nothing in this repo supports any of them. `git log` puts every one on
+**`gpt-engineer-app[bot]`**, Aug/Sep 2025 — the same generator that wrote "47+
+successful projects", "40%+ conversion", "$150-250/hour" and "WCAG 2.1 AA
+certified", all of which the 2026-07-15 honesty pass removed. That pass cleaned
+the FAQ and never reached these two files, so the claims kept being served on the
+site's two most important pages. `/about` was the last unswept Lovable-era page.
+
+The same array existed **twice**, hand-copied — `components/about/
+ProfessionalJourney.tsx` and `components/home/RecentAdventuresSection.tsx` —
+which is how one fabrication came to be served on two pages.
+
+`/about` also contradicted itself: H1 "About Hiram Barsky - UX/UI Designer & AI
+Developer" and subhead "Gen AI Developer focused on building AI-powered digital
+experiences", against the page's own title tag "About Hiram Barsky — Designer
+and Developer". The AI-first framing is explicitly retired positioning.
+
+**Changed.**
+- New `src/data/careerHistory.ts` — one source of truth, with its provenance and
+  the removal written into the file header so it cannot quietly drift back.
+  Both components import it; neither holds copy any more.
+- Descriptions fixed **by subtraction**: each is what was left of the original
+  sentence once the unverifiable quantity came out. Nothing added, nothing
+  reworded into a new claim. Roles, employers and dates untouched — those are
+  biography and were never the problem.
+- `PersonalStory.tsx` — H1 now matches the title tag; subhead states the settled
+  positioning; "My Story" replaced AI-hype with specifics that trace to the
+  employer list and to five live products, each linked to its case study.
+- `WorkingWithMe.tsx` — the four cards were interchangeable filler, and
+  "Results-Driven: measurable outcomes like conversion improvements" was the same
+  implied metrics claim in another costume. Replaced with four checkable ones.
+  WCAG stays a practice ("I build to WCAG 2.1 AA"), never a credential.
+
+**Measured.** `npx tsc --noEmit` clean, `npm run build` clean at 43/43
+prerendered. The first rebuild still served all thirteen numbers — the
+prerendered snapshots were stale — so `npm run capture-bodies` was re-run
+(**43/43 routes, 0 failures**, `/projects` still resolved) and the site rebuilt.
+Verified against **barskydesign.pro**, not a local build:
+
+| check | before | after |
+|---|---|---|
+| fabricated-metric occurrences on `/` + `/about` | **13** | **0** |
+| banned AI-first positioning on `/about` | 1 | **0** |
+| `/about` words served to a non-JS crawler | 461 | **563** |
+| case-study links on `/about` | 0 | **5** |
+
+Rendered and checked at 1440px and 375px: no horizontal overflow (scrollWidth
+375 = clientWidth, 0 offending elements), career entries render at opacity 1
+with the honest copy.
+
+**Left open / FLAGGED:**
+- **The thirteen numbers, if any are real.** Removed because nothing sourced
+  them, exactly as the hourly rate and the WCAG credential were. If Hiram
+  measured any of them, they can go back — from him, with a source.
+- **FLAGGED — `/about`'s meta description names AstraZeneca**, which appears
+  nowhere in the career history; the sixth role is Express Scripts. One of the
+  two is wrong and only Hiram knows which.
+- **The header badge still reads "Product Designer + AI"** on every page — the
+  retired positioning, surviving in a component this change did not touch.
+  Sitewide, so it wants its own run.
+- **`SkillsShowcase.tsx` is still bot-generated** — "Webflow", "Adobe Creative
+  Suite", "A/B Testing", "Conversion Optimization". Not metrics, so not urgent,
+  but nothing verifies that list either.
+- **FLAGGED — this push also carried `9ad446df` ("Caption every image...")**, an
+  unpushed commit left in the working tree by another session. It deployed with
+  this change and was not reviewed here. No concurrent writer was active during
+  this run (the only trace was a stale `vite preview --strictPort 4199` from
+  Aug 27, killed before starting), so the collisions of 2026-08-23 and 08-27 did
+  not recur.
+
 ### Flagged for Hiram — facts only he has
 
 - **Hourly rate.** The old FAQ published "$150-250/hour". Nothing verified it,
