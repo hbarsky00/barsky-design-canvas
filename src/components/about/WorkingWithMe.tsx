@@ -1,29 +1,44 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Clock, Users, Zap } from 'lucide-react';
+import { CheckCircle, ShieldCheck, Users, Zap } from 'lucide-react';
 
+/**
+ * Rewritten 2026-08-29.
+ *
+ * The four cards here were gpt-engineer-app[bot] filler: "AI-Enhanced
+ * Solutions" (the AI-first positioning this site retired), "Rapid Delivery"
+ * ("fast turnaround times"), "Collaborative Approach", and "Results-Driven"
+ * — which promised "measurable outcomes like conversion improvements",
+ * an implied metrics claim of exactly the kind the honesty passes removed
+ * elsewhere. None of the four said anything a competitor could not have said.
+ * Replaced with things that are specific to Hiram and checkable on this site.
+ */
 const WorkingWithMe: React.FC = () => {
   const benefits = [
     {
       icon: Zap,
-      title: "AI-Enhanced Solutions",
-      description: "Leverage cutting-edge AI to create smarter, more efficient user experiences"
+      title: "One person, both halves",
+      description:
+        "You are not handing a design file to a separate engineering team. I design it and I build it, so the thing that ships is the thing that was designed."
     },
     {
-      icon: Clock,
-      title: "Rapid Delivery",
-      description: "Fast turnaround times without compromising on quality or attention to detail"
-    },
-    {
-      icon: Users,
-      title: "Collaborative Approach", 
-      description: "Work closely with your team to ensure designs align with business goals"
+      icon: ShieldCheck,
+      title: "Regulated-industry experience",
+      description:
+        "Fifteen years across banking, healthcare and pharma — work that has to clear review before it can ship. I build to WCAG 2.1 AA."
     },
     {
       icon: CheckCircle,
-      title: "Results-Driven",
-      description: "Focus on measurable outcomes like conversion improvements and user engagement"
+      title: "Shipped, not just designed",
+      description:
+        "Five of my own products are live. Everything I recommend, I have had to build, launch and then maintain myself."
+    },
+    {
+      icon: Users,
+      title: "You talk to the person doing the work",
+      description:
+        "No account manager and no design-to-development handoff in the middle. Remote, working with teams anywhere."
     }
   ];
 
@@ -36,7 +51,7 @@ const WorkingWithMe: React.FC = () => {
     >
       <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
         <h2 className="text-2xl font-bold text-gray-900 mb-8 font-display">Working With Me</h2>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
