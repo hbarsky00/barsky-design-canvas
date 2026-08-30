@@ -52,7 +52,20 @@ for (const f of files) {
     const inlined = (after.match(/<style>([\s\S]*?)<\/style>/g) || [])
       .reduce((n, s) => n + s.length, 0);
     totalInlined += inlined;
-    writeFileSync(f, after);
+
+    // Beasties defers the non-critical stylesheet with
+    // onload="this.rel='stylesheet'". That is an inline event handler, and CSP
+    // blocks those once script-src drops 'unsafe-inline' — hashes do not apply
+    // to handlers, only the 'unsafe-hashes' keyword does. Left in place it
+    // silently strands every page on its inlined critical CSS.
+    //
+    // Strip the handler and let /js/css-swap.js do the promotion instead.
+    let out = after.replace(/\s*onload="this\.onload=null;?\s*this\.rel='stylesheet'"/g, "")
+                   .replace(/\s*onload="this\.rel='stylesheet'"/g, "");
+    if (out.includes('rel="preload"') && !out.includes("/js/css-swap.js")) {
+      out = out.replace("</body>", '<script src="/js/css-swap.js" defer></script></body>');
+    }
+    writeFileSync(f, out);
     ok++;
   } catch (e) {
     console.warn(`  ! ${f.replace(DIST, "")}: ${e.message.slice(0, 60)}`);
