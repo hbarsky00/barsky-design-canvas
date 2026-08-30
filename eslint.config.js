@@ -24,19 +24,28 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
-      // Anti-hardcode SEO rules
+      // Anti-hardcode SEO rules.
+      //
+      // These were written with JavaScript inside the selector string —
+      // "[openingElement.attributes.some(attr => ...)]" — which is not valid
+      // esquery. eslint threw a SyntaxError building the rule listener on every
+      // file, so `npm run lint` was dead repo-wide and nothing had been linted
+      // in a long time. esquery cannot filter on an attribute's value, so the
+      // check is now simply "no <meta>, <link> or <Helmet> in a component",
+      // with src/utils/seo/** and UnifiedSEO.tsx exempted at the bottom of this
+      // file — they are the sanctioned emitters.
       "no-restricted-syntax": [
         "error",
         {
-          selector: "JSXElement[openingElement.name.name='meta'][openingElement.attributes.some(attr => attr.name && (attr.name.name === 'name' || attr.name.name === 'property') && attr.value && /(og:|twitter:|description|robots|article:)/.test(attr.value.value))]",
+          selector: "JSXElement[openingElement.name.name='meta']",
           message: "Use UnifiedSEO/seoBuilder for meta tags. Do not hardcode <meta> in components.",
         },
         {
-          selector: "JSXElement[openingElement.name.name='link'][openingElement.attributes.some(attr => attr.name && attr.name.name === 'rel' && attr.value && attr.value.value === 'canonical')]",
-          message: "Canonical tags must be emitted by UnifiedSEO/seoBuilder.",
+          selector: "JSXElement[openingElement.name.name='link']",
+          message: "Canonical and other <link> tags must be emitted by UnifiedSEO/seoBuilder.",
         },
         {
-          selector: "JSXElement[openingElement.name.name='Helmet']:not([openingElement.parent.parent.parent.id.name='UnifiedSEO'])",
+          selector: "JSXElement[openingElement.name.name='Helmet']",
           message: "Use UnifiedSEO instead of direct Helmet usage for SEO meta tags.",
         },
       ],
