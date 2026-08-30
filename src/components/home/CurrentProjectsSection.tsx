@@ -17,7 +17,7 @@ const currentProjects: CurrentProject[] = [
     {
     id: "qr-code-creator",
     title: "Vibe-Coding a QR Code Maker",
-    description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
+    description: "A QR code maker in three steps — content, style, export. Mobile-first, and the codes don't expire.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
     thumbnailSrc: "/images/projects/d355adb5e73c.webp"
@@ -25,7 +25,7 @@ const currentProjects: CurrentProject[] = [
   {
     id: "inclusive-shopping-experience",
     title: "Creating an Inclusive Online Shopping Experience",
-    description: "Developing an accessible e-commerce platform that promotes community engagement and showcases inclusive design principles through user-friendly checkout processes and community reviews.",
+    description: "An e-commerce platform built for accessibility, focused on the checkout flow and the community reviews around it.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
     // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
@@ -51,7 +51,7 @@ const currentProjects: CurrentProject[] = [
   {
     id: "faces-of-hunger",
     title: "Faces of Hunger",
-    description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
+    description: "An awareness platform using design and AI to make food insecurity legible as people, not statistics.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
     thumbnailSrc: "/images/projects/1ad2ef714038.webp"
@@ -59,7 +59,7 @@ const currentProjects: CurrentProject[] = [
   {
     id: "crypto-app-learning",
     title: "Crypto App Learning",
-    description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
+    description: "A learning section inside a crypto app that explains blockchain concepts to people starting from zero.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
     thumbnailSrc: "/images/projects/80a0a13cdf11.webp"

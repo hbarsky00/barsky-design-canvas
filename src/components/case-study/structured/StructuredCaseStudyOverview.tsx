@@ -1,3 +1,18 @@
+/**
+ * Overview copy for the /project/:projectId fallback route.
+ *
+ * NOT rendered by any published route — all 13 project URLs have explicit
+ * routes in App.tsx that go through SimpleCaseStudyPage instead. This only
+ * renders if someone hits /project/<something-else>.
+ *
+ * Bot-era content (note "Me (Conversational Design Engineer + AI)" and the
+ * identical "1 year" durations). Three unsourced percentage claims on the
+ * investor-loan and business-management entries were removed on 2026-08-30 by
+ * subtraction, keeping the sentence and dropping the quantity: nothing sourced
+ * them, and the live QuickFlow page explicitly refuses to state an outcome
+ * number. If anything here is ever put back in front of users it needs
+ * rewriting first, not just rerouting.
+ */
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -40,7 +55,7 @@ const overviewContent: Record<string, OverviewContent> = {
     duration: "1 year"
   },
   "investor-loan-app": {
-    overview: "A private bank was managing investor loans in Excel, leading to errors, compliance risks, and delays. I designed a scalable loan platform with predictive search, guided workflows, and collaboration. The impact: 85% fewer errors, 40% faster processing, and restored trust from staff and regulators.",
+    overview: "A private bank was managing investor loans in Excel, leading to errors, compliance risks, and delays. I designed a scalable loan platform with predictive search, guided workflows, and collaboration. The impact: fewer errors, faster processing, and restored trust from staff and regulators.",
     goals: [
       "Replace Excel chaos with predictive workflows.",
       "Give loan officers speed and confidence.",
@@ -52,7 +67,7 @@ const overviewContent: Record<string, OverviewContent> = {
     duration: "1 year"
   },
   "business-management": {
-    overview: "Small businesses struggled with scattered tools for scheduling, invoicing, and tasks. I designed a unified platform to consolidate operations into one app. The vision: reduce admin overload and free up time. The result: 35% less time spent on manual tasks.",
+    overview: "Small businesses struggled with scattered tools for scheduling, invoicing, and tasks. I designed a unified platform to consolidate operations into one app. The vision: reduce admin overload and free up time. The result: less time spent on manual tasks.",
     goals: [
       "Consolidate scheduling, invoicing, and task tracking.",
       "Save business owners hours each week.",

@@ -1200,8 +1200,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "/images/business-management/hero-three-laptops.jpg",
-      projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
-      results: ["68% Fewer Operation Errors", "35% faster processing", "90% user satisfaction", "Unified operations platform"],
+      projectName: "QuickFlow",
+      results: ["Unified operations platform"],
       technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
       path: "/project/business-management"
     }

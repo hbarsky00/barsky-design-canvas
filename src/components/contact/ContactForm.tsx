@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
 
       toast({
         title: "Thanks for reaching out!",
-        description: "Your message has been received. I'll get back to you soon.",
+        description: "It's in my inbox. I'll come back to you.",
         duration: 5000,
       });
       form.reset();
@@ -112,7 +112,7 @@ const ContactForm: React.FC = () => {
       <div className="mb-5">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Get in touch</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Ready to start your project? Let's discuss your needs.
+          Tell me what you're working on and where it's stuck. Short messages are fine.
         </p>
       </div>
 
