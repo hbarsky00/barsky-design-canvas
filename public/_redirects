@@ -74,6 +74,30 @@
 # always been the real index, and /project/* detail pages are untouched.
 /projects                        /#case-studies   301!
 
+# Old flat service URLs. The service pages live under /design-services/*; these
+# bare paths are from an earlier structure and are still crawled. Confirmed via
+# Search Console 2026-08-29: /web-development was answering 200 with an empty
+# #root and no canonical, which Google reads as a soft 404 rather than a move.
+/web-development       /design-services/web-development   301
+/ux-ui-design          /design-services/ux-ui-design      301
+/mobile-app-design     /design-services/mobile-app-design 301
+/design-services       /services                          301
+
+# Live products of Hiram's that were never case studies here. Each answered 200
+# with a blank document: SimplifiedProjectDetail does redirect them, but
+# client-side, so a crawler files the empty 200 as a soft 404 before React runs.
+# /project/nudgeme is confirmed in Search Console; the other two are the same
+# shape and were verified returning an empty #root on 2026-08-29.
+#
+# Listed explicitly rather than as /project/* on purpose. A wildcard here would
+# be one line instead of three, but it only stays safe as long as non-forced
+# rules never shadow the real prerendered case-study files — and if that
+# assumption is ever wrong, every case study 301s to the homepage. Not worth
+# finding out on a live portfolio to save two lines.
+/project/nudgeme       /#case-studies                     301
+/project/roi-calculator /#case-studies                    301
+/project/quickqr       /#case-studies                     301
+
 # SPA fallback — must stay last. Does not shadow real files, so the
 # per-route HTML written by scripts/inject-seo-html.ts is still served.
 #
