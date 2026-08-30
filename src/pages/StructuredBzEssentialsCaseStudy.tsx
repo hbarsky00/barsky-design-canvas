@@ -23,7 +23,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       {
         heading: "A PRD Isn't a Product",
         paragraphs: [
-          "This started as a requirements document for an internal knowledge portal — the place a marketing team goes to find the process, the template or the guideline they're supposed to be following.",
+          "This started as a requirements document for an internal knowledge portal: the place a marketing team goes to find the process, the template or the guideline they're supposed to be following.",
           "A PRD can describe an information architecture in a way that sounds fine and falls apart the moment it's clickable. So I built it. Three domains, four categories under each, and a set of documents with the metadata a real one would carry: owner, department, version, status, region, attachments, related items.",
           "It's a prototype under a made-up brand, and the footer says so. What's real is the structure and the behaviour underneath it.",
         ],
@@ -42,9 +42,9 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       {
         heading: "Region Is a Lens, Not a Filter",
         paragraphs: [
-          "The requirement was that some content is global, some is US-only. The obvious build is a filter in the search page. That's wrong, because the person who needs it most is the one who never opens search — they follow a link, land on a document, and have no idea it doesn't apply to their market.",
+          "The requirement was that some content is global, some is US-only. The obvious build is a filter in the search page. That's wrong, because the person who needs it most is the one who never opens search. They follow a link, land on a document, and have no idea it doesn't apply to their market.",
           "So region is a lens on the whole app instead. It lives in a context provider, it's set once in the header, and every surface reads through it: the counts on the category cards, the featured lists, the search results, the badge on an individual document.",
-          "The rule that makes it work is small. Content marked Both is always visible, and everything else has to match the region you're in. That means switching to US doesn't hide most of the portal, it adds the US-specific material on top of the shared set — which is the behaviour people expect and the opposite of what a naive equality check would do.",
+          "The rule that makes it work is small. Content marked Both is always visible, and everything else has to match the region you're in. That means switching to US doesn't hide most of the portal. It adds the US-specific material on top of the shared set, which is the opposite of what a naive equality check would do.",
         ],
         images: [
           { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number." },
@@ -53,7 +53,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       {
         heading: "The Metadata Is the Product",
         paragraphs: [
-          "The thing people actually need from a portal like this isn't the file. It's the answer to \"can I use this?\" — who owns it, which version this is, whether it's approved or still in review, when it last changed, and whether it applies to my region.",
+          "The thing people actually need from a portal like this isn't the file. It's the answer to \"can I use this?\": who owns it, which version this is, whether it's approved or still in review, when it last changed, and whether it applies to my region.",
           "So the document page leads with that panel rather than burying it under the download. Status, owner, department, version, dates and region sit together on the right, where you read them before you commit to anything.",
           "Related documents sit at the bottom as real links between records, not a \"you might also like\" strip. In a compliance context the related item is usually the thing that governs the one you're reading, which is worth more than a recommendation.",
         ],
@@ -67,7 +67,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         paragraphs: [
           "Search-first would have been the faster build. It's also the wrong default here, because someone new to this material can't search for a process whose name they don't know yet. Browsing is how you learn what exists.",
           "So the front door is three domains, each with its own colour and its own landing page, and search sits alongside them as the fourth option rather than the only one.",
-          "Search is then built for the other half of the audience — the people who know exactly what they want. Facets for business area, region, document type and status, filtering a live result count, because in this kind of library the useful question is usually \"approved templates for the US\" and not a keyword at all.",
+          "Search is then built for the other half of the audience: the people who know exactly what they want. Facets for business area, region, document type and status, filtering a live result count, because in this kind of library the useful question is usually \"approved templates for the US\" and not a keyword at all.",
         ],
         images: [
           { src: "/images/bz-essentials/search.webp", alt: "Search and browse — faceted filters for business area, region, document type and status beside a result grid", caption: "Facets, not a smarter keyword match. The filters are the query." },
@@ -76,9 +76,9 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It's live at az-essentials.netlify.app and you can click all of it — the region switch, the domains, the facets, the document pages.",
+          "It's live at az-essentials.netlify.app and you can click all of it: the region switch, the domains, the facets, the document pages.",
           "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample rather than a full library, the brand is invented, and there's no authentication or CMS behind it. Nothing here is an official system for anyone.",
-          "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision is the one I'd defend — it only looks obvious once you've seen the version where it's a filter nobody opens.",
+          "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision only looks obvious once you have seen the version where it is a filter nobody opens.",
         ],
       },
     ]}

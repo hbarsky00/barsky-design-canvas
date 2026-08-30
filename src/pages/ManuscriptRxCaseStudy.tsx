@@ -31,8 +31,8 @@ const ManuscriptRxCaseStudy: React.FC = () => (
         heading: "The AI Works Between the Humans, Not Instead of Them",
         paragraphs: [
           "The obvious version is \"drop the manuscript in, get an email out.\" It demos well and it's wrong, because the two weeks aren't spent writing. They're spent waiting at review gates that exist for legal reasons and aren't going anywhere.",
-          "So I inverted it. Every step a human is legally accountable for stays with the human. Everything between those steps — assembling approved content, pulling the market-specific compliance blocks, generating the HTML, running the metadata checks — is the AI's job.",
-          "That one constraint decided everything else on the screen. It's also the part I'd argue hardest for, because it's the difference between a tool that survives compliance review and a demo that doesn't.",
+          "So I inverted it. Every step a human is legally accountable for stays with the human. Everything between those steps belongs to the AI: assembling approved content, pulling the market-specific compliance blocks, generating the HTML, running the metadata checks.",
+          "That one constraint decided everything else on the screen. It is the difference between a tool that survives compliance review and a demo that doesn't.",
         ],
         images: [
           { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for." },
@@ -41,7 +41,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "Six Steps, Each With an Owner",
         paragraphs: [
-          "The workflow is six steps and every one names who owns it. That sounds like project management rather than design, and in regulated work it's the whole design — an unowned step is where two weeks goes.",
+          "The workflow is six steps and every one names who owns it. That sounds like project management rather than design, and in regulated work it is the design. An unowned step is where two weeks goes.",
           "QC sits inline with editing instead of after it. AI auto-pass, Content Ops and Med Writer all sign off while the writer is still in the content, so a rejection arrives while there's still context to act on it.",
           "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
         ],
@@ -50,11 +50,10 @@ const ManuscriptRxCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "What I Left Locked, On Purpose",
+        heading: "What I Left Locked",
         paragraphs: [
           "Brief Creation is visible in the navigator and locked, labelled \"outside pilot scope.\" The brief is written upstream by people I didn't design for, and drawing a screen for it would have been me inventing a process I hadn't researched.",
           "The PromoMats integration warning stays on screen rather than being tidied away before the screenshot. It's an unresolved dependency, and a reviewer who spots it in a real pilot has a much worse day than one who was told up front.",
-          "Both of those are me choosing to show the edges of what I actually know. In regulated work that's not modesty, it's the thing that makes the rest of the proposal credible.",
         ],
         images: [
           { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "HTML and metadata generated, previewed at both sizes before a reviewer ever sees it. The unresolved PromoMats warning is left on screen on purpose." },

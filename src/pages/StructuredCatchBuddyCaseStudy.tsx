@@ -24,21 +24,20 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "Why I Built It",
+        heading: "Most People Just Want a Game on Saturday",
         paragraphs: [
           "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season. They want commitment, a schedule, a recurring team. Most people just want a game on Saturday.",
-          "So the thing I actually had to solve wasn't scheduling. It was two strangers agreeing to meet at a park, and both of them feeling fine about it.",
+          "The problem was never scheduling. It was getting two strangers to agree to meet at a park with both of them feeling fine about it.",
         ],
         images: [
           { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for." },
         ],
       },
       {
-        heading: "Safety Wasn't a Feature, It Was the Whole Thing",
+        heading: "A Parent Verifies Before a Kid Can Post",
         paragraphs: [
           "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game. And the meeting spots are a list I curated, not somewhere any user can drop a pin.",
-          "That last one gets argued with a lot. Letting people add their own locations is more flexible and it is obviously the wrong call here.",
-          "None of that came out of a prompt. Those are decisions about who actually shows up to this thing and what happens on the day it goes wrong.",
+          "That last one gets argued with a lot. Letting people add their own locations is more flexible, and I still won\u2019t do it.",
         ],
         images: [
           { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point." },
@@ -71,7 +70,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "The palette is warm deliberately. A trust product that looks like a fintech dashboard reads as a company rather than a neighbour, and the safety states had to sit inside the same system from v1 instead of arriving later as status chips.",
+          "I made the palette warm. A trust product that looks like a fintech dashboard reads as a company rather than a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
         ],
         images: [
           { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration." },
@@ -81,7 +80,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It shipped. Auth, RLS, Stripe, Google OAuth, realtime updates, the minor-approval flow and the curated meeting spots, designed and built by me.",
-          "The safety layer went in first, in v1, which is the only reason it holds together. Bolting that on afterwards never works.",
+          "The safety layer went in first, in v1. Every product I have seen add one later ended up with a settings screen nobody opens.",
         ],
         videos: [
           {
@@ -89,7 +88,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             poster: "/images/catchbuddy-walkthrough-poster.jpg",
             narrated: true,
             caption:
-              "The full walkthrough, with me talking through it — posting a game, picking a park, equipment and preferences, then the safety layer: emergency contacts, phone verification, and the minor gate.",
+              "The full walkthrough, with me talking through it. Posting a game, picking a park, equipment and preferences, then the safety layer: emergency contacts, phone verification, and the minor gate.",
           },
         ],
       },

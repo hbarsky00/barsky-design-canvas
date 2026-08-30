@@ -6,15 +6,42 @@ How project pages are wired so you can swap or replace a case study without pain
 
 ## TL;DR — to add or replace a case study
 
-1. Open `src/data/structuredCaseStudies.ts`.
-2. Copy an existing entry in the `structuredCaseStudies` object (e.g. `crypto`) and rename the key + `id` to your new slug (e.g. `myproject`).
-3. Fill in only the sections you want — every section is optional except `id`, `title`, `description`, `tags`.
-4. Route is automatic via the dynamic `/project/:slug` route. If you want a custom route or static SEO, add an entry to `src/data/seoData.ts`.
-5. **Add to the homepage "Featured Case Studies" grid** — edit the hardcoded `featuredCaseStudies` array in `src/components/home/FeaturedCaseStudiesSection.tsx`. This is the ONLY place the homepage cards come from. Editing `caseStudies.ts` or `structuredCaseStudies.ts` alone will NOT make it appear on the homepage.
-6. (Optional) Also add to `src/data/caseStudies.ts` (`homepageCaseStudyPreviews`) and `src/data/structuredCaseStudies.ts` if the project needs a `/project/:slug` detail page.
-7. To remove a case study: delete its entry from `FeaturedCaseStudiesSection.tsx`, remove from `structuredCaseStudies`, and (if it had a custom route) delete the `<Route>` line in `src/App.tsx`.
+> **Corrected 2026-08-29.** The instructions here previously described a
+> data-driven flow through `structuredCaseStudies.ts` and told you to add
+> homepage cards in `FeaturedCaseStudiesSection.tsx`. Both were wrong, and the
+> second was dangerous: that component was imported by nothing, and the stale
+> ManuscriptRx card in it claimed "40% Faster Pharma Campaigns … for a global
+> pharma company" for a project whose own case study says "nobody briefed it
+> and nothing shipped". Following the old step 5 would have published a
+> fabricated client and a fabricated metric. **The component has been deleted.**
 
-That's it. No layout, no React component, no SEO file edits required for the standard flow.
+1. **Write the page.** Copy an existing study in `src/pages/` (e.g.
+   `StructuredStipsCaseStudy.tsx`) and rename it. Each live study is one
+   hand-written file that passes props to
+   `src/components/case-study/SimpleCaseStudyPage.tsx`. The content is in that
+   file, not in a data module.
+2. **Route it** explicitly in `src/App.tsx` — lazy import plus a
+   `<Route path="/project/<slug>" …>` line above the generic
+   `/project/:projectId` fallback.
+3. **Add SEO** in `src/data/seoData.ts` (`PROJECT_SEO_MAP`), and an entry in
+   `src/data/structuredCaseStudies.ts` — that file no longer renders anything,
+   but it still feeds SEO metadata, prev/next navigation and the generic
+   `/project/:id` fallback route.
+4. **Put it on the homepage** by adding it to the `caseStudies` array in
+   `src/components/home/VideoCaseStudiesSection.tsx`. That is the section the
+   homepage actually renders (`Index` → `HomepageLayout` →
+   `LazyVideoCaseStudiesSection`). Nothing else puts a card on the homepage.
+5. **Add it to the reading order** in `src/data/caseStudyIndex.ts` if it should
+   appear in the prev/next pager at the bottom of the other studies.
+6. **Re-capture the crawler snapshot**: `npm run build && npm run capture-bodies
+   && npm run build`, and commit `prerendered-bodies/`.
+
+To remove a study: delete the page and its `<Route>`, remove it from
+`VideoCaseStudiesSection.tsx`, `caseStudyIndex.ts`, `seoData.ts` and
+`structuredCaseStudies.ts`, then re-capture.
+
+**No invented numbers.** Every claim on a card or a page has to be something
+Hiram could defend on a call. A project that did not ship says so.
 
 ---
 

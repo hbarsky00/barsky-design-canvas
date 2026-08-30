@@ -25,7 +25,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         heading: "I Picked Something That Could Visibly Fail",
         paragraphs: [
           "Every \"I built this with AI\" portfolio piece is a calculator or a to-do app. Those can't fail in a way you'd notice, which is exactly why people pick them.",
-          "A game can. If a jump feels wrong, everyone knows immediately and nobody needs the mechanics explained to them. So I built one, on purpose, because game feel is the thing a prompt can't hand you.",
+          "A game can. If a jump feels wrong, everyone knows immediately and nobody needs the mechanics explained to them. So I built one. Game feel is the thing a prompt can't hand you.",
         ],
         images: [
           { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good, not because it's a clever idea." },
@@ -57,7 +57,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         paragraphs: [
           "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That's real work and it did it faster than I would have.",
           "Then there's gravity, tap impulse, and the difficulty curve. I tuned every one of those by hand, on a phone, over hundreds of runs, because there's no way to ask a model whether a jump feels right. It'll answer, and the answer means nothing.",
-          "That's the split I'd want anyone reading this to take away. Producing features got cheap. Deciding which ones survive didn't, and that's the part that's still the job.",
+          "Producing features got cheap. Deciding which ones survive didn't.",
         ],
         images: [
           { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system; the difficulty curve I tuned by hand on a phone." },
@@ -68,13 +68,13 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         paragraphs: [
           "Daily missions. Streaks. A Wordle-style daily challenge. A social proof counter. A forge upgrade screen. Mod gating. All of it built, all of it shipped, all of it removed.",
           "None of those were bad ideas on paper, and that's the trap. They were retention mechanics bolted onto a game that hadn't earned retention yet, and each one put another screen between opening the thing and playing it.",
-          "The game got better every time I cut one. That kept being true for long enough that I stopped treating deletion as a cleanup step and started treating it as the design.",
+          "The game got better every time I cut one, and it stayed true long enough that I stopped treating deletion as cleanup.",
         ],
       },
       {
         heading: "The Design System",
         paragraphs: [
-          "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything — everything else, the gravity and the tap feel, was hand-tuned on a phone.",
+          "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything. The gravity and the tap feel were hand-tuned on a phone.",
         ],
         images: [
           { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens — Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy." },
@@ -84,7 +84,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It's live at firelion.me and it's finished enough to hand to someone without explaining anything first.",
-          "What it's evidence of isn't that AI can build a game — it can, in about a week, and that's the least interesting thing here. It's that somebody still has to hold the line on what stays in, and no model was going to do that part for me.",
+          "AI can build a game in about a week. That is the least interesting thing here. Somebody still has to hold the line on what stays in, and no model was going to do that for me.",
         ],
       },
     ]}

@@ -43,8 +43,8 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "Total Cost Next to the Button, Every Time",
         paragraphs: [
-          "The most-fought decision, and the one I'd defend hardest. The full cost of the trade, spread included, sits next to the action button on every order. Not in a drawer, not behind an info icon, not on the confirmation screen after you've already decided.",
-          "It's unpopular internally for an obvious reason: the spread is the revenue, and putting a number next to a button is the fastest way to make someone reconsider pressing it. The argument I'd make is that the hidden version only works while people don't know, and the day they find out you've taught them the product was designed against them.",
+          "The most-fought decision on the project. The full cost of the trade, spread included, sits next to the action button on every order. Not in a drawer, not behind an info icon, not on the confirmation screen after you've already decided.",
+          "It's unpopular internally for an obvious reason: the spread is the revenue, and putting a number next to a button is the fastest way to make someone reconsider pressing it. The hidden version only works while people don't know. The day they find out, you have taught them the product was designed against them.",
           "The second rule was plain language as a constraint rather than a copy pass at the end. If I couldn't explain a thing in one sentence, it either got explained inline or it came out of beginner mode entirely. That killed features, which is what a real constraint does.",
         ],
         images: [
@@ -55,7 +55,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "I Protected Beginners Until They Felt Patronised",
         paragraphs: [
-          "The first beginner mode was smothered. Confirmations on everything, a tooltip on every term, and an onboarding tour that would not end. It tested badly and the reason was not what I expected — people didn't feel safe, they felt talked down to. Safety you can't switch off reads as an accusation.",
+          "The first beginner mode was smothered. Confirmations on everything, a tooltip on every term, and an onboarding tour that would not end. It tested badly, and not for the reason I expected. People didn't feel safe. They felt talked down to. Safety you can't switch off reads as an accusation.",
           "The fix was to explain on hover, confirm only above a threshold, and otherwise get out of the way.",
           "Pro mode failed in the opposite direction and I'd made the same mistake in reverse. I stripped it down for cleanliness and took out things pros actually used. Density is a feature for that audience. I was treating my own taste as a usability principle.",
         ],
@@ -68,8 +68,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         paragraphs: [
           "Nothing here shipped. There's no live product to go and press, and I'd rather say that at the top of this section than let the screens imply otherwise.",
           "What exists is the reasoning: the teardown of who each model is really charging, the decision to make mode a setting instead of a second product, the cost-next-to-the-button rule and the argument for holding it, and two prototypes that failed in opposite directions and taught me more than the ones that worked.",
-          "The gap I never closed is the intermediate trader. They're wrong in both modes — past hand-holding, not yet fluent in an order book — and a real v2 needs either a third mode or per-control customisation, which is a different and harder problem than the one I solved. That's the honest edge of it.",
-          "This one is here for the thinking. If what you need is someone who'll take a business model apart, name the decision everyone's avoiding, and then argue for the version that's harder to sell internally, this is what that looks like.",
+          "The gap I never closed is the intermediate trader. They are wrong in both modes: past hand-holding, not yet fluent in an order book. A real v2 needs either a third mode or per-control customisation, which is a different and harder problem than the one I solved. That's the honest edge of it.",
         ],
       },
     ]}

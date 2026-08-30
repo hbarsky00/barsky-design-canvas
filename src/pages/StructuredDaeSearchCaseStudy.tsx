@@ -27,9 +27,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "Why I Built It",
+        heading: "Forty Results, and Twenty Minutes to Pick One",
         paragraphs: [
           "An analyst searches \"revenue\" and gets 40 results back. Then the real work starts: twenty minutes of figuring out which table is current, which one belongs to the team of record, and which was deprecated three quarters ago and never cleaned up.",
+          "None of that is searching. It is opening tabs. You click into a table, find the owner, check when it last refreshed, look for anything downstream still reading from it, then go back and do it again for the next candidate. Forty times, if you are being careful. Nobody is being careful forty times.",
           "They were never short of results. They were short of a result they could act on.",
         ],
         images: [
@@ -37,20 +38,36 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Putting the Answer on the Result",
+        heading: "Making It Understand the Question",
         paragraphs: [
-          "First I made the search actually understand the question. It runs semantically over the metadata rather than matching keywords, so a table called `arr_monthly` comes back when you type \"revenue.\" That alone took a result set from 40 things to narrow down to about 4 to choose between.",
-          "Then I put the lineage on the result itself. Where it came from, when it last refreshed, what depends on it. You read it in the list instead of clicking through to find out.",
-        ],
-        images: [
-          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems", caption: "Lineage on the result itself — where a table came from, when it last refreshed, what depends on it. Read in the list, not after a click." },
+          "Keyword matching is why the list is forty long. Someone types \"revenue\" and gets back everything with the word in a column name, a description or a stale comment, ranked by string similarity to a word nobody names their tables after.",
+          "So the search runs semantically over the metadata instead. A table called `arr_monthly` comes back when you type \"revenue,\" because the model knows what annual recurring revenue is and the string match never would have.",
+          "That alone took a result set from 40 things to narrow down to about 4 to choose between. It did not answer the question underneath, though. Four candidates still need a decision, and the decision was still happening in other tabs.",
         ],
       },
       {
-        heading: "The Two Calls That Mattered",
+        heading: "The Trust Signals Belong on the Row",
         paragraphs: [
-          "Restricted results stay visible, with a lock on them and a one-click request for access. I tried hiding them and it backfired badly. People concluded the data did not exist and went off to rebuild it themselves.",
-          "I also built permission-aware autocomplete, and security killed it. They were right. The suggestions were leaking the existence of restricted datasets to anyone who typed enough of the name to pattern-match it.",
+          "So I moved them there. Where the table came from, when it last refreshed, what depends on it. You read it in the list instead of clicking through to find out.",
+          "That sounds like a small layout change and it is the whole product. The question an analyst is actually asking is not \"which of these matches my words\" but \"which of these can I put in front of a VP on Thursday.\" Freshness and lineage answer that. Relevance never did.",
+          "It also changes what a bad result costs. Under the old list you found out a table was stale after you had built on it. Here you find out before you open it.",
+        ],
+        images: [
+          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems", caption: "Lineage on the result itself: where a table came from, when it last refreshed, what depends on it. Read in the list, not after a click." },
+        ],
+      },
+      {
+        heading: "Restricted Results Stay Visible",
+        paragraphs: [
+          "Locked, with a one-click request for access, but visible. I tried hiding them first, which is the obvious call and the wrong one.",
+          "It backfired badly. People concluded the data did not exist and went off to rebuild it themselves, which is worse for security than showing them a padlock: now there are two copies of sensitive data and only one of them is governed.",
+        ],
+      },
+      {
+        heading: "Security Killed My Autocomplete, and They Were Right",
+        paragraphs: [
+          "I built permission-aware autocomplete. Type three letters, get suggestions drawn from everything in the catalogue, restricted or not, on the theory that knowing a name exists is harmless.",
+          "It is not harmless. The suggestions leaked the existence of restricted datasets to anyone who typed enough of the name to pattern-match it, which is a slower version of just reading the table list. Security caught it in review and I did not argue.",
         ],
         imageLayout: "pair",
         images: [
@@ -59,17 +76,18 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "What I Got Wrong",
+        heading: "I Designed Consumer Search First",
         paragraphs: [
-          "I started out treating this like consumer search with an enterprise skin on it. Clean ranked list, minimal chrome, get out of the way. Wrong audience entirely.",
-          "These people want density. They want signals crammed into the row. And they do not type questions, they type fragments and internal abbreviations, because they already know what they are looking for.",
+          "Clean ranked list, minimal chrome, get out of the way. Wrong audience entirely.",
+          "These people want density. They want signals crammed into the row, because scanning ten dense rows is faster than opening three clean ones. Every bit of whitespace I added was costing them a click.",
+          "They also do not type questions. They type fragments and internal abbreviations, because they already know what they are looking for and they are not in a conversation with the search box.",
         ],
       },
       {
-        heading: "Where It Landed",
+        heading: "Trust Beat Relevance",
         paragraphs: [
-          "Moving from keyword matching to semantic search, with lineage and permissions sitting inline, changed what the thing actually is. It stopped being a search box and became the place you go to find out whether data is worth using.",
-          "The lesson I took off it: inside a company, whether you can trust a result matters more than how relevant it is. Almost all search design optimises for the second one.",
+          "Semantic search with lineage and permissions inline changed what the thing is. It stopped being a search box and became the place you go to find out whether data is worth using.",
+          "Inside a company, whether you can trust a result matters more than how relevant it is. Almost all search design optimises for the second one.",
         ],
       },
     ]}

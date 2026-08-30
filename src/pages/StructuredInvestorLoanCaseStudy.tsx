@@ -23,7 +23,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "Why I Built It",
+        heading: "Millions of Dollars, Run Out of a Spreadsheet",
         paragraphs: [
           "A bank was running its loan operations in Excel. Deals worth millions of dollars, no audit trail, no validation, and no way to tell who changed what.",
           "Three teams had already tried to replace it and failed. I spent a while figuring out why before I designed anything, and the answer was the same every time: they all tried to improve parts of the job the loan officers never asked to have improved.",
@@ -101,7 +101,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "They adopted it. On a project to replace a spreadsheet that is the only outcome that counts, and three attempts before mine never got there.",
+          "They adopted it. Three teams tried before me and none of them got there.",
         ],
         images: [
           {
@@ -109,7 +109,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             alt: "My Deals with chat, share and invite, and per-deal progress tracking",
             width: 1440,
             height: 716,
-            caption: "My Deals — the screen loan officers recognised as their own job, which is why this attempt got adopted and three before it didn't.",
+            caption: "My Deals. The screen loan officers recognised as their own job, which is why this attempt got adopted and three before it didn't.",
           },
           {
             src: "/images/investor-loan-app/manage-loan-limits.jpg",

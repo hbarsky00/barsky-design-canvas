@@ -32,7 +32,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "What I'm Working On Right Now",
         paragraphs: [
-          "The star punch. You bank stars by landing counters, and the meter above the gloves is what you spend them from. Getting the meter, the wind-up and the hit to agree with each other is the whole job \u2014 if the star burns a frame before the punch connects, the reward stops feeling earned and starts feeling scripted.",
+          "The star punch. You bank stars by landing counters, and the meter above the gloves is what you spend them from. Getting the meter, the wind-up and the hit to agree with each other is the hard part. If the star burns a frame before the punch connects, the reward stops feeling earned and starts feeling scripted.",
           "This is a phone capture of the current build, title screen through to a knockdown against Tor Volkov. It is the newest thing on this page and it is not finished.",
         ],
         videos: [
@@ -47,7 +47,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Why I Built It",
+        heading: "Every Boxing Game I've Liked Was on a Console",
         paragraphs: [
           "Every boxing game I've liked was on a console, and there's a reason for that. The punch has to land the instant your thumb moves. The animation has to read as a body hitting another body. The opponent has to feel like it's thinking. You get none of that for free in a browser.",
           "I wanted to see if I could get it anyway. No install, no app store, just a link you open on your phone.",
@@ -58,7 +58,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         paragraphs: [
           "A fighter isn't a drawing. It's a body, two arms, two legs and a head, all separate, because they all have to move on their own. So I built the rig before I built anyone to put in it.",
           "Glass Joe went through it first, and you can see every seam. Flat block for a torso. Each arm one wedge from shoulder to glove, no elbow in it. Legs meeting the hip at a hard edge, one flat colour per limb. Then I ran Von Kaiser through the same rig at heavier proportions, and that was the real test. If the rig held for a second fighter, I could add fighters as data instead of drawing each one by hand.",
-          "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping, not like contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn actually reads as a turn. That is the loop the whole thing runs on. Make the parts fast, throw out whatever doesn't read, go rebuild the layer underneath it.",
+          "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping, not like contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn reads as a turn. Make the parts fast, throw out whatever doesn't read, rebuild the layer underneath.",
         ],
         imageLayout: "pair",
         images: [
@@ -83,7 +83,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         paragraphs: [
           "My first go at making a punch land used impact particles, and it was the wrong call. The burst was so big it buried the fighter at the exact moment you needed to see him get hit.",
           "After that I stopped guessing. How long the game freezes on contact. How hard the screen shakes. A 60ms buzz in your hand when you connect. How fast the health bar drains. Where the punch button sits, how big the block zone is. I tuned every one of those by hand, on a real phone, over and over, until it felt right.",
-          "There is no model you can ask whether a punch feels like a punch. AI gave me raw material at three to six builds a day. Deciding what to keep was the whole job.",
+          "There is no model you can ask whether a punch feels like a punch. AI gave me raw material at three to six builds a day. Deciding what to keep was mine.",
         ],
       },
       {
@@ -122,16 +122,16 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "Every colour comes in a pair: the state at rest and the same state ten percent lighter on impact. Colour and brightness changing together reads faster than either on its own, which is the entire requirement in a fight.",
+          "Every colour comes in a pair: the state at rest, and the same state ten percent lighter on impact. Colour and brightness change together because that reads faster than either on its own.",
         ],
         images: [
           { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens — Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands." },
         ],
       },
       {
-        heading: "Where It Landed",
+        heading: "Every Opponent Has Their Own Rhythm",
         paragraphs: [
-          "Same rig Glass Joe came out of, but the wedges are arms now. Klaus Brenner is heavier on purpose, slower to reset, so you have to read him differently than the others.",
+          "Same rig Glass Joe came out of, but the wedges are arms now. Klaus Brenner is heavier and slower to reset, so you have to read him differently than the others.",
           "Every opponent has their own special, their own trash talk and their own rhythm instead of being a reskin. And getting knocked down stopped being a countdown you sit and watch. It became something you can fight your way out of.",
         ],
         videos: [
@@ -139,7 +139,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
             src: "/ring-rival-fight-brenner.mp4",
             poster: "/images/ringrival-now/fight-brenner-poster.jpg",
             caption:
-              "Klaus Brenner. Bigger, heavier, and on a rhythm you have to learn separately. That is the point of having a roster.",
+              "Klaus Brenner. Bigger, heavier, and on a rhythm you have to learn separately.",
           },
         ],
       },

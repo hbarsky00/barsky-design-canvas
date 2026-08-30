@@ -26,7 +26,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
     }}
     blocks={[
       {
-        heading: "Why I Built It",
+        heading: "Every One of These Looks Like a Bloomberg Terminal",
         paragraphs: [
           "A prediction market answers one question: how likely is this? The price tells you, because people are putting something behind the answer.",
           "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. The question underneath is simple and the screen in front of you is not, so people leave before placing anything.",
@@ -46,7 +46,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
         heading: "The Market, Before and After You Pick",
         paragraphs: [
           "Same screen, two states. On the left nothing is chosen yet, so the panel just shows you both prices and what they mean in plain percentages. On the right I have picked Yes and put $75 on it, and the panel has done the arithmetic: $111.94 back if I am right, $36.94 of that is profit.",
-          "That is the whole reason the ticket exists. Nobody should have to work out what 67¢ a share means for their stake in their head, and if you make them, they will either guess or leave.",
+          "Nobody should have to work out what 67¢ a share means for their stake in their head. Make them, and they guess or they leave.",
         ],
         imageLayout: "pair",
         images: [
@@ -72,7 +72,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "A board of prices only has four things to say — yes, no, neutral, closing. Every one of those colours is measured against the surface it is actually painted on, because the previous set was tuned by eye and all four failed.",
+          "A board of prices only has four things to say: yes, no, neutral, closing. Every one of those colours is measured against the surface it is actually painted on, because the previous set was tuned by eye and all four failed.",
         ],
         images: [
           { src: "/images/stips/design-system.webp", alt: "Stips design tokens — Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair." },
@@ -81,9 +81,9 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, and that's on purpose — I wanted people to learn how a prediction market reads without putting anything real on the table.",
+          "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, so you can learn how a prediction market reads without putting anything real on the table.",
           "What isn't fake is what you're betting on. The markets get pulled from actual news on a schedule, so the board fills with the same things people already argue about — a fight card, a rate decision, an election, whether a company ships something by a date. Real questions, real close dates, real resolution criteria written on the page. Play money sitting on top of a board that behaves like the real thing.",
-          "Right now the job is getting people to try it. That's the honest state of it — the product works end to end, design through front end through database, auth and the scheduled jobs that keep the board from going stale while nobody's looking. Getting it in front of people is what I'm working on.",
+          "Right now the job is getting people to try it. That's the honest state of it. The product works end to end: design through front end through database, auth, and the scheduled jobs that keep the board from going stale while nobody's looking. Getting it in front of people is what I'm working on.",
         ],
       },
     ]}
