@@ -244,6 +244,15 @@ export interface CaseStudyWalkthroughProps {
   src: string;
   poster?: string;
   caption: string;
+  /**
+   * Intrinsic size, same job as on CaseStudyClip. Two reasons it matters more
+   * here: preload="none" means nothing is fetched until play, so without a
+   * declared size the figure is zero-height until the poster arrives and then
+   * shoves the page down; and these are phone captures, so `w-full` alone
+   * upscales a 640px portrait across a 1150px column.
+   */
+  width?: number;
+  height?: number;
   className?: string;
 }
 
@@ -261,16 +270,23 @@ export const CaseStudyWalkthrough: React.FC<CaseStudyWalkthroughProps> = ({
   src,
   poster,
   caption,
+  width,
+  height,
   className = "",
 }) => {
   const ref = useReveal<HTMLElement>();
 
   return (
     <figure ref={ref} className={className}>
-      <div className="overflow-hidden rounded-xs border border-border bg-card shadow-sm">
+      <div
+        className="mx-auto overflow-hidden rounded-xs border border-border bg-card shadow-sm"
+        style={width ? { maxWidth: `${width}px` } : undefined}
+      >
         <video
           src={src}
           poster={poster}
+          width={width}
+          height={height}
           controls
           playsInline
           preload="none"

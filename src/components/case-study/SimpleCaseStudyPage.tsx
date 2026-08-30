@@ -386,6 +386,8 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                           src={v.src}
                           poster={v.poster}
                           caption={v.caption}
+                          width={v.width}
+                          height={v.height}
                         />
                       ) : (
                         <CaseStudyClip
