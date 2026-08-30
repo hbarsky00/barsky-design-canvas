@@ -135,9 +135,10 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     return json({ success: true, confirmationSent }, 200);
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error in send-contact-email function:", error);
-    return json({ success: false, error: error?.message ?? "Unknown error" }, 500);
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return json({ success: false, error: message }, 500);
   }
 };
 

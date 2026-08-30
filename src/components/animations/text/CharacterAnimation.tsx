@@ -27,7 +27,7 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
     animateOnce,
     onComplete
   });
-  const Tag = tag as any;
+  const Tag = tag as React.ElementType;
 
   // Render characters or words based on type
   const renderElements = () => {

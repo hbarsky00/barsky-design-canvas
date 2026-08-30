@@ -1,24 +1,15 @@
+import type { BuiltSEO } from "./seoBuilder";
 
 import { homepageFaqs } from "@/data/seoFaqs";
 
-interface SEOData {
-  title: string;
-  description: string;
-  canonical?: string;
-  canonicalUrl?: string;
-  image?: string;
-  type?: 'website' | 'article';
-  kind?: 'page' | 'post' | 'project';
-  publishedTime?: string;
-  published?: string;
-  modifiedTime?: string;
-  author?: string;
-  tags?: string[];
-}
-
-export const generateStructuredData = (seoData: SEOData) => {
-  const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
-  const publishedDate = seoData.publishedTime || seoData.published;
+// Both callers — UnifiedSEO and scripts/inject-seo-html — pass a BuiltSEO, so
+// take one. There used to be a local SEOData interface here with `canonicalUrl`
+// and `published` alternates that BuiltSEO does not have (so they always read
+// undefined) and a `kind` union missing "home", which is what made BuiltSEO
+// unassignable and forced an `as any` at the script call site.
+export const generateStructuredData = (seoData: BuiltSEO) => {
+  const canonicalUrl = seoData.canonical;
+  const publishedDate = seoData.publishedTime;
   // Fall back to the publish date rather than emitting today's — a dateModified
   // that moves every deploy tells crawlers the page changed when it didn't.
   const modifiedDate = seoData.modifiedTime || publishedDate;
@@ -27,7 +18,7 @@ export const generateStructuredData = (seoData: SEOData) => {
   // or Article schema is pushed separately below with richer (headline/author/
   // publisher) data. Emitting "Article" here too just produced two overlapping,
   // near-duplicate Article-typed blocks on the same page for no added value.
-  const baseStructuredData: any = {
+  const baseStructuredData: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: seoData.title,
@@ -44,7 +35,7 @@ export const generateStructuredData = (seoData: SEOData) => {
   };
 
   // Add Organization schema for all pages
-  const organizationSchema: any = {
+  const organizationSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Hiram Barsky Design",
@@ -90,15 +81,15 @@ export const generateStructuredData = (seoData: SEOData) => {
     priceRange: "$$$"
   };
 
-  const schemas: any[] = [baseStructuredData, organizationSchema];
+  const schemas: Record<string, unknown>[] = [baseStructuredData, organizationSchema];
 
   // Add specific schemas based on content type. Discriminate on `kind`, not
   // `type` — buildSEO() sets `type: 'article'` for BOTH posts and projects, so
   // checking `type === 'article'` here made every case study emit a BlogPosting
   // block in addition to its own Article block below (kind is the precise signal).
   if (seoData.kind === 'post') {
-    const datePublished = seoData.publishedTime || seoData.published;
-    const blogPostSchema: any = {
+    const datePublished = seoData.publishedTime;
+    const blogPostSchema: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: seoData.title,
@@ -129,8 +120,8 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   // Add Article schema for projects/case studies (editorial content, not products)
   if (seoData.kind === 'project') {
-    const datePublished = seoData.publishedTime || seoData.published;
-    const articleSchema: any = {
+    const datePublished = seoData.publishedTime;
+    const articleSchema: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: seoData.title,

@@ -48,7 +48,7 @@ export const useOpenAiCaptions = () => {
         throw new Error(result.error || 'No caption received');
       }
       
-      let caption = result.caption.trim();
+      const caption = result.caption.trim();
       
       console.log('✅ AI Caption received:', caption);
       return { caption };

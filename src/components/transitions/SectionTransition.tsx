@@ -38,7 +38,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
   }
 
   // Original fade and wipe animations
-  const MotionTag: any = motion[as as keyof typeof motion] || motion.section;
+  const MotionTag = (motion[as as keyof typeof motion] ?? motion.section) as React.ElementType;
 
   return (
     <MotionTag

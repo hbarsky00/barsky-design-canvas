@@ -69,7 +69,7 @@ serve(async (req) => {
 
     // 3) Opt-in live fetch (only if ?live=true is passed)
     const doLive = url.searchParams.get("live") === "true";
-    let live: any = { note: "live_fetch_disabled" };
+    let live: Record<string, unknown> = { note: "live_fetch_disabled" };
     
     if (doLive) {
       try {

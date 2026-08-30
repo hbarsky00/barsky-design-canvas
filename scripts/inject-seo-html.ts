@@ -127,7 +127,7 @@ function escapeHtml(s: string): string {
 }
 
 function renderHead(seo: BuiltSEO): string {
-  const structuredData = generateStructuredData(seo as any);
+  const structuredData = generateStructuredData(seo);
   const lines = [
     `<title>${escapeHtml(seo.title)}</title>`,
     `<meta name="description" content="${escapeHtml(seo.description)}" />`,

@@ -11,7 +11,7 @@ import { buildSEO, SEOInput, BuiltSEO } from "@/utils/seo/seoBuilder";
 import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
 
-const devLog = (...args: any[]) => {
+const devLog = (...args: unknown[]) => {
   if (import.meta.env.DEV) console.warn(...args);
 };
 

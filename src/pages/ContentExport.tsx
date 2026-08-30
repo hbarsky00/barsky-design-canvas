@@ -330,7 +330,7 @@ const ContentExport: React.FC = () => {
           ];
           break;
           
-        case 'blog-post':
+        case 'blog-post': {
           const blogPost = blogPosts.find(post => post.slug === page.id);
           if (blogPost) {
             // Convert HTML content to plain text
@@ -393,8 +393,9 @@ const ContentExport: React.FC = () => {
             ];
           }
           break;
-          
-        default:
+        }
+
+        default: {
           // Get template sections but mark as empty
           const template = getTemplateForPageType(page.type);
           sections = template.map(section => ({
@@ -414,6 +415,7 @@ const ContentExport: React.FC = () => {
               notes: '<EMPTY SECTION (present in template)>'
             }
           }));
+        }
       }
       
       // Output each section
@@ -464,10 +466,16 @@ const ContentExport: React.FC = () => {
   
   return (
     <>
+      {/* eslint-disable no-restricted-syntax -- UnifiedSEO renders once globally
+          in App.tsx with `index, follow` hardcoded and takes no props, so there
+          is no sanctioned way to mark a page noindex. This is an admin tool at
+          an unlisted URL that must not be indexed; the local Helmet is the only
+          way to say so until UnifiedSEO grows a robots option. */}
       <Helmet>
         <title>Content Export - Admin</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
+      {/* eslint-enable no-restricted-syntax */}
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">

@@ -20,7 +20,7 @@ export const BlockAnimation: React.FC<BlockAnimatedTextProps> = ({
     onComplete
   });
 
-  const Tag = tag as any;
+  const Tag = tag as React.ElementType;
   
   const blockVariants = {
     hidden: { 

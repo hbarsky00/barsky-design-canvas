@@ -60,7 +60,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
   autoPlay = false,
 }) => {
   const s = sizeMap[size];
-  const Wrapper: any = to ? Link : "div";
+  const Wrapper = (to ? Link : "div") as React.ElementType;
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 

@@ -23,10 +23,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (!images || images.length === 0) {
-    return null;
-  }
-
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
@@ -55,6 +51,14 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [images.length]);
+
+  // Guard moved here, below the hooks. It used to sit above the useEffect, so a
+  // carousel rendered with no images registered one fewer hook than one with
+  // images — React's hook order is positional and it throws when that count
+  // changes between renders of the same component.
+  if (!images || images.length === 0) {
+    return null;
+  }
 
   return (
     <div className="case-study-image-container case-study-image-hero">

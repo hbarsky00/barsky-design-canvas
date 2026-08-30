@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion, type MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface AdvancedSectionTransitionProps {
@@ -16,6 +16,31 @@ interface AdvancedSectionTransitionProps {
   intensity?: number;
   delay?: number;
 }
+
+/**
+ * One floating orb. Exists as its own component purely so its three
+ * useTransform calls happen at the top of a component rather than inside the
+ * parent's .map() callback — hooks in a loop callback are a rules-of-hooks
+ * violation and React's hook order depends on them not moving.
+ */
+const FloatingOrb: React.FC<{ progress: MotionValue<number>; index: number }> = ({ progress, index }) => {
+  const y = useTransform(progress, [0, 1], [50 * (index + 1), -50 * (index + 1)]);
+  const x = useTransform(progress, [0, 1], [-20 * index, 20 * index]);
+  const rotate = useTransform(progress, [0, 1], [0, 180 * (index + 1)]);
+  return (
+    <motion.div
+      className="absolute w-32 h-32 rounded-full"
+      style={{
+        background: `radial-gradient(circle, hsl(var(--primary) / 0.1), transparent)`,
+        top: `${20 + index * 30}%`,
+        right: `${10 + index * 20}%`,
+        y,
+        x,
+        rotate,
+      }}
+    />
+  );
+};
 
 const AdvancedSectionTransition: React.FC<AdvancedSectionTransitionProps> = ({
   as = "section",
@@ -77,7 +102,13 @@ const AdvancedSectionTransition: React.FC<AdvancedSectionTransitionProps> = ({
   const backgroundY = useTransform(smoothProgress, [0, 1], ["0%", "-50%"]);
   const backgroundOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-  const MotionTag: any = motion[as as keyof typeof motion] || motion.section;
+  // Hoisted above the prefers-reduced-motion early return below. It used to be
+  // inline in the JSX that only the motion branch renders, so the component
+  // called a different number of hooks depending on the user's motion setting —
+  // React throws the moment that setting changes mid-session.
+  const floatFieldOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0, 0.1, 0]);
+
+  const MotionTag = (motion[as as keyof typeof motion] ?? motion.section) as React.ElementType;
 
   if (prefersReducedMotion) {
     return (
@@ -124,24 +155,11 @@ const AdvancedSectionTransition: React.FC<AdvancedSectionTransitionProps> = ({
       {/* Geometric floating elements */}
       <motion.div
         className="absolute inset-0 -z-10 pointer-events-none"
-        style={{
-          opacity: useTransform(smoothProgress, [0, 0.5, 1], [0, 0.1, 0])
-        }}
+        style={{ opacity: floatFieldOpacity }}
         aria-hidden="true"
       >
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-32 h-32 rounded-full"
-            style={{
-              background: `radial-gradient(circle, hsl(var(--primary) / 0.1), transparent)`,
-              top: `${20 + i * 30}%`,
-              right: `${10 + i * 20}%`,
-              y: useTransform(smoothProgress, [0, 1], [50 * (i + 1), -50 * (i + 1)]),
-              x: useTransform(smoothProgress, [0, 1], [-20 * i, 20 * i]),
-              rotate: useTransform(smoothProgress, [0, 1], [0, 180 * (i + 1)])
-            }}
-          />
+        {[0, 1, 2].map((i) => (
+          <FloatingOrb key={i} progress={smoothProgress} index={i} />
         ))}
       </motion.div>
 

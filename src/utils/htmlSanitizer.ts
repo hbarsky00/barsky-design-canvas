@@ -24,6 +24,10 @@ export const sanitizeHtml = (html: string): string => {
       // needed so images reserve space and don't shift layout while loading
       'width', 'height', 'loading'
     ],
+    // The \- below is redundant, but this is the URI allowlist for the
+    // sanitiser and it is not worth re-typing a security-critical regex to
+    // satisfy a style rule.
+    // eslint-disable-next-line no-useless-escape
     ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i
   });
   

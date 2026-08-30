@@ -369,6 +369,9 @@ const config: Config = {
       },
     },
   },
+  // require() is the documented way to register Tailwind plugins and the config
+  // is loaded by Tailwind's own CJS-capable loader, not by the app bundle.
+  /* eslint-disable @typescript-eslint/no-require-imports */
   plugins: [
     require("tailwindcss-animate"),
     // @tailwindcss/typography was a dependency but was never registered here,
@@ -376,6 +379,7 @@ const config: Config = {
     // back to raw browser defaults.
     require("@tailwindcss/typography"),
   ],
+  /* eslint-enable @typescript-eslint/no-require-imports */
 } satisfies Config;
 
 export default config;

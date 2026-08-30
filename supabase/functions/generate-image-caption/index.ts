@@ -167,7 +167,7 @@ Focus on food, restaurant, and ordering-related features. NEVER use terms like "
 
     // Clean up the caption - remove unwanted formatting
     caption = caption
-      .replace(/[#*_`\[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
+      .replace(/[#*_`[\](){}|\\~><@!$%^&+=.,;:?]/g, '')
       .replace(/\n/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();

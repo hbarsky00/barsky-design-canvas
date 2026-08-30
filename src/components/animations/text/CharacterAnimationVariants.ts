@@ -1,7 +1,8 @@
 
+import type { Variants } from "framer-motion";
 import { AnimationType } from "./AnimatedTextTypes";
 
-export const characterAnimation: Record<AnimationType, any> = {
+export const characterAnimation: Record<AnimationType, Variants> = {
   // Fade animation (default)
   fade: {
     hidden: { opacity: 0, y: 10 },
