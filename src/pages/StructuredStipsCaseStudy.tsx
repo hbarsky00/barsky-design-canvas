@@ -6,7 +6,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
     projectId="stips"
     title="Stips"
     description="Prediction markets you can actually read. Play money, real events, and a price that tells you the odds without making you do math."
-    tags={["AI-Assisted Product", "Fintech UX", "Prediction Markets", "Solo Build"]}
+    tags={["AI-Assisted Product", "Fintech", "Prediction Markets", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://stips.bet"
     heroImage={{

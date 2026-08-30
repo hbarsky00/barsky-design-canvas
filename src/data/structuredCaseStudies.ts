@@ -543,7 +543,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     id: `investor-loan-app`,
     title: `Investor Loan Platform`,
     description: `Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.`,
-    tags: [`Enterprise`, `FinTech`, `Workflow Design`],
+    tags: [`Enterprise`, `Fintech`, `Workflow Design`],
     heroVideo: {
       src: `investor-loan-demo.mp4`,
       poster: `/images/investor-loan-app/hero.webp`,

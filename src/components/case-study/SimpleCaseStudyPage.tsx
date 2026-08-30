@@ -534,11 +534,11 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
               <div className="flex flex-col justify-center gap-3 sm:flex-row">
                 <Button asChild size="lg">
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                    Book a Call
+                    Book a call
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link to="/#case-studies">See More Work</Link>
+                  <Link to="/#case-studies">See more work</Link>
                 </Button>
               </div>
             </div>

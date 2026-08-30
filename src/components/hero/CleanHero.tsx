@@ -183,11 +183,11 @@ const CleanHero: React.FC = () => {
               className="flex flex-row flex-wrap items-center justify-center lg:justify-start gap-3"
             >
               <Button variant="brand" onClick={scrollToCaseStudies} className="!w-auto">
-                See My Work <ArrowRight className="w-4 h-4" />
+                See my work <ArrowRight className="w-4 h-4" />
               </Button>
               <Button variant="outline" asChild className="!w-auto">
                 <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
-                  Book a Call
+                  Book a call
                 </a>
               </Button>
             </motion.div>

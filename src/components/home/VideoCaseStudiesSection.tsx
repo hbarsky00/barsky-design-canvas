@@ -33,7 +33,7 @@ interface CaseStudy {
 const caseStudies: CaseStudy[] = [
   {
     id: "investor-loan-app",
-    tags: ["Enterprise", "FinTech", "Workflow Design"],
+    tags: ["Enterprise", "Fintech", "Workflow Design"],
     title: "Investor Loan Platform",
     description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
     impact: "",
@@ -117,7 +117,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Trust & Safety"],
+    tags: ["Healthcare", "Marketplace", "Trust & Safety"],
     title: "HerbaLink",
     description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
     impact: "",
@@ -151,7 +151,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "stips",
-    tags: ["AI-Assisted Product", "Fintech UX", "Solo Build"],
+    tags: ["AI-Assisted Product", "Fintech", "Solo Build"],
     title: "Stips",
     description: "Prediction markets you can actually read — play-money trading on real-world events, where the price is the probability.",
     impact: "",
@@ -190,7 +190,7 @@ const caseStudies: CaseStudy[] = [
   {
     // Never pulled — it was simply never added here. Hiram spotted it missing.
     id: "crypto",
-    tags: ["Fintech UX", "Crypto", "Dual-Mode UX"],
+    tags: ["Fintech", "Crypto", "Dual-Mode UX"],
     title: "Gold2Crypto",
     description: "A crypto trading interface for two audiences the industry insists you have to choose between — beginners paying hidden spreads, pros paying an are-you-sure tax.",
     impact: "",

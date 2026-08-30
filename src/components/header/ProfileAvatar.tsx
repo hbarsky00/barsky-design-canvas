@@ -26,7 +26,7 @@ const ProfileAvatar: React.FC = () => {
         ariaLabel="Go to homepage"
         imageSrc={imageUrl}
         name="Hiram Barsky"
-        subtitle="Product Designer + AI"
+        subtitle="Designer and Developer"
         size="md"
         subtitleStyle="pill"
         autoPlay={true}

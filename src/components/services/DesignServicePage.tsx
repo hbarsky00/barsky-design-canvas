@@ -73,7 +73,7 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
             <motion.div variants={variants} className="flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="!w-auto">
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                  Book a Call
+                  Book a call
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -196,7 +196,7 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="!w-auto">
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                  Book a Call
+                  Book a call
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="!w-auto">

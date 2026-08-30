@@ -6,7 +6,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
     projectId="investor-loan-app"
     title="Investor Loan Platform"
     description="Replacing Excel as the system of record for multi-million-dollar loan deals, without anyone losing the workflow they already had."
-    tags={["Enterprise", "FinTech", "Workflow Design"]}
+    tags={["Enterprise", "Fintech", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/investor-loan-app/loan-officer.webp",

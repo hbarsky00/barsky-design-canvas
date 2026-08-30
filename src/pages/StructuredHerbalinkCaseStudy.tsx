@@ -8,7 +8,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     description="The hard part was never search. It was making sure the person you found is real, in a category where being wrong lands on someone's health."
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
-    liveUrl="http://herbalink.live"
+    liveUrl="https://herbalink.live"
     heroImage={{
       // Live screenshots of the shipped app, replacing dead barskyux.com links.
       src: "/images/herbalink/home-hero.webp",

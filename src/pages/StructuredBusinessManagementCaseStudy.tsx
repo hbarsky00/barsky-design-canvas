@@ -6,9 +6,9 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
     projectId="business-management"
     title="QuickFlow"
     description="A wholesale distributor was paying for software that fought them. This started as a conversation over dinner and ended up as the thing they run the business on."
-    tags={["Business Software", "Distribution", "AI-Assisted Build", "Solo Build"]}
+    tags={["Business Software", "Distribution", "AI-Assisted Product", "Solo Build"]}
     meta={[
-      { label: "Role", value: "Product Designer & Developer" },
+      { label: "Role", value: "Lead UX Designer & Developer" },
       { label: "Industry", value: "Wholesale distribution" },
     ]}
     heroImage={{
