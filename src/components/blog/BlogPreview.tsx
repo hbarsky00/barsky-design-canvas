@@ -51,7 +51,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                     just as confusing. A headline that looks like a link should
                     be one. */}
                 <h3 className="heading-medium md:text-xl text-foreground mb-3 line-clamp-2 leading-tight">
-                  <Link to={`/blog/${post.slug}`} className="transition-colors hover:text-primary">
+                  <Link to={`/blog/${post.slug}`} className="py-1.5 transition-colors hover:text-primary">
                     {post.title}
                   </Link>
                 </h3>
@@ -66,7 +66,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                     </span>)}
                 </div>
 
-                <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors text-sm md:text-base">
+                <Link to={`/blog/${post.slug}`} className="inline-flex min-h-[44px] -my-2 items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors text-sm md:text-base">
                   Read More
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -75,11 +75,9 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
         </div>
         
         <div className="text-center mt-8 md:mt-12">
-          <Link to="/blog">
-            <Button size="lg" variant="outline">
-              View All Posts
-            </Button>
-          </Link>
+          <Button asChild size="lg" variant="outline">
+            <Link to="/blog">View All Posts</Link>
+          </Button>
         </div>
       </div>
     </section>

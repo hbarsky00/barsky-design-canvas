@@ -20,44 +20,44 @@ const BioSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: "-100px" }}
         >
-          <Card className="p-8 lg:p-12 bg-white/80 backdrop-blur-sm shadow-xl border-0">
+          <Card className="p-8 lg:p-12 bg-card/80 backdrop-blur-sm shadow-xl border-0">
             <div className="space-y-8">
               {/* Header with badge */}
               <SectionHeader
                 eyebrow="About Me"
-                title="Product Designer & AI Developer"
+                title="Designer and Developer"
                 className="text-center"
               />
 
               {/* Bio content */}
-              <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
-                <p className="text-xl text-center font-medium text-gray-800">
-                  I help early-stage startups transform complex problems into intuitive user experiences 
-                  that drive real business results.
+              <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
+                <p className="text-xl text-center font-medium text-foreground">
+                  I work with founders and teams who need the design and the build to be the same
+                  job, done by the same person.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
                   <div className="text-center">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-3">My Approach</h3>
+                    <h3 className="font-semibold text-lg text-foreground mb-3">My Approach</h3>
                     <p className="text-center">
-                      I believe great design happens at the intersection of user needs and business goals. 
-                      Every project starts with understanding your users and ends with measurable improvements 
-                      to your product's performance.
+                      Every project starts by watching someone try to do the thing, and ends with
+                      software they can actually use. Most of the interesting decisions turn out
+                      to be about what to leave out.
                     </p>
                   </div>
                   
                   <div className="text-center">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-3">What I Bring</h3>
+                    <h3 className="font-semibold text-lg text-foreground mb-3">What I Bring</h3>
                     <p className="text-center">
-                      15+ years of experience in UX/UI design, combined with modern AI development skills. 
-                      I create design systems that scale, conduct user research that informs decisions, 
-                      and build prototypes that validate concepts.
+                      Fifteen years designing software, and I write the front end myself. Design
+                      systems that scale, research that changes what gets built, and prototypes
+                      that run rather than click through.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-blue-50/50 rounded-lg p-6 mt-8 text-center">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-3">Recent Focus</h3>
+                <div className="bg-primary/5 rounded-lg p-6 mt-8 text-center">
+                  <h3 className="font-semibold text-lg text-foreground mb-3">Recent Focus</h3>
                   <p className="text-center">
                     Designing and building products with AI as part of the toolchain — it makes
                     the raw material cheap, which moves the work to deciding what to keep. Five

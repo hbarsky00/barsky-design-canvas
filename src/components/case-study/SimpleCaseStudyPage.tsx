@@ -205,7 +205,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
           <header className="cs-grid">
             <Link
               to="/#case-studies"
-              className="mb-8 flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="mb-8 -my-3 flex min-h-[44px] w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
               All work

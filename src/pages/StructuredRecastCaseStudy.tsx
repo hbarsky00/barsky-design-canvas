@@ -21,6 +21,8 @@ const StructuredRecastCaseStudy: React.FC = () => (
       src: "/images/recast/landing-light.webp",
       alt: "recastvid.com — Record it once. Send a link. The product's front door, in light mode",
       caption: "The front door, in light mode. Record it once, send a link. The product is that sentence.",
+      width: 1500,
+      height: 831,
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
@@ -43,8 +45,14 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "What replaced it is a boundary I now hold to: the apps record, the website stores and shares. The Record button on the site is a launcher. It opens the native app and falls back to a download if you don't have it yet. There is no browser-capture fallback and there won't be one.",
         ],
         images: [
-          { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab." },
-          { src: "/images/recast/web-library.webp", alt: "The Recast web library — recordings with durations, dates and a Shared badge", caption: "The other half of the boundary: the site holds everything, and never records." },
+          { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab.",
+ width: 1500,
+ height: 1041,
+    },
+          { src: "/images/recast/web-library.webp", alt: "The Recast web library — recordings with durations, dates and a Shared badge", caption: "The other half of the boundary: the site holds everything, and never records.",
+ width: 1500,
+ height: 1048,
+    },
         ],
       },
       {
@@ -55,7 +63,10 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It returns in a millisecond or two now and uploads in a detached task. I also found the first upload after launch was eating five to eight seconds of framework setup, so the app warms that up when it starts instead of paying for it the moment you press stop.",
         ],
         images: [
-          { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller." },
+          { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller.",
+ width: 1500,
+ height: 776,
+    },
         ],
       },
       {
@@ -74,7 +85,10 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "Nothing ownership-sensitive trusts that rule any more. Every query that returns your library or counts your storage filters by your user id explicitly. I found it by making an account and looking, which is the only way I would have found it."
         ],
         images: [
-          { src: "/images/recast/signin.webp", alt: "The Recast sign-in card with an email field, a password field and a Create an account link", caption: "The door I went back through as a stranger. Everything on the other side of it was supposed to be empty." },
+          { src: "/images/recast/signin.webp", alt: "The Recast sign-in card with an email field, a password field and a Create an account link", caption: "The door I went back through as a stranger. Everything on the other side of it was supposed to be empty.",
+ width: 1500,
+ height: 1102,
+    },
         ],
       },
       {
@@ -90,7 +104,10 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The tokens are the reason the Mac app and the website still look related. Every contrast pair in here was measured rather than eyeballed, and light and dark are both declared so the app follows your OS.",
         ],
         images: [
-          { src: "/images/recast/design-system.webp", alt: "Recast's design tokens — Fraunces and Instrument Sans, the warm paper palette with measured contrast, the 4px scale, and the rules-not-boxes decision", caption: "One token file, mirrored into the mobile app value for value. Copying it literally is the only thing that stops two surfaces of one product drifting apart." },
+          { src: "/images/recast/design-system.webp", alt: "Recast's design tokens — Fraunces and Instrument Sans, the warm paper palette with measured contrast, the 4px scale, and the rules-not-boxes decision", caption: "One token file, mirrored into the mobile app value for value. Copying it literally is the only thing that stops two surfaces of one product drifting apart.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {
@@ -100,7 +117,10 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It sells storage, not features: a free tier and paid plans above it. Entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. The thing you pay for is the thing that costs me money.",
         ],
         images: [
-          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window — Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms; the website never captures anything." },
+          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window — Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms; the website never captures anything.",
+ width: 1050,
+ height: 790,
+    },
         ],
       },
     ]}

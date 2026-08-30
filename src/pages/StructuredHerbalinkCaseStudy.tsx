@@ -16,6 +16,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
       caption: "The promise on the front door is the practitioner, not the size of the catalogue. Everything behind it is gated on that being true.",
+      width: 2880,
+      height: 1800,
     }}
     relatedPost={{
       slug: "verification-is-a-door-not-a-sticker",
@@ -32,7 +34,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           { src: "/images/herbalink/find-herbalist-sketch.webp", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
-          { src: "/images/herbalink/thought-process.webp", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations." },
+          { src: "/images/herbalink/thought-process.webp", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations.",
+ width: 512,
+ height: 768,
+    },
         ],
       },
       {
@@ -42,7 +47,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "I tested it the other way round. I added 200 unverified practitioners and the product got worse: every listing now needed a judgement call from the one person who came here because they couldn't make one.",
         ],
         images: [
-          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild." },
+          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
+ width: 2880,
+ height: 1800,
+    },
         ],
       },
       {
@@ -58,10 +66,15 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
             poster: "/images/herbalink/before-poster.jpg",
             caption:
               "Before: search by name or specialty, then filter. It works, and it still asks someone who doesn't know what they need to describe what they need.",
+              width: 510,
+              height: 1282,
           },
         ],
         images: [
-          { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question." },
+          { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question.",
+ width: 1170,
+ height: 1210,
+    },
         ],
       },
       {
@@ -70,7 +83,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "There is no unverified state in this colour system because there are no unverified listings in the product. The palette ended up recording the verification decision as much as the code does.",
         ],
         images: [
-          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens — forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions." },
+          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens — forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {
@@ -86,6 +102,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
             alt: "Herb library entry for Ashwagandha — description, benefits, preparation, precautions, and an education-not-medical-advice notice",
             caption:
               "The herb library is the part with real content in it. The reviews under it are placeholder, sitting there until there are people to write real ones.",
+              width: 2880,
+              height: 4446,
           },
         ],
       },

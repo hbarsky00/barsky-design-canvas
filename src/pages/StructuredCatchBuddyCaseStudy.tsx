@@ -30,7 +30,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "The problem was never scheduling. It was getting two strangers to agree to meet at a park with both of them feeling fine about it.",
         ],
         images: [
-          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for." },
+          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
+ width: 1848,
+ height: 1364,
+    },
         ],
       },
       {
@@ -40,7 +43,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "That last one gets argued with a lot. Letting people add their own locations is more flexible, and I still won\u2019t do it.",
         ],
         images: [
-          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point." },
+          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
+ width: 1940,
+ height: 1396,
+    },
         ],
       },
       {
@@ -50,7 +56,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
-          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet — who's bringing a ball, and whether this is contact or not." },
+          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet — who's bringing a ball, and whether this is contact or not.",
+ width: 1888,
+ height: 1386,
+    },
         ],
       },
       {
@@ -73,7 +82,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "I made the palette warm. A trust product that looks like a fintech dashboard reads as a company rather than a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
         ],
         images: [
-          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration." },
+          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {
@@ -89,6 +101,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             narrated: true,
             caption:
               "The full walkthrough, with me talking through it. Posting a game, picking a park, equipment and preferences, then the safety layer: emergency contacts, phone verification, and the minor gate.",
+              width: 640,
+              height: 1280,
           },
         ],
       },

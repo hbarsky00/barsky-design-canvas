@@ -80,6 +80,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             src: "/images/investor-loan-app/hero.webp",
             alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
             caption: "Predictive search in place of filter panels. Loan officers think in name fragments and deal codes, and want the deal on screen in two keystrokes.",
+            width: 1500,
+            height: 1125,
           },
         ],
       },

@@ -14,6 +14,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       alt: "Fire Lion in play — the hold-to-fly prompt, the lion mid-flight, and a boulder incoming",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
       caption: "Hold to fly, and something is already coming at you. If one tap didn't feel good here, nothing bolted on top would have rescued it.",
+      width: 1672,
+      height: 992,
     }}
     relatedPost={{
       slug: "a-to-do-app-doesnt-prove-anything",
@@ -28,7 +30,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "A game can. If a jump feels wrong, everyone knows immediately and nobody needs the mechanics explained to them. So I built one. Game feel is the thing a prompt can't hand you.",
         ],
         images: [
-          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good, not because it's a clever idea." },
+          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good, not because it's a clever idea.",
+ width: 488,
+ height: 686,
+    },
         ],
       },
       {
@@ -38,7 +43,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "The spelling came after, and only because it survived that test. You spell a word mid-flight and it casts. It works because tapping already felt good, not because it's a clever idea.",
         ],
         images: [
-          { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "A five-times combo over the lava forge. This is what survived after the daily missions, streaks and upgrade screens were deleted." },
+          { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "A five-times combo over the lava forge. This is what survived after the daily missions, streaks and upgrade screens were deleted.",
+ width: 500,
+ height: 692,
+    },
         ],
       },
       {
@@ -48,8 +56,14 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Each one lives in its own isolated component, with its own state and its own audio. That's a defensive decision, not an architectural preference. I was building at speed with AI, often late, and a refactor that reaches across a shared file breaks things you won't notice until someone else finds them. Isolation costs duplication and buys me the ability to change one mode without holding the other two in my head.",
         ],
         images: [
-          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio." },
-          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state", caption: "Same isolation rule, second scene. Duplication I paid for on purpose, so a refactor in one mode can't reach the other two." },
+          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
+ width: 802,
+ height: 656,
+    },
+          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state", caption: "Same isolation rule, second scene. Duplication I paid for on purpose, so a refactor in one mode can't reach the other two.",
+ width: 735,
+ height: 655,
+    },
         ],
       },
       {
@@ -60,7 +74,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Producing features got cheap. Deciding which ones survive didn't.",
         ],
         images: [
-          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system; the difficulty curve I tuned by hand on a phone." },
+          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system; the difficulty curve I tuned by hand on a phone.",
+ width: 488,
+ height: 680,
+    },
         ],
       },
       {
@@ -77,7 +94,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything. The gravity and the tap feel were hand-tuned on a phone.",
         ],
         images: [
-          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens — Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy." },
+          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens — Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {

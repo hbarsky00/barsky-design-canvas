@@ -22,6 +22,8 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       // hover to see, then a narrow portrait one that played itself. One
       // moving thing at the top, and it should be the newest work.
       caption: "Mid-fight: gloves, a blocking opponent, trash talk and the super meter. Gameplay as the opening frame, because the cinematic that used to sit here promised a game that didn't exist.",
+      width: 1672,
+      height: 992,
     }}
     relatedPost={{
       slug: "the-work-is-deleting-not-generating",
@@ -125,7 +127,10 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Every colour comes in a pair: the state at rest, and the same state ten percent lighter on impact. Colour and brightness change together because that reads faster than either on its own.",
         ],
         images: [
-          { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens — Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands." },
+          { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens — Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {
@@ -140,6 +145,8 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
             poster: "/images/ringrival-now/fight-brenner-poster.jpg",
             caption:
               "Klaus Brenner. Bigger, heavier, and on a rhythm you have to learn separately.",
+              width: 624,
+              height: 1079,
           },
         ],
       },

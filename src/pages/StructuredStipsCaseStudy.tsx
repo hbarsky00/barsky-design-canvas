@@ -18,6 +18,8 @@ const StructuredStipsCaseStudy: React.FC = () => (
       alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
       caption: "$500 of play money and a plain question. It says play money on the way in, before anyone has to ask.",
+      width: 1600,
+      height: 900,
     }}
     relatedPost={{
       slug: "if-you-make-people-do-math",
@@ -39,7 +41,10 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Every market carries its price, close date and volume on the card, so you can scan the board without opening anything. Markets with no bets yet say \"Be the first to trade\" rather than showing an empty chart.",
         ],
         images: [
-          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart." },
+          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart.",
+ width: 1600,
+ height: 900,
+    },
         ],
       },
       {
@@ -54,11 +59,15 @@ const StructuredStipsCaseStudy: React.FC = () => (
             src: "/images/stips/market-detail.jpg",
             alt: "Stips market page before choosing an outcome — Yes 67¢, No 33¢, with the resolution rules underneath",
             caption: "Before: both prices, the rules that settle it, and no maths asked of you yet.",
+            width: 1600,
+            height: 900,
           },
           {
             src: "/images/stips/order-ticket.jpg",
             alt: "The same market with Yes selected and $75 staked — to win $111.94, profit if correct $36.94",
             caption: "After: stake picked, payout and profit worked out before you commit a cent.",
+            width: 1600,
+            height: 900,
           },
         ],
       },
@@ -75,7 +84,10 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "A board of prices only has four things to say: yes, no, neutral, closing. Every one of those colours is measured against the surface it is actually painted on, because the previous set was tuned by eye and all four failed.",
         ],
         images: [
-          { src: "/images/stips/design-system.webp", alt: "Stips design tokens — Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair." },
+          { src: "/images/stips/design-system.webp", alt: "Stips design tokens — Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair.",
+ width: 1500,
+ height: 913,
+    },
         ],
       },
       {

@@ -34,7 +34,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "They were never short of results. They were short of a result they could act on.",
         ],
         images: [
-          { src: "/images/dae-search/the-problem.webp", alt: "Learning from design iterations that didn't meet enterprise needs", caption: "Forty results and no way to tell which table is current. The search worked; the twenty minutes after it are the actual job." },
+          { src: "/images/dae-search/the-problem.webp", alt: "Learning from design iterations that didn't meet enterprise needs", caption: "Forty results and no way to tell which table is current. The search worked; the twenty minutes after it are the actual job.",
+ width: 1302,
+ height: 710,
+    },
         ],
       },
       {
@@ -53,7 +56,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "It also changes what a bad result costs. Under the old list you found out a table was stale after you had built on it. Here you find out before you open it.",
         ],
         images: [
-          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems", caption: "Lineage on the result itself: where a table came from, when it last refreshed, what depends on it. Read in the list, not after a click." },
+          { src: "/images/dae-search/what-i-built.webp", alt: "Information architecture analysis of existing data systems", caption: "Lineage on the result itself: where a table came from, when it last refreshed, what depends on it. Read in the list, not after a click.",
+ width: 1024,
+ height: 576,
+    },
         ],
       },
       {
