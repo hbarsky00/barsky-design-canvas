@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Maximize2, Play } from "lucide-react";
-import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import { useImageMaximizer } from "@/context/imageMaximizer";
 
 /**
  * Fades an element up as it scrolls into view. One-shot — figures don't
@@ -14,7 +14,7 @@ import { useImageMaximizer } from "@/context/ImageMaximizerContext";
  * the screenshots are the point. Visible is the safe default, and the class
  * is added in a layout effect so there's no flash of the un-hidden state.
  */
-export const useReveal = <T extends HTMLElement>() => {
+const useReveal = <T extends HTMLElement>() => {
   const ref = useRef<T>(null);
 
   useLayoutEffect(() => {

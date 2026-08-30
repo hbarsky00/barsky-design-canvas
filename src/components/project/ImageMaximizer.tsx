@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import { useImageMaximizer } from "@/context/imageMaximizer";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ImageControls from "./image-maximizer/ImageControls";
 
@@ -75,19 +75,21 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     setScale(1);
   };
   
-  const handleNextImage = () => {
+  // Memoised so the keyboard effect below can depend on them honestly rather
+  // than closing over a version that is recreated on every render.
+  const handleNextImage = useCallback(() => {
     if (hasMultipleImages && imageList) {
       const nextIndex = (currentIndex + 1) % imageList.length;
       maximizeImage(imageList[nextIndex], title, imageList, nextIndex);
     }
-  };
+  }, [hasMultipleImages, imageList, currentIndex, title, maximizeImage]);
 
-  const handlePrevImage = () => {
+  const handlePrevImage = useCallback(() => {
     if (hasMultipleImages && imageList) {
       const prevIndex = (currentIndex - 1 + imageList.length) % imageList.length;
       maximizeImage(imageList[prevIndex], title, imageList, prevIndex);
     }
-  };
+  }, [hasMultipleImages, imageList, currentIndex, title, maximizeImage]);
 
   // Keyboard navigation for viewer (matching Splittime implementation).
   // currentIndex must be in the deps: the listener closes over it via the
@@ -129,7 +131,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
 
     document.addEventListener('keydown', handleKeyboard);
     return () => document.removeEventListener('keydown', handleKeyboard);
-  }, [isOpen, hasMultipleImages, currentIndex, imageList?.length]);
+  }, [isOpen, hasMultipleImages, currentIndex, imageList?.length, handleNextImage, handlePrevImage, onClose]);
 
   // Move focus into the dialog on open; restore it to the trigger on close.
   // Restore happens in the effect cleanup because the provider unmounts this

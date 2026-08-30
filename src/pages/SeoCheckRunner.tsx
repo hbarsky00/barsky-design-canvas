@@ -39,8 +39,10 @@ const SeoCheckRunner: React.FC = () => {
   };
 
   useEffect(() => {
-    // Auto-run on mount with default slug
+    // Mount-only on purpose. `slug` is bound to an input the user edits, so
+    // depending on it would re-run the check on every keystroke.
     runCheck(slug);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCheck = () => {

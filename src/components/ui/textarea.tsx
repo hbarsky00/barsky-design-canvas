@@ -10,39 +10,39 @@ export interface TextareaProps
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, tiltDisabled, ...props }, ref) => {
+  ({ className, tiltDisabled, onMouseMove, onMouseLeave, onFocus, onBlur, ...props }, ref) => {
     const tilt = useHoverTilt<HTMLTextAreaElement>({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
 
     const handleMouseMove = React.useCallback<React.MouseEventHandler<HTMLTextAreaElement>>(
       (e) => {
-        props.onMouseMove?.(e);
+        onMouseMove?.(e);
         tilt.onMouseMove(e);
       },
-      [props.onMouseMove, tilt]
+      [onMouseMove, tilt]
     );
 
     const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLTextAreaElement>>(
       (e) => {
-        props.onMouseLeave?.(e);
+        onMouseLeave?.(e);
         tilt.onMouseLeave(e);
       },
-      [props.onMouseLeave, tilt]
+      [onMouseLeave, tilt]
     );
 
     const handleFocus = React.useCallback<React.FocusEventHandler<HTMLTextAreaElement>>(
       (e) => {
-        props.onFocus?.(e);
+        onFocus?.(e);
         tilt.onFocus(e);
       },
-      [props.onFocus, tilt]
+      [onFocus, tilt]
     );
 
     const handleBlur = React.useCallback<React.FocusEventHandler<HTMLTextAreaElement>>(
       (e) => {
-        props.onBlur?.(e);
+        onBlur?.(e);
         tilt.onBlur(e);
       },
-      [props.onBlur, tilt]
+      [onBlur, tilt]
     );
 
     return (

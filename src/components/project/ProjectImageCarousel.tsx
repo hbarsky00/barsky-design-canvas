@@ -36,13 +36,13 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (images.length <= 1) return;
       
-      switch (e.key) {
-        case 'ArrowRight':
-          nextImage();
-          break;
-        case 'ArrowLeft':
-          prevImage();
-          break;
+      // The index maths is inlined rather than calling nextImage/prevImage,
+      // which are redefined every render and would have to be dependencies.
+      // Functional setState means this closes over nothing but images.length.
+      if (e.key === 'ArrowRight') {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      } else if (e.key === 'ArrowLeft') {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
       }
     };
     

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useImageMaximizer } from "@/context/ImageMaximizerContext";
+import { useImageMaximizer } from "@/context/imageMaximizer";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
@@ -38,12 +38,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
 
-  // Only update source if prop actually changes
+  // Runs only when `src` actually changes, so the old `src !== currentSrc`
+  // guard was redundant — and it was the sole reason currentSrc had to be a
+  // dependency, which would have re-run the effect on every internal update.
   useEffect(() => {
-    if (src !== currentSrc && src) {
-      setCurrentSrc(src);
-      setImageError(false);
-    }
+    if (!src) return;
+    setCurrentSrc(src);
+    setImageError(false);
   }, [src]);
 
   const handleMaximize = () => {

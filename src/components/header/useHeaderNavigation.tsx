@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Move navLinks outside the hook to prevent new array reference on every render
@@ -17,6 +17,19 @@ export const useHeaderNavigation = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isIntentionalScrolling, setIsIntentionalScrolling] = useState(false);
+  // The scroll listener is attached once and closed over whatever this was at
+  // attach time, so reading the state directly always saw the initial `false`.
+  // The ref is read live inside the handler.
+  //
+  // NOTE this only fixes half the problem: ProfileAvatar calls
+  // useHeaderNavigation() itself, which is a *separate* hook instance with its
+  // own state, so its setIsIntentionalScrolling(true) never reaches the
+  // header's copy either way. Making that work needs a shared context, which is
+  // a behaviour change and not in scope for a lint pass.
+  const isIntentionalScrollingRef = useRef(false);
+  useEffect(() => {
+    isIntentionalScrollingRef.current = isIntentionalScrolling;
+  }, [isIntentionalScrolling]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,7 +51,7 @@ export const useHeaderNavigation = () => {
   const isHomepage = location.pathname === '/';
   const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     
     // First check if we're on the homepage
     if (location.pathname !== '/') {
@@ -98,7 +111,9 @@ export const useHeaderNavigation = () => {
     };
     
     attemptScroll();
-  };
+    // location.pathname and navigate are the only outer values it reads;
+    // setIsIntentionalScrolling is a setState and stable by contract.
+  }, [location.pathname, navigate]);
 
   const handleLinkClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -225,7 +240,7 @@ export const useHeaderNavigation = () => {
       }
 
       // Skip section detection during intentional scrolling to prevent conflicts
-      if (isIntentionalScrolling) {
+      if (isIntentionalScrollingRef.current) {
         return;
       }
 
@@ -279,7 +294,7 @@ export const useHeaderNavigation = () => {
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
-  }, [location.pathname, isHomepage, isProjectPage]);
+  }, [location.pathname, isHomepage, isProjectPage, navLinks]);
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -296,7 +311,7 @@ export const useHeaderNavigation = () => {
       // For non-homepage routes, show logo immediately
       setIsScrolledPastHero(true);
     }
-  }, [location.pathname, location.state]);
+  }, [location.pathname, location.state, scrollToSection]);
 
   return {
     isScrolled,

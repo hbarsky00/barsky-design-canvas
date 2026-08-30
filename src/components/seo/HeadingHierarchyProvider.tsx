@@ -1,21 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-
-interface HeadingHierarchyContextType {
-  h1Used: boolean;
-  setH1Used: (used: boolean) => void;
-  currentLevel: number;
-  setCurrentLevel: (level: number) => void;
-}
-
-const HeadingHierarchyContext = createContext<HeadingHierarchyContextType | undefined>(undefined);
-
-export const useHeadingHierarchy = () => {
-  const context = useContext(HeadingHierarchyContext);
-  if (!context) {
-    throw new Error("useHeadingHierarchy must be used within a HeadingHierarchyProvider");
-  }
-  return context;
-};
+import React, { useState } from "react";
+import { HeadingHierarchyContext } from "./headingHierarchyContext";
 
 interface HeadingHierarchyProviderProps {
   children: React.ReactNode;
