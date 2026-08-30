@@ -16,6 +16,7 @@
 
 ## Case studies
 
+- [Business Management](/project/business-management): A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.
 - [Bz Essentials](/project/bz-essentials): An internal knowledge portal built from a client PRD, where region is a lens over the whole app instead of a filter nobody opens.
 - [CatchBuddy](/project/catchbuddy): Same-day pickup sports, designed for trust and safety.
 - [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.

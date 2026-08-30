@@ -82,6 +82,19 @@ const caseStudies: CaseStudy[] = [
     video: "/bz-essentials-card.mp4"
   },
   {
+    id: "business-management",
+    tags: ["Business Software", "Distribution", "Solo Build"],
+    title: "QuickFlow",
+    description: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
+    impact: "",
+    url: "/project/business-management",
+    images: {
+      primary: "/images/business-management/hero-three-laptops.jpg",
+      alt: "QuickFlow business management across three screens"
+    },
+    layout: "side-by-side"
+  },
+  {
     id: "recast",
     tags: ["Product Design", "Cross-Platform", "Native + Web"],
     title: "Recast",

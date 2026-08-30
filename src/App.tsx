@@ -44,6 +44,7 @@ const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/Structure
 const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy"));
 const StructuredDaeSearchCaseStudy = React.lazy(() => import("@/pages/StructuredDaeSearchCaseStudy"));
 const StructuredStipsCaseStudy = React.lazy(() => import("@/pages/StructuredStipsCaseStudy"));
+const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 
 const NotFound = React.lazy(() => import("@/pages/NotFound"));
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
@@ -167,6 +168,7 @@ function AppContent() {
               <Route path="/project/crypto" element={<StructuredCryptoCaseStudy />} />
               <Route path="/project/dae-search" element={<StructuredDaeSearchCaseStudy />} />
               <Route path="/project/stips" element={<StructuredStipsCaseStudy />} />
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
 
               
               {/* Generic project detail for other projects */}

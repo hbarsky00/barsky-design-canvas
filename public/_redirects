@@ -46,12 +46,10 @@
 /blog/figma-to-production-with-ai  /blog   301
 /blog/designing-ai-native-interfaces  /blog   301
 
-# Blue Sky / business-management taken down 2026-08-09 (Hiram: "take it down,
-# we'll fuck with it later"). The page and its data are still in the repo, just
-# not routed. Both URLs were indexed, so send them to the work index rather
-# than let the SPA answer 200 with a client-rendered Not Found.
-/project/business-management     /#case-studies   301
-/project/wholesale-distribution  /#case-studies   301
+# business-management was taken down 2026-08-09 and is back as a full case
+# study on the current layout. wholesale-distribution was the older URL for the
+# same project, so it points at the page rather than at the index.
+/project/wholesale-distribution  /project/business-management   301
 
 # SplitTime hidden 2026-08-22 (splittime.pro is dead). This rule has to live
 # HERE, not only in netlify.toml: this file is processed first and its catch-all
