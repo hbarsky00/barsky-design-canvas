@@ -58,6 +58,13 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             width: 2250,
             height: 1360,
           },
+          {
+            src: "/images/investor-loan-app/before-after.webp",
+            alt: "The old Excel system beside the new Loan Central platform",
+            caption: "The same four moves, before and after. Excel on the left could already do all of it \u2014 just with nothing stopping you getting it wrong.",
+            width: 768,
+            height: 512,
+          },
         ],
       },
       {
@@ -67,14 +74,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "I replaced filter panels with predictive search. Loan officers do not think in filters, they think in name fragments and deal codes, and they want the deal on screen in two keystrokes. That is a Bloomberg habit and it was the right one to design for here.",
           "The order builder walks you forward: pick the lender first, then the terms open up. It looks restrictive in a screenshot. In practice it stops people building an order against nothing.",
           "The audit trail sits right next to the record instead of in some admin tool nobody opens. That single decision is why compliance ended up arguing for the platform rather than against it.",
-        ],
-        videos: [
-          {
-            src: "/investor-loan-add-order.mp4",
-            poster: "/images/investor-loan-app/add-order-poster.jpg",
-            caption:
-              "Add Order. The add, duplicate and remove controls stay disabled until a lender is chosen, and removing the last line tells you why instead of leaving you with an empty form.",
-          },
         ],
         images: [
           {
@@ -89,13 +88,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         paragraphs: [
           "My first version copied too much of Excel's structure. I was trying to keep the change small, and I ended up with something that was worse than the spreadsheet at being a spreadsheet and worse than the platform at being a platform.",
           "I also built dashboards too early. Nobody starts their day on a dashboard. They open a specific deal, because a specific deal is what someone is asking them about.",
-        ],
-        images: [
-          {
-            src: "/images/investor-loan-app/before-after.webp",
-            alt: "Old Excel system next to the new Loan Central platform",
-            caption: "The rewrite that finally stopped pretending to be Excel.",
-          },
         ],
       },
       {
@@ -119,6 +111,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         paragraphs: [
           "They adopted it. Three teams tried before me and none of them got there.",
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/investor-loan-app/my-deals-list-view.jpg",
