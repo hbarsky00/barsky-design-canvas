@@ -84,6 +84,22 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "This one shipped with its own style guide, so the swatches here are read straight off it rather than reconstructed. Nine named colours in three tiers, and the tiers do different jobs: one primary that carries every action, a secondary set that carries state, and neutrals doing the work of separating result rows.",
+          "The neutrals are the interesting part. Mint, sage and khaki are what let a dense row show freshness without a legend or an extra column, which is the only reason the row could hold lineage at all.",
+        ],
+        images: [
+          {
+            src: "/images/dae-search/design-system.webp",
+            alt: "DAE Search design tokens read off the project's own style guide \u2014 Primary Blue, White and Dark Grey, a secondary set of Medium Blue, Ice Blue and Orangey Red, and Cool Mint, Sage and Light Khaki as neutrals",
+            caption: "Read off the project's own style guide. Primary Blue carries every action; the neutrals carry freshness, so the row never needs a legend.",
+            width: 1500,
+            height: 1164,
+          },
+        ],
+      },
+      {
         heading: "Trust Beat Relevance",
         paragraphs: [
           "Semantic search with lineage and permissions inline changed what the thing is. It stopped being a search box and became the place you go to find out whether data is worth using.",

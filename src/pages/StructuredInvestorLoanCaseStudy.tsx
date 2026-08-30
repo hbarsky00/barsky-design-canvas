@@ -99,6 +99,22 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
       },
       {
+        heading: "The Design System",
+        paragraphs: [
+          "I don't hold the source for this one, so the sheet below is measured off the delivered screens rather than exported from a token file. It is still the real thing: one institutional blue that only ever means \"you can act here\", and four status hues that appear twice each, once as a pill fill and once at full strength on the progress bar.",
+          "Nothing else gets colour. In a product where the numbers are eight figures, decoration reads as a bug.",
+        ],
+        images: [
+          {
+            src: "/images/investor-loan-app/design-system.webp",
+            alt: "Investor Loan Platform design tokens sampled from the shipped UI \u2014 the page and surface greys, one deep blue for actions, and the four deal-status hues shown as pill fills and progress bars",
+            caption: "Sampled from the shipped product, not exported from a token file. Every value here was measured off a delivered screen.",
+            width: 1500,
+            height: 1130,
+          },
+        ],
+      },
+      {
         heading: "Where It Landed",
         paragraphs: [
           "They adopted it. Three teams tried before me and none of them got there.",

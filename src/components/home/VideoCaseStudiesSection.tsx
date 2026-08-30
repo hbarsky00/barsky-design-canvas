@@ -32,23 +32,39 @@ interface CaseStudy {
 // listing is affected.
 const caseStudies: CaseStudy[] = [
   {
-    id: "ring-rival",
-    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
-    title: "Ring-Rival",
-    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
+    id: "investor-loan-app",
+    tags: ["Enterprise", "FinTech", "Workflow Design"],
+    title: "Investor Loan Platform",
+    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
     impact: "",
-    url: "/project/ring-rival",
-    liveUrl: "https://ringrival.today",
+    url: "/project/investor-loan-app",
     images: {
-      // Was the title screen still + an AI-generated cinematic of a
-      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
-      // fighter. Now the card shows the thing you actually get — first-person
-      // gloves, opponent trash talk, the super-punch meter.
-      primary: "/images/ringrival-now/card-poster.jpg",
-      alt: "Ring-Rival mobile boxing gameplay"
+      // Poster is the video's own first frame — the source clip had ~100px of
+      // grey mock-frame baked into the top and bottom; it's cropped out of
+      // both now, so no more letterboxed card.
+      primary: "/images/investor-loan-app/card-poster-home.jpg",
+      alt: "Investor loan analysis dashboard overview"
     },
     layout: "side-by-side",
-    video: "/ring-rival-card.mp4"
+    video: "/investor-loan-deals-card.mp4"
+  },
+  {
+    id: "dae-search",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    title: "DAE Search",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    impact: "",
+    url: "/project/dae-search",
+    images: {
+      // Was hosted on a Supabase project that's since been deprovisioned —
+      // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
+      // failure). Hiram supplied the original source file directly;
+      // restored locally (same asset used as the full case study's hero).
+      primary: "/images/dae-search/hero.webp",
+      alt: "DAE Search platform interface"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/dae-search-hero.mp4"
   },
   {
     id: "bz-essentials",
@@ -87,21 +103,6 @@ const caseStudies: CaseStudy[] = [
     video: "/recast-card.mp4"
   },
   {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.fit",
-    images: {
-      primary: "/images/catchbuddy-hero-landing.webp",
-      alt: "CatchBuddy pickup sports app"
-    },
-    layout: "side-by-side",
-    video: "/catchbuddy-card.mp4"
-  },
-  {
     id: "herbalink",
     tags: ["Health", "Marketplace", "Trust & Safety"],
     title: "HerbaLink",
@@ -119,6 +120,21 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/herbalink-card.mp4"
+  },
+  {
+    id: "catchbuddy",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
+    title: "CatchBuddy",
+    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
+    impact: "",
+    url: "/project/catchbuddy",
+    liveUrl: "https://catchbuddy.fit",
+    images: {
+      primary: "/images/catchbuddy-hero-landing.webp",
+      alt: "CatchBuddy pickup sports app"
+    },
+    layout: "side-by-side",
+    video: "/catchbuddy-card.mp4"
   },
   {
     id: "stips",
@@ -140,39 +156,23 @@ const caseStudies: CaseStudy[] = [
     video: "/stips-card.mp4"
   },
   {
-    id: "dae-search",
-    tags: ["Enterprise", "Data Discovery", "Search UX"],
-    title: "DAE Search",
-    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    id: "ring-rival",
+    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
+    title: "Ring-Rival",
+    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
-    url: "/project/dae-search",
+    url: "/project/ring-rival",
+    liveUrl: "https://ringrival.today",
     images: {
-      // Was hosted on a Supabase project that's since been deprovisioned —
-      // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
-      // failure). Hiram supplied the original source file directly;
-      // restored locally (same asset used as the full case study's hero).
-      primary: "/images/dae-search/hero.webp",
-      alt: "DAE Search platform interface"
+      // Was the title screen still + an AI-generated cinematic of a
+      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
+      // fighter. Now the card shows the thing you actually get — first-person
+      // gloves, opponent trash talk, the super-punch meter.
+      primary: "/images/ringrival-now/card-poster.jpg",
+      alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
-  },
-  {
-    id: "investor-loan-app",
-    tags: ["Enterprise", "FinTech", "Workflow Design"],
-    title: "Investor Loan Platform",
-    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
-    impact: "",
-    url: "/project/investor-loan-app",
-    images: {
-      // Poster is the video's own first frame — the source clip had ~100px of
-      // grey mock-frame baked into the top and bottom; it's cropped out of
-      // both now, so no more letterboxed card.
-      primary: "/images/investor-loan-app/card-poster-home.jpg",
-      alt: "Investor loan analysis dashboard overview"
-    },
-    layout: "side-by-side",
-    video: "/investor-loan-deals-card.mp4"
+    video: "/ring-rival-card.mp4"
   },
   {
     // Never pulled — it was simply never added here. Hiram spotted it missing.

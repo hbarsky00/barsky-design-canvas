@@ -6,9 +6,10 @@
  * bottom of each study, so the order here should match the homepage's
  * featured list in VideoCaseStudiesSection.
  *
- * Studies that exist as routes but aren't featured (splittime, crypto,
- * fire-lion, business-management, email-creation-ai) are deliberately absent:
- * the pager walks the work being promoted, not every page that exists.
+ * Order matches the homepage's VideoCaseStudiesSection: enterprise work first,
+ * then the shipped consumer products, then the games. Crypto and ManuscriptRx
+ * are deliberately absent from the pager — neither shipped, and the pager
+ * walks the work being promoted rather than every page that exists.
  */
 export interface CaseStudyIndexEntry {
   id: string;
@@ -19,24 +20,9 @@ export interface CaseStudyIndexEntry {
 
 export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
   {
-    id: "ring-rival",
-    title: "Ring-Rival",
-    blurb: "Console boxing feel on the mobile web.",
-  },
-  {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    blurb: "Same-day pickup sports, designed for trust.",
-  },
-  {
-    id: "herbalink",
-    title: "HerbaLink",
-    blurb: "A booking platform where the real product is trust.",
-  },
-  {
-    id: "stips",
-    title: "Stips",
-    blurb: "Prediction markets you can actually read.",
+    id: "investor-loan-app",
+    title: "Investor Loan Platform",
+    blurb: "Loan origination that replaced a spreadsheet.",
   },
   {
     id: "dae-search",
@@ -44,9 +30,34 @@ export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
     blurb: "Search that answers the question behind the query.",
   },
   {
-    id: "investor-loan-app",
-    title: "Investor Loan Platform",
-    blurb: "Loan origination that replaced a spreadsheet.",
+    id: "bz-essentials",
+    title: "BZ Essentials",
+    blurb: "An enterprise portal where region is a lens, not a filter.",
+  },
+  {
+    id: "recast",
+    title: "Recast",
+    blurb: "Record it once, send a link. Native apps, one web library.",
+  },
+  {
+    id: "herbalink",
+    title: "HerbaLink",
+    blurb: "A booking platform where the real product is trust.",
+  },
+  {
+    id: "catchbuddy",
+    title: "CatchBuddy",
+    blurb: "Same-day pickup sports, designed for trust.",
+  },
+  {
+    id: "stips",
+    title: "Stips",
+    blurb: "Prediction markets you can actually read.",
+  },
+  {
+    id: "ring-rival",
+    title: "Ring-Rival",
+    blurb: "Console boxing feel on the mobile web.",
   },
 ];
 
