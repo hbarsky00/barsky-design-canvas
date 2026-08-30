@@ -39,7 +39,56 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   certified". The 2026-07-15 honesty pass cleaned the FAQ *schema* and never
   touched `seoFaqs.ts`, which is what the visible section reads from.
 
-- [ ] 3 citable resource content
+- [x] **3 citable resource content** — 2026-08-30 — `what-one-person-can-ship-now`,
+  the post closest to the differentiator this loop exists to get cited for
+  ("can one person actually design and build a product with AI").
+
+  **Two extraction defects, both structural rather than editorial.**
+
+  1. *The most liftable passage on the page had no structure.* "Four walls, in
+     the order I hit them" was followed by four unmarked `<p>` elements. A
+     numbered constraint list is exactly the shape an answer engine quotes, and
+     nothing in the markup said it was one. Added a four-item `<ul>` with bolded
+     lead-ins (Distribution / Institutional trust / Operations / Nobody checking
+     your work) directly under that sentence, one clause each, with the existing
+     prose kept below as the argument. Answer-first, then detail — no paragraph
+     was rewritten or removed, so the human-voice pass of 2026-08-27 is intact.
+  2. *The post's own headline number did not check out on the page.* It opens
+     "I have four products live that I designed and built by myself" and then
+     names three: Stips, Ring-Rival, CatchBuddy. The fourth was only ever
+     asserted by the closing image's alt text. An engine reading this counts
+     three and the claim reads inflated. Named Recast in the product paragraph
+     (it is live at recastvid.com, has its own case study, and is referenced by
+     four other posts in this file) and corrected "Three different shapes of
+     product" to "Four".
+
+  Also gave the closing `/images/recast/landing-light.webp` figure its real
+  `width`/`height` (1500x831) and `loading="lazy"` — it was the one image in the
+  post without dimensions, so it was the one that could shift layout.
+
+  **Deliberately not done: manufacturing an "X is..." definition sentence.** The
+  lever's checklist asks for one, but the post already carries its citable claim
+  in the second paragraph — "One person can ship real software. One person still
+  cannot ship a real company." Bolting a definitional opener on top of that would
+  add nothing an engine can't already extract and would read as SEO-shaped
+  writing, which is the exact regression the 2026-08-27 pass was undoing.
+
+  **Measured.** `tsc -p tsconfig.app.json` unchanged (12 pre-existing errors in
+  `analytics.ts` / `Comments.tsx` / `test/setup.ts`, none introduced; the root
+  `tsconfig.json` is looser and reports 0 — both numbers are correct for their
+  config). Build clean, 44/44 prerendered, 0 head-only. `capture-bodies` 44/44
+  with **exactly one** snapshot changing, which is the confirmation that the edit
+  was contained. Served non-JS HTML for the post now carries all four `<li>`
+  elements and the corrected count. Media intact: 23 files in `public`, 23 in
+  `dist`, no `.capture-media-stash` left behind.
+
+  **Noted, not acted on:** a `vite preview --strictPort 4199` from an earlier run
+  was already alive when this run started (pid 29090). It did not corrupt
+  anything — `vite preview` serves `dist/` from disk, so it picked up the fresh
+  build — but it is the same leftover-process class of hazard as the 2026-08-23
+  entry, and it means `--strictPort` is not actually protecting this script from
+  a concurrent run the way the header comment implies.
+
 - [ ] 4 structured-data validation sweep
 - [ ] 5 llms.txt / cross-web consistency
 - [ ] 6 content freshness / gap-fill

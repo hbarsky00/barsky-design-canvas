@@ -683,9 +683,9 @@ export const blogPosts: BlogPost[] = [
 
       <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> is a play-money prediction market with accounts, a database enforcing row-level security, market resolution, and a scheduled job that reads the news and writes new markets without me touching it. That is not a landing page with a waitlist attached. It is a running system with state, permissions, and a job that keeps going while I sleep.</p>
 
-      <p><a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is a browser boxing game whose fighters are rigged from separate body, arm, and leg pieces so a punch can be tuned by hand instead of played back. <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy</a> organizes same-day pickup sports between strangers, with the safety architecture designed before the matching was.</p>
+      <p><a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is a browser boxing game whose fighters are rigged from separate body, arm, and leg pieces so a punch can be tuned by hand instead of played back. <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy</a> organizes same-day pickup sports between strangers, with the safety architecture designed before the matching was. <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> is a screen recorder that ships as a Mac app, an Android app and a website, so a recording made on one becomes a link the other two can serve.</p>
 
-      <p>Three different shapes of product. Different data models, different users, different ways of failing. All built by one person around a full workload. Not long ago each of those is a team and a quarter.</p>
+      <p>Four different shapes of product. Different data models, different users, different ways of failing. All built by one person around a full workload. Not long ago each of those is a team and a quarter.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Cheap Part Was Not the Part I Expected</h2>
 
@@ -698,6 +698,13 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Where Solo Actually Stops</h2>
 
       <p>Four walls, in the order I hit them.</p>
+
+      <ul class="list-disc pl-6 mb-4">
+        <li><strong>Distribution.</strong> Building got faster. Getting a stranger to open the thing costs exactly what it always did.</li>
+        <li><strong>Institutional trust.</strong> Enterprises buy from organizations they can hold responsible, and a repository is not one.</li>
+        <li><strong>Operations.</strong> Anything with real-world risk needs a human on a rotation, which is headcount rather than code.</li>
+        <li><strong>Nobody checking your work.</strong> The missing colleague is the most expensive part of building alone.</li>
+      </ul>
 
       <p>Distribution did not move an inch. Building got dramatically faster and getting a stranger to open the thing costs exactly what it always did. I can ship a working product over a weekend and then spend three months failing to get anyone to use it. That is a worse story and it is the true one.</p>
 
@@ -716,7 +723,7 @@ export const blogPosts: BlogPost[] = [
       <p>That is the loop solo is built for. Ship it, watch one real person use it, delete what they ignored, do it again. AI compressed the build step hard enough that the loop is now cheap to run, which is the best thing about the current moment.</p>
 
       <figure class="my-8">
-        <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" class="w-full rounded-xs" />
+        <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" loading="lazy" class="w-full rounded-xs" width="1500" height="831" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One person's product, designed, built and shipped end to end — including all the parts nobody ever sees.</figcaption>
       </figure>
 
