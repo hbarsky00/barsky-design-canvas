@@ -16,7 +16,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/ringrival-now/hero-triptych.webp",
       alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
-      hoverVideo: "/ring-rival-fight-frost.mp4",
+      // No hover video here any more. This still sat directly above the
+      // star-punch clip, so the top of the page was two video surfaces back to
+      // back showing two different fights — a wide landscape one you had to
+      // hover to see, then a narrow portrait one that played itself. One
+      // moving thing at the top, and it should be the newest work.
       caption: "Mid-fight: gloves, a blocking opponent, trash talk and the super meter. Gameplay as the opening frame, because the cinematic that used to sit here promised a game that didn't exist.",
     }}
     relatedPost={{
