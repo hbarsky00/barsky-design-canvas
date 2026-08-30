@@ -5,7 +5,10 @@ import { useScrollToHomeTop } from "@/hooks/useScrollToHomeTop";
 import { useHeaderNavigation } from "./useHeaderNavigation";
 
 const ProfileAvatar: React.FC = () => {
-  const imageUrl = '/images/hiram-barsky-profile.webp';
+  // 96px source for a 48px avatar (2x DPR). The full 720x960 file was being
+  // served here — 15x oversized, 101 KB, and eager, so it competed with LCP
+  // for a picture the size of a thumbnail.
+  const imageUrl = '/images/hiram-barsky-profile-96.webp';
 
   const { setIsIntentionalScrolling } = useHeaderNavigation();
   

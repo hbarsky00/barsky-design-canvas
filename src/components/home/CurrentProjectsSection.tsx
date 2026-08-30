@@ -29,7 +29,7 @@ const currentProjects: CurrentProject[] = [
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
     // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
-    thumbnailSrc: "/images/hiram-barsky-profile.webp"
+    thumbnailSrc: "/images/hiram-barsky-profile-448.webp"
   },
   {
     id: "roi-calculator",
@@ -46,7 +46,7 @@ const currentProjects: CurrentProject[] = [
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
     // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
-    thumbnailSrc: "/images/hiram-barsky-profile.webp"
+    thumbnailSrc: "/images/hiram-barsky-profile-448.webp"
   },
   {
     id: "faces-of-hunger",

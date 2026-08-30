@@ -145,14 +145,21 @@ const CleanHero: React.FC = () => {
               variants={prefersReducedMotion ? variants : nameGroup}
               className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-foreground tracking-tight leading-[1.02]"
             >
-              {["Hiram", "Barsky"].map((word) => (
-                <motion.span
-                  key={word}
-                  variants={prefersReducedMotion ? undefined : nameWord}
-                  className="inline-block mr-[0.25em] last:mr-0"
-                >
-                  {word}
-                </motion.span>
+              {/* A real space between the words, not a margin. With `mr-[0.25em]`
+                  and nothing between the spans this h1 read as "HiramBarsky" to
+                  every text extractor — and on a portfolio the h1 is the name
+                  people search for. Whitespace between inline-blocks collapses
+                  to one word space, so it looks the same. */}
+              {["Hiram", "Barsky"].map((word, i, all) => (
+                <React.Fragment key={word}>
+                  <motion.span
+                    variants={prefersReducedMotion ? undefined : nameWord}
+                    className="inline-block"
+                  >
+                    {word}
+                  </motion.span>
+                  {i < all.length - 1 ? " " : null}
+                </React.Fragment>
               ))}
             </motion.h1>
 
