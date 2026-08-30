@@ -50,12 +50,17 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
       // Whitespace between inline-block elements collapses to a single word
       // space, so this spaces identically without the margin.
       const words = text.split(" ");
-      return words.map((word, index) => <React.Fragment key={`word-${index}`}>
-          <motion.span custom={index} variants={characterAnimation[animation]} className="inline-block">
+      const nodes: React.ReactNode[] = [];
+      words.forEach((word, index) => {
+        nodes.push(<motion.span key={`word-${index}`} custom={index} variants={characterAnimation[animation]} className="inline-block">
             {word}
-          </motion.span>
-          {index < words.length - 1 ? " " : null}
-        </React.Fragment>);
+          </motion.span>);
+        // A real space, as its own text node. Not a Fragment: lovable-tagger
+        // puts data-lov-id on every JSX element and React.Fragment takes only
+        // key and children, so wrapping each word warned on every render.
+        if (index < words.length - 1) nodes.push(" ");
+      });
+      return nodes;
     }
   };
   return <Tag ref={elementRef} className={cn("block", className)}>

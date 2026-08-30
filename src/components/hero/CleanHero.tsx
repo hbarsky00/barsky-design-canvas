@@ -150,17 +150,16 @@ const CleanHero: React.FC = () => {
                   every text extractor — and on a portfolio the h1 is the name
                   people search for. Whitespace between inline-blocks collapses
                   to one word space, so it looks the same. */}
-              {["Hiram", "Barsky"].map((word, i, all) => (
-                <React.Fragment key={word}>
-                  <motion.span
-                    variants={prefersReducedMotion ? undefined : nameWord}
-                    className="inline-block"
-                  >
-                    {word}
-                  </motion.span>
-                  {i < all.length - 1 ? " " : null}
-                </React.Fragment>
-              ))}
+              {["Hiram", "Barsky"].flatMap((word, i, all) => [
+                <motion.span
+                  key={word}
+                  variants={prefersReducedMotion ? undefined : nameWord}
+                  className="inline-block"
+                >
+                  {word}
+                </motion.span>,
+                i < all.length - 1 ? " " : null,
+              ])}
             </motion.h1>
 
             <motion.div variants={variants} className="flex flex-col gap-1.5">
