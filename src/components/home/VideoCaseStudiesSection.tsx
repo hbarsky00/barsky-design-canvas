@@ -143,7 +143,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/catchbuddy",
     liveUrl: "https://catchbuddy.fit",
     images: {
-      primary: "/images/catchbuddy-hero-landing.webp",
+      primary: "/images/catchbuddy-hero-landing-card.webp",
       alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
@@ -196,7 +196,7 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/crypto",
     images: {
-      primary: "/images/crypto/hero.webp",
+      primary: "/images/crypto/hero-card.webp",
       alt: "Gold2Crypto trading interface — one platform serving beginners and pros"
     },
     layout: "side-by-side"
@@ -254,6 +254,8 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(
         src={study.images.primary}
         alt={study.images.alt}
         loading="lazy"
+        width={1600}
+        height={1000}
         className="w-full h-full object-cover object-top"
       />
     );

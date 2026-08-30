@@ -66,7 +66,11 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
 };
 
 // Project-specific SEO mappings
-export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
+// `published` / `modified` are real dates taken from this repo's git history for
+// each case-study page — the commit that introduced it and the commit that last
+// touched it. Not invented, and not a blanket "today": the Article schema was
+// scoring 67% completeness purely for missing them.
+export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; published?: string; modified?: string; }> = {
   "smarterhealth": {
     title: "Smarter Health — Healthcare App UX Case Study",
     description: "A medication-tracking app for diabetic patients, designed around what people actually do between appointments rather than what a dashboard wants to show them.",
@@ -75,12 +79,16 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "crypto": {
     title: "Crypto Trading — Fintech UX Case Study",
     description: "Turning a commodity-to-crypto trading flow into something a first-timer can follow, by designing for the fear rather than around it.",
-    image: "https://barskydesign.pro/images/og/crypto.png"
+    image: "https://barskydesign.pro/images/og/crypto.png",
+    published: "2025-08-24",
+    modified: "2026-08-29"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
     description: "A booking platform for verified herbalists, built solo end to end. Nobody is listed until their credentials check out — the problem was trust, not search.",
-    image: "https://barskydesign.pro/images/og/herbalink.png"
+    image: "https://barskydesign.pro/images/og/herbalink.png",
+    published: "2025-08-07",
+    modified: "2026-08-29"
   },
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
@@ -90,12 +98,16 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "stips": {
     title: "Stips — Prediction Markets UX Case Study",
     description: "Play-money prediction markets designed so the price reads as a probability — 67¢ means 67% likely, with the payout worked out before you commit.",
-    image: "https://barskydesign.pro/images/og/stips.png"
+    image: "https://barskydesign.pro/images/og/stips.png",
+    published: "2026-08-08",
+    modified: "2026-08-29"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
     description: "Replacing Excel as the system of record for multi-million-dollar loan deals, without anyone losing the workflow they already had.",
-    image: "https://barskydesign.pro/images/og/investor-loan-app.png"
+    image: "https://barskydesign.pro/images/og/investor-loan-app.png",
+    published: "2025-08-10",
+    modified: "2026-08-29"
   },
   "medication-app": {
     title: "Medication App — Patient Safety UX Case Study",
@@ -110,42 +122,58 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "business-management": {
     title: "QuickFlow — Wholesale Distribution Software Case Study",
     description: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
-    image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg"
+    image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg",
+    published: "2026-08-30",
+    modified: "2026-08-30"
   },
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
     description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
-    image: "https://barskydesign.pro/images/og/dae-search.png"
+    image: "https://barskydesign.pro/images/og/dae-search.png",
+    published: "2026-05-20",
+    modified: "2026-08-29"
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
     description: "A shipped mobile web game built solo with AI as co-builder — three modes, hand-tuned game feel, and a deletion list longer than the feature list.",
-    image: "https://barskydesign.pro/images/og/fire-lion.png"
+    image: "https://barskydesign.pro/images/og/fire-lion.png",
+    published: "2026-05-19",
+    modified: "2026-08-29"
   },
   "recast": {
     title: "Recast — Cross-Platform Screen Recorder Case Study",
     description: "Record once, send a link. Native Mac and Android capture with a web library — including the browser recorder I built, then deleted.",
-    image: "https://barskydesign.pro/images/og/recast.png"
+    image: "https://barskydesign.pro/images/og/recast.png",
+    published: "2026-08-25",
+    modified: "2026-08-29"
   },
   "bz-essentials": {
     title: "BZ Essentials — Enterprise Knowledge Portal Case Study",
     description: "An internal knowledge portal built from a client PRD, where region is a lens over the whole app instead of a filter nobody opens.",
-    image: "https://barskydesign.pro/images/og/bz-essentials.png"
+    image: "https://barskydesign.pro/images/og/bz-essentials.png",
+    published: "2026-08-27",
+    modified: "2026-08-29"
   },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
     description: "A shipped boxing game: distinct AI opponents, generated trash talk, hand-tuned feel. Time-to-first-punch cut from 22 seconds to 6 by deleting four screens.",
-    image: "https://barskydesign.pro/images/og/ring-rival.png"
+    image: "https://barskydesign.pro/images/og/ring-rival.png",
+    published: "2026-05-19",
+    modified: "2026-08-29"
   },
   "catchbuddy": {
     title: "CatchBuddy — Safe Sports Matching Case Study",
     description: "Same-day pickup sports built solo with AI — phone verification, a panic button, and curated meeting spots designed in from day one, not bolted on.",
-    image: "https://barskydesign.pro/images/og/catchbuddy.png"
+    image: "https://barskydesign.pro/images/og/catchbuddy.png",
+    published: "2026-05-19",
+    modified: "2026-08-29"
   },
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",
     description: "A concept for AI-assisted pharma HCP email production, designed around the approval gates — AI handles the work between humans, not the decisions.",
-    image: "https://barskydesign.pro/images/og/email-creation-ai.png"
+    image: "https://barskydesign.pro/images/og/email-creation-ai.png",
+    published: "2026-05-20",
+    modified: "2026-08-29"
   }
 };
 
@@ -334,7 +362,12 @@ export function getProjectSEO(projectId: string): Partial<SEOInput> | null {
     kind: 'project',
     title: project.title,
     description: project.description,
-    image: project.image
+    image: project.image,
+    // `published` / `modified` are the names buildSEO maps to publishedTime /
+    // modifiedTime. Returning the *Time names directly skips that mapping and
+    // the dates never reach the schema.
+    ...(project.published && { published: project.published }),
+    ...(project.modified && { modified: project.modified })
   };
 }
 

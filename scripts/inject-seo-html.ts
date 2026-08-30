@@ -92,6 +92,11 @@ function seoInputFor(pathname: string): SEOInput {
         title: override.title!,
         description: override.description!,
         image: override.image,
+        // The blog branch above already passed these through; this one dropped
+        // them on the floor, which is why every case study's Article schema
+        // shipped without datePublished or dateModified.
+        published: override.published,
+        modified: override.modified,
       };
     }
     return {
