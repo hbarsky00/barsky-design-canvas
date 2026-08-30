@@ -88,21 +88,31 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         paragraphs: [
           "My first version copied too much of Excel's structure. I was trying to keep the change small, and I ended up with something that was worse than the spreadsheet at being a spreadsheet and worse than the platform at being a platform.",
           "I also built dashboards too early. Nobody starts their day on a dashboard. They open a specific deal, because a specific deal is what someone is asking them about.",
+          "The landing page below is the version that made that obvious. Every deal in the book as a card, twenty-two thousand of them, sorted by borrower. It is a perfectly reasonable screen and it answers a question nobody was asking. What replaced it is the list further down this page, with predictive search on top, because the real first move of the day is finding one deal by name.",
+        ],
+        images: [
+          {
+            src: "/images/investor-loan-app/deal-central-wireframe.webp",
+            alt: "Loan Central landing page in wireframe \u2014 My Deals, Live Deals and All Deals tabs above a grid of deal cards showing borrower, industry, region, status and deal size, with 22,934 deals in the header",
+            caption: "22,934 deals as cards. The count in the corner is the tell: a screen that opens on everything is a screen that has not decided what you came for.",
+            width: 1440,
+            height: 1058,
+          },
         ],
       },
       {
         heading: "The Design System",
         paragraphs: [
-          "I don't hold the source for this one, so the sheet below is measured off the delivered screens rather than exported from a token file. It is still the real thing: one institutional blue that only ever means \"you can act here\", and four status hues that appear twice each, once as a pill fill and once at full strength on the progress bar.",
+          "One institutional blue that only ever means \"you can act here\", and three status colours that only ever mean deal state. Everything sits on a 4px grid, in Inter, chosen because it holds up at the small sizes a dense loan table forces on you.",
           "Nothing else gets colour. In a product where the numbers are eight figures, decoration reads as a bug.",
         ],
         images: [
           {
             src: "/images/investor-loan-app/design-system.webp",
-            alt: "Investor Loan Platform design tokens sampled from the shipped UI \u2014 the page and surface greys, one deep blue for actions, and the four deal-status hues shown as pill fills and progress bars",
-            caption: "Sampled from the shipped product, not exported from a token file. Every value here was measured off a delivered screen.",
+            alt: "Investor Loan Platform design tokens \u2014 Inter and its type scale, the 4px spacing grid and radii, Primary Blue with its hover state, two greys, and the three status colours, plus buttons, form elements, status badges and the card",
+            caption: "The token set the platform actually runs on. Primary Blue is the only colour an action ever uses; the three status colours are reserved for deal state and nothing else.",
             width: 1500,
-            height: 1130,
+            height: 1391,
           },
         ],
       },
