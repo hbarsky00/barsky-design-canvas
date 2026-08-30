@@ -33,13 +33,18 @@ prerendered-bodies/* [0-9]*.html
 # iCloud conflict copies of env files
 .env [0-9]*
 
-# macOS/iCloud conflict copies of media and source
-**/* [0-9].png
-**/* [0-9].jpg
-**/* [0-9].jpeg
-**/* [0-9].webp
-**/* [0-9].mp4
-**/* [0-9].mov
-**/* [0-9].css
-**/* [0-9].ts
-**/* [0-9].tsx
+# macOS/iCloud conflict copies, any extension, at any depth.
+#
+# This used to be an allow-list of extensions and it leaked: 28 copies were
+# tracked anyway, including "package-lock 2.json" (7,383 lines), "src/index
+# 2.css" (1,701) and whole directories like "src/components 2/". The extension
+# list never covered .json/.js/.md/.ico/.svg/.txt/.toml, and nothing covered
+# directories at all. Match the shape instead of guessing the suffix.
+* [0-9].*
+**/* [0-9].*
+* [0-9]/
+**/* [0-9]/
+
+# Extensionless ones (e.g. "Makefile 2") and the .d.ts double-extension case
+**/* [0-9]
+**/*.d [0-9].ts
