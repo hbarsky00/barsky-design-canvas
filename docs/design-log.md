@@ -167,3 +167,121 @@ body. Fix what is measurably broken. Do not redesign what works.
     count is deliberately a subset — that is Hiram's call, not a silent edit.
   - Breadcrumbs on posts wrap "UX Design Blog" onto two lines at 375px while the
     truncated title sits beside it. Cosmetic, pre-existing, not touched.
+
+- **2026-08-31 — axe-core contrast sweep, sitewide.** Design was the staler
+  half by log (last entry 08-27; the AEO lever ran 08-30), and the 08-30 design
+  commit ended by explicitly deferring contrast: its hand-rolled walker returned
+  `fg == bg` for elements whose colours it had already verified as different, so
+  it recorded no contrast findings and said the job needed axe-core. This run
+  ran axe-core 4.10.2 (WCAG 2.0/2.1/2.2 A + AA) against the built site, served
+  from `dist/` on 4199, at 375px and 1440px.
+
+  **Method note, because the previous walker was wrong in a specific way.** It
+  read `backgroundColor` off the element itself, which is `transparent` for
+  almost everything, so it compared a colour against itself. The correct walk
+  composites each ancestor's background *with its alpha* until an opaque one is
+  reached. axe does this natively; the hand checks in this run do it explicitly.
+
+  **Finding 1 — one cause, 70+ nodes.** `text-primary` on `bg-primary/10`, the
+  site's badge/pill, at 16 call sites across 17 files. Primary was
+  `hsl(14 68% 44%)` = `#bc4824`; over its own 10% tint it composited to
+  **4.17–4.29:1** on every page background, under the 4.5:1 AA wants for the
+  12px and 14px text these pills use. Homepage 41 nodes, `/about` 21,
+  `/contact` 7, each case study 1.
+
+  Fixed at the token, not the 16 call sites — patching class strings leaves the
+  17th pill to fail when someone adds it, and `text-primary` appears 81 times,
+  so the sites axe happened to render are not the whole set. `--md-sys-color-primary`
+  44% → **41%** lightness, hue and saturation untouched: `#bc4824` → `#b04321`.
+
+  Chosen by computing the ratio against the tint *as it recomposites* —
+  darkening primary darkens the background it sits on too, so a naive sweep
+  overstates the gain. 42% reaches only 4.47 that way and still fails; 41% puts
+  the worst case at 4.64:1. It also lifts white-on-primary buttons 5.13 → 5.75.
+
+  **Finding 2 — `aria-required-children`, critical, one node per page.** The
+  footer's social links were `<div role="list">` with `<a>` children directly
+  inside; `role="list"` requires `listitem` children. The two real lists in that
+  same file are `<ul>`/`<li>`, so the role was the outlier, not the markup.
+  Dropped it — two labelled links need no list semantics.
+
+  **Result**, axe against the rebuilt site:
+
+  | route | viewport | before | after |
+  |---|---|---|---|
+  | `/` | 375 | 42 | **0** |
+  | `/` | 1440 | — | **0** |
+  | `/about` | 375 | 22 | **0** |
+  | `/contact` | 375 | 8 | **0** |
+  | `/project/recast` | 375 | 2 | **0** |
+  | `/blog` | 1440 | — | **0** |
+  | `/blog/a-filter-nobody-opens` | 1440 | — | **0** |
+
+  **Finding 3 — what axe structurally cannot see.** Verifying the above on the
+  live site, a hand contrast pass flagged the hero's "See my work" CTA. That
+  first looked like the same false positive the 08-30 walker hit, so it was
+  checked directly: the button is
+  `bg-gradient-to-r from-primary via-primary to-[hsl(32_78%_46%)]` carrying
+  white text, and white on the amber end `#d17b1a` measures **3.20:1**.
+
+  It is real, it is pre-existing, and this run's primary change did not cause it
+  (that change *improved* the other two stops, 5.13 → 5.72). It survived every
+  previous automated pass because **axe marks any element with a
+  `background-image` as "incomplete" rather than failing it** — it cannot know
+  which pixel the text sits over. On the homepage that is 106 incomplete nodes.
+  A gradient button can never be an axe violation regardless of how unreadable
+  it is. Worth remembering: "axe reports 0" is not the same as "this page has no
+  contrast failures."
+
+  Three variants share that stop — `filled`, `brand`, and the `case-study` hover
+  — covering the hero CTA and every "View Case Study" button, which is the
+  primary conversion path. 46% → **37%** lightness: `#d17b1a` → `#a86315`,
+  **4.70:1**. 38% was tried first and reaches only 4.49. 37% stays ~36 units of
+  RGB distance from the primary end, so the gradient still reads as a warm shift
+  rather than a flat fill.
+
+  Deliberately not changed: the two `hsl(32 78% 46%)` washes in `index.css`.
+  They render at 7–8% alpha as hero-canvas decoration with no text on them, so
+  they are not a contrast surface.
+
+  **Verified on barskydesign.pro**, not a local build, after both deploys:
+
+  | check | value |
+  |---|---|
+  | `--primary` served | `14 68% 41%` |
+  | pill elements on `/` | 49, worst **4.55:1** |
+  | gradient buttons on `/` | 12, worst **4.71:1** (was 3.20) |
+  | footer `div.space-x-4[role="list"]` | **0** |
+
+  `tsc --noEmit` 0, `eslint` 0, build 44/44 prerendered with 0 head-only, both
+  times. `capture-bodies` 44/44, 0 failures, twice — the first diff was exactly
+  44 files x 1 line (the removed role attribute, nothing else); the second
+  because Tailwind arbitrary values live in the class attribute, so 18 snapshots
+  carried the old `32_78%_46%` string. Media 395 files in `public`, 395 in
+  `dist`, no `.capture-media-stash` left behind. No concurrent writer: a stale
+  `vite preview --strictPort 4199` from 08-30 11:57 was killed before starting,
+  and no other session touched the repo during the run.
+
+  **Left open:**
+  - **The 106 axe "incomplete" contrast nodes on `/` alone.** Every one is an
+    element over a background-image or gradient. Only the buttons were resolved
+    here. The rest — cards over gradient washes, text over the hero canvas —
+    have never been measured by anything, and no future axe run will flag them.
+    They need the hand walk, and it should probably become a script in
+    `scripts/` rather than being re-derived each run.
+  - **axe was run on 7 routes, not all 44.** Homepage, about, contact, one case
+    study, blog index and one post. Both fixes are token-level and so apply
+    everywhere, but the *other* page types were never scanned for defects of
+    their own — `/services`, `/design-services`, `/store` in particular.
+  - `--md-sys-color-on-primary-container` is `231 100% 8%` and
+    `--md-sys-color-primary-container` is `231 100% 96%` — hue 231 is blue,
+    left over from a palette this site no longer uses, sitting in a hue-14
+    system. Nothing visibly reads them today, which is why it has gone
+    unnoticed, but they are wrong and will render blue the moment something does.
+  - `<meta name="theme-color" content="#3B82F6">` in `index.html` is that same
+    dead blue. It is what mobile browsers tint their chrome with, so unlike the
+    tokens above it *is* user-visible, on Android Chrome. Not touched here —
+    it is a one-line change but it is a brand decision, not a contrast fix.
+  - The stale comment above the primary token claimed "Deep Blue with
+    Sophisticated Purple Undertones". Corrected to describe the actual colour,
+    with the 4.5:1 reasoning written in so a future run does not raise it back.
