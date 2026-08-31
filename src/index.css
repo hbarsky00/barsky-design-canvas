@@ -36,8 +36,17 @@
 :root {
   /* Material Design 3.0 Color System - Light Theme - Award-Winning Color Palette */
   
-  /* Primary Colors - Deep Blue with Sophisticated Purple Undertones */
-  --md-sys-color-primary: 14 68% 44%;
+  /* Primary Colors - Terracotta. The comment here said "Deep Blue with
+     Sophisticated Purple Undertones" long after the palette became hue 14;
+     it was describing a colour this site has not used in a long time.
+     Lightness is 41%, not 44%: `text-primary` on `bg-primary/10` is the
+     site's badge/pill pattern (16 call sites), and at 44% it composited to
+     4.17-4.29:1 against every page background - under the 4.5:1 that WCAG
+     2.1 AA requires for text below 24px. 41% lands the worst case at 4.64:1.
+     Darkening the token fixes all 16 sites at once and any future one; it
+     also raises contrast on solid `bg-primary` buttons, which carry white
+     text. Do not raise this back to 44% without re-running axe-core. */
+  --md-sys-color-primary: 14 68% 41%;
   --md-sys-color-on-primary: 0 0% 100%;
   --md-sys-color-primary-container: 231 100% 96%;
   --md-sys-color-on-primary-container: 231 100% 8%;
