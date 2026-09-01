@@ -17,7 +17,7 @@ const RecentAdventuresSection: React.FC = () => {
         >
           <SectionHeader
             eyebrow="Experience"
-            title="Recent adventures"
+            title="Recent Adventures"
             subtitle="A journey through innovative product design and user experience at leading tech companies"
           />
           <div className="flex justify-center mb-8">

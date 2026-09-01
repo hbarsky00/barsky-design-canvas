@@ -13,7 +13,7 @@ const WordOfMouthSection: React.FC = () => (
   <div className="container mx-auto px-4 max-w-6xl">
     <SectionHeader
       eyebrow="Word of Mouth"
-      title="What people say."
+      title="What People Say"
       subtitle="People I've worked with, in their words."
     />
     <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0">

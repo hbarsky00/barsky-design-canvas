@@ -90,7 +90,7 @@ const CurrentProjectsSection: React.FC = () => {
         >
           <SectionHeader
             as="h2"
-            title="What I'm Working On Now"
+            title="What I'm Working on Now"
             eyebrow="Last Updated Friday September 19th, 2025"
           />
           

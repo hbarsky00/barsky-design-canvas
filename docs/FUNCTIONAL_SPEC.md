@@ -152,7 +152,7 @@ For SEO metadata:
 | Lovable Cloud (Supabase) | Database, edge functions, SEO verification |
 | Google Search Console | Indexing monitoring (external) |
 | Netlify | Hosting, server-side redirects, prerendering |
-| Google Fonts | Space Grotesk + Inter |
+| Self-hosted fonts | Fraunces + IBM Plex Sans (public/fonts/, preloaded) |
 
 ---
 

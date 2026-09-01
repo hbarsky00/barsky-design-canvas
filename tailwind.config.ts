@@ -39,6 +39,46 @@ const config: Config = {
            means a future stray `text-blue-600` still lands on-brand.
            600 is the text-safe step in each ramp (>=4.5:1 on the light
            ground); the brighter steps are for fills and gradients. */
+        /* Same trick for the neutrals, and for the same reason. The chromatic
+           remap below never covered gray/slate/zinc/neutral/stone, so ~370
+           legacy call sites still resolved to Tailwind's stock cool greys —
+           text-gray-900 is rgb(17,24,39), a blue-black, sitting next to the
+           warm rgb(35,30,26) of --foreground on the same page. These ramps
+           keep each stock step's LIGHTNESS exactly and only re-hue it to the
+           palette's warm 30deg, so nothing shifts in contrast except the cast.
+           Step 500 is the one exception: at stock lightness it landed on
+           4.22:1, under AA, so it is a touch darker (4.59:1). Verified against
+           the cream ground, not assumed. */
+        gray: {
+          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
+          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
+          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
+          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
+        },
+        slate: {
+          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
+          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
+          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
+          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
+        },
+        zinc: {
+          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
+          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
+          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
+          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
+        },
+        neutral: {
+          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
+          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
+          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
+          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
+        },
+        stone: {
+          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
+          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
+          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
+          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
+        },
         blue: {
           50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)",
           300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)",

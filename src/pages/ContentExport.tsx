@@ -231,7 +231,7 @@ const ContentExport: React.FC = () => {
               displayName: 'Page Title',
               visibility: 'rendered',
               fields: {
-                h1: 'Get in touch',
+                h1: 'Get in Touch',
                 h2: '',
                 h3: '',
                 body: '',

@@ -57,10 +57,14 @@ export const characterAnimation: Record<AnimationType, Variants> = {
   },
   // Typewriter effect
   typewriter: {
-    hidden: { opacity: 0, display: "none" },
+    // Fades in place. This was `display: "none"` -> `"inline-block"`, which is
+    // the only variant in this file that animated display: it made each word
+    // pop into flow and reflow the whole heading word by word, and it meant the
+    // resting state was genuinely hidden rather than transparent. The spans
+    // already carry `inline-block` as a class, so nothing here needs to set it.
+    hidden: { opacity: 0 },
     visible: (i: number) => ({
       opacity: 1,
-      display: "inline-block",
       transition: {
         delay: i * 0.09 // Use triple default staggering for typewriter
       }

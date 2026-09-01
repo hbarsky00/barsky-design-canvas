@@ -6,8 +6,11 @@ substantial improvement per run, measured before and after.
 
 Improve **within** the established visual language — the remapped radius scale
 in `tailwind.config.ts` (`rounded-xs` 4px, `rounded-sm` 8px, `rounded-md` 12px,
-`rounded-lg` 16px), the existing brand tokens, Space Grotesk display / Inter
-body. Fix what is measurably broken. Do not redesign what works.
+`rounded-lg` 16px), the existing brand tokens, **Fraunces display / IBM Plex
+Sans body** (this line said "Space Grotesk / Inter" until 2026-08-31, which was
+wrong and would have had a future run "restore" fonts the site does not use —
+check `tailwind.config.ts`, not this file, for families). Fix what is measurably
+broken. Do not redesign what works.
 
 ## Runs
 

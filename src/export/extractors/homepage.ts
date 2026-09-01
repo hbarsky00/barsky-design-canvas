@@ -116,7 +116,7 @@ export function extractHomepageContent(): SectionExport[] {
           visibility: "rendered" as const,
           fields: {
             h1: "",
-            h2: "Get in touch",
+            h2: "Get in Touch",
             h3: "",
             body: "Tell me what you're working on and where it's stuck. Short messages are fine.",
             bullets: [],

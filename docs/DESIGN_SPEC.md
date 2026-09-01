@@ -53,13 +53,17 @@
 
 | Element | Font | Weight | Size Class | Notes |
 |---------|------|--------|------------|-------|
-| Hero H1 | Space Grotesk | Bold (700) | `text-display-small` → `text-display-large` responsive | Single H1 per page |
-| Section H2 | Space Grotesk | Semibold (600) | `text-headline-medium` → `text-headline-large` | Clear section breaks |
-| Subsection H3 | Space Grotesk | Medium (500) | `text-title-medium` → `text-title-large` | Within sections |
-| Body | Inter | Regular (400) | `text-body-large` | Max-width 65ch for readability |
-| Caption | Inter | Regular (400) | `text-body-small` | Muted foreground color |
-| Eyebrow | Inter | Medium (500) | `text-label-small` → `text-label-large` | Uppercase tracking-wide |
-| Button label | Inter | Medium–Semibold | `text-label-large` | Defined in button variants |
+| Hero H1 | Fraunces | Bold (700) | `text-display-small` → `text-display-large` responsive | Single H1 per page |
+| Section H2 | Fraunces | Semibold (600) | `text-headline-medium` → `text-headline-large` | Clear section breaks |
+| Subsection H3 | Fraunces | Medium (500) | `text-title-medium` → `text-title-large` | Within sections |
+| Body | IBM Plex Sans | Regular (400) | `text-body-large` | Max-width 65ch for readability |
+| Caption | IBM Plex Sans | Regular (400) | `text-body-small` | Muted foreground color |
+| Eyebrow | IBM Plex Sans | Medium (500) | `text-label-small` → `text-label-large` | Uppercase tracking-wide |
+| Button label | IBM Plex Sans | Medium–Semibold | `text-label-large` | Defined in button variants |
+
+> **Corrected 2026-08-31.** This table said Space Grotesk / Inter long after the
+> site moved to Fraunces / IBM Plex Sans. `tailwind.config.ts` is the source of
+> truth for families; this doc describes intent, not implementation.
 
 ### 3.2 Rules
 

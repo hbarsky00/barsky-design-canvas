@@ -69,7 +69,7 @@ const ContactForm: React.FC = () => {
   };
   return <section id="contact" className="min-h-screen flex flex-col justify-center py-8 md:py-12 bg-muted/30 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <SectionHeader as="h2" title="Get in touch" subtitle="Tell me what you're working on and where it's stuck. Short messages are fine." />
+        <SectionHeader as="h2" title="Get in Touch" subtitle="Tell me what you're working on and where it's stuck. Short messages are fine." />
 
         <div className="max-w-2xl mx-auto">
           <Form {...form}>

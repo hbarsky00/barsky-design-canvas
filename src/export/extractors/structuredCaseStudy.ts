@@ -337,7 +337,7 @@ export function extractStructuredCaseStudyContent(caseStudyId: string): SectionE
             formLabels: [],
             tooltips: [],
             ctas: [
-              { label: "Get in touch", url: "/contact" }
+              { label: "Get in Touch", url: "/contact" }
             ],
             notes: "Case study contact section (CaseStudyContactSection)"
           }

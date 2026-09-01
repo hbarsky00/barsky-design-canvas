@@ -78,10 +78,17 @@ All colors are HSL. CSS variables use the format `H S% L%` (without `hsl()` wrap
 
 ## 2. Typography Scale
 
-Font families:
-- **Display/Headings**: `Space Grotesk` → `font-display`
-- **Body/UI**: `Inter` → `font-sans` / `font-body`
+Font families (corrected 2026-08-31 — this section said Space Grotesk / Inter
+long after the site stopped using either; check `tailwind.config.ts` before
+trusting any type note here):
+- **Display/Headings**: `Fraunces` (variable serif) → `font-display`
+- **Body/UI**: `IBM Plex Sans` → `font-sans` / `font-body`
 - **Code**: System monospace → `font-mono`
+
+Both are **self-hosted** in `public/fonts/` and preloaded from `index.html`.
+Do not reintroduce the Google Fonts stylesheet: it measured ~796 ms and was
+requesting 23 files, and the CSS was not discovered until after first paint,
+which made every heading visibly swap font mid-load.
 
 ### Scale Reference
 
@@ -202,6 +209,14 @@ Font families:
 ## 8. Enforcement Rules
 
 1. **Never** use raw color values (`text-white`, `bg-blue-600`, `#hex`) in component `className`
+   — but note that the legacy ones already in the tree are *neutralised at the
+   palette level* rather than chased call site by call site. `tailwind.config.ts`
+   remaps the cool chromatic families (blue/purple/indigo/violet/fuchsia) onto
+   brand ramps, and as of 2026-08-31 the neutral families (gray/slate/zinc/
+   neutral/stone) onto warm ramps at hue 30. So a stray `text-blue-600` lands on
+   brand terracotta and a stray `text-gray-900` lands on the warm near-black,
+   not Tailwind's blue-black. New code should still use semantic tokens; the
+   remap exists so old code cannot look wrong while it waits.
 2. **Always** use semantic tokens (`text-foreground`, `bg-primary`, `text-muted-foreground`)
 3. **Gradients** must reference CSS variables, not inline values
 4. **New colors** must be added to `:root` in `index.css` first, then mapped in `tailwind.config.ts`

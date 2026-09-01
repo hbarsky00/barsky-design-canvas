@@ -75,7 +75,8 @@ Use the `bencium-innovative-ux-designer` skill's judgement, but this is a live
 portfolio that is working, not a greenfield redesign. Improve within the
 established language: the Material-derived radius scale in `tailwind.config.ts`
 (`rounded-xs` is 4px, `rounded-sm` is 8px — NOT the Tailwind defaults), the
-existing brand tokens, Space Grotesk display / Inter body.
+existing brand tokens, Fraunces display / IBM Plex Sans body (corrected
+2026-08-31 — this said Space Grotesk / Inter, fonts the site does not use).
 
 Good design work for this loop: fixing what breaks in dark mode, mobile layout
 that crowds or clips, motion that ignores `prefers-reduced-motion`, contrast
