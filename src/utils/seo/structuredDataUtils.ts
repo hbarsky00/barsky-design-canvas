@@ -25,7 +25,8 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
     description: seoData.description,
     url: canonicalUrl,
     inLanguage: "en-US",
-    isPartOf: { "@type": "WebSite", "@id": "https://barskydesign.pro/#website" },
+    isPartOf: { "@id": "https://barskydesign.pro/#website" },
+    publisher: { "@id": "https://barskydesign.pro/#business" },
     ...(seoData.image && {
       image: seoData.image,
       primaryImageOfPage: { "@type": "ImageObject", url: seoData.image },
@@ -34,54 +35,15 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
     ...(modifiedDate && { dateModified: modifiedDate }),
   };
 
-  // Add Organization schema for all pages
-  const organizationSchema: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Hiram Barsky Design",
-    url: "https://barskydesign.pro",
-    logo: "https://barskydesign.pro/images/hiram-barsky-profile.png",
-    sameAs: [
-      "https://www.linkedin.com/in/hiram-barsky/",
-      "https://github.com/hbarsky00"
-    ],
-    knowsAbout: [
-      "SaaS Product Design and Development",
-      "Web Application Development",
-      "Mobile App Design and Development",
-      "Internal Tools and Admin Interfaces",
-      "AI-Assisted Product Design",
-      "UX/UI Design",
-      "Design Systems",
-      "React & TypeScript Development",
-      "Fintech UX",
-      "Healthcare UX",
-      "Product Strategy"
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      email: "hbarsky01@gmail.com"
-    },
-    founder: {
-      "@type": "Person",
-      name: "Hiram Barsky",
-      jobTitle: "Product Designer & Software Developer",
-      description: "Designs and develops SaaS, web apps, mobile apps and internal tools. 15+ years in fintech, healthcare and enterprise software."
-    },
-    description:
-      "Design and development of SaaS, web apps, mobile apps and internal tools \u2014 one person, start to finish. 15+ years across fintech, healthcare and pharma.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Clifton",
-      addressRegion: "NJ",
-      addressCountry: "US",
-    },
-    serviceArea: "United States",
-    priceRange: "$$$"
-  };
+  // No Organization block here. The site-wide entity graph lives in index.html
+  // (#business, #hiram, #website) and is served on every route, so this file
+  // references those nodes by @id instead of re-declaring a second, differently
+  // named organization on top of them. Re-adding one here recreates the exact
+  // duplicate-entity defect the 2026-09-01 sweep removed.
+  const BUSINESS = { "@id": "https://barskydesign.pro/#business" };
+  const AUTHOR = { "@id": "https://barskydesign.pro/#hiram" };
 
-  const schemas: Record<string, unknown>[] = [baseStructuredData, organizationSchema];
+  const schemas: Record<string, unknown>[] = [baseStructuredData];
 
   // Add specific schemas based on content type. Discriminate on `kind`, not
   // `type` — buildSEO() sets `type: 'article'` for BOTH posts and projects, so
@@ -97,18 +59,8 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
       url: canonicalUrl,
       ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: {
-        "@type": "Person",
-        name: seoData.author || "Hiram Barsky"
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "Hiram Barsky Design",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://barskydesign.pro/images/hiram-barsky-profile.png",
-        },
-      },
+      author: AUTHOR,
+      publisher: BUSINESS,
       mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
       articleSection: seoData.tags?.[0] || "Design",
       inLanguage: "en-US",
@@ -129,18 +81,8 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
       url: canonicalUrl,
       ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: {
-        "@type": "Person",
-        name: seoData.author || "Hiram Barsky"
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "Hiram Barsky Design",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://barskydesign.pro/images/hiram-barsky-profile.png"
-        }
-      },
+      author: AUTHOR,
+      publisher: BUSINESS,
       mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
       articleSection: "Case Study",
       inLanguage: "en-US",

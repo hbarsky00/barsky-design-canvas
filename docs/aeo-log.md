@@ -89,7 +89,81 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   entry, and it means `--strictPort` is not actually protecting this script from
   a concurrent run the way the header comment implies.
 
-- [ ] 4 structured-data validation sweep
+- [x] **4 structured-data validation sweep** — 2026-09-01 — the site served
+  **eight JSON-LD types across 44 routes with exactly one addressable `@id`**
+  between them. Everything else was an anonymous node, so nothing could be
+  joined to anything.
+
+  **What the sweep found** (parsed every `<script type="application/ld+json">`
+  in `dist/`, 44 pages, 0 parse errors, 0 duplicate `@type` per page):
+
+  1. **Two organizations, two names, two URLs, describing one business.**
+     `index.html` declared `LocalBusiness` "Barsky Design" at
+     `https://barskydesign.pro/`; `structuredDataUtils` declared `Organization`
+     "Hiram Barsky Design" at `https://barskydesign.pro` (no trailing slash).
+     Neither carried an `@id`, neither named the other in `sameAs`. On all 44
+     pages. Every article added a third stub under the second name as its
+     `publisher`, and `WebSite.publisher` was a fourth.
+  2. **"Hiram Barsky" existed as 2–3 unresolvable people per page** — founder of
+     the LocalBusiness, founder of the Organization, author of the article —
+     each a bare `{"@type":"Person","name":"Hiram Barsky"}`. The `sameAs` links
+     that actually identify him (LinkedIn, GitHub) hung off the *organizations*,
+     so no Person node on the site was connected to them. For a lever whose
+     whole purpose is being cited by name, that is the defect that matters.
+  3. `WebPage` referenced `#website` and nothing else — no link to the publisher.
+
+  **Changed.** `index.html` now carries one `@graph` with three `@id`-addressable
+  nodes: `#business` (LocalBusiness — an Organization subtype, so one node does
+  both jobs, holding the union of the two old blocks' fields), `#hiram` (Person,
+  with the `sameAs` links moved onto him and `worksFor` pointing back), and
+  `#website` (`publisher` now an `@id` pointer). `structuredDataUtils` lost its
+  Organization block entirely and references `#business` / `#hiram` by `@id` from
+  every `author`, `publisher` and `WebPage.publisher`.
+
+  Name conflict resolved to **"Barsky Design"** — it is what `WebSite`,
+  `LocalBusiness` and the domain already said; "Hiram Barsky Design" is kept as
+  `alternateName` rather than deleted. `WebPage.publisher`, not `about`: a blog
+  post is published by the business, it is not *about* the business.
+
+  Nothing was invented. Every field in the merged node came from one of the two
+  blocks it replaced. The one description dropped as redundant ("15+ years across
+  fintech, healthcare and pharma") is still stated verbatim on `#hiram`.
+
+  A side effect worth noting: `priceRange: "$$$"` is now static in `index.html`
+  instead of passing through `inject-seo-html`'s string replacement, which is
+  where the `$$$` → `$$` corruption of 2026-08-22 came from. That class of bug
+  can no longer reach this field.
+
+  **Measured.** `npx tsc --noEmit` 0, build clean at 44/44 prerendered, 0
+  head-only. No `capture-bodies` run: this change is head-only JSON-LD and
+  touches no visible copy, and no prerendered body changed.
+
+  | check (per page) | live before | built after |
+  |---|---|---|
+  | organization-ish nodes | **3–4**, under 2 names | **1** |
+  | `@id`-less `Person` stubs | **2–3** | **0** |
+  | addressable `@id`s sitewide | **1** (`#website`) | **3** + per-page |
+  | dangling `@id` references | — | **0 / 44 pages** |
+  | JSON-LD parse errors | 0 | **0 / 44** |
+
+  **Left open:**
+  - **All 12 case studies emit `Article` with no `BreadcrumbList`.** All 23 blog
+    posts have one, because `BlogBreadcrumbs.tsx` emits it and only blog routes
+    render that component. Case studies are the conversion path and the one page
+    type where a SERP breadcrumb would help most. Biggest remaining structured-
+    data gap; next AEO run should take it.
+  - `BlogPosting`/`Article` only emit `dateModified` when `seoData.modifiedTime`
+    is set. It is set on all 12 case studies and on none of the 23 posts, so
+    every post ships `datePublished` alone.
+  - `/blog`, `/services`, `/store` and the three `/design-services/*` pages carry
+    only `WebPage`. Whether `Blog` / `Service` / product types belong there is a
+    content question, not a validation one — do not bolt them on without checking
+    the pages actually satisfy them.
+  - **FLAGGED — `/project/business-management` still emits indexable `Article`
+    schema** for QuickFlow, which the loop rules list as retired. Either it is
+    live and the rule is stale, or it is retired and should be delisted the way
+    `/projects` was. Only Hiram knows which.
+
 - [ ] 5 llms.txt / cross-web consistency
 - [ ] 6 content freshness / gap-fill
 

@@ -34,70 +34,118 @@
 
     <!-- SEO meta tags dynamically rendered by React Helmet in UnifiedSEO.tsx -->
 
-    <!-- LocalBusiness JSON-LD -->
+    <!-- Site-wide entity graph.
+         One @graph, three @id-addressable nodes, because this used to be two
+         unlinked scripts describing the same business under two different names
+         ("Barsky Design" here, "Hiram Barsky Design" in structuredDataUtils) at
+         two different URLs (with and without the trailing slash), neither
+         carrying an @id. Nothing in the markup said they were one entity, and
+         "Hiram Barsky" appeared as three or four bare Person stubs per page —
+         founder here, founder there, author of every article — none of them
+         joined to the sameAs links that identify him. An answer engine had no
+         way to resolve any of it.
+         Now: #business is the single organization node (LocalBusiness is an
+         Organization subtype, so one node carries both roles), #hiram is the
+         single person node, and every author/publisher/founder reference
+         elsewhere on the site is an {"@id": ...} pointer into this graph. The
+         old alternate name is kept as alternateName rather than dropped.
+         Do NOT re-add an Organization block to structuredDataUtils: that is
+         exactly the duplicate this replaced. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Barsky Design",
-      "image": "https://barskydesign.pro/images/hiram-barsky-profile.png",
-      "url": "https://barskydesign.pro/",
-      "telephone": "+1-201-668-4754",
-      "email": "hbarsky01@gmail.com",
-      "description": "Design and development of SaaS, web apps, mobile apps and internal tools. One person, start to finish: product design, React and TypeScript front end, database and launch.",
-      "priceRange": "$$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Clifton",
-        "addressRegion": "NJ",
-        "addressCountry": "US"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Hiram Barsky"
-      },
-      "areaServed": "US",
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 40.8584,
-        "longitude": -74.1638
-      },
-      "openingHoursSpecification": [
+      "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
+          "@type": "LocalBusiness",
+          "@id": "https://barskydesign.pro/#business",
+          "name": "Barsky Design",
+          "alternateName": "Hiram Barsky Design",
+          "url": "https://barskydesign.pro/",
+          "image": "https://barskydesign.pro/images/hiram-barsky-profile.png",
+          "logo": "https://barskydesign.pro/images/hiram-barsky-profile.png",
+          "telephone": "+1-201-668-4754",
+          "email": "hbarsky01@gmail.com",
+          "description": "Design and development of SaaS, web apps, mobile apps and internal tools. One person, start to finish: product design, React and TypeScript front end, database and launch.",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Clifton",
+            "addressRegion": "NJ",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 40.8584,
+            "longitude": -74.1638
+          },
+          "areaServed": "US",
+          "serviceArea": "United States",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "hbarsky01@gmail.com"
+          },
+          "knowsAbout": [
+            "SaaS Product Design and Development",
+            "Web Application Development",
+            "Mobile App Design and Development",
+            "Internal Tools and Admin Interfaces",
+            "AI-Assisted Product Design",
+            "UX/UI Design",
+            "Design Systems",
+            "React & TypeScript Development",
+            "Fintech UX",
+            "Healthcare UX",
+            "Product Strategy"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/hiram-barsky/",
+            "https://github.com/hbarsky00"
+          ],
+          "founder": { "@id": "https://barskydesign.pro/#hiram" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://barskydesign.pro/#hiram",
+          "name": "Hiram Barsky",
+          "url": "https://barskydesign.pro/about",
+          "image": "https://barskydesign.pro/images/hiram-barsky-profile.png",
+          "jobTitle": "Product Designer & Software Developer",
+          "description": "Designs and develops SaaS, web apps, mobile apps and internal tools. 15+ years in fintech, healthcare and enterprise software.",
+          "sameAs": [
+            "https://www.linkedin.com/in/hiram-barsky/",
+            "https://github.com/hbarsky00"
+          ],
+          "worksFor": { "@id": "https://barskydesign.pro/#business" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://barskydesign.pro/#website",
+          "name": "Barsky Design",
+          "url": "https://barskydesign.pro/",
+          "description": "Portfolio of Hiram Barsky, who designs and develops SaaS, web apps, mobile apps and internal tools. Case studies from products shipped end to end.",
+          "inLanguage": "en-US",
+          "publisher": { "@id": "https://barskydesign.pro/#business" }
         }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/hiram-barsky/",
-        "https://github.com/hbarsky00"
       ]
     }
     </script>
 
-    <!-- WebSite JSON-LD.
-         No SearchAction: it advertised https://barskydesign.pro/?s={search_term_string}
-         and this site has no search. Google took the template literally and
-         crawled /?s={search_term_string}, which the SPA catch-all answered 200 —
-         one self-inflicted duplicate of the homepage, reported back as
-         "Alternate page with proper canonical tag". Declaring a sitelinks
-         searchbox you cannot service is worse than declaring none.
-         description and inLanguage were the two fields the schema checker
-         flagged as missing here. -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://barskydesign.pro/#website",
-      "name": "Barsky Design",
-      "url": "https://barskydesign.pro/",
-      "description": "Portfolio of Hiram Barsky, who designs and develops SaaS, web apps, mobile apps and internal tools. Case studies from products shipped end to end.",
-      "inLanguage": "en-US",
-      "publisher": { "@type": "Organization", "name": "Hiram Barsky Design" }
-    }
-    </script>
+    <!-- No SearchAction on the WebSite node: it advertised
+         https://barskydesign.pro/?s={search_term_string} and this site has no
+         search. Google took the template literally and crawled
+         /?s={search_term_string}, which the SPA catch-all answered 200 — one
+         self-inflicted duplicate of the homepage, reported back as "Alternate
+         page with proper canonical tag". Declaring a sitelinks searchbox you
+         cannot service is worse than declaring none. -->
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYKW0Y9K0T"></script>
