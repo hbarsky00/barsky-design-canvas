@@ -138,13 +138,19 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   head-only. No `capture-bodies` run: this change is head-only JSON-LD and
   touches no visible copy, and no prerendered body changed.
 
-  | check (per page) | live before | built after |
+  | check (per page) | live before | live after |
   |---|---|---|
   | organization-ish nodes | **3–4**, under 2 names | **1** |
   | `@id`-less `Person` stubs | **2–3** | **0** |
   | addressable `@id`s sitewide | **1** (`#website`) | **3** + per-page |
   | dangling `@id` references | — | **0 / 44 pages** |
-  | JSON-LD parse errors | 0 | **0 / 44** |
+  | JSON-LD parse errors | 0 | **0** |
+
+  The "after" column is **barskydesign.pro**, not the local build: ten live
+  routes re-fetched after the deploy, one per page type — `/`, `/about`,
+  `/contact`, `/services`, `/store`, `/blog`, a blog post, two case studies and
+  a `/design-services/*` page. All ten identical on every row. (The built
+  output measured the same across all 44.)
 
   **Left open:**
   - **All 12 case studies emit `Article` with no `BreadcrumbList`.** All 23 blog
