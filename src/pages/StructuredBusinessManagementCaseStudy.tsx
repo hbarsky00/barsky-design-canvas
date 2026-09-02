@@ -102,24 +102,22 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "Most of the orders in a business like this are the same orders, every week, from the same accounts. Harbor Cafe every Monday. Fresh Seafood every second Wednesday.",
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
         ],
+      },
+      {
+        heading: "Built to Be Used From a Phone",
+        paragraphs: [
+          "The recurring schedules, inventory, product edits, analytics and the driver views are all designed at phone width first. That is not a responsive-design box being ticked. In this business the warehouse, the van and the office are three different places, and only one of them has a monitor in it.",
+        ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/business-management/recurring-orders-mobile.jpg",
             alt: "Recurring orders on mobile — customers with recurring orders, active schedules, weekly volume and average order value, above a list of scheduled customers with their cadence and status",
             caption:
               "Each schedule shows its cadence and whether it is active or paused. Paused matters more than active, because a paused schedule is the one about to cause a phone call.",
-              width: 390,
-              height: 1413,
+            width: 390,
+            height: 1413,
           },
-        ],
-      },
-      {
-        heading: "Built to Be Used From a Phone",
-        paragraphs: [
-          "Inventory, product edits, analytics and the driver views are all designed at phone width first. That is not a responsive-design box being ticked. In this business the warehouse, the van and the office are three different places, and only one of them has a monitor in it.",
-        ],
-        imageLayout: "pair",
-        images: [
           {
             src: "/images/business-management/inventory-management-mobile.jpg",
             alt: "Inventory management on mobile, with stock levels and adjustment controls",

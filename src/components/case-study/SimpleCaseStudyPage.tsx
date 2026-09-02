@@ -53,6 +53,19 @@ const PORTRAIT_RATIO = 1.25;
 const isPortrait = (img: SimpleCaseStudyImage) =>
   Boolean(img.width && img.height && img.height / img.width >= PORTRAIT_RATIO);
 
+/**
+ * A phone strip is the tall, narrow shape a real phone capture has — 390x1413
+ * is 3.6:1. Those only read properly as a row of phones; on their own they are
+ * a sliver of screenshot with half a screen of dead space either side.
+ *
+ * Between 1.25 and 2 sits a different thing: a diagram, a game frame, a tall
+ * desktop shot. Those are ordinary figures that happen to be taller than wide,
+ * and squeezing them into a phone-row cell was making them tiny for no reason.
+ */
+const PHONE_STRIP_RATIO = 2;
+const isPhoneStrip = (img: SimpleCaseStudyImage) =>
+  Boolean(img.width && img.height && img.height / img.width >= PHONE_STRIP_RATIO);
+
 export interface SimpleCaseStudyVideo {
   src: string;
   /** Still shown before the clip plays, and wherever autoplay is blocked. */
@@ -435,10 +448,21 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
 
                 {portraitImgs.length > 0 && (
                   <ul className="mt-10 flex flex-wrap items-start gap-8">
-                    {portraitImgs.map(({ img, idx }) => (
+                    {portraitImgs.map(({ img, idx }) => {
+                      // 17rem is the phone-row cell: right when several phones
+                      // sit side by side, far too small for a lone figure that
+                      // is merely tallish. A single non-phone portrait gets a
+                      // real figure width instead of a thumbnail.
+                      const soloFigure =
+                        portraitImgs.length === 1 && !isPhoneStrip(img);
+                      return (
                       <li
                         key={`${img.src}-${idx}`}
-                        className="w-full max-w-[17rem] flex-none sm:w-[17rem]"
+                        className={
+                          soloFigure
+                            ? "w-full max-w-[26rem] flex-none sm:w-[26rem]"
+                            : "w-full max-w-[17rem] flex-none sm:w-[17rem]"
+                        }
                       >
                         <CaseStudyFigure
                           src={img.src}
@@ -452,7 +476,8 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                           currentIndex={startIndex + idx}
                         />
                       </li>
-                    ))}
+                      );
+                    })}
                   </ul>
                 )}
               </section>

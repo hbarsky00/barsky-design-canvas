@@ -60,8 +60,8 @@ const caseStudies: CaseStudy[] = [
       // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
       // failure). Hiram supplied the original source file directly;
       // restored locally (same asset used as the full case study's hero).
-      primary: "/images/dae-search/hero.webp",
-      alt: "DAE Search platform interface"
+      primary: "/images/dae-search/what-i-built.webp",
+      alt: "DAE Search — the result view an analyst actually works from"
     },
     layout: "side-by-side",
     video: "/lovable-uploads/dae-search-hero.mp4"
@@ -89,8 +89,8 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/business-management",
     images: {
-      primary: "/images/business-management/hero-three-laptops.jpg",
-      alt: "QuickFlow business management across three screens"
+      primary: "/images/business-management/business-overview-dashboard.jpg",
+      alt: "QuickFlow business overview dashboard"
     },
     layout: "side-by-side"
   },
