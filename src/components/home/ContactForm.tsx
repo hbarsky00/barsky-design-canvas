@@ -1,127 +1,38 @@
-import React, { useState } from "react";
-import { Send } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import React from "react";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-const contactFormSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters."
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address."
-  }),
-  subject: z.string().min(3, {
-    message: "Subject must be at least 3 characters."
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters."
-  })
-});
-type ContactFormValues = z.infer<typeof contactFormSchema>;
-const ContactForm: React.FC = () => {
-  const {
-    toast
-  } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    }
-  });
-  const onSubmit = async (values: ContactFormValues) => {
-    setIsSubmitting(true);
-    try {
-      const {
-        data,
-        error
-      } = await supabase.functions.invoke('send-contact-email', {
-        body: values
-      });
-      if (error) throw error;
-      toast({
-        title: "Thanks for reaching out!",
-        description: "It's in my inbox. I'll come back to you.",
-        duration: 5000
-      });
-      form.reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      toast({
-        title: "That didn't send — email me directly",
-        description: "hbarsky01@gmail.com — your message is still in the form, copy it across.",
-        variant: "destructive",
-        duration: 5000
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-  return <section id="contact" className="min-h-screen flex flex-col justify-center py-8 md:py-12 bg-muted/30 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <SectionHeader as="h2" title="Get in Touch" subtitle="Tell me what you're working on and where it's stuck. Short messages are fine." />
+import ContactForm from "@/components/contact/ContactForm";
 
-        <div className="max-w-2xl mx-auto">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="dark:bg-gray-800 rounded-lg">
-              <FormField control={form.control} name="name" render={({
-              field
-            }) => <FormItem className="mb-6">
-                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Your name" {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-              
-              <FormField control={form.control} name="email" render={({
-              field
-            }) => <FormItem className="mb-6">
-                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your@email.com" type="email" {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-              
-              <FormField control={form.control} name="subject" render={({
-              field
-            }) => <FormItem className="mb-6">
-                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Subject</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Subject of your message" {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-              
-              <FormField control={form.control} name="message" render={({
-              field
-            }) => <FormItem className="mb-6">
-                    <FormLabel className="text-sm font-medium text-barsky-dark dark:text-white">Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Your message..." rows={5} {...field} className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-barsky-blue focus:border-transparent" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>} />
-              
-              <Button type="submit" variant="filled" size="lg" disabled={isSubmitting} className="w-full sm:w-auto font-semibold">
-                {isSubmitting ? "Sending..." : "Send Message"} <Send size={18} />
-              </Button>
-            </form>
-          </Form>
-        </div>
+/**
+ * The homepage contact section.
+ *
+ * This used to be its own 127-line form that submitted through
+ * `supabase.functions.invoke('send-contact-email')`. That endpoint is gone —
+ * ctqttomppgkjbjkckise.supabase.co does not resolve on 8.8.8.8 or 1.1.1.1, and
+ * a POST to it fails to connect. It is the same dead Supabase project that
+ * swallowed a month of enquiries before; the August 2026 migration to Netlify
+ * Forms fixed /contact and never touched this copy, so the form on the page
+ * most visitors actually land on has been posting into nothing ever since.
+ *
+ * There is now one contact form, not two that can drift apart: the /contact
+ * one, which posts url-encoded to "/" with a form-name field and is the path
+ * verified working end to end.
+ */
+const HomeContactForm: React.FC = () => (
+  <section
+    id="contact"
+    className="min-h-screen flex flex-col justify-center py-8 md:py-12 bg-muted/30 relative"
+  >
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+      <SectionHeader
+        as="h2"
+        title="Get in Touch"
+        subtitle="Tell me what you're working on and where it's stuck. Short messages are fine."
+      />
+      <div className="max-w-2xl mx-auto">
+        <ContactForm showHeading={false} />
       </div>
+    </div>
+  </section>
+);
 
-    </section>;
-};
-export default ContactForm;
+export default HomeContactForm;

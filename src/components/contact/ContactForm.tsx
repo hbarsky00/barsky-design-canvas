@@ -18,7 +18,16 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 const fieldClass =
   "w-full h-11 px-3.5 rounded-lg border border-border bg-white text-foreground text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors";
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  /**
+   * The /contact page lets this component title itself. The homepage section
+   * already renders its own "Get in Touch" heading through SectionHeader, and
+   * two of them stacked reads as a mistake.
+   */
+  showHeading?: boolean;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
@@ -109,12 +118,14 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="h-full">
-      <div className="mb-5">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Get in touch</h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          Tell me what you're working on and where it's stuck. Short messages are fine.
-        </p>
-      </div>
+      {showHeading && (
+        <div className="mb-5">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Get in Touch</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Tell me what you're working on and where it's stuck. Short messages are fine.
+          </p>
+        </div>
+      )}
 
       <Form {...form}>
         <form
