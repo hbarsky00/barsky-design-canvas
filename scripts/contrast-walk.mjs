@@ -48,6 +48,9 @@
 //   npm run check:contrast -- --all        # every built route
 //   npm run check:contrast -- --routes=/,/store --widths=375
 //   npm run check:contrast -- --json=out.json
+//   npm run check:contrast -- --origin=https://barskydesign.pro --routes=/about
+//     ^ measures the deployed site instead of dist/, because "it is right in
+//       the local build" is not the same claim as "it is right in production".
 //   CONTRAST_DEBUG_DIR=/tmp/frames npm run check:contrast -- --routes=/
 //     ^ writes each frame, its boxes, and the same frame with text visible.
 //       When a finding looks impossible, look at the frame.
@@ -676,14 +679,16 @@ async function measure(cdp, sessionId, url, width) {
 }
 
 async function main() {
-  if (!existsSync(DIST)) throw new Error("no dist/ — run npm run build first");
+  const origin = argVal("origin");
+  if (!origin && !existsSync(DIST)) throw new Error("no dist/ — run npm run build first");
 
   const routes = args.includes("--all")
-    ? listRoutes()
+    ? listRoutes() // dist-only: the deployed site has no directory to walk
     : (argVal("routes") || DEFAULT_ROUTES.join(",")).split(",").filter(Boolean);
   const widths = (argVal("widths") || "375,1440").split(",").map(Number);
 
-  const server = await serve();
+  const server = origin ? null : await serve();
+  const base = origin ? origin.replace(/\/+$/, "") : `http://127.0.0.1:${PORT}`;
   const { child, wsUrl } = await launchChrome(9333);
   const cdp = await connect(wsUrl);
   const { targetId } = await cdp.send("Target.createTarget", { url: "about:blank" });
@@ -695,7 +700,7 @@ async function main() {
   try {
     for (const route of routes) {
       for (const width of widths) {
-        const url = `http://127.0.0.1:${PORT}${route}`;
+        const url = `${base}${route}`;
         let hits = [];
         try {
           hits = await measure(cdp, sessionId, url, width);
@@ -714,7 +719,7 @@ async function main() {
   } finally {
     cdp.close();
     child.kill("SIGKILL");
-    server.close();
+    if (server) server.close();
   }
 
   const rgb = (a) => `rgb(${a.map(Math.round).join(" ")})`;

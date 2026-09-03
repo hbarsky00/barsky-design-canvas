@@ -382,6 +382,16 @@ broken. Do not redesign what works.
   reports a worst ratio for boxes that fail, so there is no post-fix number to
   quote for them.
 
+  **Verified on barskydesign.pro**, not on the local build. The script grew an
+  `--origin` flag for this, so the same measurement runs against production:
+  `--origin=https://barskydesign.pro` reports `/about` and `/store` clean at
+  both 375 and 1440. Sanity-checked in the other direction as well — a live
+  case study still reports its known 1.37:1 separators, which is how you know
+  the "ok" above is a rendered page and not a blank one. The live HTML carries
+  `bg-black/30 … border-white/30` on both pages, `bg-white/10` is gone from
+  both, and the deployed stylesheet (`/assets/index-BC9cyw1O.css`) defines
+  `.bg-black\/30{background-color:#0000004d}`.
+
   `tsc --noEmit` 0, `eslint` 0, build 44/44 prerendered with 0 head-only.
   `capture-bodies` 44/44 with 0 failures — exactly two snapshots changed
   (`about.html`, `store.html`, the only two pages using the variant) and the
