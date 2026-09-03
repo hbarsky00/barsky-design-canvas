@@ -28,8 +28,11 @@ const currentProjects: CurrentProject[] = [
     description: "An e-commerce platform built for accessibility, focused on the checkout flow and the community reviews around it.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
-    // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
-    thumbnailSrc: "/images/hiram-barsky-profile-448.webp"
+    // Loom's own thumbnail 403s for this video (expired signed asset), so this
+    // is a frame pulled from the recording itself: the Super Sha Project store
+    // front. Cropped to exclude the webcam bubble, same framing rule as the
+    // case-study card clips. Regenerate with scripts/loom-thumbnail.sh.
+    thumbnailSrc: "/images/projects/inclusive-shopping.webp"
   },
   {
     id: "roi-calculator",
