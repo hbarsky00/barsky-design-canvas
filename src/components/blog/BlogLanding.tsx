@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { sortedBlogPosts } from '@/data/blogData';
+import { cardImage } from '@/utils/cardImage';
 import { Calendar, User, Clock } from 'lucide-react';
 
 const BlogLanding: React.FC = () => {
@@ -45,8 +46,12 @@ const BlogLanding: React.FC = () => {
                 {post.coverImage && (
                   <div className="w-full h-48 overflow-hidden">
                     <img
-                      src={post.coverImage}
+                      src={cardImage(post.coverImage)}
                       alt={post.title}
+                      width={678}
+                      height={382}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
