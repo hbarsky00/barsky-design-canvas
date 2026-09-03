@@ -92,7 +92,8 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/business-management/business-overview-dashboard.jpg",
       alt: "QuickFlow business overview dashboard"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/business-management-card.mp4"
   },
   {
     id: "recast",

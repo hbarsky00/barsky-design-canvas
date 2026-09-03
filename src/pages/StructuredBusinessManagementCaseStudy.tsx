@@ -52,6 +52,17 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "I drew the whole thing as a map first. Nine areas off the login, and the argument was about which nine.",
           "The Recipe Calculator sits at the same level as Orders, which looks wrong until you know this business sells to restaurants that price by the plate. Delivery owns the driver interface and location sharing rather than hanging off Orders, because on the day it matters the driver and the order clerk are two different people with two different phones.",
         ],
+        videos: [
+          {
+            src: "/quickflow-ideation-walkthrough.mp4",
+            poster: "/images/business-management/ideation-walkthrough-poster.jpg",
+            narrated: true,
+            caption:
+              "Me working the flows out loud, role by role, before any screen existed. Start, products dashboard, the branch where adding a manufactured product stops behaving like adding a sourced one — and which of those decisions belong to somebody who is not the person clicking.",
+            width: 1280,
+            height: 624,
+          },
+        ],
         images: [
           {
             src: "/images/business-management/sitemap-refined.jpg",
@@ -139,6 +150,17 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "Designed and built by me, from the site map through the interface to the working application, with AI doing the parts of the build I would otherwise have handed to an engineer.",
           "I am deliberately not putting an outcome number on this page. The honest position is that it came out of one conversation with one owner and it does the job he described; I have not measured it, and a percentage I could not defend on a call is worth less than saying so.",
           "What this one is evidence of is the front half. Hearing a real problem in the wild, relieving it with a spreadsheet inside a week, and only then designing the thing properly.",
+        ],
+        videos: [
+          {
+            src: "/quickflow-product-walkthrough.mp4",
+            poster: "/images/business-management/product-walkthrough-poster.jpg",
+            narrated: true,
+            caption:
+              "The whole thing, running, with me talking over it: recipe costing down to the ingredient, the customer directory with credit terms on it, the driver interface, the QuickBooks connection, and the overview screen the owner actually opens. The figures on screen are demo data.",
+            width: 1280,
+            height: 684,
+          },
         ],
         images: [
           {
