@@ -20,6 +20,7 @@ import {
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
 import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
+import WorkCallToAction from "@/components/shared/WorkCallToAction";
 import WordOfMouthSection from "@/components/home/WordOfMouthSection";
 
 const HomepageLayout: React.FC = () => {
@@ -63,7 +64,14 @@ const HomepageLayout: React.FC = () => {
             </SectionTransition>
           </Suspense>
         </section>
-        
+
+        {/* Peak intent is here, straight after the work — not in the hero, where
+            the site's only booking CTA used to live, five screens before anyone
+            had seen a project. */}
+        <div className="container mx-auto max-w-4xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+          <WorkCallToAction secondary="message" />
+        </div>
+
         {/* Keep current projects section outside 3D container to prevent cutting off */}
         <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="current-projects" tabIndex={-1} className="scroll-offset">
