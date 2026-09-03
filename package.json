@@ -11,6 +11,7 @@
     "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
     "check:captions": "node scripts/check-image-captions.mjs",
+    "check:contrast": "node scripts/contrast-walk.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "capture-bodies": "npx tsx scripts/capture-prerendered-bodies.ts"

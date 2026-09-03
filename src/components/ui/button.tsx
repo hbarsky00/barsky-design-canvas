@@ -33,7 +33,19 @@ const buttonVariants = cva(
         // Award-winning enhanced variants with premium effects
         "case-study": "border-2 border-primary/30 bg-transparent !text-primary hover:bg-gradient-to-r hover:from-primary hover:to-[hsl(32_78%_37%)] hover:!text-primary-foreground hover:border-transparent hover:shadow-glow hover:scale-[1.05] active:scale-[0.95] rounded-2xl transition-all duration-500 ease-out [&_svg]:transition-all [&_svg]:duration-300 relative overflow-hidden backdrop-blur-sm font-semibold",
         "high-contrast": "bg-gradient-to-br from-gray-900 to-gray-800 !text-primary-foreground shadow-elevation-3 hover:shadow-elevation-5 hover:scale-[1.02] rounded-2xl font-bold",
-        "on-dark": "bg-white/10 !text-primary-foreground border-2 border-white/20 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
+        // A BLACK glass, not a white one. This variant carries white text and
+        // its name assumes a dark ground, but both of its call sites are
+        // mid-tone brand panels - /about's CTA (the remapped
+        // from-blue-600 to-purple-600 rust->amber gradient) and /store's
+        // bg-primary. A 10% WHITE wash lightens those grounds instead of
+        // darkening them: measured 4.33:1 and 4.21:1 across the /about
+        // gradient and 4.76:1 on /store, so one call site failed AA outright
+        // and the other passed by 0.26. axe cannot see either - the panel is a
+        // background-image, which it marks "incomplete" rather than failing.
+        // A 30% black wash puts the worst case at 8.56:1 and stays legible on
+        // a genuinely dark ground too, so the assumption in the name no longer
+        // has to hold. Measured with scripts/contrast-walk.mjs.
+        "on-dark": "bg-black/30 !text-primary-foreground border-2 border-white/30 hover:bg-black/40 hover:border-white/50 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         "on-image": "bg-black/40 !text-primary-foreground border-2 border-white/20 shadow-elevation-3 hover:bg-black/60 hover:scale-[1.02] rounded-2xl backdrop-blur-lg font-medium",
         
         // Premium brand variants - ALL gradient buttons use text-white with standard colors

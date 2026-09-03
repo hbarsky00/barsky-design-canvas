@@ -288,3 +288,136 @@ broken. Do not redesign what works.
   - The stale comment above the primary token claimed "Deep Blue with
     Sophisticated Purple Undertones". Corrected to describe the actual colour,
     with the 4.5:1 reasoning written in so a future run does not raise it back.
+
+- **2026-09-03 — pixel-truth contrast measurement, and the CTA it caught.**
+  Design was the staler half (design log last 08-31; the AEO lever ran 09-01, so
+  lever 5 stays next). The 08-31 run ended by naming its own top open item:
+  **106 axe "incomplete" contrast nodes on `/` alone** — every one an element
+  over a background-image or gradient, "never measured by anything, and no
+  future axe run will flag them… they need the hand walk, and it should
+  probably become a script in `scripts/`." This run wrote that script and fixed
+  what it found.
+
+  **Why axe cannot do this.** axe marks any element with a `background-image` —
+  gradient included — as *incomplete* rather than failing it, because a static
+  analyser cannot know which pixel the glyphs land on. A gradient button can
+  therefore never be an axe violation no matter how unreadable it is. That is
+  how the hero CTA sat at 3.20:1 until 08-31 through every automated pass the
+  site had ever run.
+
+  **Method** (`scripts/contrast-walk.mjs`, `npm run check:contrast`). Read each
+  text element's colour and type scale from the DOM, force every glyph
+  transparent, screenshot the viewport. That frame *is* the composited
+  background under each line of text — gradients, photos, video posters, blend
+  modes — so each line box is sampled pixel by pixel against its own colour. No
+  CSS-gradient parsing and no compositing maths that can drift from what Chrome
+  actually painted. Cross-check: the finding below measured **4.25:1** by pixel
+  sampling against **4.33 / 4.21** computed from first principles across the
+  gradient — agreement to 0.04.
+
+  **Four guards, each added because a finding turned out to be fiction.** Worth
+  recording, because every one of them produced a confident wrong answer first:
+  1. *Frame and coordinates must share a layout.* `captureBeyondViewport`
+     resizes the viewport to full content height before painting, re-running
+     layout and moving everything sized in `vh` — this site's hero. The same
+     route then measured differently run to run. Fixed by scrolling in
+     viewport-sized steps and capturing the viewport.
+  2. *The page must have stopped moving.* Case-study routes reflow as each
+     `<video preload="metadata">` resolves its `object-contain` box, so rects
+     read before a capture described a layout the frame did not show. Rects are
+     now re-read after each capture and any box that moved is dropped.
+  3. *Occlusion is not a contrast failure.* Text scrolled under the opaque
+     sticky header still has a rect, and sampling it scores the text against the
+     header — that reported a footer heading as white-on-white 1.00:1 and the
+     case-study hover pill as 1.00:1 on three routes. Both were fiction. The
+     occlusion test walks the real paint stack and deliberately does **not**
+     count a transparent overlay as an occluder, because text over a gradient
+     overlay is the entire point of the script.
+  4. *Disabled controls are exempt* (WCAG 1.4.3, "inactive user interface
+     components"). The blog's "Post comment" button is disabled on every post —
+     no Turnstile site key in the build — and measures 2.33:1 on 45
+     route/viewport combos. Real, and not a violation.
+
+  Also validated in the other direction, which matters more than a clean run:
+  the 46% amber gradient stop was temporarily restored and the script reported
+  the known failure at **3.81:1** across 10 buttons; then it went back. A
+  checker that cannot fail is indistinguishable from a passing site.
+
+  **The one real finding: `/about`'s "Book a Free Consultation" at 4.25:1**,
+  100% of its sampled background failing, at both 375px and 1440px. Cause is a
+  variant-level assumption, not a one-off. `Button`'s `on-dark` variant is
+  `bg-white/10` + white text, which is safe only over a genuinely dark ground —
+  and **both** of its call sites are mid-tone brand panels:
+
+  | call site | ground | white/10 composites to | white text |
+  |---|---|---|---|
+  | `/about` CTA | `from-blue-600 to-purple-600`, both remapped to the warm ramp | `#c35a3a` → `#ae6c2a` | **4.33 / 4.21:1** |
+  | `/store` CTA | `bg-primary` | `#b85637` | 4.76:1 |
+
+  A 10% *white* wash lightens those grounds instead of darkening them, so one
+  call site failed AA outright and the other passed by 0.26. Fixed at the
+  variant: **`bg-black/30`** (+ `border-white/30`, `hover:bg-black/40`), which
+  puts the worst case at **8.56:1** and stays legible on a truly dark ground
+  too, so the assumption baked into the variant's name no longer has to hold.
+  Rendered and checked at 375px and 1440px: solid white primary button beside a
+  darker glass secondary reads as clearer hierarchy on the rust→amber panel than
+  the washed-out original.
+
+  **Result**, full site, 44 routes × 375/1440 = 88 combos:
+
+  Both columns measured with the *final* version of the script, so they are
+  comparable — the earlier numbers in this entry came from versions that were
+  still wrong in the four ways above and are not carried into this table.
+
+  | | before | after |
+  |---|---|---|
+  | combos with no AA failure | 62 | **64** |
+  | true AA violations | 1 cause, 2 combos | **0** |
+  | `/about` CTA, worst sampled ratio | **4.25:1** | passes (no finding) |
+  | remaining findings | 25 boxes | **24 boxes**, all the one decorative separator |
+
+  The two combos that moved are `/about` at 375 and at 1440. Composited from
+  first principles, the CTA went 4.33/4.21:1 → **8.56:1** and `/store`'s
+  equivalent 4.76:1 → 10.91:1; the script confirms both now clear AA, and only
+  reports a worst ratio for boxes that fail, so there is no post-fix number to
+  quote for them.
+
+  `tsc --noEmit` 0, `eslint` 0, build 44/44 prerendered with 0 head-only.
+  `capture-bodies` 44/44 with 0 failures — exactly two snapshots changed
+  (`about.html`, `store.html`, the only two pages using the variant) and the
+  diff is precisely the class swap, nothing else. No stale
+  `.capture-media-stash`. No concurrent writer: no `vite preview` was running at
+  start, and the script serves `dist/` on 4211 rather than fighting
+  `capture-prerendered-bodies` for 4199.
+
+  **Left open:**
+  - **The tag separator on case studies — 68 boxes across 12 routes at 1.37:1**,
+    the only finding left in the site. `SimpleCaseStudyPage.tsx:243` renders
+    `<span aria-hidden="true" className="text-border">·</span>` between tags.
+    It is `aria-hidden` pure decoration, so WCAG exempts it — but at 1.37:1 it
+    is invisible, which means the separator the design asks for is not actually
+    being drawn and the tags read as a plain gap. Measured candidates on the
+    cream ground: `gray.400` 2.27:1, `muted-foreground/70` 2.67:1, and the tag
+    text itself (`muted-foreground`) 4.59:1; something near 3:1 would read as a
+    separator without competing with the tags. **Deliberately not changed** —
+    it is a visual-design call on 12 case-study pages, not a defect fix, and
+    case studies are the pages to touch least casually. Next design run's job.
+  - **The blog comment form ships permanently disabled.** Not a contrast issue
+    (see guard 4), but on every one of the 22 posts the form renders "Comments
+    aren't switched on yet" beside a greyed-out "Post comment" button, because
+    no Turnstile site key is present in the build. Worth deciding whether to
+    ship the form at all in that state.
+  - `/about`'s CTA panel still asks for `from-blue-600 to-purple-600`. Those
+    resolve to the warm ramp via the `tailwind.config.ts` remap, so it renders
+    correctly, but the class names describe a palette this site does not use and
+    they are 3% lighter than `--primary` — which is precisely why this call site
+    failed and `/store` did not. Cosmetic-in-source, left alone.
+  - **The script measures light mode only, because that is all the site has.**
+    `.dark` is defined in `index.css` but nothing sets the class and no
+    `prefers-color-scheme` rule applies it, so dark mode is unreachable in
+    production. The 08-31 note about hue-231 blues sitting in that dead block
+    still stands.
+  - Sampling is capped at 24×8 points per line box and reports an element only
+    when ≥10% of its samples fail, so a single antialiased pixel or a 1px rule
+    crossing a line box cannot raise a finding. A defect confined to under a
+    tenth of one line box would be missed.
