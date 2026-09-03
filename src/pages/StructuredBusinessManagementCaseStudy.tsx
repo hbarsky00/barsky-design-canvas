@@ -52,22 +52,14 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "I drew the whole thing as a map first. Nine areas off the login, and the argument was about which nine.",
           "The Recipe Calculator sits at the same level as Orders, which looks wrong until you know this business sells to restaurants that price by the plate. Delivery owns the driver interface and location sharing rather than hanging off Orders, because on the day it matters the driver and the order clerk are two different people with two different phones.",
         ],
-        imageLayout: "pair",
         images: [
           {
-            src: "/images/business-management/sitemap-draft.jpg",
-            alt: "First site map draft for QuickFlow, showing the top-level areas and their children",
-            caption: "First pass. Too many things hanging off Orders.",
+            src: "/images/business-management/sitemap-refined.jpg",
+            alt: "Site map — nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
+            caption:
+              "The map I built from. Delivery owns the driver interface, because the driver and the clerk are never the same person.",
             width: 768,
             height: 768,
-          },
-          {
-            src: "/images/business-management/sitemap-refined.jpg",
-            alt: "Refined site map — nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
-            caption:
-              "The version I built from. Delivery owns the driver interface, because the driver and the clerk are never the same person.",
-              width: 768,
-              height: 768,
           },
         ],
       },

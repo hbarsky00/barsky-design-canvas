@@ -447,7 +447,14 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 )}
 
                 {portraitImgs.length > 0 && (
-                  <ul className="mt-10 flex flex-wrap items-start gap-8">
+                  /* One row on desktop, whatever the count. These were fixed
+                     17rem cells in a wrapping flex, so four phones wanted
+                     1184px of a 1150px column and the fourth dropped onto a
+                     line of its own — a row of three and an orphan. Sharing the
+                     width instead (flex-1, still capped at 17rem so a pair does
+                     not balloon) keeps a set of phones reading as one set.
+                     Below sm they stack full width, which is correct there. */
+                  <ul className="mt-10 flex flex-wrap items-start gap-6 sm:flex-nowrap sm:gap-6">
                     {portraitImgs.map(({ img, idx }) => {
                       // 17rem is the phone-row cell: right when several phones
                       // sit side by side, far too small for a lone figure that
@@ -461,7 +468,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                         className={
                           soloFigure
                             ? "w-full max-w-[26rem] flex-none sm:w-[26rem]"
-                            : "w-full max-w-[17rem] flex-none sm:w-[17rem]"
+                            : "w-full sm:w-auto sm:min-w-0 sm:flex-1 sm:max-w-[17rem]"
                         }
                       >
                         <CaseStudyFigure
