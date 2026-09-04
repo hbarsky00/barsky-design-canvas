@@ -12,12 +12,12 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       { label: "Industry", value: "Wholesale distribution" },
     ]}
     heroImage={{
-      src: "/images/business-management/hero-three-laptops.jpg",
-      alt: "QuickFlow across three screens — customer management, the product catalogue, and order management",
+      src: "/images/business-management/v2/overview.webp",
+      alt: "QuickFlow Business Overview — today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
       caption:
-        "Customers, catalogue, orders. Three screens that between them cover most of what this business does in a day.",
-        width: 1500,
-        height: 632,
+        "The screen the owner opens first. Sales, revenue, deliveries and customers on one ledger, with the four things he actually does next sitting under them. Figures on screen are demo data.",
+      width: 1440,
+      height: 900,
     }}
     blocks={[
       {
@@ -82,20 +82,20 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/order-management-desktop.jpg",
+            src: "/images/business-management/v2/orders.webp",
             alt: "QuickFlow order management — total, pending, delivered and revenue tiles above a recent-orders table with per-row status and actions",
             caption:
               "Status is a word, not a colour you have to decode. The figures on screen are demo data, not his books.",
-              width: 1440,
-              height: 888,
+            width: 1440,
+            height: 900,
           },
           {
-            src: "/images/business-management/product-catalog-desktop.jpg",
-            alt: "Product catalogue with inventory value, low-stock count, categories, and a searchable product table showing SKU, price, stock and status",
+            src: "/images/business-management/v2/products.webp",
+            alt: "The product catalogue — search, category filters, and cards showing each product's SKU, price, stock level and an add-to-order control",
             caption:
-              "Low stock is a count at the top, not something you find by scrolling. It is the number that costs money when nobody notices it.",
-              width: 1440,
-              height: 1005,
+              "Every product carries its SKU, its price and whether it is in stock on the same card, because the person adding it to an order should not have to open it to find out.",
+            width: 1440,
+            height: 900,
           },
         ],
       },
@@ -104,6 +104,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         paragraphs: [
           "Most of the orders in a business like this are the same orders, every week, from the same accounts. Harbor Cafe every Monday. Fresh Seafood every second Wednesday.",
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
+        ],
+        images: [
+          {
+            src: "/images/business-management/v2/recurring.webp",
+            alt: "The recurring orders screen with no schedules yet, offering to create one from an existing order",
+            caption:
+              "The empty state is the whole feature in one sentence: you make a schedule out of an order you already placed, not out of a blank form.",
+            width: 1440,
+            height: 900,
+          },
         ],
       },
       {
@@ -114,33 +124,33 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/business-management/recurring-orders-mobile.jpg",
-            alt: "Recurring orders on mobile — customers with recurring orders, active schedules, weekly volume and average order value, above a list of scheduled customers with their cadence and status",
+            src: "/images/business-management/v2/mobile-recurring.webp",
+            alt: "Recurring orders on a phone, offering to build a schedule from an existing order",
+            caption: "Recurring, checked from wherever the question occurs to you.",
+            width: 544,
+            height: 1177,
+          },
+          {
+            src: "/images/business-management/v2/mobile-products.webp",
+            alt: "The product catalogue on a phone — search, category filter, and product cards with price, stock and add-to-order",
+            caption: "Stock and price, adjusted where the stock is.",
+            width: 544,
+            height: 1177,
+          },
+          {
+            src: "/images/business-management/v2/mobile-delivery.webp",
+            alt: "The driver interface on a phone — start location sharing, then each active delivery with navigate, call and complete",
             caption:
-              "Each schedule shows its cadence and whether it is active or paused. Paused matters more than active, because a paused schedule is the one about to cause a phone call.",
-            width: 390,
-            height: 1413,
+              "The driver view is its own thing, not the office screen shrunk down: share location, navigate, call, mark it delivered.",
+            width: 544,
+            height: 1177,
           },
           {
-            src: "/images/business-management/inventory-management-mobile.jpg",
-            alt: "Inventory management on mobile, with stock levels and adjustment controls",
-            caption: "Stock adjusted where the stock is.",
-            width: 390,
-            height: 819,
-          },
-          {
-            src: "/images/business-management/driver-management-mobile.jpg",
-            alt: "Driver management on mobile, showing drivers and their active deliveries",
-            caption: "The driver view is its own thing, not the office screen shrunk down.",
-            width: 390,
-            height: 820,
-          },
-          {
-            src: "/images/business-management/business-analytics-mobile.jpg",
-            alt: "Business analytics on mobile, summarising performance for the owner",
+            src: "/images/business-management/v2/mobile-dashboard.webp",
+            alt: "The business overview on a phone, with the four headline numbers stacked",
             caption: "The owner's view. Four numbers, no chart he has to interpret.",
-            width: 390,
-            height: 1215,
+            width: 544,
+            height: 1177,
           },
         ],
       },
@@ -164,12 +174,12 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/final-product-four-panel.jpg",
-            alt: "Four QuickFlow screens together — dashboard, catalogue, orders and delivery",
+            src: "/images/business-management/v2/shipped-set.webp",
+            alt: "Four QuickFlow screens together — business overview, order management, the product catalogue and the delivery interface",
             caption:
               "The shipped set. One person's software, built for one business that had been paying somebody else for the opposite.",
-              width: 1395,
-              height: 857,
+            width: 1600,
+            height: 1009,
           },
         ],
       },

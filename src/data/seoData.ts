@@ -122,7 +122,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "business-management": {
     title: "QuickFlow — Wholesale Distribution Software Case Study",
     description: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
-    image: "https://barskydesign.pro/images/business-management/hero-three-laptops.jpg",
+    image: "https://barskydesign.pro/images/business-management/v2/overview.webp",
     published: "2026-08-30",
     modified: "2026-08-30"
   },

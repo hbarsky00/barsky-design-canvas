@@ -89,8 +89,8 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/business-management",
     images: {
-      primary: "/images/business-management/business-overview-dashboard.jpg",
-      alt: "QuickFlow business overview dashboard"
+      primary: "/images/business-management/v2/overview.webp",
+      alt: "QuickFlow business overview — sales, revenue, deliveries and customers on one ledger"
     },
     layout: "side-by-side",
     video: "/business-management-card.mp4"
