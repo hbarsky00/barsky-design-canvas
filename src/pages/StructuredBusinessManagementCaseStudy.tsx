@@ -165,13 +165,12 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         videos: [
           {
-            src: "/quickflow-product-walkthrough.mp4",
-            poster: "/images/business-management/product-walkthrough-poster.jpg",
-            narrated: true,
+            src: "/quickflow-walkthrough.mp4",
+            poster: "/images/business-management/v2/walkthrough-poster.webp",
             caption:
-              "The whole thing, running, with me talking over it: recipe costing down to the ingredient, the customer directory with credit terms on it, the driver interface, the QuickBooks connection, and the overview screen the owner actually opens. The figures on screen are demo data.",
-            width: 1280,
-            height: 684,
+              "The whole thing, running: the overview, recipe costing down to the ingredient, the catalogue, the customer directory with credit on it, orders, standing orders, the driver interface, the design system and the QuickBooks connection. Recorded straight off the running app, so it is the build that is live rather than a demo of one. Figures are the demo dataset.",
+            width: 1440,
+            height: 900,
           },
         ],
         images: [
