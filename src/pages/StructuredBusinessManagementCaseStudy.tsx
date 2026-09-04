@@ -45,6 +45,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "Two reasons. It gave him something back immediately, before I had earned any right to redesign his operation. And writing them taught me the workflow properly, which no amount of asking would have done, because the parts people forget to mention are exactly the parts they do without thinking.",
           "The product grew out of those scripts rather than replacing them. Everything in it is something the spreadsheet was already doing badly.",
         ],
+        images: [
+          {
+            src: "/images/business-management/v2/recipe-calculator.webp",
+            alt: "The recipe calculator — pick a product, set a quantity, optionally override the selling price, and it returns the margin",
+            caption:
+              "The spreadsheet this replaced worked out cost per plate. So does this, except it reads the catalogue prices instead of whatever was pasted in last.",
+            width: 1440,
+            height: 900,
+          },
+        ],
       },
       {
         heading: "The Structure Came Before Any Screen",
@@ -90,10 +100,10 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             height: 900,
           },
           {
-            src: "/images/business-management/v2/products.webp",
-            alt: "The product catalogue — search, category filters, and cards showing each product's SKU, price, stock level and an add-to-order control",
+            src: "/images/business-management/v2/customers.webp",
+            alt: "The customer directory — total customers, how many hold credit, business types and credit outstanding, above a searchable table of accounts",
             caption:
-              "Every product carries its SKU, its price and whether it is in stock on the same card, because the person adding it to an order should not have to open it to find out.",
+              "An order needs a customer and a credit position before it needs anything else. Both live here, and the credit column is the one that decides whether an order goes out at all.",
             width: 1440,
             height: 900,
           },
@@ -104,16 +114,6 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         paragraphs: [
           "Most of the orders in a business like this are the same orders, every week, from the same accounts. Harbor Cafe every Monday. Fresh Seafood every second Wednesday.",
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
-        ],
-        images: [
-          {
-            src: "/images/business-management/v2/recurring.webp",
-            alt: "The recurring orders screen with no schedules yet, offering to create one from an existing order",
-            caption:
-              "The empty state is the whole feature in one sentence: you make a schedule out of an order you already placed, not out of a blank form.",
-            width: 1440,
-            height: 900,
-          },
         ],
       },
       {
@@ -146,9 +146,10 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             height: 1177,
           },
           {
-            src: "/images/business-management/v2/mobile-dashboard.webp",
-            alt: "The business overview on a phone, with the four headline numbers stacked",
-            caption: "The owner's view. Four numbers, no chart he has to interpret.",
+            src: "/images/business-management/v2/mobile-drivers.webp",
+            alt: "Driver management on a phone — drivers on the roster, how many are enabled, available or off duty",
+            caption:
+              "Who is on a route and who is off duty, answered from a phone because the person asking is usually not at the desk either.",
             width: 544,
             height: 1177,
           },
@@ -174,12 +175,12 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/v2/shipped-set.webp",
-            alt: "Four QuickFlow screens together — business overview, order management, the product catalogue and the delivery interface",
+            src: "/images/business-management/v2/design-system.webp",
+            alt: "QuickFlow's design system page — the type scale ending in \"One ledger.\", primary, secondary and destructive button variants, and the input and badge components",
             caption:
-              "The shipped set. One person's software, built for one business that had been paying somebody else for the opposite.",
-            width: 1600,
-            height: 1009,
+              "The system underneath it, written down. One person still needs the rules, because the alternative is re-deciding what a destructive button looks like every time one is needed.",
+            width: 1440,
+            height: 900,
           },
         ],
       },
