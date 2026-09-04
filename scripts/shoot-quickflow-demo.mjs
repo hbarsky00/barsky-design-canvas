@@ -86,23 +86,37 @@ async function session(metrics, tag, pages) {
   await sleep(4000);
   for (const label of pages) {
     const res = await evaluate(`(async () => {
-      const openMenu = () => {
-        const b = Array.from(document.querySelectorAll('button')).find(x => /menu|open|nav/i.test(x.getAttribute('aria-label')||'') || x.querySelector('svg') && x.closest('header'));
-        if (b) b.click();
-      };
-      if (window.innerWidth < 768) { openMenu(); await new Promise(r=>setTimeout(r,700)); }
-      const target = Array.from(document.querySelectorAll('a,button,[role=button],li'))
-        .find(el => el.textContent.trim().toLowerCase() === ${JSON.stringify("PLACEHOLDER")}.toLowerCase());
+      const want = ${JSON.stringify(label)}.toLowerCase();
+      const name = el => (el.textContent || el.getAttribute('aria-label') || el.getAttribute('title') || '').trim().toLowerCase();
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      if (window.innerWidth < 768) {
+        const burger = Array.from(document.querySelectorAll('header button, button')).find(b => b.closest('header'));
+        if (burger) burger.click();
+        await wait(700);
+      } else if (!Array.from(document.querySelectorAll('a,button,[role=button],li')).some(el => name(el) === want)) {
+        // sidebar is collapsed to icons — open it so items carry their labels
+        const toggle = document.querySelector('aside button, nav button');
+        if (toggle) { toggle.click(); await wait(600); }
+      }
+      const target = Array.from(document.querySelectorAll('a,button,[role=button],li')).find(el => name(el) === want);
       if (!target) return 'no nav item';
-      target.click(); return 'ok';
-    })()`.replace('"PLACEHOLDER"', JSON.stringify(label)));
+      target.click();
+      return 'ok';
+    })()`);
     await sleep(2500);
+    // NOTE: do not try to expand the collapsed desktop rail by clicking the
+    // first button inside it — that button is the Dashboard nav item, so it
+    // navigates away and every screenshot after it captures the wrong page.
+    // The icon rail is a real state of the app; leave it.
     console.log(`  [${tag}] ${label}: ${res}`);
     await shoot(`${tag}-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
   }
 }
 
-await session(MOBILE, "mobile", ["Dashboard", "Products", "Recurring", "Drivers", "Delivery", "Orders"]);
+const DESKTOP_PAGES = ["Dashboard", "Recipe Calculator", "Orders", "Customers", "Design System"];
+const MOBILE_PAGES  = ["Products", "Recurring", "Delivery", "Drivers"];
+await session(DESKTOP, "desktop", DESKTOP_PAGES);
+await session(MOBILE, "mobile", MOBILE_PAGES);
 await send("Emulation.clearDeviceMetricsOverride");
 console.log("done");
 ws.close(); chrome.kill();
