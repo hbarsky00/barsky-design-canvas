@@ -14,8 +14,9 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/business-management/v2/overview.webp",
       alt: "QuickFlow Business Overview — today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
+      hoverVideo: "/quickflow-walkthrough.mp4",
       caption:
-        "The screen the owner opens first. A day's sales against the weekly target, revenue, deliveries and customers on one ledger, with the four things he actually does next sitting under them. Figures are the demo dataset, not his books.",
+        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures are the demo dataset, not his books.",
       width: 2300,
       height: 1438,
     }}
@@ -162,16 +163,6 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "Designed and built by me, from the site map through the interface to the working application, with AI doing the parts of the build I would otherwise have handed to an engineer.",
           "I am deliberately not putting an outcome number on this page. The honest position is that it came out of one conversation with one owner and it does the job he described; I have not measured it, and a percentage I could not defend on a call is worth less than saying so.",
           "What this one is evidence of is the front half. Hearing a real problem in the wild, relieving it with a spreadsheet inside a week, and only then designing the thing properly.",
-        ],
-        videos: [
-          {
-            src: "/quickflow-walkthrough.mp4",
-            poster: "/images/business-management/v2/walkthrough-poster.webp",
-            caption:
-              "The whole thing, running: the overview, recipe costing down to the ingredient, the catalogue, the customer directory with credit on it, orders, standing orders, the driver interface, the design system and the QuickBooks connection. Recorded straight off the running app, so it is the build that is live rather than a demo of one. Figures are the demo dataset.",
-            width: 1440,
-            height: 900,
-          },
         ],
         images: [
           {
