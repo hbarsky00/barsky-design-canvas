@@ -28,6 +28,11 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "A bank was running its loan operations in Excel. Deals worth millions of dollars, no audit trail, no validation, and no way to tell who changed what.",
           "Three teams had already tried to replace it and failed. I spent a while figuring out why before I designed anything, and the answer was the same every time: they all tried to improve parts of the job the loan officers never asked to have improved.",
         ],
+        stats: [
+          { value: "3", label: "Teams tried to replace the spreadsheet before this one" },
+          { value: "8 figures", label: "The deal values it was tracking, with no validation behind them" },
+          { value: "Adopted", label: "Where this attempt landed, and the three before it didn't" },
+        ],
       },
       {
         heading: "Research and Ideation",
