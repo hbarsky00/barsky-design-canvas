@@ -81,3 +81,16 @@ case-study rotation (lever 1) stands so the next run knows which study is next.
   hazard this directory has. It left a stale `dist` that silently looked like a
   successful build. Re-running cleared it. Check the timestamp on the file you
   are verifying, not just the build's exit line.
+
+### Verified out of band — 2026-09-06
+
+**Hiram confirms contact-form submissions are arriving.** The conversion path
+is working end to end from his side, not just from a deploy that looked right.
+Lever 3 should re-verify it rather than re-diagnose it, and should not treat a
+dead form as the standing answer to "why no calls" any more — the path is open,
+so the question moves upstream to whether anyone is reaching a page with a CTA
+on it in the first place. That is levers 4 and 6.
+
+The homepage form was a second copy that stayed broken after /contact was
+fixed; it is now a thin wrapper around the real one. If a future run finds two
+form implementations again, that is the regression.
