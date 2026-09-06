@@ -12,34 +12,47 @@ export interface ServiceData {
 }
 
 export const SERVICES_DATA: ServiceData[] = [
+  // Rewritten 2026-09-06 against the case studies rather than against an idea
+  // of what sells. The previous three cards led with "AI-First Product Design"
+  // and "Prompt UX & Conversational Interfaces", and demoted product design to
+  // "the craft that makes AI products actually usable" — a supporting act.
+  //
+  // Twelve case studies say the opposite. Seven are tagged Solo Build, five
+  // products are live and reachable, and four are enterprise tools that replace
+  // a spreadsheet or a catalogue. Not one shows a conversational interface or
+  // prompt UX. The strongest, most-evidenced thing on the site was the card
+  // ranked third; the least-evidenced was the headline.
   {
-    title: "AI-First Product Design",
-    description: "Designing intelligent experiences that go beyond the screen.",
+    title: "Design and build, same person",
+    description:
+      "Why there is no handoff: I take a product from the first sketch to the thing running in production.",
     features: [
-      "AI Workflow & Interaction Design",
-      "Prompt UX & Conversational Interfaces",
-      "Human-AI Collaboration Patterns",
-      "Design Systems for Adaptive Products"
+      "Product design through to the shipped front end",
+      "Database, auth and API work, not only the screens",
+      "Five products live and reachable right now",
+      "Decisions tested in working software, not in mockups"
     ]
   },
   {
-    title: "Gen AI Integration",
-    description: "Bringing real AI capability into your product — not just the wrapper.",
+    title: "Internal tools people use all day",
+    description:
+      "Enterprise software where nobody chose to be there, and the spreadsheet is the incumbent you have to beat.",
     features: [
-      "ChatGPT / Claude API Integration",
-      "AI-Powered Feature Design",
-      "Intelligent Automation Flows",
-      "Data-Driven UX Decisions"
+      "Workflow design that starts from the work already being done",
+      "Replacing spreadsheets as the system of record",
+      "Search, catalogues and information architecture",
+      "Permissions, roles and approval gates"
     ]
   },
   {
-    title: "Core Product Design",
-    description: "The craft that makes AI products actually usable.",
+    title: "AI where it earns its place",
+    description:
+      "Used where it changes what the product can do, and left out where it would only be a wrapper.",
     features: [
-      "User Research & Testing",
-      "Wireframing & Prototyping",
-      "High-Fidelity UI Design",
-      "Responsive Design Systems"
+      "Semantic search over metadata instead of keyword match",
+      "Scheduled generation pipelines, with the output validated",
+      "AI-assisted delivery — how one person ships this much",
+      "A clear line on where a model does not belong"
     ]
   }
 ];
@@ -84,13 +97,16 @@ export const SERVICE_PACKAGES: ServicePackage[] = [
 ];
 
 export const SERVICES_CTA = {
-  title: "Ready to Build Something Smarter?",
-  description: "Let's design a product that uses AI to do something that actually matters.",
+  title: "Want it designed and shipped?",
+  description: "Tell me what you're building and we'll scope it properly on a call.",
   buttonText: "Schedule a Call"
 };
 
+// Kept in step with the live hero on /services, which already said the honest
+// thing while this block still said "AI-First Designer". It feeds the content
+// export, so a stale positioning line here gets pasted somewhere else later.
 export const SERVICES_HERO = {
-  title: "AI-First Product Design",
-  description: "I design products where AI isn't a feature — it's the foundation. Hiram Barsky · AI-First Designer.",
+  title: "I design and develop the whole product",
+  description: "Design, front end, database and auth, shipped by one person. Hiram Barsky · product designer and developer.",
   buttonText: "Work With Me"
 };

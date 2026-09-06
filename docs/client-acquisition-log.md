@@ -323,3 +323,73 @@ form implementations again, that is the regression.
   Next lever: **5, positioning vs evidence** — and per lever 1's note, measure
   it on `src/pages/Structured*CaseStudy.tsx`, not on `structuredCaseStudies.ts`.
   Lever 1's rotation still sits at **dae-search**. Lever 3 stays closed.
+
+- [x] **Lever 5 — positioning vs evidence** — 2026-09-06 — **The offer was upside
+  down.** `/services` led with an AI-consulting pitch the case studies do not
+  support, and ranked the thing twelve studies prove third, as a supporting act.
+  Rewrote the three "What I do" cards against the evidence.
+
+  **Measured on the live pages**, per lever 1's correction — the twelve
+  `src/pages/Structured*CaseStudy.tsx` files, not `structuredCaseStudies.ts`.
+
+  **What the copy claimed.**
+  1. *AI-First Product Design* — "AI Workflow & Interaction Design", "Prompt UX
+     & Conversational Interfaces", "Human-AI Collaboration Patterns".
+  2. *Gen AI Integration* — "ChatGPT / Claude API Integration".
+  3. *Core Product Design* — described as "the craft that makes AI products
+     actually usable", i.e. in service of the first two.
+
+  **What the evidence carries.** Seven studies tagged **Solo Build**. Five
+  products live and reachable (firelion.me, catchbuddy.fit, herbalink.live,
+  stips.bet, ringrival.today). Four enterprise tools that replace a spreadsheet
+  or a catalogue (Investor Loan, DAE Search, BZ Essentials, QuickFlow).
+  **Not one study shows a conversational interface or prompt UX.** The only
+  study tagged "Gen AI" is ManuscriptRx, which `caseStudyIndex.ts` holds out of
+  the pager because **it never shipped**. Six studies carry "AI-Assisted
+  Product", which means AI helped him *build* it — a claim about his delivery
+  speed, not about an AI product.
+
+  So the least-evidenced offer was the headline, and the best-evidenced one was
+  ranked third. The playbook says the evidence wins.
+
+  **The three cards now:**
+  - **Design and build, same person** — end to end through the shipped front
+    end, database and auth included, five products live, decisions tested in
+    working software. Every line traces to a study.
+  - **Internal tools people use all day** — workflow design, replacing
+    spreadsheets as the system of record, search and catalogues, permissions
+    and approval gates. Traces to Investor Loan, DAE, BZ Essentials, QuickFlow.
+  - **AI where it earns its place** — narrowed to what actually shipped:
+    semantic search over metadata (DAE), scheduled generation pipelines with
+    validated output (Stips), AI-assisted delivery, and a stated line on where
+    a model does not belong. The AI claim is kept, because it is real; what went
+    is the part that was not.
+
+  Positioning itself untouched, as required: "I design and develop SaaS, web
+  apps, mobile apps and internal tools."
+
+  **Also fixed, same root cause.** `SERVICES_HERO` still read "AI-First Product
+  Design / Hiram Barsky · AI-First Designer" and `SERVICES_CTA` "Ready to Build
+  Something Smarter?". The live hero on `/services` had already been rewritten
+  to the honest version; these two were the stale copy left behind, and they
+  feed `ContentExport` — so the old positioning was staged to be pasted
+  somewhere else later. Brought both in line.
+
+  **FLAGGED — Hiram's call, not mine, and it is the loudest remaining
+  contradiction on the site.** The packages directly contradict the hero. The
+  hero says he ships end to end; the packages sell **design deliverables and a
+  handoff** — MVP Validation, $8,500, "3 weeks to launch-ready design",
+  wireframes and a prototype; AI-First Redesign, $18,500, 12 weeks, "dev
+  collaboration & handoff". A founder who reads the hero, believes it, then
+  reads the packages learns that the build is not actually included. Three
+  things only he can settle: whether those prices still stand, whether the
+  packages should include the build he is now selling, and whether
+  "AI-First Redesign" should still be the name of one of them. I changed no
+  price and no scope.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt after. Verified in the built `dist/services/index.html`: new
+  cards present, zero occurrences of "AI-First" or "Prompt UX" anywhere in the
+  built services page.
+
+  Next lever: **6, off-site acquisition** — written list only, no code.
