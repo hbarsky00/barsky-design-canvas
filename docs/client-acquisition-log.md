@@ -479,3 +479,56 @@ the top of this file) and will be skipped from here.
 it has had a proof audit but not a buyer-lens pass. Before that, the strongest
 piece of work available is lever 6's item 1: `Person` schema and `sameAs`, which
 no lever owns and which this loop can write without asking anyone.
+
+### CORRECTION to lever 6, item 1 — 2026-09-06, same day
+
+**I was wrong, and the retracted claim is the one I ranked first. There is
+nothing to build here.**
+
+Lever 6 asserted that the built site carries "zero `sameAs` properties and no
+`Person` or `ProfilePage` schema on any page". That is false. Verified against
+the live site today:
+
+- `index.html` carries a hand-written `@graph` with three nodes —
+  `#business` (Organization), **`#hiram` (Person)** and `#website` (WebSite).
+- The **Person node has `sameAs` to both** `linkedin.com/in/hiram-barsky/` and
+  `github.com/hbarsky00`, plus `jobTitle`, `image`, `description` matching the
+  settled positioning, and `worksFor` pointing at `#business`. The Organization
+  node repeats the same `sameAs` pair.
+- The graph is **served on every route type** — checked live on `/`,
+  `/project/dae-search`, `/blog/finding-the-data-is-half-the-job` and `/about`;
+  the `#hiram` node appears on all four.
+- `#business` is fully populated for local search already: `telephone`
+  `+1-201-668-4754`, `email`, `PostalAddress` (Clifton, NJ, US), `geo`,
+  `areaServed`, `openingHoursSpecification`, `contactPoint`, `knowsAbout`.
+  The phone matches the footer exactly.
+- `structuredDataUtils.ts` deliberately re-uses these by `@id` — every
+  BlogPosting and Article sets `author: {"@id": ".../#hiram"}` — and its own
+  comment warns that re-declaring an Organization here recreates a
+  duplicate-entity defect removed on 2026-09-01.
+
+**Why I got it wrong, recorded so the next run does not repeat it.** I grepped
+for `"@type":"[A-Za-z]+"` — **no space after the colon**. That pattern matches
+the minified JSON-LD that `inject-seo-html` writes, and silently misses the
+hand-written, pretty-printed graph in `index.html`, which uses `"@type": "..."`.
+Two greps returned "no Person, no sameAs" and I believed them instead of
+believing the comment in `structuredDataUtils.ts` that said the entity graph
+lives in `index.html` and is served on every route. The code told me the truth
+and I trusted my own bad regex over it.
+
+**Always match schema with flexible whitespace** — `'"@type"\s*:\s*"Person"'` —
+and check `index.html` as well as the injected blocks. They are written by
+different hands in different formats.
+
+**What this changes about lever 6.** Item 1 is struck. The honest consequence:
+**this loop has no off-site work it can do on its own.** Item 4 (the five live
+products as backlink sources) belongs to five other repos with their own deploy
+approvals. Everything else — Google Business Profile, the barsky.design vs
+barskydesign.pro canonical decision, LinkedIn distribution, marketplaces,
+communities, referrals — needs an account, a post, an identity check or a
+business decision, and is Hiram's alone.
+
+That is the real finding of lever 6, and it is more useful than the one it
+replaces: the entity and schema groundwork is already done and done well. The
+gap is not technical. Nothing points at the site yet, and closing that is
+Hiram's move, not the loop's.
