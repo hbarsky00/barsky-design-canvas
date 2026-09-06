@@ -663,3 +663,52 @@ Hiram's move, not the loop's.
   prototype rather than a shipped product. Whether it should sit alongside
   catchbuddy.fit and stips.bet under the same affordance is a positioning call
   for lever 5, not a proof one.
+
+- [x] **Lever 2 follow-up — ring-rival fixed** — 2026-09-06 — Hiram said figure
+  it out and fix it, so option 2: the study now describes the game as it is,
+  and says so on the page rather than in this log.
+
+  **First, a correction to the run above.** The previous entry listed
+  `DuelLobby`, `Leaderboard`, `BonusRound` and daily challenges as surface the
+  game had "grown back". That overstates it. `MobileBoxingGame.tsx` gates PVP
+  duel and gauntlet behind a `SHOW_EXTRA_MODES` flag that is off, with a comment
+  saying career mode is the focus and the code stays parked until someone flips
+  it. A player never sees them. I read the component list and inferred a
+  player-facing state from it, which is the same class of error as cycle 1's
+  schema grep — trusting a file listing over what the code actually does.
+
+  **What is actually true, verified in `~/ring-rival` read-only:**
+  - The tutorial is **five cards** (ATTACK, GO HIGH & LOW, DODGE & BLOCK, READ
+    THE WIND-UP, CLIMB THE RANKS), not one. This is the genuinely false claim.
+  - It renders only when `gamePhase === 'playing'`, so it overlays a fight
+    already in progress rather than gating entry to one, and a SKIP button
+    dismisses all five in one tap. That is a meaningfully better design than
+    a pre-game tutorial, and the study got no credit for it.
+  - The title screen's single primary action is START/CONTINUE CAREER. Career
+    mode is a fighter select by another name, so that deletion did not hold.
+  - `22 seconds → 6` is left standing but re-tensed to "after the cut". It
+    describes the redesign, and nothing available contradicts it for that
+    moment. It is not presented as the current number any more.
+
+  **The change.** Two edits to `StructuredRingRivalCaseStudy.tsx`. The opening
+  sentence loses "Now it takes 6" for "After the cut it took 6", and loses the
+  false one-card sentence. A new closing paragraph tells the reader the game has
+  moved, names what came back, and gives the tutorial its due for sitting on
+  top of a live fight instead of in front of one. It ends on the point the block
+  was always making: deleting is not a thing you finish.
+
+  **This is better for a buyer than the version that was true.** The old block
+  said "I deleted things and the number went down". The new one says that, then
+  admits the surface came back, and treats that as the normal condition of a
+  product rather than a failure. A founder reading it learns more about how he
+  works, and can now tap the live link without catching the page out.
+
+  **What I asserted on Hiram's behalf, so he can veto it:** that career mode is
+  "a fighter select wearing a different hat", and the closing line about
+  deleting being a practice rather than a milestone. Both are readings of his
+  own product, not facts he gave me. Everything else on the page is verified.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt. Confirmed in `dist/project/ring-rival/index.html`: the new
+  paragraph present, the old one-card claim gone. Committed, not pushed. The
+  game repo was read but never written.
