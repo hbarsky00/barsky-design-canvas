@@ -840,3 +840,54 @@ Hiram's move, not the loop's.
 
   Gates: tsc clean, build clean, capture 44/44, rebuilt, verified in
   `dist/project/ring-rival/index.html`. Committed, not pushed.
+
+- [x] **Lever 5 follow-up — the build package exists now** — 2026-09-06 —
+  Hiram said do it, so `SERVICE_PACKAGES` has a third entry: **Design and
+  Build**.
+
+  This closes the gap the previous lever-5 run flagged. The site argued end to
+  end that the differentiator is design *and* build — five live products, seven
+  studies tagged Solo Build, a value prop literally headed "Design and build,
+  same person" — while the only two things anyone could buy stopped at a
+  prototype. A founder who believed the pitch had nothing to purchase.
+
+  Features are drawn from what the studies demonstrate, not from a template:
+  design through to the shipped front end, database and auth work, deployed
+  rather than handed over as files, decisions tested in working software, and a
+  weekly line to the person building it.
+
+  **The price is "Scoped on a call", and that is deliberate, not a placeholder.**
+  What Hiram charges is his to set. This exact file already had one invented
+  rate removed — the "$150-250/hour" that went into an FAQ with nothing behind
+  it — and a made-up build price would be the same mistake with a bigger number
+  on it. The pattern is also the normal one for an open-scope tier. **Give me a
+  figure and it goes in; nothing else about the card needs to change.**
+
+  The section blurb above the grid said "Fixed scope, fixed price", which stopped
+  being true the moment a scoped-on-a-call tier appeared. It now says the first
+  two are fixed and the build engagement is scoped, because that number depends
+  on what the thing is.
+
+  **Layout, measured rather than eyeballed.** Two cards became three, so the
+  grid needed checking at every breakpoint. First attempt used
+  `md:grid-cols-2 lg:grid-cols-3`, which measured at 820px as two cards on row
+  one and **Design and Build orphaned alone on row two at half width** — the
+  most important card in the weakest position. Changed to `md:grid-cols-3`.
+  Verified by reading the laid-out geometry of all three cards, not by
+  screenshot:
+
+  | viewport | result |
+  |---|---|
+  | 1440 | 3 across, 240px each, evenly spaced |
+  | 820 | 3 across, 236px each, same row |
+  | 768 | 3 across, 219px each, same row |
+  | 375 | stacked, 343px, no horizontal overflow |
+
+  The Browser pane was hidden, so nothing rendered and screenshots and wheel
+  scrolling both failed. `getBoundingClientRect` through `javascript_tool` works
+  regardless and is stronger evidence than a picture — it gives actual positions
+  and catches an orphaned card that a screenshot at one width would have missed.
+  Worth remembering for future runs.
+
+  Gates: tsc clean, build clean, capture 44/44, rebuilt, verified in
+  `dist/services/index.html`. Committed, not pushed.

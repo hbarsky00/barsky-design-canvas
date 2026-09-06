@@ -186,11 +186,11 @@ const ServicePageLayout: React.FC = () => {
             Packages
           </h2>
           <p className="text-base text-muted-foreground mb-8">
-            Fixed scope, fixed price. If your project doesn't fit one of these, say so on
-            the call and we'll scope it properly.
+            The first two are fixed scope and fixed price. Building the whole product
+            is scoped on a call, because that number depends on what the thing is.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {SERVICE_PACKAGES.map((pkg) => (
               <div
                 key={pkg.title}

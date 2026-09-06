@@ -93,6 +93,28 @@ export const SERVICE_PACKAGES: ServicePackage[] = [
       "The front end built by me \u2014 there is no handoff",
       "90 days of tuning after it ships"
     ]
+  },
+  // The site argues end to end that the differentiator is design AND build —
+  // five live products, seven studies tagged Solo Build, a value prop headed
+  // "Design and build, same person". Until now the only two things anyone could
+  // buy stopped at a prototype, so a founder who believed the pitch had nothing
+  // to purchase. Price is deliberately not a number: what Hiram charges is his
+  // to set, and this file has already had one invented rate ($150-250/hour)
+  // removed for having nothing behind it.
+  {
+    title: "Design and Build",
+    price: "Scoped on a call",
+    description:
+      "For founders who need the thing built, not just designed. This is the engagement the five live products came out of.",
+    timeline: "Set with the scope",
+    features: [
+      "Product design through to the shipped front end, by one person",
+      "Database, auth and API work \u2014 not only the screens",
+      "Deployed and running, not handed over as a folder of files",
+      "Decisions tested in working software rather than in mockups",
+      "You talk to the person building it, every week",
+      "Support after it ships"
+    ]
   }
 ];
 
