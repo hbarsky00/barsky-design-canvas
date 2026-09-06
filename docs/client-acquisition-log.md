@@ -393,3 +393,89 @@ form implementations again, that is the regression.
   built services page.
 
   Next lever: **6, off-site acquisition** — written list only, no code.
+
+- [x] **Lever 6 — off-site acquisition** — 2026-09-06 — Written list only, as the
+  playbook requires. No code, no accounts created, nothing posted anywhere.
+
+  **The framing this cycle earned.** Lever 3 proved the contact path works and
+  Hiram confirmed it. Lever 4 found blog posts had no CTA at all, and lever 5
+  found the offer was selling the wrong thing. Those are now fixed. What is left
+  is the part no on-site change can reach: **almost nothing points at this
+  site.** Five form submissions in fifteen days is a reach number, not a
+  conversion one. Everything below is ranked by effort against likely reply.
+
+  **Tier 1 — cheapest, and two of them are near-free**
+
+  1. **`sameAs` + `Person` schema. THE LOOP CAN DO THIS — and it is the single
+     cheapest real win available.** Verified today: the built site contains
+     **zero `sameAs` properties and no `Person` or `ProfilePage` schema on any
+     page**, homepage and `/about` included. LinkedIn and GitHub sit in the
+     footer as plain links. Nothing tells Google or an AI answer engine that the
+     Hiram Barsky on barskydesign.pro is the same entity as
+     `linkedin.com/in/hiram-barsky` and `github.com/hbarsky00`. Entity
+     resolution is most of what decides whether an AI recommends a named
+     person. Half a day of work, no permission needed. **Do this first.**
+  2. **Google Business Profile — Hiram only.** Still not done; it has been
+     "pending" since the findability work. The footer already declares
+     "Remote worldwide · New Jersey, US" and a phone number, so the NAP data
+     exists and is consistent. A GBP is the strongest local entity anchor a solo
+     consultant can hold, it feeds Maps and "product designer near me", and it
+     is a high-authority `sameAs` target for item 1. Needs his identity and a
+     verification step, so it cannot be automated. **~30 minutes plus
+     verification.**
+  3. **Decide which domain is canonical — Hiram only, and it is a decision, not
+     a task.** `barsky.design` and `barskydesign.pro` are both live portfolio
+     sites for the same person, each with its own automated loop. Two domains
+     competing on one person's name split the authority and actively confuse
+     entity resolution — which is the same mechanism item 1 is trying to fix.
+     Pick one, 301 the other or make it plainly subordinate. Everything else in
+     this list is worth less while both exist.
+
+  **Tier 2 — real effort, real return**
+
+  4. **The five live products are unused backlink assets.** firelion.me,
+     catchbuddy.fit, herbalink.live, stips.bet, ringrival.today. He owns all
+     five. A "designed and built by Hiram Barsky" footer link on each is five
+     permanent, genuine, non-spammy links from real shipped products — exactly
+     the kind of link that is hard to buy and easy for him to place. Small code
+     change, but in five other repos, each with its own loop and its own deploy
+     approval, so it is not this loop's to make unilaterally.
+  5. **LinkedIn as distribution for the blog — Hiram only, posting is his.**
+     Twenty-three posts exist and nothing distributes them. He already has the
+     profile. Post the argument itself rather than a bare link. This is the
+     highest-yield recurring action on the list and the loop must never do it
+     for him.
+  6. **Marketplaces where founders search for design *and* build.** Contra,
+     Toptal, Wellfound and similar. The differentiator is specific and rare:
+     one person who designs and ships, with five live products to prove it —
+     which is now exactly what `/services` says. All require account creation,
+     so Hiram only.
+
+  **Tier 3 — slower, higher conversion**
+
+  7. **Communities where founders ask this question out loud** — Indie Hackers,
+     r/SaaS, founder Slacks and Discords. He has twenty-three posts of genuine
+     thinking to answer with; answering beats pitching. Hiram only.
+  8. **Referrals, the channel nobody has asked for.** No case study names a
+     client, and nothing on the site or off it asks anyone for an introduction.
+     Past colleagues and the bank client behind the Investor Loan work are the
+     highest-conversion source on this list and the least worked. Hiram only.
+
+  **Summary of who does what.** The loop can do exactly one item — the schema
+  and `sameAs` work (1), and it should be the next code this loop writes.
+  Items 4 belongs to five other repos. Everything else (2, 3, 5, 6, 7, 8)
+  requires an account, a post, an identity check, or a business decision, and is
+  Hiram's alone. That is the honest shape of it: the site is now in good enough
+  order that the remaining work is mostly not on the site.
+
+  No files changed beyond this log.
+
+### Cycle 1 complete — 2026-09-06
+
+All six levers logged. Lever 3 is closed permanently (see the settled note at
+the top of this file) and will be skipped from here.
+
+**Cycle 2 starts at lever 1**, with the case-study rotation at **dae-search** —
+it has had a proof audit but not a buyer-lens pass. Before that, the strongest
+piece of work available is lever 6's item 1: `Person` schema and `sameAs`, which
+no lever owns and which this loop can write without asking anyone.
