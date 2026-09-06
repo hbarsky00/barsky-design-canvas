@@ -757,3 +757,53 @@ Hiram's move, not the loop's.
   Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
   44/44, rebuilt. Verified in `dist/services/index.html`: both sections present,
   "Dev collaboration" gone. Committed, not pushed.
+
+- [x] **Lever 4 — entry-point coverage** — 2026-09-06 — **Seven real
+  testimonials existed and only the homepage showed them.** Put one on every
+  case study and blog post with a single component change.
+
+  **Checked first, found solid, left alone.** Two entry-point paths cycle 1
+  built are working and did not need touching: every deep page carries the name
+  Hiram Barsky and a Book-a-call CTA (verified in the built HTML for
+  `/project/dae-search`, `/project/ring-rival` and a blog post), and 23 of the
+  24 entries in `blogData.ts` already link to a case study, so a search reader
+  can reach the proof. Recorded so a future run does not re-audit them.
+
+  **The gap.** `testimonials.ts` holds seven named quotes — Alex Pantaler (SVP
+  UX/UI, Citi), Attila Bodi (Cloudera), Daanish (TCS), Jon Hoberman, two from
+  KPMG — all from real LinkedIn recommendations, per the file's own rule that
+  nothing goes in it that a real person did not write. They rendered in exactly
+  one place: `WordOfMouthSection`, on the homepage.
+
+  Search does not land on the homepage. It lands on one of 12 case studies or
+  23 blog posts. Someone arriving there saw the work, saw a CTA, and saw
+  nothing from another human saying he is worth the call — while the strongest
+  trust asset on the site sat on a page they never visited.
+
+  **The change.** One quote in `WorkCallToAction`, which is the block that ends
+  every case study and every blog post — so this is ~35 pages from a single
+  edit rather than 35 edits. Suppressed on the homepage, where
+  `WordOfMouthSection` already carries all seven and it would be a duplicate;
+  the existing `secondary` prop already distinguishes the two cases, so no new
+  prop was needed.
+
+  Two decisions worth recording:
+  - **Fixed, not random.** The prerendered bodies are baked at build time. A
+    quote that varied per render would mismatch on hydration — this repo has
+    been bitten by hydration mismatches before.
+  - **Selected by name, not index**, so reordering `testimonials.ts` cannot
+    silently swap it. Daanish's — "unmatched in his ability to translate the
+    often vague ideas from clients into beautiful, simple-to-use products" —
+    because it is the most client-shaped of the seven. Vague idea to shipped
+    product is the thing a founder is actually buying.
+
+  Nothing invented: the quote, name and title are exactly as they already sat
+  in the repo.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt. Verified in the built HTML — present once on a case study,
+  once on a blog post, and still exactly once on the homepage. Committed, not
+  pushed.
+
+  Build note: `npm run build` again failed once on the iCloud `dist` rimraf
+  race and succeeded on a rerun. Second time today.

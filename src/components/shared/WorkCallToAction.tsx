@@ -1,6 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { testimonials } from "@/data/testimonials";
+
+/**
+ * One named quote, chosen by name rather than index so it survives the array
+ * being reordered, and fixed rather than random: the prerendered bodies are
+ * baked at build time, so a quote that varied per render would mismatch on
+ * hydration. This one because it is the most client-shaped of the seven —
+ * vague ideas turned into products is the thing a founder is buying.
+ */
+const PROOF =
+  testimonials.find((t) => t.name === "Daanish") ?? testimonials[0];
 
 export const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
@@ -49,6 +60,21 @@ const WorkCallToAction: React.FC<WorkCallToActionProps> = ({
     <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
       {blurb}
     </p>
+    {/* The homepage already carries all seven of these in WordOfMouthSection,
+        so the quote would be a duplicate there. A case study or a blog post is
+        the opposite case: someone arrives from search, reads one page, and has
+        nothing from another human telling them he is worth the call. */}
+    {secondary === "more-work" && PROOF && (
+      <figure className="mx-auto mb-8 max-w-xl border-t border-border pt-6">
+        <blockquote className="text-sm leading-relaxed text-muted-foreground md:text-base">
+          &ldquo;{PROOF.quote}&rdquo;
+        </blockquote>
+        <figcaption className="mt-3 text-sm font-medium text-foreground">
+          {PROOF.name}
+          <span className="font-normal text-muted-foreground"> &middot; {PROOF.title}</span>
+        </figcaption>
+      </figure>
+    )}
     <div className="flex flex-col justify-center gap-3 sm:flex-row">
       <Button asChild size="lg">
         <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
