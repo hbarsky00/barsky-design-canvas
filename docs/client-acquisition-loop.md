@@ -54,6 +54,19 @@ Walk one study's claims and ask what each traces to. Anything that traces to
 nothing gets softened to what is defensible or FLAGGED in the log — never
 deleted, never invented, never quietly filled in.
 
+Two checks belong in every proof run, because both are cheap and both catch the
+failures that cost the most credibility:
+
+- **Every `liveUrl` must return 200.** A dead link on a case study is the one
+  credibility failure that costs nothing to prevent.
+- **A study that links to a live product must still match that product.** Claims
+  go stale without anyone editing them: ring-rival's "the tutorial is down to
+  one card" was contradicted by a five-card onboarding in the shipped game on
+  2026-09-06. Read the other repo to check — read-only, it is another agent's
+  lane — and FLAG the mismatch rather than rewriting Hiram's account of his own
+  product. Whether the study is a snapshot or should track the product is his
+  call, not the loop's.
+
 ### 3. Conversion path — SETTLED, DO NOT RE-RUN
 
 **The contact form is fine. Hiram has said so directly. Stop checking it.**
