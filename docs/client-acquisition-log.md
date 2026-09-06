@@ -179,3 +179,60 @@ form implementations again, that is the regression.
   Rotation for lever 1 still sits at **dae-search** — this run audited its
   proof, it did not do the buyer-lens pass. Next lever: **3, conversion path**
   (re-verify, do not re-diagnose — see the out-of-band note above).
+
+- [x] **Lever 3 — conversion path** — 2026-09-06 — Walked the buyer's route to
+  contact end to end and proved every hop against live evidence. **No defect
+  found, so no code changed.** The path is open; the shortage is upstream.
+
+  **Hop by hop, with what proves it rather than what looks right.**
+
+  1. **CTAs exist where a buyer lands.** Homepage carries two "Book a call"
+     buttons; `/project/dae-search`, a deep page someone arrives on from
+     search, carries a booking CTA in its end-of-study block plus two
+     `/contact` links. Read out of the live HTML, not the source.
+  2. **The booking CTA points somewhere real.** Both go to
+     `https://calendly.com/barskyuxdesignservices/30min` — 200, titled
+     "30 Minute Intro Meeting - Hiram Barsky". This hop had never been checked
+     in this log before; a dead Calendly would have killed the shorter of the
+     two routes silently.
+  3. **The pages respond.** `/`, `/contact` and `/project/dae-search` all 200.
+  4. **Netlify has actually registered the form.** The deployed HTML contains
+     **zero** `data-netlify` attributes and **two** `form-name` inputs — that
+     rewrite is Netlify's own deploy-time form processing, so registration is
+     confirmed from the served bytes rather than from the source markup. Site
+     metadata agrees: `extraFeatures.forms: "enabled"`.
+  5. **Submissions arrive.** The Netlify form `contact`
+     (`6a88c13833352e00088b01c0`, created 2026-08-21) reports
+     **`submission_count: 5`, `last_submission_at: 2026-09-04T11:58:32Z`**,
+     honeypot on, and its five stored fields — name, email, subject, message,
+     bot-field — match exactly what the client posts. Real stored submissions
+     with a recent timestamp is stronger evidence than a test of my own would
+     have been.
+  6. **The notification cannot lose a message.** `notify-contact.js` is called
+     *after* the Netlify POST has already stored the submission, so a failed
+     email is a missing notification, never a lost enquiry. The form's own
+     error path hands over `hbarsky01@gmail.com` and deliberately does not
+     reset the fields.
+  7. **No regression on the duplicate-form fault.** `src/components/home/ContactForm.tsx`
+     is still a 38-line wrapper around the real component. One implementation,
+     as required.
+
+  **What I could not do, stated plainly.** I intended to POST a clearly-labelled
+  test submission to the live form. The auto-mode classifier blocked the
+  external write and I did not work around it. It would have been redundant
+  anyway — and it would have failed regardless, because `notify-contact`
+  gates on `Origin`/`Referer` being `barskydesign.pro`, so any future live
+  test has to be driven from a browser on the real origin, not from curl.
+
+  **The number that matters, and it is not a defect.** Five submissions in the
+  roughly fifteen days since the form was rebuilt, the last on 2026-09-04. The
+  conversion path is working and is no longer a candidate answer to "why no
+  calls". The bottleneck has moved upstream: whether enough of the right people
+  reach a page carrying one of these CTAs at all. That is **lever 4**
+  (entry-point coverage) and **lever 6** (off-site acquisition), and both are
+  now the highest-value remaining work in this cycle.
+
+  Nothing to gate — no source changed. Log-only commit.
+
+  Next lever: **4, entry-point coverage.** Lever 1's rotation still sits at
+  **dae-search**.
