@@ -592,3 +592,74 @@ Hiram's move, not the loop's.
   Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
   44/44, rebuilt after, confirmed in `dist/project/dae-search/index.html`.
   Committed, not pushed.
+
+- [x] **Lever 2 — proof audit** — 2026-09-06 — Audited **ring-rival**, the only
+  study in the portfolio carrying real measurements. **Its central claim is
+  contradicted by the shipped game.** Nothing changed on the site this run —
+  the fix depends on a fact only Hiram has. Flagged below.
+
+  **Why ring-rival.** A sweep for quantified claims across all twelve live page
+  components returned almost nothing — the 2026-07-15 honesty pass did its job.
+  Only three numbers exist site-wide, and all three are in ring-rival's "What I
+  Deleted" block:
+  - "It used to take 22 seconds to throw your first punch. Now it takes 6."
+  - "Audio was failing in about 40% of sessions… Moving that behind the first
+    tap took it under 2%."
+  - Webcam hand-tracking built, working, and cut anyway.
+
+  That block is the strongest thing on the site for a buyer. Measured
+  before/after, achieved by deleting rather than building, plus killing his own
+  impressive work because it was wrong for someone on a couch. That is exactly
+  what a founder is trying to find out about a designer.
+
+  **The problem.** Ring-rival is a study with a `liveUrl`, so the claim is
+  checkable by anyone who reads it. Checked it against `~/ring-rival`
+  (read-only — that repo is another agent's lane):
+
+  - The study says *"What's left of the tutorial is one card, and you make it go
+    away with a tap."* The shipped `OnboardingTutorial.tsx` has **five cards** —
+    ATTACK, GO HIGH & LOW, DODGE & BLOCK, READ THE WIND-UP, CLIMB THE RANKS —
+    with a stepper, per-card animated demos and a SKIP button. Its call site in
+    `MobileBoxingGame.tsx` is commented "First-fight onboarding — progressive,
+    animated".
+  - More broadly, the study's thesis is a list of screens deleted — splash,
+    mode select, fighter select, tutorial. The shipped game now carries
+    `CareerScreen`, `DuelLobby`, `Leaderboard`, `FightIntro`,
+    `FightLoadingScreen`, `BonusRound`, `DailyChallengesModal`,
+    `AchievementsModal`, `AuthModal`, `SettingsScreen` and `HowToPlay`.
+
+  **This is probably not a false claim — it is a stale one.** The study almost
+  certainly described the game accurately when it was written, and the game has
+  since re-accumulated the surface the study is about having removed. But a
+  buyer does not know that. They read "I deleted the tutorial", tap the live
+  link, and get a five-card tutorial. The study's credibility rests on a state
+  the product no longer has.
+
+  **Not fixed, deliberately, and this is the flag.** Three reasons: the game is
+  another agent's repo and off-limits to edit; the study is Hiram's own account
+  of his own product; and the correct fix depends on which of these he means:
+
+  1. **The study is a snapshot of the redesign.** Then it needs one clause
+     saying so — "as it stood after the cut" — and the claim becomes true again
+     with no other change. Cheapest fix, and probably the right one.
+  2. **The study should describe the game as it is now.** Then "What I Deleted"
+     needs rewriting, and the honest version is more interesting than the
+     current one: things got cut, the game grew them back, and that is what
+     shipping actually looks like.
+  3. **The game drifted and he wants it back.** Then it is a ring-rival task,
+     not a portfolio one, and belongs to that repo's own agent.
+
+  I am not choosing between those on his behalf. Option 1 is a fifteen-word
+  edit; say the word and it is done.
+
+  **Also verified this run — no link rot.** All seven `liveUrl` targets across
+  the studies return 200: catchbuddy.fit, firelion.me, herbalink.live,
+  ringrival.today, stips.bet, recastvid.com, az-essentials.netlify.app. Worth
+  re-running each cycle; a dead link on a case study is the one credibility
+  failure that costs nothing to prevent.
+
+  **One thing to check, not acted on.** `az-essentials.netlify.app` is linked
+  from the bz-essentials study as a live product. It resolves, but it is a
+  prototype rather than a shipped product. Whether it should sit alongside
+  catchbuddy.fit and stips.bet under the same affordance is a positioning call
+  for lever 5, not a proof one.
