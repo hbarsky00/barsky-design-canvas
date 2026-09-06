@@ -61,7 +61,7 @@ const caseStudies: CaseStudy[] = [
       // failure). Hiram supplied the original source file directly;
       // restored locally (same asset used as the full case study's hero).
       primary: "/images/dae-search/what-i-built.webp",
-      alt: "DAE Search — the result view an analyst actually works from"
+      alt: "DAE Search — the process flow from login through advanced search to one data asset's profile"
     },
     layout: "side-by-side",
     video: "/lovable-uploads/dae-search-hero.mp4"
