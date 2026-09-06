@@ -251,3 +251,75 @@ form implementations again, that is the regression.
 
   Next lever: **4, entry-point coverage.** Lever 1's rotation still sits at
   **dae-search**.
+
+- [x] **Lever 4 — entry-point coverage** — 2026-09-06 — **Blog posts had no way
+  to hire him.** Added the existing closing CTA to all 23 of them.
+
+  **The audit.** Took the two page types search and AI answers actually drop
+  people on — a case study and a blog post — and read each standing alone, with
+  no prior context, against the three questions: who is this, what does he do,
+  how do I hire him.
+
+  - `/project/dae-search` **passes.** Header names him and says "Designer and
+    Developer"; the study states the role; and it closes with the
+    `WorkCallToAction` block — "Want something like this built?" plus Book a
+    call and See more work. A cold visitor can act.
+  - `/blog/finding-the-data-is-half-the-job` **failed on the third question,
+    completely.** After the last paragraph the page offered: related posts, and
+    a comment box whose own text reads *"Comments aren't switched on yet."*
+    Then the footer. **No CTA anywhere on the page** — no Book a call, no
+    invitation, nothing. The single highest-intent moment on the site, the
+    instant someone finishes reading his thinking, was being handed a disabled
+    form. That is worse than an empty space: it is an interactive dead end.
+
+  This is the gap lever 4 exists to find. Blog posts are the likeliest landing
+  page for both search and AI citations, they carry the strongest evidence of
+  how he thinks, and they were the one page type with no way to convert.
+
+  **The change.** `WorkCallToAction` already existed and was already used by the
+  homepage and every case study — it was extracted for exactly this reason.
+  Rendered it on `BlogPost.tsx` immediately after the article body and **before**
+  related posts and comments, so it sits at the moment of intent rather than
+  below two other blocks. Gave it optional `heading`/`blurb` props, defaulting to
+  the existing case-study wording, because a blog reader has just finished an
+  argument rather than seen a project — "want something like this built" would
+  be asking about a thing they never saw. Blog wording:
+
+  > **Is this the kind of problem you're sitting on?**
+  > I design and develop SaaS, web apps, mobile apps and internal tools — the
+  > thinking above is how I work. Tell me what you're building, or grab a time
+  > and we'll talk it through.
+
+  That repeats the settled positioning verbatim, which is the point: for a
+  reader who landed here from a search about enterprise search UX, this may be
+  the only sentence on the page that says what he actually sells.
+
+  No new component, no new dependency, one reused block and two optional props.
+  Wrapped in `not-prose` — the surrounding wrapper is `prose`, which would
+  otherwise restyle the heading.
+
+  **What proves it.** `npx tsc --noEmit` clean, `npm run build` clean,
+  `capture-bodies` 44/44, rebuilt after. **23/23** built blog pages contain the
+  CTA. Character offsets in the built HTML confirm the order: CTA (79540) →
+  Book a call (80918) → related posts (82987) → comments (86129). Rendered in a
+  browser against the served `dist`: the card measures 606×378, both buttons
+  resolve correctly (`Book a call` → the live Calendly, `See more work` →
+  `/#case-studies`), and computed styles match the case-study block exactly
+  (bg `rgb(246,243,239)`, 1px border, 16px radius, 64px padding, 30px centred
+  semibold heading). Blurb contrast measured at **8.65:1** on the card
+  background — well past AA, not eyeballed.
+
+  **Note:** could not take a scrolled screenshot — the browser pane was hidden,
+  and a hidden pane does not render, so scroll actions time out. Verified
+  through computed geometry and styles instead, which is stronger for this
+  particular change than a picture would have been.
+
+  **Flagged for Hiram.** The comment box on every blog post announces
+  *"Comments aren't switched on yet."* Either switch them on or take the block
+  out — an inert form with a Post button is a broken promise on the page where
+  people decide whether he is worth contacting. Not touched here: it is a
+  product decision, not a proof one.
+
+  Next lever: **5, positioning vs evidence** — and per lever 1's note, measure
+  it on `src/pages/Structured*CaseStudy.tsx`, not on `structuredCaseStudies.ts`.
+  Lever 1's rotation still sits at **dae-search**. Lever 3 stays closed.

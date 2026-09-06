@@ -12,6 +12,13 @@ interface WorkCallToActionProps {
    */
   secondary?: "more-work" | "message";
   className?: string;
+  /**
+   * A blog reader has just finished an argument, not a project, so "want
+   * something like this built" is asking about a thing they never saw. Both
+   * default to the case-study wording.
+   */
+  heading?: string;
+  blurb?: string;
 }
 
 /**
@@ -30,16 +37,17 @@ interface WorkCallToActionProps {
 const WorkCallToAction: React.FC<WorkCallToActionProps> = ({
   secondary = "more-work",
   className = "",
+  heading = "Want something like this built?",
+  blurb = "I design and ship products end to end. Tell me what you're working on, or grab a time and we'll talk it through.",
 }) => (
   <div
     className={`rounded-2xl border border-border bg-card px-6 py-12 text-center md:px-12 md:py-16 ${className}`}
   >
     <h2 className="mb-3 font-display text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
-      Want something like this built?
+      {heading}
     </h2>
     <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-      I design and ship products end to end. Tell me what you're working on, or
-      grab a time and we'll talk it through.
+      {blurb}
     </p>
     <div className="flex flex-col justify-center gap-3 sm:flex-row">
       <Button asChild size="lg">

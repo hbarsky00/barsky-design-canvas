@@ -9,6 +9,7 @@ import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from '@/components/blog/InternalLinkEnhancer';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
 import Comments from '@/components/blog/Comments';
+import WorkCallToAction from '@/components/shared/WorkCallToAction';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -152,6 +153,22 @@ const BlogPostPage: React.FC = () => {
                     </div>
                   )}
                   
+                  {/* The post ends here, and this is the highest-intent
+                      moment on the page. Until now a reader arriving from
+                      search — which is how nearly everyone reaches a blog
+                      post — finished the argument and was handed related
+                      posts and a comment box that says commenting is not
+                      switched on. No way to hire him anywhere on the page.
+                      Case studies have closed with this block all along;
+                      posts never did. `not-prose` because the surrounding
+                      wrapper is `prose`, which would restyle the heading. */}
+                  <div className="not-prose my-12">
+                    <WorkCallToAction
+                      heading="Is this the kind of problem you're sitting on?"
+                      blurb="I design and develop SaaS, web apps, mobile apps and internal tools — the thinking above is how I work. Tell me what you're building, or grab a time and we'll talk it through."
+                    />
+                  </div>
+
                   {/* Related posts section for additional internal linking */}
                   {staticPost && (
                     <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
