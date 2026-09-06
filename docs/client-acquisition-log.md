@@ -4,6 +4,21 @@ Playbook: `docs/client-acquisition-loop.md`. One lever per run, every 4 days.
 Append `- [x] <lever> — <date> — <what changed>` plus notes. Record where the
 case-study rotation (lever 1) stands so the next run knows which study is next.
 
+## SETTLED — the contact form is fine (2026-09-06, from Hiram)
+
+**Hiram, in his own words: "THE CONTACT FORM IS FINE."** Do not audit it, do not
+re-verify it, do not offer it as a theory for why the phone is quiet. Lever 3 is
+closed in the playbook and skipped in the rotation.
+
+It was checked twice and passed twice: the Netlify form `contact` is registered
+and storing submissions (5 stored, most recent 2026-09-04), the homepage form is
+a single wrapper around the one real component, and "Book a call" resolves to a
+live Calendly. That is the end of it.
+
+Re-open only if Hiram says enquiries stopped arriving, or if a run finds a second
+form implementation. Anything else about getting clients belongs upstream, at
+entry-point coverage and off-site acquisition.
+
 ## Cycle 1 — started 2026-09-06
 
 - [x] **Lever 1 — one case study, buyer-lens pass** — 2026-09-06 — Pulled three

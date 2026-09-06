@@ -54,14 +54,24 @@ Walk one study's claims and ask what each traces to. Anything that traces to
 nothing gets softened to what is defensible or FLAGGED in the log — never
 deleted, never invented, never quietly filled in.
 
-### 3. Conversion path
-Follow the buyer's actual route to contact, end to end, and prove each hop:
-the CTA exists on the page, points somewhere real, the form renders, submits,
-and the submission arrives. This path was silently dead until 2026-09-05 (the
-homepage form posted to `ctqttomppgkjbjkckise.supabase.co`, which does not
-resolve). That is the most likely single answer to "why no calls". Re-verify
-it rather than assuming it stayed fixed. Do not send test mail through a real
-inbox without saying so in the report.
+### 3. Conversion path — SETTLED, DO NOT RE-RUN
+
+**The contact form is fine. Hiram has said so directly. Stop checking it.**
+
+Verified end to end on 2026-09-06 and confirmed by Hiram himself: the Netlify
+form is registered, submissions are stored and arriving, and the "Book a call"
+button resolves to a live Calendly. The Supabase-era breakage is history, not a
+standing suspicion — it was fixed on 2026-09-05 and has not recurred.
+
+This lever cost two runs to establish the same answer twice. It is now closed.
+Skip it in the rotation and go straight to the next lever. Treating a working
+form as the explanation for a quiet phone is how this loop wasted its time; the
+question was always upstream, at levers 4 and 6.
+
+Re-open this lever only if Hiram says enquiries have stopped arriving, or if a
+run finds a **second** form implementation (the original fault: the homepage had
+its own divergent copy posting to a dead host). One implementation, one
+verified path, done.
 
 ### 4. Entry-point coverage
 Search and AI answers drop people onto a deep case-study or blog page, never
