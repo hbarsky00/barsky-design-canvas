@@ -72,12 +72,12 @@ export const SERVICE_PACKAGES: ServicePackage[] = [
     description: "For funded startups that need to move fast and validate smart.",
     timeline: "3 weeks to launch-ready design",
     features: [
-      "AI-powered competitive analysis",
-      "User persona development",
-      "Strategic UX wireframes",
-      "High-fidelity UI design",
-      "Interactive prototype",
-      "30-day post-launch support"
+      "A read on the incumbent you actually have to beat, spreadsheet included",
+      "Time with the people who will use it, not personas invented for a deck",
+      "Wireframes for the flows that carry the risk",
+      "High-fidelity UI on a design system, not a folder of screens",
+      "A prototype you can put in front of someone",
+      "30 days of support after launch"
     ]
   },
   {
@@ -86,12 +86,12 @@ export const SERVICE_PACKAGES: ServicePackage[] = [
     description: "For companies ready to rebuild their product around AI — not just bolt it on.",
     timeline: "12 weeks",
     features: [
-      "Full UX research with AI insight synthesis",
-      "AI interaction model design",
-      "ChatGPT / Claude API integration design",
-      "Responsive design system",
-      "Dev collaboration & handoff",
-      "90-day optimization support"
+      "Research that changes the build, not a report that gets filed",
+      "An AI interaction model, and a clear line on where a model does not belong",
+      "Model API work designed against the failure states, not the happy path",
+      "A responsive design system that survives contact with code",
+      "The front end built by me \u2014 there is no handoff",
+      "90 days of tuning after it ships"
     ]
   }
 ];

@@ -712,3 +712,48 @@ Hiram's move, not the loop's.
   44/44, rebuilt. Confirmed in `dist/project/ring-rival/index.html`: the new
   paragraph present, the old one-card claim gone. Committed, not pushed. The
   game repo was read but never written.
+
+- [x] **Lever 5 — positioning vs evidence** — 2026-09-06 — **The services page
+  argued against itself.** Fixed the half cycle 1 missed.
+
+  Cycle 1's lever 5 rewrote `SERVICES_DATA` from evidence and left a comment
+  explaining the reasoning. It did not touch `SERVICE_PACKAGES`, which sits
+  directly below it on the same page and still carried the old
+  Lead-UX-Designer-era copy. The result was a page making both arguments at
+  once, about forty lines apart:
+
+  | The value props said | The package below said |
+  |---|---|
+  | "Why there is no handoff: I take a product from the first sketch to the thing running in production." | **"Dev collaboration & handoff"** |
+  | "Decisions tested in working software, not in mockups" | deliverables ending at "Interactive prototype" |
+  | "Five products live and reachable right now" | "User persona development" |
+
+  A founder on the page where they decide whether to hire him read the claim and
+  then, one scroll later, read the offer contradicting it. That is worse than
+  either position on its own — it reads as copy nobody has looked at.
+
+  **The change.** Both feature lists rewritten to describe what the twelve case
+  studies actually demonstrate. "Dev collaboration & handoff" becomes "The front
+  end built by me — there is no handoff", which is the settled positioning
+  restated where it was being undercut. Agency-speak with no backing in any
+  study — "AI-powered competitive analysis", "User persona development", "Full
+  UX research with AI insight synthesis" — becomes the thing the studies do
+  show: reading the incumbent you have to beat, time with the people who use it,
+  research that changes the build.
+
+  **Prices, titles and timelines untouched — $8,500 and $18,500 stand as
+  written.** Those are business decisions. This run only stopped the deliverables
+  from contradicting the positioning, which is enforcement of a settled rule,
+  not a new commercial claim.
+
+  **Flagged for Hiram, and it is the real question underneath this.** Both
+  packages are still design engagements that stop at a prototype, while the whole
+  site — and five live products — argue that the differentiator is design *and*
+  build. There is no package for the thing he is best at and no price on it. A
+  founder who believes the pitch has nothing to buy. Adding that package is a
+  pricing decision only he can make, but it is the largest single gap between
+  what this site proves and what it sells.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt. Verified in `dist/services/index.html`: both sections present,
+  "Dev collaboration" gone. Committed, not pushed.
