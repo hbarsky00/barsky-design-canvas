@@ -151,6 +151,13 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           },
         ],
       },
+      {
+        heading: "Where It Landed",
+        paragraphs: [
+          "It is live at ringrival.today. No install, no store, no account \u2014 you open a link on your phone and you are in a fight. That was the entire question I started with, whether a browser could feel like a console boxing game, and the answer came back close enough that I kept going.",
+          "It is also not finished, which is why the newest work on this page is at the top of it rather than the bottom. The star punch is what I am tuning now.",
+        ],
+      },
     ]}
   />
 );

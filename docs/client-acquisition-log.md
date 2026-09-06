@@ -807,3 +807,36 @@ Hiram's move, not the loop's.
 
   Build note: `npm run build` again failed once on the iCloud `dist` rimraf
   race and succeeded on a rerun. Second time today.
+
+## Cycle 3 — started 2026-09-06
+
+- [x] **Lever 1 — one case study, buyer-lens pass** — 2026-09-06 — Gave
+  **ring-rival** a closing disposition, making it twelve of twelve. Rotation
+  moves to **bz-essentials**.
+
+  Read every study's final block end to end. Eleven of twelve close on where the
+  work landed, and they are good — CatchBuddy lists what shipped, Crypto says
+  outright that nothing did, Herbalink says "on hiatus, and I'll say why
+  plainly", BzEssentials calls itself a prototype and names its edges. That is a
+  strong, honest house pattern and it needed nothing.
+
+  Ring-rival was the last exception, ending on "Every Opponent Has Their Own
+  Rhythm" — sprite rigs. The previous run left it alone on the reasoning that a
+  live link answers "what happened to it". That reasoning got weaker this run,
+  because the same run added a paragraph mid-page telling the reader the game
+  has moved on. The page now had current-state honesty buried in the middle and
+  sprite rigging at the end.
+
+  **The change.** A closing "Where It Landed": it is live at ringrival.today,
+  no install and no account, which was the entire question the study opens with
+  — whether a browser could feel like a console boxing game. Then the honest
+  half: it is not finished, and that is why the newest work sits at the top of
+  the page rather than the bottom. That last line also explains a structural
+  choice the page never justified.
+
+  No new facts. Live status verified by the 200 check two runs ago; "not
+  finished" is the study's own first block, which says the star punch "is the
+  newest thing on this page and it is not finished".
+
+  Gates: tsc clean, build clean, capture 44/44, rebuilt, verified in
+  `dist/project/ring-rival/index.html`. Committed, not pushed.
