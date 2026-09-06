@@ -113,6 +113,13 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Inside a company, whether you can trust a result matters more than how relevant it is. Almost all search design optimises for the second one.",
         ],
       },
+      {
+        heading: "Where It Landed",
+        paragraphs: [
+          "It shipped, with its own style guide \u2014 the swatches further up are read off that guide rather than reconstructed for this page. The autocomplete went through a security review that changed the design before it went out, which is the kind of review a thing only gets when it is actually going out.",
+          "What I cannot tell you is what happened after. I do not have adoption or time-saved numbers for this one. I would rather say that than reach for a number from somewhere else and let you assume it came from here.",
+        ],
+      },
     ]}
   />
 );

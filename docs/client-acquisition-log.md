@@ -532,3 +532,63 @@ That is the real finding of lever 6, and it is more useful than the one it
 replaces: the entity and schema groundwork is already done and done well. The
 gap is not technical. Nothing points at the site yet, and closing that is
 Hiram's move, not the loop's.
+
+## Cycle 2 — started 2026-09-06
+
+- [x] **Lever 1 — one case study, buyer-lens pass** — 2026-09-06 — Gave
+  **dae-search** the disposition block it was the only client study missing.
+  Rotation moves to **bz-essentials**.
+
+  **The cycle-1 retraction is now fully closed, and the retracted claim was not
+  just badly measured — it was false.** Cycle 1 claimed the client/enterprise
+  studies ran at half the depth of the self-built product studies, measured on
+  `structuredCaseStudies.ts`, which renders nothing. Re-measured against the
+  twelve `src/pages/Structured*CaseStudy.tsx` files that do render:
+
+  | | shortest | longest |
+  |---|---|---|
+  | | ManuscriptRx 5.8k, Crypto 6.9k | BusinessManagement 11.1k, RingRival 10.1k |
+
+  The enterprise studies sit at the **top** of the range — investor-loan 9.3k,
+  dae-search 9.3k, business-management 11.1k. The two shortest are the two
+  explicit concept projects. There is no thin-client-work problem. Stop looking
+  for one.
+
+  **The real portfolio pattern, which is a house convention nobody wrote down.**
+  Ten of the twelve studies end on a disposition block — "Where It Landed",
+  "Where It Actually Is", "Where It Is Now", "Where It Is". Two did not:
+  - **dae-search** ended on "Trust Beat Relevance", a thesis. Fixed this run.
+  - **ring-rival** ends on "Every Opponent Has Their Own Rhythm", a craft
+    observation. Left alone — it is a game, and the live link answers "what
+    happened to it" in a way an enterprise study cannot. Noted, not queued.
+
+  So the one client study a buyer would weigh most was also the one that never
+  said what became of the work. That is question 4 of the buyer-lens pass, and
+  it matches lever 2's flag #3 from cycle 1 exactly.
+
+  **The change.** A closing "Where It Landed" block built only from what the
+  page already asserts: it shipped with its own style guide (stated in the
+  design-system block — "the swatches here are read straight off it"), and the
+  autocomplete went through a security review that changed the design before
+  release. Second paragraph says plainly that there are no adoption or
+  time-saved numbers, rather than leaving a silence a reader fills with "concept
+  project". That follows ManuscriptRx's existing honesty pattern ("The Part I
+  Didn't Solve") rather than inventing a house voice for it.
+
+  **What this run deliberately did NOT do.** It did not give dae-search the
+  `stats` band that worked on investor-loan. Investor-loan's three facts were
+  measurements. Dae-search's numbers — "40 results", "twenty minutes" — are
+  narrative illustration, and its one quantified claim ("40 down to about 4")
+  is already flagged as untraceable by cycle 1's lever 2. Setting illustration
+  in 3xl bold type is how an unsourced number becomes a statistic. If Hiram
+  confirms the 40→4 figure, that band becomes the obvious next change to this
+  study.
+
+  **Still flagged, unchanged from cycle 1 and now the study's only real gap:**
+  the 40→4 claim, whether the shipped row carried freshness and lineage, and
+  whether DAE Search was adopted. The new closing block is honest about the
+  third; it does not answer it.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt after, confirmed in `dist/project/dae-search/index.html`.
+  Committed, not pushed.
