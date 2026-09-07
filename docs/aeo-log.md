@@ -384,3 +384,45 @@ with the honest copy.
   the case-study data still disagrees with itself: 45% vs 35% faster processing
   in different files, and "12 errors/week to 4 errors/month" is a 92% reduction,
   not the 68% claimed throughout.
+
+### Soft 404s fixed at the mechanism — 2026-09-06
+
+Triggered by a Search Console report Hiram shared, not by a rotation lever.
+
+**Most of that report was Google working correctly and needs no action.** Recorded
+so no future run burns a cycle "fixing" it:
+- *Alternate page with proper canonical tag (18)* — `/x` and `/x/` both serve 200,
+  and both carry `<link rel="canonical" href=".../x">`. Google found the variants
+  and honoured the canonical. That is why *Duplicate without user-selected
+  canonical* is 0.
+- *Page with redirect (25)* — all 44 sitemap URLs return 200 directly, tested
+  without `curl -L`. The 25 are `http://` and `www.` variants 301ing to the
+  canonical host, plus the retired URLs `public/_redirects` deliberately 301s.
+  Permanent redirects report this way forever; "Failed" validation only means
+  Google re-checked and they still redirect, which is correct.
+- *Blocked by robots.txt (2)* — `robots.txt` has zero `Disallow` lines on both the
+  apex and the netlify.app subdomain, and there is no `X-Robots-Tag` header.
+  Nothing can currently be blocked; this is stale. The URLs are only visible by
+  clicking into the GSC row — ask Hiram for them rather than guessing.
+
+**The one real defect.** Every unmatched URL answered **HTTP 200** with the SPA
+shell — three nonsense paths returned identical 22,106-byte bodies. That is the
+textbook soft-404 shape. The `_redirects` file had been patching individual
+offending URLs with 301s since 2026-08-21 (see the "/get-started", "/web-development"
+and "/project/nudgeme" blocks) while the mechanism producing them stayed in place.
+
+Fixed at the source: the catch-all is now `/* /spa-shell.html 404`. Before it,
+explicit 200s for the real routes that have **no prerendered file** and would
+otherwise have started reporting as missing — `/store/product/*` (two real
+products), `/store/success` (post-checkout), `/__seo-check` and
+`/admin/content-export-2024`. Also 301'd `/project/barskyjoint`, a client-side
+`<Navigate to="/">` carrying the identical defect `/projects` had.
+
+Verified live after deploy: 44/44 sitemap URLs still 200, the no-file routes
+still 200, nonsense/unknown-project/unknown-post all 404, barskyjoint 301 → `/`.
+The 404 still returns the full HTML body as `text/html`, so a human sees the
+NotFound page as before — only the status line changed.
+
+**Consequence for future runs:** stop adding one-off 301s for soft-404 reports.
+A URL that should not exist now returns 404 on its own. Add a rule only when the
+URL should genuinely go *somewhere*.
