@@ -96,6 +96,23 @@
 /project/roi-calculator /#case-studies                    301
 /project/quickqr       /#case-studies                     301
 
+# Same defect /projects had: a client-side <Navigate to="/"> in App.tsx, which
+# means the URL answers 200 with an empty #root and React does the redirect
+# only after it boots. A crawler files that as a soft 404. Server-side 301 is
+# what it always meant.
+/project/barskyjoint             /                301
+
+# Real routes that have NO prerendered file, so they fall through to the
+# catch-all below. They must keep answering 200 now that the catch-all is a
+# 404, or pages that genuinely exist would start reporting as missing:
+#   - two real store products (case-study-templates, content-templates)
+#   - the post-checkout page a paying customer lands on
+#   - the two internal tools
+/store/product/*                 /spa-shell.html   200
+/store/success                   /spa-shell.html   200
+/__seo-check                     /spa-shell.html   200
+/admin/content-export-2024       /spa-shell.html   200
+
 # SPA fallback — must stay last. Does not shadow real files, so the
 # per-route HTML written by scripts/inject-seo-html.ts is still served.
 #
@@ -104,4 +121,12 @@
 # homepage content for every unmatched URL — a soft 200 on what should read as
 # a 404. spa-shell.html is the same shell with an empty #root, so unmatched
 # routes client-render whatever they should (including NotFound).
-/*    /spa-shell.html   200
+#
+# Status is 404, not 200. Every unmatched URL used to answer 200 with this
+# shell — verified 2026-09-06, three nonsense paths all returned 200 and an
+# identical 22,106-byte body. That is the textbook soft-404 shape, and Search
+# Console has been reporting it. The 44 prerendered routes are real files and
+# are unaffected; the explicit 200s above cover the routes that have no file.
+# The body still renders, so a human who mistypes a URL sees NotFound as before
+# — only the status line changes.
+/*    /spa-shell.html   404
