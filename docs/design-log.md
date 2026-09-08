@@ -431,3 +431,129 @@ broken. Do not redesign what works.
     when ≥10% of its samples fail, so a single antialiased pixel or a 1px rule
     crossing a line box cannot raise a finding. A defect confined to under a
     tenth of one line box would be missed.
+
+- **2026-09-07 — the Unsplash photo credits failed AA on 12 blog posts.** Design
+  was the staler half (design log last 09-03; the SEO half ran 09-06 on the
+  soft-404 fix). This run took the top open item from **2026-08-31**: *"axe was
+  run on 7 routes, not all 44 — `/services`, `/design-services`, `/store` in
+  particular were never scanned."*
+
+  **Ran axe-core 4.10.2 over all 44 routes at 375 and 1440 — 88 combos.** The
+  08-31 run scanned 7 routes and got 0 violations, which is why this went
+  unnoticed for a month. Widening the sweep produced **72 colour-contrast nodes
+  across 24 combos**, and every one of them was the same three elements on the
+  same 12 blog posts:
+
+  ```
+  <span class="opacity-70">Photo by <a class="underline">…</a> on <a class="underline">…</a></span>
+  ```
+
+  the Unsplash attribution inside each post's closing `<figcaption>`, in
+  `src/data/blogData.ts`.
+
+  **The defect was `opacity-70` itself, and it is worse than one bad value.**
+  `--muted-foreground` on the cream ground measures **9.32:1**; `opacity-70`
+  drags the credit to **4.08:1**, under AA. But the span wraps text of *two*
+  colours — the muted caption text and the links, which take `--primary`. So
+  one opacity multiplier was governing two colours with very different
+  headroom:
+
+  | opacity | muted text | link (`--primary`) | worst |
+  |---|---|---|---|
+  | 0.70 (shipped) | 4.08 | **3.18** | fail |
+  | 0.80 | 5.30 | **3.83** | fail |
+  | 0.85 | 6.09 | **4.21** | fail |
+  | 0.90 | 7.01 | **4.62** | pass by 0.12 |
+  | 1.00 | 9.32 | **5.53** | pass |
+
+  `--primary` has only **1.03** of headroom over AA to begin with, so *no*
+  opacity below 0.90 is legal and 0.90 passes by a margin the next palette
+  tweak would erase — and the 08-31 entry is a record of `--primary` being
+  retuned twice for exactly this reason. Raising the number would have been a
+  fix with a fuse on it.
+
+  **Changed: `opacity-70` → `text-xs`**, in all 12 credits. WCAG applies the
+  same 4.5:1 to 12px as to 14px (the large-text discount starts at 18.66px
+  bold / 24px), so shrinking costs nothing in compliance while delivering the
+  subordination the opacity was faking. Both colours go back to full strength —
+  muted **9.32:1**, links **5.53:1** — and the credit no longer couples its
+  legibility to the link colour. One class, no compositing, fewer moving parts
+  than what it replaced. An intermediate `opacity-80` was built and measured
+  first; axe still reported 48 nodes, which is what surfaced the two-colour
+  problem above.
+
+  **Measured**, axe-core over all 44 routes × 375/1440:
+
+  | | before | after |
+  |---|---|---|
+  | combos with no violation | 60 / 88 | **84 / 88** |
+  | `color-contrast` nodes | **72** | **0** |
+  | worst measured ratio | 3.79:1 | — (none fail) |
+  | `heading-order` nodes | 4 | 4 (unchanged, see below) |
+
+  Cross-checked three ways rather than trusting one tool: axe reported
+  **4.07:1**, first-principles compositing gives **4.08:1**, and
+  `check:contrast` — with the patch described below — measured **4.06:1** off
+  the rendered pixels. Rendered and inspected at 375px and 1440px: the credit
+  reads as clearly subordinate to the caption and neither crowds nor clips.
+
+  `tsc --noEmit` 0, `eslint` 0, build 44/44 prerendered with 0 head-only.
+  `capture-bodies` 44/44, 0 failures — **exactly 12 snapshots changed, one line
+  each**, matching the 12 posts axe flagged, and the diff is precisely the class
+  swap. No stale `.capture-media-stash`.
+
+  **`npm run check:contrast` cannot see this class of defect, and the obvious
+  fix for that is wrong.** This is the mirror image of the gap that made
+  `contrast-walk.mjs` necessary in the first place: axe cannot judge text on a
+  gradient, and `contrast-walk` cannot judge text under `opacity`. It computes
+  `effectiveOpacity()` at line 288 but uses it **only as a visibility gate**
+  (`if (!effectiveOpacity(el)) continue`) — it never folds that opacity into the
+  colour it scores, so it measured these credits at 9.32:1 while readers saw
+  4.08:1. It reported the whole site clean on 09-03 with this shipping.
+
+  The one-line fix — multiplying `fgAlpha` by the effective opacity — was
+  written, and it **works**: with the defect temporarily restored at source and
+  rebuilt, the patched script reported the credits at **4.06:1** and their links
+  at **3.16:1**, on a route it had called clean minutes earlier. That is the
+  both-directions validation the script's own header demands, and it passed.
+
+  **It was still reverted, because it also produced 48 false positives.**
+  `PREPARE` reads opacity **once, at page load**, before reveal-on-scroll
+  animations have fired. Everything below the fold is therefore captured
+  mid-reveal, and folding that transient opacity into the colour scored FAQ
+  answers and pill badges on `/` and `/about` at **1.10–1.38:1** — text that is
+  perfectly legible to a reader. `--force-prefers-reduced-motion` does not help:
+  these reveals are Motion (JS) animations, not CSS transitions.
+
+  So the correct fix is **not** the one-liner. Opacity has to be re-read at
+  *sample* time — in the `BOXES` block, which already runs per scroll position
+  with the element in view and already re-reads rects for guard 2 — and it needs
+  its own proof that reveals have settled before the read, or it will simply
+  move the fiction rather than remove it. `effectiveOpacity` is a local inside
+  `PREPARE`'s IIFE, so it needs redefining in `BOXES` too. That is a real change
+  to a delicate script and it deserves its own run with its own both-directions
+  validation; shipping it half-done would have handed the next run a checker
+  that cries wolf 48 times. **Next design run's job**, and it is fully
+  diagnosed above.
+
+  Verified with the reverted script that this run introduced no regression:
+  `check:contrast --all` reports **64 ok / 24 FAIL, 68 boxes, all `text-border`**
+  — byte-identical to the 09-03 baseline.
+
+  **Left open:**
+  - **The `contrast-walk` opacity blind spot**, above. Top item.
+  - **`heading-order`, 4 nodes, unchanged** — `/blog` and `/store` at both
+    widths. Card titles are `<h3>` under an `<h1>` with no `<h2>` between:
+    `ProductCard.tsx:37` and the blog index card. This is an axe
+    *best-practice* rule, not a WCAG success criterion, and fixing it means
+    changing the document outline on two index pages — a separate change, not a
+    rider on a contrast fix.
+  - **The tag separator on case studies — 68 boxes across 12 routes at 1.37:1.**
+    Still the only finding `check:contrast` reports, still deferred from 09-03,
+    still a visual-design call on the pages to touch least casually.
+  - `public/sitemap.xml` stamps `lastmod` from `new Date().toISOString()`, which
+    is UTC. A build run after 20:00 EDT dates every URL **tomorrow** — this run
+    wrote `2026-09-08` on 09-07. Harmless-looking, but a sitemap advertising
+    future modification dates is a thing crawlers can distrust. Not touched:
+    it is a one-line change in `generate-sitemap.ts` and it is unrelated to
+    this run.

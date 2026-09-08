@@ -622,7 +622,7 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/blog/demo-works-shipping-is-different-body.jpg" alt="Scaffolding around an unfinished building" loading="lazy" class="w-full rounded-lg" width="1400" height="940" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A demo is the scaffolding. Everything that makes it safe to stand on gets built after the screenshot. <span class="opacity-70">Photo by <a href="https://unsplash.com/@reetoo?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Reto Simonet</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A demo is the scaffolding. Everything that makes it safe to stand on gets built after the screenshot. <span class="text-xs">Photo by <a href="https://unsplash.com/@reetoo?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Reto Simonet</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" class="underline" target="_blank" rel="noopener noreferrer">Unsplash</a></span></figcaption>
       </figure>
 
       <p>The second Stips bug cost me considerably more time, and it is the one I would warn anyone about.</p>
@@ -678,7 +678,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What Fits Inside One Head Now</h2>
       <figure class="my-8">
         <img src="/blog/what-one-person-can-ship-now-body.jpg" alt="A row of empty desk chairs — the team a solo builder does not have" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The team a solo builder doesn't have. What changed is how much of that work now fits into one person's day. <span class="opacity-70">Photo by <a href="https://unsplash.com/@bruskrd?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Brusk Dede</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The team a solo builder doesn't have. What changed is how much of that work now fits into one person's day. <span class="text-xs">Photo by <a href="https://unsplash.com/@bruskrd?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Brusk Dede</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> is a play-money prediction market with accounts, a database enforcing row-level security, market resolution, and a scheduled job that reads the news and writes new markets without me touching it. That is not a landing page with a waitlist attached. It is a running system with state, permissions, and a job that keeps going while I sleep.</p>
@@ -755,7 +755,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Model Has No Clock</h2>
       <figure class="my-8">
         <img src="/blog/two-bugs-ai-wrote-that-i-had-to-find-body.jpg" alt="A calendar — the thing a language model doesn't have access to when it writes a close date" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The thing a language model doesn't have: today's date. It will write you a close date anyway. <span class="opacity-70">Photo by <a href="https://unsplash.com/@towfiqu999999?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Towfiqu barbhuiya</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The thing a language model doesn't have: today's date. It will write you a close date anyway. <span class="text-xs">Photo by <a href="https://unsplash.com/@towfiqu999999?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Towfiqu barbhuiya</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -830,7 +830,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">A Credential Is a Gate, Not a Badge</h2>
       <figure class="my-8">
         <img src="/blog/designing-for-trust-when-the-product-is-the-risk-body.jpg" alt="A padlock on a gate — verification that actually blocks something, rather than a badge that decorates it" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Verification that actually blocks something, rather than a badge that decorates a listing. <span class="opacity-70">Photo by <a href="https://unsplash.com/@dizzydizz?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Zaqy Al Fattah</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Verification that actually blocks something, rather than a badge that decorates a listing. <span class="text-xs">Photo by <a href="https://unsplash.com/@dizzydizz?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Zaqy Al Fattah</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>HerbaLink connects people with herbalists. The obvious design is a checkmark next to a name and an upload form somewhere in settings. I built the other version, where credentials are the gate.</p>
@@ -890,7 +890,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What the Spreadsheet Is Actually Beating You On</h2>
       <figure class="my-8">
         <img src="/blog/why-enterprise-tools-lose-to-excel-body.jpg" alt="A desk covered in paperwork — the workflow an enterprise tool is really competing against" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The workflow an enterprise tool is really competing against — not the last tool, the habit. <span class="opacity-70">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The workflow an enterprise tool is really competing against — not the last tool, the habit. <span class="text-xs">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>It fits the work exactly, because the person doing the work built it. Not approximately. Exactly, down to the column they added last Thursday for the one deal that behaves differently from every other deal.</p>
@@ -961,7 +961,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Twenty-Two Seconds to Six</h2>
       <figure class="my-8">
         <img src="/blog/taste-is-the-whole-job-body.jpg" alt="Hand tools on a workshop wall — the craft is choosing which one to reach for" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When every tool is within reach, the craft is knowing which one to pick up. <span class="opacity-70">Photo by <a href="https://unsplash.com/@vatsaltyagi?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Vatsal Tyagi</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When every tool is within reach, the craft is knowing which one to pick up. <span class="text-xs">Photo by <a href="https://unsplash.com/@vatsaltyagi?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Vatsal Tyagi</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1037,7 +1037,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Bill You Still Get</h2>
       <figure class="my-8">
         <img src="/blog/scope-discipline-when-building-is-cheap-body.jpg" alt="A handwritten list on a notebook — deciding what stays and what gets crossed off" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The list matters less than the crossings-out. Deciding what doesn't get built is the expensive part now. <span class="opacity-70">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The list matters less than the crossings-out. Deciding what doesn't get built is the expensive part now. <span class="text-xs">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>Build time was never the real price of a feature. It was the part you could see.</p>
@@ -1105,7 +1105,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Stop Grading the Artifact</h2>
       <figure class="my-8">
         <img src="/blog/how-to-interview-a-designer-now-body.jpg" alt="Two people working through a problem at a whiteboard" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part of an interview worth keeping: watching someone reason in front of you, instead of reviewing what they shipped. <span class="opacity-70">Photo by <a href="https://unsplash.com/@kaleidico?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Kaleidico</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part of an interview worth keeping: watching someone reason in front of you, instead of reviewing what they shipped. <span class="text-xs">Photo by <a href="https://unsplash.com/@kaleidico?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Kaleidico</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>A portfolio used to be evidence of two things at once: this person can produce work at this level, and this person cared enough to finish. Both inferences were reliable for a long time and <a href="/blog/everyones-portfolio-looks-good-now" class="text-primary underline underline-offset-2 hover:text-primary/80">neither one survived polish becoming free</a>. A demo has the same problem. <a href="/blog/shipping-got-cheap-hiring-got-harder" class="text-primary underline underline-offset-2 hover:text-primary/80">A working prototype used to prove somebody had the skill to build it</a>, and now it proves they had a weekend.</p>
@@ -1175,7 +1175,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What This Doesn't Mean</h2>
       <figure class="my-8">
         <img src="/blog/designer-who-codes-argument-is-over-body.jpg" alt="Hands on a keyboard — the gap between designing a thing and shipping it" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The gap between designing a thing and shipping it, which used to be somebody else's problem. <span class="opacity-70">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The gap between designing a thing and shipping it, which used to be somebody else's problem. <span class="text-xs">Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1254,7 +1254,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">The Demo Is No Longer the Proof</h2>
       <figure class="my-8">
         <img src="/blog/shipping-got-cheap-hiring-got-harder-body.jpg" alt="A stack of applications on a desk" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">More applicants, all of them shipping polished work. The screen that used to filter people stopped filtering. <span class="opacity-70">Photo by <a href="https://unsplash.com/@resumegenius?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Resume Genius</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">More applicants, all of them shipping polished work. The screen that used to filter people stopped filtering. <span class="text-xs">Photo by <a href="https://unsplash.com/@resumegenius?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Resume Genius</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1333,7 +1333,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Polish Is Table Stakes, Not Evidence</h2>
       <figure class="my-8">
         <img src="/blog/everyones-portfolio-looks-good-now-body.jpg" alt="Rows of near-identical output" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When everything is well-made, being well-made stops telling anyone anything. <span class="opacity-70">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">BoliviaInteligente</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">When everything is well-made, being well-made stops telling anyone anything. <span class="text-xs">Photo by <a href="https://unsplash.com/@boliviainteligente?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">BoliviaInteligente</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
@@ -1407,7 +1407,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">Changed: Being Wrong Got Cheap</h2>
       <figure class="my-8">
         <img src="/blog/what-ai-changed-and-what-it-didnt-body.jpg" alt="A designer sketching by hand" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part that didn't change: deciding what's worth making, before anything gets made. <span class="opacity-70">Photo by <a href="https://unsplash.com/@medbadrc?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Med Badr  Chemmaoui</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The part that didn't change: deciding what's worth making, before anything gets made. <span class="text-xs">Photo by <a href="https://unsplash.com/@medbadrc?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Med Badr  Chemmaoui</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
 
