@@ -540,6 +540,19 @@ broken. Do not redesign what works.
   `check:contrast --all` reports **64 ok / 24 FAIL, 68 boxes, all `text-border`**
   — byte-identical to the 09-03 baseline.
 
+  **Verified on barskydesign.pro**, not on the local build. Live 45s after the
+  push: all **12/12** posts serve `class="text-xs">Photo by` and **0** serve the
+  old `opacity-70` span. axe re-run with an `--origin` flag against production —
+  the four worst-hit posts plus `/` and `/about`, at 375 and 1440 — reports
+  **0 violations across all 12 combos**; four of those six routes were failing in
+  the pre-deploy sweep, so the run is a rendered site and not a blank one.
+
+  This push also carried **`670b42e3`**, an unpushed docs-only commit
+  (`docs/aeo-log.md`) left behind by the 09-06 SEO run. Noted for the record —
+  it changes no site output. No concurrent writer during this run: a stale
+  `vite preview --strictPort 4199` from **Sep 4 09:08** was killed before
+  starting, and the working tree was clean throughout.
+
   **Left open:**
   - **The `contrast-walk` opacity blind spot**, above. Top item.
   - **`heading-order`, 4 nodes, unchanged** — `/blog` and `/store` at both
