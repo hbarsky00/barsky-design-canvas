@@ -27,6 +27,11 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
     inLanguage: "en-US",
     isPartOf: { "@id": "https://barskydesign.pro/#website" },
     publisher: { "@id": "https://barskydesign.pro/#business" },
+    // Only case studies carry a breadcrumb today; blog posts get theirs from
+    // BlogBreadcrumbs.tsx, which renders into the body rather than through here.
+    ...(seoData.kind === 'project' && canonicalUrl && {
+      breadcrumb: { "@id": `${canonicalUrl}#breadcrumb` },
+    }),
     ...(seoData.image && {
       image: seoData.image,
       primaryImageOfPage: { "@type": "ImageObject", url: seoData.image },
@@ -90,6 +95,29 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
       ...(seoData.image && { image: seoData.image })
     };
     schemas.push(articleSchema);
+
+    // BreadcrumbList. Every blog post has had one since BlogBreadcrumbs shipped;
+    // no case study ever did, which left the site's conversion path as the one
+    // page type with no SERP breadcrumb and no stated position in the hierarchy.
+    //
+    // The middle rung is `/#case-studies`, not `/projects`. That is the real
+    // navigation path: `/projects` was retired on 2026-08-23 (it was a
+    // client-side <Navigate> serving an empty 200) and now 301s here, the header
+    // nav points here, and the homepage section IS the work index by settled
+    // editorial decision. A breadcrumb naming a URL that 301s away would be
+    // describing a hierarchy the site does not have.
+    if (canonicalUrl) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://barskydesign.pro/" },
+          { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://barskydesign.pro/#case-studies" },
+          { "@type": "ListItem", position: 3, name: seoData.title, item: canonicalUrl },
+        ],
+      });
+    }
   }
 
   // Add FAQ schema for homepage.
