@@ -74,7 +74,7 @@ const BlogPostPage: React.FC = () => {
         <Header />
 
         <main className="pt-[calc(var(--header-height,64px)+32px)] pb-16">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="section-container">
             <motion.article
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
