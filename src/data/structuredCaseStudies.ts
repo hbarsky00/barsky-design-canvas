@@ -371,7 +371,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
     // heroVideo dropped: both the mp4 and its poster lived on barskyux.com, which
     // no longer resolves. Hero falls back to seoData.image.
-    projectLink: `http://herbalink.live`,
+    projectLink: `https://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Credentials as a Gate`, label: `Verified against an external registry, not a badge` },
@@ -493,7 +493,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: `/images/splittime/hero.webp`,
       alt: `SplitTime co-parenting platform overview`,
     },
-    projectLink: `https://splittime.pro`,
+    // No live link: splittime.pro no longer resolves at its host (Cloudflare 1001,
+    // TLS handshake failure). Do not re-add without a URL that returns 200.
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `Most co-parenting apps are calendars with chat bolted on. They treat the job as logistics. The hard part isn't logistics — it's that 'are you picking her up at 5 or 5:30?' reads as accusatory when you're already angry, and by message four nobody's talking about pickup anymore.`,
@@ -995,7 +996,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
     tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    projectLink: "https://in-situ-quickbooks-flow.lovable.app/",
+    // No live link: the Lovable prototype was deleted and returns "Project not found".
+    // Do not re-add without a URL that returns 200.
     researchSection: {
       subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
       blurb: "Gathering insights from 47 small business owners",

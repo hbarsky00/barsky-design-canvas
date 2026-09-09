@@ -49,7 +49,6 @@ const caseStudies: CaseStudy[] = [
     description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
     impact: "",
     url: "/project/splittime",
-    liveUrl: "https://splittime.pro",
     images: {
       primary: "/images/splittime/hero.webp",
       secondary: "/images/desktop-signup-1.webp",

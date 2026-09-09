@@ -891,3 +891,103 @@ Hiram's move, not the loop's.
 
   Gates: tsc clean, build clean, capture 44/44, rebuilt, verified in
   `dist/services/index.html`. Committed, not pushed.
+
+- [x] **Lever 2 — proof audit** — 2026-09-09 — Audited **link and asset
+  integrity across every study**, then **herbalink** for claim/product drift.
+  Removed two dead project links. The bigger finding is structural: the file
+  this playbook called the single source of truth renders nothing, and has been
+  quietly rotting.
+
+  **The mandated 200 check, run against every outbound product link.** Three
+  pass and one was already handled; two were dead:
+
+  | link | result |
+  |---|---|
+  | ringrival.today, catchbuddy.fit, firelion.me, stips.bet | 200 |
+  | herbalink.live | 200, but the study linked it over **`http://`** |
+  | splittime.pro | **dead** — TLS handshake failure on https, Cloudflare 1001 on http |
+  | in-situ-quickbooks-flow.lovable.app (Blue Sky / QuickFlow) | **404 "Project not found"** |
+
+  Both dead hosts are Lovable projects that no longer exist. `splittime.pro`
+  resolves to a Lovable edge IP (`lovable-app-cd-1-4.p.l5e.io`) that Cloudflare
+  can no longer reach.
+
+  **The change.** Dropped both `projectLink` values, leaving a comment at each
+  saying why and "do not re-add without a URL that returns 200", so a future run
+  does not helpfully restore them. Dropped splittime's `liveUrl` from the
+  related-work rail data. Changed herbalink's link to `https://`. No copy, no
+  images, no sections touched.
+
+  **Honest scope of that fix: neither dead link was reaching a visitor.**
+  Verified rather than assumed, and the checking is the useful part:
+  - SplitTime was already hidden on 2026-08-22 — `_redirects` 301s
+    `/project/splittime` to `/#case-studies`, and the page is not prerendered.
+  - Blue Sky's page renders through `SimpleCaseStudyPage`, which is never passed
+    a `liveUrl`, so no button ever appeared. Confirmed zero `lovable` strings in
+    the production HTML.
+  - The related-work rail that would have shown SplitTime's "View Live Project"
+    button does not render at all. Confirmed on the live ring-rival page: the
+    only external links present are ringrival.today, Calendly, LinkedIn, GitHub.
+
+  So this was dead data one hop from the surface, not a live failure — and one
+  hop matters, because `structuredCaseStudy.ts:45` builds a "View Live Project"
+  CTA out of `projectLink` for the content export.
+
+  **The structural finding, which is the real output of this run.** All eleven
+  case-study pages render through `SimpleCaseStudyPage` with their copy passed
+  as props. **Not one renders from `structuredCaseStudies.ts`.** That file now
+  feeds only `UnifiedSEO` (schema/meta) and the content export;
+  `StructuredCaseStudyLayout`, `UnifiedCaseStudyHero` and
+  `SingleCaseStudyPreview` are unmounted. Because nothing renders it, nobody
+  notices what rots in it. It currently holds:
+  - the two dead project links (now removed),
+  - **27 image URLs on `barskyux.com`, a domain that no longer resolves at all**
+    — 11 splittime, 9 herbalink, 6 crypto, 1 catchbuddy,
+  - the Blue Sky **68% fewer errors** claim, in the title, the description and
+    twice in the metrics — one of the three permanently flagged facts.
+
+  None of it is user-facing today. Checked directly rather than inferred: the
+  live herbalink page loads 8 images with 0 broken and no `barskyux` sources,
+  crypto 7 with 0 broken, and no live page — including its JSON-LD — contains
+  the string `barskyux.com` or the 68% claim. Previous runs already migrated the
+  rendered images; the comments they left in
+  `SingleCaseStudyPreview`, `VideoCaseStudiesSection` and
+  `StructuredHerbalinkCaseStudy` say so.
+
+  I did **not** strip the 27 dead image URLs or the 68% claim. Removing them is
+  deleting case-study content, which needs Hiram, and the 68% is a flagged fact.
+  Flagged below.
+
+  **Playbook corrected in the same commit.** `docs/client-acquisition-loop.md`
+  told future runs that case-study bodies live in `structuredCaseStudies.ts` and
+  are read via `src/utils/simpleCaseStudyAdapter.ts`. **That adapter does not
+  exist** — no file, no references. A run following that map would have spent
+  itself writing buyer-lens copy into a file no visitor ever sees. The map now
+  points at `src/pages/Structured*CaseStudy.tsx` and says plainly what the data
+  file still feeds.
+
+  **Two things I nearly got wrong, recorded because the checking is the method.**
+  A comment in the herbalink data said barskyux.com no longer resolves, which
+  looked like broken images across four studies — until the browser showed every
+  image loading. And "68%" appeared in the production HTML for Blue Sky, which
+  looked like the flagged metric shipping — it was `hsl(14 68% 41%)` in the
+  inlined CSS. Both would have been confident, wrong findings.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt. Committed, not pushed.
+
+  **Flagged for Hiram:**
+  1. **SplitTime is gone.** splittime.pro no longer resolves and the study has
+     been hidden behind a 301 since 2026-08-22. It is still a written, illustrated
+     study sitting in the repo. Should it come back with the live link dropped, or
+     stay hidden? Only you can say whether it is worth showing without a live URL.
+  2. **The Blue Sky / QuickFlow prototype link is dead.** Memory has QuickFlow
+     running on Netlify as a real app. If that deployment is public, give me the
+     URL and it goes back on the study; I will not point a case study at a
+     different deployment on my own guess.
+  3. **27 dead `barskyux.com` image URLs** sit in `structuredCaseStudies.ts`
+     (splittime 11, herbalink 9, crypto 6, catchbuddy 1). Not rendered, so
+     harmless today. Say the word and I will clear them — I will not delete
+     case-study images without you.
+  4. **The 68% still stands** in that file's Blue Sky title, description and
+     metrics. Still flagged, still not filled in, still not rendered.

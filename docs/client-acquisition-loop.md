@@ -18,8 +18,18 @@ participant, not Hiram as the author.
   `src/data/caseStudyIndex.ts` — investor-loan-app, dae-search, bz-essentials,
   business-management (QuickFlow), recast, herbalink, catchbuddy, stips,
   ring-rival, and whatever has been added since.
-- Case-study bodies: `src/data/structuredCaseStudies.ts` (single source of
-  truth; pages read it via `src/utils/simpleCaseStudyAdapter.ts`)
+- Case-study bodies: **`src/pages/Structured*CaseStudy.tsx`** — all eleven pages
+  render through `SimpleCaseStudyPage`, with the copy passed in as props. Edit
+  the page component. (Corrected 2026-09-09: this used to say the bodies lived
+  in `structuredCaseStudies.ts` and were read via
+  `src/utils/simpleCaseStudyAdapter.ts` — that adapter does not exist, and no
+  page has rendered from that data file in some time.)
+- `src/data/structuredCaseStudies.ts` still feeds **SEO/schema**
+  (`src/components/seo/UnifiedSEO.tsx`) and the **content export**
+  (`src/export/extractors/structuredCaseStudy.ts`). Nothing in it reaches the
+  page body, so it accumulates rot silently — check it, do not write copy into
+  it. `StructuredCaseStudyLayout`, `UnifiedCaseStudyHero` and
+  `SingleCaseStudyPreview` are unmounted dead surface for the same reason.
 - Services / offer copy: `src/data/services.ts`, `src/data/designServices.ts`
 - FAQ content: `src/data/seoFaqs.ts` (rendered by `src/components/seo/SeoFaqSection.tsx`)
 - Testimonials: `src/data/testimonials.ts`
