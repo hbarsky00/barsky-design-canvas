@@ -203,6 +203,23 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
                 <Link to="/contact">Send a Message</Link>
               </Button>
             </div>
+
+            {/* These three pages were severed from the offer. Every path off
+                them was "book a call" or a contact form, and nothing said an
+                engagement has a published price — while /services has carried
+                two fixed prices since 2026-09-06. Someone who lands here from
+                a commercial search wants the number before the call, and a
+                30-minute call with a stranger is a bigger ask than a price. */}
+            <p className="mt-6 text-base text-muted-foreground">
+              Want the numbers first?{" "}
+              <Link
+                to="/services"
+                className="text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+              >
+                See the packages and what they cost
+              </Link>
+              .
+            </p>
           </div>
         </section>
       </main>

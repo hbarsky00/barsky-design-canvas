@@ -991,3 +991,104 @@ Hiram's move, not the loop's.
      case-study images without you.
   4. **The 68% still stands** in that file's Blue Sky title, description and
      metrics. Still flagged, still not filled in, still not rendered.
+
+- [x] **Lever 4 — entry-point coverage** — 2026-09-09 — **The three
+  `/design-services/*` pages were orphaned from the site and severed from the
+  offer.** Linked them both ways. This lever has run twice before and both
+  times audited only case studies and blog posts; these three pages had never
+  been read by this loop, and they carry the highest commercial intent on the
+  site.
+
+  **Checked first, found solid, left alone** — recorded so a future run does
+  not re-audit them:
+  - `/project/dae-search` and `/blog/finding-the-data-is-half-the-job`, read
+    cold from the live site, both pass all three questions. Name and "Designer
+    and Developer" in the header, full nav, `WorkCallToAction` with Daanish's
+    testimonial, Book a call resolving to Calendly, footer with email, phone
+    and location. Cycle 1 and 2's lever-4 work is holding.
+  - The header nav renders real `<Link>` anchors (not onClick buttons), so
+    Services and Contact are crawlable and cmd-clickable from every deep page.
+  - The 404 route offers Go Back, Back to Home, "Browse the case studies" and
+    "get in touch" — a mistyped or hallucinated URL is not a dead end.
+  - Heads on all three service pages are clean: unique titles and
+    descriptions, self-canonical, `index, follow`, and the `#hiram` entity
+    graph present.
+  - The mobile page's Ring-Rival metrics — 22 seconds to 6, ~40% audio failure
+    to under 2% — **trace exactly** to `StructuredRingRivalCaseStudy.tsx:119-120`.
+    Nothing invented.
+
+  **The gap, in two directions.**
+
+  *Nothing on the site linked to them.* Grepped every reference to
+  `design-services` across `src/`, `scripts/` and `public/`: routes, sitemap,
+  `llms.txt`, `seoData`, `_redirects`, the prerender list, the export page
+  list — and **not one rendered inbound link**. Not the nav, not the footer,
+  not `/services`, not a case study. They are prerendered, indexable and
+  advertised to AI crawlers, so search can land on them while a visitor on
+  `/services` could not reach them at all. The "What I do" cards on `/services`
+  are grouped by evidence ("Design and build, same person", "Internal tools
+  people use all day", "AI where it earns its place"), which is right, but it
+  means someone who arrived thinking "I need a mobile app designed" never sees
+  those words anywhere on the page.
+
+  *They had no path to the offer.* Every route off those three pages was Book a
+  call, Send a Message, or See the Work. **Nothing said an engagement has a
+  published price** — while `/services` has carried $8,500 and $18,500 since
+  the lever-5 follow-up on 2026-09-06. That is the worse half: a cold visitor
+  from a commercial search is being asked for a 30-minute call with a stranger
+  when the site could just show them the number one page away. The card that
+  run added exists precisely so a believer has something to buy, and the three
+  pages most likely to produce a believer never mentioned it.
+
+  **The change.** Two links, no new component, no new dependency.
+  - `DesignServicePage.tsx` (shared by all three pages, so one edit covers
+    them) — a line under the closing buttons: "Want the numbers first? →
+    See the packages and what they cost". Below the buttons deliberately:
+    primary action first, lower-commitment alternative for whoever is not
+    ready.
+  - `ServicePageLayout.tsx` — one line after "What I do": "In more detail:
+    UX/UI design, mobile app design, or design and build."
+
+  **What proves it.** `npx tsc --noEmit` clean, `npm run build` clean,
+  `capture-bodies` 44/44, rebuilt. Both directions verified in the built HTML,
+  not in source: `dist/services/index.html` now carries all three
+  `/design-services/*` hrefs, and each of the three built pages carries
+  `/services` with the text "See the packages and what they cost".
+
+  Measured rather than eyeballed, per the standing rule:
+
+  | check | result |
+  |---|---|
+  | link contrast on page background | **15.83:1** (`rgb(35,30,26)` on `rgb(251,250,248)`) |
+  | surrounding text contrast | **9.24:1** |
+  | affordance | `text-decoration: underline` — not colour-only |
+  | font size | 16px, no sub-16px text |
+  | 1280 | single 24px line, centred, 24px below the button row, no overflow |
+  | 375 | wraps to two lines, 343px wide, **zero horizontal overflow** |
+
+  The Browser pane was hidden again, which reports `innerWidth: 0` and makes
+  every geometry read degenerate — the first pass showed a fake 31px overflow
+  and a fake 182px gap. `resize_window` forces a real viewport and fixes it.
+  Worth knowing: last time this bit a run it was diagnosed as "screenshots
+  don't work"; the deeper problem is that measurements lie too until you set a
+  viewport.
+
+  Committed, not pushed.
+
+  **Flagged for Hiram:**
+  1. **"from first sketch to the store listing"** is the meta description on
+     `/design-services/mobile-app-design`, and AI answers quote meta
+     descriptions. There is no App Store or Play Store listing behind it — all
+     five live products are web, and the page's own copy says Ring-Rival's
+     whole point was console feel "with no install". Do you have a store
+     listing I don't know about? If not this should narrow to what is true. Not
+     changed here: softening a claim is lever 2's job and this run had already
+     spent its change.
+  2. **`/design-services/web-development` shows only one shipped project**
+     (Email Creation AI) while the other two pages show three and two. This is
+     the Design + Build page — the differentiator the whole site rests on, and
+     the thinnest proof block of the three, with five live products available
+     to put there. Which ones do you want on it?
+
+  Next lever: **6, off-site acquisition** — written list only, no code. Lever 1's
+  rotation still sits at **bz-essentials**. Lever 3 stays closed.

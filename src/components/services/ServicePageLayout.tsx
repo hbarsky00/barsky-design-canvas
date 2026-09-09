@@ -131,6 +131,39 @@ const ServicePageLayout: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* The three /design-services/* pages had no inbound link from
+              anywhere on the site — not here, not the nav, not the footer, not
+              a case study. They are prerendered, self-canonical, indexable and
+              listed in llms.txt and the sitemap, so search and AI answers can
+              land on them while a visitor reading this page could not reach
+              them at all. The cards above are grouped by evidence, not by
+              discipline, so someone who arrived with "I need a mobile app
+              designed" never sees those words. */}
+          <p className="text-base text-muted-foreground mt-12">
+            In more detail:{" "}
+            <Link
+              to="/design-services/ux-ui-design"
+              className="text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+            >
+              UX/UI design
+            </Link>
+            ,{" "}
+            <Link
+              to="/design-services/mobile-app-design"
+              className="text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+            >
+              mobile app design
+            </Link>
+            , or{" "}
+            <Link
+              to="/design-services/web-development"
+              className="text-foreground underline underline-offset-4 hover:text-primary transition-colors"
+            >
+              design and build
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
