@@ -170,8 +170,106 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
     live and the rule is stale, or it is retired and should be delisted the way
     `/projects` was. Only Hiram knows which.
 
-- [ ] 5 llms.txt / cross-web consistency
+- [x] **5 llms.txt / cross-web consistency** — 2026-09-09 — **measured clean, so
+  the run's substantial work went to lever 4's leftover instead** (below). This
+  is the lever verifying, not the lever being skipped; the measurements are the
+  output.
+
+  | check | result |
+  |---|---|
+  | internal paths in `llms.txt` vs `sitemap.xml` | **44 / 44, both directions** — 0 in one and not the other |
+  | outbound product URLs (7) | **all 200**: recastvid.com, ringrival.today, catchbuddy.fit, firelion.me, herbalink.live, stips.bet, az-essentials.netlify.app |
+  | `sameAs` targets | github.com/hbarsky00 **200**; LinkedIn **999**, which is their bot block, not a dead link |
+  | `robots.txt` | every AI crawler token explicitly allowed (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, anthropic-ai, PerplexityBot, Google-Extended), 0 `Disallow`, sitemap declared |
+
+  Worth recording that the 2026-09-09 client-acquisition run (a *different*
+  loop) independently 200-checked the same outbound links from the case-study
+  side that morning and killed two dead ones — `splittime.pro` and the Blue Sky
+  Lovable URL. Neither was ever in `llms.txt`, which is why this lever came back
+  clean: `llms.txt` had already been kept honest.
+
+  **The one inconsistency found, deliberately not fixed.** `llms.txt` quotes
+  `/blog/what-one-person-can-ship-now` as "I have four products live that I
+  built by myself" while its own *For AI assistants* section lists **six**
+  openable products plus BZ Essentials. The description is an accurate quote of
+  the post; the post is the thing that disagrees with the site. Already FLAGGED
+  in `docs/design-log.md` 2026-08-27 as Hiram's call, not a silent edit, and it
+  stays flagged — editing a post's own claim to make a summary line up is
+  exactly backwards.
+
 - [ ] 6 content freshness / gap-fill
+
+### Out of rotation — 2026-09-09 — case studies had no BreadcrumbList
+
+SEO/AEO was the staler half (AEO 09-06, design 09-07). Lever 5 was next, and it
+is ticked above on its measurements — all clean. With nothing to fix there, the
+run took the item lever 4 explicitly handed to it on 2026-09-01: *"All 12 case
+studies emit `Article` with no `BreadcrumbList`… Biggest remaining
+structured-data gap; next AEO run should take it."*
+
+**The asymmetry.** All **23** blog posts have emitted a `BreadcrumbList` since
+`BlogBreadcrumbs.tsx` shipped — it renders one into the body of every post.
+**0 of 12** case studies did, because that component is only rendered by blog
+routes. So the one page type that is actually the conversion path was also the
+only one with no SERP breadcrumb and no stated position in the hierarchy.
+
+**Changed** — `src/utils/seo/structuredDataUtils.ts`, one place, under the
+existing `kind === 'project'` branch, so it reaches all 12 without touching a
+single case-study page. It is head-injected by `inject-seo-html`, which means it
+is in the prerendered HTML a non-JS answer engine reads, unlike the blog's
+body-rendered one.
+
+**The middle rung is `/#case-studies`, not `/projects`.** `/projects` was
+retired on 2026-08-23 (a client-side `<Navigate>` serving an empty 200) and now
+301s here; the header nav points here; the homepage section IS the work index by
+settled editorial decision. A breadcrumb whose level-2 `item` 301s away would be
+describing a hierarchy this site does not have. Considered a two-rung
+`Home > Title` to avoid a fragment URL and rejected it: the fragment resolves
+200, and if a consumer collapses it the result degrades to exactly that
+two-rung form, so the three-rung version is strictly not worse.
+
+Each list is addressable at `<canonical>#breadcrumb` and `WebPage.breadcrumb`
+points at it by `@id` — continuing the joinable graph the 09-01 sweep built
+rather than adding another anonymous node beside it.
+
+**Measured.** `npx tsc --noEmit` **0**, build clean at **44/44 prerendered, 0
+head-only**. No `capture-bodies`: this is head-only JSON-LD, no visible copy
+changed, and `git status` showed exactly one modified file all run.
+
+| check | before | after (live) |
+|---|---|---|
+| case studies with a `BreadcrumbList` | **0 / 12** | **12 / 12** |
+| blog posts with exactly one | 23 / 23 | **23 / 23** (no duplicate introduced) |
+| dangling `WebPage.breadcrumb` refs | — | **0 / 12** |
+| `itemListElement` positions | — | `[1,2,3]` on all 12 |
+| level-3 `item` == page canonical | — | **12 / 12** |
+| JSON-LD parse errors | 0 | **0** |
+
+The "after" column is **barskydesign.pro**, re-fetched route by route ~60s after
+the push — all twelve `/project/*` URLs, not a local build, not a sample. A live
+blog post was re-checked as the control and still reports exactly one
+`BreadcrumbList`, confirming the change did not leak into the page type that
+already had one.
+
+**Left open:**
+- **No case study has a *visible* breadcrumb trail.** Blog posts do. Emitting
+  the markup without one is accepted practice and Google does not require the
+  trail, but the honest version — and the one that helps a human on a 12-page
+  conversion path — is a visible trail matching this markup. That is a design
+  change on the pages the loop is most careful with, so it belongs to a design
+  run, not to a schema fix.
+- **The blog's `BreadcrumbList` is still body-rendered, `@id`-less, and outside
+  `structuredDataUtils`.** It works, and unifying the two sources would risk
+  emitting duplicates on 23 posts, so it was left alone — but the site now
+  generates the same schema type from two unrelated places.
+- Unchanged from 09-01: posts ship `datePublished` with no `dateModified`;
+  `/blog`, `/services`, `/store` and the three `/design-services/*` pages carry
+  only `WebPage`.
+- **Still FLAGGED — `/project/business-management`** emits indexable `Article`
+  (and now a breadcrumb) for QuickFlow, which the loop rules list as retired.
+  Either the rule is stale or the page should be delisted the way `/projects`
+  was. Only Hiram knows which. Noting that the 09-09 client-acquisition run
+  touched this study's data without resolving the question either.
 
 ### Out of rotation — 2026-08-23 — `/projects` was an indexable empty page
 
