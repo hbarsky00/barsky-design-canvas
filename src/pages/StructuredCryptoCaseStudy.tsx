@@ -35,7 +35,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "A Setting, Not Two Products",
+        heading: "One Product With a Switch",
         paragraphs: [
           "Everything else rests on one call. One platform, one shared core, and the mode is a setting you flip rather than a product you choose between.",
           "The easier build is two products, and it's easier because it lets each one have its own roadmap. It also traps people. A beginner on a beginner product has to leave and start again somewhere else to grow, and that's the moment every one of these apps loses the customer they spent the most to acquire.",

@@ -38,7 +38,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         heading: "Research and Ideation",
         paragraphs: [
           "I started by mapping the whole loan lifecycle on a whiteboard, from application through to audit, so I could see where the spreadsheet was actually holding things together and where it was quietly failing.",
-          "Then I sketched the order builder rough and fast, because the thing I needed to test was the sequence, not the styling. Once the steps held up, I wrote the flow down as four moves: pick a deal, choose Cashless Roll or Book-builder, add an order or attest to one, update the grid. That is the version loan officers recognized as their own job, and it is the one that got adopted.",
+          "Then I sketched the order builder rough and fast, because what I needed to test was the sequence rather than the styling. Once the steps held up, I wrote the flow down as four moves: pick a deal, choose Cashless Roll or Book-builder, add an order or attest to one, update the grid. That is the version loan officers recognized as their own job, and it is the one that got adopted.",
         ],
         imageLayout: "pair",
         images: [
@@ -78,7 +78,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "Validation runs inline as you type, so a malformed entry gets caught where it happens instead of at submit. You never see it when the entry is fine.",
           "I replaced filter panels with predictive search. Loan officers do not think in filters, they think in name fragments and deal codes, and they want the deal on screen in two keystrokes. That is a Bloomberg habit and it was the right one to design for here.",
           "The order builder walks you forward: pick the lender first, then the terms open up. It looks restrictive in a screenshot. In practice it stops people building an order against nothing.",
-          "The audit trail sits right next to the record instead of in some admin tool nobody opens. That single decision is why compliance ended up arguing for the platform rather than against it.",
+          "The audit trail sits right next to the record instead of in an admin tool three menus away. That single decision is why compliance ended up arguing for the platform rather than against it.",
         ],
         images: [
           {

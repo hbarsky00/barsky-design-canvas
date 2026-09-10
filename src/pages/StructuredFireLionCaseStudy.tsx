@@ -69,7 +69,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "Where AI Stopped Being Useful",
         paragraphs: [
-          "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That's real work and it did it faster than I would have.",
+          "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That saved me weeks, and I am not going to pretend otherwise.",
           "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right — it will answer you, and the answer means nothing.",
           "Producing features got cheap. Deciding which ones survive didn't.",
         ],

@@ -39,7 +39,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "A Parent Verifies Before a Kid Can Post",
         paragraphs: [
-          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game. And the meeting spots are a list I curated, not somewhere any user can drop a pin.",
+          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game. And the meeting spots come from a list I curated, so nobody is dropping a pin on an address of their own choosing.",
           "That last one gets argued with a lot. Letting people add their own locations is more flexible, and I still won\u2019t do it.",
         ],
         images: [
@@ -52,7 +52,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "What AI Did, and What It Couldn't",
         paragraphs: [
-          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow. That is real work and it did it fast.",
+          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow. That is a serious chunk of the build, and it did it fast.",
           "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
         ],
         images: [

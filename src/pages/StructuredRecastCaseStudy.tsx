@@ -41,7 +41,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
         heading: "I Deleted the Best-Looking Part",
         paragraphs: [
           "The first version recorded in the browser. It worked, it demoed well, and I killed it. Twenty-one files: the capture engine, the compositor, the camera bubble, the crop selector. All of it.",
-          "Two reasons. Browser capture is worse: you get a tab or a throttled screen, not your actual machine at full quality. And there is a hall-of-mirrors problem where recording your browser from inside your browser shows the recorder recording itself.",
+          "Two reasons. Browser capture is worse: you get a tab or a throttled screen instead of your actual machine at full quality. And there is a hall-of-mirrors problem where recording your browser from inside your browser shows the recorder recording itself.",
           "What replaced it is a boundary I now hold to: the apps record, the website stores and shares. The Record button on the site is a launcher. It opens the native app and falls back to a download if you don't have it yet. There is no browser-capture fallback and there won't be one.",
         ],
         images: [

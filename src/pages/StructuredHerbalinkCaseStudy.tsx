@@ -94,7 +94,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         paragraphs: [
           "On hiatus, and I'll say why plainly. The product is built and it works: verification gate, guided intake, booking, herb library, the database and auth underneath all of it. The directory is empty because no herbalists have signed up yet.",
           "That gap is an honest picture of what I'm good at and what I'm not. I can take an idea and come out the other end with a functional product on my own. Marketing it has always been the weaker half for me, and this is the clearest example I have: a platform that works, with nobody on it.",
-          "So this is here for the thinking, not as a win. The research, the decision to gate verification instead of badging it, the things I cut and what cutting them cost. If what you need is someone who can design the thing and then actually build it, this is what that looks like end to end.",
+          "So it is here for the thinking rather than as a win. The research, the decision to gate verification instead of badging it, the things I cut and what cutting them cost. If what you need is someone who can design the thing and then actually build it, this is what that looks like end to end.",
         ],
         images: [
           {

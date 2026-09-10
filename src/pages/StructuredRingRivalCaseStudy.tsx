@@ -60,7 +60,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         paragraphs: [
           "A fighter isn't a drawing. It's a body, two arms, two legs and a head, all separate, because they all have to move on their own. So I built the rig before I built anyone to put in it.",
           "Glass Joe went through it first, and you can see every seam. Flat block for a torso. Each arm one wedge from shoulder to glove, no elbow in it. Legs meeting the hip at a hard edge, one flat colour per limb. Then I ran Von Kaiser through the same rig at heavier proportions, and that was the real test. If the rig held for a second fighter, I could add fighters as data instead of drawing each one by hand.",
-          "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping, not like contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn reads as a turn. Make the parts fast, throw out whatever doesn't read, rebuild the layer underneath.",
+          "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping. It never reads as contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn reads as a turn. Make the parts fast, throw out whatever doesn't read, rebuild the layer underneath.",
         ],
         imageLayout: "pair",
         images: [

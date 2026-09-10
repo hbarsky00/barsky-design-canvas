@@ -16,7 +16,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       alt: "QuickFlow Business Overview — today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
       hoverVideo: "/quickflow-walkthrough.mp4",
       caption:
-        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures are the demo dataset, not his books.",
+        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset; his real books stay his.",
       width: 2300,
       height: 1438,
     }}
@@ -43,7 +43,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         heading: "Excel First, Product Second",
         paragraphs: [
           "The first thing I built was not a product. It was a set of Excel scripts that took the worst of the manual re-entry off his desk that week.",
-          "Two reasons. It gave him something back immediately, before I had earned any right to redesign his operation. And writing them taught me the workflow properly, which no amount of asking would have done, because the parts people forget to mention are exactly the parts they do without thinking.",
+          "I did it that way for two reasons. It gave him something back immediately, before I had earned any right to redesign his operation. And writing them taught me the workflow properly, which no amount of asking would have done, because the parts people forget to mention are exactly the parts they do without thinking.",
           "The product grew out of those scripts rather than replacing them. Everything in it is something the spreadsheet was already doing badly.",
         ],
         images: [
@@ -96,7 +96,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/orders.webp",
             alt: "QuickFlow order management — total, pending, delivered and revenue tiles above a recent-orders table with per-row status and actions",
             caption:
-              "Status is a word, not a colour you have to decode. The figures on screen are demo data, not his books.",
+              "Status is spelled out as a word, so nobody has to decode a colour to read the row. The figures on screen are demo data rather than anything out of his accounts.",
             width: 2300,
             height: 1438,
           },

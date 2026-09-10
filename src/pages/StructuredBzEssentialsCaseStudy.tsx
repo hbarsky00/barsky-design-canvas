@@ -47,7 +47,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "Region Is a Lens, Not a Filter",
+        heading: "Region Runs Through the Whole App",
         paragraphs: [
           "The requirement was that some content is global, some is US-only. The obvious build is a filter in the search page. That's wrong, because the person who needs it most is the one who never opens search. They follow a link, land on a document, and have no idea it doesn't apply to their market.",
           "So region is a lens on the whole app instead. It lives in a context provider, it's set once in the header, and every surface reads through it: the counts on the category cards, the featured lists, the search results, the badge on an individual document.",
@@ -65,7 +65,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         paragraphs: [
           "The thing people actually need from a portal like this isn't the file. It's the answer to \"can I use this?\": who owns it, which version this is, whether it's approved or still in review, when it last changed, and whether it applies to my region.",
           "So the document page leads with that panel rather than burying it under the download. Status, owner, department, version, dates and region sit together on the right, where you read them before you commit to anything.",
-          "Related documents sit at the bottom as real links between records, not a \"you might also like\" strip. In a compliance context the related item is usually the thing that governs the one you're reading, which is worth more than a recommendation.",
+          "Related documents sit at the bottom as real links between records rather than a \"you might also like\" strip. In a compliance context the related item is usually the thing that governs the one you're reading, which is worth more than a recommendation.",
         ],
         images: [
           { src: "/images/bz-essentials/design-system.webp", alt: "Design system — Inter, the gray ground and white surface, four accent pairs, region and status badges, the single card shape and the eight components", caption: "Four accents, one card shape, eight components. The region lens is a context provider rather than a prop threaded through all of them.",
@@ -97,7 +97,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         paragraphs: [
           "It's live at az-essentials.netlify.app and you can click all of it: the region switch, the domains, the facets, the document pages.",
           "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample rather than a full library, the brand is invented, and there's no authentication or CMS behind it. Nothing here is an official system for anyone.",
-          "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision only looks obvious once you have seen the version where it is a filter nobody opens.",
+          "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision only looks obvious once you have seen the version where it is a filter buried in a search page.",
         ],
       },
     ]}
