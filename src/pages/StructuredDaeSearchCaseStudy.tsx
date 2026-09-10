@@ -52,7 +52,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "The Trust Signals Belong on the Row",
         paragraphs: [
-          "So I moved them there. Where the table came from, when it last refreshed, what depends on it. You read it in the list instead of clicking through to find out.",
+          "So I moved them onto the row itself. Where the table came from, when it last refreshed, what depends on it — all of it readable in the list, instead of something you click through to find out.",
           "That sounds like a small layout change and it is the whole product. The question an analyst is actually asking is not \"which of these matches my words\" but \"which of these can I put in front of a VP on Thursday.\" Freshness and lineage answer that. Relevance never did.",
           "It also changes what a bad result costs. Under the old list you found out a table was stale after you had built on it. Here you find out before you open it.",
         ],
@@ -66,7 +66,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "Restricted Results Stay Visible",
         paragraphs: [
-          "Locked, with a one-click request for access, but visible. I tried hiding them first, which is the obvious call and the wrong one.",
+          "They stay locked, with a one-click request for access, but they stay visible. I tried hiding them first, which is the obvious call and the wrong one.",
           "It backfired badly. People concluded the data did not exist and went off to rebuild it themselves, which is worse for security than showing them a padlock: now there are two copies of sensitive data and only one of them is governed.",
         ],
       },

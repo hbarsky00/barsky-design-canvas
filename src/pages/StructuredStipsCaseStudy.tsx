@@ -32,7 +32,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
         paragraphs: [
           "A prediction market answers one question: how likely is this? The price tells you, because people are putting something behind the answer.",
           "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. The question underneath is simple and the screen in front of you is not, so people leave before placing anything.",
-          "So the pitch is the product in one line: buy Yes or No on real events, every share pays $1 if you're right. $500 to start, no card, and it says play money on the way in.",
+          "So the whole pitch had to fit in a line. Buy Yes or No on real events, and every share pays $1 if you're right. You start with $500, there's no card, and it says play money on the way in.",
         ],
       },
       {
@@ -51,7 +51,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
         heading: "The Market, Before and After You Pick",
         paragraphs: [
           "Same screen, two states. On the left nothing is chosen yet, so the panel just shows you both prices and what they mean in plain percentages. On the right I have picked Yes and put $75 on it, and the panel has done the arithmetic: $111.94 back if I am right, $36.94 of that is profit.",
-          "Nobody should have to work out what 67¢ a share means for their stake in their head. Make them, and they guess or they leave.",
+          "Nobody should have to work out in their head what 67¢ a share means for their stake. If you make them, they guess at it, and a guess is not a bet they feel good about.",
         ],
         imageLayout: "pair",
         images: [

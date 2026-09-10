@@ -119,7 +119,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "It used to take 22 seconds to throw your first punch. After the cut it took 6, and I didn't optimise anything to get there \u2014 I deleted the splash screen, the mode select, the fighter select and the tutorial.",
           "Audio was failing in about 40% of sessions and I had no idea, because nothing ever errored. Browsers block sound until you interact with the page, and the game was starting its audio on load. Moving that behind the first tap took it under 2%.",
           "I also built webcam hand-tracking. It worked, and it was genuinely impressive. It was also completely wrong for someone playing on their phone on a couch, so I cut it.",
-          "Go and play it and you will find the game has moved since. There is a career mode now, which is a fighter select wearing a different hat, and the tutorial has grown back to five cards \u2014 though it now sits on top of a fight already in progress rather than in front of it, and one tap skips the whole thing. I would rather say that than let this page sell you a game frozen at its leanest. Deleting is not a thing you finish. It is a thing you keep having to do, and this is what it looks like when you stop for a while.",
+          "Go and play it now and you will find the game has moved. There is a career mode, which is a fighter select wearing a different hat, and the tutorial has grown back to five cards \u2014 though it sits on top of a fight already in progress rather than in front of it, and one tap skips all five. I would rather point that out than sell you a game frozen at its leanest. The cutting was real. So is the fact that some of it came back.",
         ],
       },
       {

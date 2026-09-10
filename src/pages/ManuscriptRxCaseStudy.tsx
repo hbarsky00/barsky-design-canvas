@@ -34,7 +34,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
         paragraphs: [
           "The obvious version is \"drop the manuscript in, get an email out.\" It demos well and it's wrong, because the two weeks aren't spent writing. They're spent waiting at review gates that exist for legal reasons and aren't going anywhere.",
           "So I inverted it. Every step a human is legally accountable for stays with the human. Everything between those steps belongs to the AI: assembling approved content, pulling the market-specific compliance blocks, generating the HTML, running the metadata checks.",
-          "That one constraint decided everything else on the screen. It is the difference between a tool that survives compliance review and a demo that doesn't.",
+          "That one constraint decided everything else on the screen, and it is what separates a tool that survives compliance review from a demo that doesn't.",
         ],
         images: [
           { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
