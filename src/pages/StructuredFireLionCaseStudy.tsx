@@ -26,8 +26,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "I Picked Something That Could Visibly Fail",
         paragraphs: [
-          "Every \"I built this with AI\" portfolio piece is a calculator or a to-do app. Those can't fail in a way you'd notice, which is exactly why people pick them.",
-          "A game can. If a jump feels wrong, everyone knows immediately and nobody needs the mechanics explained to them. So I built one. Game feel is the thing a prompt can't hand you.",
+          "Every \"I built this with AI\" portfolio piece is a calculator or a to-do app, and I understand why. Nothing in a to-do app can fail in a way a stranger would notice.",
+          "A game fails in public. If a jump feels wrong everyone knows inside a second, and nobody has to have the mechanics explained to them first. That seemed like the more honest test, so I built one.",
         ],
         images: [
           { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good, not because it's a clever idea.",
@@ -39,8 +39,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "One Tap Had to Be Fun Before Anything Else Existed",
         paragraphs: [
-          "The rule I set for myself was that the core loop had to be playable before a single mechanic went on top of it. One tap, one lion, nothing else. If that wasn't fun, no amount of spells or modes was going to rescue it.",
-          "The spelling came after, and only because it survived that test. You spell a word mid-flight and it casts. It works because tapping already felt good, not because it's a clever idea.",
+          "The rule I set myself was that the core loop had to be fun before a single mechanic went on top of it. One tap, one lion, nothing else. If that wasn't fun, no amount of spells or modes was going to rescue it.",
+          "The spelling came months later, and only because the tapping had already passed that test. You spell a word mid-flight and it casts. It works because the tap underneath it already felt good.",
         ],
         images: [
           { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "A five-times combo over the lava forge. This is what survived after the daily missions, streaks and upgrade screens were deleted.",
@@ -53,7 +53,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         heading: "Three Modes, Three Sandboxes",
         paragraphs: [
           "Fire Lion escalates and gets tense. Lion Wars is slower and strategic. Cub Mode is the low-stakes one you go to when you've been losing.",
-          "Each one lives in its own isolated component, with its own state and its own audio. That's a defensive decision, not an architectural preference. I was building at speed with AI, often late, and a refactor that reaches across a shared file breaks things you won't notice until someone else finds them. Isolation costs duplication and buys me the ability to change one mode without holding the other two in my head.",
+          "Each one lives in its own component, with its own state and its own audio. That is a defensive decision rather than an architectural one. I was building fast, usually late at night, and a refactor that reaches across a shared file breaks things you don't find out about until somebody else does. The duplication costs me something real. What it buys is the ability to change one mode without holding the other two in my head.",
         ],
         images: [
           { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
@@ -67,10 +67,10 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         ],
       },
       {
-        heading: "AI Gave Me Volume. It Couldn't Give Me Feel.",
+        heading: "Where AI Stopped Being Useful",
         paragraphs: [
           "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That's real work and it did it faster than I would have.",
-          "Then there's gravity, tap impulse, and the difficulty curve. I tuned every one of those by hand, on a phone, over hundreds of runs, because there's no way to ask a model whether a jump feels right. It'll answer, and the answer means nothing.",
+          "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right — it will answer you, and the answer means nothing.",
           "Producing features got cheap. Deciding which ones survive didn't.",
         ],
         images: [
@@ -83,9 +83,9 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "The Delete List Got Longer Than the Feature List",
         paragraphs: [
-          "Daily missions. Streaks. A Wordle-style daily challenge. A social proof counter. A forge upgrade screen. Mod gating. All of it built, all of it shipped, all of it removed.",
-          "None of those were bad ideas on paper, and that's the trap. They were retention mechanics bolted onto a game that hadn't earned retention yet, and each one put another screen between opening the thing and playing it.",
-          "The game got better every time I cut one, and it stayed true long enough that I stopped treating deletion as cleanup.",
+          "Daily missions. Streaks. A Wordle-style daily challenge. A social-proof counter. A forge upgrade screen. Mod gating. I built all of it, shipped all of it, and then took all of it back out.",
+          "None of them were bad ideas on paper, which is the trap. They were retention mechanics bolted onto a game that had not earned retention yet, and every one of them put another screen between opening the thing and playing it.",
+          "The game got better each time I cut one. Somewhere around the fourth or fifth I stopped thinking of deletion as tidying up and started treating it as the actual work.",
         ],
       },
       {
