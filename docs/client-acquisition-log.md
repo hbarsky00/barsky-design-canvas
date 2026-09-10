@@ -1092,3 +1092,105 @@ Hiram's move, not the loop's.
 
   Next lever: **6, off-site acquisition** — written list only, no code. Lever 1's
   rotation still sits at **bz-essentials**. Lever 3 stays closed.
+
+- [x] **Lever 6 — off-site acquisition** — 2026-09-09 — Written list only, as the
+  playbook requires. No code, no accounts created, nothing posted anywhere. The
+  only file changed is this log.
+
+  **What this run adds.** Cycle 1's lever 6 was a list of assertions, and its
+  top item turned out to be false the same day. So this run measured instead of
+  asserting: I fetched all five live products and `barsky.design` and read their
+  rendered DOM and schema. Two of cycle 1's items now have hard evidence behind
+  them, and one of them is worse than it was described.
+
+  **Method note, because the raw HTML lies here.** `curl` + grep on
+  catchbuddy.fit (5 kB), herbalink.live (2.5 kB) and ringrival.today said "no
+  backlink" — but all three are SPA shells whose footers render client-side, so
+  a grep on the served bytes is not evidence either way. Every finding below is
+  from the **rendered** DOM. The reverse also bit: firelion.me's raw HTML
+  contains "Hiram Barsky" three times, which looks like a backlink and is not
+  one — it is a `<meta name="author">` and two JSON-LD strings, with no `<a>`
+  anywhere.
+
+  ### 1. The two-domain split — Hiram only, and it is now the top item
+
+  Cycle 1 listed this third and called it a decision. It is worse than that: it
+  is actively corrupting the only off-site asset that is working.
+
+  | check | result |
+  |---|---|
+  | `barsky.design` live? | 200, `index, follow`, self-canonical `https://barsky.design` |
+  | its title | "Barsky Design — Product & AI Design Studio \| Clifton, NJ" |
+  | does it reference barskydesign.pro? | **zero occurrences**, HTML or schema |
+  | does barskydesign.pro reference barsky.design? | **zero** — `sameAs` is LinkedIn and GitHub only |
+
+  Two indexable sites for one person, same city, same offer, no canonical
+  relationship and no link in either direction. And the damage is visible in his
+  own products: **stips.bet's JSON-LD names `https://barsky.design` as the
+  founder's `url`**, with barskydesign.pro demoted to second place in `sameAs`.
+  His own shipped software is telling Google the canonical Hiram Barsky lives on
+  the other domain — which is exactly the entity-resolution mechanism that
+  decides whether an AI answer recommends him by name.
+
+  **This is his call and nothing else on this list is worth much until it is
+  made.** But note what changes once it is: unlike cycle 1's struck item 1,
+  **this one has a half the loop can actually do** — once he picks a winner,
+  adding the cross-domain `sameAs` (or the 301) on this repo is ordinary work
+  this loop can write without asking anyone.
+
+  ### 2. The five live products — 2 of 5 link back, and both are flawed
+
+  Cycle 1 called these "unused backlink assets". Two are in use. Measured today:
+
+  | product | link to a Barsky domain | problem |
+  |---|---|---|
+  | ringrival.today | "Created by Barsky Design" → `http://barskydesign.pro` | **`http://`** — a 301 hop to https on every visit |
+  | stips.bet | "Created by Barsky Design" → `http://barsky.design` | **wrong domain**, and also `http://` |
+  | firelion.me | none | names him `<meta name="author">` and in JSON-LD, but **links nowhere** |
+  | catchbuddy.fit | none | nothing at all |
+  | herbalink.live | none | nothing at all |
+
+  So the pattern already exists — the footer credit line is written and shipped
+  on two of them, with clean brand anchor text. The work left is small and
+  specific rather than a new idea:
+
+  - ringrival: change one `http://` to `https://`.
+  - stips: repoint the footer link and the JSON-LD `founder.url` to whichever
+    domain wins item 1.
+  - firelion: half done already — it declares him as author, so add the `url`
+    and a footer link to match.
+  - catchbuddy, herbalink: add the same line the other two already have.
+
+  **Not this loop's to make.** Five other repos, each with its own agent lane
+  and its own deploy approval, and the standing rule is one agent per app. This
+  is a list for whoever works those repos next, or for Hiram to hand over.
+
+  ### 3. Everything else is unchanged from cycle 1, because it is all his
+
+  Ranked by effort against likely reply, and none of it moved since 2026-09-06:
+
+  - **Google Business Profile** (~30 min plus verification). Still the strongest
+    local entity anchor a solo consultant can hold, still pending, still needs
+    his identity. The NAP data on the site is consistent and ready for it. I
+    cannot verify from here whether one now exists — only he can say.
+  - **LinkedIn as distribution for the blog.** Twenty-three posts, nothing
+    distributing them. Highest recurring yield on the list, and the loop must
+    never post for him.
+  - **Marketplaces** — Contra, Toptal, Wellfound. The differentiator is now
+    sharper than when cycle 1 wrote this: `/services` sells design *and* build,
+    and as of this cycle the three discipline pages are reachable and carry the
+    proof.
+  - **Communities** — Indie Hackers, r/SaaS, founder Slacks. Answering beats
+    pitching, and he has twenty-three posts of real thinking to answer with.
+  - **Referrals.** Still the least-worked and highest-converting channel. No
+    case study names a client and nothing anywhere asks for an introduction.
+
+  **Honest limit of this audit.** I measured the sites Hiram owns. I have no
+  backlink API here, so I cannot say what else on the web points at
+  barskydesign.pro — only that of the six properties he controls, one links to
+  it correctly, one links to the wrong domain, and four do not link at all.
+
+  **Cycle 3 complete.** Levers 1, 2, 4 and 6 logged; lever 5 was covered by the
+  follow-up that shipped the build package; lever 3 stays closed permanently.
+  **Cycle 4 starts at lever 1**, with the case-study rotation at
+  **bz-essentials**.
