@@ -89,6 +89,11 @@ const Comments: React.FC<{ slug: string }> = ({ slug }) => {
     );
   };
 
+  // No site key means the form can never submit — post-comment fails closed
+  // without one — so rendering it only ships a dead button and an apology on
+  // every post. Show approved comments if any exist, otherwise nothing at all.
+  if (!SITE_KEY && items.length === 0) return null;
+
   return (
     <section className="mt-16 border-t border-border pt-10">
       <h2 className="font-display text-2xl font-bold text-foreground">
@@ -108,7 +113,7 @@ const Comments: React.FC<{ slug: string }> = ({ slug }) => {
         </ul>
       )}
 
-      {state === "done" ? (
+      {!SITE_KEY ? null : state === "done" ? (
         <p className="mt-6 rounded-xs border border-border bg-card p-5 text-muted-foreground">
           Thanks — your comment is in. I read every one before it goes up, so it'll appear once I've had a look.
         </p>
@@ -140,12 +145,11 @@ const Comments: React.FC<{ slug: string }> = ({ slug }) => {
             <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           </div>
 
-          {SITE_KEY ? <div ref={widget} className="mt-1" />
-                    : <p className="text-sm text-muted-foreground">Comments aren't switched on yet.</p>}
+          <div ref={widget} className="mt-1" />
 
           {error && <p className="text-sm text-destructive">{error}</p>}
 
-          <button type="submit" disabled={state === "sending" || !SITE_KEY}
+          <button type="submit" disabled={state === "sending"}
             className="justify-self-start rounded-xs bg-primary px-5 py-2.5 font-semibold text-primary-foreground disabled:opacity-50">
             {state === "sending" ? "Sending…" : "Post comment"}
           </button>

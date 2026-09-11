@@ -570,3 +570,70 @@ broken. Do not redesign what works.
     future modification dates is a thing crawlers can distrust. Not touched:
     it is a one-line change in `generate-sitemap.ts` and it is unrelated to
     this run.
+
+- **2026-09-11 — every blog post ended on a comment form that could not be
+  used.** Design was the staler half (design log last 09-07; the AEO half ran
+  09-09 on case-study breadcrumbs). The 09-03 entry left this open: *"on every
+  one of the 22 posts the form renders 'Comments aren't switched on yet' beside
+  a greyed-out 'Post comment' button, because no Turnstile site key is present
+  in the build. Worth deciding whether to ship the form at all in that state."*
+  `BlogPost.tsx` itself carries a comment calling that ending out — a reader
+  reaching the bottom of a post met "a comment box that says commenting is not
+  switched on". The playbook names "a section that reads as filler" as exactly
+  the class of thing this half exists for.
+
+  **Confirmed on production before touching anything, not just locally.** The
+  live `BlogPost-C2DJ7ReM.js` chunk has the `<p>Comments aren't switched on
+  yet.</p>` compiled in **unconditionally** — Vite inlined
+  `VITE_TURNSTILE_SITE_KEY` as `undefined` at build time, so the ternary that
+  should choose between the Turnstile widget and the apology was folded away
+  and the button's `disabled` is permanent. So the Netlify build has no key
+  either; this is not a local-env artefact. `comments_public` queried through
+  the anon key returns **`[]`** — zero approved comments exist on any post.
+  Net: 23 posts × one Name field, one Email field, one Comment textarea, one
+  disabled button and one apology, for a form that `post-comment.js` would
+  refuse with 503 even if the button were enabled (it fails closed without
+  `TURNSTILE_SECRET_KEY`, by design).
+
+  **Changed — `src/components/blog/Comments.tsx`, one place.** With no site key
+  and no approved comments the component renders **nothing**; with no site key
+  but approved comments present it renders the heading and the list, no form.
+  With a key it behaves exactly as before. Nothing was deleted: the form, the
+  honeypot, the Turnstile mount and the moderation copy are all intact, and the
+  moment `VITE_TURNSTILE_SITE_KEY` is set in Netlify's build environment (and
+  `TURNSTILE_SECRET_KEY` for the function) the form comes back on every post
+  with no code change. The "switched on yet" string survives only in the submit
+  error map, where the function's `not-configured` 503 still needs a message.
+
+  **Measured.** `tsc --noEmit` 0, `eslint` 0, build **44/44 prerendered, 0
+  head-only**. `capture-bodies` **44/44, 0 failures** — **exactly 23 snapshots
+  changed**, and a script diffing each old snapshot with the comments
+  `<section>` regex-stripped against the new one reports **23/23 byte-identical
+  otherwise**. Built output: `"switched on yet"` in **0 / 23** `dist/blog/*/index.html`
+  (was 23), `"Post comment"` in 0 / 23. Rendered at **375** (mobile emulation,
+  `scrollWidth` 375 = `innerWidth`, CTA card 29→346px, no overflow) and
+  **1440**: the post now ends CTA card → Related articles → footer, with no
+  orphaned border-top where the section used to be. Dark mode still
+  unreachable (08-31 note), so light only.
+
+  **Verified live** — see the push note below the measurements once the deploy
+  is polled.
+
+  **Left open:**
+  - **Switching comments on is Hiram's call**, and it is two env vars, not
+    code: a Cloudflare Turnstile widget for barskydesign.pro gives a site key
+    (`VITE_TURNSTILE_SITE_KEY`, build-time) and a secret
+    (`TURNSTILE_SECRET_KEY`, function runtime). Nothing on the site now hints
+    that comments exist, which is honest for a feature that does not yet.
+  - `Comments.tsx` still fires one Supabase read per post view to learn there
+    are no comments. Cheap, and it is what lets approved comments surface with
+    no key, so left alone — but it is a Supabase dependency on a site Hiram
+    wants off Supabase (memory: prefer Netlify DB going forward).
+  - Unchanged from 09-07: the `contrast-walk` opacity blind spot (top item,
+    fully diagnosed there), `heading-order` on `/blog` and `/store`, the
+    case-study tag separator at 1.37:1, `sitemap.xml` `lastmod` in UTC.
+  - **Headless screenshots at 375 lie.** Desktop Chrome clamps `--window-size`
+    below ~500px and then crops, so the 375 capture showed text running off the
+    right edge that the real mobile-emulated viewport does not have. Use the
+    browser pane's mobile preset for the measurement and headless only for the
+    picture, or the next run will "fix" an overflow that is not there.
