@@ -58,6 +58,7 @@ const CASE_STUDY_BLURBS: Record<string, string> = {
   crypto: "Fintech UX serving beginner and pro traders from one shared platform.",
   "investor-loan-app": "Fintech loan origination platform replacing Excel as the system of record.",
   stips: "Play-money prediction markets where the price reads as a probability — designed and built solo.",
+  farmflow: "Internal farm-operations request system — four roles, a request lifecycle with photo confirmation, landscaping and farm reservations. Clickable build, backend next.",
 };
 
 // Display titles for case studies. PROJECT_SEO_MAP titles are full SEO titles
@@ -73,6 +74,7 @@ const CASE_STUDY_NAMES: Record<string, string> = {
   "email-creation-ai": "ManuscriptRx",
   crypto: "Crypto Trading Platform",
   "investor-loan-app": "Investor Loan Platform",
+  farmflow: "FarmFlow",
   stips: "Stips",
 };
 

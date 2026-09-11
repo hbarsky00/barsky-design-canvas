@@ -35,6 +35,11 @@ export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
     blurb: "An enterprise portal where region is a lens, not a filter.",
   },
   {
+    id: "farmflow",
+    title: "FarmFlow",
+    blurb: "A farm that ran on email, and the request system that replaced the inbox.",
+  },
+  {
     id: "business-management",
     title: "QuickFlow",
     blurb: "Software built from a conversation, not a market.",

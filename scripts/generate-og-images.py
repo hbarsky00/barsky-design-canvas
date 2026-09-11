@@ -148,6 +148,9 @@ def card(title, desc, tag, art_path, out_name):
 
 
 CASE_STUDIES = [
+    ("farmflow", "FarmFlow",
+     "A farm that ran on email. Four roles, a request lifecycle, landscaping and reservations.",
+     "Internal Tools", "/images/farmflow/card-hero.webp"),
     ("bz-essentials", "BZ Essentials",
      "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app.",
      "Enterprise", "/images/bz-essentials/card-hero.webp"),

@@ -82,6 +82,21 @@ const caseStudies: CaseStudy[] = [
     video: "/bz-essentials-card.mp4"
   },
   {
+    id: "farmflow",
+    tags: ["Internal Tools", "Operations", "Solo Build"],
+    title: "FarmFlow",
+    description: "An organisation's farm was taking plant requests by email. Four roles, a request lifecycle with photo confirmation, landscaping and reservations — twelve screens became twenty-two after the stakeholder's feedback.",
+    impact: "",
+    url: "/project/farmflow",
+    liveUrl: "https://farmflow-app.netlify.app",
+    images: {
+      primary: "/images/farmflow/card-hero.webp",
+      alt: "FarmFlow requester home — what's available this week and five ways to start a request"
+    },
+    layout: "side-by-side",
+    video: "/farmflow-card.mp4"
+  },
+  {
     id: "business-management",
     tags: ["Business Software", "Distribution", "Solo Build"],
     title: "QuickFlow",

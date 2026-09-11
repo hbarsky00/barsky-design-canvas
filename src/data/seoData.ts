@@ -147,6 +147,13 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     published: "2026-08-25",
     modified: "2026-08-29"
   },
+  "farmflow": {
+    title: "FarmFlow — Farm Operations Request System Case Study",
+    description: "An organisation's farm took plant requests by email and phone. FarmFlow replaced the inbox: four roles, a request lifecycle with photo confirmation, landscaping, and farm reservations. Twelve screens became twenty-two after stakeholder feedback.",
+    image: "https://barskydesign.pro/images/og/farmflow.png",
+    published: "2026-09-11",
+    modified: "2026-09-11"
+  },
   "bz-essentials": {
     title: "BZ Essentials — Enterprise Knowledge Portal Case Study",
     description: "An internal knowledge portal built from a client PRD, where region is a lens over the whole app instead of a filter nobody opens.",
