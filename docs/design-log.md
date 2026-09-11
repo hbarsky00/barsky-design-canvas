@@ -616,8 +616,23 @@ broken. Do not redesign what works.
   orphaned border-top where the section used to be. Dark mode still
   unreachable (08-31 note), so light only.
 
-  **Verified live** — see the push note below the measurements once the deploy
-  is polled.
+  **Verified on barskydesign.pro, not on the local build.** Live ~90s after
+  the push (`d774b1ff`): all **23 / 23** post URLs re-fetched — **0** serve
+  "switched on yet", **0** serve "Post comment", and the control string
+  "Related UX Design Articles" is still present. The served chunk is now
+  `BlogPost-Z9qje8pS.js` (was `BlogPost-C2DJ7ReM.js`); it still contains
+  `comments_public` (the read survives) and **no** form strings at all — with
+  the key inlined as `undefined`, `!SITE_KEY ? null : …` constant-folds and
+  the whole form is dead-code-eliminated, which is the mirror image of the
+  before-state where the apology was compiled in unconditionally. Live and
+  local chunk are byte-for-byte the same size (33,844).
+
+  The push also carried five commits the client-acquisition loop had left
+  waiting on main (`2ea3b247`…`ace8b080`, 09-09/09-10: service-page linking
+  and case-study copy rhythm). That is that loop's documented posture —
+  "commit, do not push; it rides along on the next auto-improve push" — not a
+  catch-all-stage accident, and the working tree was clean before and after
+  this run. No concurrent writer: no `vite preview` was running at start.
 
   **Left open:**
   - **Switching comments on is Hiram's call**, and it is two env vars, not
