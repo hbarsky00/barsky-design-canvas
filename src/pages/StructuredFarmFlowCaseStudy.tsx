@@ -226,7 +226,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Built for a Phone Too",
         paragraphs: [
-          "A requester checking whether Thursday's flowers were approved is not at a desk when they think to check. The requester side works at phone width: the sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row.",
+          "A requester checking whether Thursday's flowers were approved is not at a desk when they think to check. The whole requester side works at phone width: the sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. These are the eight screens a department actually uses.",
         ],
         images: [
           {
@@ -254,6 +254,34 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
             src: "/images/farmflow/m4-request-details.webp",
             alt: "Request details on a phone — the timeline and quick actions stacked",
             caption: "A ticket. The timeline reads top to bottom, the actions sit under it.",
+            width: 780,
+            height: 1688,
+          },
+          {
+            src: "/images/farmflow/m5-locations.webp",
+            alt: "Locations library on a phone — the department's locations with photos, environment and usage counts",
+            caption: "Locations. The department's own list, each with a photo, so a request points somewhere real.",
+            width: 780,
+            height: 1688,
+          },
+          {
+            src: "/images/farmflow/m6-reserve-farm.webp",
+            alt: "Reserve the farm on a phone — visiting guidelines, then the open-slot picker and booking form",
+            caption: "Reserve the farm. Only open slots are offered; the party size and team-member toggle sit under them.",
+            width: 780,
+            height: 1688,
+          },
+          {
+            src: "/images/farmflow/m7-landscaping.webp",
+            alt: "Landscaping requests on a phone — status counts and the four request types stacked",
+            caption: "Landscaping. Four ways in, one per row.",
+            width: 780,
+            height: 1688,
+          },
+          {
+            src: "/images/farmflow/m8-new-landscaping-request.webp",
+            alt: "New landscaping request on a phone — request type, the optional plant picker and the description field",
+            caption: "A replacement request. Photo, location or pin, and a description; the plant itself stays optional.",
             width: 780,
             height: 1688,
           },
