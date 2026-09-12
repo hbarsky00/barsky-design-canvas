@@ -77,16 +77,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "Two of the items were whole modules. Landscaping needed its own request type and its own admin, because a dead hedge is not a flower order. And departments wanted to reserve the farm itself, for tours, team events and harvest days, which meant the farm team needed a way to say which days and slots were open.",
           "One item split a role in two. The farm lead wanted extra admins who could work the queue and manage the calendar day to day, but could not change when the farm was open. That became an Operations Admin, and it is the reason permissions in this app are individual privileges rather than role labels. Twelve screens became twenty-two.",
         ],
-        images: [
-          {
-            src: "/images/farmflow/july-vs-now-home.webp",
-            alt: "Side by side: the July requester home with a five-item top bar, and the current version with a sidebar that adds Landscaping and Reserve Farm, plus a fifth card for reserving the farm",
-            caption:
-              "July on the left, now on the right. The sidebar gained Landscaping and Reserve Farm, the cards gained a fifth, and the weekly availability banner stayed exactly where it was because nobody argued with it.",
-            width: 1600,
-            height: 500,
-          },
-        ],
       },
       {
         heading: "Four Roles, and Who Can Touch Availability",
@@ -133,29 +123,12 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "That last one came from the farm side. Flowers for an event are the request most likely to disappoint, and the cheapest moment to find out is before the van leaves. So a request can ask for a photo, the farm team attaches one, and the requester confirms it from wherever they are. Every transition from pending through approved, in progress, photo confirmed and fulfilled is logged and shows up on the ticket as a timeline.",
           "Needs Info is a status rather than an email. When the farm team has a question, it goes on the request, the requester answers on the request, and the answer is still there when someone looks at the ticket in three weeks.",
         ],
-        videos: [
-          {
-            src: "/farmflow-walkthrough.mp4",
-            poster: "/images/farmflow/walkthrough-poster.jpg",
-            caption:
-              "A minute through the live build. Sarah from Events signs in, opens a new request, checks her queue and a ticket, looks at reserving the farm. Then James on the farm team: the request queue, the ticket from his side, the calendar, the catalogue, reports, and the availability rules only he can change. Recorded with Playwright against farmflow-app.netlify.app.",
-            width: 1440,
-            height: 900,
-          },
-        ],
         imageLayout: "pair",
         images: [
           {
-            src: "/images/farmflow/02-new-request.webp",
-            alt: "New request — category tiles for flowers, herbs, vegetables, fruits, service and special, the details form with department code and budget line, and an order summary panel",
-            caption: "Fruits is the sixth tile, and the department code and budget line are filled from the department but editable per request. Both came from the feedback round.",
-            width: 1600,
-            height: 1000,
-          },
-          {
-            src: "/images/farmflow/04-request-details.webp",
-            alt: "Request details for FR-2026-0012 — a timeline from submitted through reviewed to approved and scheduled, quick actions, delivery details and the farm contact",
-            caption: "The requester's view of a ticket. The timeline is the request_events log rendered as a story, and the farm contact is a real person with a preferred way to be reached.",
+            src: "/images/farmflow/11-admin-requests.webp",
+            alt: "Request management — counts by status, advanced filters by department, category, location and method, and the request table with bulk actions",
+            caption: "The farm team's queue. Filters by department and category, bulk approve and schedule, and every row carries its status so nothing has to be opened to be triaged.",
             width: 1600,
             height: 1000,
           },
@@ -163,13 +136,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
             src: "/images/farmflow/12-request-ticket.webp",
             alt: "Admin request ticket — universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",
             caption: "The same request from the farm side. Approve, ask for more information, schedule, attach the confirmation photo, mark it fulfilled, or reject it, all from one column.",
-            width: 1600,
-            height: 1000,
-          },
-          {
-            src: "/images/farmflow/13-admin-calendar.webp",
-            alt: "Admin calendar — a week of deliveries and reservations colour-coded by type, with today's schedule listed alongside",
-            caption: "Deliveries and farm reservations on one calendar, in their own colours, because they compete for the same team on the same day.",
             width: 1600,
             height: 1000,
           },
@@ -181,23 +147,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "The brief for landscaping was a sentence: the farm has more options. A landscaping request is a new planting, a replacement, plants for an event, or maintenance, and the replacement flow is where the design work went.",
           "When a plant dies, the person reporting it usually does not know what it was. So choosing the plant is optional. You can upload a photo of the damage, give a location or drop a pin on the property map, and describe it in your own words, and the landscaping team will go and look. The stakeholder's exact words were that landscaping can go to the location and see what is needed, but a description can help. The form is built around that sentence rather than around the catalogue.",
         ],
-        imageLayout: "pair",
-        images: [
-          {
-            src: "/images/farmflow/07-landscaping.webp",
-            alt: "Landscaping requests — counts by status, and four request types: new planting, replacement plant, event greenery and maintenance",
-            caption: "Four ways into a landscaping request. Maintenance was added after the first round, because pruning a hedge is neither a new plant nor a dead one.",
-            width: 1600,
-            height: 1000,
-          },
-          {
-            src: "/images/farmflow/08-new-landscaping-request.webp",
-            alt: "New landscaping request — request type tiles, planting details with an optional plant picker, a description field, and a quick-tips panel",
-            caption: "The plant picker says optional in the label. The description field is where the real information ends up.",
-            width: 1600,
-            height: 1000,
-          },
-        ],
       },
       {
         heading: "Reserving the Farm Itself",
@@ -208,9 +157,9 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/farmflow/06-reserve-farm.webp",
-            alt: "Reserve the farm — visiting guidelines, an open-slot picker across the week, and a form for purpose, party size and whether a team member is needed",
-            caption: "Open slots are the only slots. The toggle for a farm team member is what turns a booking into a staffing question on the admin side.",
+            src: "/images/farmflow/13-admin-calendar.webp",
+            alt: "Admin calendar — a week of deliveries and reservations colour-coded by type, with today's schedule listed alongside",
+            caption: "A confirmed reservation lands on the same calendar as that day's deliveries, in its own colour, because both are competing for the same team on the same morning.",
             width: 1600,
             height: 1000,
           },
@@ -226,13 +175,13 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Built for a Phone Too",
         paragraphs: [
-          "A requester checking whether Thursday's flowers were approved is not at a desk when they think to check. The whole requester side works at phone width: the sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. These are the eight screens a department actually uses.",
+          "A requester checking whether Thursday's flowers were approved is not at a desk when they think to check. The whole requester side works at phone width: the sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. Home is at the top of this page; these are the other eight screens a department actually uses.",
         ],
         images: [
           {
-            src: "/images/farmflow/m1-home.webp",
-            alt: "Requester home on a phone — the weekly availability banner and the request cards stacked",
-            caption: "Home. Same banner, same cards, one column.",
+            src: "/images/farmflow/m0-sign-in.webp",
+            alt: "Sign in on a phone — the FarmFlow hero panel, then Google, Microsoft and Apple sign-in and the email form",
+            caption: "Sign in. The three SSO buttons first, because that is how most of the organisation gets in.",
             width: 780,
             height: 1688,
           },
