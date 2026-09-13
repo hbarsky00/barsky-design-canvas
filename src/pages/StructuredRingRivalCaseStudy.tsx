@@ -54,6 +54,15 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Every boxing game I've liked was on a console. On those the punch lands the instant your thumb moves, the animation reads as one body hitting another, and the opponent seems to be thinking about you. A browser gives you none of that by default. Mobile Safari gives you slightly less.",
           "I wanted it anyway. No install, no app store, a link you open on your phone and you're fighting.",
         ],
+        images: [
+          {
+            src: "/images/ring-rival/flow-how-i-worked.svg",
+            alt: "How I worked on Ring Rival: build the rig, Glass Joe then Von Kaiser through it, fighters become data, fix the paper look, drop the particles, hand-tune on a phone, delete four screens to cut time to first punch, cut hand-tracking, live and tuning the star punch",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 518,
+            height: 946,
+          },
+        ],
       },
       {
         heading: "Building a Fighter Out of Parts",
@@ -153,10 +162,10 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/ring-rival/flow-fighter-pipeline.svg",
-            alt: "Shared rig of body, arms, legs and head, to a fighter's proportions, to a generated sheet of nine poses, which splits into eight poses the fight code counts on and one special that belongs to the fighter, both feeding the opponent in the roster",
-            caption: "How a new opponent gets made, from the rig described further up this page. Eight poses are shared contract; the ninth is what makes Klaus Brenner not Glass Joe.",
-            width: 1332,
-            height: 188,
+            alt: "Fighter pipeline: shared rig, this fighter's proportions, generate the nine-pose sheet, eight poses the fight code counts on plus one special of their own, opponent in the roster with no new drawing",
+            caption: "How a new opponent gets made. Eight poses are a shared contract; the ninth is what makes Klaus Brenner someone other than Glass Joe.",
+            width: 398,
+            height: 618,
           },
         ],
       },

@@ -1,0 +1,12 @@
+- Build the rig before any fighter
+- Glass Joe through it: flat wedges, no elbow
+- Von Kaiser through it at heavier proportions
+? Rig holds for a second fighter?
+  yes:
+    - Fighters become data [gate]
+- Still looks like paper: split arms, add knees, shade the torso
+- Impact particles bury the hit; wrong call [old]
+- Hand-tune freeze, shake, buzz, on a phone
+- Delete splash, mode select, fighter select, tutorial: 22s to 6s
+- Cut webcam hand-tracking; wrong for a couch [old]
+- Live; tuning the star punch now

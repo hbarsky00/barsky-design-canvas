@@ -51,6 +51,10 @@ export interface SimpleCaseStudyImage {
  */
 const PORTRAIT_RATIO = 1.25;
 const isPortrait = (img: SimpleCaseStudyImage) =>
+  // A rendered diagram (always .svg here) is tall because workflows run top
+  // to bottom, not because it is a phone. It belongs in the landscape stack,
+  // where the figure caps it at its own width and centres it.
+  !img.src.endsWith(".svg") &&
   Boolean(img.width && img.height && img.height / img.width >= PORTRAIT_RATIO);
 
 /**

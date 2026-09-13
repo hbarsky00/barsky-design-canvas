@@ -1,0 +1,14 @@
+- Watch analysts: forty results, twenty minutes of tabs
+- Design consumer search first: clean list, minimal chrome
+? Right audience?
+  no:
+    - Density: signals crammed into the row [old]
+- Semantic search over the metadata: 40 down to about 4
+- Move freshness, lineage, access onto the row [gate]
+- Hide restricted results
+? Backfired?
+  yes:
+    - Show them locked with a request button
+- Build permission-aware autocomplete
+- Security review: it leaks restricted names. Cut it.
+- Shipped with its own style guide

@@ -50,10 +50,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/herbalink/flow-verification-gate.svg",
-            alt: "Most directories: anyone lists, visible immediately, badge if a check passes. HerbaLink: practitioner applies, verified by the Guild? Yes, listed; no, not visible",
-            caption: "Badge model above, gate model below. In HerbaLink the check against the American Herbalists Guild happens before a listing exists, so there is no unverified state to badge.",
-            width: 829,
-            height: 434,
+            alt: "Verification gate: practitioner applies, verified against the American Herbalists Guild is listed, otherwise not visible; a visitor answers one intake question, is matched to verified practitioners only, and books",
+            caption: "The gate from both sides. There is no unverified state to badge, because a listing does not exist until the check has passed.",
+            width: 426,
+            height: 616,
           },
           { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
  width: 2880,
@@ -79,6 +79,13 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           },
         ],
         images: [
+          {
+            src: "/images/herbalink/flow-how-i-worked.svg",
+            alt: "How I worked on HerbaLink: talk to seekers and herbalists, decide nobody is listed until verified, test 200 unverified listings and find it worse, replace the filter panel with one question, cut open search, build the diary in full then cut it to one question, built and on hiatus",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 533,
+            height: 1034,
+          },
           { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question.",
  width: 1170,
  height: 1210,

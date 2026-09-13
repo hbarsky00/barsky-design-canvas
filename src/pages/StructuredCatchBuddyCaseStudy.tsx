@@ -30,6 +30,13 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "Scheduling was never the problem. Getting two strangers to agree to meet at a park, with both of them feeling fine about it, was the problem, and it's a trust problem before it's a calendar one.",
         ],
         images: [
+          {
+            src: "/images/catchbuddy/flow-how-i-worked.svg",
+            alt: "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decided by hand, AI security review catches a recursive policy, rename Matches, cut the wizard, cut three calendar integrations, shipped",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 548,
+            height: 726,
+          },
           { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
  width: 1848,
  height: 1364,
@@ -45,10 +52,10 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/catchbuddy/flow-minor-gate.svg",
-            alt: "Sign up, then under 18? No: can post a game. Yes: parent asked to verify, then parent verified? Yes: can post a game. Not yet: can browse, cannot post",
-            caption: "The gate a minor goes through. Browsing is open from the start; posting waits for a parent.",
-            width: 1169,
-            height: 223,
+            alt: "Minor gate: sign up, under 18 asks a parent to verify; verified can post, not yet can browse only; over 18 can post; meeting spot from the curated list; panic button on every game screen",
+            caption: "The gate a minor goes through, and the two things every game gets regardless: a curated meeting spot and a panic button.",
+            width: 784,
+            height: 770,
           },
           { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
  width: 1940,

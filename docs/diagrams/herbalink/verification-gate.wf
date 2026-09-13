@@ -1,0 +1,9 @@
+- Practitioner applies
+? Verified against the American Herbalists Guild?
+  yes:
+    - Listed [gate]
+  no:
+    - Not visible
+- Visitor answers one intake question
+- Matched to verified practitioners only
+- Book

@@ -39,10 +39,10 @@ const ManuscriptRxCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/email-creation-ai/flow-between-the-humans.svg",
-            alt: "Writer edits the manuscript, AI assembles approved content and compliance blocks, Content Ops and Med Writer sign off inline, AI generates the HTML and runs the metadata checklist, checklist passes? No loops back to the writer; yes, Send Preview to Brand appears, then MLR review, outside what I designed",
-            caption: "Human, AI, human, AI, human. Every step a person is accountable for stays with the person; the AI owns the work between them. The last box is the part this concept did not solve.",
-            width: 1221,
-            height: 594,
+            alt: "Human and AI alternation: writer edits, AI assembles, reviewers sign off inline, AI generates HTML and runs the checklist, pass shows Send Preview to Brand, fail returns to the writer, MLR review outside scope",
+            caption: "Person, model, person, model, person. The white steps are the AI's; the last one is the part this concept did not solve.",
+            width: 580,
+            height: 682,
           },
           { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
  width: 1440,
@@ -58,6 +58,13 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
         ],
         images: [
+          {
+            src: "/images/email-creation-ai/flow-how-i-worked.svg",
+            alt: "How I worked on ManuscriptRx: invert the pitch, six owned steps, QC inline, gate the preview, leave the brief locked, keep the warning visible, Figma screens, Claude writes a spec per screen, spec to dev, MLR not designed",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 528,
+            height: 858,
+          },
           { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "QC sits beside the editor instead of after it, so a rejection lands while the writer still has the context to fix it.",
  width: 1440,
  height: 1547,

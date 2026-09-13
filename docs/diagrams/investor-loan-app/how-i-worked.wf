@@ -1,0 +1,12 @@
+- Three teams had already failed. Find out why first.
+- Whiteboard the whole loan lifecycle, application to audit
+- Sketch the order builder rough and fast
+- Write the flow as four moves; officers say yes, that's my job [gate]
+- Build v1 copying Excel's structure
+? Worse than Excel at being Excel?
+  yes:
+    - Rewrite: looks nothing like Excel, behaves like the job [old]
+  no:
+    - Keep going
+- Cut the dashboards; nobody starts on a dashboard
+- Adopted

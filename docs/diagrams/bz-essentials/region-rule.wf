@@ -1,0 +1,11 @@
+- Pick a region in the header
+- Every surface reads through it
+? Document marked Both?
+  yes:
+    - Always visible [gate]
+  no:
+    ? Matches your region?
+      yes:
+        - Visible
+      no:
+        - Hidden from counts, lists, search, and the page [old]

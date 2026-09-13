@@ -1,0 +1,10 @@
+- News, on a schedule
+- AI drafts markets [ai]
+- Today's date is in the prompt [gate]
+? Close date still in the future?
+  no:
+    - Dropped [old]
+  yes:
+    - On the board
+- Buy Yes or No with play money
+- Resolves; each right share pays $1

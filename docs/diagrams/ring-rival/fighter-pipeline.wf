@@ -1,0 +1,7 @@
+- Shared rig: body, arms, legs, head
+- This fighter's proportions
+- Generate the nine-pose sheet
+@ Per fighter
+  - Eight poses the fight code counts on
+  - One special of their own [gate]
+- Opponent in the roster, no new drawing

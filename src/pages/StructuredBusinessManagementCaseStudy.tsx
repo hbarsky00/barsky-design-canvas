@@ -48,11 +48,11 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/flow-excel-first.svg",
-            alt: "A conversation at dinner, to Excel scripts that week, which took re-entry off his desk and taught me the workflow, to a site map of nine areas, to the product grown out of the scripts",
-            caption: "How it came to be, in order. The scripts did two jobs at once, and the second one is why the site map came out right.",
-            width: 1190,
-            height: 604,
+            src: "/images/business-management/flow-how-i-worked.svg",
+            alt: "How I worked on QuickFlow: hear the problem at dinner, Excel scripts that week, learn the workflow by writing them, site map first, orders get the screen, recurring as its own area, phone first, built with AI, no outcome number",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 443,
+            height: 726,
           },
           {
             src: "/images/business-management/v2/recipe-calculator.webp",
@@ -122,6 +122,15 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         paragraphs: [
           "Most of the orders in a business like this are the same orders, every week, from the same accounts, so Harbor Cafe every Monday and Fresh Seafood every second Wednesday are the shape of the business.",
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
+        ],
+        images: [
+          {
+            src: "/images/business-management/flow-standing-order.svg",
+            alt: "Standing order: Harbor Cafe every Monday, the schedule generates this week's order, pending until delivered, revenue counted, checked from the van",
+            caption: "A standing order becoming this week's order, and the one place it gets checked, which is a phone in a van.",
+            width: 666,
+            height: 616,
+          },
         ],
       },
       {

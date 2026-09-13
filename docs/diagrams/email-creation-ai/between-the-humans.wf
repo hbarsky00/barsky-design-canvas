@@ -1,0 +1,10 @@
+- Writer edits the manuscript
+- AI assembles approved content and compliance blocks [ai]
+- Content Ops and Med Writer sign off, inline
+- AI generates the HTML and runs the metadata checklist [ai]
+? Checklist passes?
+  no:
+    - Back to the writer
+  yes:
+    - Send Preview to Brand appears [gate]
+- MLR review [out]

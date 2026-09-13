@@ -40,6 +40,13 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           },
         ],
         images: [
+          {
+            src: "/images/bz-essentials/flow-how-i-worked.svg",
+            alt: "How I worked on BZ Essentials: read the PRD, decide three domains and four categories, build it clickable, region as a lens, metadata panel first, browse first with facets, live prototype",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 502,
+            height: 594,
+          },
           { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow — Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary, and search skips the hierarchy once you have it.",
  width: 1500,
  height: 806,
@@ -56,10 +63,10 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/bz-essentials/flow-region-rule.svg",
-            alt: "A document: marked Both? Yes, visible in every region. No, then does it match the region you picked? Yes, visible; no, hidden from counts, lists, search and the document page",
-            caption: "The region rule as a decision. Two checks, and the second one is applied to every surface at once rather than to the search page alone.",
-            width: 1006,
-            height: 304,
+            alt: "Region rule: pick a region, every surface reads through it; a document marked Both is always visible; otherwise visible only if it matches, else hidden everywhere",
+            caption: "The region rule as a decision, applied to every surface at once rather than to the search page alone.",
+            width: 871,
+            height: 638,
           },
           { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number.",
  width: 1500,

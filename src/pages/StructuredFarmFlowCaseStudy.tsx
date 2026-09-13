@@ -29,6 +29,15 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "The line from the stakeholder that framed the whole thing was that the systemisation would be \"great for efficiency and clarifying mutual expectations.\" Mutual is the word that matters. The farm did not know what departments were going to ask for, and departments did not know what the farm could grow or how long it took. Nobody was being difficult. There was just no shared place for either side to see the other.",
           "So the job was a request system where both sides can see the same thing: what is available this week, what has been asked for, where it is in the process, and when it will arrive.",
         ],
+        images: [
+          {
+            src: "/images/farmflow/flow-how-i-worked.svg",
+            alt: "How I worked on FarmFlow: PRD and twelve screens, a build prompt per page, a clickable build, the stakeholder feedback branch, twenty-two screens, contrast pass, Playwright tests, backend next",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 711,
+            height: 1012,
+          },
+        ],
       },
       {
         heading: "Twelve Screens Before a Line of Code",
@@ -72,13 +81,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/farmflow/flow-roles.svg",
-            alt: "The four FarmFlow roles as privilege buckets: requester, landscaping admin, operations admin, and farm admin, with 'change farm availability' marked as the one control only the farm admin holds",
-            caption: "The four roles as sets of privileges, from the permission matrix in the July PRD. Everything the operations admin can do, the farm admin can do too. The one control that goes the other way is farm availability.",
-            width: 680,
-            height: 640,
-          },
-          {
             src: "/images/farmflow/16-availability-manager.webp",
             alt: "Availability manager — a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
             caption: "The one screen an operations admin can see but not change. Which days the farm is open, which slots can be booked, and whether a team member will be there. Everything else on the admin side they can work. This is the line.",
@@ -97,10 +99,10 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/flow-request-lifecycle.svg",
-            alt: "Request lifecycle flow: pending, reviewed, then approved or needs info, with needs info returning to pending; approved to in progress; then photo confirmed or straight to fulfilled",
-            caption: "The lifecycle every request follows, from section 6 of the PRD. Needs info loops back to pending through the ticket chat, and the photo step is the branch that exists because flowers for an event are the request most likely to disappoint.",
-            width: 1164,
-            height: 163,
+            alt: "Request lifecycle: submitted, pending, farm team reviews; approve leads to in progress and an optional photo confirmation before fulfilled; a question leads to needs info and back to pending",
+            caption: "The lifecycle every request follows, from section 6 of the PRD. The question branch loops back through the ticket, and the photo step exists because flowers for an event are the request most likely to disappoint.",
+            width: 920,
+            height: 902,
           },
           {
             src: "/images/farmflow/12-request-ticket.webp",

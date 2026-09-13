@@ -58,10 +58,10 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/dae-search/flow-search-flow.svg",
-            alt: "Keyword search: type revenue, 40 results, open a tab per table, check owner, freshness and dependants, decide. Semantic search: type revenue, about 4 results, freshness, lineage and access on the row, decide",
-            caption: "The same search before and after. The tab-opening step is the twenty minutes from the top of this page, and it is the step that disappears.",
-            width: 1290,
-            height: 324,
+            alt: "Search flow: type a fragment, semantic match over metadata, about four results, each row shows freshness, lineage and access; restricted results stay visible and locked; decide without opening a tab",
+            caption: "What a search looks like after the row carries the trust signals. The tab-opening step from the top of this page is gone.",
+            width: 564,
+            height: 682,
           },
           { src: "/images/dae-search/what-i-built.webp", alt: "The DAE Search process flow, nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one chosen asset", caption: "Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust, which is the part the result list was leaving them to do alone.",
  width: 1024,
@@ -94,6 +94,15 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Clean ranked list, minimal chrome, get out of the way. Wrong audience.",
           "These people want density. They want signals crammed into the row, because scanning ten dense rows is faster than opening three clean ones, and every bit of whitespace I'd added was costing them a click.",
           "They also don't type questions. They type fragments and internal abbreviations, because they already know what they're looking for and they aren't in a conversation with the search box. \"Diabtes,\" with the typo, is a real query from the screenshots.",
+        ],
+        images: [
+          {
+            src: "/images/dae-search/flow-how-i-worked.svg",
+            alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 492,
+            height: 1100,
+          },
         ],
       },
       {

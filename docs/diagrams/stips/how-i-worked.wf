@@ -1,0 +1,13 @@
+- Every prediction market looks like a Bloomberg terminal
+- Pitch in one line: buy Yes or No, right pays $1
+- Board and market screens, price as a probability
+- Markets generated from the news on a schedule
+? First batch already expired?
+  yes:
+    - Inject today's date; validate every close date [old]
+- Test signed out
+? Bugs hidden by RLS returning nothing?
+  yes:
+    - Test as a real account [old]
+- Measure every colour against its surface; four failed, fixed [gate]
+- Live at stips.bet; the job now is getting people to try it

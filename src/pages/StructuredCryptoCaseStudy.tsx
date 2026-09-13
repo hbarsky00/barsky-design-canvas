@@ -42,6 +42,13 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Making it a setting means a beginner can see Pro exists before they're ready for it, and a pro can flip to Beginner to walk a friend through a trade without logging out of their own account.",
         ],
         images: [
+          {
+            src: "/images/crypto/flow-how-i-worked.svg",
+            alt: "How I worked on the trading platform: tear down who each model charges, decide mode as a setting, cost beside the button, plain language as a constraint, beginner mode v1 tested badly, pro mode v1 tested badly, not shipped",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 634,
+            height: 1034,
+          },
           { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture — one platform, shared core, mode as a setting rather than a separate product", caption: "One platform, one shared core, and the mode as a setting. A beginner can see Pro exists before they're ready for it.",
  width: 2100,
  height: 1500,
@@ -76,10 +83,10 @@ const StructuredCryptoCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/crypto/flow-confirm-threshold.svg",
-            alt: "Set the order, total cost shown beside the button, then a check: above the confirmation threshold? No goes straight to placed; yes goes through one confirmation",
-            caption: "What replaced the confirmation on everything. One check, above a threshold, and otherwise out of the way.",
-            width: 1129,
-            height: 226,
+            alt: "Confirmation flow: set the order, total cost beside the button, above the threshold gets one confirmation, below gets none, placed",
+            caption: "What replaced confirmations on everything. One check, above a threshold, and otherwise out of the way.",
+            width: 473,
+            height: 550,
           },
           { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising", caption: "The prototype that failed. Confirmations on everything and a tour that wouldn't end — testers didn't feel safe, they felt talked down to.",
  width: 1890,

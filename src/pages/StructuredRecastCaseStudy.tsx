@@ -46,11 +46,11 @@ const StructuredRecastCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/recast/flow-record-to-link.svg",
-            alt: "Press Record on the site, native app installed? No, download it. Yes, the app records the screen. Press stop: it plays at once from the local file, and uploads behind it to the website library and share link",
-            caption: "The boundary, drawn. Everything on the left of stop happens in the native app; the website only ever sees the finished file.",
-            width: 1149,
-            height: 281,
+            src: "/images/recast/flow-how-i-worked.svg",
+            alt: "How I worked on Recast: build browser recording, kill it, draw the app and website boundary, set the stop-means-watch rule, break and fix it, reorder the Android service, audit permissions, sign up as a stranger and find the leak, unify three looks, live",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 555,
+            height: 1012,
           },
           { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab.",
  width: 1500,
@@ -70,6 +70,13 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It returns in a millisecond or two now and uploads in a detached task. While I was in there I found the first upload after launch was eating five to eight seconds of framework setup, so the app now warms that up at start instead of paying for it the moment you press stop.",
         ],
         images: [
+          {
+            src: "/images/recast/flow-record-to-link.svg",
+            alt: "Record to link: press Record on the site, open or download the app, record, stop, then in parallel play from the local file and upload in the background, website library and share link, the viewer presses play",
+            caption: "The boundary as a sequence. Everything before the upload happens in the native app; the website only ever sees the finished file.",
+            width: 395,
+            height: 904,
+          },
           { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller.",
  width: 1500,
  height: 776,

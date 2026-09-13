@@ -33,6 +33,15 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           { value: "8 figures", label: "The deal values it was tracking, with no validation behind them" },
           { value: "Adopted", label: "Where this attempt landed, and the three before it didn't" },
         ],
+        images: [
+          {
+            src: "/images/investor-loan-app/flow-how-i-worked.svg",
+            alt: "How I worked on the loan platform: find out why three teams failed, whiteboard the lifecycle, sketch the order builder, write the four moves, build v1 copying Excel, rewrite when it was worse, cut the dashboards, adopted",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 741,
+            height: 814,
+          },
+        ],
       },
       {
         heading: "Research and Ideation",
@@ -82,6 +91,13 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
         images: [
           {
+            src: "/images/investor-loan-app/flow-order-builder.svg",
+            alt: "Order builder flow: find the deal by name fragment, choose Cashless Roll or Book-builder, pick the lender first so terms unlock, add the order, inline validation, audit trail beside the record, grid updates",
+            caption: "The order builder as a sequence. Lender first, then terms, because an order against nothing was the mistake the spreadsheet allowed.",
+            width: 612,
+            height: 748,
+          },
+          {
             src: "/images/investor-loan-app/hero.webp",
             alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",
             caption: "Predictive search in place of filter panels. Loan officers think in name fragments and deal codes, and want the deal on screen in two keystrokes.",
@@ -98,13 +114,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "The landing page below is the version that made that obvious. Every deal in the book as a card, twenty-two thousand of them, sorted by borrower. It is a perfectly reasonable screen and it answers a question nobody was asking. What replaced it is the list further down this page, with predictive search on top, because the real first move of the day is finding one deal by name.",
         ],
         images: [
-          {
-            src: "/images/investor-loan-app/flow-first-move.svg",
-            alt: "Two flows: the first version went log in, dashboard, scan cards, find the deal; what shipped goes log in, type a name fragment, the deal",
-            caption: "The first move of the day, in the version I built first and the version that shipped. From this study's own account of what got cut.",
-            width: 917,
-            height: 276,
-          },
           {
             src: "/images/investor-loan-app/deal-central-wireframe.webp",
             alt: "Loan Central landing page in wireframe \u2014 My Deals, Live Deals and All Deals tabs above a grid of deal cards showing borrower, industry, region, status and deal size, with 22,934 deals in the header",

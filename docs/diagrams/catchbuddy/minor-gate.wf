@@ -1,0 +1,13 @@
+- Sign up
+? Under 18?
+  yes:
+    - Parent asked to verify
+    ? Parent verified?
+      yes:
+        - Can post a game [gate]
+      not yet:
+        - Can browse, cannot post [old]
+  no:
+    - Can post a game
+- Meeting spot from the curated list
+- Panic button on every game screen
