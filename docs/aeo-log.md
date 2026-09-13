@@ -265,7 +265,7 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   copy changed. Working tree checked before commit: only the three edited
   files plus the new script staged, by path.
 
-  | check | live before | built after |
+  | check | live before | live after |
   |---|---|---|
   | sitemap URLs stamped with the build date | **22 / 45** | **0 / 45** |
   | sitemap URLs with a real `<lastmod>` | 23 | **36** (9 static omit it) |
@@ -274,6 +274,12 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   | posts with `BlogPosting.dateModified` | **12 / 23** | **23 / 23** |
   | routes failing `seo_audit_all_routes.py` | 1 | **0** |
   | "Lead Product Designer" in sitemap | 1 | **0** |
+
+  The "after" column is **barskydesign.pro**, ~60s after the push (`6e30fb59`),
+  not the local build: the sitemap re-fetched, all 13 `/project/*` pages and
+  all 23 `/blog/*` pages re-fetched and compared route by route. Sitemap
+  `<lastmod>` values live: 21 × 08-29, 08-30, 09-06, 13 × 09-12 — identical to
+  the built file.
 
   **Concurrent writer, noted.** Another session was writing to this repo
   during this run — untracked `docs/diagrams/*` and `public/images/*/flow-*`
