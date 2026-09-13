@@ -197,7 +197,93 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   stays flagged — editing a post's own claim to make a summary line up is
   exactly backwards.
 
-- [ ] 6 content freshness / gap-fill
+- [x] **6 content freshness / gap-fill** — 2026-09-13 — SEO/AEO was the staler
+  half (AEO 09-09, design 09-11). The freshness signals the site sends were
+  measured against git and found to be wrong in three places, all in the same
+  data file and the one script that reads it.
+
+  **What was measured, on barskydesign.pro before touching anything.**
+  1. **`sitemap.xml`: 22 of 45 URLs carried today's date as `<lastmod>`** — every
+     case study and every static page, re-stamped on each deploy. Only the 23
+     blog URLs had a real date. `generate-sitemap.ts` fell back to
+     `new Date()` for any entry without one, directly under a comment
+     explaining why doing that is worse than omitting the field. The 13 case
+     studies therefore told Google "changed 2026-09-13" in the sitemap and
+     "changed 2026-08-29" in their own JSON-LD `dateModified`, in the same
+     response. Google's documented behaviour when `lastmod` is caught being
+     inconsistent is to stop trusting it for the whole sitemap — which would
+     have taken the blog's honest dates down too.
+  2. **All 13 case studies declared `modified: 2026-08-29`.** Every one was
+     rewritten on 2026-09-12 (`c11240ea`, `a393009b`, `25bcd7cf` — the
+     "Humanize" commits, copy changes on all thirteen page files; FarmFlow also
+     `f6e4141c`). The hand-maintained date had drifted within two weeks of
+     being set.
+  3. **`BlogPosting.dateModified` on 12 / 23 posts.** The 09-01 sweep recorded
+     "none of the 23"; the truth was eleven missing (the 08-25/08-27 batch) and
+     twelve stale (`2026-08-09T12:00:00Z`, predating the 08-27 image-and-
+     backlink pass and the 08-29 caption pass, both of which added visible copy
+     to every post).
+
+  Also picked up by the mandated `seo_audit_all_routes.py`: `/project/farmflow`
+  was the one route failing it — a **246-character** meta description, ~90 over
+  the truncation line (every other route is ≤155).
+
+  **Changed.**
+  - `scripts/generate-sitemap.ts` — project entries now take `lastmod` from
+    `PROJECT_SEO_MAP` (`modified || published`), the same source their JSON-LD
+    uses, so the two can no longer disagree. Entries with no real date **omit
+    `<lastmod>`** instead of inventing one; `today` is gone from the script.
+    The homepage image title in the same file said "Hiram Barsky - Lead Product
+    Designer" — retired positioning — and now says "designer and developer",
+    matching the `/about` title tag.
+  - `src/data/seoData.ts` — `modified` set from git per route, by one rule
+    written into both maps' comments: *the last commit that changed the item's
+    visible copy, not the file's last commit and not a style tweak.* Case
+    studies: 13 × `2026-09-12`. Posts: `git log -L` on each post's block in
+    `blogData.ts`; 21 × `2026-08-29` (caption pass), `what-one-person-can-ship-
+    now` `2026-08-30` (lever 3), `finding-the-data-is-half-the-job`
+    `2026-09-06` (DAE captions). `c3937c91` (09-07) touched 12 posts but only
+    swapped a photo-credit class, so it does not count. FarmFlow's description
+    cut to 150 characters by subtraction only — nothing added.
+  - `scripts/check-content-dates.mjs` — **new, read-only.** Prints declared
+    `modified` vs git for all 36 dated routes and flags where git is newer.
+    Carries a `STYLE_ONLY` set (currently just `c3937c91`) so a judged
+    markup-only commit stops nagging. Exists because item 2 shows these dates
+    drift silently; the loop should run it each cycle. It reports **36 routes,
+    0 stale** now.
+
+  Considered and rejected: deriving `modified` from git at build time.
+  Netlify's clone depth is unverified from here and a shallow clone would
+  silently ship blanks; a per-block `git log -L` cannot distinguish a rewrite
+  from a class change either. Hand-maintained plus a deterministic drift
+  report is the honest minimum.
+
+  **Measured.** `npx tsc --noEmit` **0**, eslint clean on the three files,
+  build **45 / 45 prerendered, 0 head-only** (45 now, not 44 — FarmFlow was
+  added 09-11). `seo_audit_all_routes.py` **PROBLEMS: 0** (was 1). No
+  `capture-bodies`: head JSON-LD, meta description and sitemap only — no body
+  copy changed. Working tree checked before commit: only the three edited
+  files plus the new script staged, by path.
+
+  | check | live before | built after |
+  |---|---|---|
+  | sitemap URLs stamped with the build date | **22 / 45** | **0 / 45** |
+  | sitemap URLs with a real `<lastmod>` | 23 | **36** (9 static omit it) |
+  | case-study `lastmod` == its JSON-LD `dateModified` | 0 / 13 | **13 / 13** |
+  | case studies with `dateModified` matching git | 0 / 13 | **13 / 13** |
+  | posts with `BlogPosting.dateModified` | **12 / 23** | **23 / 23** |
+  | routes failing `seo_audit_all_routes.py` | 1 | **0** |
+  | "Lead Product Designer" in sitemap | 1 | **0** |
+
+  **Concurrent writer, noted.** Another session was writing to this repo
+  during this run — untracked `docs/diagrams/*` and `public/images/*/flow-*`
+  files with mtimes a minute old, from the client-acquisition loop's diagram
+  work. Per the 2026-08-23 rule this loop should not have started; it was
+  already mid-run when the files appeared. Mitigated by staging by explicit
+  path only and by `git diff` confirming each hunk was this run's. If that
+  session commits case-study copy today, the 13 × `2026-09-12` dates go stale
+  by one day the moment it lands — `check-content-dates.mjs` will say so.
+
 
 ### Out of rotation — 2026-09-09 — case studies had no BreadcrumbList
 

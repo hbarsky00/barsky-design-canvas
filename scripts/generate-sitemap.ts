@@ -4,15 +4,17 @@
 
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
-import { getBlogSEO } from "../src/data/seoData";
+import { getBlogSEO, getProjectSEO } from "../src/data/seoData";
 
 const BASE_URL = "https://barskydesign.pro";
-const today = new Date().toISOString().slice(0, 10);
 
 interface Entry {
   path: string;
   changefreq?: "weekly" | "monthly" | "yearly";
   priority?: string;
+  // Only set from a real date (seoData.ts `modified` / `published`). Entries
+  // without one omit <lastmod> entirely — see urlBlock.
+  lastmod?: string;
   image?: { loc: string; title: string };
 }
 
@@ -23,7 +25,7 @@ const staticEntries: Entry[] = [
     priority: "1.0",
     image: {
       loc: `${BASE_URL}/images/hiram-barsky-headshot.webp`,
-      title: "Hiram Barsky - Lead Product Designer",
+      title: "Hiram Barsky — designer and developer",
     },
   },
   { path: "/services", changefreq: "monthly", priority: "0.9" },
@@ -81,11 +83,15 @@ function getBlogSlugs(): string[] {
 
 const entries: Entry[] = [
   ...staticEntries,
-  ...getProjectPaths().map<Entry>((path) => ({
-    path,
-    changefreq: "monthly",
-    priority: "0.7",
-  })),
+  ...getProjectPaths().map<Entry>((path) => {
+    const seo = getProjectSEO(path.replace("/project/", ""));
+    return {
+      path,
+      changefreq: "monthly",
+      priority: "0.7",
+      lastmod: seo?.modified || seo?.published,
+    };
+  }),
   ...getBlogSlugs().map<Entry>((slug) => ({
     path: `/blog/${slug}`,
     changefreq: "monthly",
@@ -102,7 +108,14 @@ function urlBlock(e: Entry): string {
   const lines = [
     "  <url>",
     `    <loc>${BASE_URL}${e.path}</loc>`,
-    `    <lastmod>${e.lastmod || today}</lastmod>`,
+    // Omit rather than fall back to the build date. Until 2026-09-13 every
+    // project and static URL — 22 of 45 — was stamped with "today" on each
+    // deploy, which is the exact "all changed on the same day" pattern the
+    // blog comment above warns about, and it contradicted the case studies'
+    // own JSON-LD dateModified. Google treats a lastmod it catches lying as a
+    // reason to ignore the field sitemap-wide, taking the blog's real dates
+    // down with it. An absent lastmod is neutral; a false one is not.
+    e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
     e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
     e.priority ? `    <priority>${e.priority}</priority>` : null,
   ];
