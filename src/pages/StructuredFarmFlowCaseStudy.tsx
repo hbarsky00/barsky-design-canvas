@@ -69,7 +69,15 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "A requester sees their own department's requests and nothing else. The farm admin sees everything. The operations admin sees everything the farm admin does, and the one control they do not have is the farm's opening hours and reservation slots. The landscaping admin sees the landscaping catalogue and queue, and none of the farm's.",
           "It would have been easier to make Operations Admin a copy of Farm Admin with one checkbox unticked, and that missing control is the whole reason I didn't. Every admin capability is a named privilege, and a role is just a default set of them. That way the farm lead can grant or revoke one thing without inventing a new role, and when honey and eggs arrive and somebody needs a kitchen role, it is a row of toggles rather than a schema change.",
         ],
+        imageLayout: "pair",
         images: [
+          {
+            src: "/images/farmflow/flow-roles.svg",
+            alt: "The four FarmFlow roles as privilege buckets: requester, landscaping admin, operations admin, and farm admin, with 'change farm availability' marked as the one control only the farm admin holds",
+            caption: "The four roles as sets of privileges, from the permission matrix in the July PRD. Everything the operations admin can do, the farm admin can do too. The one control that goes the other way is farm availability.",
+            width: 697,
+            height: 694,
+          },
           {
             src: "/images/farmflow/16-availability-manager.webp",
             alt: "Availability manager — a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
@@ -87,6 +95,13 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "Needs Info is a status rather than an email. When the farm team has a question, it goes on the request, the requester answers on the request, and the answer is still there when someone looks at the ticket in three weeks.",
         ],
         images: [
+          {
+            src: "/images/farmflow/flow-request-lifecycle.svg",
+            alt: "Request lifecycle flow: pending, reviewed, then approved or needs info, with needs info returning to pending; approved to in progress; then photo confirmed or straight to fulfilled",
+            caption: "The lifecycle every request follows, from section 6 of the PRD. Needs info loops back to pending through the ticket chat, and the photo step is the branch that exists because flowers for an event are the request most likely to disappoint.",
+            width: 1324,
+            height: 224,
+          },
           {
             src: "/images/farmflow/12-request-ticket.webp",
             alt: "Admin request ticket — universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",

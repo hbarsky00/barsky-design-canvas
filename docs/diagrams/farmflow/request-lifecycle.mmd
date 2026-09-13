@@ -1,0 +1,9 @@
+flowchart LR
+  P[Pending] --> R{Reviewed}
+  R -->|approved| A[Approved]
+  R -->|question| N[Needs info]
+  N -->|answered on the ticket| P
+  A --> I[In progress]
+  I -->|photo requested| C[Photo confirmed]
+  C --> F[Fulfilled]
+  I --> F

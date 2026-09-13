@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph REQ[Requester]
+    direction TB
+    r1[Own department's requests]
+    r2[Reserve the farm]
+  end
+  subgraph LAND[Landscaping admin]
+    direction TB
+    l1[Landscaping catalogue]
+    l2[Landscaping queue]
+  end
+  subgraph OPS[Operations admin]
+    direction TB
+    o1[Request queue]
+    o2[Calendar]
+    o3[Users and departments]
+  end
+  subgraph MAIN[Farm admin]
+    direction TB
+    m1[All of the above]
+    m2{{Change farm availability}}
+  end
