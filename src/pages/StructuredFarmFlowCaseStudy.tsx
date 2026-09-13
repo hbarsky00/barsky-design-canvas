@@ -17,7 +17,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       alt: "FarmFlow requester home — what's available this week, five ways to start a request, and the department's pending, approved and upcoming counts",
       hoverVideo: "/farmflow-walkthrough.mp4",
       caption:
-        "Where a department lands after signing in. Play it and the walkthrough follows a request from Sarah in Events through to James on the farm team: new request, the queue, the ticket, the calendar, the catalogue, reports and the availability rules. Recorded off the live build with Playwright, so this is the app as it is today. Names and figures are the demo dataset.",
+        "Where a department lands after signing in. Play it and the walkthrough follows a request from Sarah in Events through to James on the farm team: new request, the queue, the ticket, the calendar, the catalogue, reports and the availability rules. Recorded off the live build with Playwright, so this is the app as it is today, with the names and figures from the demo dataset.",
       width: 1600,
       height: 1000,
     }}
@@ -60,20 +60,20 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         paragraphs: [
           "The stakeholder came back with a list, and almost none of it was cosmetic. Fruits needed its own category. Honey and eggs were coming, so those had to be designed for even if they shipped behind a flag. Every request needed a department code and a budget line so it could be charged back. Email had to be a first-class way to be contacted, with phone as the backup rather than the other way round.",
           "Two of the items were whole modules. Landscaping needed its own request type and its own admin, because a dead hedge is not a flower order. And departments wanted to reserve the farm itself, for tours, team events and harvest days, which meant the farm team needed a way to say which days and slots were open.",
-          "One item split a role in two. The farm lead wanted extra admins who could work the queue and manage the calendar day to day, but could not change when the farm was open. That became an Operations Admin, and it is the reason permissions in this app are individual privileges rather than role labels. Twelve screens became twenty-two.",
+          "One item split a role in two. The farm lead wanted extra admins who could work the queue and manage the calendar day to day, but could not change when the farm was open. That became an Operations Admin, and it's the reason permissions in this app are individual privileges instead of role labels. By the time the list was worked through, twelve screens had become twenty-two.",
         ],
       },
       {
         heading: "Four Roles, and Who Can Touch Availability",
         paragraphs: [
           "A requester sees their own department's requests and nothing else. The farm admin sees everything. The operations admin sees everything the farm admin does, and the one control they do not have is the farm's opening hours and reservation slots. The landscaping admin sees the landscaping catalogue and queue, and none of the farm's.",
-          "The interesting one is that missing control. It would have been easier to make Operations Admin a copy of Farm Admin with one checkbox unticked. Instead every admin capability is a named privilege, and a role is just a default set of them. That way the farm lead can grant or revoke one thing without inventing a new role, and when honey and eggs arrive and somebody needs a kitchen role, it is a row of toggles rather than a schema change.",
+          "It would have been easier to make Operations Admin a copy of Farm Admin with one checkbox unticked, and that missing control is the whole reason I didn't. Every admin capability is a named privilege, and a role is just a default set of them. That way the farm lead can grant or revoke one thing without inventing a new role, and when honey and eggs arrive and somebody needs a kitchen role, it is a row of toggles rather than a schema change.",
         ],
         images: [
           {
             src: "/images/farmflow/16-availability-manager.webp",
             alt: "Availability manager — a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
-            caption: "The one screen an operations admin can see but not change. Which days the farm is open, which slots can be booked, and whether a team member will be there. Everything else on the admin side they can work; this is the line.",
+            caption: "The one screen an operations admin can see but not change. Which days the farm is open, which slots can be booked, and whether a team member will be there. Everything else on the admin side they can work. This is the line.",
             width: 1600,
             height: 1000,
           },
@@ -107,7 +107,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         heading: "Reserving the Farm Itself",
         paragraphs: [
           "Departments wanted the farm for things that were not plant orders: a team visit, a tour for new hires, a harvest afternoon, dinner in the farm's dining space. That is a different shape of request. It has a party size, a time slot, and a question about whether someone from the farm team needs to be there.",
-          "The constraint that made it work is that only slots the farm lead has opened can be booked. The reservation calendar is not a blank month you pick a day from; it is the availability manager's rules, rendered from the requester's side. If the farm is closed on Fridays, Friday is not a choice.",
+          "Only slots the farm lead has opened can be booked, and that one constraint is what made it work. The reservation calendar is the availability manager's rules rendered from the requester's side, so if the farm is closed on Fridays, Friday simply isn't there to pick.",
         ],
         images: [
           {
@@ -122,7 +122,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Built for a Phone Too",
         paragraphs: [
-          "A requester checking whether Thursday's flowers were approved is not at a desk when they think to check. The whole requester side works at phone width: the sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. Home is at the top of this page; these are the other eight screens a department actually uses.",
+          "A requester checking whether Thursday's flowers were approved isn't at a desk when they think to check. The whole requester side works at phone width. The sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. Home is at the top of this page, and these are the other eight screens a department actually uses.",
         ],
         images: [
           {
@@ -163,7 +163,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           {
             src: "/images/farmflow/m6-reserve-farm.webp",
             alt: "Reserve the farm on a phone — visiting guidelines, then the open-slot picker and booking form",
-            caption: "Reserve the farm. Only open slots are offered; the party size and team-member toggle sit under them.",
+            caption: "Reserve the farm. Only open slots are offered, and the party size and team-member toggle sit under them.",
             width: 780,
             height: 1688,
           },
@@ -177,7 +177,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           {
             src: "/images/farmflow/m8-new-landscaping-request.webp",
             alt: "New landscaping request on a phone — request type, the optional plant picker and the description field",
-            caption: "A replacement request. Photo, location or pin, and a description; the plant itself stays optional.",
+            caption: "A replacement request. Photo, location or pin, and a description. The plant itself stays optional.",
             width: 780,
             height: 1688,
           },
@@ -202,7 +202,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         paragraphs: [
           "It is live at farmflow-app.netlify.app as a fully clickable build: twenty-two screens across four roles, every flow working, with demo data seeded in the browser. A twenty-two test Playwright suite covers sign-in for each role, the request lifecycle, approvals, reservations, search and the help centre, and it runs against the live site.",
           "What it is not yet is connected to anything. The requirements document specifies the tables, the row-level security and the storage buckets. None of that is wired. That is the next phase, along with real sign-in, email notifications that honour each person's preferred contact method, and the honey and eggs categories that are designed and waiting behind a flag.",
-          "It is here as the front half of a product done properly: a real problem, a stakeholder whose feedback changed the structure and not just the copy, and a build you can hand to the people who will use it before a single database table exists.",
+          "It's here as the front half of a product done properly. A real problem, a stakeholder whose feedback changed the structure as well as the copy, and a build you can hand to the people who'll use it before a single database table exists.",
         ],
       },
     ]}

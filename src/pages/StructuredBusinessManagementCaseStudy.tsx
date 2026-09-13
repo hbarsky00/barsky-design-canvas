@@ -16,7 +16,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       alt: "QuickFlow Business Overview — today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
       hoverVideo: "/quickflow-walkthrough.mp4",
       caption:
-        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset; his real books stay his.",
+        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset. His real books stay his.",
       width: 2300,
       height: 1438,
     }}
@@ -25,7 +25,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         heading: "A Conversation Over Dinner",
         paragraphs: [
           "I met the owner of a wholesale distribution business by chance at a restaurant. He started describing the software he was paying for, and it was the specific kind of complaint you only get from someone who uses a thing every day.",
-          "Grid actions that looked clickable and did nothing. Simple tasks buried behind screens that existed for somebody else's org chart. Hours a week of manual re-entry that a script could have done. He was paying a subscription for the privilege.",
+          "Grid actions that looked clickable and did nothing. Simple tasks buried behind screens that existed for somebody else's org chart. Hours a week of manual re-entry that a script could have done, and a subscription invoice every month for the privilege of doing it by hand.",
           "None of that came out of a research plan. It came out of dinner, which is the only reason I heard the version with the frustration still in it.",
         ],
         images: [
@@ -33,7 +33,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/competitive-landscape.jpg",
             alt: "The incumbent products — Sage X3, Zoho One and a HACCP compliance tool, all leading with demo requests and dashboards",
             caption:
-              "What he was choosing between. Every one of these sells a dashboard to an executive; none of them is built for the person entering an order at 6am.",
+              "What he was choosing between. Every one of these sells a dashboard to an executive, and none of them is built for the person entering an order at 6am.",
               width: 1081,
               height: 525,
           },
@@ -113,7 +113,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Recurring Is What a Distributor Runs On",
         paragraphs: [
-          "Most of the orders in a business like this are the same orders, every week, from the same accounts. Harbor Cafe every Monday. Fresh Seafood every second Wednesday.",
+          "Most of the orders in a business like this are the same orders, every week, from the same accounts, so Harbor Cafe every Monday and Fresh Seafood every second Wednesday are the shape of the business.",
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
         ],
       },
@@ -143,7 +143,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/mobile-delivery.webp",
             alt: "The driver interface on a phone — start location sharing, then each active delivery with navigate, call and complete",
             caption:
-              "The driver view is its own thing, not the office screen shrunk down: share location, then navigate, call, and mark each drop delivered.",
+              "The driver view was designed as its own screen. Share location, then navigate, call, and mark each drop delivered, with nothing from the office view carried over.",
             width: 544,
             height: 1177,
           },
@@ -161,7 +161,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         heading: "Where It Is",
         paragraphs: [
           "Designed and built by me, from the site map through the interface to the working application, with AI doing the parts of the build I would otherwise have handed to an engineer.",
-          "I am deliberately not putting an outcome number on this page. The honest position is that it came out of one conversation with one owner and it does the job he described; I have not measured it, and a percentage I could not defend on a call is worth less than saying so.",
+          "I'm deliberately not putting an outcome number on this page. It came out of one conversation with one owner and it does the job he described. I haven't measured it, and a percentage I couldn't defend on a call is worth less than saying so.",
           "What this one is evidence of is the front half. Hearing a real problem in the wild, relieving it with a spreadsheet inside a week, and only then designing the thing properly.",
         ],
         images: [

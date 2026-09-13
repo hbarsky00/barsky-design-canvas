@@ -27,7 +27,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         paragraphs: [
           "This started as a requirements document for an internal knowledge portal: the place a marketing team goes to find the process, the template or the guideline they're supposed to be following.",
           "A PRD can describe an information architecture in a way that sounds fine and falls apart the moment it's clickable. So I built it. Three domains, four categories under each, and a set of documents with the metadata a real one would carry: owner, department, version, status, region, attachments, related items.",
-          "It's a prototype under a made-up brand, and the footer says so. What's real is the structure and the behaviour underneath it.",
+          "It's a prototype under a made-up brand, and the footer says so, but the structure and the behaviour underneath it are the real design work and they're what this page is about.",
         ],
         videos: [
           {
@@ -40,7 +40,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           },
         ],
         images: [
-          { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow — Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary; search skips the hierarchy once you have it.",
+          { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow — Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary, and search skips the hierarchy once you have it.",
  width: 1500,
  height: 806,
     },
@@ -51,7 +51,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         paragraphs: [
           "The requirement was that some content is global, some is US-only. The obvious build is a filter in the search page. That's wrong, because the person who needs it most is the one who never opens search. They follow a link, land on a document, and have no idea it doesn't apply to their market.",
           "So region is a lens on the whole app instead. It lives in a context provider, it's set once in the header, and every surface reads through it: the counts on the category cards, the featured lists, the search results, the badge on an individual document.",
-          "The rule that makes it work is small. Content marked Both is always visible, and everything else has to match the region you're in. That means switching to US doesn't hide most of the portal. It adds the US-specific material on top of the shared set, which is the opposite of what a naive equality check would do.",
+          "Content marked Both is always visible, and everything else has to match the region you're in. That's the whole rule. That means switching to US doesn't hide most of the portal. It adds the US-specific material on top of the shared set, which is the opposite of what a naive equality check would do.",
         ],
         images: [
           { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number.",
@@ -81,12 +81,12 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       {
         heading: "Three Doors, and a Search for People Who Already Know",
         paragraphs: [
-          "Search-first would have been the faster build. It's also the wrong default here, because someone new to this material can't search for a process whose name they don't know yet. Browsing is how you learn what exists.",
+          "Search-first would have been the faster build. It's also the wrong default here, because someone new to this material can't search for a process whose name they don't know yet, and browsing is how they find out what exists.",
           "So the front door is three domains, each with its own colour and its own landing page, and search sits alongside them as the fourth option rather than the only one.",
           "Search is then built for the other half of the audience: the people who know exactly what they want. Facets for business area, region, document type and status, filtering a live result count, because in this kind of library the useful question is usually \"approved templates for the US\" and not a keyword at all.",
         ],
         images: [
-          { src: "/images/bz-essentials/search.webp", alt: "Search and browse — faceted filters for business area, region, document type and status beside a result grid", caption: "Facets, not a smarter keyword match. The filters are the query.",
+          { src: "/images/bz-essentials/search.webp", alt: "Search and browse — faceted filters for business area, region, document type and status beside a result grid", caption: "Facets do the work here, because the useful question is usually a combination. The filters are the query.",
  width: 1500,
  height: 1354,
     },
@@ -96,7 +96,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It's live at az-essentials.netlify.app and you can click all of it: the region switch, the domains, the facets, the document pages.",
-          "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample rather than a full library, the brand is invented, and there's no authentication or CMS behind it. Nothing here is an official system for anyone.",
+          "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample instead of a full library, the brand is invented, there's no authentication or CMS behind it, and none of it is an official system for anyone.",
           "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision only looks obvious once you have seen the version where it is a filter buried in a search page.",
         ],
       },

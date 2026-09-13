@@ -52,7 +52,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           {
             src: "/images/investor-loan-app/book-builder-lofi.png",
             alt: "Low-fidelity order builder wireframe for loan workflows",
-            caption: "Low-fi on purpose. I was testing the sequence of steps, not the look.",
+            caption: "Low-fi on purpose. I was testing the sequence of steps. The look came later.",
             width: 1529,
             height: 1113,
           },

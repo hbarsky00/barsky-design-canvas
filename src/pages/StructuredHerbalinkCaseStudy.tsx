@@ -15,7 +15,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
-      caption: "The promise on the front door is the practitioner, not the size of the catalogue. Everything behind it is gated on that being true.",
+      caption: "The promise on the front door is the practitioner. The catalogue size never comes up. Everything behind it is gated on that being true.",
       width: 2880,
       height: 1800,
     }}

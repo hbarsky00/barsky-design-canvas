@@ -78,7 +78,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "Sketching how much could sit in the list before it stopped being a list: multiple search terms, selected entities, meta tags carried onto the result." },
-          { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query — “Diabtes.” They type fragments, not questions, and the search has to survive that." },
+          { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query — “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
         ],
       },
       {

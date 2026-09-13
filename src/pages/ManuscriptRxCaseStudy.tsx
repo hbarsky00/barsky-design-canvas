@@ -5,14 +5,14 @@ const ManuscriptRxCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="email-creation-ai"
     title="ManuscriptRx"
-    description="A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI."
+    description="A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates the AI has to work between."
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/emailai-hero-pair.webp",
       alt: "The six-step workflow navigator beside the assemble step — Brief Creation locked, approved content pulled in on the right",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
-      caption: "Six steps, each naming the human who owns it. Brief Creation is greyed out because I didn't research it, not because it's coming later.",
+      caption: "Six steps, each naming the human who owns it. Brief Creation is greyed out because I didn't research it. It's outside the pilot, and the label says so.",
       width: 1720,
       height: 648,
     }}
@@ -26,7 +26,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
         heading: "Two Weeks to Send One Email",
         paragraphs: [
           "A regulated pharma email touches a medical writer, content ops, brand, MLR and CRM. Five teams, five different tools, and two weeks end to end is considered a good run.",
-          "This one is mine, not a client's. Nobody briefed it and nothing shipped. I built it because I kept seeing the same AI pitch aimed at this problem and I thought it was aimed at the wrong half of it.",
+          "This one is mine. There was no client. Nobody briefed it and nothing shipped. I built it because I kept seeing the same AI pitch aimed at this problem and I thought it was aimed at the wrong half of it.",
         ],
       },
       {

@@ -30,7 +30,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "A game fails in public. If a jump feels wrong everyone knows inside a second, and nobody has to have the mechanics explained to them first. That seemed like the more honest test, so I built one.",
         ],
         images: [
-          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good, not because it's a clever idea.",
+          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good before the spelling went on top.",
  width: 488,
  height: 686,
     },

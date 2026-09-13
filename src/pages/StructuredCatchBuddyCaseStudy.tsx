@@ -15,7 +15,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       height: 1380,
       alt: "CatchBuddy pickup sports landing hero",
       hoverVideo: "/catchbuddy-card.mp4",
-      caption: "A game on Saturday, not a season. The whole front door is aimed at the person who wants one afternoon.",
+      caption: "A game on Saturday. The whole front door is aimed at the person who wants one afternoon.",
     }}
     relatedPost={{
       slug: "when-trust-is-the-product",
@@ -73,7 +73,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         images: [
           { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "Match scores on the player cards. It's called Players now, because testers kept reading \"Matches\" as a dating app." },
           { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "The 13+ gate at sign-up — the first checkpoint in the minor-protection flow, in v1 rather than bolted on later." },
-          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number that decides whether you get a game, not a vanity counter." },
+          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number, and it decides whether you get a game." },
         ],
       },
       {
