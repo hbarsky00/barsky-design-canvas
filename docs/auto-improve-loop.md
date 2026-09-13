@@ -17,6 +17,12 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
 3. **Diagnose before touching anything.** Deterministic checks beat opinions:
    - `python3 scripts/seo_audit_all_routes.py` (in this repo) for
      title/description/OG across every built route
+   - `node scripts/check-content-dates.mjs` — declared `modified` in
+     `seoData.ts` vs git, per route. Those dates feed `dateModified` and the
+     sitemap's `<lastmod>` and are hand-maintained, so they drift (added
+     2026-09-13 after all 13 case studies were found a rewrite behind). A
+     STALE row means look at the commit; a style-only commit goes in the
+     script's `STYLE_ONLY` set, a copy change bumps the date.
    - the `amazing-seo-skill` checkers in
      `~/Documents/.claude/skills/amazing-seo-skill/scripts/` for schema,
      links, images, security headers
