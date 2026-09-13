@@ -34,15 +34,15 @@ const StructuredRecastCaseStudy: React.FC = () => (
         heading: "Thirty Seconds of Me Talking Over My Screen",
         paragraphs: [
           "Half the messages I write would be better as thirty seconds of me talking over my screen. The tools that do that either want a login before the other person can watch, or they put a watermark on it, or they cap you at five minutes and then ask for a card.",
-          "So the product is one sentence: record it once, send a link. Whoever you send it to presses play. No account, no app, no meeting.",
+          "So the product fits in a sentence. You record once and send a link, and whoever gets it presses play without making an account, installing anything, or sitting through a meeting to hear what you'd have said in it.",
         ],
       },
       {
         heading: "I Deleted the Best-Looking Part",
         paragraphs: [
           "The first version recorded in the browser. It worked, it demoed well, and I killed it. Twenty-one files: the capture engine, the compositor, the camera bubble, the crop selector. All of it.",
-          "Two reasons. Browser capture is worse: you get a tab or a throttled screen instead of your actual machine at full quality. And there is a hall-of-mirrors problem where recording your browser from inside your browser shows the recorder recording itself.",
-          "What replaced it is a boundary I now hold to: the apps record, the website stores and shares. The Record button on the site is a launcher. It opens the native app and falls back to a download if you don't have it yet. There is no browser-capture fallback and there won't be one.",
+          "I killed it because browser capture is worse. You get a tab, or a throttled screen, instead of your actual machine at full quality, and there's a hall-of-mirrors problem where recording your browser from inside your browser shows the recorder recording itself, which is a strange thing to send a client.",
+          "What replaced it is a line I've held since: the apps record, the website stores and shares. The Record button on the site is a launcher that opens the native app, or hands you the download if you don't have it yet, and I've turned down adding a browser fallback since because the boundary is the reason the recordings look good.",
         ],
         images: [
           { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab.",
@@ -58,9 +58,9 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "Stop Should Mean Watch",
         paragraphs: [
-          "The rule I set: you press stop, the video plays immediately from the file on your device, and the upload happens behind it. Playback never waits for the network. If you're on a plane it still works.",
+          "You press stop and the video plays immediately from the file on your device, with the upload happening behind it. Playback never waits for the network. If you're on a plane it still works.",
           "I broke my own rule in the Mac app without noticing. The function that queued a finished recording was async and awaited the entire upload before it opened the player window. On a good connection you'd never catch it. Offline, you pressed stop and stared at nothing until the request timed out.",
-          "It returns in a millisecond or two now and uploads in a detached task. I also found the first upload after launch was eating five to eight seconds of framework setup, so the app warms that up when it starts instead of paying for it the moment you press stop.",
+          "It returns in a millisecond or two now and uploads in a detached task. While I was in there I found the first upload after launch was eating five to eight seconds of framework setup, so the app now warms that up at start instead of paying for it the moment you press stop.",
         ],
         images: [
           { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller.",
@@ -73,16 +73,16 @@ const StructuredRecastCaseStudy: React.FC = () => (
         heading: "Android Argued With the Documentation",
         paragraphs: [
           "Google's own media projection guide numbers the steps: get the projection, then start the foreground service. On Android 14 that order throws. The service has to already be running or the system refuses you outright.",
-          "The other thing I couldn't design away: Android will not let you authorise screen capture once and reuse it. Consent is single-use, so the system dialog appears on every recording. I wanted it gone and it isn't mine to remove, so the flow is built to make it feel like one deliberate step rather than an interruption.",
+          "Android also won't let you authorise screen capture once and reuse it. Consent is single-use, so the system dialog appears on every recording. I wanted it gone. It isn't mine to remove, so the flow around it is built to make it feel like one deliberate step in the recording instead of an interruption to it.",
           "I also caught the build asking for permission to draw over other apps, which I never wanted. It comes in from a dependency rather than from my code. It's blocked in release builds, and I check the actual APK after every upgrade instead of trusting that it stayed blocked.",
         ],
       },
       {
         heading: "I Found a Leak by Signing Up as a Stranger",
         paragraphs: [
-          "I made a brand-new account to see what a first-time user sees. The empty library wasn't empty. It had somebody else's recording in it, and fifty-seven megabytes already counted against a quota I had never used.",
+          "I made a brand-new account to see what a first-time user sees, and the empty library wasn't empty. It had somebody else's recording in it, and fifty-seven megabytes already counted against a quota I'd never used.",
           "The database rule that lets a share link work was written to allow reading any recording marked shareable. It was never narrowed to the one link being opened, so it applied to everyone at once.",
-          "Nothing ownership-sensitive trusts that rule any more. Every query that returns your library or counts your storage filters by your user id explicitly. I found it by making an account and looking, which is the only way I would have found it."
+          "Nothing ownership-sensitive trusts that rule any more, and every query that returns your library or counts your storage filters by your user id explicitly. I found it by making an account and looking. Nothing I'd written as a test would have caught it, because every test was signed in as me."
         ],
         images: [
           { src: "/images/recast/signin.webp", alt: "The Recast sign-in card with an email field, a password field and a Create an account link", caption: "The door I went back through as a stranger. Everything on the other side of it was supposed to be empty.",
@@ -94,8 +94,8 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "Three Apps, One Identity",
         paragraphs: [
-          "At one point Recast had three different looks at once: a warm editorial share page, a purple Material web library, and a third thing on Android. Every screen had been reviewed on its own and passed. Nobody had put them side by side.",
-          "I found it because I opened the app and the website next to each other and they didn't look related. Now a change isn't finished until it exists on both.",
+          "At one point Recast had three different looks at once: a warm editorial share page, a purple Material web library, and a third thing on Android. Every screen had been reviewed on its own and passed, because nobody had put them side by side, including me.",
+          "I caught it by opening the app and the website next to each other and noticing they didn't look related. Since then a change doesn't count as finished until it exists on both, which has slowed me down and has also stopped this happening again.",
         ],
       },
       {
@@ -113,8 +113,8 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "Where It Is Now",
         paragraphs: [
-          "Live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both. The website handles the library, playback, sharing and downloads.",
-          "It sells storage, not features: a free tier and paid plans above it. Entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. The thing you pay for is the thing that costs me money.",
+          "It's live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both, and the website handles the library, playback, sharing and downloads.",
+          "It sells storage. There's a free tier and paid plans above it, and entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. I chose storage as the thing to charge for because it's the thing that costs me money when you use more of it.",
         ],
         images: [
           { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window — Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms; the website never captures anything.",

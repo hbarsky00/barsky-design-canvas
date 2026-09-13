@@ -34,7 +34,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "What I'm Working On Right Now",
         paragraphs: [
-          "The star punch. You bank stars by landing counters, and the meter above the gloves is what you spend them from. Getting the meter, the wind-up and the hit to agree with each other is the hard part. If the star burns a frame before the punch connects, the reward stops feeling earned and starts feeling scripted.",
+          "The star punch. You bank stars by landing counters, and the meter above the gloves is what you spend them from. The hard part is getting the meter, the wind-up and the hit to agree with each other. If the star burns even one frame before the glove connects, it reads as scripted.",
           "This is a phone capture of the current build, title screen through to a knockdown against Tor Volkov. It is the newest thing on this page and it is not finished.",
         ],
         videos: [
@@ -51,15 +51,15 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "Every Boxing Game I've Liked Was on a Console",
         paragraphs: [
-          "Every boxing game I've liked was on a console, and there's a reason for that. The punch has to land the instant your thumb moves. The animation has to read as a body hitting another body. The opponent has to feel like it's thinking. You get none of that for free in a browser.",
-          "I wanted to see if I could get it anyway. No install, no app store, just a link you open on your phone.",
+          "Every boxing game I've liked was on a console. On those the punch lands the instant your thumb moves, the animation reads as one body hitting another, and the opponent seems to be thinking about you. A browser gives you none of that by default. Mobile Safari gives you slightly less.",
+          "I wanted it anyway. No install, no app store, a link you open on your phone and you're fighting.",
         ],
       },
       {
         heading: "Building a Fighter Out of Parts",
         paragraphs: [
-          "A fighter isn't a drawing. It's a body, two arms, two legs and a head, all separate, because they all have to move on their own. So I built the rig before I built anyone to put in it.",
-          "Glass Joe went through it first, and you can see every seam. Flat block for a torso. Each arm one wedge from shoulder to glove, no elbow in it. Legs meeting the hip at a hard edge, one flat colour per limb. Then I ran Von Kaiser through the same rig at heavier proportions, and that was the real test. If the rig held for a second fighter, I could add fighters as data instead of drawing each one by hand.",
+          "A fighter isn't a drawing. It's a body, two arms, two legs and a head, all separate, because every one of them has to move on its own and the code has to know which is which. So I built the rig first, before there was anyone to put in it.",
+          "Glass Joe went through it first, and you can see every seam. Flat block for a torso. Each arm one wedge from shoulder to glove with no elbow in it, legs meeting the hip at a hard edge, one flat colour per limb. Then I ran Von Kaiser through the same rig at heavier proportions, and that was the real test, because if it held for a second fighter I could add the rest as data instead of drawing each one by hand.",
           "It held. It also still looked like paper. A flat wedge swinging at a flat block just looks like two shapes overlapping. It never reads as contact. So I went back in and split each arm into a shoulder, a bicep and a forearm, gave the legs a knee and a calf, and shaded the torso so a turn reads as a turn. Make the parts fast, throw out whatever doesn't read, rebuild the layer underneath.",
         ],
         imageLayout: "pair",
@@ -83,17 +83,17 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "The Part AI Couldn't Do",
         paragraphs: [
-          "My first go at making a punch land used impact particles, and it was the wrong call. The burst was so big it buried the fighter at the exact moment you needed to see him get hit.",
-          "After that I stopped guessing. How long the game freezes on contact. How hard the screen shakes. A 60ms buzz in your hand when you connect. How fast the health bar drains. Where the punch button sits, how big the block zone is. I tuned every one of those by hand, on a real phone, over and over, until it felt right.",
-          "There is no model you can ask whether a punch feels like a punch. AI gave me raw material at three to six builds a day. Deciding what to keep was mine.",
+          "My first go at making a punch land used impact particles. Wrong call. The burst was so big it buried the fighter at the exact moment you needed to see him get hit.",
+          "After that I stopped guessing and started tuning on a real phone, one number at a time. How long the game freezes on contact, how hard the screen shakes, a 60ms buzz in your hand when you connect, how fast the health bar drains, where the punch button sits and how big the block zone is. Over and over, until it stopped feeling like a web page.",
+          "You can't ask a model whether a punch feels like a punch. It'll answer, and the answer is worthless, because it has never held the phone. AI gave me three to six builds a day of raw material and I threw most of them away.",
         ],
       },
       {
         heading: "One Sheet Per Fighter",
         paragraphs: [
-          "Because the rig is shared, I don't draw a fighter anymore. I generate their sheet. Ready, jab, cross, hook, uppercut, special, wind-up, block, hurt. Same nine poses, same joints, every time.",
-          "Eight of those the fight code can count on. The ninth belongs to the fighter. Glass Joe's is the Glass Jaw. Von Kaiser's is the Kaiser Barrage. That one slot is what stops a roster feeling like the same guy in different colours.",
-          "It also means adding an opponent isn't an art project. It's the rig at their proportions and a sheet off the back of it.",
+          "Because the rig is shared I don't draw a fighter anymore, I generate their sheet: ready, jab, cross, hook, uppercut, special, wind-up, block, hurt. Nine poses. Same joints every time.",
+          "The fight code can count on eight of those being identical across every fighter. The ninth slot is theirs. Glass Joe's is the Glass Jaw, Von Kaiser's is the Kaiser Barrage, and that one slot is what stops the roster feeling like the same guy in different colours.",
+          "Adding an opponent stopped being an art project, since it's the rig at their proportions and a sheet generated off the back of it, which is how Klaus Brenner got in without a single new drawing.",
         ],
         imageLayout: "pair",
         images: [
@@ -117,9 +117,9 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         heading: "What I Deleted",
         paragraphs: [
           "It used to take 22 seconds to throw your first punch. After the cut it took 6, and I didn't optimise anything to get there \u2014 I deleted the splash screen, the mode select, the fighter select and the tutorial.",
-          "Audio was failing in about 40% of sessions and I had no idea, because nothing ever errored. Browsers block sound until you interact with the page, and the game was starting its audio on load. Moving that behind the first tap took it under 2%.",
+          "Audio was failing in about 40% of sessions and I had no idea, because nothing ever errored. Browsers block sound until you've interacted with the page, and the game was starting its audio on load, so for four in ten people the first punch landed in silence. Moving audio behind the first tap took it under 2%.",
           "I also built webcam hand-tracking. It worked, and it was genuinely impressive. It was also completely wrong for someone playing on their phone on a couch, so I cut it.",
-          "Go and play it now and you will find the game has moved. There is a career mode, which is a fighter select wearing a different hat, and the tutorial has grown back to five cards \u2014 though it sits on top of a fight already in progress rather than in front of it, and one tap skips all five. I would rather point that out than sell you a game frozen at its leanest. The cutting was real. So is the fact that some of it came back.",
+          "Play it now and you'll find the game has moved on. There's a career mode, which is a fighter select wearing a different hat, and the tutorial has grown back to five cards, though it sits on top of a fight already in progress and one tap skips all five. I'd rather tell you that than sell you a game frozen at its leanest, and the honest version is that the cutting was real and some of it came back within a month.",
         ],
       },
       {
@@ -138,7 +138,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         heading: "Every Opponent Has Their Own Rhythm",
         paragraphs: [
           "Same rig Glass Joe came out of, but the wedges are arms now. Klaus Brenner is heavier and slower to reset, so you have to read him differently than the others.",
-          "Every opponent has their own special, their own trash talk and their own rhythm instead of being a reskin. And getting knocked down stopped being a countdown you sit and watch. It became something you can fight your way out of.",
+          "Every opponent has their own special, their own trash talk and their own rhythm. Getting knocked down used to be a countdown you sat and watched, and now you can mash your way back up if you're quick about it.",
         ],
         videos: [
           {
@@ -154,8 +154,8 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It is live at ringrival.today. No install, no store, no account \u2014 you open a link on your phone and you are in a fight. That was the entire question I started with, whether a browser could feel like a console boxing game, and the answer came back close enough that I kept going.",
-          "It is also not finished, which is why the newest work on this page is at the top of it rather than the bottom. The star punch is what I am tuning now.",
+          "It's live at ringrival.today. You open a link on your phone and you're in a fight, with no install and no account. That was the whole question I started with, and the answer came back close enough to yes that I kept going.",
+          "It isn't finished, which is why the newest work on this page sits at the top instead of the bottom. Right now I'm tuning the star punch, mostly the frame where the star burns.",
         ],
       },
     ]}
