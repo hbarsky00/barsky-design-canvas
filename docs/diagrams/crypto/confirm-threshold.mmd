@@ -1,0 +1,5 @@
+flowchart LR
+  a[Set the order] --> b[Total cost shown beside the button]
+  b --> c{Above the confirmation threshold?}
+  c -->|no| d[Placed]
+  c -->|yes| e[One confirmation] --> d

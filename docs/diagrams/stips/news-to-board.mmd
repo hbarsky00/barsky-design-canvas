@@ -1,0 +1,6 @@
+flowchart LR
+  a[News, on a schedule] --> b[AI drafts markets]
+  b --> c[Today's date in the prompt]
+  c --> d{Close date in the future?}
+  d -->|no| x[Dropped]
+  d -->|yes| e[On the board]

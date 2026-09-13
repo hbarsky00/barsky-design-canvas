@@ -56,6 +56,13 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "It also changes what a bad result costs you, because under the old list you found out a table was stale after you'd built on it, sometimes days after, and here it's on the row before you've opened anything.",
         ],
         images: [
+          {
+            src: "/images/dae-search/flow-search-flow.svg",
+            alt: "Keyword search: type revenue, 40 results, open a tab per table, check owner, freshness and dependants, decide. Semantic search: type revenue, about 4 results, freshness, lineage and access on the row, decide",
+            caption: "The same search before and after. The tab-opening step is the twenty minutes from the top of this page, and it is the step that disappears.",
+            width: 1330,
+            height: 338,
+          },
           { src: "/images/dae-search/what-i-built.webp", alt: "The DAE Search process flow, nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one chosen asset", caption: "Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust, which is the part the result list was leaving them to do alone.",
  width: 1024,
  height: 576,

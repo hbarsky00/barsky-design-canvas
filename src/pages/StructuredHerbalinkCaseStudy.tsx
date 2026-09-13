@@ -46,7 +46,15 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "Most directories let anyone list, then put a badge on whoever passed a check. I flipped it, so nobody is visible until they're verified against the American Herbalists Guild, which gives you a smaller catalogue and one where every entry means something.",
           "I tested it the other way round. I added 200 unverified practitioners and the product got worse: every listing now needed a judgement call from the one person who came here because they couldn't make one.",
         ],
+        imageLayout: "pair",
         images: [
+          {
+            src: "/images/herbalink/flow-verification-gate.svg",
+            alt: "Most directories: anyone lists, visible immediately, badge if a check passes. HerbaLink: practitioner applies, verified by the Guild? Yes, listed; no, not visible",
+            caption: "Badge model above, gate model below. In HerbaLink the check against the American Herbalists Guild happens before a listing exists, so there is no unverified state to badge.",
+            width: 855,
+            height: 465,
+          },
           { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
  width: 2880,
  height: 1800,

@@ -1,0 +1,7 @@
+flowchart TB
+  a[Sign up] --> b{Under 18?}
+  b -->|no| p[Can post a game]
+  b -->|yes| c[Parent asked to verify]
+  c --> d{Parent verified?}
+  d -->|yes| p
+  d -->|not yet| w[Can browse, cannot post]

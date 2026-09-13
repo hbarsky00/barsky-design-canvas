@@ -56,6 +56,13 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Each one lives in its own component, with its own state and its own audio. That is a defensive decision rather than an architectural one. I was building fast, usually late at night, and a refactor that reaches across a shared file breaks things you don't find out about until somebody else does. The duplication costs me something real. What it buys is the ability to change one mode without holding the other two in my head.",
         ],
         images: [
+          {
+            src: "/images/fire-lion/flow-three-modes.svg",
+            alt: "Tap FLY leads to three isolated modes, Fire Lion, Lion Wars and Cub Mode, each with its own state and its own audio",
+            caption: "One way in, three sealed rooms. Each mode owns its state and its audio, so changing one never reaches the other two.",
+            width: 1441,
+            height: 249,
+          },
           { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
  width: 802,
  height: 656,

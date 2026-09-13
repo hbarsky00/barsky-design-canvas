@@ -43,6 +43,13 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "That last one gets argued with a lot. Letting people add their own locations would be more flexible, and I still won't do it.",
         ],
         images: [
+          {
+            src: "/images/catchbuddy/flow-minor-gate.svg",
+            alt: "Sign up, then under 18? No: can post a game. Yes: parent asked to verify, then parent verified? Yes: can post a game. Not yet: can browse, cannot post",
+            caption: "The gate a minor goes through. Browsing is open from the start; posting waits for a parent.",
+            width: 486,
+            height: 767,
+          },
           { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
  width: 1940,
  height: 1396,

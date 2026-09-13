@@ -99,6 +99,13 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         ],
         images: [
           {
+            src: "/images/investor-loan-app/flow-first-move.svg",
+            alt: "Two flows: the first version went log in, dashboard, scan cards, find the deal; what shipped goes log in, type a name fragment, the deal",
+            caption: "The first move of the day, in the version I built first and the version that shipped. From this study's own account of what got cut.",
+            width: 909,
+            height: 293,
+          },
+          {
             src: "/images/investor-loan-app/deal-central-wireframe.webp",
             alt: "Loan Central landing page in wireframe \u2014 My Deals, Live Deals and All Deals tabs above a grid of deal cards showing borrower, industry, region, status and deal size, with 22,934 deals in the header",
             caption: "22,934 deals as cards. The count in the corner is the tell: a screen that opens on everything is a screen that has not decided what you came for.",

@@ -1,0 +1,7 @@
+flowchart TB
+  a[Press Record on the site] --> b{Native app installed?}
+  b -->|no| c[Download it] --> d
+  b -->|yes| d[App records the screen]
+  d --> e[Press stop]
+  e --> f[Plays at once from the local file]
+  e --> g[Uploads behind it] --> h[Website library and share link]

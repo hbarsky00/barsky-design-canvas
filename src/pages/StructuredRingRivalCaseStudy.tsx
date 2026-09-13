@@ -150,6 +150,15 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
               height: 1079,
           },
         ],
+        images: [
+          {
+            src: "/images/ring-rival/flow-fighter-pipeline.svg",
+            alt: "Shared rig of body, arms, legs and head, to a fighter's proportions, to a generated sheet of nine poses, which splits into eight poses the fight code counts on and one special that belongs to the fighter, both feeding the opponent in the roster",
+            caption: "How a new opponent gets made, from the rig described further up this page. Eight poses are shared contract; the ninth is what makes Klaus Brenner not Glass Joe.",
+            width: 1509,
+            height: 218,
+          },
+        ],
       },
       {
         heading: "Where It Landed",

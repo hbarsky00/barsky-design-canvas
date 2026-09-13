@@ -1,0 +1,6 @@
+flowchart LR
+  a[A document] --> b{Marked Both?}
+  b -->|yes| v[Visible in every region]
+  b -->|no| c{Matches the region you picked?}
+  c -->|yes| v2[Visible]
+  c -->|no| h[Hidden from counts, lists, search and the document page]

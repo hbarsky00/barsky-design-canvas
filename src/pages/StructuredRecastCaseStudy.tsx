@@ -45,6 +45,13 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "What replaced it is a line I've held since: the apps record, the website stores and shares. The Record button on the site is a launcher that opens the native app, or hands you the download if you don't have it yet, and I've turned down adding a browser fallback since because the boundary is the reason the recordings look good.",
         ],
         images: [
+          {
+            src: "/images/recast/flow-record-to-link.svg",
+            alt: "Press Record on the site, native app installed? No, download it. Yes, the app records the screen. Press stop: it plays at once from the local file, and uploads behind it to the website library and share link",
+            caption: "The boundary, drawn. Everything on the left of stop happens in the native app; the website only ever sees the finished file.",
+            width: 574,
+            height: 923,
+          },
           { src: "/images/recast/launcher-modal.webp", alt: "The Record button on the website opening a dialog that offers Open Recast or Upload Video, with no browser-capture option", caption: "What the Record button does now. It hands you off to the app, or takes a file. It never opens a capture tab.",
  width: 1500,
  height: 1041,

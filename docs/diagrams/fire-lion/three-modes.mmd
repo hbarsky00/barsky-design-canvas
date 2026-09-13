@@ -1,0 +1,14 @@
+flowchart TB
+  t[Tap FLY]
+  subgraph F[Fire Lion]
+    f1[Own state] --- f2[Own audio]
+  end
+  subgraph L[Lion Wars]
+    l1[Own state] --- l2[Own audio]
+  end
+  subgraph C[Cub Mode]
+    c1[Own state] --- c2[Own audio]
+  end
+  t --> F
+  t --> L
+  t --> C

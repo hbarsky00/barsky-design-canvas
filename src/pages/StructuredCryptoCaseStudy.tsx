@@ -74,6 +74,13 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode failed in the opposite direction, and it took me longer than it should have to notice it was the same mistake in reverse. I'd stripped it down for cleanliness and taken out things pros actually used, because density is a feature for that audience and I'd been treating my own taste as a usability principle.",
         ],
         images: [
+          {
+            src: "/images/crypto/flow-confirm-threshold.svg",
+            alt: "Set the order, total cost shown beside the button, then a check: above the confirmation threshold? No goes straight to placed; yes goes through one confirmation",
+            caption: "What replaced the confirmation on everything. One check, above a threshold, and otherwise out of the way.",
+            width: 1284,
+            height: 297,
+          },
           { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising", caption: "The prototype that failed. Confirmations on everything and a tour that wouldn't end — testers didn't feel safe, they felt talked down to.",
  width: 1890,
  height: 2283,

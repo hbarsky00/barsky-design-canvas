@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph GATE[HerbaLink]
+    direction LR
+    h1[Practitioner applies] --> h2{Verified by the Guild?}
+    h2 -->|yes| h3[Listed]
+    h2 -->|no| h4[Not visible]
+  end
+  subgraph BADGE[Most directories]
+    direction LR
+    m1[Anyone lists] --> m2[Visible immediately] --> m3[Badge if a check passes]
+  end

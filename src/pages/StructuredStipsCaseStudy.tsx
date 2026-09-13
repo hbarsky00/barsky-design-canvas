@@ -77,6 +77,15 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Markets get generated from the news on a schedule, which means an AI is writing the close dates. Models have no clock. My first batches came out already expired, which is a very silly way to launch a prediction market. The fix was boring. Put today's date in the prompt, then validate every date before it reaches the board.",
           "The second one cost me more. I was testing signed out because it's faster, and signed out, row-level security quietly returns nothing instead of an error, so every bug that only happens when you're logged in looked like an empty state behaving correctly. I didn't find any of them until I started testing as a real account.",
         ],
+        images: [
+          {
+            src: "/images/stips/flow-news-to-board.svg",
+            alt: "News on a schedule, AI drafts markets, today's date in the prompt, then close date in the future? No, dropped. Yes, on the board",
+            caption: "The pipeline after the fix. The date injection and the validation step are the two boxes that did not exist when the first batch launched already expired.",
+            width: 1306,
+            height: 242,
+          },
+        ],
       },
       {
         heading: "The Design System",

@@ -1,0 +1,9 @@
+flowchart LR
+  subgraph NEW[Semantic search]
+    direction LR
+    s1[Type revenue] --> s2[About 4 results] --> s3[Freshness, lineage, access on the row] --> s4[Decide]
+  end
+  subgraph OLD[Keyword search]
+    direction LR
+    k1[Type revenue] --> k2[40 results] --> k3[Open a tab per table] --> k4[Check owner, freshness, dependants] --> k5[Decide]
+  end

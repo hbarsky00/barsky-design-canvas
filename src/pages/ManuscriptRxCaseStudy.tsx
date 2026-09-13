@@ -37,6 +37,13 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "That one constraint decided everything else on the screen, and it is what separates a tool that survives compliance review from a demo that doesn't.",
         ],
         images: [
+          {
+            src: "/images/email-creation-ai/flow-between-the-humans.svg",
+            alt: "Writer edits the manuscript, AI assembles approved content and compliance blocks, Content Ops and Med Writer sign off inline, AI generates the HTML and runs the metadata checklist, checklist passes? No loops back to the writer; yes, Send Preview to Brand appears, then MLR review, outside what I designed",
+            caption: "Human, AI, human, AI, human. Every step a person is accountable for stays with the person; the AI owns the work between them. The last box is the part this concept did not solve.",
+            width: 486,
+            height: 949,
+          },
           { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
  width: 1440,
  height: 1040,
