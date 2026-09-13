@@ -1,7 +1,15 @@
-flowchart TB
-  a[Press Record on the site] --> b{Native app installed?}
-  b -->|no| c[Download it] --> d
-  b -->|yes| d[App records the screen]
-  d --> e[Press stop]
-  e --> f[Plays at once from the local file]
-  e --> g[Uploads behind it] --> h[Website library and share link]
+flowchart LR
+  classDef old fill:#F1EEE9,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef gate fill:#B04321,stroke:#B04321,color:#FFFFFF
+  classDef out fill:#FBFAF8,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef ai fill:#FFFFFF,stroke:#3F4550,color:#231E1A
+  subgraph APP[The native app]
+    direction LR
+    d[Records the screen] --> e[Stop] --> f([Plays at once from the local file])
+  end
+  subgraph WEB[The website]
+    direction LR
+    g[Receives the upload] --> h([Library and share link])
+  end
+  e -.->|upload, in the background| g
+  class e gate

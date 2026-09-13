@@ -1,8 +1,16 @@
-flowchart TB
-  w[Writer edits the manuscript] --> ai1[AI assembles approved content and compliance blocks]
-  ai1 --> q[Content Ops and Med Writer sign off, inline]
-  q --> ai2[AI generates the HTML and runs the metadata checklist]
-  ai2 --> c{Checklist passes?}
-  c -->|no| w
-  c -->|yes| b[Send Preview to Brand appears]
-  b --> m[MLR review: outside what I designed]
+sequenceDiagram
+  participant W as Writer
+  participant AI as AI
+  participant R as Content Ops and Med Writer
+  participant B as Brand
+  participant M as MLR
+  W->>AI: manuscript
+  AI->>AI: assemble approved content, pull compliance blocks
+  AI->>R: draft, inline
+  R->>W: sign-off or edits, while the writer is still in it
+  W->>AI: final edit
+  AI->>AI: generate HTML, run the metadata checklist
+  AI-->>W: checklist fails, back to the writer
+  AI->>B: Send Preview to Brand appears only when it passes
+  B->>M: to review
+  Note over M: Not designed in this concept

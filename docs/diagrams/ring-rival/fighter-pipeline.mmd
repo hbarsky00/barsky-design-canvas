@@ -1,7 +1,10 @@
 flowchart LR
-  r[Shared rig: body, arms, legs, head] --> p[A fighter's proportions]
-  p --> s[Generated sheet of nine poses]
-  s --> e[Eight poses the fight code counts on]
-  s --> x[One special that belongs to the fighter]
-  e --> o[Opponent in the roster]
-  x --> o
+  classDef old fill:#F1EEE9,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef gate fill:#B04321,stroke:#B04321,color:#FFFFFF
+  classDef out fill:#FBFAF8,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef ai fill:#FFFFFF,stroke:#3F4550,color:#231E1A
+  r[Shared rig, built once] --> p[This fighter's proportions] --> s[Nine-pose sheet]
+  s --> e[Eight poses the fight code counts on] --> o([Opponent in the roster])
+  s --> x[One special of their own] --> o
+  class r old
+  class x gate

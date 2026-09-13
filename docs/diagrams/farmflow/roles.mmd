@@ -1,4 +1,8 @@
 flowchart LR
+  classDef old fill:#F1EEE9,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef gate fill:#B04321,stroke:#B04321,color:#FFFFFF
+  classDef out fill:#FBFAF8,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef ai fill:#FFFFFF,stroke:#3F4550,color:#231E1A
   subgraph REQ[Requester]
     direction TB
     r1[Own department's requests]
@@ -18,5 +22,6 @@ flowchart LR
   subgraph MAIN[Farm admin]
     direction TB
     m1[All of the above]
-    m2{{Change farm availability}}
+    m2[Change farm availability]
   end
+  class m2 gate

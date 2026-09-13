@@ -75,8 +75,8 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
             src: "/images/farmflow/flow-roles.svg",
             alt: "The four FarmFlow roles as privilege buckets: requester, landscaping admin, operations admin, and farm admin, with 'change farm availability' marked as the one control only the farm admin holds",
             caption: "The four roles as sets of privileges, from the permission matrix in the July PRD. Everything the operations admin can do, the farm admin can do too. The one control that goes the other way is farm availability.",
-            width: 697,
-            height: 694,
+            width: 680,
+            height: 640,
           },
           {
             src: "/images/farmflow/16-availability-manager.webp",
@@ -99,8 +99,8 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
             src: "/images/farmflow/flow-request-lifecycle.svg",
             alt: "Request lifecycle flow: pending, reviewed, then approved or needs info, with needs info returning to pending; approved to in progress; then photo confirmed or straight to fulfilled",
             caption: "The lifecycle every request follows, from section 6 of the PRD. Needs info loops back to pending through the ticket chat, and the photo step is the branch that exists because flowers for an event are the request most likely to disappoint.",
-            width: 1324,
-            height: 224,
+            width: 1164,
+            height: 163,
           },
           {
             src: "/images/farmflow/12-request-ticket.webp",

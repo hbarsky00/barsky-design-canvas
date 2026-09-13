@@ -51,8 +51,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/flow-excel-first.svg",
             alt: "A conversation at dinner, to Excel scripts that week, which took re-entry off his desk and taught me the workflow, to a site map of nine areas, to the product grown out of the scripts",
             caption: "How it came to be, in order. The scripts did two jobs at once, and the second one is why the site map came out right.",
-            width: 1466,
-            height: 196,
+            width: 1190,
+            height: 604,
           },
           {
             src: "/images/business-management/v2/recipe-calculator.webp",

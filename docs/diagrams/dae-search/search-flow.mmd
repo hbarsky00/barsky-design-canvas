@@ -1,9 +1,15 @@
 flowchart LR
+  classDef old fill:#F1EEE9,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef gate fill:#B04321,stroke:#B04321,color:#FFFFFF
+  classDef out fill:#FBFAF8,stroke:#DED7CF,color:#3F4550,stroke-dasharray:4 3
+  classDef ai fill:#FFFFFF,stroke:#3F4550,color:#231E1A
   subgraph NEW[Semantic search]
     direction LR
-    s1[Type revenue] --> s2[About 4 results] --> s3[Freshness, lineage, access on the row] --> s4[Decide]
+    s1[Type revenue] --> s2[About 4 results] --> s3[Freshness, lineage and access on the row] --> s4[Decide]
   end
   subgraph OLD[Keyword search]
     direction LR
     k1[Type revenue] --> k2[40 results] --> k3[Open a tab per table] --> k4[Check owner, freshness, dependants] --> k5[Decide]
   end
+  class k1,k2,k3,k4,k5 old
+  class s3 gate

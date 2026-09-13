@@ -102,8 +102,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             src: "/images/investor-loan-app/flow-first-move.svg",
             alt: "Two flows: the first version went log in, dashboard, scan cards, find the deal; what shipped goes log in, type a name fragment, the deal",
             caption: "The first move of the day, in the version I built first and the version that shipped. From this study's own account of what got cut.",
-            width: 909,
-            height: 293,
+            width: 917,
+            height: 276,
           },
           {
             src: "/images/investor-loan-app/deal-central-wireframe.webp",
