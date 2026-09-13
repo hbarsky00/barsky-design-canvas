@@ -75,9 +75,9 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
       {
         heading: "What I Built",
         paragraphs: [
-          "Validation runs inline as you type, so a malformed entry gets caught where it happens instead of at submit. You never see it when the entry is fine.",
+          "Validation runs inline as you type, so a malformed entry gets caught where it happens instead of at submit, and when the entry is fine you never see it at all.",
           "I replaced filter panels with predictive search. Loan officers do not think in filters, they think in name fragments and deal codes, and they want the deal on screen in two keystrokes. That is a Bloomberg habit and it was the right one to design for here.",
-          "The order builder walks you forward: pick the lender first, then the terms open up. It looks restrictive in a screenshot. In practice it stops people building an order against nothing.",
+          "The order builder walks you forward, so you pick the lender first and then the terms open up. It looks restrictive in a screenshot, and in practice it stops people building an order against nothing.",
           "The audit trail sits right next to the record instead of in an admin tool three menus away. That single decision is why compliance ended up arguing for the platform rather than against it.",
         ],
         images: [

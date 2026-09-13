@@ -29,7 +29,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         heading: "Anyone Can Claim Anything",
         paragraphs: [
           "This started as an idea. People go looking for a herbalist because of anxiety, or fatigue, or something their doctor hasn't been able to help with. Then they land in a swamp where anyone can claim anything. I wanted to know whether I could build the version that doesn't do that to them.",
-          "The job was never a bigger directory. It was making the safe path the easy one, in a category where getting it wrong lands on someone's health.",
+          "The job was making the safe path the easy one, in a category where getting it wrong lands on someone's health. A bigger directory would have made that worse.",
         ],
         imageLayout: "pair",
         images: [
@@ -43,7 +43,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "Verification Is a Door, Not a Sticker",
         paragraphs: [
-          "Most directories let anyone list, then put a badge on whoever passed a check. I flipped it. Nobody is visible until they're verified against the American Herbalists Guild. Smaller catalogue, far more honest one.",
+          "Most directories let anyone list, then put a badge on whoever passed a check. I flipped it, so nobody is visible until they're verified against the American Herbalists Guild, which gives you a smaller catalogue and one where every entry means something.",
           "I tested it the other way round. I added 200 unverified practitioners and the product got worse: every listing now needed a judgement call from the one person who came here because they couldn't make one.",
         ],
         images: [
@@ -57,7 +57,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         heading: "What I Cut, and What Survived",
         paragraphs: [
           "A tester said the filter panel felt like WebMD, which is about the worst thing you can say about a health product. It's guided intake now: one focused question instead of a search box and two filter menus.",
-          "I also took out open-ended search entirely. Asking someone to describe what they need assumes they already know, and not knowing is the whole reason they're there.",
+          "I also took out open-ended search entirely, since asking someone to describe what they need assumes they already know, and not knowing is the whole reason they're there.",
           "The symptom diary is the one I got wrong twice. I built it full, daily logging and history and the lot, and people opened it twice and never came back. I cut it down to a single follow-up question, and what's left of it is the tracker that's still in the product. Building the big version first is how I found out nobody wanted it.",
         ],
         videos: [
@@ -80,7 +80,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "There is no unverified state in this colour system because there are no unverified listings in the product. The palette ended up recording the verification decision as much as the code does.",
+          "There's no unverified state in this colour system, because there are no unverified listings in the product. The palette records that decision as much as the code does.",
         ],
         images: [
           { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens — forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions.",
@@ -93,8 +93,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         heading: "Where It Actually Is",
         paragraphs: [
           "On hiatus, and I'll say why plainly. The product is built and it works: verification gate, guided intake, booking, herb library, the database and auth underneath all of it. The directory is empty because no herbalists have signed up yet.",
-          "That gap is an honest picture of what I'm good at and what I'm not. I can take an idea and come out the other end with a functional product on my own. Marketing it has always been the weaker half for me, and this is the clearest example I have: a platform that works, with nobody on it.",
-          "So it is here for the thinking rather than as a win. The research, the decision to gate verification instead of badging it, the things I cut and what cutting them cost. If what you need is someone who can design the thing and then actually build it, this is what that looks like end to end.",
+          "That gap is an honest picture of what I'm good at and what I'm not. I can take an idea and come out the other end with a functional product on my own, and marketing it has always been the weaker half for me. This is the clearest example I have. A platform that works, with nobody on it.",
+          "So it's here for the thinking. The research, the decision to gate verification instead of badging it, the things I cut and what cutting them cost. If what you need is someone who can design the thing and then actually build it, this is what that looks like end to end, including the part where it's sitting there waiting for its first herbalist.",
         ],
         images: [
           {

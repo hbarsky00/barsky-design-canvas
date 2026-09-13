@@ -26,8 +26,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "Most People Just Want a Game on Saturday",
         paragraphs: [
-          "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season. They want commitment, a schedule, a recurring team. Most people just want a game on Saturday.",
-          "The problem was never scheduling. It was getting two strangers to agree to meet at a park with both of them feeling fine about it.",
+          "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season, with the commitment and the schedule and the recurring team that comes with one. Most people want a game on Saturday.",
+          "Scheduling was never the problem. Getting two strangers to agree to meet at a park, with both of them feeling fine about it, was the problem, and it's a trust problem before it's a calendar one.",
         ],
         images: [
           { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
@@ -39,8 +39,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "A Parent Verifies Before a Kid Can Post",
         paragraphs: [
-          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game. And the meeting spots come from a list I curated, so nobody is dropping a pin on an address of their own choosing.",
-          "That last one gets argued with a lot. Letting people add their own locations is more flexible, and I still won\u2019t do it.",
+          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game, and the meeting spots come from a list I curated, so nobody is dropping a pin on an address of their own choosing.",
+          "That last one gets argued with a lot. Letting people add their own locations would be more flexible, and I still won't do it.",
         ],
         images: [
           { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
@@ -52,8 +52,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "What AI Did, and What It Couldn't",
         paragraphs: [
-          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow. That is a serious chunk of the build, and it did it fast.",
-          "What it could not do was decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Every one of those I made by hand. AI's own security review also caught a recursive RLS policy that would have leaked data in production.",
+          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow, which is a serious chunk of the build, and it did it fast.",
+          "It couldn't decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Those I made by hand. It did catch one thing I'd have missed, though: an AI security review flagged a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
           { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet — who's bringing a ball, and whether this is contact or not.",
@@ -65,9 +65,9 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "What I Cut",
         paragraphs: [
-          "Testers kept reading \"Matches\" as a dating thing, which is not what anybody needed here. It is \"Browse\" and \"Players\" now.",
-          "I built a Quick Start wizard that nobody wanted. Testers skipped it every time, so I stopped making them skip it.",
-          "Apple, Outlook and ICS calendar support all got built, then all got cut. Barely anyone used them and I was going to be maintaining three integrations forever for that.",
+          "Testers kept reading \"Matches\" as a dating thing. It's \"Browse\" and \"Players\" now.",
+          "I built a Quick Start wizard that nobody wanted, watched testers skip it every single time, and eventually stopped making them skip it.",
+          "Apple, Outlook and ICS calendar support all got built, then all got cut, because barely anyone used them and I was going to be maintaining three integrations forever for the few who did.",
         ],
         imageLayout: "pair",
         images: [
@@ -79,7 +79,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "I made the palette warm. A trust product that looks like a fintech dashboard reads as a company rather than a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
+          "I made the palette warm, because a trust product that looks like a fintech dashboard reads as a company and this needed to read as a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
         ],
         images: [
           { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration.",
@@ -92,7 +92,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It shipped. Auth, RLS, Stripe, Google OAuth, realtime updates, the minor-approval flow and the curated meeting spots, designed and built by me.",
-          "The safety layer went in first, in v1. Every product I have seen add one later ended up with a settings screen nobody opens.",
+          "The safety layer went in first, in v1, because every product I've seen add one later ended up with a settings screen nobody opens.",
         ],
         videos: [
           {

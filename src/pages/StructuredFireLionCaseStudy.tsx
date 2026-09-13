@@ -39,8 +39,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "One Tap Had to Be Fun Before Anything Else Existed",
         paragraphs: [
-          "The rule I set myself was that the core loop had to be fun before a single mechanic went on top of it. One tap, one lion, nothing else. If that wasn't fun, no amount of spells or modes was going to rescue it.",
-          "The spelling came months later, and only because the tapping had already passed that test. You spell a word mid-flight and it casts. It works because the tap underneath it already felt good.",
+          "One tap, one lion, nothing else, and it had to be fun before a single mechanic went on top of it. If that wasn't fun, no amount of spells or modes was going to rescue it, so I sat with the bare loop for a long time before adding anything.",
+          "The spelling came months later, and only because the tapping had already passed that test. You spell a word mid-flight and it casts, and the reason it works is that the tap underneath it already felt good.",
         ],
         images: [
           { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "A five-times combo over the lava forge. This is what survived after the daily missions, streaks and upgrade screens were deleted.",
@@ -71,7 +71,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         paragraphs: [
           "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That saved me weeks, and I am not going to pretend otherwise.",
           "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right — it will answer you, and the answer means nothing.",
-          "Producing features got cheap. Deciding which ones survive didn't.",
+          "Producing features got cheap, and deciding which ones survived is the part that stayed expensive, because it's the part that still needs someone to sit on the couch with the phone.",
         ],
         images: [
           { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system; the difficulty curve I tuned by hand on a phone.",

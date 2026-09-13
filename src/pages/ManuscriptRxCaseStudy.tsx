@@ -46,7 +46,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "Six Steps, Each With an Owner",
         paragraphs: [
-          "The workflow is six steps and every one names who owns it. That sounds like project management rather than design, and in regulated work it is the design. An unowned step is where two weeks goes.",
+          "The workflow is six steps and every one names who owns it. That sounds like project management, and in regulated work it is the design, because an unowned step is exactly where the two weeks goes.",
           "QC sits inline with editing instead of after it. AI auto-pass, Content Ops and Med Writer all sign off while the writer is still in the content, so a rejection arrives while there's still context to act on it.",
           "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
         ],
@@ -73,7 +73,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "The Part I Didn't Solve",
         paragraphs: [
-          "MLR review itself. I designed the artefacts MLR receives and the state the email is in when it arrives. I did not design the tool they review it in.",
+          "MLR review itself. I designed the artefacts MLR receives and the state the email is in when it arrives, and I didn't design the tool they review it in.",
           "How a reviewer annotates a claim, rejects it, and signs their name to that with legal accountability attached is the hardest problem in this whole workflow. It needs access to reviewers I didn't have, and a concept project that claimed to have solved it would be worth less than one that says plainly it didn't.",
         ],
       },

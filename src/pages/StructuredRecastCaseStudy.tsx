@@ -40,7 +40,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "I Deleted the Best-Looking Part",
         paragraphs: [
-          "The first version recorded in the browser. It worked, it demoed well, and I killed it. Twenty-one files: the capture engine, the compositor, the camera bubble, the crop selector. All of it.",
+          "The first version recorded in the browser. It worked, it demoed well, and I killed it. Twenty-one files went, the capture engine, the compositor, the camera bubble and the crop selector among them.",
           "I killed it because browser capture is worse. You get a tab, or a throttled screen, instead of your actual machine at full quality, and there's a hall-of-mirrors problem where recording your browser from inside your browser shows the recorder recording itself, which is a strange thing to send a client.",
           "What replaced it is a line I've held since: the apps record, the website stores and shares. The Record button on the site is a launcher that opens the native app, or hands you the download if you don't have it yet, and I've turned down adding a browser fallback since because the boundary is the reason the recordings look good.",
         ],
@@ -72,7 +72,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "Android Argued With the Documentation",
         paragraphs: [
-          "Google's own media projection guide numbers the steps: get the projection, then start the foreground service. On Android 14 that order throws. The service has to already be running or the system refuses you outright.",
+          "Google's own media projection guide numbers the steps: get the projection, then start the foreground service. On Android 14 that order throws, because the service has to already be running or the system refuses you outright.",
           "Android also won't let you authorise screen capture once and reuse it. Consent is single-use, so the system dialog appears on every recording. I wanted it gone. It isn't mine to remove, so the flow around it is built to make it feel like one deliberate step in the recording instead of an interruption to it.",
           "I also caught the build asking for permission to draw over other apps, which I never wanted. It comes in from a dependency rather than from my code. It's blocked in release builds, and I check the actual APK after every upgrade instead of trusting that it stayed blocked.",
         ],
@@ -80,8 +80,8 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "I Found a Leak by Signing Up as a Stranger",
         paragraphs: [
-          "I made a brand-new account to see what a first-time user sees, and the empty library wasn't empty. It had somebody else's recording in it, and fifty-seven megabytes already counted against a quota I'd never used.",
-          "The database rule that lets a share link work was written to allow reading any recording marked shareable. It was never narrowed to the one link being opened, so it applied to everyone at once.",
+          "I made a brand-new account to see what a first-time user sees. The empty library wasn't empty. It had somebody else's recording in it, and fifty-seven megabytes already counted against a quota I'd never used, on an account I'd made a moment earlier.",
+          "The database rule that lets a share link work was written to allow reading any recording marked shareable, and it was never narrowed to the one link being opened, so it applied to everyone at once. One rule. Every recording.",
           "Nothing ownership-sensitive trusts that rule any more, and every query that returns your library or counts your storage filters by your user id explicitly. I found it by making an account and looking. Nothing I'd written as a test would have caught it, because every test was signed in as me."
         ],
         images: [
@@ -113,7 +113,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
       {
         heading: "Where It Is Now",
         paragraphs: [
-          "It's live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both, and the website handles the library, playback, sharing and downloads.",
+          "It's live at recastvid.com, with a Mac app and an Android app, both built and shipping. Recording is native on both. The website handles the library, playback, sharing and downloads, and that split is the whole architecture.",
           "It sells storage. There's a free tier and paid plans above it, and entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. I chose storage as the thing to charge for because it's the thing that costs me money when you use more of it.",
         ],
         images: [
