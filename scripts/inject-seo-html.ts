@@ -152,7 +152,11 @@ function renderHead(seo: BuiltSEO): string {
     seo.modifiedTime
       ? `<meta property="article:modified_time" content="${seo.modifiedTime}" />`
       : "",
-    `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`,
+    // data-seo-route lets UnifiedSEO see that this route's schema is already
+    // in the document and skip re-emitting an identical block at runtime.
+    // Two identical JSON-LD blocks is what js_rendering_diff flagged as
+    // "schema only present in rendered HTML".
+    `<script type="application/ld+json" data-seo-route="${new URL(seo.canonical).pathname}">${JSON.stringify(structuredData)}</script>`,
   ];
   return lines.filter(Boolean).join("\n    ");
 }

@@ -30,7 +30,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/competitive-landscape.jpg",
+            src: "/images/business-management/competitive-landscape.webp",
             alt: "The incumbent products: Sage X3, Zoho One and a HACCP compliance tool, all leading with demo requests and dashboards",
             caption:
               "What he was choosing between. Every one of these sells a dashboard to an executive, and none of them is built for the person entering an order at 6am.",
@@ -76,7 +76,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/sitemap-refined.jpg",
+            src: "/images/business-management/sitemap-refined.webp",
             alt: "Site map: nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
             caption:
               "The map I built from. Delivery owns the driver interface, because the driver and the clerk are never the same person.",

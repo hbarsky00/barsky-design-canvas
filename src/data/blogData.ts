@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
 <p>So the thing I'd have shipped would have protected the users who needed it least, and left the ones who needed it most exactly where they started. It would also have looked complete on a requirements checklist, which is the part that bothers me.</p>
 
 <figure class="my-8">
-  <img src="/images/bz-essentials/domain.webp" alt="A domain landing — four categories with counts that are computed through the region lens, so they change when you switch" class="w-full rounded-xs" />
+  <img src="/images/bz-essentials/domain.webp" alt="A domain landing — four categories with counts that are computed through the region lens, so they change when you switch" class="w-full rounded-xs" width="1500" height="1197" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Every count on this page is computed through the region lens, so they change when you switch. A number that lies is worse than no number.</figcaption>
 </figure>
 
@@ -62,7 +62,7 @@ export const blogPosts: BlogPost[] = [
 <p>I'd argue that's the whole shape of this kind of problem. The technical part is trivial and the two versions look nearly identical in a diff. One of them makes the product feel broken, and you only find out which by using it as somebody who doesn't already know where everything is.</p>
 
 <figure class="my-8">
-  <img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs" />
+  <img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs" width="1500" height="1354" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Search is where the filter would have lived. It's still here, for the people who came looking, which was never the group at risk.</figcaption>
 </figure>
 
@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
 <p>I deleted all four screens. Time to first punch went to <strong>six seconds</strong>. Nothing was added. The game got better by having less of itself in the way.</p>
 
 <figure class="my-8">
-  <img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs" />
+  <img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs" width="1100" height="1100" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One sheet per fighter, every frame in a fixed grid. Generating these was the cheap part. Deciding which frames survived took weeks.</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ export const blogPosts: BlogPost[] = [
 <p>It can't tell you that a fighter select is dead weight when there are three fighters and the first one is the obvious choice. It can't tell you that a tutorial is an admission the controls aren't obvious. Those are judgements about a specific product for specific people, and they only come from watching someone use the thing.</p>
 
 <figure class="my-8">
-  <img src="/images/ringrival-vonkaiser.webp" alt="Von Kaiser on the shared rig at heavier proportions — the test that proved fighters could be data" class="w-full rounded-xs" />
+  <img src="/images/ringrival-vonkaiser.webp" alt="Von Kaiser on the shared rig at heavier proportions — the test that proved fighters could be data" class="w-full rounded-xs" width="1920" height="1333" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Von Kaiser on the same rig at heavier proportions. Once a second fighter held, fighters could be data instead of drawings.</figcaption>
 </figure>
 
@@ -147,12 +147,12 @@ export const blogPosts: BlogPost[] = [
 <p>Strip that away and what is left is the actual problem: <strong>two strangers agreeing to meet at a park, and both of them feeling fine about it.</strong> Everything else is a detail of that.</p>
 
 <figure class="my-8">
-  <img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs" />
+  <img src="/images/catchbuddy-find-players.webp" alt="Find Players — match scores shown on each player card" class="w-full rounded-xs" width="1946" height="1404" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Match scores on the player cards. The label used to say Matches, and testers read it as a dating app every single time.</figcaption>
 </figure>
 
 <figure class="my-8">
-  <img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs" />
+  <img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs" width="1076" height="1398" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The 13+ gate at sign-up. Safety that arrives in v1 shapes the product. Safety bolted on later is a settings screen nobody opens.</figcaption>
 </figure>
 
@@ -165,7 +165,7 @@ export const blogPosts: BlogPost[] = [
 <p>That is the part that gets cut in a normal design review, because it looks like friction and friction is the enemy. It's only the enemy when the thing you're optimising for is speed. Here the thing being optimised is somebody's willingness to get in the car.</p>
 
 <figure class="my-8">
-  <img src="/images/catchbuddy-choose-park.webp" alt="Choose a Park — a curated list with distance and amenities, not a drop-a-pin map" class="w-full rounded-xs" />
+  <img src="/images/catchbuddy-choose-park.webp" alt="Choose a Park — a curated list with distance and amenities, not a drop-a-pin map" class="w-full rounded-xs" width="1940" height="1396" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A curated list of parks with distance and amenities. You can't drop your own pin, and the restriction is the feature.</figcaption>
 </figure>
 
@@ -201,7 +201,7 @@ export const blogPosts: BlogPost[] = [
 <p>Everyone calls that a learning curve and bolts on a tutorial. It's not a learning curve. It's the product asking you to do a calculation it could have done itself.</p>
 
 <figure class="my-8">
-  <img src="/images/stips/order-ticket.jpg" alt="Order ticket — $75 on Yes, showing $111.94 back and $36.94 profit before you commit" class="w-full rounded-xs" />
+  <img src="/images/stips/order-ticket.jpg" alt="Order ticket — $75 on Yes, showing $111.94 back and $36.94 profit before you commit" class="w-full rounded-xs" width="1600" height="900" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">$75 on Yes, and the panel has already worked out $111.94 back with $36.94 of profit. Nobody should do that arithmetic in their head.</figcaption>
 </figure>
 
@@ -212,7 +212,7 @@ export const blogPosts: BlogPost[] = [
 <p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, they guess, or they leave. Both are your fault.</p>
 
 <figure class="my-8">
-  <img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs" />
+  <img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs" width="1600" height="900" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Price, close date and volume on every card, so the odds read at a glance instead of after a calculation.</figcaption>
 </figure>
 
@@ -248,12 +248,12 @@ export const blogPosts: BlogPost[] = [
 <p>That is <strong>twenty minutes</strong> of asking colleagues, opening tables, and eventually picking one on a hunch. The search took half a second. The decision took the rest of the morning.</p>
 
 <figure class="my-8">
-  <img src="/images/dae-search/the-problem.webp" alt="An advanced search panel: a prompt to start typing, one diagnosis filter chip, and a count of 15 matching data assets" class="w-full rounded-xs" />
+  <img src="/images/dae-search/the-problem.webp" alt="An advanced search panel: a prompt to start typing, one diagnosis filter chip, and a count of 15 matching data assets" class="w-full rounded-xs" width="1302" height="710" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A filter chip and a count of matching assets. Nothing here says which of them is current, who owns it, or whether you can use it, and that is the decision the analyst is stuck on.</figcaption>
 </figure>
 
 <figure class="my-8">
-  <img src="/images/dae-search/what-i-built.webp" alt="The DAE Search process flow — nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one asset" class="w-full rounded-xs" />
+  <img src="/images/dae-search/what-i-built.webp" alt="The DAE Search process flow — nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one asset" class="w-full rounded-xs" width="1024" height="576" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust.</figcaption>
 </figure>
 
@@ -266,7 +266,7 @@ export const blogPosts: BlogPost[] = [
 <p>None of that's new information. It exists in the metadata already. It was just kept somewhere the person deciding never looked.</p>
 
 <figure class="my-8">
-  <img src="/images/dae-search/decisions-1.webp" alt="Hand sketches of advanced search — a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed" class="w-full rounded-xs" />
+  <img src="/images/dae-search/decisions-1.webp" alt="Hand sketches of advanced search — a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed" class="w-full rounded-xs" width="1733" height="1274" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Sketching how much could sit in the list before it stopped being a list: multiple terms, selected entities, meta tags carried onto the result.</figcaption>
 </figure>
 
@@ -304,7 +304,7 @@ export const blogPosts: BlogPost[] = [
 <p>Worse, it puts the judgement back on the person least equipped to make it. In a health category, that person came to you <em>because</em> they couldn't tell the difference. Handing them a mixed list and a badge system is handing back the exact problem they arrived with.</p>
 
 <figure class="my-8">
-  <img src="/images/herbalink/mobile-booking-guided.webp" alt="Booking on mobile — one guided question replaces the filter panel" class="w-full rounded-xs" />
+  <img src="/images/herbalink/mobile-booking-guided.webp" alt="Booking on mobile — one guided question replaces the filter panel" class="w-full rounded-xs" width="1170" height="1210" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One guided question in place of a filter panel. Filters assume you already know what you need, which is the reason you're here.</figcaption>
 </figure>
 
@@ -315,7 +315,7 @@ export const blogPosts: BlogPost[] = [
 <p>Smaller and honest beat bigger and ambiguous, and it wasn't close.</p>
 
 <figure class="my-8">
-  <img src="/images/herbalink/herbalist-directory.webp" alt="The HerbaLink directory — a smaller catalogue, because nothing unverified is listed at all" class="w-full rounded-xs" />
+  <img src="/images/herbalink/herbalist-directory.webp" alt="The HerbaLink directory — a smaller catalogue, because nothing unverified is listed at all" class="w-full rounded-xs" width="2880" height="1800" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A deliberately smaller catalogue. Nothing unverified is listed at all, so there's no badge left for anyone to interpret.</figcaption>
 </figure>
 
@@ -351,12 +351,12 @@ export const blogPosts: BlogPost[] = [
 <p>Enterprise software loses that fight on purpose, since structure is the point, but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
 
 <figure class="my-8">
-  <img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs" />
+  <img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs" width="2250" height="1360" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The loan journey end to end, from intake to close. Mapped first, so I could see what the spreadsheet was actually holding together.</figcaption>
 </figure>
 
 <figure class="my-8">
-  <img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs" />
+  <img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs" width="768" height="512" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The spreadsheet next to the platform that replaced it. The win was becoming the system of record.</figcaption>
 </figure>
 
@@ -400,12 +400,12 @@ export const blogPosts: BlogPost[] = [
 <p>Neither group is being served well. Each is subsidising the other's assumptions.</p>
 
 <figure class="my-8">
-  <img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs" />
+  <img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs" width="2100" height="1500" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One platform serving both audiences without forking the product. The mode is a setting you flip.</figcaption>
 </figure>
 
 <figure class="my-8">
-  <img src="/images/crypto/competitive.webp" alt="Competitor teardown — easy apps hide the spread, pro apps assume confidence you may not have" class="w-full rounded-xs" />
+  <img src="/images/crypto/competitive.webp" alt="Competitor teardown — easy apps hide the spread, pro apps assume confidence you may not have" class="w-full rounded-xs" width="752" height="664" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The teardown: easy apps hide the spread, pro apps assume confidence you may not have. Both charge for the same decision.</figcaption>
 </figure>
 
@@ -447,12 +447,12 @@ export const blogPosts: BlogPost[] = [
 <p>That's the whole point of picking it. You can't describe your way to good game feel. There's no prompt for "make the jump satisfying". You build it, play it, notice it's slightly wrong, and change one number. Then again. Then again.</p>
 
 <figure class="my-8">
-  <img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs" />
+  <img src="/images/firelion-gameplay-lavagod.webp" alt="Fire Lion mid-flight — spelling a word to cast a spell" class="w-full rounded-xs" width="490" height="688" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Spelling a word mid-flight to cast a spell. If this felt wrong everyone would know instantly, which is exactly why I picked it.</figcaption>
 </figure>
 
 <figure class="my-8">
-  <img src="/images/firelion-lionwars-combat.webp" alt="Lion Wars — the strategic mode, isolated in its own component so refactors cannot reach it" class="w-full rounded-xs" />
+  <img src="/images/firelion-lionwars-combat.webp" alt="Lion Wars — the strategic mode, isolated in its own component so refactors cannot reach it" class="w-full rounded-xs" width="488" height="680" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Lion Wars in its own isolated component, so a refactor in one mode can't quietly break the other two.</figcaption>
 </figure>
 
@@ -494,7 +494,7 @@ export const blogPosts: BlogPost[] = [
 <p>Automating the writing compresses the fastest step in the chain. You end up with a first draft in ten seconds and a two-week review, which is where you started.</p>
 
 <figure class="my-8">
-  <img src="/images/emailai-screen6-pre-mlr.webp" alt="Pre-MLR review — the packet assembled the way the reviewers expect it" class="w-full rounded-xs" />
+  <img src="/images/emailai-screen6-pre-mlr.webp" alt="Pre-MLR review — the packet assembled the way the reviewers expect it" class="w-full rounded-xs" width="1440" height="1192" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The packet assembled the way reviewers expect it. The AI's job ends exactly where legal accountability starts.</figcaption>
 </figure>
 
@@ -507,7 +507,7 @@ export const blogPosts: BlogPost[] = [
 <p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
 
 <figure class="my-8">
-  <img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs" />
+  <img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs" width="1440" height="1547" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">QC inline with editing rather than after it, so a rejection arrives while there's still context to act on.</figcaption>
 </figure>
 
@@ -547,7 +547,7 @@ export const blogPosts: BlogPost[] = [
       <p>What actually costs money is storage and bandwidth. Keeping your files. Streaming them to whoever opens the link. That is a real, boring, per-gigabyte cost, and it is the only line item that scales with how much you use something.</p>
 
       <figure class="my-8">
-        <img src="/images/recast/launcher-modal.webp" alt="The Record button hands off to the native app or takes a file — it never opens a capture tab" class="w-full rounded-xs" />
+        <img src="/images/recast/launcher-modal.webp" alt="The Record button hands off to the native app or takes a file — it never opens a capture tab" class="w-full rounded-xs" width="1500" height="1041" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The Record button hands you to the native app or takes a file. There's no browser-capture fallback, on purpose.</figcaption>
       </figure>
 
@@ -560,12 +560,12 @@ export const blogPosts: BlogPost[] = [
       <p>You are not paying to remove a watermark. You are not paying to record for six minutes instead of five. You are paying for storage, because storage is the thing that costs me money.</p>
 
       <figure class="my-8">
-        <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs" />
+        <img src="/blog/send-someone-a-video-body.jpg" alt="Recast on macOS — the player opens on the local file the moment recording stops, with the share link already there" class="w-full rounded-xs" width="1400" height="814" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Press stop and the player opens on the local file immediately, share link already there. The upload happens behind it.</figcaption>
       </figure>
 
       <figure class="my-8">
-        <img src="/images/recast/web-library.webp" alt="The web library — the site stores and shares, and never records" class="w-full rounded-xs" />
+        <img src="/images/recast/web-library.webp" alt="The web library — the site stores and shares, and never records" class="w-full rounded-xs" width="1500" height="1048" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The other half of the boundary: the site stores and shares, and never records.</figcaption>
       </figure>
 
@@ -646,7 +646,7 @@ export const blogPosts: BlogPost[] = [
       <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean: design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
 
       <figure class="my-8">
-        <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs" />
+        <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs" width="1600" height="900" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Resolution rules written on the market page. A demo never has to answer for how a thing settles. A product does.</figcaption>
       </figure>
 
@@ -772,7 +772,7 @@ export const blogPosts: BlogPost[] = [
       <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe, a current price, who holds an office, whether a service still exists, what your schema looks like today, gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
 
       <figure class="my-8">
-        <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs" />
+        <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs" width="1600" height="900" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The board where markets generated with no sense of today's date turned up already expired.</figcaption>
       </figure>
 
@@ -860,7 +860,7 @@ export const blogPosts: BlogPost[] = [
       <p>What moved it was the audit trail sitting next to the record instead of in a separate log nobody opened. Compliance could see who changed what without asking anyone, so compliance stopped being the obstacle and started advocating for the tool. Visibility bought adoption. No amount of interface polish had.</p>
 
       <figure class="my-8">
-        <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs" />
+        <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs" width="1888" height="1386" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The small disclosures two strangers trade before meeting. Trust gets built out of specifics.</figcaption>
       </figure>
 
@@ -924,7 +924,7 @@ export const blogPosts: BlogPost[] = [
       <p>Fragmentation is the one thing a spreadsheet cannot fix, because the standard response to fragmentation is another spreadsheet. Being one place beats being better at any single thing.</p>
 
       <figure class="my-8">
-        <img src="/images/investor-loan-app/loan-officer.webp" alt="The orderbook with the audit trail next to the record, rather than in an admin tool nobody opens" class="w-full rounded-xs" />
+        <img src="/images/investor-loan-app/loan-officer.webp" alt="The orderbook with the audit trail next to the record, rather than in an admin tool nobody opens" class="w-full rounded-xs" width="1920" height="1081" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The audit trail next to the record instead of in an admin tool nobody opens. That's what made compliance argue for the platform.</figcaption>
       </figure>
 
@@ -974,7 +974,7 @@ export const blogPosts: BlogPost[] = [
       <p>Taste is knowing which good practice doesn't apply here.</p>
 
       <figure class="my-8">
-        <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs" />
+        <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs" width="1920" height="1336" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong. It just felt wrong.</figcaption>
       </figure>
 
@@ -1073,7 +1073,7 @@ export const blogPosts: BlogPost[] = [
       <p>If a feature only survives on the grounds that it was easy to build, that is not a reason. That is the absence of one.</p>
 
       <figure class="my-8">
-        <img src="/images/firelion-spelling-combo.webp" alt="Fire Lion mid-combo — what survived after the daily missions, streaks and upgrade screens were cut" class="w-full rounded-xs" />
+        <img src="/images/firelion-spelling-combo.webp" alt="Fire Lion mid-combo — what survived after the daily missions, streaks and upgrade screens were cut" class="w-full rounded-xs" width="500" height="692" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">What was left after the daily missions, streaks and upgrade screens came out. The game got better every time I cut one.</figcaption>
       </figure>
 
@@ -1145,7 +1145,7 @@ export const blogPosts: BlogPost[] = [
       <p>Somebody who accepts the first plausible answer will do that on your product too, every day, at speed.</p>
 
       <figure class="my-8">
-        <img src="/images/investor-loan-app/my-deals-list-view.jpg" alt="My Deals — the screen loan officers recognised as their own job, which is the answer an interview should surface" class="w-full rounded-xs" />
+        <img src="/images/investor-loan-app/my-deals-list-view.jpg" alt="My Deals — the screen loan officers recognised as their own job, which is the answer an interview should surface" class="w-full rounded-xs" width="1440" height="716" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The screen loan officers recognised as their own job. Getting there is what an interview should be trying to surface.</figcaption>
       </figure>
 
@@ -1184,7 +1184,7 @@ export const blogPosts: BlogPost[] = [
       <p>It means you can take your own idea all the way to something a stranger can use, without a second person's calendar in the way. That's the whole claim.</p>
 
       <figure class="my-8">
-        <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs" />
+        <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs" width="1050" height="790" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window, designed and built by the same person, which is why the seams line up.</figcaption>
       </figure>
 
@@ -1265,7 +1265,7 @@ export const blogPosts: BlogPost[] = [
       <p>Those questions survive because you can only answer them by having lived through it.</p>
 
       <figure class="my-8">
-        <img src="/images/herbalink/herbalist-directory.webp" alt="A product that works with nobody on it — the kind of outcome a portfolio usually hides" class="w-full rounded-xs" />
+        <img src="/images/herbalink/herbalist-directory.webp" alt="A product that works with nobody on it — the kind of outcome a portfolio usually hides" class="w-full rounded-xs" width="2880" height="1800" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A product that works with nobody on it. That's the kind of outcome a portfolio usually leaves out.</figcaption>
       </figure>
 
@@ -1340,7 +1340,7 @@ export const blogPosts: BlogPost[] = [
       <p>Being well-presented no longer earns you anything. It just avoids losing you something. Budget for it accordingly: get it clean, then stop, because additional polish past that point buys nothing and eats the time you should be spending on substance.</p>
 
       <figure class="my-8">
-        <img src="/images/bz-essentials/design-system.webp" alt="A design system documented from the code it actually runs on, rather than a mood board" class="w-full rounded-xs" />
+        <img src="/images/bz-essentials/design-system.webp" alt="A design system documented from the code it actually runs on, rather than a mood board" class="w-full rounded-xs" width="1500" height="1042" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A design system documented from the code it actually runs on, rather than a mood board that never shipped.</figcaption>
       </figure>
 
@@ -1416,7 +1416,7 @@ export const blogPosts: BlogPost[] = [
       <p>Now you build it and look. The cost of finding out you were wrong dropped enough that finding out is usually faster than debating. That changes how you should work, and how fast is the smaller part of it.</p>
 
       <figure class="my-8">
-        <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs" />
+        <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs" width="1100" height="1100" loading="lazy" />
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine poses per fighter, generated fast and then hand-tuned until a punch read as a punch. AI did the volume. The tuning was mine.</figcaption>
       </figure>
 

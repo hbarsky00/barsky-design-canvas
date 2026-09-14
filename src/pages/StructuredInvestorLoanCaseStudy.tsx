@@ -52,7 +52,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
             height: 512,
           },
           {
-            src: "/images/investor-loan-app/book-builder-lofi.png",
+            src: "/images/investor-loan-app/book-builder-lofi.webp",
             alt: "Low-fidelity order builder wireframe for loan workflows",
             caption: "Low-fi on purpose. I was testing the sequence of steps. The look came later.",
             width: 1529,
@@ -133,14 +133,14 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/investor-loan-app/my-deals-list-view.jpg",
+            src: "/images/investor-loan-app/my-deals-list-view.webp",
             alt: "My Deals with chat, share and invite, and per-deal progress tracking",
             width: 1440,
             height: 716,
             caption: "My Deals. The screen loan officers recognised as their own job, which is why this attempt got adopted and three before it didn't.",
           },
           {
-            src: "/images/investor-loan-app/manage-loan-limits.jpg",
+            src: "/images/investor-loan-app/manage-loan-limits.webp",
             alt: "Manage Loan Limits with utilization bars, total limit and available credit per borrower",
             width: 1080,
             height: 1097,

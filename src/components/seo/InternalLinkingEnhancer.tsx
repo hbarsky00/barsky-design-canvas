@@ -17,28 +17,33 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
   className = ""
 }) => {
   const relatedLinks = [
+    // Copy here matches the settled positioning ("I design and develop SaaS,
+    // web apps, mobile apps and internal tools"). The previous set was the
+    // old Lead-UX-Designer marketing register and its fourth link pointed at a
+    // post that has not existed since the 2026-08-09 blog rebuild; Search
+    // Console reported it as a 404 from the homepage.
     {
-      title: "UX Design Services",
-      description: "Comprehensive design solutions for modern businesses",
+      title: "What I design and build",
+      description: "SaaS, web apps, mobile apps and internal tools, designed and shipped by one person",
       href: "/services",
       internal: true
     },
     {
-      title: "Latest Blog Posts",
-      description: "Insights on design, technology, and business growth",
+      title: "Writing",
+      description: "What changed when building got cheap, and what did not",
       href: "/blog",
       internal: true
     },
     {
-      title: "Case Studies",
-      description: "Real projects with measurable results",
-      href: "#projects",
+      title: "Case studies",
+      description: "Thirteen projects, with what was decided and what it cost",
+      href: "#case-studies",
       internal: true
     },
     {
-      title: "AI-Enhanced Design Process",
-      description: "How I leverage AI to deliver better results faster",
-      href: "/blog/ai-enhanced-design-process",
+      title: "What AI changed, and what it didn't",
+      description: "Where a model helps in this work and where it is worthless",
+      href: "/blog/what-ai-changed-and-what-it-didnt",
       internal: true
     }
   ];

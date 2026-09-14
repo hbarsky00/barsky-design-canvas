@@ -14,7 +14,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
       // screenshot further down — the hero and a body image were the same
       // screen. The board is what the product actually is, and it looks like
       // nothing else on the page.
-      src: "/images/stips/landing.jpg",
+      src: "/images/stips/landing.webp",
       alt: "Stips landing: buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
       caption: "$500 of play money and a plain question. It says play money on the way in, before anyone has to ask.",
@@ -73,14 +73,14 @@ const StructuredStipsCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           {
-            src: "/images/stips/market-detail.jpg",
+            src: "/images/stips/market-detail.webp",
             alt: "Stips market page before choosing an outcome: Yes 67¢, No 33¢, with the resolution rules underneath",
             caption: "Before: both prices, the rules that settle it, and no maths asked of you yet.",
             width: 1600,
             height: 900,
           },
           {
-            src: "/images/stips/order-ticket.jpg",
+            src: "/images/stips/order-ticket.webp",
             alt: "The same market with Yes selected and $75 staked: to win $111.94, profit if correct $36.94",
             caption: "After: stake picked, payout and profit worked out before you commit a cent.",
             width: 1600,

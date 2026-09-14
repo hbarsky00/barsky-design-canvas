@@ -87,7 +87,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "It isn't harmless. The suggestions leaked the existence of restricted datasets to anyone who typed enough of the name to pattern-match it, which is a slower version of just reading the table list. Security caught it in review and I didn't argue.",
         ],
         images: [
-          { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query, “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
+          { src: "/images/dae-search/decisions-2.webp", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query, “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
         ],
       },
       {

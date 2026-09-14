@@ -138,6 +138,9 @@ const UnifiedSEO: React.FC = () => {
   }, [location?.pathname, dbSeo]);
 
   const structuredData = generateStructuredData(seoData);
+  const bakedSchemaPresent =
+    typeof document !== "undefined" &&
+    document.querySelector(`script[data-seo-route="${window.location.pathname}"]`) !== null;
 
   return (
     <Helmet>
@@ -145,7 +148,11 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      <meta name="robots" content="index, follow" />
+      {/* Must match index.html's static directive. Helmet replaces the
+          static tag on hydration, and the bare "index, follow" it used to
+          emit here silently dropped max-snippet and max-image-preview for
+          every page Google rendered. */}
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />
@@ -184,8 +191,15 @@ const UnifiedSEO: React.FC = () => {
         <meta property="article:modified_time" content={seoData.modifiedTime} />
       )}
       
-      {/* Structured Data */}
-      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      {/* Structured Data. The build bakes this exact block into every
+          route's HTML (scripts/inject-seo-html.ts, marked data-seo-route),
+          so on a direct load it is already in the document and emitting it
+          again only produces a duplicate. It is still needed after a
+          client-side navigation, where the baked block belongs to the
+          previous route. */}
+      {!bakedSchemaPresent && (
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+      )}
     </Helmet>
   );
 };

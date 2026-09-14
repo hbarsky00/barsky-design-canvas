@@ -131,9 +131,14 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
         if (usedRules.has(ruleKey)) continue;
 
         for (const keyword of rule.keywords) {
-          // Match the keyword but not if it's already inside a link
+          // Match the keyword in text only: not inside an existing link, and
+          // not inside any tag's attributes. Without the second guard the
+          // rule for "herbalist" matched the filename in
+          // src="/images/herbalink/herbalist-directory.webp" and wrote an
+          // <a> into the middle of the attribute, which shipped two posts
+          // with a broken image and a 404 in Search Console.
           const keywordRegex = new RegExp(
-            `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)`,
+            `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)(?![^<]*>)`,
             'i'
           );
 
