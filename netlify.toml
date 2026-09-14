@@ -232,10 +232,7 @@
 
 # Investor Loan study pulled 2026-09-14 — Hiram: "don't put it back no
 # matter what until I ask for it". Source file kept; route unregistered.
-[[redirects]]
-  from = "/project/investor-loan-app"
-  to = "/"
-  status = 301
+# The 301 lives in public/_redirects, which Netlify processes before this file.
 
 # Prerendered static pages
 [[redirects]]

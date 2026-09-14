@@ -101,6 +101,8 @@
 # only after it boots. A crawler files that as a soft 404. Server-side 301 is
 # what it always meant.
 /project/barskyjoint             /                301
+/project/investor-loan-app       /                301
+/project/investor-loan-app/      /                301
 
 # Real routes that have NO prerendered file, so they fall through to the
 # catch-all below. They must keep answering 200 now that the catch-all is a
