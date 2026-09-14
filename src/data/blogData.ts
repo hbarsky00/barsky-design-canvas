@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "23",
     title: "A Filter Nobody Opens Isn't a Feature",
-    excerpt: "Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it \u2014 because they never opened the menu.",
+    excerpt: "Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it, because they never opened the menu.",
     author: "Hiram Barsky",
     date: "August 27, 2026",
     readTime: "4 min read",
@@ -76,7 +76,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "14",
     title: "The Work Is Deleting, Not Generating",
-    excerpt: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part for you.",
+    excerpt: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away, and no model will do that part for you.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -125,7 +125,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "15",
     title: "When Trust Is the Product, It Can't Be a Feature",
-    excerpt: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product \u2014 and it's not something you bolt on near the end.",
+    excerpt: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product, and it's not something you bolt on near the end.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -228,7 +228,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "17",
     title: "Finding the Data Is Half the Job",
-    excerpt: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part nobody designed.",
+    excerpt: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes, deciding which table to trust, is the part nobody designed.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -282,7 +282,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "18",
     title: "Verification Is a Door, Not a Sticker",
-    excerpt: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that \u2014 nobody is visible until they're verified \u2014 gives you a smaller catalogue and a far more honest one.",
+    excerpt: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that, nobody is visible until they're verified, gives you a smaller catalogue and a far more honest one.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -474,7 +474,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "22",
     title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
-    excerpt: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally required to do.",
+    excerpt: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans. The work the humans are legally required to do stays with them.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -523,7 +523,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "13",
     title: "I Just Wanted to Send Someone a Video",
-    excerpt: "Recording your screen is free. Sending it to someone is what everybody charges for \u2014 with watermarks, five-minute caps, and a sign-in wall in front of the person you sent it to.",
+    excerpt: "Recording your screen is free. Sending it to someone is what everybody charges for, with watermarks, five-minute caps, and a sign-in wall in front of the person you sent it to.",
     author: "Hiram Barsky",
     date: "August 25, 2026",
     readTime: "5 min read",
@@ -597,7 +597,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "12",
     title: "The Demo Works. Shipping Is a Different Job.",
-    excerpt: "A demo is the happy path with data you chose. Everything that made my products hard was in the part nobody demos \u2014 dates, permissions, empty screens, and the jobs that run while you sleep.",
+    excerpt: "A demo is the happy path with data you chose. Everything that made my products hard was in the part nobody demos: dates, permissions, empty screens, and the jobs that run while you sleep.",
     author: "Hiram Barsky",
     date: "August 10, 2026",
     readTime: "6 min read",

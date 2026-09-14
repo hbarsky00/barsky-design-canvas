@@ -165,7 +165,7 @@ const BlogPostPage: React.FC = () => {
                   <div className="not-prose my-12">
                     <WorkCallToAction
                       heading="Is this the kind of problem you're sitting on?"
-                      blurb="I design and develop SaaS, web apps, mobile apps and internal tools — the thinking above is how I work. Tell me what you're building, or grab a time and we'll talk it through."
+                      blurb="I design and develop SaaS, web apps, mobile apps and internal tools, and the thinking above is how I work. Tell me what you're building, or grab a time and we'll talk it through."
                     />
                   </div>
 
