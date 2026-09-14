@@ -5,7 +5,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="herbalink"
     title="HerbaLink"
-    description="The hard part was never search. It was making sure the person you found is real, in a category where being wrong lands on someone's health."
+    description="The difficult aspect wasn't carrying out the search. It was ensuring that the person you ended up with is real, since in this kind of category making a mistake could affect someone's health."
     tags={["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://herbalink.live"
@@ -15,7 +15,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       alt: "HerbaLink homepage: personalized wellness guided by certified herbalists",
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
-      caption: "The promise on the front door is the practitioner. The catalogue size never comes up. Everything behind it is gated on that being true.",
+      caption: "The practitioner is what is promised on the front door. The catalogue size is never mentioned, and everything behind it is conditional on that promise being true.",
       width: 2880,
       height: 1800,
     }}
@@ -28,13 +28,13 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "Anyone Can Claim Anything",
         paragraphs: [
-          "This started as an idea. People go looking for a herbalist because of anxiety, or fatigue, or something their doctor hasn't been able to help with. Then they land in a swamp where anyone can claim anything. I wanted to know whether I could build the version that doesn't do that to them.",
-          "The job was making the safe path the easy one, in a category where getting it wrong lands on someone's health. A bigger directory would have made that worse.",
+          "It began as an idea, since people seek out a herbalist because of their anxiety, or because they're tired, or because their doctor hasn't been able to help them. They then end up in a situation where anyone can say anything. That's why I wanted to find out if it was possible to create the one that doesn't do that to them.",
+          "The purpose of the job was to make the safe path the easier one, since making a mistake in this area would affect someone's health. Having a larger directory would have made the situation worse.",
         ],
         imageLayout: "pair",
         images: [
           { src: "/images/herbalink/find-herbalist-sketch.webp", alt: "Early wireframe sketches: finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
-          { src: "/images/herbalink/thought-process.webp", alt: "Design process: interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations.",
+          { src: "/images/herbalink/thought-process.webp", alt: "Design process: interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I consulted users and also talked to herbalists who are currently practising before coming up with anything. All the trust barriers arose as a result of those conversations.",
  width: 512,
  height: 768,
     },
@@ -43,12 +43,12 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "Verification Is a Door, Not a Sticker",
         paragraphs: [
-          "Most directories let anyone list, then put a badge on whoever passed a check. I flipped it, so nobody is visible until they're verified against the American Herbalists Guild, which gives you a smaller catalogue and one where every entry means something.",
-          "I tested it the other way round. I added 200 unverified practitioners and the product got worse: every listing now needed a judgement call from the one person who came here because they couldn't make one.",
+          "In most directories anyone can list a name, and a badge is attached after the person has passed a check. I reversed this system, so that no one is visible until they have been verified by the American Herbalists Guild, which produces a smaller catalogue in which each entry has significance.",
+          "I tried it the other way round by including 200 unverified practitioners, and as a result the product became worse, since now every listing had to rely on the judgement of the single person who had come here precisely because they could not make that judgement themselves.",
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory: the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
+          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory: the gate is built: nothing appears here until it is verified", caption: "The directory with the gate incorporated in it. Nothing is displayed here until it has been checked against the American Herbalists Guild.",
  width: 2880,
  height: 1800,
     },
@@ -57,16 +57,16 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "What I Cut, and What Survived",
         paragraphs: [
-          "A tester said the filter panel felt like WebMD, which is about the worst thing you can say about a health product. It's guided intake now: one focused question instead of a search box and two filter menus.",
-          "I also took out open-ended search entirely, since asking someone to describe what they need assumes they already know, and not knowing is the whole reason they're there.",
-          "The symptom diary is the one I got wrong twice. I built it full, daily logging and history and the lot, and people opened it twice and never came back. I cut it down to a single follow-up question, and what's left of it is the tracker that's still in the product. Building the big version first is how I found out nobody wanted it.",
+          "One tester compared the filter panel to WebMD, which is about the most negative thing you could say about a health product. Intake is now guided by a single main question rather than a search box and two filter menus.",
+          "I also got rid of open-ended search altogether, since it assumes that the person already knows what they need, and it is precisely because they don't know that they have come here.",
+          "The symptom diary is the one that I got wrong on two occasions. I originally designed it to include full daily logging and a complete history, but people opened it twice and then never returned. I therefore reduced it to a single follow-up question, and that is the tracker that remains in the product. It was by building the more extensive version first that I realised nobody wanted it.",
         ],
         videos: [
           {
             src: "/herbalink-before.mp4",
             poster: "/images/herbalink/before-poster.jpg",
             caption:
-              "Before: search by name or specialty, then filter. It works, and it still asks someone who doesn't know what they need to describe what they need.",
+              "Before: you had to search by name or specialty and then filter. This works, but it still requires someone who doesn't know what they need to describe what they need.",
               width: 510,
               height: 1282,
           },
@@ -81,10 +81,10 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "There's no unverified state in this colour system, because there are no unverified listings in the product. The palette records that decision as much as the code does.",
+          "This colour system has no unverified state, since the product has no unverified listings. The palette records the decision just as the code does.",
         ],
         images: [
-          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens: forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions.",
+          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens: forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, with honey used for emphasis and never for actions.",
  width: 1500,
  height: 913,
     },
@@ -93,16 +93,16 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
       {
         heading: "Where It Actually Is",
         paragraphs: [
-          "On hiatus, and I'll say why plainly. The product is built and it works: verification gate, guided intake, booking, herb library, the database and auth underneath all of it. The directory is empty because no herbalists have signed up yet.",
-          "That gap is an honest picture of what I'm good at and what I'm not. I can take an idea and come out the other end with a functional product on my own, and marketing it has always been the weaker half for me. This is the clearest example I have. A platform that works, with nobody on it.",
-          "So it's here for the thinking. The research, the decision to gate verification instead of badging it, the things I cut and what cutting them cost. If what you need is someone who can design the thing and then actually build it, this is what that looks like end to end, including the part where it's sitting there waiting for its first herbalist.",
+          "On hold, and I'll make the reason clear. The product has been built and functions properly: the verification gate, the guided intake, booking, the herb library, and the authentication system underneath everything else. The directory is empty because no herbalists have signed up yet.",
+          "The gap accurately reflects the abilities I have and those I don't. I am able to start with an idea and end up with a working product all by myself, although marketing has always been my weaker point. Here is the clearest example I have: a platform that works, with no one on it.",
+          "This is the full account of the thinking process, covering the research, the choice to gate verification rather than simply badging it, the things I cut and the consequences of those cuts. If you're looking for someone who can design something and then actually build it, this is what that complete process looks like, including the stage where it's just waiting for its first herbalist.",
         ],
         images: [
           {
             src: "/images/herbalink/herb-detail-reviews.webp",
             alt: "Herb library entry for Ashwagandha: description, benefits, preparation, precautions, and an education-not-medical-advice notice",
             caption:
-              "The herb library is the part with real content in it. The reviews under it are placeholder, sitting there until there are people to write real ones.",
+              "The herb library contains the actual content. The reviews below it are placeholders and stay there until someone writes genuine ones.",
               width: 2880,
               height: 4446,
           },
