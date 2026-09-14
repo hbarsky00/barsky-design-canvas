@@ -113,7 +113,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It's live at az-essentials.netlify.app and you can click all of it: the region switch, the domains, the facets, the document pages.",
-          "It's a prototype and I'd rather be plain about the edges. The content is a realistic sample instead of a full library, the brand is invented, there's no authentication or CMS behind it, and none of it is an official system for anyone.",
+          "It's a prototype and I'd rather be plain about the edges. The PRD came from a real client, a pharmaceutical company, and the brand on the public build is one I made up in its place. The content is a realistic sample instead of a full library, there's no authentication or CMS behind it, and none of it is an official system for anyone.",
           "What it's evidence of is the part that usually stays theoretical: taking a written spec, deciding what the structure actually has to be, and building it far enough that you can find out whether it holds. The region-as-a-lens decision only looks obvious once you have seen the version where it is a filter buried in a search page.",
         ],
       },

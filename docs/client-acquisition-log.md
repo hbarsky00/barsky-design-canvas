@@ -1258,3 +1258,21 @@ Hiram's move, not the loop's.
 
   Next lever: **2, proof audit.** Lever 1's rotation sits at **farmflow**.
   Lever 3 stays closed.
+
+- [x] **Lever 1 follow-up — flag 1 answered** — 2026-09-14 — Hiram: the PRD
+  was AstraZeneca's. He chose to keep the client anonymous on the page and to
+  put no timeline on it (flag 2 closed, nothing added).
+
+  **The change.** One sentence in "Where It Landed", between "plain about the
+  edges" and the list of what the prototype lacks: the PRD came from a real
+  client, a pharmaceutical company, and the brand on the public build is one
+  he made up in its place. That answers the half of Q4 a founder could not
+  resolve (real engagement, not a portfolio exercise) without naming anyone.
+  What the client did with it afterwards is still not on the page because he
+  did not say; it is not flagged again, it is simply not claimed.
+
+  Order that works for the copy gate, recorded because it bit this run:
+  `build` then `capture-bodies` then `build`. Capturing first serves the old
+  dist and reports 45/45 anyway, and the new sentence never reaches
+  `prerendered-bodies/`. Gates: tsc clean, both builds clean, sentence
+  confirmed in `dist/project/bz-essentials/index.html`. Committed, not pushed.
