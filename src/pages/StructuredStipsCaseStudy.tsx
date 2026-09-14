@@ -5,7 +5,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="stips"
     title="Stips"
-    description="Prediction markets you can actually read. Play money, real events, and a price that tells you the odds without making you do math."
+    description="You can read prediction markets. They use play money, are based on real events, and give you the odds through a price so you don't have to do any math."
     tags={["AI-Assisted Product", "Fintech", "Prediction Markets", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://stips.bet"
@@ -17,7 +17,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
       src: "/images/stips/landing.webp",
       alt: "Stips landing: buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
-      caption: "$500 of play money and a plain question. It says play money on the way in, before anyone has to ask.",
+      caption: "$500 in play money and a simple question; it's stated upfront as the play money when you enter, before any question is asked.",
       width: 1600,
       height: 900,
     }}
@@ -30,23 +30,23 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "Every One of These Looks Like a Bloomberg Terminal",
         paragraphs: [
-          "A prediction market answers one question, which is how likely something is, and the price tells you because people are putting something behind the answer.",
-          "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. Simple question, complicated screen, and people leave before placing anything.",
-          "So the whole pitch had to fit in a line. Buy Yes or No on real events, and every share pays $1 if you're right. You start with $500, there's no card, and it says play money on the way in.",
+          "A prediction market deals with one question, namely how likely something is, and the price shows this since people are betting on the answer.",
+          "All the prediction markets that I set up resembled a Bloomberg terminal, with their order books, spreads, number of shares, and the way positions were sized. Although the questions were simple, the screens were complex, and as a result people would leave without placing any bets.",
+          "The entire offer had to be contained within a single line. If you buy Yes or No based on actual events, each share will pay you $1 if you are correct. You begin with $500, there is no card, and it states that it's play money when you join.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/stips/flow-how-i-worked.svg",
             alt: "How I worked on Stips: the pitch in one line, board and market screens, generated markets, first batch expired so inject the date and validate, testing signed out hid bugs so test as a real account, measure every colour, live",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
+            caption: "A step-by-step explanation of how I approached it, based on the study's own description. The choice of Terracotta was the one that the others rested their decision on. The more subdued steps were my own constructions which I later deleted.",
             width: 502,
             height: 1034,
           },
           {
             src: "/images/stips/flow-news-to-board.svg",
             alt: "News to board: news on a schedule, AI drafts markets, today's date is in the prompt, close date in the future goes on the board else dropped, buy Yes or No, resolves at a dollar a share",
-            caption: "The pipeline after the fix. The date injection and the validation step are the two boxes that did not exist when the first batch launched already expired.",
+            caption: "The pipeline following the repair. The date injection and the validation stage are the two boxes which, when the first batch was launched, had already expired.",
             width: 404,
             height: 682,
           },
@@ -55,10 +55,10 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "The Board",
         paragraphs: [
-          "Every market carries its price, close date and volume on the card, so you can scan the board without opening anything. Markets with no bets yet say \"Be the first to trade.\" An empty chart would have said the opposite.",
+          "The price, the close date and the volume are all printed on the card for each market, which means you can look at the board without having to open anything. Those markets in which no bets have been placed show 'Be the first to trade'. If the chart had been empty it would have said the opposite.",
         ],
         images: [
-          { src: "/images/stips/markets-board.webp", alt: "The board: price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart.",
+          { src: "/images/stips/markets-board.webp", alt: "The board: price, close date and volume on every card", caption: "The caption states that the price, the deadline and the volume should be displayed on each card so that the board can be read without having to open anything, and in markets where there are no bets it says \"Be the first to trade\" instead of showing a blank chart.",
  width: 1600,
  height: 900,
     },
@@ -67,22 +67,22 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "The Market, Before and After You Pick",
         paragraphs: [
-          "Same screen, two states. On the left nothing is chosen yet, so the panel just shows you both prices and what they mean in plain percentages. On the right I have picked Yes and put $75 on it, and the panel has done the arithmetic: $111.94 back if I am right, $36.94 of that is profit.",
-          "Nobody should have to work out in their head what 67¢ a share means for their stake, and if you make them they guess, and a guess is a bet nobody feels good about.",
+          "The screen displays two different situations. When nothing has been selected on the left side, the panel simply shows both the prices and their meaning in plain percentages. On the right hand side, however, I've chosen Yes and entered $75 beside it, and the panel has then carried out the calculation: $111.94 would be returned if I am correct, of which $36.94 represents the profit.",
+          "People shouldn't have to work out in their heads what 67 cents per share means in relation to their own investment, and if you do make them do so, they'll have to make a guess, and a guess is something nobody feels pleased about.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/stips/market-detail.webp",
             alt: "Stips market page before choosing an outcome: Yes 67¢, No 33¢, with the resolution rules underneath",
-            caption: "Before: both prices, the rules that settle it, and no maths asked of you yet.",
+            caption: "Initially, both prices, the rules which determine them, and no mathematics being required of you at this stage.",
             width: 1600,
             height: 900,
           },
           {
             src: "/images/stips/order-ticket.webp",
             alt: "The same market with Yes selected and $75 staked: to win $111.94, profit if correct $36.94",
-            caption: "After: stake picked, payout and profit worked out before you commit a cent.",
+            caption: "Once the stake has been chosen, the payout and profit will have been calculated before you commit a single cent.",
             width: 1600,
             height: 900,
           },
@@ -91,8 +91,8 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "Two Things I Got Wrong",
         paragraphs: [
-          "Markets get generated from the news on a schedule, which means an AI is writing the close dates. Models have no clock. My first batches came out already expired, which is a very silly way to launch a prediction market. The fix was boring. Put today's date in the prompt, then validate every date before it reaches the board.",
-          "The second one cost me more. I was testing signed out because it's faster, and signed out, row-level security quietly returns nothing instead of an error, so every bug that only happens when you're logged in looked like an empty state behaving correctly. I didn't find any of them until I started testing as a real account.",
+          "Market creation takes place on a set schedule, so the AI has to be given the closing dates. Since the models don't have a clock, my initial batches turned out to be already expired, which is a rather foolish method of launching a prediction market. The solution was simple: include today's date in the prompt and then check all the dates before they appear on the board.",
+          "The second one ended up costing me more since I was testing while signed out as that method is quicker, and when you're signed out row-level security simply returns nothing rather than generating an error, so each bug that only occurs when you're logged in appeared as if the empty state was working correctly. It wasn't until I began testing with an actual account that I discovered any of them.",
         ],
         images: [
         ],
@@ -100,10 +100,10 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "A board of prices only has four things to say: yes, no, neutral, closing. Every one of those colours is measured against the surface it's actually painted on, because the previous set was tuned by eye and all four failed contrast.",
+          "A price board can only give four responses: yes, no, neutral, or closing. Each of these colours is assessed in relation to the surface onto which it is actually applied, since the earlier set was adjusted by eye and all four options failed the contrast test.",
         ],
         images: [
-          { src: "/images/stips/design-system.webp", alt: "Stips design tokens: Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair.",
+          { src: "/images/stips/design-system.webp", alt: "Stips design tokens: Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four of the tokens were failing the AA tests and were causing more than four hundred contrast failures in the app; the remedy was to fix them at the token level.",
  width: 1500,
  height: 913,
     },
@@ -112,9 +112,9 @@ const StructuredStipsCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, so you can learn how a prediction market reads without putting anything real on the table.",
-          "What isn't fake is what you're betting on. The markets get pulled from actual news on a schedule, so the board fills with the same things people already argue about: a fight card, a rate decision, an election, whether a company ships something by a date. Real questions, real close dates, real resolution criteria written on the page. Play money sitting on top of a board that behaves like the real thing.",
-          "Right now the job is getting people to try it. The product works end to end, design through front end through database, auth, and the scheduled jobs that keep the board from going stale while nobody's looking, and getting it in front of people is what I'm working on.",
+          "The event is taking place on stips.bet and the money used is not real; everyone is given $500 in play money so that you can find out how a prediction market works without having to risk any actual money.",
+          "The only things that are genuine are the ones you're placing your bet on. Since the markets are updated according to a set timetable based on actual news, the board ends up containing the same items that people have already discussed: a fight card, a rate decision, an election, and whether a company ships a product by a certain date. There are genuine questions, definite deadlines, and real resolution criteria stated on the page. Play money is placed on a board that acts just like the real one.",
+          "At the moment, my focus is on getting people to try it. The product functions fully throughout the entire process, covering the design phase all the way through to the front end, including the database, authentication, and the scheduled jobs which prevent the board from becoming outdated when no one is looking, and it's getting it in front of people that I'm concentrating on.",
         ],
       },
     ]}
