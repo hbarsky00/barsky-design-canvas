@@ -5,12 +5,12 @@ const ManuscriptRxCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="email-creation-ai"
     title="ManuscriptRx"
-    description="A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates the AI has to work between."
+    description="A self-initiated concept for AI-assisted pharma HCP email production, designed around the approval gates the AI has to work between."
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/emailai-hero-pair.webp",
-      alt: "The six-step workflow navigator beside the assemble step — Brief Creation locked, approved content pulled in on the right",
+      alt: "The six-step workflow navigator beside the assemble step: Brief Creation locked, approved content pulled in on the right",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
       caption: "Six steps, each naming the human who owns it. Brief Creation is greyed out because I didn't research it. It's outside the pilot, and the label says so.",
       width: 1720,
@@ -18,7 +18,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
     }}
     relatedPost={{
       slug: "design-for-the-approval-gates",
-      title: "In Regulated Work, Design for the Gates — Not the AI",
+      title: "In Regulated Work, Design for the Gates",
       blurb: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are…",
     }}
     blocks={[
@@ -33,14 +33,14 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           {
             src: "/images/email-creation-ai/flow-how-i-worked.svg",
             alt: "How I worked on ManuscriptRx: invert the pitch, six owned steps, QC inline, gate the preview, leave the brief locked, keep the warning visible, Figma screens, Claude writes a spec per screen, spec to dev, MLR not designed",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 528,
             height: 858,
           },
           {
             src: "/images/email-creation-ai/flow-between-the-humans.svg",
             alt: "Human and AI alternation: writer edits, AI assembles, reviewers sign off inline, AI generates HTML and runs the checklist, pass shows Send Preview to Brand, fail returns to the writer, MLR review outside scope",
-            caption: "Person, model, person, model, person. The white steps are the AI's; the last one is the part this concept did not solve.",
+            caption: "Person, model, person, model, person. The white steps are the AI's. The last one is the part this concept did not solve.",
             width: 580,
             height: 682,
           },
@@ -54,7 +54,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "That one constraint decided everything else on the screen, and it is what separates a tool that survives compliance review from a demo that doesn't.",
         ],
         images: [
-          { src: "/images/emailai-screen2-assemble.png", alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
+          { src: "/images/emailai-screen2-assemble.png", alt: "Step 2: Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
  width: 1440,
  height: 1040,
     },
@@ -68,7 +68,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
         ],
         images: [
-          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "QC sits beside the editor instead of after it, so a rejection lands while the writer still has the context to fix it.",
+          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3: Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "QC sits beside the editor instead of after it, so a rejection lands while the writer still has the context to fix it.",
  width: 1440,
  height: 1547,
     },
@@ -81,7 +81,7 @@ const ManuscriptRxCaseStudy: React.FC = () => (
           "The PromoMats integration warning stays on screen rather than being tidied away before the screenshot. It's an unresolved dependency, and a reviewer who spots it in a real pilot has a much worse day than one who was told up front.",
         ],
         images: [
-          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "HTML and metadata generated, previewed at both sizes before a reviewer ever sees it. The unresolved PromoMats warning is left on screen on purpose.",
+          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5: Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "HTML and metadata generated, previewed at both sizes before a reviewer ever sees it. The unresolved PromoMats warning is left on screen on purpose.",
  width: 1440,
  height: 1192,
     },

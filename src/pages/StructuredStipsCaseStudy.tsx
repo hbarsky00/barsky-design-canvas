@@ -15,7 +15,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
       // screen. The board is what the product actually is, and it looks like
       // nothing else on the page.
       src: "/images/stips/landing.jpg",
-      alt: "Stips landing — buy Yes or No on real-world events, $500 in play money to start",
+      alt: "Stips landing: buy Yes or No on real-world events, $500 in play money to start",
       hoverVideo: "/stips-promo.mp4",
       caption: "$500 of play money and a plain question. It says play money on the way in, before anyone has to ask.",
       width: 1600,
@@ -39,7 +39,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           {
             src: "/images/stips/flow-how-i-worked.svg",
             alt: "How I worked on Stips: the pitch in one line, board and market screens, generated markets, first batch expired so inject the date and validate, testing signed out hid bugs so test as a real account, measure every colour, live",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 502,
             height: 1034,
           },
@@ -58,7 +58,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Every market carries its price, close date and volume on the card, so you can scan the board without opening anything. Markets with no bets yet say \"Be the first to trade.\" An empty chart would have said the opposite.",
         ],
         images: [
-          { src: "/images/stips/markets-board.webp", alt: "The board — price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart.",
+          { src: "/images/stips/markets-board.webp", alt: "The board: price, close date and volume on every card", caption: "Price, close date and volume on every card, so the board reads without opening anything. Markets with no bets say \"Be the first to trade\" rather than showing an empty chart.",
  width: 1600,
  height: 900,
     },
@@ -74,14 +74,14 @@ const StructuredStipsCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/stips/market-detail.jpg",
-            alt: "Stips market page before choosing an outcome — Yes 67¢, No 33¢, with the resolution rules underneath",
+            alt: "Stips market page before choosing an outcome: Yes 67¢, No 33¢, with the resolution rules underneath",
             caption: "Before: both prices, the rules that settle it, and no maths asked of you yet.",
             width: 1600,
             height: 900,
           },
           {
             src: "/images/stips/order-ticket.jpg",
-            alt: "The same market with Yes selected and $75 staked — to win $111.94, profit if correct $36.94",
+            alt: "The same market with Yes selected and $75 staked: to win $111.94, profit if correct $36.94",
             caption: "After: stake picked, payout and profit worked out before you commit a cent.",
             width: 1600,
             height: 900,
@@ -103,7 +103,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "A board of prices only has four things to say: yes, no, neutral, closing. Every one of those colours is measured against the surface it's actually painted on, because the previous set was tuned by eye and all four failed contrast.",
         ],
         images: [
-          { src: "/images/stips/design-system.webp", alt: "Stips design tokens — Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair.",
+          { src: "/images/stips/design-system.webp", alt: "Stips design tokens: Manrope and Inter, the canvas/card/line surfaces, and the four semantic colours with the contrast failures they replaced", caption: "Four tokens were failing AA and producing over four hundred contrast failures across the app. Fixing them at the token was the whole repair.",
  width: 1500,
  height: 913,
     },
@@ -113,7 +113,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
         heading: "Where It Landed",
         paragraphs: [
           "It's live at stips.bet and the money is fake. Everyone starts with $500 of play money, so you can learn how a prediction market reads without putting anything real on the table.",
-          "What isn't fake is what you're betting on. The markets get pulled from actual news on a schedule, so the board fills with the same things people already argue about — a fight card, a rate decision, an election, whether a company ships something by a date. Real questions, real close dates, real resolution criteria written on the page. Play money sitting on top of a board that behaves like the real thing.",
+          "What isn't fake is what you're betting on. The markets get pulled from actual news on a schedule, so the board fills with the same things people already argue about: a fight card, a rate decision, an election, whether a company ships something by a date. Real questions, real close dates, real resolution criteria written on the page. Play money sitting on top of a board that behaves like the real thing.",
           "Right now the job is getting people to try it. The product works end to end, design through front end through database, auth, and the scheduled jobs that keep the board from going stale while nobody's looking, and getting it in front of people is what I'm working on.",
         ],
       },

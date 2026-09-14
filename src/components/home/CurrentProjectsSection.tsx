@@ -54,7 +54,7 @@ const currentProjects: CurrentProject[] = [
   {
     id: "faces-of-hunger",
     title: "Faces of Hunger",
-    description: "An awareness platform using design and AI to make food insecurity legible as people, not statistics.",
+    description: "An awareness platform using design and AI to make food insecurity legible as people rather than statistics.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
     thumbnailSrc: "/images/projects/1ad2ef714038.webp"

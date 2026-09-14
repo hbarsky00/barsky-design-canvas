@@ -18,9 +18,9 @@
 
       <p>What made this expensive is that everything else about the output was right. Valid JSON. Sensible question. Clean resolution criteria. Reasoning that read like a person who had actually understood the news story. One field was garbage, and it happened to be the field that decided whether any of the rest was usable.</p>
 
-      <p>The fix is two rules I now apply by reflex. Today's date goes into the prompt as a stated fact, not something the model is left to infer. And no generated date is trusted until it has been compared against real system time. If a close date isn't in the future, the market never gets written.</p>
+      <p>The fix is two rules I now apply by reflex. Today's date goes into the prompt as a stated fact. The model never has to infer it. And no generated date is trusted until it has been compared against real system time. If a close date isn't in the future, the market never gets written.</p>
 
-      <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe — a current price, who holds an office, whether a service still exists, what your schema looks like today — gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
+      <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe, a current price, who holds an office, whether a service still exists, what your schema looks like today, gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
 
       <figure class="my-8">
         <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs">
@@ -35,7 +35,7 @@
 
       <p>So the app rendered empty states everywhere and I read those empty states as "nothing here yet." Every policy mistake, every query missing a user id, every place a session wasn't being passed through was sitting right there in plain sight. They surfaced the moment I tested as a real signed-in user, and they surfaced all at once.</p>
 
-      <p>Signed-out testing is a permanent blind spot on anything with row-level security. I test signed in first now. Guest is the special case, not the default.</p>
+      <p>Signed-out testing is a permanent blind spot on anything with row-level security. I test signed in first now. Guest is the special case.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What Review Actually Has to Look For</h2>
 
@@ -45,7 +45,7 @@
 
       <ul class="list-disc pl-6 mb-4">
         <li>Where does this get the current time, and is that source real?</li>
-        <li>What does this return when the caller has no permission — an error, or silence?</li>
+        <li>What does this return when the caller has no permission? An error, or silence?</li>
         <li>Which values here came from the world, and which came from the model's memory of the world?</li>
         <li>What happens on the second run, not the first?</li>
       </ul>

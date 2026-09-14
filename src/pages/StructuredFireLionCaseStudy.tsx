@@ -5,13 +5,13 @@ const StructuredFireLionCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="fire-lion"
     title="Fire Lion"
-    description="A shipped arcade game, built solo with AI. You spell words mid-flight to cast spells — and most of the design work was deciding what to delete."
+    description="A shipped arcade game, built solo with AI. You spell words mid-flight to cast spells, and most of the design work was deciding what to delete."
     tags={["AI-Assisted Product", "Game Design", "Mobile Web", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://firelion.me"
     heroImage={{
       src: "/images/firelion-hero-triptych.webp",
-      alt: "Fire Lion in play — the hold-to-fly prompt, the lion mid-flight, and a boulder incoming",
+      alt: "Fire Lion in play: the hold-to-fly prompt, the lion mid-flight, and a boulder incoming",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
       caption: "Hold to fly, and something is already coming at you. If one tap didn't feel good here, nothing bolted on top would have rescued it.",
       width: 1672,
@@ -34,7 +34,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           {
             src: "/images/fire-lion/flow-how-i-worked.svg",
             alt: "How I worked on Fire Lion: pick a game, one tap and one lion, tune until fun, spelling months later, AI scaffolds, hand-tune feel, build retention features, watch players ignore them, delete them, live",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 472,
             height: 880,
           },
@@ -71,11 +71,11 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Each one lives in its own component, with its own state and its own audio. That is a defensive decision rather than an architectural one. I was building fast, usually late at night, and a refactor that reaches across a shared file breaks things you don't find out about until somebody else does. The duplication costs me something real. What it buys is the ability to change one mode without holding the other two in my head.",
         ],
         images: [
-          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
+          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene: kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
  width: 802,
  height: 656,
     },
-          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state", caption: "Same isolation rule, second scene. Duplication I paid for on purpose, so a refactor in one mode can't reach the other two.",
+          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene: same isolation rule: separate component, separate audio, separate state", caption: "Same isolation rule, second scene. Duplication I paid for on purpose, so a refactor in one mode can't reach the other two.",
  width: 735,
  height: 655,
     },
@@ -85,11 +85,11 @@ const StructuredFireLionCaseStudy: React.FC = () => (
         heading: "Where AI Stopped Being Useful",
         paragraphs: [
           "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That saved me weeks, and I am not going to pretend otherwise.",
-          "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right — it will answer you, and the answer means nothing.",
+          "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right. It will answer you, and the answer means nothing.",
           "Producing features got cheap, and deciding which ones survived is the part that stayed expensive, because it's the part that still needs someone to sit on the couch with the phone.",
         ],
         images: [
-          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system; the difficulty curve I tuned by hand on a phone.",
+          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system. The difficulty curve I tuned by hand on a phone.",
  width: 488,
  height: 680,
     },
@@ -109,7 +109,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything. The gravity and the tap feel were hand-tuned on a phone.",
         ],
         images: [
-          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens — Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy.",
+          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens: Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy.",
  width: 1500,
  height: 913,
     },

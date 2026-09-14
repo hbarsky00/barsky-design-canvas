@@ -23,7 +23,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
     relatedPost={{
       slug: "finding-the-data-is-half-the-job",
       title: "Finding the Data Is Half the Job",
-      blurb: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part\u2026",
+      blurb: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes, deciding which table to trust, is the part\u2026",
     }}
     blocks={[
       {
@@ -39,7 +39,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           {
             src: "/images/dae-search/flow-how-i-worked.svg",
             alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 492,
             height: 1100,
           },
@@ -87,7 +87,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "It isn't harmless. The suggestions leaked the existence of restricted datasets to anyone who typed enough of the name to pattern-match it, which is a slower version of just reading the table list. Security caught it in review and I didn't argue.",
         ],
         images: [
-          { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query — “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
+          { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query, “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
         ],
       },
       {
@@ -109,8 +109,8 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/dae-search/design-system.webp",
-            alt: "DAE Search design tokens read off the project's own style guide \u2014 Primary Blue, White and Dark Grey, a secondary set of Medium Blue, Ice Blue and Orangey Red, and Cool Mint, Sage and Light Khaki as neutrals",
-            caption: "Read off the project's own style guide. Primary Blue carries every action; the neutrals carry freshness, so the row never needs a legend.",
+            alt: "DAE Search design tokens read off the project's own style guide: Primary Blue, White and Dark Grey, a secondary set of Medium Blue, Ice Blue and Orangey Red, and Cool Mint, Sage and Light Khaki as neutrals",
+            caption: "Read off the project's own style guide. Primary Blue carries every action. The neutrals carry freshness, so the row never needs a legend.",
             width: 1500,
             height: 1164,
           },

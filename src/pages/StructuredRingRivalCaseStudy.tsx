@@ -15,7 +15,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     // second thing it did was break it.
     heroImage={{
       src: "/images/ringrival-now/hero-triptych.webp",
-      alt: "Ring-Rival mid-fight — first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
+      alt: "Ring-Rival mid-fight: first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
       // No hover video here any more. This still sat directly above the
       // star-punch clip, so the top of the page was two video surfaces back to
       // back showing two different fights — a wide landscape one you had to
@@ -28,7 +28,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     relatedPost={{
       slug: "the-work-is-deleting-not-generating",
       title: "The Work Is Deleting, Not Generating",
-      blurb: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do\u2026",
+      blurb: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away, and no model will do\u2026",
     }}
     blocks={[
       {
@@ -59,14 +59,14 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           {
             src: "/images/ring-rival/flow-how-i-worked.svg",
             alt: "How I worked on Ring Rival: build the rig, Glass Joe then Von Kaiser through it, fighters become data, fix the paper look, drop the particles, hand-tune on a phone, delete four screens to cut time to first punch, cut hand-tracking, live and tuning the star punch",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 518,
             height: 946,
           },
           {
             src: "/images/ring-rival/flow-fighter-pipeline.svg",
             alt: "Fighter pipeline: shared rig, this fighter's proportions, generate the nine-pose sheet, eight poses the fight code counts on plus one special of their own, opponent in the roster with no new drawing",
-            caption: "How a new opponent gets made. Eight poses are a shared contract; the ninth is what makes Klaus Brenner someone other than Glass Joe.",
+            caption: "How a new opponent gets made. Eight poses are a shared contract. The ninth is what makes Klaus Brenner someone other than Glass Joe.",
             width: 398,
             height: 618,
           },
@@ -83,14 +83,14 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/ringrival-glassjoe-idle.webp",
-            alt: "Glass Joe at launch — flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee",
+            alt: "Glass Joe at launch: flat block torso, wedge arms with no elbow, parallelogram legs seamed at the knee",
             caption: "Glass Joe, first one through the rig. One flat colour per limb, no elbow, no shading anywhere.",
             width: 1920,
             height: 1328,
           },
           {
             src: "/images/ringrival-vonkaiser.webp",
-            alt: "Von Kaiser — the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance",
+            alt: "Von Kaiser: the same rig at heavier proportions: wider trapezoid torso, longer arms, broader stance",
             caption: "Von Kaiser. Same rig, heavier build. This is the one that told me the rig would hold.",
             width: 1920,
             height: 1333,
@@ -145,7 +145,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Every colour comes in a pair: the state at rest, and the same state ten percent lighter on impact. Colour and brightness change together because that reads faster than either on its own.",
         ],
         images: [
-          { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens — Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands.",
+          { src: "/images/ringrival-now/design-system.webp", alt: "Ring-Rival design tokens: Courier New, the charcoal ring, and four accent colours each paired with a brighter glow", caption: "Four colours, each with its own glow, because a punch has to register in the frame it lands.",
  width: 1500,
  height: 913,
     },

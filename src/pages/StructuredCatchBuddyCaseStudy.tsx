@@ -20,7 +20,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     relatedPost={{
       slug: "when-trust-is-the-product",
       title: "When Trust Is the Product, It Can't Be a Feature",
-      blurb: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product \u2014 and it's not something you\u2026",
+      blurb: "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product, and it's not something you\u2026",
     }}
     blocks={[
       {
@@ -34,18 +34,18 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           {
             src: "/images/catchbuddy/flow-how-i-worked.svg",
             alt: "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decided by hand, AI security review catches a recursive policy, rename Matches, cut the wizard, cut three calendar integrations, shipped",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 548,
             height: 726,
           },
           {
             src: "/images/catchbuddy/flow-minor-gate.svg",
-            alt: "Minor gate: sign up, under 18 asks a parent to verify; verified can post, not yet can browse only; over 18 can post; meeting spot from the curated list; panic button on every game screen",
+            alt: "Minor gate. Sign up, and under 18 asks a parent to verify. Once verified they can post, and until then they can browse. Over 18 can post straight away. Every game gets a meeting spot from the curated list and a panic button on every screen",
             caption: "The gate a minor goes through, and the two things every game gets regardless: a curated meeting spot and a panic button.",
             width: 784,
             height: 770,
           },
-          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
+          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
  width: 1848,
  height: 1364,
     },
@@ -58,7 +58,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "That last one gets argued with a lot. Letting people add their own locations would be more flexible, and I still won't do it.",
         ],
         images: [
-          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
+          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park: searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
  width: 1940,
  height: 1396,
     },
@@ -71,7 +71,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "It couldn't decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Those I made by hand. It did catch one thing I'd have missed, though: an AI security review flagged a recursive RLS policy that would have leaked data in production.",
         ],
         images: [
-          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet — who's bringing a ball, and whether this is contact or not.",
+          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences: \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet, who's bringing a ball, and how physical the game is going to be.",
  width: 1888,
  height: 1386,
     },
@@ -87,8 +87,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         imageLayout: "pair",
         images: [
           { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "Match scores on the player cards. It's called Players now, because testers kept reading \"Matches\" as a dating app." },
-          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "The 13+ gate at sign-up — the first checkpoint in the minor-protection flow, in v1 rather than bolted on later." },
-          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number, and it decides whether you get a game." },
+          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "The 13+ gate at sign-up, the first checkpoint in the minor-protection flow, in v1 rather than bolted on later." },
+          { src: "/images/catchbuddy-game-live.png", alt: "Confirmation: \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number, and it decides whether you get a game." },
         ],
       },
       {
@@ -97,7 +97,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "I made the palette warm, because a trust product that looks like a fintech dashboard reads as a company and this needed to read as a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
         ],
         images: [
-          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens — warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration.",
+          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration.",
  width: 1500,
  height: 913,
     },

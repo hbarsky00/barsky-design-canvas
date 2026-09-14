@@ -12,7 +12,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     heroImage={{
       // Live screenshots of the shipped app, replacing dead barskyux.com links.
       src: "/images/herbalink/home-hero.webp",
-      alt: "HerbaLink homepage — personalized wellness guided by certified herbalists",
+      alt: "HerbaLink homepage: personalized wellness guided by certified herbalists",
       // Full booking-demo capture: directory → booking → checkout → herb library.
       hoverVideo: "/herbalink-demo.mp4",
       caption: "The promise on the front door is the practitioner. The catalogue size never comes up. Everything behind it is gated on that being true.",
@@ -22,7 +22,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     relatedPost={{
       slug: "verification-is-a-door-not-a-sticker",
       title: "Verification Is a Door, Not a Sticker",
-      blurb: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that \u2014 nobody is visible until they're verified \u2014 gives you a\u2026",
+      blurb: "Most directories let anyone list, then put a badge on whoever checked out. Flipping that, nobody is visible until they're verified, gives you a\u2026",
     }}
     blocks={[
       {
@@ -33,8 +33,8 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/herbalink/find-herbalist-sketch.webp", alt: "Early wireframe sketches — finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
-          { src: "/images/herbalink/thought-process.webp", alt: "Design process — interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations.",
+          { src: "/images/herbalink/find-herbalist-sketch.webp", alt: "Early wireframe sketches: finding a herbalist, choosing a consultation type, matching flow", caption: "Where it started.", width: 1536, height: 1024 },
+          { src: "/images/herbalink/thought-process.webp", alt: "Design process: interview, identify trust barriers, prioritize outcomes over UI, design for retention, validate simplicity", caption: "I talked to users and to practising herbalists before designing anything. Every trust barrier came out of those conversations.",
  width: 512,
  height: 768,
     },
@@ -48,7 +48,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory — the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
+          { src: "/images/herbalink/herbalist-directory.webp", alt: "Find Herbalists directory: the gate is built: nothing appears here until it is verified", caption: "The directory with the gate built in. Nothing appears here until it's verified against the American Herbalists Guild.",
  width: 2880,
  height: 1800,
     },
@@ -72,7 +72,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           },
         ],
         images: [
-          { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile — \"We'll match you\" replaces the filter panel", caption: "After: one guided question.",
+          { src: "/images/herbalink/mobile-booking-guided.webp", alt: "After: booking on mobile: \"We'll match you\" replaces the filter panel", caption: "After: one guided question.",
  width: 1170,
  height: 1210,
     },
@@ -84,7 +84,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
           "There's no unverified state in this colour system, because there are no unverified listings in the product. The palette records that decision as much as the code does.",
         ],
         images: [
-          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens — forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions.",
+          { src: "/images/herbalink/design-system.webp", alt: "HerbaLink design tokens: forest green on warm paper with honey reserved for emphasis, and the verification rule the palette encodes", caption: "Forest green on warm paper, honey for emphasis and never for actions.",
  width: 1500,
  height: 913,
     },
@@ -100,7 +100,7 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/herbalink/herb-detail-reviews.webp",
-            alt: "Herb library entry for Ashwagandha — description, benefits, preparation, precautions, and an education-not-medical-advice notice",
+            alt: "Herb library entry for Ashwagandha: description, benefits, preparation, precautions, and an education-not-medical-advice notice",
             caption:
               "The herb library is the part with real content in it. The reviews under it are placeholder, sitting there until there are people to write real ones.",
               width: 2880,

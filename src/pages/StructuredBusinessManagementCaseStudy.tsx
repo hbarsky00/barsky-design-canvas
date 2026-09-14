@@ -13,10 +13,10 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
     ]}
     heroImage={{
       src: "/images/business-management/v2/overview.webp",
-      alt: "QuickFlow Business Overview — today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
+      alt: "QuickFlow Business Overview: today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
       hoverVideo: "/quickflow-walkthrough.mp4",
       caption:
-        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows — costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset. His real books stay his.",
+        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows, costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset. His real books stay his.",
       width: 2300,
       height: 1438,
     }}
@@ -31,7 +31,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/business-management/competitive-landscape.jpg",
-            alt: "The incumbent products — Sage X3, Zoho One and a HACCP compliance tool, all leading with demo requests and dashboards",
+            alt: "The incumbent products: Sage X3, Zoho One and a HACCP compliance tool, all leading with demo requests and dashboards",
             caption:
               "What he was choosing between. Every one of these sells a dashboard to an executive, and none of them is built for the person entering an order at 6am.",
               width: 1081,
@@ -49,7 +49,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/business-management/v2/recipe-calculator.webp",
-            alt: "The recipe calculator — pick a product, set a quantity, optionally override the selling price, and it returns the margin",
+            alt: "The recipe calculator: pick a product, set a quantity, optionally override the selling price, and it returns the margin",
             caption:
               "The spreadsheet this replaced worked out cost per plate. So does this, except it reads the catalogue prices instead of whatever was pasted in last.",
             width: 2300,
@@ -69,7 +69,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             poster: "/images/business-management/ideation-walkthrough-poster.jpg",
             narrated: true,
             caption:
-              "Me working the flows out loud, role by role, before any screen existed. Start, products dashboard, the branch where adding a manufactured product stops behaving like adding a sourced one — and which of those decisions belong to somebody who is not the person clicking.",
+              "Me working the flows out loud, role by role, before any screen existed. Start, products dashboard, the branch where adding a manufactured product stops behaving like adding a sourced one, and which of those decisions belong to somebody who is not the person clicking.",
             width: 1280,
             height: 624,
           },
@@ -77,7 +77,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/business-management/sitemap-refined.jpg",
-            alt: "Site map — nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
+            alt: "Site map: nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
             caption:
               "The map I built from. Delivery owns the driver interface, because the driver and the clerk are never the same person.",
             width: 768,
@@ -94,7 +94,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/business-management/v2/orders.webp",
-            alt: "QuickFlow order management — total, pending, delivered and revenue tiles above a recent-orders table with per-row status and actions",
+            alt: "QuickFlow order management: total, pending, delivered and revenue tiles above a recent-orders table with per-row status and actions",
             caption:
               "Status is spelled out as a word, so nobody has to decode a colour to read the row. The figures on screen are demo data rather than anything out of his accounts.",
             width: 2300,
@@ -102,7 +102,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: "/images/business-management/v2/customers.webp",
-            alt: "The customer directory — total customers, how many hold credit, business types and credit outstanding, above a searchable table of accounts",
+            alt: "The customer directory: total customers, how many hold credit, business types and credit outstanding, above a searchable table of accounts",
             caption:
               "An order needs a customer and a credit position before it needs anything else. Both live here, and the credit column is the one that decides whether an order goes out at all.",
             width: 2300,
@@ -136,14 +136,14 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: "/images/business-management/v2/mobile-products.webp",
-            alt: "The product catalogue on a phone — search, category filter, and product cards with price, stock and add-to-order",
+            alt: "The product catalogue on a phone: search, category filter, and product cards with price, stock and add-to-order",
             caption: "Stock and price, adjusted where the stock is.",
             width: 544,
             height: 1177,
           },
           {
             src: "/images/business-management/v2/mobile-delivery.webp",
-            alt: "The driver interface on a phone — start location sharing, then each active delivery with navigate, call and complete",
+            alt: "The driver interface on a phone: start location sharing, then each active delivery with navigate, call and complete",
             caption:
               "The driver view was designed as its own screen. Share location, then navigate, call, and mark each drop delivered, with nothing from the office view carried over.",
             width: 544,
@@ -151,7 +151,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           },
           {
             src: "/images/business-management/v2/mobile-drivers.webp",
-            alt: "Driver management on a phone — drivers on the roster, how many are enabled, available or off duty",
+            alt: "Driver management on a phone: drivers on the roster, how many are enabled, available or off duty",
             caption:
               "Who is on a route and who is off duty, answered from a phone because the person asking is usually not at the desk either.",
             width: 544,
@@ -169,7 +169,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/business-management/v2/design-system.webp",
-            alt: "QuickFlow's design system page — the type scale ending in \"One ledger.\", primary, secondary and destructive button variants, and the input and badge components",
+            alt: "QuickFlow's design system page: the type scale ending in \"One ledger.\", primary, secondary and destructive button variants, and the input and badge components",
             caption:
               "The system underneath it, written down. One person still needs the rules, because the alternative is re-deciding what a destructive button looks like every time one is needed.",
             width: 2300,

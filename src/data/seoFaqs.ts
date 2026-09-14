@@ -13,7 +13,7 @@
 export const seoFaqs = [
   {
     question: "What do you actually do?",
-    answer: "I design and develop software: SaaS products, web apps, mobile apps, and the internal tools most teams put off. Design and front-end build are the same job here, done by the same person.\n\nThat means product design, React and TypeScript on the front end, and the database and auth underneath it. What you get at the end is a working product, not a spec someone else has to interpret.",
+    answer: "I design and develop software: SaaS products, web apps, mobile apps, and the internal tools most teams put off. Design and front-end build are the same job here, done by the same person.\n\nThat means product design, React and TypeScript on the front end, and the database and auth underneath it. What you get at the end is a working product, with nothing left for someone else to interpret.",
     keywords: ["Product Design", "Software Development", "SaaS", "Internal Tools", "React Development"]
   },
   {
@@ -38,7 +38,7 @@ export const seoFaqs = [
   },
   {
     question: "How do you handle accessibility?",
-    answer: "I build to WCAG 2.1 AA and treat it as a constraint from the start, not a pass at the end. That means keyboard paths, focus states, contrast and screen-reader semantics designed in rather than retrofitted.\n\nMost of my career has been in banking, healthcare and pharma, where accessibility conformance and audit review are requirements, not aspirations. That's where the habit comes from.",
+    answer: "I build to WCAG 2.1 AA and treat it as a constraint from the start rather than a pass at the end. That means keyboard paths, focus states, contrast and screen-reader semantics designed in rather than retrofitted.\n\nMost of my career has been in banking, healthcare and pharma, where accessibility conformance and audit review are requirements with a date on them. That's where the habit comes from.",
     keywords: ["WCAG 2.1 AA", "Accessibility", "Inclusive Design", "Regulated Software"]
   },
   {
@@ -60,12 +60,12 @@ export const homepageFaqs = seoFaqs;
 export const projectFaqs = [
   {
     question: "What kinds of projects are in this portfolio?",
-    answer: "A mix: consumer apps, prediction markets, a healthcare booking platform, enterprise search, fintech loan origination, and a couple of games. Some are client and employer work from 15+ years in regulated industries; five are products I designed, built and shipped myself.\n\nThey're here for the thinking, not as trophies. Each one covers the problem, the decisions, the trade-offs, and what got cut.",
+    answer: "A mix: consumer apps, prediction markets, a healthcare booking platform, enterprise search, fintech loan origination, and a couple of games. Some are client and employer work from 15+ years in regulated industries. Five are products I designed, built and shipped myself.\n\nThey're here for the thinking. Each one covers the problem, the decisions, the trade-offs, and what got cut.",
     keywords: ["Portfolio", "Case Studies", "Cross-Industry Experience"]
   },
   {
     question: "How are these case studies written?",
-    answer: "Problem first, then the decisions and what they cost. Where a project has real numbers I use them; where it doesn't, I say so plainly rather than inventing a percentage.\n\nHerbaLink is the clearest example: the product is built and works, and the directory is empty because no herbalists have signed up. That's in the case study, because it's true and because how someone handles that question tells you more than a chart would.",
+    answer: "Problem first, then the decisions and what they cost. Where a project has real numbers I use them. Where it doesn't, I say so plainly rather than inventing a percentage.\n\nHerbaLink is the clearest example: the product is built and works, and the directory is empty because no herbalists have signed up. That's in the case study, because it's true and because how someone handles that question tells you more than a chart would.",
     keywords: ["Case Studies", "Design Process", "Honest Documentation"]
   },
   {

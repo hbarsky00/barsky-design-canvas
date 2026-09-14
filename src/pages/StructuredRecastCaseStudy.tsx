@@ -19,7 +19,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
     // a looser crop caught a card sitting behind it and read as an artifact.
     heroImage={{
       src: "/images/recast/landing-light.webp",
-      alt: "recastvid.com — Record it once. Send a link. The product's front door, in light mode",
+      alt: "recastvid.com: Record it once. Send a link. The product's front door, in light mode",
       caption: "The front door, in light mode. Record it once, send a link. The product is that sentence.",
       width: 1500,
       height: 831,
@@ -27,7 +27,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
       title: "I Just Wanted to Send Someone a Video",
-      blurb: "Recording your screen is free. Sending it is what everyone charges for \u2014 watermarks, five-minute caps, a sign-in wall for your viewer.",
+      blurb: "Recording your screen is free. Sending it is what everyone charges for, watermarks, five-minute caps, a sign-in wall for your viewer.",
     }}
     blocks={[
       {
@@ -41,14 +41,14 @@ const StructuredRecastCaseStudy: React.FC = () => (
           {
             src: "/images/recast/flow-how-i-worked.svg",
             alt: "How I worked on Recast: build browser recording, kill it, draw the app and website boundary, set the stop-means-watch rule, break and fix it, reorder the Android service, audit permissions, sign up as a stranger and find the leak, unify three looks, live",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 555,
             height: 1012,
           },
           {
             src: "/images/recast/flow-record-to-link.svg",
             alt: "Record to link: press Record on the site, open or download the app, record, stop, then in parallel play from the local file and upload in the background, website library and share link, the viewer presses play",
-            caption: "The boundary as a sequence. Everything before the upload happens in the native app; the website only ever sees the finished file.",
+            caption: "The boundary as a sequence. Everything before the upload happens in the native app. The website only ever sees the finished file.",
             width: 395,
             height: 904,
           },
@@ -66,7 +66,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
  width: 1500,
  height: 1041,
     },
-          { src: "/images/recast/web-library.webp", alt: "The Recast web library — recordings with durations, dates and a Shared badge", caption: "The other half of the boundary: the site holds everything, and never records.",
+          { src: "/images/recast/web-library.webp", alt: "The Recast web library: recordings with durations, dates and a Shared badge", caption: "The other half of the boundary: the site holds everything, and never records.",
  width: 1500,
  height: 1048,
     },
@@ -80,7 +80,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It returns in a millisecond or two now and uploads in a detached task. While I was in there I found the first upload after launch was eating five to eight seconds of framework setup, so the app now warms that up at start instead of paying for it the moment you press stop.",
         ],
         images: [
-          { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web — storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller.",
+          { src: "/images/recast/settings-storage.webp", alt: "Recast settings on the web: storage used, recording count, and a note that recording options including auto-upload are set in the app on the recording device", caption: "Where the upload rule actually lives: in the app, on the device doing the recording. The website is the destination, never the controller.",
  width: 1500,
  height: 776,
     },
@@ -121,7 +121,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The tokens are the reason the Mac app and the website still look related. Every contrast pair in here was measured rather than eyeballed, and light and dark are both declared so the app follows your OS.",
         ],
         images: [
-          { src: "/images/recast/design-system.webp", alt: "Recast's design tokens — Fraunces and Instrument Sans, the warm paper palette with measured contrast, the 4px scale, and the rules-not-boxes decision", caption: "One token file, mirrored into the mobile app value for value. Copying it literally is the only thing that stops two surfaces of one product drifting apart.",
+          { src: "/images/recast/design-system.webp", alt: "Recast's design tokens: Fraunces and Instrument Sans, the warm paper palette with measured contrast, the 4px scale, and the rules-not-boxes decision", caption: "One token file, mirrored into the mobile app value for value. Copying it literally is the only thing that stops two surfaces of one product drifting apart.",
  width: 1500,
  height: 913,
     },
@@ -134,7 +134,7 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "It sells storage. There's a free tier and paid plans above it, and entitlement lives in a database that only the payment webhook can write to, so no client can hand itself a plan. I chose storage as the thing to charge for because it's the thing that costs me money when you use more of it.",
         ],
         images: [
-          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window — Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms; the website never captures anything.",
+          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window: Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms. The website never captures anything.",
  width: 1050,
  height: 790,
     },

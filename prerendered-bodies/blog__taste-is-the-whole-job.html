@@ -12,7 +12,7 @@
 
       <p>Ring-Rival is a browser <a href="/project/ring-rival" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="Ring-Rival — console boxing feel on the mobile web" rel="internal" target="_self">boxing</a> game I designed and built. The first version had a splash screen, a mode select, a fighter select, and a tutorial. Twenty-two seconds from tapping the link to throwing your first punch.</p>
 
-      <p>It's six seconds now. I got there by deleting, not adding. The menus went. The tutorial went. You land on the page, you're already in a fight, and you learn the controls by hitting someone with them.</p>
+      <p>It's six seconds now. I got there by deleting. The menus went. The tutorial went. You land on the page, you're already in a fight, and you learn the controls by hitting someone with them.</p>
 
       <p>No model would have proposed that, and I don't blame it. Every screen I cut was a correct answer to a reasonable request. Mode select is standard. Onboarding is standard. What made them wrong was specific to this one product: it's a browser game somebody opens from a link with maybe fifteen seconds of curiosity attached. Every screen before the punch spends that budget on something that isn't the punch.</p>
 
@@ -20,7 +20,7 @@
 
       <figure class="my-8">
         <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs">
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong; it just felt wrong.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong. It just felt wrong.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Bug Nobody Would Have Reported</h2>
@@ -29,13 +29,13 @@
 
       <p>The fix is a known thing. Any model will tell you about the autoplay policy if you ask. The part that was mine was noticing.</p>
 
-      <p>Nothing errored. The game ran. Players weren't going to file a <a href="/blog/two-bugs-ai-wrote-that-i-had-to-find" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="Two Bugs AI Wrote That I Had to Find Myself" rel="internal" target="_self">bug</a> report about a silent boxing game — they were going to leave, and I'd have read that as the game not being fun. I found it because I have a habit of opening my own products on devices I haven't used before and paying attention to the first five seconds. That's not a skill anybody teaches. It's a habit, and habits are most of what taste turns out to be.</p>
+      <p>Nothing errored. The game ran. Players weren't going to file a <a href="/blog/two-bugs-ai-wrote-that-i-had-to-find" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="Two Bugs AI Wrote That I Had to Find Myself" rel="internal" target="_self">bug</a> report about a silent boxing game. They were going to leave, and I'd have read that as the game not being fun. I found it because I have a habit of opening my own products on devices I haven't used before and paying attention to the first five seconds. That's not a skill anybody teaches. It's a habit, and habits are most of what taste is.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Feel Is Hand-Tuned or It's Nothing</h2>
 
-      <p>The fighters in Ring-Rival are rigged from separate pieces — body, arms, legs — so a punch can be tuned rather than played back. That was a deliberate choice, and it cost more up front than dropping in a canned animation would have.</p>
+      <p>The fighters in Ring-Rival are rigged from separate pieces, body and arms and legs, so a punch can be tuned rather than played back. That was a deliberate choice, and it cost more up front than dropping in a canned animation would have.</p>
 
-      <p>It's worth it because a punch either lands or it doesn't, and the difference is in milliseconds you can only find by feel. How long the frame hangs on contact. How far the camera moves. How quickly control comes back. There's no correct value to look up. You change it, you throw a hundred punches, you change it again.</p>
+      <p>It's worth it because a punch lands or it doesn't, and the difference is in milliseconds you can only find by feel. How long the frame hangs on contact. How far the camera moves. How quickly control comes back. There's no correct value to look up. You change it, you throw a hundred punches, you change it again.</p>
 
       <p>A model has no body. It doesn't know what satisfying feels like in your hand, and it can't tell you when you've overshot. That entire category of work is untouched.</p>
 

@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Person Who Needs It Never Opens the Menu</h2>
 
-<p>Here's what stopped me. Think about who actually gets hurt by regional content being wrong. It isn't the person carefully working through search filters — that person is already being deliberate, and they'll spot the mismatch.</p>
+<p>Here's what stopped me. Think about who actually gets hurt by regional content being wrong. It isn't the person carefully working through search filters. That person is already being deliberate, and they'll spot the mismatch.</p>
 
 <p>It's the person who got a link in Slack. They click it, they land on a document, they read it, they follow it. They never touched search. A filter on the search page does nothing for them at all, because they never went near it.</p>
 
@@ -49,9 +49,9 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">A Lens Instead</h2>
 
-<p>What I built instead is a lens over the whole application. You set your region once, in the header, and every surface reads through it — the counts on the category cards, the featured lists, the search results, the badge on an individual document. There's nowhere you can be where it isn't applied.</p>
+<p>What I built instead is a lens over the whole application. You set your region once, in the header, and every surface reads through it: the counts on the category cards, the featured lists, the search results, the badge on an individual document. There's nowhere you can be where it isn't applied.</p>
 
-<p>That's a small technical change. It's a context provider rather than a prop, and one function decides visibility. The design decision is where to put the control, not how to write it.</p>
+<p>That's a small technical change. It's a context provider rather than a prop, and one function decides visibility. The design decision is where to put the control. Writing it is the easy half.</p>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Rule Is Where It Gets Interesting</h2>
 
@@ -63,12 +63,12 @@ export const blogPosts: BlogPost[] = [
 
 <figure class="my-8">
   <img src="/images/bz-essentials/search.webp" alt="Faceted search — business area, region, document type and status filtering a live result count" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Search is where the filter would have lived. It's still here — for the people who came looking, which was never the group at risk.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Search is where the filter would have lived. It's still here, for the people who came looking, which was never the group at risk.</figcaption>
 </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What Transfers</h2>
 
-<p>Any time you're about to put a scoping control in a filter menu — region, permission, team, environment, tenant — ask who gets hurt when it's wrong, and then ask whether that person ever opens filters. If the answer is no, a filter isn't the feature. It's a place to put the feature so it looks handled.</p>
+<p>Any time you're about to put a scoping control in a filter menu (region, permission, team, environment, tenant), ask who gets hurt when it's wrong, and then ask whether that person ever opens filters. If the answer is no, a filter isn't the feature. It's a place to put the feature so it looks handled.</p>
 
 <p>The full build, including the information architecture and the design system it runs on, is written up in the <a href="/project/bz-essentials" class="text-primary underline">BZ Essentials case study</a>.</p>
     `,
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI", "Product Design", "Shipping"],
     slug: "the-work-is-deleting-not-generating",
     content: `
-<p>Generating things is no longer the hard part. Describe a screen and you get a screen. Describe a feature and you get a feature. The constraint that shaped design work for twenty years — that making things was slow and expensive — is largely gone.</p>
+<p>Generating things is no longer the hard part. Describe a screen and you get a screen. Describe a feature and you get a feature. The constraint that shaped design work for twenty years, that making things was slow and expensive, is largely gone.</p>
 
 <p>What replaced it's worse to sit with, because it doesn't look like work. The bottleneck now is judgement: deciding which of the things you can have, you should actually keep.</p>
 
@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
 
 <figure class="my-8">
   <img src="/images/ringrival-sprite-sheet-1.webp" alt="Ring-Rival sprite sheet — one sheet per fighter, every frame in a fixed grid" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One sheet per fighter, every frame in a fixed grid. Generating these was the cheap part; deciding which frames survived was not.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One sheet per fighter, every frame in a fixed grid. Generating these was the cheap part. Deciding which frames survived took weeks.</figcaption>
 </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Model Will Happily Build All Four</h2>
@@ -115,11 +115,11 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Cheap Generation Makes Deleting Harder</h2>
 
-<p>There is a trap in this. When something took two days to build, cutting it was easy — you could see the cost of keeping it. When it took ninety seconds, it feels free to leave in. It's not free. The user pays for it in attention every single time.</p>
+<p>There is a trap in this. When something took two days to build, cutting it was easy, because you could see the cost of keeping it. When it took ninety seconds, it feels free to leave in. It's not free. The user pays for it in attention every single time.</p>
 
 <p>So the discipline I've ended up with is the opposite of what the tools encourage. Generate freely, because it costs nothing. Then be ruthless, because the thing that costs is the shipped surface area, and that hasn't got cheaper at all.</p>
 
-<p>The full build — sprite pipeline, opponent behaviour, the parts AI genuinely couldn't do — is in the <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival case study</a>.</p>
+<p>The full build, sprite pipeline and opponent behaviour and the parts AI genuinely couldn't do, is in the <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival case study</a>.</p>
 `
   },
   {
@@ -142,7 +142,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>I built an app for pickup sports. The obvious framing is logistics: who is playing, where, at what time. Calendars, notifications, a map.</p>
 
-<p>That framing is wrong. Scheduling is genuinely easy, and the existing apps do it fine. The reason nobody uses them is that they assume you want a season — a commitment, a recurring team, a roster. Most people want a game on Saturday.</p>
+<p>That framing is wrong. Scheduling is genuinely easy, and the existing apps do it fine. The reason nobody uses them is that they assume you want a season, with a commitment and a recurring team and a roster. Most people want a game on Saturday.</p>
 
 <p>Strip that away and what is left is the actual problem: <strong>two strangers agreeing to meet at a park, and both of them feeling fine about it.</strong> Everything else is a detail of that.</p>
 
@@ -153,14 +153,14 @@ export const blogPosts: BlogPost[] = [
 
 <figure class="my-8">
   <img src="/images/catchbuddy-signup-minor-gate.webp" alt="CatchBuddy sign-up with the 13+ age gate, the first checkpoint in the minor-protection flow" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The 13+ gate at sign-up. Safety that arrives in v1 shapes the product; safety bolted on later is just a settings screen.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The 13+ gate at sign-up. Safety that arrives in v1 shapes the product. Safety bolted on later is a settings screen nobody opens.</figcaption>
 </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What That Changes</h2>
 
 <p>Once you accept that, design decisions stop being about efficiency and start being about reassurance. Who is this person. Have they shown up before. Is this a public place. What happens if it goes badly.</p>
 
-<p>None of those questions are answered by a faster flow. Some of them are answered by a <em>slower</em> one — a step that exists purely so the person on the other side has something to go on.</p>
+<p>None of those questions are answered by a faster flow. Some of them are answered by a <em>slower</em> one, a step that exists purely so the person on the other side has something to go on.</p>
 
 <p>That is the part that gets cut in a normal design review, because it looks like friction and friction is the enemy. It's only the enemy when the thing you're optimising for is speed. Here the thing being optimised is somebody's willingness to get in the car.</p>
 
@@ -173,9 +173,9 @@ export const blogPosts: BlogPost[] = [
 
 <p>The question I kept coming back to wasn't "is this easy" but "would I send my kid to this". That's a harder bar and it rules out designs that test well on every conventional metric.</p>
 
-<p>If trust is the product, the honest version of your roadmap has safety at the top and the clever features underneath, not the other way round. Most roadmaps have it the other way round.</p>
+<p>If trust is the product, the honest version of your roadmap has safety at the top and the clever features underneath. Most roadmaps have it the other way round.</p>
 
-<p>The specifics — the age gate, what I cut, what testers skipped every time — are in the <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy case study</a>.</p>
+<p>The specifics, the age gate and what I cut and what testers skipped every time, are in the <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy case study</a>.</p>
 `
   },
   {
@@ -196,7 +196,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Every Interface I Opened Looked Like a Terminal</h2>
 
-<p>Order books. Spreads. Share counts. Position sizing. The underlying question is simple — how likely is this — and the screen in front of you is not. People leave before placing anything, and the ones who stay are the ones who already knew.</p>
+<p>Order books. Spreads. Share counts. Position sizing. The underlying question is simple, how likely is this, and the screen in front of you is anything but. People leave before placing anything, and the ones who stay are the ones who already knew.</p>
 
 <p>Everyone calls that a learning curve and bolts on a tutorial. It's not a learning curve. It's the product asking you to do a calculation it could have done itself.</p>
 
@@ -209,7 +209,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>So the order ticket does the work. Pick Yes, put <strong>$75</strong> on it, and the panel tells you what happens: <strong>$111.94 back if you're right, $36.94 of that's profit.</strong> Not a share count. Not a spread. The two numbers you actually wanted.</p>
 
-<p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, one of two things happens — they guess, or they leave. Both are your fault, not theirs.</p>
+<p>Nobody should have to work out what 67¢ a share means for their stake. If you make them, they guess, or they leave. Both are your fault.</p>
 
 <figure class="my-8">
   <img src="/images/stips/markets-board.webp" alt="The Stips board — price, close date and volume on every card, so the odds read without arithmetic" class="w-full rounded-xs" />
@@ -222,7 +222,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>The unit price is for comparing. The total is for deciding. Most screens show the first and make you derive the second.</p>
 
-<p>How the board, the market page and the ticket fit together — plus two things I got wrong — is in the <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips case study</a>.</p>
+<p>How the board, the market page and the ticket fit together, plus two things I got wrong, is in the <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips case study</a>.</p>
 `
   },
   {
@@ -243,13 +243,13 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Forty Results Is Not an Answer</h2>
 
-<p>An analyst searches <em>revenue</em> and gets <strong>forty results</strong> back. Then the real work starts. Which table is current. Which one was deprecated but never deleted. Which one the finance team actually uses. Which one has the definition of revenue this question needs.</p>
+<p>An analyst searches <em>revenue</em> and gets <strong>forty results</strong> back. Then the real work starts. Which table is current. Which one was deprecated but never deleted, which the finance team actually uses, and whether any of them carries the definition of revenue this question needs.</p>
 
 <p>That is <strong>twenty minutes</strong> of asking colleagues, opening tables, and eventually picking one on a hunch. The search took half a second. The decision took the rest of the morning.</p>
 
 <figure class="my-8">
   <img src="/images/dae-search/the-problem.webp" alt="An advanced search panel: a prompt to start typing, one diagnosis filter chip, and a count of 15 matching data assets" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A filter chip and a count of matching assets. Nothing here says which of them is current, who owns it, or whether you can use it — and that is the decision the analyst is stuck on.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A filter chip and a count of matching assets. Nothing here says which of them is current, who owns it, or whether you can use it, and that is the decision the analyst is stuck on.</figcaption>
 </figure>
 
 <figure class="my-8">
@@ -259,7 +259,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is a Design Problem, Not a Data Problem</h2>
 
-<p>The instinct is to fix this upstream — better governance, cleaner catalogues, someone to deprecate old tables properly. Worth doing, and it never finishes. Meanwhile the analyst still has forty results.</p>
+<p>The instinct is to fix this upstream, with better governance, cleaner catalogues, someone to deprecate old tables properly. Worth doing, and it never finishes. Meanwhile the analyst still has forty results.</p>
 
 <p>The design answer is different: put the trust signals <em>on the result</em>, where the decision is being made. How fresh is it. Who owns it. How many people query it. Is it certified. Does it look abandoned.</p>
 
@@ -274,7 +274,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>Every search interface assumes the user's question is "where is it". Often the real question is "which of these should I believe". Those need different screens.</p>
 
-<p>If your users routinely find something and then go and ask a human whether to trust it, that conversation is a missing feature, not a cultural quirk.</p>
+<p>If your users routinely find something and then go and ask a human whether to trust it, that conversation is a missing feature.</p>
 
 <p>What I built, the two calls that changed it, and what I got wrong are in the <a href="/project/dae-search" class="text-primary underline underline-offset-2 hover:text-primary/80">DAE Search case study</a>.</p>
 `
@@ -321,7 +321,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Cost, Stated Plainly</h2>
 
-<p>This choice has a real price and I am not going to pretend otherwise. A gated directory grows slowly, because every listing is work. Mine is currently empty of practitioners — the product is built and verified sign-ups haven't happened yet.</p>
+<p>This choice has a real price and I am not going to pretend otherwise. A gated directory grows slowly, because every listing is work. Mine is currently empty of practitioners. The product is built and verified sign-ups haven't happened yet.</p>
 
 <p>That's the trade, and I'll own it. A badge system would have given me a full-looking directory much faster, and it would have been full of people I couldn't vouch for. In a category where being wrong lands on someone's health, I would rather have the empty version.</p>
 
@@ -348,7 +348,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>A spreadsheet does exactly what you tell it, immediately, with no ceremony. Add a column. Paste a block. Restructure the whole thing on a phone call. Nothing asks you to file a change request.</p>
 
-<p>Enterprise software loses that fight on purpose — structure is the point — but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
+<p>Enterprise software loses that fight on purpose, since structure is the point, but it usually loses it without offering enough in return. So people export to Excel, do the actual work there, and paste the result back. The system becomes a filing cabinet for decisions made somewhere else.</p>
 
 <figure class="my-8">
   <img src="/images/investor-loan-app/user-journey.webp" alt="The loan journey mapped end to end, from intake to close" class="w-full rounded-xs" />
@@ -357,14 +357,14 @@ export const blogPosts: BlogPost[] = [
 
 <figure class="my-8">
   <img src="/images/investor-loan-app/before-after.webp" alt="The old spreadsheet next to the platform that finally stopped pretending to be one" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The spreadsheet next to the platform that replaced it. The win wasn't features — it was becoming the system of record.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The spreadsheet next to the platform that replaced it. The win was becoming the system of record.</figcaption>
 </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Win on What Excel Cannot Do at All</h2>
 
 <p>You won't out-flexible a spreadsheet. What a spreadsheet genuinely can't do is tell you who changed the rate at 4pm on Thursday, or stop someone typing a number that can't be true, or show the same deal to two people without one of them holding a stale copy.</p>
 
-<p>Those aren't features you sell on a slide. They are the things that turn a spreadsheet into a liability the moment a deal goes wrong — and in lending, deals go wrong.</p>
+<p>Those aren't features you sell on a slide. They are the things that turn a spreadsheet into a liability the moment a deal goes wrong, and in lending, deals go wrong.</p>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Keep the Workflow, Change the Substrate</h2>
 
@@ -401,7 +401,7 @@ export const blogPosts: BlogPost[] = [
 
 <figure class="my-8">
   <img src="/images/crypto/site-map.webp" alt="Site map — one platform serving both audiences without forking the product" class="w-full rounded-xs" />
-  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One platform serving both audiences without forking the product. The mode is a setting, not a second app.</figcaption>
+  <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One platform serving both audiences without forking the product. The mode is a setting you flip.</figcaption>
 </figure>
 
 <figure class="my-8">
@@ -411,9 +411,9 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Progressive Disclosure Is Not a Compromise</h2>
 
-<p>The reason products fork into two apps is that "serving both" gets read as "average the two", which produces something nobody wants. That's a failure of execution, not of the idea.</p>
+<p>The reason products fork into two apps is that "serving both" gets read as "average the two", which produces something nobody wants. That's a failure of execution. The idea survives it.</p>
 
-<p>The version that works is a single surface with one honest default and everything else one deliberate step away. The beginner never has to see the depth chart. The pro never has to click through a wizard to reach it. Nothing is hidden — it's layered.</p>
+<p>The version that works is a single surface with one honest default and everything else one deliberate step away. The beginner never has to see the depth chart. The pro never has to click through a wizard to reach it. Nothing is hidden. It's layered.</p>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Question to Ask</h2>
 
@@ -438,7 +438,7 @@ export const blogPosts: BlogPost[] = [
     content: `
 <p>Search for portfolios built with AI and you get a wall of the same three projects. A calculator. A to-do app. A weather dashboard. Clean, competent, forgettable.</p>
 
-<p>They are all safe in the same way: nothing about them has to <em>feel</em> like anything. A to-do app either saves the item or it does not. There's no version of it that works but feels wrong.</p>
+<p>They are all safe in the same way: nothing about them has to <em>feel</em> like anything. A to-do app saves the item or it doesn't, and that is the whole test. There's no version of it that works but feels wrong.</p>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Game Feel Cannot Be Prompted</h2>
 
@@ -460,13 +460,13 @@ export const blogPosts: BlogPost[] = [
 
 <p>The model was genuinely fast at producing mechanics. It would happily give me another mode, another power-up, another system. Each one worked in isolation.</p>
 
-<p>Almost all of them made the game worse, because a game isn't a list of features — it's a small number of things that combine well. Scope discipline was most of the design work, and it's the part that no amount of generation speed helps with.</p>
+<p>Almost all of them made the game worse, because a game is a small number of things that combine well, and a list of features is the opposite of that. Scope discipline was most of the design work, and it's the part that no amount of generation speed helps with.</p>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Pick the Project That Can Fail</h2>
 
 <p>If you want to know whether someone can ship with AI, look at whether they picked something that could have come out bad. A to-do app can't really fail. A game can fail while every individual piece works.</p>
 
-<p>That gap — between working and being good — is where the design job now lives, and it's exactly what a safe portfolio project is built to avoid.</p>
+<p>That gap, between working and being good, is where the design job now lives, and it's exactly what a safe portfolio project is built to avoid.</p>
 
 <p>What shipped, and what I cut to get there, is in the <a href="/project/fire-lion" class="text-primary underline underline-offset-2 hover:text-primary/80">Fire Lion case study</a>.</p>
 `
@@ -489,7 +489,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Slow Part Is Not the Writing</h2>
 
-<p>Writing the copy was never two weeks. The two weeks is handoffs — packaging work for the next team, waiting, receiving comments in a format that doesn't match the tool you work in, and reassembling.</p>
+<p>Writing the copy was never two weeks. The two weeks is handoffs: packaging work for the next team, waiting, receiving comments in a format that doesn't match the tool you work in, and reassembling.</p>
 
 <p>Automating the writing compresses the fastest step in the chain. You end up with a first draft in ten seconds and a two-week review, which is where you started.</p>
 
@@ -502,7 +502,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>It is tempting to treat regulatory review as friction to be designed away. It's not friction. It's the point. Somebody has to be accountable for what a pharmaceutical company tells a doctor, and that accountability is legally personal.</p>
 
-<p>So the design rule I ended up with: <strong>the AI's job is the work between humans, not the work humans do.</strong> Assemble the packet. Pull the approved claim library. Pre-check the obvious failures before the reviewer sees it. Carry comments back without a copy-paste round trip.</p>
+<p>So the AI's job became <strong>the work between humans, and the work humans do stays with them.</strong> Assemble the packet. Pull the approved claim library. Pre-check the obvious failures before the reviewer sees it. Carry comments back without a copy-paste round trip.</p>
 
 <p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
 
@@ -513,7 +513,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Where This Applies Beyond Pharma</h2>
 
-<p>Any workflow with a sign-off has this shape — legal, finance, clinical, safety. The instinct is to point the model at the reviewed artefact. The gain is almost always in the space around the review instead.</p>
+<p>Any workflow with a sign-off has this shape. Legal, finance, clinical, safety. The instinct is to point the model at the reviewed artefact. The gain is almost always in the space around the review instead.</p>
 
 <p>Ask which steps exist because somebody must be accountable, and leave those alone. Everything else is fair game.</p>
 
@@ -540,9 +540,9 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Charge Is Never for the Recording</h2>
 
-      <p>Try to send that clip to someone. The file is 200 MB, so email rejects it. You put it in Drive and now they need permission. You use a proper tool instead and you meet the actual business model: a watermark across your face, a cap that cuts you off at five minutes, or a sign-in wall in front of the person you sent it to \u2014 who did not ask for an account, they asked for a video.</p>
+      <p>Try to send that clip to someone. The file is 200 MB, so email rejects it. You put it in Drive and now they need permission. You use a proper tool instead and you meet the actual business model: a watermark across your face, a cap that cuts you off at five minutes, or a sign-in wall in front of the person you sent it to, who did not ask for an account. They asked for a video.</p>
 
-      <p>None of those limits exist because recording is expensive. Recording costs nothing; your operating system does it for free. They exist because the recording is the hook and the sending is the product.</p>
+      <p>None of those limits exist because recording is expensive. Recording costs nothing. Your operating system does it for free. They exist because the recording is the hook and the sending is the product.</p>
 
       <p>What actually costs money is storage and bandwidth. Keeping your files. Streaming them to whoever opens the link. That is a real, boring, per-gigabyte cost, and it is the only line item that scales with how much you use something.</p>
 
@@ -573,25 +573,25 @@ export const blogPosts: BlogPost[] = [
 
       <p>The thing I cared most about is not on any pricing page. When you press stop, the video plays <em>immediately</em>, from the file already on your device, while the upload runs behind it. You are not watching a progress bar to find out whether the take was any good.</p>
 
-      <p>That sounds obvious. It is not what most tools do, and I know because I got it wrong in my own app first \u2014 the Mac version quietly waited for the whole upload before opening the player. On a fast connection you would never notice. On a plane you pressed stop and stared at nothing.</p>
+      <p>That sounds obvious. It is not what most tools do, and I know because I got it wrong in my own app first. The Mac version quietly waited for the whole upload before opening the player. On a fast connection you would never notice. On a plane you pressed stop and stared at nothing.</p>
 
       <p>Offline still works now. The local file is the source of truth until the upload finishes. That is the actual convenience: the gap between finishing a thought and sending it is a few seconds, and nothing in the middle asks you for anything.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What It Is Not</h2>
 
-      <p>It is not an editor. There is a trim, and that is deliberate \u2014 if you are cutting between takes and adding captions, you want a real editor and Recast is the wrong tool.</p>
+      <p>It is not an editor. There is a trim, and that is deliberate. If you are cutting between takes and adding captions, you want a real editor and Recast is the wrong tool.</p>
 
-      <p>It runs on Mac and Android today. On iPhone you add it to your Home Screen and record with the iPhone's own screen recorder; the upload and the link work the same way, but there is no native iOS app yet.</p>
+      <p>It runs on Mac and Android today. On iPhone you add it to your Home Screen and record with the iPhone's own screen recorder, and the upload and the link work the same way, but there is no native iOS app yet.</p>
 
       <p>And it is one person's product. I designed it, built it, and I am the one who fixes it. That is the honest trade for the price.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Test I Would Apply to Anything</h2>
 
-      <p>When a tool charges you, look at whether the thing you are paying for is the thing that costs the company money. If the fee is for removing an obstacle they invented \u2014 a watermark, a timer, a login for your viewer \u2014 you are paying for the obstacle, not for the service.</p>
+      <p>When a tool charges you, look at whether the thing you are paying for is the thing that costs the company money. If the fee is for removing an obstacle they invented, a watermark, a timer, a login for your viewer, you are paying for the obstacle.</p>
 
       <p>If it is for storage, bandwidth, or somebody's time, that is a real cost and a fair ask.</p>
 
-      <p>I built <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> on the second version of that. You can <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">try it free</a> and never pay me anything, and that is fine \u2014 a gigabyte covers a lot of thirty-second explanations.</p>
+      <p>I built <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> on the second version of that. You can <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">try it free</a> and never pay me anything, and that is fine. A gigabyte covers a lot of thirty-second explanations.</p>
     `
   },
   {
@@ -629,13 +629,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>I did most of my testing signed out, because it is faster to just open a page. Signed out, row-level security returns nothing rather than an error. So every bug that only existed for logged-in users looked exactly like an empty state working correctly. Pages that were broken and pages that were empty were indistinguishable, and I could not tell the difference from the outside.</p>
 
-      <p>I did not find any of it until I started testing as a real account. Not a test fixture, not a mock \u2014 an actual signed-in user clicking through the actual product. Everything I had been calling "working" for a week turned out to be a category of bug I had no way to see.</p>
+      <p>I did not find any of it until I started testing as a real account. An actual signed-in user clicking through the actual product, with no test fixture and no mock in between. Everything I had been calling "working" for a week turned out to be a category of bug I had no way to see.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Nobody Demos an Empty Screen</h2>
 
-      <p>Every demo has data in it. That is what makes it a demo. Which means the state most new users actually hit \u2014 nothing here yet \u2014 is the one state you have never looked at.</p>
+      <p>Every demo has data in it. That is what makes it a demo. Which means the state most new users actually hit, nothing here yet, is the one state you have never looked at.</p>
 
-      <p>On Stips, a market with no bets says "Be the first to trade" instead of rendering an empty chart, because a market nobody has touched is still worth reading; it just has to say so. On <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">HerbaLink</a>, the hard screens were never the search results. They were the ones where a practitioner had not filled in their profile yet, and the whole product is trust, so a half-empty profile is worse than no profile.</p>
+      <p>On Stips, a market with no bets says "Be the first to trade" instead of rendering an empty chart, because a market nobody has touched is still worth reading, and it just has to say so. On <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">HerbaLink</a>, the hard screens were never the search results. They were the ones where a practitioner had not filled in their profile yet, and the whole product is trust, so a half-empty profile is worse than no profile.</p>
 
       <p>You do not find these by designing. You find them by using the thing on a day when it has no data in it.</p>
 
@@ -643,20 +643,20 @@ export const blogPosts: BlogPost[] = [
 
       <p>The thing that separates a live product from a good prototype is usually not the interface. It is the scheduled job that keeps the content fresh, the auth that has to hold up, the database rules that decide who sees what, and the error path for when an external service is down.</p>
 
-      <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean \u2014 design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
+      <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean: design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
 
       <figure class="my-8">
         <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Resolution rules written on the market page. A demo never has to answer for how a thing settles; a product does.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Resolution rules written on the market page. A demo never has to answer for how a thing settles. A product does.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Why This Matters More Than It Used To</h2>
 
-      <p>When building was expensive, the demo was the hard part, and getting one working was real evidence. Now that generating is cheap, the demo proves almost nothing \u2014 <a href="/blog/taste-is-the-whole-job" class="text-primary underline underline-offset-2 hover:text-primary/80">which is why judgment became the whole job</a>. Everyone can produce the screenshot. Far fewer people have taken something all the way to the point where strangers use it and it holds.</p>
+      <p>When building was expensive, the demo was the hard part, and getting one working was real evidence. Now that generating is cheap, the demo proves almost nothing, <a href="/blog/taste-is-the-whole-job" class="text-primary underline underline-offset-2 hover:text-primary/80">which is why judgment became the whole job</a>. Everyone can produce the screenshot. Far fewer people have taken something all the way to the point where strangers use it and it holds.</p>
 
       <p>That gap is the entire difference between "I built a prototype" and <a href="/blog/what-one-person-can-ship-now" class="text-primary underline underline-offset-2 hover:text-primary/80">"I have products live that people use"</a>. It is also, conveniently, the thing that is hard to fake. You can generate a beautiful interface in an afternoon. You cannot generate the eighteen small corrections that come from a real thing being used by real people over real time.</p>
 
-      <p>If you are evaluating someone's work \u2014 or your own \u2014 the useful question is not whether the demo works. It is what broke after it shipped, and what they did about it.</p>
+      <p>If you are evaluating someone's work, or your own, the useful question is what happens after the demo works. It is what broke after it shipped, and what they did about it.</p>
     `
   },
   {
@@ -671,7 +671,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI", "Solo Building", "Product Design"],
     slug: "what-one-person-can-ship-now",
     content: `
-      <p>I have four products live that I designed and built by myself. No engineering team, no contractor, no cofounder. That sentence would have been a lie a few years ago, and I want to be precise about what it means now, because the honest version is more useful than the triumphant one.</p>
+      <p>I have four products live that I designed and built by myself. No engineering team, no contractor, no cofounder. That sentence would have been a lie a few years ago, and I want to be precise about what it means now, because the honest version is the one you can act on.</p>
 
       <p>One person can ship real software. One person still cannot ship a real company. Most of the excitement about this moment lives in the gap between those two sentences.</p>
 
@@ -710,7 +710,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Institutional trust does not come in a repository. The <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">investor loan platform</a> I worked on replaced Excel as the system of record for multi-million-dollar deals after three previous attempts had failed. What finally made it stick was putting the audit trail next to the record, which turned compliance from the group blocking adoption into the group arguing for it. That is months of sitting with people who are not going to hand a solo builder the keys to their loan book, however good the demo looks.</p>
 
-      <p>Operations are staffing, not code. CatchBuddy is strangers meeting up to play sports. Verification, curated meeting spots, and a panic button are design problems, and I solved them. Answering that panic button at nine at night is a headcount problem, and there is no model for it. Anything with real-world risk eventually needs a human on a rotation.</p>
+      <p>Operations are staffing. CatchBuddy is strangers meeting up to play sports. Verification, curated meeting spots, and a panic button are design problems, and I solved them. Answering that panic button at nine at night is a headcount problem, and there is no model for it. Anything with real-world risk eventually needs a human on a rotation.</p>
 
       <p>And nobody is checking your work. I found the signed-out testing blind spot myself, late, because there was no second person in the room to ask whether I had tried it logged in. The missing colleague is the most expensive part of building alone and the part nobody puts in the thread.</p>
 
@@ -724,7 +724,7 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/images/recast/landing-light.webp" alt="recastvid.com — one person's product, designed, built and shipped end to end" loading="lazy" class="w-full rounded-xs" width="1500" height="831" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One person's product, designed, built and shipped end to end — including all the parts nobody ever sees.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">One person's product, designed, built and shipped end to end, including all the parts nobody ever sees.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Honest Summary</h2>
@@ -767,9 +767,9 @@ export const blogPosts: BlogPost[] = [
 
       <p>What made this expensive is that everything else about the output was right. Valid JSON. Sensible question. Clean resolution criteria. Reasoning that read like a person who had actually understood the news story. One field was garbage, and it happened to be the field that decided whether any of the rest was usable.</p>
 
-      <p>The fix is two rules I now apply by reflex. Today's date goes into the prompt as a stated fact, not something the model is left to infer. And no generated date is trusted until it has been compared against real system time. If a close date isn't in the future, the market never gets written.</p>
+      <p>The fix is two rules I now apply by reflex. Today's date goes into the prompt as a stated fact. The model never has to infer it. And no generated date is trusted until it has been compared against real system time. If a close date isn't in the future, the market never gets written.</p>
 
-      <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe — a current price, who holds an office, whether a service still exists, what your schema looks like today — gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
+      <p>Time is the obvious version of this bug. It isn't the only one. Anything the model can't observe, a current price, who holds an office, whether a service still exists, what your schema looks like today, gets produced anyway, confidently, in exactly the right shape. Shape is not truth. And the model has no way to flag which of its outputs it actually knows.</p>
 
       <figure class="my-8">
         <img src="/images/stips/markets-board.webp" alt="The Stips board — where markets generated with no sense of today's date turned up already expired" class="w-full rounded-xs" />
@@ -784,7 +784,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>So the app rendered empty states everywhere and I read those empty states as "nothing here yet." Every policy mistake, every query missing a user id, every place a session wasn't being passed through was sitting right there in plain sight. They surfaced the moment I tested as a real signed-in user, and they surfaced all at once.</p>
 
-      <p>Signed-out testing is a permanent blind spot on anything with row-level security. I test signed in first now. Guest is the special case, not the default.</p>
+      <p>Signed-out testing is a permanent blind spot on anything with row-level security. I test signed in first now. Guest is the special case.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What Review Actually Has to Look For</h2>
 
@@ -794,7 +794,7 @@ export const blogPosts: BlogPost[] = [
 
       <ul class="list-disc pl-6 mb-4">
         <li>Where does this get the current time, and is that source real?</li>
-        <li>What does this return when the caller has no permission — an error, or silence?</li>
+        <li>What does this return when the caller has no permission? An error, or silence?</li>
         <li>Which values here came from the world, and which came from the model's memory of the world?</li>
         <li>What happens on the second run, not the first?</li>
       </ul>
@@ -823,7 +823,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Most software fails softly. A confusing checkout costs somebody four minutes and some patience. A cluttered dashboard produces a slightly worse decision on a Tuesday. Real costs, all recoverable.</p>
 
-      <p>Some products are not like that. If <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">a booking platform for herbalists</a> puts someone in front of a practitioner who is not what they claim to be, that is a health outcome. If <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">an app that arranges pickup games between strangers</a> is casual about who shows up, that is somebody's physical safety. If a financial tool makes a position look more certain than it is, that is somebody's money.</p>
+      <p>Some products are not like that. If <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">a booking platform for herbalists</a> puts someone in front of a practitioner who is not what they claim to be, that is a health outcome. If <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">an app that arranges pickup games between strangers</a> is casual about who shows up, that is somebody's physical safety. If a financial tool makes a position look certain when it isn't, that is somebody's money.</p>
 
       <p>In those products, trust is not a layer you apply at the end. It is the thing you are actually shipping. Everything else is delivery.</p>
 
@@ -835,7 +835,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>HerbaLink connects people with herbalists. The obvious design is a checkmark next to a name and an upload form somewhere in settings. I built the other version, where credentials are the gate.</p>
 
-      <p>A badge decorates. It tells you somebody was checked once, by someone, at some point. A gate decides. Unverified practitioners do not appear in results, cannot accept bookings, and lose that ability the moment a credential lapses. None of that is visible in a screenshot. It lives in the state machine underneath — submitted, under review, approved, rejected, expired, resubmitted — and in the answer to the question nobody asks in a design review, which is what happens to a booking that already exists when the credential behind it goes stale.</p>
+      <p>A badge decorates. It tells you somebody was checked once, by someone, at some point. A gate decides. Unverified practitioners do not appear in results, cannot accept bookings, and lose that ability the moment a credential lapses. None of that is visible in a screenshot. It lives in the state machine underneath (submitted, under review, approved, rejected, expired, resubmitted) and in the answer to the question nobody asks in a design review, which is what happens to a booking that already exists when the credential behind it goes stale.</p>
 
       <p>The harder decision was the catalog. It is smaller than it could be, deliberately. A bigger directory converts better in the first week and destroys the entire premise by the second month, because the promise was not selection. The promise was that anyone you find here has been checked. Honest and smaller beats comprehensive and padded whenever safety is the value proposition.</p>
 
@@ -843,13 +843,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>CatchBuddy matches people for same-day pickup sports, which means the core interaction is a stranger meeting a stranger somewhere physical within a few hours. The safety work came before the matching work, and the ordering mattered more than any individual feature.</p>
 
-      <p>Build matching first and safety becomes a settings screen. It ends up as a toggle nobody finds, a report button three taps deep, and a set of guidelines in a modal that gets dismissed. Build it first and it constrains what matching is even allowed to do — who can see whom, where a first meetup is permitted to happen, what has to be true about an account before it can appear to anyone else.</p>
+      <p>Build matching first and safety becomes a settings screen. It ends up as a toggle nobody finds, a report button three taps deep, and a set of guidelines in a modal that gets dismissed. Build it first and it constrains what matching is even allowed to do: who can see whom, where a first meetup is permitted to happen, what has to be true about an account before it can appear to anyone else.</p>
 
       <p>Same amount of code either way. Completely different product.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is Mostly What You Refuse to Hide</h2>
 
-      <p>On <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a>, my play-money prediction market, the number on a card is a probability wearing a dollar sign. Sixty-seven cents means the crowd thinks it is sixty-seven percent likely. The temptation in that kind of interface is to make the number feel more authoritative than it is, because confident numbers look better. The design goes the other way: show what the payout would be before anyone commits, and let the price read as an estimate that can be wrong rather than a verdict.</p>
+      <p>On <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a>, my play-money prediction market, the number on a card is a probability wearing a dollar sign. Sixty-seven cents means the crowd thinks it is sixty-seven percent likely. The temptation in that kind of interface is to make the number feel authoritative when it isn't, because confident numbers look better. The design goes the other way: show what the payout would be before anyone commits, and let the price read as an estimate that can be wrong rather than a verdict.</p>
 
       <p>Stips also generates its markets from the news with a model, which is a trust liability sitting inside the product. <a href="/blog/two-bugs-ai-wrote-that-i-had-to-find" class="text-primary underline underline-offset-2 hover:text-primary/80">One of the first bugs I hit</a> was generated markets closing on dates already in the past, because a language model has no clock. A user who sees an expired market on a fresh board does not think the date logic is off. They think the whole thing is fake. Nothing about that failure is technically severe and it costs you the entire relationship.</p>
 
@@ -861,7 +861,7 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/images/catchbuddy-equipment-prefs.webp" alt="Equipment and preferences in CatchBuddy — the small disclosures two strangers trade before meeting" class="w-full rounded-xs" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The small disclosures two strangers trade before meeting. Trust gets built out of specifics, not reassurance.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The small disclosures two strangers trade before meeting. Trust gets built out of specifics.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">What This Costs You</h2>
@@ -890,7 +890,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-2xl font-bold mt-8 mb-4">What the Spreadsheet Is Actually Beating You On</h2>
       <figure class="my-8">
         <img src="/blog/why-enterprise-tools-lose-to-excel-body.jpg" alt="A desk covered in paperwork — the workflow an enterprise tool is really competing against" loading="lazy" class="w-full rounded-lg" width="1400" height="788" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The workflow an enterprise tool is really competing against — not the last tool, the habit. <span class="text-xs">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The thing an enterprise tool is really competing against is the habit, and the last tool was never it. <span class="text-xs">Photo by <a href="https://unsplash.com/@dkfra19?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Dimitri Karastelev</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
       <p>It fits the work exactly, because the person doing the work built it. Not approximately. Exactly, down to the column they added last Thursday for the one deal that behaves differently from every other deal.</p>
@@ -907,7 +907,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>The <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">investor loan platform</a> I worked on had to replace Excel as the system of record for multi-million-dollar loan deals. Three previous attempts had already failed. Those attempts were not ugly and they were not technically incompetent. They lost on the four things above.</p>
 
-      <p>What changed it was putting the audit trail next to the record. Not in a separate history view, not exported on request. Right there, so anyone could see who changed what and when without asking a person for it.</p>
+      <p>What changed it was putting the audit trail next to the record. Never in a separate history view, never exported on request. Right there, so anyone could see who changed what and when without asking a person for it.</p>
 
       <p>That one decision moved compliance from the group slowing adoption to the group arguing for it, because the spreadsheet could not do it at all. I stopped competing on being a better place to store the data and started competing on something a spreadsheet is structurally incapable of. That is the only kind of argument that wins.</p>
 
@@ -934,7 +934,7 @@ export const blogPosts: BlogPost[] = [
         <li>Day one cannot be an empty screen. If the first task is manual entry of everything they already have, the spreadsheet stays open next to your tool and you have lost.</li>
         <li>Ship an escape hatch. A field for the case your model did not anticipate, and an export that works. Refusing to export does not trap anyone, it just tells them you know they want to leave.</li>
         <li>Show the whole thing. A spreadsheet puts everything on one surface. Paginated detail views feel tidier and make people feel like they cannot see their own work.</li>
-        <li>Never lose an edit. One unexplained data loss costs more trust than a year of good behavior earns.</li>
+        <li>Never lose an edit. One unexplained data loss undoes a year of good behavior.</li>
       </ul>
 
       <p>None of this is discoverable from a requirements document. You find it by sitting with the people doing the work and watching which columns they actually touch, which is the same reason a <a href="/blog/designer-who-codes-argument-is-over" class="text-primary underline underline-offset-2 hover:text-primary/80">real workflow only reveals itself once something running is in front of someone</a>.</p>
@@ -967,7 +967,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Ring-Rival is a browser boxing game I designed and built. The first version had a splash screen, a mode select, a fighter select, and a tutorial. Twenty-two seconds from tapping the link to throwing your first punch.</p>
 
-      <p>It's six seconds now. I got there by deleting, not adding. The menus went. The tutorial went. You land on the page, you're already in a fight, and you learn the controls by hitting someone with them.</p>
+      <p>It's six seconds now. I got there by deleting. The menus went. The tutorial went. You land on the page, you're already in a fight, and you learn the controls by hitting someone with them.</p>
 
       <p>No model would have proposed that, and I don't blame it. Every screen I cut was a correct answer to a reasonable request. Mode select is standard. Onboarding is standard. What made them wrong was specific to this one product: it's a browser game somebody opens from a link with maybe fifteen seconds of curiosity attached. Every screen before the punch spends that budget on something that isn't the punch.</p>
 
@@ -975,7 +975,7 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/images/ringrival-knockdown.webp" alt="A knockdown in Ring-Rival — the moment that stopped being a countdown you sit and watch" class="w-full rounded-xs" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong; it just felt wrong.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">A knockdown that stopped being a countdown you sit and watch. No model told me the old one was wrong. It just felt wrong.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Bug Nobody Would Have Reported</h2>
@@ -984,13 +984,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>The fix is a known thing. Any model will tell you about the autoplay policy if you ask. The part that was mine was noticing.</p>
 
-      <p>Nothing errored. The game ran. Players weren't going to file a bug report about a silent boxing game — they were going to leave, and I'd have read that as the game not being fun. I found it because I have a habit of opening my own products on devices I haven't used before and paying attention to the first five seconds. That's not a skill anybody teaches. It's a habit, and habits are most of what taste turns out to be.</p>
+      <p>Nothing errored. The game ran. Players weren't going to file a bug report about a silent boxing game. They were going to leave, and I'd have read that as the game not being fun. I found it because I have a habit of opening my own products on devices I haven't used before and paying attention to the first five seconds. That's not a skill anybody teaches. It's a habit, and habits are most of what taste is.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Feel Is Hand-Tuned or It's Nothing</h2>
 
-      <p>The fighters in Ring-Rival are rigged from separate pieces — body, arms, legs — so a punch can be tuned rather than played back. That was a deliberate choice, and it cost more up front than dropping in a canned animation would have.</p>
+      <p>The fighters in Ring-Rival are rigged from separate pieces, body and arms and legs, so a punch can be tuned rather than played back. That was a deliberate choice, and it cost more up front than dropping in a canned animation would have.</p>
 
-      <p>It's worth it because a punch either lands or it doesn't, and the difference is in milliseconds you can only find by feel. How long the frame hangs on contact. How far the camera moves. How quickly control comes back. There's no correct value to look up. You change it, you throw a hundred punches, you change it again.</p>
+      <p>It's worth it because a punch lands or it doesn't, and the difference is in milliseconds you can only find by feel. How long the frame hangs on contact. How far the camera moves. How quickly control comes back. There's no correct value to look up. You change it, you throw a hundred punches, you change it again.</p>
 
       <p>A model has no body. It doesn't know what satisfying feels like in your hand, and it can't tell you when you've overshot. That entire category of work is untouched.</p>
 
@@ -1068,7 +1068,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>I set a budget that is not measured in time, because time no longer constrains anything. Screens before the core action. Decisions asked of the user in the first minute. Items in the main navigation. Those are the numbers I hold fixed. New thing goes in, old thing comes out.</p>
 
-      <p>And I ask two questions before anything gets built. What does this take away — attention, speed, clarity, the ability to explain the product in a sentence. And is this worth being in the first five seconds, because everything visible on arrival is competing for the same fixed budget of patience.</p>
+      <p>And I ask two questions before anything gets built. What does this take away? Attention, speed, clarity, the ability to explain the product in a sentence. And is this worth being in the first five seconds, because everything visible on arrival is competing for the same fixed budget of patience.</p>
 
       <p>If a feature only survives on the grounds that it was easy to build, that is not a reason. That is the absence of one.</p>
 
@@ -1185,14 +1185,14 @@ export const blogPosts: BlogPost[] = [
 
       <figure class="my-8">
         <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window — designed and built by the same person, which is why the seams line up.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window, designed and built by the same person, which is why the seams line up.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Handoff Was Always the Expensive Part</h2>
 
       <p>I spent years in banks and enterprises where the gap between "designed" and "shipped" was measured in quarters. Most of that time wasn't build time. It was translation. Writing specs describing behavior that would have taken ten minutes to demonstrate. Answering questions about edge cases in a document instead of in the product. Watching a decision get quietly reinterpreted three steps downstream and finding out months later.</p>
 
-      <p>When you build it yourself, that entire layer disappears. Not because you're faster at writing code than an engineer — you aren't — but because there's nothing to translate.</p>
+      <p>When you build it yourself, that entire layer disappears. You aren't faster at writing code than an engineer. The gain is that there's nothing to translate.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Building Changes the Design</h2>
 
@@ -1200,7 +1200,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>HerbaLink is a booking platform where herbalist credentials are the gate. On a canvas, that's a verified badge and an upload form. In code, it's a state machine: submitted, under review, approved, rejected, expired, resubmitted. What does the practitioner see in each of those states? Can they take bookings while pending? What happens to a booking that already exists when a credential lapses?</p>
 
-      <p>Those aren't implementation details. Those are the product, and you find them by building, not by drawing. Every one of them changed the design.</p>
+      <p>Those aren't implementation details. Those are the product, and you find them by building. Every one of them changed the design.</p>
 
       <p>The same thing happened on the investor loan platform I worked on at a bank, where the goal was replacing Excel as the actual system of record. Three previous attempts had failed. The reason wasn't visual and it wasn't technical. It was that the real workflow only shows itself once something real is in front of the people doing it.</p>
 
@@ -1221,13 +1221,13 @@ export const blogPosts: BlogPost[] = [
 
       <p>The failure mode is obvious once you've hit it. You ship fast, the product works, and six weeks later you're looking at a system you can't reason about because you never actually read half of it.</p>
 
-      <p>I've done this. The fix isn't discipline about reading every line — that gives back the speed you just gained. The fix is knowing which parts you have to understand cold: anything touching money, anything touching permissions, anything that runs on a schedule without a human watching. Those I read carefully and often rewrite. The rest can stay a black box until it breaks.</p>
+      <p>I've done this. Reading every line isn't the fix. That gives back the speed you just gained. The fix is knowing which parts you have to understand cold: anything touching money, anything touching permissions, anything that runs on a schedule without a human watching. Those I read carefully and often rewrite. The rest can stay a black box until it breaks.</p>
 
       <p>The other failure mode is thinking that because you can build it, you should be the one building it. On a team with engineers, the value of this skill isn't that you take their work. It's that you can prototype the argument instead of writing a document about it, and hand over something real when it's time.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Part That's Uncomfortable</h2>
 
-      <p>Some design work is going away. Redlines, spec documents, the long tail of handoff artifacts — those existed to move intent across a gap that's closing. If your value was being excellent at producing them, that's worth confronting directly rather than waiting to be told.</p>
+      <p>Some design work is going away. Redlines, spec documents, the long tail of handoff artifacts: those existed to move intent across a gap that's closing. If your value was being excellent at producing them, that's worth confronting directly rather than waiting to be told.</p>
 
       <p>What replaces it is more interesting work and more responsibility for the result. When you own it end to end, you can't say the engineers ruined it. It shipped the way you built it.</p>
 
@@ -1258,7 +1258,7 @@ export const blogPosts: BlogPost[] = [
       </figure>
 
 
-      <p>I can build a polished, functional product in a weekend. So can a designer two years into their career. The artifact looks roughly the same either way, and it looks good, which is the problem — a good-looking artifact no longer separates anybody from anybody.</p>
+      <p>I can build a polished, functional product in a weekend. So can a designer two years into their career. The artifact looks roughly the same either way, and it looks good, which is the problem. A good-looking artifact no longer separates anybody from anybody.</p>
 
       <p>What still separates people is what happened after the demo. Did anyone use it. What broke. What got cut and on what basis. Whether the person can explain a decision they made that turned out to be wrong.</p>
 
@@ -1372,7 +1372,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Affinity maps. Persona cards. Journey maps with emoji sentiment tracks. Every portfolio has them and they've all looked the same for a decade, which was already true before AI could generate them in bulk.</p>
 
-      <p>They're artifacts of a process, not evidence of thinking. Nobody reading your site is trying to verify that you know what a persona is. They're trying to find out whether you can reason about a specific problem under specific constraints, and a journey map doesn't answer that in either direction.</p>
+      <p>They're artifacts of a process. Nobody reading your site is trying to verify that you know what a persona is. They're trying to find out whether you can reason about a specific problem under specific constraints, and a journey map doesn't answer that in either direction.</p>
 
       <p>If a research artifact changed what you built, show the change and skip the artifact. If it didn't change what you built, it doesn't belong on the page at all.</p>
 
@@ -1380,7 +1380,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Every case study I write follows the same shape: the problem, what I built, the parts AI couldn't do for me, what got cut and why, and the outcome measured honestly. If a section doesn't fit one of those, it doesn't go in.</p>
 
-      <p>The third one is the differentiator right now. Naming what you had to do by hand — the game feel, the trust rules, the state you only discovered by building it — tells a reader exactly where your judgment ends and your tooling begins. That's the thing they're actually trying to figure out.</p>
+      <p>The third one is the differentiator right now. Naming what you had to do by hand, the game feel, the trust rules, the state you only discovered by building it, tells a reader exactly where your judgment ends and your tooling begins. That's the thing they're actually trying to figure out.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Assume They'll Ask</h2>
 
@@ -1402,7 +1402,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["AI", "Product Design", "Process"],
     slug: "what-ai-changed-and-what-it-didnt",
     content: `
-      <p>I've been designing products for fifteen years and building them solo with AI for a while now. The changes are real. They're also narrower and more specific than either the hype or the panic suggests.</p>
+      <p>I've been designing products for fifteen years and building them solo with AI for a while now. The changes are real. They're also narrower and more specific than either the hype or the panic would have you believe, and I want to be exact about where.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Changed: Being Wrong Got Cheap</h2>
       <figure class="my-8">
@@ -1413,20 +1413,20 @@ export const blogPosts: BlogPost[] = [
 
       <p>This is the big one and everything else follows from it. An idea used to cost weeks to test properly, which meant you argued about it instead, which meant the loudest person in the room won a lot of arguments that should have been settled by evidence.</p>
 
-      <p>Now you build it and look. The cost of finding out you were wrong dropped enough that finding out is usually faster than debating. That changes how you should work, not just how fast you work.</p>
+      <p>Now you build it and look. The cost of finding out you were wrong dropped enough that finding out is usually faster than debating. That changes how you should work, and how fast is the smaller part of it.</p>
 
       <figure class="my-8">
         <img src="/images/ringrival-sprite-sheet-2.webp" alt="Nine poses per fighter — generated fast, then hand-tuned until a punch felt like a punch" class="w-full rounded-xs" />
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine poses per fighter, generated fast and then hand-tuned until a punch read as a punch. AI did the volume; the tuning was mine.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine poses per fighter, generated fast and then hand-tuned until a punch read as a punch. AI did the volume. The tuning was mine.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">Changed: The Deliverable Is the Product</h2>
 
-      <p>I don't make specs for other people to implement. The design ends when the thing is live. That collapses a whole category of work — annotations, handoff documents, the meetings that exist to clarify the handoff documents — and it moves the accountability with it. Nobody else touched it, so nobody else is responsible for how it came out.</p>
+      <p>I don't make specs for other people to implement. The design ends when the thing is live. That collapses a whole category of work (annotations, handoff documents, the meetings that exist to clarify the handoff documents) and it moves the accountability with it. Nobody else touched it, so nobody else is responsible for how it came out.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Changed: You Can Follow the Tangent</h2>
 
-      <p>Small ideas used to die on cost. A weird interaction you wanted to try, a second version of a flow just to compare — not worth a sprint, so it never got built. Now it's an afternoon. Some of my best decisions came out of tangents I'd never have been able to justify to a team.</p>
+      <p>Small ideas used to die on cost. A weird interaction you wanted to try, a second version of a flow just to compare: never worth a sprint, so it never got built. Now it's an afternoon. Some of my best decisions came out of tangents I'd never have been able to justify to a team.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Didn't Change: Deciding What Not to Build</h2>
 
@@ -1438,13 +1438,13 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Didn't Change: Feel</h2>
 
-      <p>The fighters in Ring-Rival are rigged from separate body, arm, and leg pieces specifically so a punch can be tuned rather than replayed. How long contact hangs, how much the camera moves, when control returns — all hand-tuned, by throwing punches until it stops feeling wrong.</p>
+      <p>The fighters in Ring-Rival are rigged from separate body, arm, and leg pieces specifically so a punch can be tuned rather than replayed. How long contact hangs, how much the camera moves, when control returns, all hand-tuned, by throwing punches until it stops feeling wrong.</p>
 
       <p>No model can help with that. It has no body and no way to evaluate the result. Every product has a version of this somewhere, and it's usually the part people remember.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Didn't Change: Trust</h2>
 
-      <p>CatchBuddy puts strangers in the same place to play a pickup game. HerbaLink puts people in front of practitioners whose credentials have to actually mean something. In both, the safety architecture is the product, not a layer applied to it.</p>
+      <p>CatchBuddy puts strangers in the same place to play a pickup game. HerbaLink puts people in front of practitioners whose credentials have to actually mean something. In both, the safety architecture is the product.</p>
 
       <p>A model will scaffold verification tables in seconds. It cannot decide who is allowed to post, what happens when someone gets reported, or what the system should do when trust breaks down. Those are value judgments with consequences attached to real people, and they belong to a person who can be held to them.</p>
 

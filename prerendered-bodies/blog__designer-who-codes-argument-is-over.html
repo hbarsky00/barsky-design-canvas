@@ -16,14 +16,14 @@
 
       <figure class="my-8">
         <img src="/images/recast/mac-app.webp" alt="The Recast recorder panel, floating over a browser — designed and built by the same person" class="w-full rounded-xs">
-        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window — designed and built by the same person, which is why the seams line up.</figcaption>
+        <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The recorder panel over a browser window, designed and built by the same person, which is why the seams line up.</figcaption>
       </figure>
 
 <h2 class="text-2xl font-bold mt-8 mb-4">The Handoff Was Always the Expensive Part</h2>
 
       <p>I spent years in banks and enterprises where the gap between "designed" and "shipped" was measured in quarters. Most of that time wasn't build time. It was translation. Writing specs describing behavior that would have taken ten minutes to demonstrate. Answering questions about edge cases in a document instead of in the product. Watching a decision get quietly reinterpreted three steps downstream and finding out months later.</p>
 
-      <p>When you build it yourself, that entire layer disappears. Not because you're faster at writing code than an engineer — you aren't — but because there's nothing to translate.</p>
+      <p>When you build it yourself, that entire layer disappears. You aren't faster at writing code than an engineer. The gain is that there's nothing to translate.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Building Changes the Design</h2>
 
@@ -31,7 +31,7 @@
 
       <p>HerbaLink is a booking platform where <a href="/project/herbalink" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="HerbaLink — credentials as a gate, not a badge" rel="internal" target="_self">herbalist</a> credentials are the gate. On a canvas, that's a verified badge and an upload form. In code, it's a state machine: submitted, under review, approved, rejected, expired, resubmitted. What does the practitioner see in each of those states? Can they take bookings while pending? What happens to a booking that already exists when a credential lapses?</p>
 
-      <p>Those aren't implementation details. Those are the product, and you find them by building, not by drawing. Every one of them changed the design.</p>
+      <p>Those aren't implementation details. Those are the product, and you find them by building. Every one of them changed the design.</p>
 
       <p>The same thing happened on the investor loan platform I worked on at a bank, where the goal was replacing <a href="/project/investor-loan-app" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="Investor Loan Platform — replacing Excel as the system of record" rel="internal" target="_self">Excel</a> as the actual system of record. Three previous attempts had failed. The reason wasn't visual and it wasn't technical. It was that the real workflow only shows itself once something real is in front of the people doing it.</p>
 
@@ -52,13 +52,13 @@
 
       <p>The failure mode is obvious once you've hit it. You ship fast, the product works, and six weeks later you're looking at a system you can't reason about because you never actually read half of it.</p>
 
-      <p>I've done this. The fix isn't discipline about reading every line — that gives back the speed you just gained. The fix is knowing which parts you have to understand cold: anything touching money, anything touching permissions, anything that runs on a schedule without a human watching. Those I read carefully and often rewrite. The rest can stay a black box until it breaks.</p>
+      <p>I've done this. Reading every line isn't the fix. That gives back the speed you just gained. The fix is knowing which parts you have to understand cold: anything touching money, anything touching permissions, anything that runs on a schedule without a human watching. Those I read carefully and often rewrite. The rest can stay a black box until it breaks.</p>
 
       <p>The other failure mode is thinking that because you can build it, you should be the one building it. On a team with engineers, the value of this skill isn't that you take their work. It's that you can prototype the argument instead of writing a document about it, and hand over something real when it's time.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Part That's Uncomfortable</h2>
 
-      <p>Some design work is going away. Redlines, spec documents, the long tail of handoff artifacts — those existed to move intent across a gap that's closing. If your value was being excellent at producing them, that's worth confronting directly rather than waiting to be told.</p>
+      <p>Some design work is going away. Redlines, spec documents, the long tail of handoff artifacts: those existed to move intent across a gap that's closing. If your value was being excellent at producing them, that's worth confronting directly rather than waiting to be told.</p>
 
       <p>What replaces it is more interesting work and more responsibility for the result. When you own it end to end, you can't say the engineers ruined it. It shipped the way you built it.</p>
 

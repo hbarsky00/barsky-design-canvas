@@ -28,7 +28,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "The industry treats that as a segmentation choice. Beginners pay hidden fees and never learn enough to graduate off them, which is rather the point, and pros pay a confirmation tax built for somebody else, so both groups are being charged for the same decision by an app that's been designed to make sure neither notices.",
         ],
         images: [
-          { src: "/images/crypto/competitive.webp", alt: "Competitor teardown — \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence", caption: "The teardown that started it. Easy apps hide the spread, pro apps assume you brought your own confidence, and both charge for the same decision.",
+          { src: "/images/crypto/competitive.webp", alt: "Competitor teardown: \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence", caption: "The teardown that started it. Easy apps hide the spread, pro apps assume you brought your own confidence, and both charge for the same decision.",
  width: 752,
  height: 664,
     },
@@ -42,7 +42,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Making it a setting means a beginner can see Pro exists before they're ready for it, and a pro can flip to Beginner to walk a friend through a trade without logging out of their own account.",
         ],
         images: [
-          { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture — one platform, shared core, mode as a setting rather than a separate product", caption: "One platform, one shared core, and the mode as a setting. A beginner can see Pro exists before they're ready for it.",
+          { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture: one platform, shared core, mode as a setting rather than a separate product", caption: "One platform, one shared core, and the mode as a setting. A beginner can see Pro exists before they're ready for it.",
  width: 2100,
  height: 1500,
     },
@@ -74,7 +74,7 @@ const StructuredCryptoCaseStudy: React.FC = () => (
           "Pro mode failed in the opposite direction, and it took me longer than it should have to notice it was the same mistake in reverse. I'd stripped it down for cleanliness and taken out things pros actually used, because density is a feature for that audience and I'd been treating my own taste as a usability principle.",
         ],
         images: [
-          { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations — the over-protected beginner mode that tested as patronising", caption: "The prototype that failed. Confirmations on everything and a tour that wouldn't end — testers didn't feel safe, they felt talked down to.",
+          { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations: the over-protected beginner mode that tested as patronising", caption: "The prototype that failed. Confirmations on everything and a tour that wouldn't end, testers didn't feel safe, they felt talked down to.",
  width: 1890,
  height: 2283,
     },

@@ -14,7 +14,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
     liveUrl="https://farmflow-app.netlify.app"
     heroImage={{
       src: "/images/farmflow/01-requester-home.webp",
-      alt: "FarmFlow requester home — what's available this week, five ways to start a request, and the department's pending, approved and upcoming counts",
+      alt: "FarmFlow requester home: what's available this week, five ways to start a request, and the department's pending, approved and upcoming counts",
       hoverVideo: "/farmflow-walkthrough.mp4",
       caption:
         "Where a department lands after signing in. Play it and the walkthrough follows a request from Sarah in Events through to James on the farm team: new request, the queue, the ticket, the calendar, the catalogue, reports and the availability rules. Recorded off the live build with Playwright, so this is the app as it is today, with the names and figures from the demo dataset.",
@@ -43,14 +43,14 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/july-02-requester-home.webp",
-            alt: "July prototype of the requester home — a top navigation bar with Home, New Request, My Requests, Locations and Admin, above the weekly availability banner and four request cards",
+            alt: "July prototype of the requester home: a top navigation bar with Home, New Request, My Requests, Locations and Admin, above the weekly availability banner and four request cards",
             caption: "Requester home, July. A five-item top bar and four ways in. Compare it with the version at the top of this page: the bar became a sidebar, and Landscaping and Reserve Farm did not exist yet.",
             width: 1400,
             height: 875,
           },
           {
             src: "/images/farmflow/july-03-new-request.webp",
-            alt: "July prototype of the new request form — category tiles for flowers, herbs, vegetables, service and special, and the request details form",
+            alt: "July prototype of the new request form: category tiles for flowers, herbs, vegetables, service and special, and the request details form",
             caption: "New request, July. Five categories, no Fruits, and no department code or budget line on the form. Every one of those came from the feedback round.",
             width: 1400,
             height: 875,
@@ -75,7 +75,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/16-availability-manager.webp",
-            alt: "Availability manager — a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
+            alt: "Availability manager: a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
             caption: "The one screen an operations admin can see but not change. Which days the farm is open, which slots can be booked, and whether a team member will be there. Everything else on the admin side they can work. This is the line.",
             width: 1600,
             height: 1000,
@@ -92,7 +92,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/12-request-ticket.webp",
-            alt: "Admin request ticket — universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",
+            alt: "Admin request ticket: universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",
             caption: "The request from the farm side. Approve, ask for more information, schedule, attach the confirmation photo, mark it fulfilled, or reject it, all from one column. Every one of those writes to the timeline the requester sees.",
             width: 1600,
             height: 1000,
@@ -115,7 +115,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/13-admin-calendar.webp",
-            alt: "Admin calendar — a week of deliveries and reservations colour-coded by type, with today's schedule listed alongside",
+            alt: "Admin calendar: a week of deliveries and reservations colour-coded by type, with today's schedule listed alongside",
             caption: "A confirmed reservation lands on the same calendar as that day's deliveries, in its own colour, because both are competing for the same team on the same morning.",
             width: 1600,
             height: 1000,
@@ -130,56 +130,56 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/farmflow/m0-sign-in.webp",
-            alt: "Sign in on a phone — the FarmFlow hero panel, then Google, Microsoft and Apple sign-in and the email form",
+            alt: "Sign in on a phone: the FarmFlow hero panel, then Google, Microsoft and Apple sign-in and the email form",
             caption: "Sign in. The three SSO buttons first, because that is how most of the organisation gets in.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m2-new-request.webp",
-            alt: "New request on a phone — category tiles two across, then the details form and order summary stacked",
+            alt: "New request on a phone: category tiles two across, then the details form and order summary stacked",
             caption: "New request. The category tiles wrap to two across.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m3-my-requests.webp",
-            alt: "My requests on a phone — status counts and the request list",
+            alt: "My requests on a phone: status counts and the request list",
             caption: "My requests. Status counts first, then the list.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m4-request-details.webp",
-            alt: "Request details on a phone — the timeline and quick actions stacked",
+            alt: "Request details on a phone: the timeline and quick actions stacked",
             caption: "A ticket. The timeline reads top to bottom, the actions sit under it.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m5-locations.webp",
-            alt: "Locations library on a phone — the department's locations with photos, environment and usage counts",
+            alt: "Locations library on a phone: the department's locations with photos, environment and usage counts",
             caption: "Locations. The department's own list, each with a photo, so a request points somewhere real.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m6-reserve-farm.webp",
-            alt: "Reserve the farm on a phone — visiting guidelines, then the open-slot picker and booking form",
+            alt: "Reserve the farm on a phone: visiting guidelines, then the open-slot picker and booking form",
             caption: "Reserve the farm. Only open slots are offered, and the party size and team-member toggle sit under them.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m7-landscaping.webp",
-            alt: "Landscaping requests on a phone — status counts and the four request types stacked",
+            alt: "Landscaping requests on a phone: status counts and the four request types stacked",
             caption: "Landscaping. Four ways in, one per row.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m8-new-landscaping-request.webp",
-            alt: "New landscaping request on a phone — request type, the optional plant picker and the description field",
+            alt: "New landscaping request on a phone: request type, the optional plant picker and the description field",
             caption: "A replacement request. Photo, location or pin, and a description. The plant itself stays optional.",
             width: 780,
             height: 1688,

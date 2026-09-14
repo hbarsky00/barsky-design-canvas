@@ -68,7 +68,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           {
             src: "/images/investor-loan-app/before-after.webp",
             alt: "The old Excel system beside the new Loan Central platform",
-            caption: "The same four moves, before and after. Excel on the left could already do all of it \u2014 just with nothing stopping you getting it wrong.",
+            caption: "The same four moves, before and after. Excel on the left could already do all of it, just with nothing stopping you getting it wrong.",
             width: 768,
             height: 512,
           },
@@ -102,7 +102,7 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/investor-loan-app/deal-central-wireframe.webp",
-            alt: "Loan Central landing page in wireframe \u2014 My Deals, Live Deals and All Deals tabs above a grid of deal cards showing borrower, industry, region, status and deal size, with 22,934 deals in the header",
+            alt: "Loan Central landing page in wireframe: My Deals, Live Deals and All Deals tabs above a grid of deal cards showing borrower, industry, region, status and deal size, with 22,934 deals in the header",
             caption: "22,934 deals as cards. The count in the corner is the tell: a screen that opens on everything is a screen that has not decided what you came for.",
             width: 1440,
             height: 1058,
@@ -118,8 +118,8 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
         images: [
           {
             src: "/images/investor-loan-app/design-system.webp",
-            alt: "Investor Loan Platform design tokens \u2014 Inter and its type scale, the 4px spacing grid and radii, Primary Blue with its hover state, two greys, and the three status colours, plus buttons, form elements, status badges and the card",
-            caption: "The token set the platform actually runs on. Primary Blue is the only colour an action ever uses; the three status colours are reserved for deal state and nothing else.",
+            alt: "Investor Loan Platform design tokens: Inter and its type scale, the 4px spacing grid and radii, Primary Blue with its hover state, two greys, and the three status colours, plus buttons, form elements, status badges and the card",
+            caption: "The token set the platform actually runs on. Primary Blue is the only colour an action ever uses. The three status colours are reserved for deal state and nothing else.",
             width: 1500,
             height: 1391,
           },

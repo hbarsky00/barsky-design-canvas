@@ -5,7 +5,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="bz-essentials"
     title="BZ Essentials"
-    description="An enterprise knowledge portal built from a client PRD — where the hard part isn't finding a document, it's knowing whether the one you found applies to you."
+    description="An enterprise knowledge portal built from a client PRD, where the hard part is knowing whether the document you found applies to you."
     tags={["Enterprise", "Information Architecture", "Design Systems", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://az-essentials.netlify.app"
@@ -16,7 +16,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     }}
     heroImage={{
       src: "/images/bz-essentials/home.webp",
-      alt: "BZ Essentials home — hero, quick access panel, and the four entry points into the portal",
+      alt: "BZ Essentials home: hero, quick access panel, and the four entry points into the portal",
       caption: "Three domains as the front door, search as the fourth option. You can't search for a process whose name you don't know yet.",
       width: 1800,
       height: 1013,
@@ -44,11 +44,11 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           {
             src: "/images/bz-essentials/flow-how-i-worked.svg",
             alt: "How I worked on BZ Essentials: read the PRD, decide three domains and four categories, build it clickable, region as a lens, metadata panel first, browse first with facets, live prototype",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
             width: 502,
             height: 594,
           },
-          { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow — Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary, and search skips the hierarchy once you have it.",
+          { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow: Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "Two paths to the same place. Browsing teaches you the vocabulary, and search skips the hierarchy once you have it.",
  width: 1500,
  height: 806,
     },
@@ -62,7 +62,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "Content marked Both is always visible, and everything else has to match the region you're in. That's the whole rule. That means switching to US doesn't hide most of the portal. It adds the US-specific material on top of the shared set, which is the opposite of what a naive equality check would do.",
         ],
         images: [
-          { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number.",
+          { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing: its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number.",
  width: 1500,
  height: 1197,
     },
@@ -76,11 +76,11 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "Related documents sit at the bottom as real links between records rather than a \"you might also like\" strip. In a compliance context the related item is usually the thing that governs the one you're reading, which is worth more than a recommendation.",
         ],
         images: [
-          { src: "/images/bz-essentials/design-system.webp", alt: "Design system — Inter, the gray ground and white surface, four accent pairs, region and status badges, the single card shape and the eight components", caption: "Four accents, one card shape, eight components. The region lens is a context provider rather than a prop threaded through all of them.",
+          { src: "/images/bz-essentials/design-system.webp", alt: "Design system: Inter, the gray ground and white surface, four accent pairs, region and status badges, the single card shape and the eight components", caption: "Four accents, one card shape, eight components. The region lens is a context provider rather than a prop threaded through all of them.",
  width: 1500,
  height: 1042,
     },
-          { src: "/images/bz-essentials/document.webp", alt: "A document page — cover, status and region badges, attachments with sizes, keywords and tags, and the details panel", caption: "The download is there. It is not the first thing, because it is not the first question.",
+          { src: "/images/bz-essentials/document.webp", alt: "A document page: cover, status and region badges, attachments with sizes, keywords and tags, and the details panel", caption: "The download is there. It is not the first thing, because it is not the first question.",
  width: 1500,
  height: 1270,
     },
@@ -94,7 +94,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "Search is then built for the other half of the audience: the people who know exactly what they want. Facets for business area, region, document type and status, filtering a live result count, because in this kind of library the useful question is usually \"approved templates for the US\" and not a keyword at all.",
         ],
         images: [
-          { src: "/images/bz-essentials/search.webp", alt: "Search and browse — faceted filters for business area, region, document type and status beside a result grid", caption: "Facets do the work here, because the useful question is usually a combination. The filters are the query.",
+          { src: "/images/bz-essentials/search.webp", alt: "Search and browse: faceted filters for business area, region, document type and status beside a result grid", caption: "Facets do the work here, because the useful question is usually a combination. The filters are the query.",
  width: 1500,
  height: 1354,
     },
