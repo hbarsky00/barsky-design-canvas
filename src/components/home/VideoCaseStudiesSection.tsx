@@ -32,21 +32,19 @@ interface CaseStudy {
 // listing is affected.
 const caseStudies: CaseStudy[] = [
   {
-    id: "investor-loan-app",
-    tags: ["Enterprise", "Fintech", "Workflow Design"],
-    title: "Investor Loan Platform",
-    description: "Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.",
+    id: "catchbuddy",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
+    title: "CatchBuddy",
+    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     impact: "",
-    url: "/project/investor-loan-app",
+    url: "/project/catchbuddy",
+    liveUrl: "https://catchbuddy.fit",
     images: {
-      // Poster is the video's own first frame — the source clip had ~100px of
-      // grey mock-frame baked into the top and bottom; it's cropped out of
-      // both now, so no more letterboxed card.
-      primary: "/images/investor-loan-app/card-poster-home.jpg",
-      alt: "Investor loan analysis dashboard overview"
+      primary: "/images/catchbuddy-hero-landing-card.webp",
+      alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
-    video: "/investor-loan-deals-card.mp4"
+    video: "/catchbuddy-card.mp4"
   },
   {
     id: "dae-search",
@@ -149,21 +147,6 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/herbalink-card.mp4"
-  },
-  {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.fit",
-    images: {
-      primary: "/images/catchbuddy-hero-landing-card.webp",
-      alt: "CatchBuddy pickup sports app"
-    },
-    layout: "side-by-side",
-    video: "/catchbuddy-card.mp4"
   },
   {
     id: "stips",

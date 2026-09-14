@@ -67,12 +67,12 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
     ],
     proof: [
       {
-        href: "/project/investor-loan-app",
-        title: "Investor Loan Platform",
-        image: "/images/investor-loan-app/hero.webp",
-        alt: "Investor loan analysis dashboard",
+        href: "/project/farmflow",
+        title: "FarmFlow",
+        image: "/images/farmflow/01-requester-home.webp",
+        alt: "FarmFlow requester home screen",
         result:
-          "Replaced Excel as the system of record for multi-million-dollar loan deals — without anyone losing the workflow they relied on.",
+          "A farm that ran on email, and the request system that replaced the inbox.",
       },
       {
         href: "/project/dae-search",

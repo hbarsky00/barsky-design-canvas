@@ -28,7 +28,6 @@ const CASE_STUDY_RULES: LinkRule[] = [
   { keywords: ['boxing', 'game feel', 'hit-stop', 'browser game'], href: '/project/ring-rival', anchorText: 'Ring-Rival', title: 'Ring-Rival — console boxing feel on the mobile web' },
   { keywords: ['herbalist', 'credential', 'credentials', 'practitioner'], href: '/project/herbalink', anchorText: 'HerbaLink', title: 'HerbaLink — credentials as a gate, not a badge' },
   { keywords: ['pickup sports', 'meeting strangers', 'safety'], href: '/project/catchbuddy', anchorText: 'CatchBuddy', title: 'CatchBuddy — same-day pickup sports, designed for trust' },
-  { keywords: ['Excel', 'spreadsheet', 'system of record', 'loan'], href: '/project/investor-loan-app', anchorText: 'the Investor Loan Platform', title: 'Investor Loan Platform — replacing Excel as the system of record' },
   { keywords: ['enterprise search', 'data discovery', 'data assets'], href: '/project/dae-search', anchorText: 'DAE Search', title: 'DAE Search — enterprise data discovery' },
   { keywords: ['co-parenting', 'custody'], href: '/project/splittime', anchorText: 'SplitTime', title: 'SplitTime — structured requests instead of open chat' },
   { keywords: ['deletion list', 'cut features', 'scope discipline'], href: '/project/fire-lion', anchorText: 'Fire Lion', title: 'Fire Lion — a deletion list longer than the feature list' },

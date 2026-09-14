@@ -24,7 +24,6 @@
 - [FarmFlow](/project/farmflow): Internal farm-operations request system — four roles, a request lifecycle with photo confirmation, landscaping and farm reservations. Clickable build, backend next.
 - [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
 - [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
-- [Investor Loan Platform](/project/investor-loan-app): Fintech loan origination platform replacing Excel as the system of record.
 - [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
 - [Recast](/project/recast): Record once, send a link — native Mac and Android capture with a web library, built solo.
 - [Ring-Rival](/project/ring-rival): AI-assisted boxing game with distinct AI opponents and generated trash talk.

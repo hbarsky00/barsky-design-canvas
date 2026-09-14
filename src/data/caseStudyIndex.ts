@@ -20,9 +20,9 @@ export interface CaseStudyIndexEntry {
 
 export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
   {
-    id: "investor-loan-app",
-    title: "Investor Loan Platform",
-    blurb: "Loan origination that replaced a spreadsheet.",
+    id: "catchbuddy",
+    title: "CatchBuddy",
+    blurb: "Same-day pickup sports, designed for trust.",
   },
   {
     id: "dae-search",
@@ -53,11 +53,6 @@ export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
     id: "herbalink",
     title: "HerbaLink",
     blurb: "A booking platform where the real product is trust.",
-  },
-  {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    blurb: "Same-day pickup sports, designed for trust.",
   },
   {
     id: "stips",

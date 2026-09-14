@@ -230,10 +230,12 @@
   to = "/project/email-creation-ai/index.html"
   status = 200
 
+# Investor Loan study pulled 2026-09-14 — Hiram: "don't put it back no
+# matter what until I ask for it". Source file kept; route unregistered.
 [[redirects]]
   from = "/project/investor-loan-app"
-  to = "/project/investor-loan-app/index.html"
-  status = 200
+  to = "/"
+  status = 301
 
 # Prerendered static pages
 [[redirects]]

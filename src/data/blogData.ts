@@ -372,7 +372,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>Match the shape of what they do now, then add the things only real software can give them. Ask them to change one thing at a time, and let the audit trail be the argument.</p>
 
-<p>How that mapped onto the actual screens is in the <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">Investor Loan Platform case study</a>.</p>
+<p>How that mapped onto the actual screens is in the Investor Loan Platform case study.</p>
 `
   },
   {
@@ -708,7 +708,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Distribution did not move an inch. Building got dramatically faster and getting a stranger to open the thing costs exactly what it always did. I can ship a working product over a weekend and then spend three months failing to get anyone to use it. That is a worse story and it is the true one.</p>
 
-      <p>Institutional trust does not come in a repository. The <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">investor loan platform</a> I worked on replaced Excel as the system of record for multi-million-dollar deals after three previous attempts had failed. What finally made it stick was putting the audit trail next to the record, which turned compliance from the group blocking adoption into the group arguing for it. That is months of sitting with people who are not going to hand a solo builder the keys to their loan book, however good the demo looks.</p>
+      <p>Institutional trust does not come in a repository. The investor loan platform I worked on replaced Excel as the system of record for multi-million-dollar deals after three previous attempts had failed. What finally made it stick was putting the audit trail next to the record, which turned compliance from the group blocking adoption into the group arguing for it. That is months of sitting with people who are not going to hand a solo builder the keys to their loan book, however good the demo looks.</p>
 
       <p>Operations are staffing. CatchBuddy is strangers meeting up to play sports. Verification, curated meeting spots, and a panic button are design problems, and I solved them. Answering that panic button at nine at night is a headcount problem, and there is no model for it. Anything with real-world risk eventually needs a human on a rotation.</p>
 
@@ -855,7 +855,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Enterprise Version of the Same Problem</h2>
 
-      <p>This is not only a consumer concern. The <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">investor loan platform</a> I worked on had to become the system of record for multi-million-dollar deals, replacing spreadsheets that people trusted because they had built them. Three earlier attempts had failed.</p>
+      <p>This is not only a consumer concern. The investor loan platform I worked on had to become the system of record for multi-million-dollar deals, replacing spreadsheets that people trusted because they had built them. Three earlier attempts had failed.</p>
 
       <p>What moved it was the audit trail sitting next to the record instead of in a separate log nobody opened. Compliance could see who changed what without asking anyone, so compliance stopped being the obstacle and started advocating for the tool. Visibility bought adoption. No amount of interface polish had.</p>
 
@@ -905,7 +905,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What Finally Worked</h2>
 
-      <p>The <a href="/project/investor-loan-app" class="text-primary underline underline-offset-2 hover:text-primary/80">investor loan platform</a> I worked on had to replace Excel as the system of record for multi-million-dollar loan deals. Three previous attempts had already failed. Those attempts were not ugly and they were not technically incompetent. They lost on the four things above.</p>
+      <p>The investor loan platform I worked on had to replace Excel as the system of record for multi-million-dollar loan deals. Three previous attempts had already failed. Those attempts were not ugly and they were not technically incompetent. They lost on the four things above.</p>
 
       <p>What changed it was putting the audit trail next to the record. Never in a separate history view, never exported on request. Right there, so anyone could see who changed what and when without asking a person for it.</p>
 
