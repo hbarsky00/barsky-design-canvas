@@ -5,7 +5,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="dae-search"
     title="DAE Search"
-    description="Enterprise search redesigned around an inconvenient truth: finding the data is only half the job. Knowing whether to trust it is the rest."
+    description="Enterprise search has been redesigned based on an uncomfortable truth: while finding the data is only half the task, deciding whether to trust it is the other half."
     tags={["Enterprise", "Data Discovery", "Search UX"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
@@ -18,7 +18,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       height: 1121,
       alt: "DAE Search platform interface overview",
       hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
-      caption: "The catalogue with advanced search open: 350 assets, narrowed by therapeutic area, data type and metadata filters. Finding candidates was never the hard part.",
+      caption: "The catalogue is displayed with the advanced search feature active: there are 350 assets, having been narrowed down by filters related to therapeutic area, data type and metadata. The difficult part was always finding candidates.",
     }}
     relatedPost={{
       slug: "finding-the-data-is-half-the-job",
@@ -29,17 +29,17 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "Forty Results, and Twenty Minutes to Pick One",
         paragraphs: [
-          "An analyst searches \"revenue\" and gets 40 results back. Then the real work starts: twenty minutes of figuring out which table is current, which one belongs to the team of record, and which was deprecated three quarters ago and never cleaned up.",
-          "None of that is searching. It's opening tabs. You click into a table, find the owner, check when it last refreshed, look for anything downstream still reading from it, then go back and do it again for the next candidate, and if you're being careful you do that forty times, which nobody is. The analysts had plenty of results. What they didn't have was one they could put their name to.",
-          "The catalogue in these screenshots is life-sciences data: therapeutic areas, registries, trial and claims sets. Swap \"revenue\" for \"diabetes\" and nothing about the problem changes, which is why I'm comfortable telling it with the finance example.",
+          "When the analyst searches for \"revenue\" they are given 40 results; the actual work then begins, which involves twenty minutes spent deciding which table is the current one, which one belongs to the team that is responsible, and which had been deprecated three quarters ago and was never cleaned up.",
+          "That isn't really searching; it's just opening up tabs. You click on a table, identify the owner, check when it last refreshed, look for anything else that's still reading from it, then return and carry out the same process for the next item, and if you're being careful you'll do this forty times, even though no one actually does. The analysts had a lot of results. The only thing they lacked was one that they could claim as their own.",
+          "The kind of data shown in these screenshots relates to the life sciences: specifically, therapeutic areas, registries, trial sets and claims sets. If you replace 'revenue' with 'diabetes' then nothing about the problem is affected, which is the reason why I am at ease in using the finance example.",
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "Sketching how much could sit in the list before it stopped being a list: multiple search terms, selected entities, meta tags carried onto the result." },
+          { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "An illustration of the amount that could be included in the list before it ceased to be a list\u2014such as multiple search terms, the entities that had been selected, and the meta tags carried over into the results." },
           {
             src: "/images/dae-search/flow-how-i-worked.svg",
             alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
+            caption: "A step-by-step explanation of how I worked on it, according to the study itself. The decision known as Terracotta was the one on which the rest was based. The more subdued steps were my own constructions which I later deleted.",
             width: 492,
             height: 1100,
           },
@@ -48,12 +48,12 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "Making It Understand the Question",
         paragraphs: [
-          "Keyword matching is why the list is forty long. Someone types \"revenue\" and gets back everything with the word in a column name, a description or a stale comment, ranked by string similarity to a word nobody names their tables after.",
-          "So the search runs semantically over the metadata instead. A table called `arr_monthly` comes back when you type \"revenue,\" because the model knows what annual recurring revenue is and the string match never would have.",
-          "That alone took a result set from 40 things to narrow down to about 4 to choose between. It didn't answer the question underneath, though, because four candidates still need a decision and the decision was still happening in other tabs.",
+          "The reason the list contains forty items is due to keyword matching; when someone types \"revenue\" they get back all the entries that have the word in the column name, in the description or in a stale comment and these are ranked according to their string similarity to a word which no one has named their tables after.",
+          "The search therefore proceeds semantically through the metadata, and when you type \"revenue\" the table named `arr_monthly` is returned since the model knows what annual recurring revenue is and a simple string match never could have.",
+          "It reduced the result set from 40 items to about 4 for selection, but it didn't deal with the underlying question since four of the candidates still required a decision and the decision was still being made in the other tabs.",
         ],
         images: [
-          { src: "/images/dae-search/the-problem.webp", alt: "The advanced search panel: an empty prompt to start typing, one diagnosis filter chip applied, and a count of 15 matching data assets", caption: "The search worked. A filter chip, a count of matching assets, and nothing on the screen saying which of them is current, who owns it, or whether you are allowed to use it.",
+          { src: "/images/dae-search/the-problem.webp", alt: "The advanced search panel: an empty prompt to start typing, one diagnosis filter chip applied, and a count of 15 matching data assets", caption: "The search was a success; it produced a filter chip, gave a count of the assets that matched, but provided no information on the screen about which of them is the current one, who owns it, or whether you are permitted to use it.",
  width: 1302,
  height: 710,
     },
@@ -62,12 +62,12 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "The Trust Signals Belong on the Row",
         paragraphs: [
-          "So I moved them onto the row itself. Where the table came from, when it last refreshed, what depends on it, all readable in the list instead of something you click through to find out.",
-          "That sounds like a small layout change and it's the whole product. The question an analyst is actually asking is \"which of these can I put in front of a VP on Thursday,\" and freshness and lineage are what answer it, in a way a relevance score can't.",
-          "It also changes what a bad result costs you, because under the old list you found out a table was stale after you'd built on it, sometimes days after, and here it's on the row before you've opened anything.",
+          "Therefore I transferred them to the row. The origin of the table and the time at which it last refreshed, likewise, are all visible in the list rather than requiring you to click through to find this information.",
+          "It seems to be just a minor change to the layout and yet involves the entire product. The real question that an analyst is asking is \"which of these can I show to a VP on Thursday\", and it is freshness and lineage that provide the answer, whereas a relevance score cannot.",
+          "It also alters the cost of having a bad result, since under the previous system you only discovered that a table was out of date after you had already started to use it, sometimes even days later, whereas now you know about it before you open any row.",
         ],
         images: [
-          { src: "/images/dae-search/what-i-built.webp", alt: "The DAE Search process flow, nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one chosen asset", caption: "Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust, which is the part the result list was leaving them to do alone.",
+          { src: "/images/dae-search/what-i-built.webp", alt: "The DAE Search process flow, nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one chosen asset", caption: "It's nine steps from logging in to gaining any real knowledge about a single asset, and after the 'Results' stage the analyst has to decide what to trust, which is exactly what the results list was leaving them to do by themselves.",
  width: 1024,
  height: 576,
     },
@@ -76,26 +76,26 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "Restricted Results Stay Visible",
         paragraphs: [
-          "They stay locked, with a one-click request for access, but they stay visible. I tried hiding them first, because that's the obvious call.",
-          "It backfired. People concluded the data didn't exist and went off to rebuild it themselves, which is worse for security than showing them a padlock, since now there are two copies of sensitive data and only one of them is governed.",
+          "They remain locked and can be given access with just one click, though they still stay visible. I initially tried to hide them since that seems to be the straightforward option.",
+          "It had the opposite effect; people decided that the data did not exist and set about rebuilding it themselves, which is more dangerous from a security point of view than simply showing them a padlock, since there are now two copies of the sensitive data and only one of them is protected.",
         ],
       },
       {
         heading: "Security Killed My Autocomplete, and They Were Right",
         paragraphs: [
-          "I built permission-aware autocomplete. Type three letters, get suggestions drawn from everything in the catalogue, restricted or not, on the theory that knowing a name exists is harmless.",
-          "It isn't harmless. The suggestions leaked the existence of restricted datasets to anyone who typed enough of the name to pattern-match it, which is a slower version of just reading the table list. Security caught it in review and I didn't argue.",
+          "I developed an autocomplete feature that is aware of permissions. If you type in three letters, it will provide suggestions based on everything in the catalogue, whether or not that thing is restricted, on the basis that it's harmless to know that a name exists.",
+          "It is by no means harmless; the suggestions revealed the existence of restricted datasets to anyone who typed in a sufficient portion of the name so that it could be matched by pattern, which is essentially a slower way of just looking at the list of tables. The security team picked up on it during their review and I didn't contest this.",
         ],
         images: [
-          { src: "/images/dae-search/decisions-2.webp", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query, “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
+          { src: "/images/dae-search/decisions-2.webp", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density has won; the name, the therapeutic area, the geography and availability are all in the same row. And consider the query, “Diabtes”: people type in fragments containing typos, and the search system has to cope with that." },
         ],
       },
       {
         heading: "I Designed Consumer Search First",
         paragraphs: [
-          "Clean ranked list, minimal chrome, get out of the way. Wrong audience.",
-          "These people want density. They want signals crammed into the row, because scanning ten dense rows is faster than opening three clean ones, and every bit of whitespace I'd added was costing them a click.",
-          "They also don't type questions. They type fragments and internal abbreviations, because they already know what they're looking for and they aren't in a conversation with the search box. \"Diabtes,\" with the typo, is a real query from the screenshots.",
+          "Here's a clean ranked list with as little chrome as possible and get out of the way\u2014targeting the wrong audience.",
+          "What the people want is density; they prefer having as many signals as possible in each row since it's faster to scan ten dense rows than it is to open three clean ones, and each bit of white space that I had added cost them a click.",
+          "They also never form complete questions; instead they enter fragments and use internal abbreviations since they already know what they want and are not having a conversation with the search box. \"Diabtes\", with the spelling error, is in fact a real query from the screenshots.",
         ],
         images: [
         ],
@@ -103,14 +103,14 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "This one shipped with its own style guide, so the swatches here are read straight off it rather than reconstructed. Nine named colours in three tiers, and the tiers do different jobs: one primary that carries every action, a secondary set that carries state, and neutrals doing the work of separating result rows.",
-          "The neutrals are the interesting part. Mint, sage and khaki are what let a dense row show freshness without a legend or an extra column, which is the only reason the row could hold lineage at all.",
+          "It came with its own style guide, and therefore the swatches shown here are taken directly from it rather than being reconstructed. There are nine named colours divided into three groups, each group serving a different function: one primary group which handles all the actions, a second group which handles state, and the neutrals which are responsible for separating the result rows.",
+          "What's interesting is the use of the neutrals; it is thanks to mint, sage and khaki that a dense row can appear fresh even without a legend or an extra column, that being the only reason why the row can show lineage at all.",
         ],
         images: [
           {
             src: "/images/dae-search/design-system.webp",
             alt: "DAE Search design tokens read off the project's own style guide: Primary Blue, White and Dark Grey, a secondary set of Medium Blue, Ice Blue and Orangey Red, and Cool Mint, Sage and Light Khaki as neutrals",
-            caption: "Read off the project's own style guide. Primary Blue carries every action. The neutrals carry freshness, so the row never needs a legend.",
+            caption: "The project's own style guide states that Primary Blue should be used for all actions while the neutral colours are responsible for providing a fresh appearance, so there is no need for a legend in the row.",
             width: 1500,
             height: 1164,
           },
@@ -119,13 +119,13 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       {
         heading: "Trust Beat Relevance",
         paragraphs: [
-          "Semantic search with lineage and permissions inline changed what the thing is. It stopped being a search box and became the place you go to find out whether data is worth using, which inside a company is the question that was always being asked, in other tabs, the slow way.",
+          "The nature of semantic search, with lineage and permissions included, has changed. It is no longer just a search box but has become the place you go to find out whether data is worth using, which within a company has always been the question people have been asking, albeit in other tabs and in a slow manner.",
         ],
       },
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It shipped, with its own style guide, and the swatches further up are read off that guide instead of reconstructed for this page. The autocomplete went through a security review that changed the design before it went out, which is the kind of review a thing only gets when it's actually going out.",
+          "It was shipped with its own style guide, and the swatches were pulled from that guide rather than reconstructed for this page. The autocomplete underwent a security review during which the design was altered before it was released, a kind of review that only takes place when a thing is actually being launched.",
           "What I can't tell you is what happened after. I don't have adoption or time-saved numbers for this one, and I'd rather say so than reach for a number from somewhere else and let you assume it came from here.",
         ],
       },
