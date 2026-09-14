@@ -5,13 +5,13 @@ const StructuredCryptoCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="crypto"
     title="Trading Without Friction"
-    description="A crypto trading interface designed for two audiences the industry insists you have to choose between. Designed in full, never shipped."
+    description="A crypto trading interface designed for two groups the industry insists you have to choose between. It was fully designed and never released."
     tags={["Fintech", "Crypto", "Product Design", "Dual-Mode UX"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/crypto/hero.webp",
       alt: "Crypto trading dashboard on mobile and desktop",
-      caption: "The same account on a phone and a desktop. One product, with the mode as a setting.",
+      caption: "The same account is used on both the phone and the desktop, with the mode set as a setting.",
       width: 2096,
       height: 1259,
     }}
@@ -24,11 +24,11 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "Both Sides Pay for the Same Split",
         paragraphs: [
-          "\"Easy\" crypto apps hide the complexity and charge a premium spread for the privilege. \"Pro\" apps put everything on screen and assume you brought your own confidence.",
-          "The industry treats that as a segmentation choice. Beginners pay hidden fees and never learn enough to graduate off them, which is rather the point, and pros pay a confirmation tax built for somebody else, so both groups are being charged for the same decision by an app that's been designed to make sure neither notices.",
+          "The so-called easy crypto apps conceal the complexity and charge a higher spread for the convenience. The \"pro\" apps show all the details and assume that you have brought your own confidence.",
+          "The industry regards it as merely a matter of segmentation. New users pay concealed fees and never pick up enough knowledge to move off them, which is in fact the object of the arrangement, while professionals pay for a confirmation flow that was designed with someone else in mind. Both groups are being charged by the app for the same choice, and the app has been constructed to ensure that neither of them notices.",
         ],
         images: [
-          { src: "/images/crypto/competitive.webp", alt: "Competitor teardown: \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence", caption: "The teardown that started it. Easy apps hide the spread, pro apps assume you brought your own confidence, and both charge for the same decision.",
+          { src: "/images/crypto/competitive.webp", alt: "Competitor teardown: \"easy\" apps hide the spread, \"pro\" apps assume you brought your own confidence", caption: "The teardown that started it all. Simple apps conceal the spread, the pro ones assume you have your own confidence, and both of them charge you for making the same choice.",
  width: 752,
  height: 664,
     },
@@ -37,12 +37,12 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "One Product With a Switch",
         paragraphs: [
-          "Everything else rests on one call. One platform, one shared core, and the mode is a setting you flip rather than a product you choose between.",
-          "The easier build is two products, and it's easier because it lets each one have its own roadmap. It also traps people. A beginner on a beginner product has to leave and start again somewhere else to grow, and that's the moment every one of these apps loses the customer they spent the most to acquire.",
-          "Making it a setting means a beginner can see Pro exists before they're ready for it, and a pro can flip to Beginner to walk a friend through a trade without logging out of their own account.",
+          "All the rest depends on a single call. There is one platform and one common core, and the mode is something you switch rather than something you select from among various products.",
+          "The simpler build is two products, and it is simpler because it allows each of them to have its own roadmap. It does, however, trap users. A newcomer using the beginner product has to leave and start over with another company if they are to make any progress, and that is the moment each of these apps loses the customer it spent the most money to acquire.",
+          "When it is a setting, beginners are able to see Pro before they are ready for it, and a professional can switch to Beginner to walk a friend through a trade without having to log out of their own account.",
         ],
         images: [
-          { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture: one platform, shared core, mode as a setting rather than a separate product", caption: "One platform, one shared core, and the mode as a setting. A beginner can see Pro exists before they're ready for it.",
+          { src: "/images/crypto/site-map.webp", alt: "The two-mode architecture: one platform, shared core, mode as a setting rather than a separate product", caption: "There is a single platform, one common core, and the mode is set as an option. A beginner can see Pro is there even though they aren't ready for it.",
  width: 2100,
  height: 1500,
     },
@@ -51,16 +51,16 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "Total Cost Next to the Button, Every Time",
         paragraphs: [
-          "This was the most-fought decision on the project. The full cost of the trade, spread included, sits next to the action button on every order, where you see it before you've decided anything. Most apps put it in a drawer, behind an info icon, or on the confirmation screen after you've already committed.",
-          "It's unpopular internally for an obvious reason: the spread is the revenue, and putting a number next to a button is the fastest way to make someone reconsider pressing it. The hidden version only works while people don't know. The day they find out, you have taught them the product was designed against them.",
-          "I also made plain language a constraint from the start instead of a copy pass at the end. If I couldn't explain something in one sentence, it either got explained inline or it came out of beginner mode entirely, and it killed a few features along the way, which is how I knew it was doing something.",
+          "This decision was the one that attracted the most argument. Next to the action button on each order you see the full cost of the trade, including the spread. Most applications put it in a drawer, behind an info icon, or on the confirmation screen after you have already committed.",
+          "It's unpopular within a company for an obvious reason: the spread is the revenue, and the simplest way to get people to think twice about pressing a button is to put a number next to it. The hidden version only functions as long as people are unaware, and once they discover it, you have shown them who the product was designed for.",
+          "From the beginning, I treated plain language as a constraint rather than something added at the end. If I couldn't explain a control in a single sentence, I either explained it right there or it left beginner mode. Some features were dropped as a result, which was a sign the constraint was doing its job.",
         ],
         images: [
-          { src: "/images/crypto/initial-flow.webp", alt: "Initial concepts challenging crypto app conventions", caption: "First flows, drawn to break the conventions rather than inherit them. Total cost sits next to the action button on every order.",
+          { src: "/images/crypto/initial-flow.webp", alt: "Initial concepts challenging crypto app conventions", caption: "The flows come first, drawn to break with established conventions rather than continue them. The total cost sits beside the action button on each order.",
  width: 3803,
  height: 3846,
     },
-          { src: "/images/crypto/design-thinking.webp", alt: "The design-thinking pass that produced the two-mode constraint", caption: "The pass that produced the constraint everything else hangs off: if I couldn't explain it in one sentence, it left beginner mode.",
+          { src: "/images/crypto/design-thinking.webp", alt: "The design-thinking pass that produced the two-mode constraint", caption: "The pass that produced the constraint everything else hangs off: if I wasn't able to explain it in one sentence, it left beginner mode.",
  width: 1338,
  height: 490,
     },
@@ -69,12 +69,12 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "I Protected Beginners Until They Felt Patronised",
         paragraphs: [
-          "The first beginner mode was smothered. Confirmations on everything, a tooltip on every term, and an onboarding tour that would not end. It tested badly, and for a reason I hadn't expected. People didn't feel safe, they felt talked down to, and it took me a while to understand that safety you can't switch off reads as an accusation.",
-          "The fix was to explain on hover, confirm only above a threshold, and otherwise get out of the way.",
-          "Pro mode failed in the opposite direction, and it took me longer than it should have to notice it was the same mistake in reverse. I'd stripped it down for cleanliness and taken out things pros actually used, because density is a feature for that audience and I'd been treating my own taste as a usability principle.",
+          "The initial beginner mode was a failure. Confirmation on everything, a tooltip beside every term, and an onboarding tour that never finished. It performed poorly for a reason I had not anticipated: people didn't feel safe, they felt as though they were being talked down to, and it was some time before I realised that when safety cannot be switched off, it comes across as an accusation.",
+          "The solution was to explain on hover, to confirm only above a certain threshold, and otherwise to get out of the way.",
+          "Pro mode failed in the opposite direction, and it took me longer than it should have to realise it was the same error done in reverse. I had simplified it to make it cleaner and had removed the features professionals actually use, since density is a feature for that group and I had treated my own taste as a rule of usability.",
         ],
         images: [
-          { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations: the over-protected beginner mode that tested as patronising", caption: "The prototype that failed. Confirmations on everything and a tour that wouldn't end, testers didn't feel safe, they felt talked down to.",
+          { src: "/images/crypto/learning.webp", alt: "Failed prototype iterations: the over-protected beginner mode that tested as patronising", caption: "The one that didn't work. Endless confirmations, a tour that went on forever, and the testers didn't feel safe. They felt talked down to.",
  width: 1890,
  height: 2283,
     },
@@ -83,9 +83,9 @@ const StructuredCryptoCaseStudy: React.FC = () => (
       {
         heading: "Where It Actually Is",
         paragraphs: [
-          "Nothing here shipped. There's no live product to go and press, and I'd rather say that at the top of this section than let the screens imply otherwise.",
-          "What exists is the reasoning: the teardown of who each model is really charging, the decision to make mode a setting instead of a second product, the cost-next-to-the-button rule and the argument for holding it, and two prototypes that failed in opposite directions and taught me more than the ones that worked.",
-          "The gap I never closed is the intermediate trader. They're wrong in both modes, past the hand-holding and still learning to read an order book. A real v2 needs a third mode or per-control customisation, and that's a harder problem than the one I actually solved.",
+          "Nothing here shipped. There is no live product to go and press, and I prefer to state that at the top of this section rather than let the screens suggest otherwise.",
+          "What exists is the reasoning: the analysis of who each model is actually charging, the decision to treat mode as a setting rather than a second product, the cost-next-to-the-button rule and the argument for keeping it, and two prototypes that failed in opposite ways and taught me more than the ones that worked.",
+          "The gap I never managed to close is the intermediate trader. They make mistakes in both modes, past the hand-holding and still getting used to reading an order book. A real v2 would need a third mode or per-control customisation, and that problem is harder than the one I actually solved.",
         ],
       },
     ]}
