@@ -1194,3 +1194,67 @@ Hiram's move, not the loop's.
   follow-up that shipped the build package; lever 3 stays closed permanently.
   **Cycle 4 starts at lever 1**, with the case-study rotation at
   **bz-essentials**.
+
+## Cycle 4 — started 2026-09-13
+
+- [x] **Lever 1 — one case study, buyer-lens pass** — 2026-09-13 — Put two
+  facts in **bz-essentials**' header rail. Rotation moves to **farmflow**.
+
+  **This run stopped once before it changed anything.** `git status` was clean
+  at the start, but partway through reading the study, six `Structured*` pages
+  changed on disk under me — another session removing the second diagram from
+  each and clearing em dashes site-wide. Per the anti-collision rule I staged
+  nothing and wrote nothing, not even this log. Hiram asked for a status on the
+  push and to keep moving; by then that session had pushed four commits
+  (`078e467d`..`ef2ddb89`) and the tree was clean and level with origin, so the
+  run resumed on the current file. Recorded because the rule worked exactly as
+  written and the cost was one pause, not a swept-up commit.
+
+  **What the pass found.** Read against the four questions: Q2 is the
+  strongest on the site. Every decision is stated with the thing it beat
+  (region as a lens over a filter nobody opens, browse-first over the faster
+  search-first build, the metadata panel over the download) and the
+  how-I-worked diagram literally greys out the steps that were built and taken
+  out. Q3 holds: `az-essentials.netlify.app` returns 200 and all eleven assets
+  the page references exist in `public/`. Q1's concrete harm (follow a link,
+  land on a guideline that does not apply to your market) is real but sits in
+  block 2. Q4 is honest about being a prototype and silent about the client.
+
+  The gap a founder feels: the top of the page says "built from a client PRD"
+  and the button says "Visit". It does not say, until block 1 paragraph 3 and
+  again at the bottom, that the thing behind the button is a prototype with
+  sample content under an invented brand. Whoever clicks through discovers the
+  footer disclaimer for themselves. And the one fact that makes this study the
+  most relevant on the site to a founder holding a spec, that it *started* as
+  a spec, is a subordinate clause in the description.
+
+  **The change.** Two `meta` entries beside Role, following the convention
+  FarmFlow already uses (`Status: Clickable build, backend next`) and QuickFlow
+  (`Industry`): `Started from: A client's written PRD` and
+  `Status: Live prototype, sample content`. Both trace to sentences already on
+  the page. No new claim, no number.
+
+  **Rejected.** A `stats` band, for the same reason as dae-search: the numbers
+  here (three domains, four categories, eight components) are structure, not
+  outcomes, and 3xl type would turn an inventory into a result. Also rejected:
+  reordering block 1 so the "falls apart the moment it's clickable" line
+  leads. The study reads well; the playbook says leave those alone.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  45/45, rebuilt, both `<dd>` values confirmed in
+  `dist/project/bz-essentials/index.html`. Committed, not pushed.
+
+  **Flagged for Hiram:**
+  1. **Was BZ Essentials a paid engagement, and what did the client do with
+     it?** The page says "client PRD" and then "not an official system for
+     anyone". A founder cannot tell whether a client received this or whether
+     it is a portfolio exercise built from a spec that crossed your desk. One
+     sentence in "Where It Landed" closes Q4; I will not write it without you.
+  2. **Elapsed time from PRD to clickable.** The repo's first commit and first
+     live deploy share a date (2026-07-23), but the 14 HTML mockups came
+     first, so "spec to live in a day" would be misleading. If you have the
+     real figure it belongs in the header rail next to the two facts added
+     today.
+
+  Next lever: **2, proof audit.** Lever 1's rotation sits at **farmflow**.
+  Lever 3 stays closed.

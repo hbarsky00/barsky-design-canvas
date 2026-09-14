@@ -7,7 +7,16 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     title="BZ Essentials"
     description="An enterprise knowledge portal built from a client PRD, where the hard part is knowing whether the document you found applies to you."
     tags={["Enterprise", "Information Architecture", "Design Systems", "Solo Build"]}
-    meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
+    // Both facts are the study's own words pulled above the fold: "built
+    // from a client PRD" and "It's a prototype ... a realistic sample instead
+    // of a full library". A founder arriving with a spec should see the
+    // starting point matches theirs before they scroll, and whoever clicks
+    // Visit should know what kind of live it is before they get there.
+    meta={[
+      { label: "Role", value: "Lead UX Designer & Developer" },
+      { label: "Started from", value: "A client's written PRD" },
+      { label: "Status", value: "Live prototype, sample content" },
+    ]}
     liveUrl="https://az-essentials.netlify.app"
     relatedPost={{
       slug: "a-filter-nobody-opens",
