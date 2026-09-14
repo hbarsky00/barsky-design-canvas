@@ -1,9 +1,0 @@
-- Harbor Cafe, every Monday
-- Standing order generates this week's order
-- Pending
-? Delivered?
-  yes:
-    - Delivered; revenue counted
-  no:
-    - Still pending on the driver's phone [gate]
-- Checked from the van

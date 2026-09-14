@@ -1,8 +1,0 @@
-- Set the order
-- Total cost, spread included, beside the button [gate]
-? Above the confirmation threshold?
-  yes:
-    - One confirmation
-  no:
-    - No confirmation
-- Placed

@@ -30,13 +30,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "So the job was a request system where both sides can see the same thing: what is available this week, what has been asked for, where it is in the process, and when it will arrive.",
         ],
         images: [
-          {
-            src: "/images/farmflow/flow-how-i-worked.svg",
-            alt: "How I worked on FarmFlow: PRD and twelve screens, a build prompt per page, a clickable build, the stakeholder feedback branch, twenty-two screens, contrast pass, Playwright tests, backend next",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
-            width: 711,
-            height: 1012,
-          },
         ],
       },
       {
@@ -97,13 +90,6 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
           "Needs Info is a status rather than an email. When the farm team has a question, it goes on the request, the requester answers on the request, and the answer is still there when someone looks at the ticket in three weeks.",
         ],
         images: [
-          {
-            src: "/images/farmflow/flow-request-lifecycle.svg",
-            alt: "Request lifecycle: submitted, pending, farm team reviews; approve leads to in progress and an optional photo confirmation before fulfilled; a question leads to needs info and back to pending",
-            caption: "The lifecycle every request follows, from section 6 of the PRD. The question branch loops back through the ticket, and the photo step exists because flowers for an event are the request most likely to disappoint.",
-            width: 920,
-            height: 902,
-          },
           {
             src: "/images/farmflow/12-request-ticket.webp",
             alt: "Admin request ticket — universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",

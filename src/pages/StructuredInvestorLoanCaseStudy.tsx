@@ -34,13 +34,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           { value: "Adopted", label: "Where this attempt landed, and the three before it didn't" },
         ],
         images: [
-          {
-            src: "/images/investor-loan-app/flow-how-i-worked.svg",
-            alt: "How I worked on the loan platform: find out why three teams failed, whiteboard the lifecycle, sketch the order builder, write the four moves, build v1 copying Excel, rewrite when it was worse, cut the dashboards, adopted",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
-            width: 741,
-            height: 814,
-          },
         ],
       },
       {
@@ -90,13 +83,6 @@ const StructuredInvestorLoanCaseStudy: React.FC = () => (
           "The audit trail sits right next to the record instead of in an admin tool three menus away. That single decision is why compliance ended up arguing for the platform rather than against it.",
         ],
         images: [
-          {
-            src: "/images/investor-loan-app/flow-order-builder.svg",
-            alt: "Order builder flow: find the deal by name fragment, choose Cashless Roll or Book-builder, pick the lender first so terms unlock, add the order, inline validation, audit trail beside the record, grid updates",
-            caption: "The order builder as a sequence. Lender first, then terms, because an order against nothing was the mistake the spreadsheet allowed.",
-            width: 612,
-            height: 748,
-          },
           {
             src: "/images/investor-loan-app/hero.webp",
             alt: "Loan Deals grid and Orderbook with live comments, shown across two screens",

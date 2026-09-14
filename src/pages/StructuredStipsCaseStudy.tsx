@@ -34,6 +34,7 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "Every prediction market I opened looked like a Bloomberg terminal. Order books, spreads, share counts, position sizing. Simple question, complicated screen, and people leave before placing anything.",
           "So the whole pitch had to fit in a line. Buy Yes or No on real events, and every share pays $1 if you're right. You start with $500, there's no card, and it says play money on the way in.",
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/stips/flow-how-i-worked.svg",
@@ -41,6 +42,13 @@ const StructuredStipsCaseStudy: React.FC = () => (
             caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
             width: 502,
             height: 1034,
+          },
+          {
+            src: "/images/stips/flow-news-to-board.svg",
+            alt: "News to board: news on a schedule, AI drafts markets, today's date is in the prompt, close date in the future goes on the board else dropped, buy Yes or No, resolves at a dollar a share",
+            caption: "The pipeline after the fix. The date injection and the validation step are the two boxes that did not exist when the first batch launched already expired.",
+            width: 404,
+            height: 682,
           },
         ],
       },
@@ -87,13 +95,6 @@ const StructuredStipsCaseStudy: React.FC = () => (
           "The second one cost me more. I was testing signed out because it's faster, and signed out, row-level security quietly returns nothing instead of an error, so every bug that only happens when you're logged in looked like an empty state behaving correctly. I didn't find any of them until I started testing as a real account.",
         ],
         images: [
-          {
-            src: "/images/stips/flow-news-to-board.svg",
-            alt: "News to board: news on a schedule, AI drafts markets, today's date is in the prompt, close date in the future goes on the board else dropped, buy Yes or No, resolves at a dollar a share",
-            caption: "The pipeline after the fix. The date injection and the validation step are the two boxes that did not exist when the first batch launched already expired.",
-            width: 404,
-            height: 682,
-          },
         ],
       },
       {

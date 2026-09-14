@@ -29,6 +29,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season, with the commitment and the schedule and the recurring team that comes with one. Most people want a game on Saturday.",
           "Scheduling was never the problem. Getting two strangers to agree to meet at a park, with both of them feeling fine about it, was the problem, and it's a trust problem before it's a calendar one.",
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/catchbuddy/flow-how-i-worked.svg",
@@ -36,6 +37,13 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
             width: 548,
             height: 726,
+          },
+          {
+            src: "/images/catchbuddy/flow-minor-gate.svg",
+            alt: "Minor gate: sign up, under 18 asks a parent to verify; verified can post, not yet can browse only; over 18 can post; meeting spot from the curated list; panic button on every game screen",
+            caption: "The gate a minor goes through, and the two things every game gets regardless: a curated meeting spot and a panic button.",
+            width: 784,
+            height: 770,
           },
           { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
  width: 1848,
@@ -50,13 +58,6 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "That last one gets argued with a lot. Letting people add their own locations would be more flexible, and I still won't do it.",
         ],
         images: [
-          {
-            src: "/images/catchbuddy/flow-minor-gate.svg",
-            alt: "Minor gate: sign up, under 18 asks a parent to verify; verified can post, not yet can browse only; over 18 can post; meeting spot from the curated list; panic button on every game screen",
-            caption: "The gate a minor goes through, and the two things every game gets regardless: a curated meeting spot and a panic button.",
-            width: 784,
-            height: 770,
-          },
           { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park — searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
  width: 1940,
  height: 1396,

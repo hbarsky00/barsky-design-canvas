@@ -33,11 +33,16 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "None of that is searching. It's opening tabs. You click into a table, find the owner, check when it last refreshed, look for anything downstream still reading from it, then go back and do it again for the next candidate, and if you're being careful you do that forty times, which nobody is. The analysts had plenty of results. What they didn't have was one they could put their name to.",
           "The catalogue in these screenshots is life-sciences data: therapeutic areas, registries, trial and claims sets. Swap \"revenue\" for \"diabetes\" and nothing about the problem changes, which is why I'm comfortable telling it with the finance example.",
         ],
+        imageLayout: "pair",
         images: [
-          { src: "/images/dae-search/the-problem.webp", alt: "The advanced search panel: an empty prompt to start typing, one diagnosis filter chip applied, and a count of 15 matching data assets", caption: "The search worked. A filter chip, a count of matching assets, and nothing on the screen saying which of them is current, who owns it, or whether you are allowed to use it.",
- width: 1302,
- height: 710,
-    },
+          { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "Sketching how much could sit in the list before it stopped being a list: multiple search terms, selected entities, meta tags carried onto the result." },
+          {
+            src: "/images/dae-search/flow-how-i-worked.svg",
+            alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
+            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
+            width: 492,
+            height: 1100,
+          },
         ],
       },
       {
@@ -46,6 +51,12 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "Keyword matching is why the list is forty long. Someone types \"revenue\" and gets back everything with the word in a column name, a description or a stale comment, ranked by string similarity to a word nobody names their tables after.",
           "So the search runs semantically over the metadata instead. A table called `arr_monthly` comes back when you type \"revenue,\" because the model knows what annual recurring revenue is and the string match never would have.",
           "That alone took a result set from 40 things to narrow down to about 4 to choose between. It didn't answer the question underneath, though, because four candidates still need a decision and the decision was still happening in other tabs.",
+        ],
+        images: [
+          { src: "/images/dae-search/the-problem.webp", alt: "The advanced search panel: an empty prompt to start typing, one diagnosis filter chip applied, and a count of 15 matching data assets", caption: "The search worked. A filter chip, a count of matching assets, and nothing on the screen saying which of them is current, who owns it, or whether you are allowed to use it.",
+ width: 1302,
+ height: 710,
+    },
         ],
       },
       {
@@ -56,13 +67,6 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "It also changes what a bad result costs you, because under the old list you found out a table was stale after you'd built on it, sometimes days after, and here it's on the row before you've opened anything.",
         ],
         images: [
-          {
-            src: "/images/dae-search/flow-search-flow.svg",
-            alt: "Search flow: type a fragment, semantic match over metadata, about four results, each row shows freshness, lineage and access; restricted results stay visible and locked; decide without opening a tab",
-            caption: "What a search looks like after the row carries the trust signals. The tab-opening step from the top of this page is gone.",
-            width: 564,
-            height: 682,
-          },
           { src: "/images/dae-search/what-i-built.webp", alt: "The DAE Search process flow, nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one chosen asset", caption: "Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust, which is the part the result list was leaving them to do alone.",
  width: 1024,
  height: 576,
@@ -82,9 +86,7 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "I built permission-aware autocomplete. Type three letters, get suggestions drawn from everything in the catalogue, restricted or not, on the theory that knowing a name exists is harmless.",
           "It isn't harmless. The suggestions leaked the existence of restricted datasets to anyone who typed enough of the name to pattern-match it, which is a slower version of just reading the table list. Security caught it in review and I didn't argue.",
         ],
-        imageLayout: "pair",
         images: [
-          { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "Sketching how much could sit in the list before it stopped being a list: multiple search terms, selected entities, meta tags carried onto the result." },
           { src: "/images/dae-search/decisions-2.png", alt: "The result table: data asset name, therapeutic area, geography and data availability as columns, with therapeutic-area filters alongside and 127 assets found", width: 1920, height: 969, caption: "Density won. Name, therapeutic area, geography and availability all in the row. And look at the query — “Diabtes.” They type fragments with typos in them, and the search has to survive that." },
         ],
       },
@@ -96,13 +98,6 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "They also don't type questions. They type fragments and internal abbreviations, because they already know what they're looking for and they aren't in a conversation with the search box. \"Diabtes,\" with the typo, is a real query from the screenshots.",
         ],
         images: [
-          {
-            src: "/images/dae-search/flow-how-i-worked.svg",
-            alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
-            width: 492,
-            height: 1100,
-          },
         ],
       },
       {

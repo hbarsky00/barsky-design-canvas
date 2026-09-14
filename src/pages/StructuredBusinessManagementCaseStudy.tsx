@@ -48,13 +48,6 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
         ],
         images: [
           {
-            src: "/images/business-management/flow-how-i-worked.svg",
-            alt: "How I worked on QuickFlow: hear the problem at dinner, Excel scripts that week, learn the workflow by writing them, site map first, orders get the screen, recurring as its own area, phone first, built with AI, no outcome number",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
-            width: 443,
-            height: 726,
-          },
-          {
             src: "/images/business-management/v2/recipe-calculator.webp",
             alt: "The recipe calculator — pick a product, set a quantity, optionally override the selling price, and it returns the margin",
             caption:
@@ -124,13 +117,6 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
           "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
         ],
         images: [
-          {
-            src: "/images/business-management/flow-standing-order.svg",
-            alt: "Standing order: Harbor Cafe every Monday, the schedule generates this week's order, pending until delivered, revenue counted, checked from the van",
-            caption: "A standing order becoming this week's order, and the one place it gets checked, which is a phone in a van.",
-            width: 666,
-            height: 616,
-          },
         ],
       },
       {

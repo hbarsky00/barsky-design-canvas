@@ -54,6 +54,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           "Every boxing game I've liked was on a console. On those the punch lands the instant your thumb moves, the animation reads as one body hitting another, and the opponent seems to be thinking about you. A browser gives you none of that by default. Mobile Safari gives you slightly less.",
           "I wanted it anyway. No install, no app store, a link you open on your phone and you're fighting.",
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/ring-rival/flow-how-i-worked.svg",
@@ -61,6 +62,13 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
             caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
             width: 518,
             height: 946,
+          },
+          {
+            src: "/images/ring-rival/flow-fighter-pipeline.svg",
+            alt: "Fighter pipeline: shared rig, this fighter's proportions, generate the nine-pose sheet, eight poses the fight code counts on plus one special of their own, opponent in the roster with no new drawing",
+            caption: "How a new opponent gets made. Eight poses are a shared contract; the ninth is what makes Klaus Brenner someone other than Glass Joe.",
+            width: 398,
+            height: 618,
           },
         ],
       },
@@ -160,13 +168,6 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
           },
         ],
         images: [
-          {
-            src: "/images/ring-rival/flow-fighter-pipeline.svg",
-            alt: "Fighter pipeline: shared rig, this fighter's proportions, generate the nine-pose sheet, eight poses the fight code counts on plus one special of their own, opponent in the roster with no new drawing",
-            caption: "How a new opponent gets made. Eight poses are a shared contract; the ninth is what makes Klaus Brenner someone other than Glass Joe.",
-            width: 398,
-            height: 618,
-          },
         ],
       },
       {

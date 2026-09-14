@@ -29,6 +29,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Every \"I built this with AI\" portfolio piece is a calculator or a to-do app, and I understand why. Nothing in a to-do app can fail in a way a stranger would notice.",
           "A game fails in public. If a jump feels wrong everyone knows inside a second, and nobody has to have the mechanics explained to them first. That seemed like the more honest test, so I built one.",
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/fire-lion/flow-how-i-worked.svg",
@@ -36,6 +37,13 @@ const StructuredFireLionCaseStudy: React.FC = () => (
             caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on; the muted steps are what I built and then took out.",
             width: 472,
             height: 880,
+          },
+          {
+            src: "/images/fire-lion/flow-three-modes.svg",
+            alt: "Tap FLY leads to one of three modes, Fire Lion, Lion Wars and Cub Mode, each with its own state and audio, nothing shared",
+            caption: "One way in, three sealed rooms. Nothing is shared between them, so a change to one never reaches the other two.",
+            width: 1270,
+            height: 484,
           },
           { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good before the spelling went on top.",
  width: 488,
@@ -63,13 +71,6 @@ const StructuredFireLionCaseStudy: React.FC = () => (
           "Each one lives in its own component, with its own state and its own audio. That is a defensive decision rather than an architectural one. I was building fast, usually late at night, and a refactor that reaches across a shared file breaks things you don't find out about until somebody else does. The duplication costs me something real. What it buys is the ability to change one mode without holding the other two in my head.",
         ],
         images: [
-          {
-            src: "/images/fire-lion/flow-three-modes.svg",
-            alt: "Tap FLY leads to one of three modes, Fire Lion, Lion Wars and Cub Mode, each with its own state and audio, nothing shared",
-            caption: "One way in, three sealed rooms. Nothing is shared between them, so a change to one never reaches the other two.",
-            width: 1270,
-            height: 484,
-          },
           { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
  width: 802,
  height: 656,

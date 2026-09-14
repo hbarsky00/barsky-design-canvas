@@ -39,6 +39,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
               height: 1280,
           },
         ],
+        imageLayout: "pair",
         images: [
           {
             src: "/images/bz-essentials/flow-how-i-worked.svg",
@@ -61,13 +62,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "Content marked Both is always visible, and everything else has to match the region you're in. That's the whole rule. That means switching to US doesn't hide most of the portal. It adds the US-specific material on top of the shared set, which is the opposite of what a naive equality check would do.",
         ],
         images: [
-          {
-            src: "/images/bz-essentials/flow-region-rule.svg",
-            alt: "Region rule: pick a region, every surface reads through it; a document marked Both is always visible; otherwise visible only if it matches, else hidden everywhere",
-            caption: "The region rule as a decision, applied to every surface at once rather than to the search page alone.",
-            width: 871,
-            height: 638,
-          },
           { src: "/images/bz-essentials/domain.webp", alt: "The ADRD domain landing — its four categories with live resource counts, and the latest documents underneath", caption: "Counts on these cards are computed through the region lens, so they change when you switch. A number that lies is worse than no number.",
  width: 1500,
  height: 1197,
