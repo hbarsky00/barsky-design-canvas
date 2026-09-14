@@ -5,7 +5,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="farmflow"
     title="FarmFlow"
-    description="An organisation with its own farm was taking plant requests by email and phone. This is the system that replaced the inbox, and it is still being built."
+    description="An organization that accepted plant requests by email and telephone. That system has replaced the inbox and is still under development."
     tags={["Internal Tools", "Operations", "AI-Assisted Product", "Solo Build"]}
     meta={[
       { label: "Role", value: "Designer & Developer" },
@@ -17,7 +17,7 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       alt: "FarmFlow requester home: what's available this week, five ways to start a request, and the department's pending, approved and upcoming counts",
       hoverVideo: "/farmflow-walkthrough.mp4",
       caption:
-        "Where a department lands after signing in. Play it and the walkthrough follows a request from Sarah in Events through to James on the farm team: new request, the queue, the ticket, the calendar, the catalogue, reports and the availability rules. Recorded off the live build with Playwright, so this is the app as it is today, with the names and figures from the demo dataset.",
+        "The page that is displayed after logging in. To see this, play the walkthrough, which goes from Sarah's request in Events all the way to James on the farm team: a new request, the queue, the ticket, the calendar, the catalogue, the reports and the availability rules. The recording was made using Playwright from the current live build, so it shows the application as it is at the present time, including the names and figures from the demo dataset.",
       width: 1600,
       height: 1000,
     }}
@@ -25,9 +25,9 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "A Farm That Ran on Email",
         paragraphs: [
-          "An organisation with its own farm and landscaping team was taking requests from every other department by email and phone. Flowers for an event, herbs for the kitchen, a replacement for a dead shrub by the east entrance. Each one arrived in whatever form the sender felt like, and the farm team worked out the rest.",
-          "The line from the stakeholder that framed the whole thing was that the systemisation would be \"great for efficiency and clarifying mutual expectations.\" Mutual is the word that matters. The farm did not know what departments were going to ask for, and departments did not know what the farm could grow or how long it took. Nobody was being difficult. There was just no shared place for either side to see the other.",
-          "So the job was a request system where both sides can see the same thing: what is available this week, what has been asked for, where it is in the process, and when it will arrive.",
+          "An organization that had its own farm and landscaping took requests from all other departments by email and telephone. For example, they would ask for flowers to be supplied for an event, for herbs to be given to the kitchen, or for a replacement shrub to be found by the eastern entrance. The requests would come in whatever form the person making them wanted, and then the farm team would handle the rest of the arrangements.",
+          "The stakeholder gave the reason for the systematization as being \"great for efficiency and for clarifying mutual expectations\"; the word \"mutual\" is the key one. The farm did not know which departments would request what, and the departments didn't know what the farm could grow or how long it took. No one was being difficult; there was just no common area where either side could see the other.",
+          "It was a request system in which both parties could see the same information\u2014what is available this week, what has been asked for, where it stands in the process, and when it will arrive.",
         ],
         images: [
         ],
@@ -35,23 +35,23 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Twelve Screens Before a Line of Code",
         paragraphs: [
-          "I started in July with twelve screens and a requirements document, and I wrote the document so that a coding agent could build from it one page at a time. Every page got its own build prompt: what it does, who can see it, every state it can be in, and what it must match pixel for pixel.",
-          "That sounds like process for its own sake. It was the opposite. Writing a prompt per page forced me to decide things a Figma file lets you leave vague, like what an admin sees when there are no requests yet, or what happens when a requester opens a ticket that has moved to a status they cannot act on.",
-          "The two screens here are from that July build. They are the version the stakeholder reacted to, which is the point of building a clickable one first.",
+          "I began the project in July with twelve screens and a requirements document, and I prepared it so a coding agent could create one page at a time from it. For each page, I wrote a separate build prompt that specified what the page does, who can see it, all the states it can be in, and that it must match pixel for pixel.",
+          "That sounds as though it were done for the sake of the process; in fact it wasn't. By writing a prompt for each page, I was forced to make decisions about things a Figma file lets you leave vague, such as what an admin sees when there are no requests yet or what happens when a requester opens a ticket that has moved to a status they cannot act on.",
+          "The screens shown here are from the July build; they were the version the stakeholder responded to, which is why it was necessary to produce a clickable one first.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/farmflow/july-02-requester-home.webp",
             alt: "July prototype of the requester home: a top navigation bar with Home, New Request, My Requests, Locations and Admin, above the weekly availability banner and four request cards",
-            caption: "Requester home, July. A five-item top bar and four ways in. Compare it with the version at the top of this page: the bar became a sidebar, and Landscaping and Reserve Farm did not exist yet.",
+            caption: "In July the requester went home, with a top bar having five items and four ways in. Compare this with the version at the top of the page: in that case, the bar had become a sidebar, and Landscaping and Reserve Farm did not exist yet.",
             width: 1400,
             height: 875,
           },
           {
             src: "/images/farmflow/july-03-new-request.webp",
             alt: "July prototype of the new request form: category tiles for flowers, herbs, vegetables, service and special, and the request details form",
-            caption: "New request, July. Five categories, no Fruits, and no department code or budget line on the form. Every one of those came from the feedback round.",
+            caption: "The request was made in July; it included five categories, omitted Fruits, and had no department code or budget line on the form. We got all of these details from the feedback round.",
             width: 1400,
             height: 875,
           },
@@ -60,23 +60,23 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "What the Feedback Added",
         paragraphs: [
-          "The stakeholder came back with a list, and almost none of it was cosmetic. Fruits needed its own category. Honey and eggs were coming, so those had to be designed for even if they shipped behind a flag. Every request needed a department code and a budget line so it could be charged back. Email had to be a first-class way to be contacted, with phone as the backup rather than the other way round.",
-          "Two of the items were whole modules. Landscaping needed its own request type and its own admin, because a dead hedge is not a flower order. And departments wanted to reserve the farm itself, for tours, team events and harvest days, which meant the farm team needed a way to say which days and slots were open.",
-          "One item split a role in two. The farm lead wanted extra admins who could work the queue and manage the calendar day to day, but could not change when the farm was open. That became an Operations Admin, and it's the reason permissions in this app are individual privileges instead of role labels. By the time the list was worked through, twelve screens had become twenty-two.",
+          "The stakeholder provided a list and almost all of the items on it were not merely cosmetic. It was necessary to have a separate category for fruits. Since honey and eggs were going to be included, provisions had to be made for them even if they were shipped under a flag. Each request had to have a department code and a budget line so that it could be charged back. Email had to be the preferred method of contact, with the phone serving as a backup rather than the other way around.",
+          "Two of the items consisted of complete modules since the landscaping required its own request type and its own admin interface, as a dead hedge is not a flower order; also, the departments wanted to book the farm as a whole for tours, team events and harvest days, so the farm team needed a means of indicating which days and time slots were available.",
+          "A single item split a role into two. The farm leader wanted additional admins who could manage the queue and maintain the calendar day to day, but who should not be able to change the farm's opening hours. This led to the creation of an Operations Admin, and the reason permissions in the list are individual privileges rather than role labels. After the list was reviewed, twelve screens became twenty-two.",
         ],
       },
       {
         heading: "Four Roles, and Who Can Touch Availability",
         paragraphs: [
-          "A requester sees their own department's requests and nothing else. The farm admin sees everything. The operations admin sees everything the farm admin does, and the one control they do not have is the farm's opening hours and reservation slots. The landscaping admin sees the landscaping catalogue and queue, and none of the farm's.",
-          "It would have been easier to make Operations Admin a copy of Farm Admin with one checkbox unticked, and that missing control is the whole reason I didn't. Every admin capability is a named privilege, and a role is just a default set of them. That way the farm lead can grant or revoke one thing without inventing a new role, and when honey and eggs arrive and somebody needs a kitchen role, it is a row of toggles rather than a schema change.",
+          "A requester can see only requests in their own department. The farm administrator can access all requests. The operations administrator can see all actions carried out by the farm administrator, except for the farm's opening hours and reservation slots. The landscaping administrator sees only the landscaping catalogue and queue, and not any of the farm's other items.",
+          "It would have been simpler to make Operations Admin a duplicate of Farm Admin by just leaving one checkbox unchecked, and it's precisely because of that missing control that I didn't do it. Since every admin capability is a named privilege and a role is merely a default collection of such privileges, the farm leader is able to grant or revoke a particular privilege without having to create a new role, and when honey and eggs arrive and someone needs a kitchen role, instead of having to carry out a schema change there is simply a row of toggles.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/farmflow/16-availability-manager.webp",
             alt: "Availability manager: a weekly schedule of open days, time slots and staffed windows, with a note that only the main admin can edit it",
-            caption: "The one screen an operations admin can see but not change. Which days the farm is open, which slots can be booked, and whether a team member will be there. Everything else on the admin side they can work. This is the line.",
+            caption: "This is the screen that an operations administrator can view but not alter; it shows which days the farm is open, which time slots can be booked, and whether a team member will be there. All the other aspects of the admin side, however, can be worked on. That's the line.",
             width: 1600,
             height: 1000,
           },
@@ -85,15 +85,15 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "The Request Is the Whole Product",
         paragraphs: [
-          "Everything else exists to move a request from pending to delivered. A requester picks a category, then items from the catalogue with quantities and lead times already on them, then a location from their department's own list, a need-by date, how flexible that date is, and whether they want a photo before it leaves the farm.",
-          "That last one came from the farm side. Flowers for an event are the request most likely to disappoint, and the cheapest moment to find out is before the van leaves. So a request can ask for a photo, the farm team attaches one, and the requester confirms it from wherever they are. Every transition from pending through approved, in progress, photo confirmed and fulfilled is logged and shows up on the ticket as a timeline.",
-          "Needs Info is a status rather than an email. When the farm team has a question, it goes on the request, the requester answers on the request, and the answer is still there when someone looks at the ticket in three weeks.",
+          "All the other features are designed to take a request from a pending to a delivered status. The requester first selects a category, then chooses items from the catalogue which already have quantities and lead times listed, then picks a location from the list that is specific to their department, selects a need-by date, indicates how flexible that date is, and decides whether they want a photo taken of the item before it leaves the farm.",
+          "The final one came from the farm side. Event flowers are the requests most likely to cause disappointment, and the earliest opportunity to catch this is before the van departs. So a request can ask for a photo, the farm team can attach one, and the requester can confirm it from wherever they are. Each stage of the request's progress\u2014from pending through approved, in progress, photo confirmed and fulfilled\u2014is recorded and appears on the ticket as a timeline.",
+          "Needs Info is a status, not an email; when the farm team has a question, they add it to the request, the requester replies on the request, and the answer stays there when the ticket is viewed three weeks later.",
         ],
         images: [
           {
             src: "/images/farmflow/12-request-ticket.webp",
             alt: "Admin request ticket: universal request details, the department, location, need-by date, delivery method and budget line, and quick actions to approve, request info, schedule, upload a photo or fulfil",
-            caption: "The request from the farm side. Approve, ask for more information, schedule, attach the confirmation photo, mark it fulfilled, or reject it, all from one column. Every one of those writes to the timeline the requester sees.",
+            caption: "The request from the farm side. You can approve it, ask for more information, schedule it, attach the confirmation photo, mark it as fulfilled, or reject it, all in the same column, and each of those actions is recorded on the timeline that the requester sees.",
             width: 1600,
             height: 1000,
           },
@@ -102,21 +102,21 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Landscaping Is Simpler on Purpose",
         paragraphs: [
-          "The brief for landscaping was a sentence: the farm has more options. A landscaping request is a new planting, a replacement, plants for an event, or maintenance, and the replacement flow is where the design work went.",
-          "When a plant dies, the person reporting it usually does not know what it was. So choosing the plant is optional. You can upload a photo of the damage, give a location or drop a pin on the property map, and describe it in your own words, and the landscaping team will go and look. The stakeholder's exact words were that landscaping can go to the location and see what is needed, but a description can help. The form is built around that sentence rather than around the catalogue.",
+          "The landscaping proposal consisted of a single sentence: the farm has more options. A landscaping request can be for a new planting, a replacement, plants needed for an event, or maintenance, and design work happens only for replacements.",
+          "Normally, the person who reports a plant dying doesn't know what kind of plant it is, which is why selecting one is optional. All you have to do is upload a photo of the damage, provide a location or put a pin on the property map and then describe it in your own words, after which the landscaping team will go and have a look. The stakeholder said the landscaping team could go to the location and see what is required, although a description would help. The form is based on that statement rather than on the catalogue.",
         ],
       },
       {
         heading: "Reserving the Farm Itself",
         paragraphs: [
-          "Departments wanted the farm for things that were not plant orders: a team visit, a tour for new hires, a harvest afternoon, dinner in the farm's dining space. That is a different shape of request. It has a party size, a time slot, and a question about whether someone from the farm team needs to be there.",
-          "Only slots the farm lead has opened can be booked, and that one constraint is what made it work. The reservation calendar is the availability manager's rules rendered from the requester's side, so if the farm is closed on Fridays, Friday simply isn't there to pick.",
+          "Departments have asked for the farm for reasons other than plant orders\u2014for example, to carry out a team visit, give new employees a tour, have a harvest afternoon, or have dinner in the farm's dining area. That type of request is different because it specifies the number of people attending, the time slot, and whether someone from the farm team should be present.",
+          "Only those slots the farm lead has opened can be booked, and that limitation is what makes the system work. The reservation calendar reflects the availability manager's rules from the requester's point of view, so if the farm is closed on Fridays, there is no Friday to select.",
         ],
         images: [
           {
             src: "/images/farmflow/13-admin-calendar.webp",
             alt: "Admin calendar: a week of deliveries and reservations colour-coded by type, with today's schedule listed alongside",
-            caption: "A confirmed reservation lands on the same calendar as that day's deliveries, in its own colour, because both are competing for the same team on the same morning.",
+            caption: "The caption states that a confirmed reservation appears on the same calendar as the day's deliveries, in its own color, since both compete for the same team that morning.",
             width: 1600,
             height: 1000,
           },
@@ -125,62 +125,62 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "Built for a Phone Too",
         paragraphs: [
-          "A requester checking whether Thursday's flowers were approved isn't at a desk when they think to check. The whole requester side works at phone width. The sidebar folds behind a menu button, the availability banner keeps its place at the top, and the request cards stack one to a row. Home is at the top of this page, and these are the other eight screens a department actually uses.",
+          "When a requester checks if the flowers for Thursday have been approved, they are not at their desk. The entire requester side operates at phone width. The sidebar is hidden behind a menu button, the availability banner remains in its original position at the top, and the request cards are arranged one per row. The 'Home' option is located at the top of the page, and those are the other eight screens that a department actually uses.",
         ],
         images: [
           {
             src: "/images/farmflow/m0-sign-in.webp",
             alt: "Sign in on a phone: the FarmFlow hero panel, then Google, Microsoft and Apple sign-in and the email form",
-            caption: "Sign in. The three SSO buttons first, because that is how most of the organisation gets in.",
+            caption: "Sign in. The three SSO buttons come first because most of the organization logs in that way.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m2-new-request.webp",
             alt: "New request on a phone: category tiles two across, then the details form and order summary stacked",
-            caption: "New request. The category tiles wrap to two across.",
+            caption: "New request; the category tiles span two columns.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m3-my-requests.webp",
             alt: "My requests on a phone: status counts and the request list",
-            caption: "My requests. Status counts first, then the list.",
+            caption: "The list comes after the status counts.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m4-request-details.webp",
             alt: "Request details on a phone: the timeline and quick actions stacked",
-            caption: "A ticket. The timeline reads top to bottom, the actions sit under it.",
+            caption: "Here is a ticket. The timeline runs from top to bottom, and the actions sit underneath it.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m5-locations.webp",
             alt: "Locations library on a phone: the department's locations with photos, environment and usage counts",
-            caption: "Locations. The department's own list, each with a photo, so a request points somewhere real.",
+            caption: "The locations are listed, each accompanied by a photograph so that when a request is made it refers to a specific place.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m6-reserve-farm.webp",
             alt: "Reserve the farm on a phone: visiting guidelines, then the open-slot picker and booking form",
-            caption: "Reserve the farm. Only open slots are offered, and the party size and team-member toggle sit under them.",
+            caption: "Book the farm; only available slots are provided, and the party size and team-member options are located below them.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m7-landscaping.webp",
             alt: "Landscaping requests on a phone: status counts and the four request types stacked",
-            caption: "Landscaping. Four ways in, one per row.",
+            caption: "Landscaping; four entrances, one in each row.",
             width: 780,
             height: 1688,
           },
           {
             src: "/images/farmflow/m8-new-landscaping-request.webp",
             alt: "New landscaping request on a phone: request type, the optional plant picker and the description field",
-            caption: "A replacement request. Photo, location or pin, and a description. The plant itself stays optional.",
+            caption: "A request for a replacement. Include a photo, the location or a pin, and a description; the plant itself is optional.",
             width: 780,
             height: 1688,
           },
@@ -189,22 +189,22 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
       {
         heading: "The Design System",
         paragraphs: [
-          "A farm green for headings and the primary action, a sage for secondary text, cream for the surface, and Tailwind's stock status colours that only ever mean where a request is in its life. Everything sits on Tailwind's spacing scale so twenty-two hand-written pages stay on one grid.",
-          "The sage is the one that bit me. It measured 2.90:1 on white, on roughly eleven hundred pieces of secondary text at twelve to fourteen pixels, and it had looked fine to me for weeks. Fixing it took three passes to find a value that cleared 4.5:1 on white, on the cream, and on the darker banner at the same time. Chip text, white-on-fill buttons and the link colours failed in the same sweep and were darkened with it.",
+          "The farm green is used for headings and the main action, sage for secondary text, cream for the background, and the Tailwind default status colors, which always indicate where a request is in its life cycle. All the elements are based on Tailwind's spacing scale so that twenty-two pages written by hand will fit on a single grid.",
+          "The sage was the one that bit me; it had a 2.90:1 ratio on white, having been tested on about eleven hundred pieces of secondary text at a size of twelve to fourteen pixels, and it had appeared satisfactory to me for weeks. It took three attempts to find a value which met the 4.5:1 requirement on white, on the cream, and on the darker banner as well. The chip text, the white-on-fill buttons and the link colours all failed during this same sweep and were darkened along with it.",
         ],
       },
       {
         heading: "The Build That Existed Nowhere",
         paragraphs: [
-          "The part I got wrong was not on any screen. I had been shipping this by dragging a folder onto Netlify, fast, from wherever I was working, and at some point the working copy stopped being on any machine I owned. The live site was version twenty-nine. The most recent thing on disk was the twelve-screen July prototype.",
-          "I got it back by mirroring the deployed pages off Netlify into a repository, which means the project's history starts from the live build rather than from how it was written. It works, and every page since has gone through git. But it is a mistake that is specific to building this fast with AI: when producing a new version costs almost nothing, you stop treating any one of them as the thing you would be sorry to lose.",
+          "The mistake I made didn't show up on any screen. Previously, I had been sending the project over by dragging a folder onto Netlify, quickly doing so from wherever I was working, and at a certain point the version I was working on stopped being stored on any of the machines I owned. The live website was version twenty-nine while the most recent file on disk was the twelve-screen July prototype.",
+          "I was able to get it back by copying the live pages from Netlify into a repository, so that the project's history now begins with the live build rather than with the original version. This method works, and all pages from that point on have been in Git. However, it is a mistake particular to the way we built this quickly using AI: whenever creating a new version of something, you stop treating any one version as something you would be sorry to lose.",
         ],
       },
       {
         heading: "Where It Is",
         paragraphs: [
-          "It is live at farmflow-app.netlify.app as a fully clickable build: twenty-two screens across four roles, every flow working, with demo data seeded in the browser. A twenty-two test Playwright suite covers sign-in for each role, the request lifecycle, approvals, reservations, search and the help centre, and it runs against the live site.",
-          "What it is not yet is connected to anything. The requirements document specifies the tables, the row-level security and the storage buckets. None of that is wired. That is the next phase, along with real sign-in, email notifications that honour each person's preferred contact method, and the honey and eggs categories that are designed and waiting behind a flag.",
+          "The application is live at farmflow-app.netlify.app as a fully clickable build, featuring twenty-two screens across four different flows, with demo data already loaded in the browser. A test suite comprising twenty-two end-to-end tests covers sign-in for each role, the request lifecycle, approvals, reservations, search, and the help center, and it runs against the live site.",
+          "It is not connected to anything at this stage; the requirements document lists the tables, row-level security, and storage buckets, but none of these components is currently wired up. The next phase will include real sign-in, email notifications that respect each person's preferred contact method, and the honey and eggs categories which have been designed and are waiting behind a flag.",
           "It's here as the front half of a product done properly. A real problem, a stakeholder whose feedback changed the structure as well as the copy, and a build you can hand to the people who'll use it before a single database table exists.",
         ],
       },
