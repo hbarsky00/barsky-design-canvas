@@ -5,7 +5,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="business-management"
     title="QuickFlow"
-    description="A wholesale distributor was paying for software that fought them. This started as a conversation over dinner and ended up as the thing they run the business on."
+    description="A wholesale distributor found themselves having to pay for some software that was working against them. The situation had begun as a topic of discussion over dinner and had eventually become the software they run the business on."
     tags={["Business Software", "Distribution", "AI-Assisted Product", "Solo Build"]}
     meta={[
       { label: "Role", value: "Lead UX Designer & Developer" },
@@ -16,7 +16,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       alt: "QuickFlow Business Overview: today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
       hoverVideo: "/quickflow-walkthrough.mp4",
       caption:
-        "The screen the owner opens first: a day's sales against the weekly target, revenue, deliveries and customers on one ledger. Play it and the rest follows, costing, catalogue, customers and credit, orders, standing orders, the driver interface, the design system, the QuickBooks connection. Recorded off the running app, so it is the build that is live. Figures come from the demo dataset. His real books stay his.",
+        "The first screen he opens shows a day's sales compared with the weekly target, together with the revenue, deliveries and customers all on a single ledger. To see the rest, play it: the costing, the catalogue, the customers and the credit, the orders, the standing orders, the driver interface, the design system, and the connection to QuickBooks. This has been recorded from the running app, so it is the build that is currently live. The figures are taken from the demo dataset. His actual financial records remain his own.",
       width: 2300,
       height: 1438,
     }}
@@ -24,16 +24,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "A Conversation Over Dinner",
         paragraphs: [
-          "I met the owner of a wholesale distribution business by chance at a restaurant. He started describing the software he was paying for, and it was the specific kind of complaint you only get from someone who uses a thing every day.",
-          "Grid actions that looked clickable and did nothing. Simple tasks buried behind screens that existed for somebody else's org chart. Hours a week of manual re-entry that a script could have done, and a subscription invoice every month for the privilege of doing it by hand.",
-          "None of that came out of a research plan. It came out of dinner, which is the only reason I heard the version with the frustration still in it.",
+          "I came across the man who ran a wholesale distribution business at a restaurant by accident. When he began to talk about the software he was paying for, he made the kind of complaint that is only ever heard from somebody who uses a particular item every day.",
+          "Actions in the grid that appeared to be clickable but in fact did nothing. Simple tasks were hidden behind screens which were designed for someone else's organizational chart. There was each week a great deal of manual re-entry that could have been carried out by a script, and a subscription invoice was issued every month for the privilege of doing it by hand.",
+          "None of that was the result of a research plan. It came about during dinner, and that is the only reason why I heard the version in which the frustration was still present.",
         ],
         images: [
           {
             src: "/images/business-management/competitive-landscape.webp",
             alt: "The incumbent products: Sage X3, Zoho One and a HACCP compliance tool, all leading with demo requests and dashboards",
             caption:
-              "What he was choosing between. Every one of these sells a dashboard to an executive, and none of them is built for the person entering an order at 6am.",
+              "The choice he was facing. Each of these options involves selling a dashboard to an executive, and none of them is suitable for the person who places an order at 6 a.m.",
               width: 1081,
               height: 525,
           },
@@ -42,16 +42,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Excel First, Product Second",
         paragraphs: [
-          "The first thing I built was not a product. It was a set of Excel scripts that took the worst of the manual re-entry off his desk that week.",
-          "I did it that way for two reasons. It gave him something back immediately, before I had earned any right to redesign his operation. And writing them taught me the workflow properly, which no amount of asking would have done, because the parts people forget to mention are exactly the parts they do without thinking.",
-          "The product grew out of those scripts rather than replacing them. Everything in it is something the spreadsheet was already doing badly.",
+          "The very first thing that I developed wasn't a product. It was a collection of Excel scripts which took away the worst of the manual re-entry from his desk that week.",
+          "I chose that method for two reasons. It allowed me to give him something right away, before I had earned any right to alter his operation. Also, by writing them I became properly familiar with the workflow, since it is precisely the parts that people fail to mention which are the ones they omit without realizing it.",
+          "The product was developed from the scripts rather than taking their place. All the features it had were things that the spreadsheet was already handling poorly.",
         ],
         images: [
           {
             src: "/images/business-management/v2/recipe-calculator.webp",
             alt: "The recipe calculator: pick a product, set a quantity, optionally override the selling price, and it returns the margin",
             caption:
-              "The spreadsheet this replaced worked out cost per plate. So does this, except it reads the catalogue prices instead of whatever was pasted in last.",
+              "The spreadsheet that had been used previously calculated the cost per plate. So does this one, except that it reads the catalogue prices rather than the ones that had been pasted in earlier.",
             width: 2300,
             height: 1438,
           },
@@ -60,8 +60,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "The Structure Came Before Any Screen",
         paragraphs: [
-          "I drew the whole thing as a map first. Nine areas off the login, and the argument was about which nine.",
-          "The Recipe Calculator sits at the same level as Orders, which looks wrong until you know this business sells to restaurants that price by the plate. Delivery owns the driver interface and location sharing rather than hanging off Orders, because on the day it matters the driver and the order clerk are two different people with two different phones.",
+          "I first drew the entire thing in the form of a map, specifying nine areas outside of the login, and the point of discussion was which nine.",
+          "The Recipe Calculator is on the same level as Orders, even though this only looks correct once you realize that the business sells to restaurants which price their meals on a per-plate basis. Delivery is in charge of the driver interface and location sharing rather than being linked to Orders, since when it matters the driver and the order clerk are two different people using two different phones.",
         ],
         videos: [
           {
@@ -69,7 +69,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             poster: "/images/business-management/ideation-walkthrough-poster.jpg",
             narrated: true,
             caption:
-              "Me working the flows out loud, role by role, before any screen existed. Start, products dashboard, the branch where adding a manufactured product stops behaving like adding a sourced one, and which of those decisions belong to somebody who is not the person clicking.",
+              "Me working through each role out loud before any screen existed, beginning with the start, then moving on to the products dashboard, the branch at which adding a manufactured product stops acting the same as adding a sourced product, and determining which of those decisions should belong to someone other than the person making the click.",
             width: 1280,
             height: 624,
           },
@@ -79,7 +79,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/sitemap-refined.webp",
             alt: "Site map: nine top-level areas off the login screen, with Delivery owning the driver interface, location sharing and active deliveries",
             caption:
-              "The map I built from. Delivery owns the driver interface, because the driver and the clerk are never the same person.",
+              "The map that I built from. Delivery has control of the driver interface, the driver and the clerk being two different people.",
             width: 768,
             height: 768,
           },
@@ -88,15 +88,15 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Orders Are the Product",
         paragraphs: [
-          "Order management is where this business actually lives, so it gets the whole screen and the four numbers that matter across the top: total, pending, delivered, revenue.",
-          "Every row carries its customer, its value, its status and its date, and the actions are three direct controls rather than a menu. That is a straight response to the grid he was complaining about, where the controls looked live and were not.",
+          "The part that is at the heart of this business is order management, which therefore takes up the entire screen and the four figures that are important at the top: total, pending, delivered, and revenue.",
+          "Each row contains the customer details, the value, the status and the date, and the actions are three separate controls instead of a menu. This is a direct response to the grid the owner had been complaining about, since in that grid the controls appeared to be live and they weren't.",
         ],
         images: [
           {
             src: "/images/business-management/v2/orders.webp",
             alt: "QuickFlow order management: total, pending, delivered and revenue tiles above a recent-orders table with per-row status and actions",
             caption:
-              "Status is spelled out as a word, so nobody has to decode a colour to read the row. The figures on screen are demo data rather than anything out of his accounts.",
+              "The word 'Status' is shown so that people do not have to decode a colour in order to read the entry. The figures displayed on screen are demo data and not anything from his accounts.",
             width: 2300,
             height: 1438,
           },
@@ -104,7 +104,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/customers.webp",
             alt: "The customer directory: total customers, how many hold credit, business types and credit outstanding, above a searchable table of accounts",
             caption:
-              "An order needs a customer and a credit position before it needs anything else. Both live here, and the credit column is the one that decides whether an order goes out at all.",
+              "An order must have a customer and a credit account established before it can require anything else. Both of these are found here, and it is the credit column that determines whether or not an order is issued.",
             width: 2300,
             height: 1438,
           },
@@ -113,8 +113,8 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Recurring Is What a Distributor Runs On",
         paragraphs: [
-          "Most of the orders in a business like this are the same orders, every week, from the same accounts, so Harbor Cafe every Monday and Fresh Seafood every second Wednesday are the shape of the business.",
-          "So recurring schedules are their own area rather than a setting inside an order, and they are designed for a phone. The person checking whether Friday's standing orders went out is not sitting at a desk when they think to check.",
+          "The business tends to receive the same orders every week from the same customers, which is why Harbor Cafe's order day is every Monday and Fresh Seafood's is every second Wednesday.",
+          "Recurring schedules form their own area and are not a setting inside an order, and they are made for use on a phone. The person who checks whether the standing orders for Friday have been sent isn't sitting at a desk when they decide to check.",
         ],
         images: [
         ],
@@ -122,7 +122,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Built to Be Used From a Phone",
         paragraphs: [
-          "The recurring schedules, inventory, product edits, analytics and the driver views are all designed at phone width first. That is not a responsive-design box being ticked. In this business the warehouse, the van and the office are three different places, and only one of them has a monitor in it.",
+          "All the features, such as recurring schedules, inventory, product edits, analytics, and driver views, have been designed with a phone-width screen in mind. This isn't just a routine check to make sure responsive design is included. In this business, the warehouse, the van, and the office are three separate locations, and only one has a monitor.",
         ],
         imageLayout: "pair",
         images: [
@@ -130,14 +130,14 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/mobile-recurring.webp",
             alt: "Recurring orders on a phone, offering to build a schedule from an existing order",
             caption:
-              "Each standing order carries its cadence, whether it is active, the next delivery date and what is on it. Checked from wherever the question occurs to you, which is rarely at a desk.",
+              "Every standing order has its own cadence, whether it is active or not, its next delivery date and the items it contains. You check it wherever the question arises, since you rarely have it at your desk.",
             width: 544,
             height: 1177,
           },
           {
             src: "/images/business-management/v2/mobile-products.webp",
             alt: "The product catalogue on a phone: search, category filter, and product cards with price, stock and add-to-order",
-            caption: "Stock and price, adjusted where the stock is.",
+            caption: "The stock and price are adjusted where the stock is.",
             width: 544,
             height: 1177,
           },
@@ -145,7 +145,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/mobile-delivery.webp",
             alt: "The driver interface on a phone: start location sharing, then each active delivery with navigate, call and complete",
             caption:
-              "The driver view was designed as its own screen. Share location, then navigate, call, and mark each drop delivered, with nothing from the office view carried over.",
+              "The driver's view was intended to have its own screen, allowing the driver to share their location, navigate, make calls, and record each delivery, with no features from the office view carried over.",
             width: 544,
             height: 1177,
           },
@@ -153,7 +153,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
             src: "/images/business-management/v2/mobile-drivers.webp",
             alt: "Driver management on a phone: drivers on the roster, how many are enabled, available or off duty",
             caption:
-              "Who is on a route and who is off duty, answered from a phone because the person asking is usually not at the desk either.",
+              "Who is out on a route and who is off duty, answered from a phone, since the one enquiring is generally not at the desk themselves.",
             width: 544,
             height: 1177,
           },
@@ -162,16 +162,16 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       {
         heading: "Where It Is",
         paragraphs: [
-          "Designed and built by me, from the site map through the interface to the working application, with AI doing the parts of the build I would otherwise have handed to an engineer.",
-          "I'm deliberately not putting an outcome number on this page. It came out of one conversation with one owner and it does the job he described. I haven't measured it, and a percentage I couldn't defend on a call is worth less than saying so.",
-          "What this one is evidence of is the front half. Hearing a real problem in the wild, relieving it with a spreadsheet inside a week, and only then designing the thing properly.",
+          "I designed and built it, from the site map through the interface to the final working application, using AI to cover the building tasks I would normally have given to an engineer.",
+          "I am intentionally not including an outcome figure for this page, since it resulted from a single conversation with one owner and matches the description he gave. I haven't measured it myself, and a percentage I couldn't justify on a phone call is worth less than saying so.",
+          "This one shows only the first part: detecting a real problem in the wild, fixing it with a spreadsheet within a week, and only then doing the proper design.",
         ],
         images: [
           {
             src: "/images/business-management/v2/design-system.webp",
             alt: "QuickFlow's design system page: the type scale ending in \"One ledger.\", primary, secondary and destructive button variants, and the input and badge components",
             caption:
-              "The system underneath it, written down. One person still needs the rules, because the alternative is re-deciding what a destructive button looks like every time one is needed.",
+              "The system underneath it, written down. One person still needs the rules, because the alternative is re-deciding what a destructive button looks like every time you need one.",
             width: 2300,
             height: 1438,
           },
