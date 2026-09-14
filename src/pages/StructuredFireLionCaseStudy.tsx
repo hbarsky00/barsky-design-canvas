@@ -5,7 +5,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="fire-lion"
     title="Fire Lion"
-    description="A shipped arcade game, built solo with AI. You spell words mid-flight to cast spells, and most of the design work was deciding what to delete."
+    description="An arcade game that has been shipped, developed all by itself using AI\u2014during flight you have to spell out the words in order to cast the spells\u2014and most of the design effort consisted in deciding what to delete."
     tags={["AI-Assisted Product", "Game Design", "Mobile Web", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://firelion.me"
@@ -13,7 +13,7 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       src: "/images/firelion-hero-triptych.webp",
       alt: "Fire Lion in play: the hold-to-fly prompt, the lion mid-flight, and a boulder incoming",
       hoverVideo: "/lovable-uploads/fire-lion-hero.mp4",
-      caption: "Hold to fly, and something is already coming at you. If one tap didn't feel good here, nothing bolted on top would have rescued it.",
+      caption: "To fly you have to hold the device, and there's already something heading towards you; if one tap wasn't satisfactory in this instance, no subsequent attachment could have improved the situation.",
       width: 1672,
       height: 992,
     }}
@@ -26,26 +26,26 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "I Picked Something That Could Visibly Fail",
         paragraphs: [
-          "Every \"I built this with AI\" portfolio piece is a calculator or a to-do app, and I understand why. Nothing in a to-do app can fail in a way a stranger would notice.",
-          "A game fails in public. If a jump feels wrong everyone knows inside a second, and nobody has to have the mechanics explained to them first. That seemed like the more honest test, so I built one.",
+          "Each portfolio item that says \"I built this with AI\" is either a calculator or a to-do app, and I can see why. Because nothing in a to-do app could fail in a way that a stranger would notice.",
+          "A game will fail in the eyes of the public; if a jump seems incorrect everyone becomes aware of it within a second and there is no need to explain the mechanics to them first. Since that appeared to be the more honest approach, I decided to create such a test.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/fire-lion/flow-how-i-worked.svg",
             alt: "How I worked on Fire Lion: pick a game, one tap and one lion, tune until fun, spelling months later, AI scaffolds, hand-tune feel, build retention features, watch players ignore them, delete them, live",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
+            caption: "A step-by-step explanation of how I approached it, based on the account in the study. The decision known as Terracotta was the one that the others relied upon. The more subdued steps were my own constructions which I afterwards removed.",
             width: 472,
             height: 880,
           },
           {
             src: "/images/fire-lion/flow-three-modes.svg",
             alt: "Tap FLY leads to one of three modes, Fire Lion, Lion Wars and Cub Mode, each with its own state and audio, nothing shared",
-            caption: "One way in, three sealed rooms. Nothing is shared between them, so a change to one never reaches the other two.",
+            caption: "There is one entrance and three rooms that are sealed off from each other, meaning that any change in one of them won't affect the other two.",
             width: 1270,
             height: 484,
           },
-          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Spelling a word mid-flight casts the spell. It works because tapping already felt good before the spelling went on top.",
+          { src: "/images/firelion-spelling-lightning.webp", alt: "Lightning Strike spell casting from spelling MN", caption: "Casting a spell by spelling out a word while in motion has an effect since it was already pleasant to tap before the act of spelling was added.",
  width: 488,
  height: 686,
     },
@@ -54,11 +54,11 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "One Tap Had to Be Fun Before Anything Else Existed",
         paragraphs: [
-          "One tap, one lion, nothing else, and it had to be fun before a single mechanic went on top of it. If that wasn't fun, no amount of spells or modes was going to rescue it, so I sat with the bare loop for a long time before adding anything.",
-          "The spelling came months later, and only because the tapping had already passed that test. You spell a word mid-flight and it casts, and the reason it works is that the tap underneath it already felt good.",
+          "With just one tap, one lion, and no further features, it had to be enjoyable from the very beginning or else no amount of spells or modes could save it, which is why I spent a long time with just the basic loop before adding anything.",
+          "The spelling didn't come until months later, simply because the tapping had already passed that test; you have to spell a word while it's in motion and it works because the tap underneath it had already seemed good.",
         ],
         images: [
-          { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "A five-times combo over the lava forge. This is what survived after the daily missions, streaks and upgrade screens were deleted.",
+          { src: "/images/firelion-spelling-combo.webp", alt: "Spelling CRAP over a lava forge anvil, 5× combo", caption: "This result comes from five consecutive combos on the lava forge; it is what remained after the daily missions, the streaks and the upgrade screens had been deleted.",
  width: 500,
  height: 692,
     },
@@ -67,15 +67,15 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "Three Modes, Three Sandboxes",
         paragraphs: [
-          "Fire Lion escalates and gets tense. Lion Wars is slower and strategic. Cub Mode is the low-stakes one you go to when you've been losing.",
-          "Each one lives in its own component, with its own state and its own audio. That is a defensive decision rather than an architectural one. I was building fast, usually late at night, and a refactor that reaches across a shared file breaks things you don't find out about until somebody else does. The duplication costs me something real. What it buys is the ability to change one mode without holding the other two in my head.",
+          "Fire Lion becomes more intense and builds up tension. Lion Wars is slower and more strategic. Cub Mode is the low-stakes option that you choose when you've been losing.",
+          "Each component has its own state and its own audio; this is a defensive choice rather than an architectural one. I was developing quickly, generally in the late hours of the night, and any refactoring that involves a shared file causes problems which only become apparent when someone else discovers them. Although the duplication comes at a real cost to me, it does give me the advantage of being able to change one mode without having to keep the other two in mind.",
         ],
         images: [
-          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene: kept isolated from the main game so refactors never break it", caption: "Cub Mode, the low-stakes one you go to after losing. Its own component, its own state, its own audio.",
+          { src: "/images/firelion-cubmode-sunset.webp", alt: "Cub Mode sunset scene: kept isolated from the main game so refactors never break it", caption: "Cub Mode is the low-stakes option that you access when you've lost. It is a separate component, has its own state, and has its own audio.",
  width: 802,
  height: 656,
     },
-          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene: same isolation rule: separate component, separate audio, separate state", caption: "Same isolation rule, second scene. Duplication I paid for on purpose, so a refactor in one mode can't reach the other two.",
+          { src: "/images/firelion-cubmode-ocean.webp", alt: "Cub Mode ocean scene: same isolation rule: separate component, separate audio, separate state", caption: "The same isolation rule is applied in the second scene. I deliberately incurred the cost of duplication, so that a refactoring operation in one mode will not affect the other two.",
  width: 735,
  height: 655,
     },
@@ -84,12 +84,12 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "Where AI Stopped Being Useful",
         paragraphs: [
-          "AI scaffolded the Supabase schemas, the particle systems, and refactors across thirty-odd files at a time. That saved me weeks, and I am not going to pretend otherwise.",
-          "Gravity, tap impulse, the difficulty curve. I tuned all of those by hand, on a phone, over hundreds of runs. There is no way to ask a model whether a jump feels right. It will answer you, and the answer means nothing.",
-          "Producing features got cheap, and deciding which ones survived is the part that stayed expensive, because it's the part that still needs someone to sit on the couch with the phone.",
+          "The AI created the Supabase schemas, the particle systems, and the refactors across thirty-odd files all at once. That saved me weeks, and I won't pretend I didn't.",
+          "I set up the gravity, the tap impulse, and the difficulty curve by hand using a phone after carrying out hundreds of trials. You can't ask a model whether a jump seems right to it; it will give you an answer, but that answer has no meaning.",
+          "Making features became cheap, but it was still expensive to decide which ones would survive, since that part still requires someone to sit on the couch with the phone.",
         ],
         images: [
-          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, the slow strategic mode. AI scaffolded the particle system. The difficulty curve I tuned by hand on a phone.",
+          { src: "/images/firelion-lionwars-combat.webp", alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop", caption: "Lion Wars, in the slow strategic mode. The AI was used to set up the particle system. I adjusted the difficulty curve by hand on a phone.",
  width: 488,
  height: 680,
     },
@@ -98,18 +98,18 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "The Delete List Got Longer Than the Feature List",
         paragraphs: [
-          "Daily missions. Streaks. A Wordle-style daily challenge. A social-proof counter. A forge upgrade screen. Mod gating. I built all of it, shipped all of it, and then took all of it back out.",
-          "None of them were bad ideas on paper, which is the trap. They were retention mechanics bolted onto a game that had not earned retention yet, and every one of them put another screen between opening the thing and playing it.",
-          "The game got better each time I cut one. Somewhere around the fourth or fifth I stopped thinking of deletion as tidying up and started treating it as the actual work.",
+          "I created all of that\u2014the daily missions, the streaks, the daily challenge in the style of Wordle, the social-proof counter, and the forge upgrade screen\u2014and then got rid of it all again.",
+          "The ideas themselves weren't bad in theory, which was the problem. They were retention features added to a game that hadn't yet proved it could retain players, and each one introduced an extra screen between opening the game and actually playing it.",
+          "Each time I deleted one, the game improved. Around the fourth or fifth deletion, I stopped seeing deletion as a way to tidy things up and started to regard it as the real work.",
         ],
       },
       {
         heading: "The Design System",
         paragraphs: [
-          "The palette is the only part of this game a token file could hold. Colour carries the state because there is no time to read anything. The gravity and the tap feel were hand-tuned on a phone.",
+          "The only part of the game that a token file could contain is the palette. Color indicates state since there is no time to read anything. I manually adjusted the gravity and tap sensation on a phone.",
         ],
         images: [
-          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens: Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "A dark ground, three accents, and type that is HUD rather than copy.",
+          { src: "/images/firelion-ds/design-system.webp", alt: "Fire Lion design tokens: Bebas Neue, the dark arcade ground, and the flame/gold/cold-green accents", caption: "The ground is dark, there are three accents, and the type is HUD not copy.",
  width: 1500,
  height: 913,
     },
@@ -118,8 +118,8 @@ const StructuredFireLionCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It's live at firelion.me and it's finished enough to hand to someone without explaining anything first.",
-          "AI can build a game in about a week. That is the least interesting thing here. Somebody still has to hold the line on what stays in, and no model was going to do that for me.",
+          "You can find it at firelion.me, and it's advanced enough that you can give it to someone else without needing an explanation.",
+          "It takes AI only a week to create a game. That's not the most interesting point. I still had to decide what to include, and no model was willing to do that for me.",
         ],
       },
     ]}
