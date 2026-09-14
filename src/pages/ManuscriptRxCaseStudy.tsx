@@ -5,14 +5,14 @@ const ManuscriptRxCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="email-creation-ai"
     title="ManuscriptRx"
-    description="A self-initiated concept for AI-assisted pharma HCP email production, designed around the approval gates the AI has to work between."
+    description="A self-initiated concept for producing pharmaceutical HCP emails with the aid of AI, structured around the approval gates the AI has to go through."
     tags={["Enterprise", "Gen AI", "Pharma", "Workflow Design"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
       src: "/images/emailai-hero-pair.webp",
       alt: "The six-step workflow navigator beside the assemble step: Brief Creation locked, approved content pulled in on the right",
       hoverVideo: "/lovable-uploads/email-creation-ai-hero.mp4",
-      caption: "Six steps, each naming the human who owns it. Brief Creation is greyed out because I didn't research it. It's outside the pilot, and the label says so.",
+      caption: "There are six steps, each one identifying the person who owns it. Brief Creation is greyed out since I didn't look into it. It is outside the pilot, and the label states this.",
       width: 1720,
       height: 648,
     }}
@@ -25,22 +25,22 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "Two Weeks to Send One Email",
         paragraphs: [
-          "A regulated pharma email touches a medical writer, content ops, brand, MLR and CRM. Five teams, five different tools, and two weeks end to end is considered a good run.",
-          "This one is mine. There was no client. Nobody briefed it and nothing shipped. I built it because I kept seeing the same AI pitch aimed at this problem and I thought it was aimed at the wrong half of it.",
+          "A regulated email from the pharmaceutical sector reaches a medical writer, the content operations team, the brand team, MLR, and CRM. With five different teams using five distinct tools, a two-week end-to-end process is seen as good performance.",
+          "This one is mine. There was no client, it was never briefed and nothing shipped. I developed it because I continually saw the same AI pitch directed at this problem and I believed it was focusing on the wrong part of it.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/email-creation-ai/flow-how-i-worked.svg",
             alt: "How I worked on ManuscriptRx: invert the pitch, six owned steps, QC inline, gate the preview, leave the brief locked, keep the warning visible, Figma screens, Claude writes a spec per screen, spec to dev, MLR not designed",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
+            caption: "A step-by-step account of how I carried out the work, from the study's own account. The decision in terracotta was the one the others relied upon. The more subdued steps were mine to build and then eliminate.",
             width: 528,
             height: 858,
           },
           {
             src: "/images/email-creation-ai/flow-between-the-humans.svg",
             alt: "Human and AI alternation: writer edits, AI assembles, reviewers sign off inline, AI generates HTML and runs the checklist, pass shows Send Preview to Brand, fail returns to the writer, MLR review outside scope",
-            caption: "Person, model, person, model, person. The white steps are the AI's. The last one is the part this concept did not solve.",
+            caption: "A person, a model, a person, a model, a person. The white steps are the AI's. The final one is the part this concept was unable to solve.",
             width: 580,
             height: 682,
           },
@@ -49,12 +49,12 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "The AI Works Between the Humans, Not Instead of Them",
         paragraphs: [
-          "The obvious version is \"drop the manuscript in, get an email out.\" It demos well and it's wrong, because the two weeks aren't spent writing. They're spent waiting at review gates that exist for legal reasons and aren't going anywhere.",
-          "So I inverted it. Every step a human is legally accountable for stays with the human. Everything between those steps belongs to the AI: assembling approved content, pulling the market-specific compliance blocks, generating the HTML, running the metadata checks.",
-          "That one constraint decided everything else on the screen, and it is what separates a tool that survives compliance review from a demo that doesn't.",
+          "The simple way to put it is \"drop the manuscript in and receive an email.\" This works well as a demonstration, and it's incorrect, because the two weeks aren't spent writing. They're spent waiting at review checkpoints which exist for legal reasons and are not going to be removed.",
+          "So I reversed the process. The parts of each step a human is legally responsible for remain the human's, while everything else, meaning assembling the approved content, retrieving the market-specific compliance blocks, generating the HTML, and carrying out the metadata checks, belongs to the AI.",
+          "That single restriction decided every other element on the screen, and it is the factor that distinguishes a tool which passes compliance review from one that doesn't.",
         ],
         images: [
-          { src: "/images/emailai-screen2-assemble.webp", alt: "Step 2: Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI assembles, the writer approves. Market-specific compliance blocks arrive on the right instead of being hunted for.",
+          { src: "/images/emailai-screen2-assemble.webp", alt: "Step 2: Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right", caption: "The AI puts the email together and the writer gives approval. The market-specific compliance blocks appear on the right rather than having to be searched for.",
  width: 1440,
  height: 1040,
     },
@@ -63,12 +63,12 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "Six Steps, Each With an Owner",
         paragraphs: [
-          "The workflow is six steps and every one names who owns it. That sounds like project management, and in regulated work it is the design, because an unowned step is exactly where the two weeks goes.",
-          "QC sits inline with editing instead of after it. AI auto-pass, Content Ops and Med Writer all sign off while the writer is still in the content, so a rejection arrives while there's still context to act on it.",
-          "\"Send Preview to Brand\" doesn't render until the AI checklist passes. I could have shown it disabled with a tooltip. Hiding it is blunter and it stops the conversation where someone asks to be let through just this once.",
+          "The process consists of six steps, each one specifying who is responsible for it. That sounds like project management, and in regulated work it is a design decision, since a step with no owner is precisely where the two weeks are lost.",
+          "QC is carried out during the editing process rather than after it. While the writer is still working on the content, all three, AI auto-pass, Content Ops, and the Med Writer, give their approval, so that a rejection arrives while there is still relevant context to act on it.",
+          "The \"Send Preview to Brand\" option appears only after the AI checklist has passed. I could have shown it disabled with a tooltip instead. Hiding it is more direct, and it halts the conversation when someone asks to be let through just this once.",
         ],
         images: [
-          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3: Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "QC sits beside the editor instead of after it, so a rejection lands while the writer still has the context to fix it.",
+          { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step 3: Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom", caption: "Instead of coming after the editing stage, the quality check takes place beside it, which means a manuscript can be rejected while the writer still has the context to make the corrections.",
  width: 1440,
  height: 1547,
     },
@@ -77,11 +77,11 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "What I Left Locked",
         paragraphs: [
-          "Brief Creation is visible in the navigator and locked, labelled \"outside pilot scope.\" The brief is written upstream by people I didn't design for, and drawing a screen for it would have been me inventing a process I hadn't researched.",
-          "The PromoMats integration warning stays on screen rather than being tidied away before the screenshot. It's an unresolved dependency, and a reviewer who spots it in a real pilot has a much worse day than one who was told up front.",
+          "Brief Creation appears in the navigator and is locked, marked \"outside pilot scope.\" The brief is prepared by people whose process I didn't research, and drawing a screen for it would have meant inventing a process I hadn't seen.",
+          "The warning about the PromoMats integration remains on the screen instead of being dismissed before the screenshot is taken. It indicates an unresolved dependency, and a reviewer who notices it during an actual pilot has a worse day than one who was made aware of it in advance.",
         ],
         images: [
-          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5: Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "HTML and metadata generated, previewed at both sizes before a reviewer ever sees it. The unresolved PromoMats warning is left on screen on purpose.",
+          { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step 5: Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right", caption: "The HTML and metadata were generated and the preview checked at both sizes before the reviewer looks at it. The unresolved PromoMats warning is deliberately left on the screen.",
  width: 1440,
  height: 1192,
     },
@@ -90,8 +90,8 @@ const ManuscriptRxCaseStudy: React.FC = () => (
       {
         heading: "The Part I Didn't Solve",
         paragraphs: [
-          "MLR review itself. I designed the artefacts MLR receives and the state the email is in when it arrives, and I didn't design the tool they review it in.",
-          "How a reviewer annotates a claim, rejects it, and signs their name to that with legal accountability attached is the hardest problem in this whole workflow. It needs access to reviewers I didn't have, and a concept project that claimed to have solved it would be worth less than one that says plainly it didn't.",
+          "MLR review itself. I created the artifacts MLR receives and the state the email is in when it arrives, but I didn't design the tool they use to review it.",
+          "The hardest problem in this whole workflow is how a reviewer annotates a claim, rejects it, and signs their name to it with legal accountability attached. It needs access to reviewers I didn't have, and a concept project that claimed to solve it would be worth less than one that plainly says it didn't.",
         ],
       },
     ]}
