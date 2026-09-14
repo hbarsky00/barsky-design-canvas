@@ -5,7 +5,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
   <SimpleCaseStudyPage
     projectId="catchbuddy"
     title="CatchBuddy"
-    description="Getting two strangers to agree to meet at a park is the easy part. Getting them to feel safe doing it is the product."
+    description="The easy part is getting two strangers to agree to meet in a park; the difficult part is getting them to feel safe while doing so."
     tags={["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"]}
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://catchbuddy.fit"
@@ -15,7 +15,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       height: 1380,
       alt: "CatchBuddy pickup sports landing hero",
       hoverVideo: "/catchbuddy-card.mp4",
-      caption: "A game on Saturday. The whole front door is aimed at the person who wants one afternoon.",
+      caption: "There's a game on on Saturday and the entire front door is directed towards the person who wants a whole afternoon.",
     }}
     relatedPost={{
       slug: "when-trust-is-the-product",
@@ -26,26 +26,26 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "Most People Just Want a Game on Saturday",
         paragraphs: [
-          "Pickup sports are dying in cities, and the apps meant to fix that all assume you want a season, with the commitment and the schedule and the recurring team that comes with one. Most people want a game on Saturday.",
-          "Scheduling was never the problem. Getting two strangers to agree to meet at a park, with both of them feeling fine about it, was the problem, and it's a trust problem before it's a calendar one.",
+          "Pickup sports are declining in urban areas, and the apps designed to address this problem all assume that you want to take part in a full season, with all the commitment and the fixed schedule and the regular team that such a season entails. What most people actually want is a game on Saturday.",
+          "It wasn't the scheduling that was the issue; the problem was getting two complete strangers to agree to meet at a park and both of them feeling comfortable about it, and that's a matter of trust rather than one of the calendar.",
         ],
         imageLayout: "pair",
         images: [
           {
             src: "/images/catchbuddy/flow-how-i-worked.svg",
             alt: "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decided by hand, AI security review catches a recursive policy, rename Matches, cut the wizard, cut three calendar integrations, shipped",
-            caption: "How I worked on it, step by step, from this study's own account. Terracotta is the decision the rest turned on. The muted steps are what I built and then took out.",
+            caption: "A step-by-step explanation of how I approached it, based on the account in the study. The choice of Terracotta was the one that the others relied on. The more subdued steps were mine to build and then eliminate.",
             width: 548,
             height: 726,
           },
           {
             src: "/images/catchbuddy/flow-minor-gate.svg",
             alt: "Minor gate. Sign up, and under 18 asks a parent to verify. Once verified they can post, and until then they can browse. Over 18 can post straight away. Every game gets a meeting spot from the curated list and a panic button on every screen",
-            caption: "The gate a minor goes through, and the two things every game gets regardless: a curated meeting spot and a panic button.",
+            caption: "The gate that a minor passes through, together with the two things which every game has no matter what: a curated meeting place and a panic button.",
             width: 784,
             height: 770,
           },
-          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "Posting a game starts with the sport and nothing else. No team, no schedule, no season to sign up for.",
+          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "To start posting a game you first need to choose the sport and that's all\u2014there's no need to include a team, a schedule, or a season.",
  width: 1848,
  height: 1364,
     },
@@ -54,11 +54,11 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "A Parent Verifies Before a Kid Can Post",
         paragraphs: [
-          "A kid can't post a game until a parent is verified. The panic button is reachable from every screen you can be on during a game, and the meeting spots come from a list I curated, so nobody is dropping a pin on an address of their own choosing.",
-          "That last one gets argued with a lot. Letting people add their own locations would be more flexible, and I still won't do it.",
+          "A child won't be allowed to post a game until their parent has been verified; the panic button can be accessed from any screen that you're on while playing the game, and the meeting points are taken from a list that I have selected, so no one can drop a pin on an address of their own choosing.",
+          "That one is often the subject of debate; although it would be more flexible if people were allowed to add their own locations, I still won't do so.",
         ],
         images: [
-          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park: searchable list with distance and amenities", caption: "A curated list of meeting spots with distance and amenities. Nobody can drop their own pin, and that restriction is the point.",
+          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park: searchable list with distance and amenities", caption: "Here is a selected list of places where meetings can be held, including the distance and facilities available. It is not possible for anyone to place their own pin, and that limitation is what's intended.",
  width: 1940,
  height: 1396,
     },
@@ -67,11 +67,11 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "What AI Did, and What It Couldn't",
         paragraphs: [
-          "AI wrote the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow, which is a serious chunk of the build, and it did it fast.",
-          "It couldn't decide who gets in, who gets gated, and what a stranger sees about another stranger before they agree to meet. Those I made by hand. It did catch one thing I'd have missed, though: an AI security review flagged a recursive RLS policy that would have leaked data in production.",
+          "The AI carried out the preparation of the RLS policies, carried out the Supabase migrations, carried out the Stripe integration and the OAuth flow, which represents a major part of the project, and it did so quickly.",
+          "It wasn't clear who was allowed in, who was gatekept, and what a stranger would see about another stranger before agreeing to meet; those cases were the ones I handled manually. Although, one thing an AI security review did pick up on that I otherwise would have missed was a recursive RLS policy which would have led to data being leaked in production.",
         ],
         images: [
-          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences: \"I'll bring a football,\" no-contact toggle", caption: "The small disclosures two strangers trade before they meet, who's bringing a ball, and how physical the game is going to be.",
+          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences: \"I'll bring a football,\" no-contact toggle", caption: "The minor details which the two strangers exchange before meeting, namely who is bringing the ball and how physical the game is going to be.",
  width: 1888,
  height: 1386,
     },
@@ -80,24 +80,24 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "What I Cut",
         paragraphs: [
-          "Testers kept reading \"Matches\" as a dating thing. It's \"Browse\" and \"Players\" now.",
-          "I built a Quick Start wizard that nobody wanted, watched testers skip it every single time, and eventually stopped making them skip it.",
-          "Apple, Outlook and ICS calendar support all got built, then all got cut, because barely anyone used them and I was going to be maintaining three integrations forever for the few who did.",
+          "People always read \"Matches\" as referring to a dating service; it's now called \"Browse\" and \"Players\".",
+          "I created a Quick Start wizard which was not wanted, saw testers skip it each time, and eventually stopped having them skip it.",
+          "The support for Apple, Outlook and ICS calendars was developed but then removed since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.",
         ],
         imageLayout: "pair",
         images: [
-          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "Match scores on the player cards. It's called Players now, because testers kept reading \"Matches\" as a dating app." },
-          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "The 13+ gate at sign-up, the first checkpoint in the minor-protection flow, in v1 rather than bolted on later." },
-          { src: "/images/catchbuddy-game-live.webp", alt: "Confirmation: \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "Confirmation shows how many players are nearby. A real number, and it decides whether you get a game." },
+          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "The player cards show the match scores; the programme is now called Players since the testers always read 'Matches' as referring to a dating app." },
+          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "In version 1, the 13+ age restriction at sign-up was included as the first step in the minor-protection process rather than being added later." },
+          { src: "/images/catchbuddy-game-live.webp", alt: "Confirmation: \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "The caption indicates the number of other players around you. It is a real figure and this determines if you are able to play the game." },
         ],
       },
       {
         heading: "The Design System",
         paragraphs: [
-          "I made the palette warm, because a trust product that looks like a fintech dashboard reads as a company and this needed to read as a neighbour. The safety states sit inside the same system from v1, instead of arriving later as status chips bolted on the side.",
+          "I warmed up the palette since a trustworthy product which has the appearance of a fintech dashboard comes across as a company and it was necessary for it to appear as a neighbour. The safety states have always been part of the same system from v1, rather than appearing later as status chips attached to the side.",
         ],
         images: [
-          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "Warm paper and one green, at three depths. Green is reserved for action so it never gets spent on decoration.",
+          { src: "/images/catchbuddy-ds/design-system.webp", alt: "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states the colour has to carry", caption: "The paper is warm and there is one green, at three different depths. Green is kept for use in action and is therefore not used for decoration.",
  width: 1500,
  height: 913,
     },
@@ -106,8 +106,8 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
       {
         heading: "Where It Landed",
         paragraphs: [
-          "It shipped. Auth, RLS, Stripe, Google OAuth, realtime updates, the minor-approval flow and the curated meeting spots, designed and built by me.",
-          "The safety layer went in first, in v1, because every product I've seen add one later ended up with a settings screen nobody opens.",
+          "It was shipped, including auth, RLS, Stripe, Google OAuth, real-time updates, the minor-approval process and the curated meeting spots, all of which I designed and built.",
+          "In version 1 the safety layer was the first thing to be included, since all the products I've seen which added it later ended up with a settings screen that no one opened.",
         ],
         videos: [
           {
@@ -115,7 +115,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             poster: "/images/catchbuddy-walkthrough-poster.jpg",
             narrated: true,
             caption:
-              "The full walkthrough, with me talking through it. Posting a game, picking a park, equipment and preferences, then the safety layer: emergency contacts, phone verification, and the minor gate.",
+              "Here's the complete walkthrough with me explaining it step by step\u2014starting by posting the game, then selecting a park, choosing the equipment and your preferences, before moving on to the safety features, which include emergency contacts, phone verification, and the minor gate.",
               width: 640,
               height: 1280,
           },
