@@ -105,11 +105,14 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/business-management",
     images: {
-      primary: "/images/business-management/v2/overview.webp",
-      alt: "QuickFlow business overview — sales, revenue, deliveries and customers on one ledger"
+      // Four phone screens, same treatment as FarmFlow (Hiram, 2026-09-14):
+      // recurring orders, the catalogue, delivery, drivers. The desktop
+      // overview that was here is the study's hero already. No hover video:
+      // the card footage is the desktop app and would contradict the poster.
+      primary: "/images/business-management/card-phones.webp",
+      alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management"
     },
-    layout: "side-by-side",
-    video: "/business-management-card.mp4"
+    layout: "side-by-side"
   },
   {
     id: "recast",
