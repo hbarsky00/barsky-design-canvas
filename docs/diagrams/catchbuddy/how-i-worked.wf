@@ -1,9 +1,0 @@
-- Start from the trust problem
-- Safety layer first, in v1 [gate]
-- AI writes RLS, migrations, Stripe, OAuth
-- Decide by hand who gets in, who gets gated, what strangers see
-- AI security review catches a recursive RLS policy
-- Testers read Matches as dating; rename to Browse and Players
-- Quick Start wizard skipped every time; cut it [old]
-- Three calendar integrations built, barely used; cut them [old]
-- Shipped

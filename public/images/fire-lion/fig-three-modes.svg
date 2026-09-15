@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 380" width="1150" height="380" font-family='"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif'>
+<rect width="1150" height="380" fill="#FBFAF8"/>
+<text x="40" y="46" font-size="24" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>Three modes, nothing shared</text>
+<text x="40" y="74" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">Each mode owns its state and its audio, so a change in one never reaches the other two.</text>
+<rect x="40.0" y="104" width="343.3333333333333" height="220" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="64.0" y="146" font-size="22" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>Fire Lion</text>
+<text x="64.0" y="180" font-size="16" font-weight="400" fill="#5B6068" text-anchor="start">Escalates and gets tense</text>
+<line x1="64.0" y1="200" x2="359.3333333333333" y2="200" stroke="#DED7CF" stroke-width="1.5"/>
+<circle cx="72.0" cy="230" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92.0" y="235" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own state</text>
+<circle cx="72.0" cy="260" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92.0" y="265" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own audio</text>
+<rect x="403.3333333333333" y="104" width="343.3333333333333" height="220" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="427.3333333333333" y="146" font-size="22" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>Lion Wars</text>
+<text x="427.3333333333333" y="180" font-size="16" font-weight="400" fill="#5B6068" text-anchor="start">Slower and strategic</text>
+<line x1="427.3333333333333" y1="200" x2="722.6666666666666" y2="200" stroke="#DED7CF" stroke-width="1.5"/>
+<circle cx="435.3333333333333" cy="230" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="455.3333333333333" y="235" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own state</text>
+<circle cx="435.3333333333333" cy="260" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="455.3333333333333" y="265" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own audio</text>
+<rect x="766.6666666666666" y="104" width="343.3333333333333" height="220" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="790.6666666666666" y="146" font-size="22" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>Cub Mode</text>
+<text x="790.6666666666666" y="180" font-size="16" font-weight="400" fill="#5B6068" text-anchor="start">Low stakes after losing</text>
+<line x1="790.6666666666666" y1="200" x2="1086.0" y2="200" stroke="#DED7CF" stroke-width="1.5"/>
+<circle cx="798.6666666666666" cy="230" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="818.6666666666666" y="235" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own state</text>
+<circle cx="798.6666666666666" cy="260" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="818.6666666666666" y="265" font-size="16" font-weight="400" fill="#231E1A" text-anchor="start">Own audio</text>
+<text x="575.0" y="358" font-size="15" font-weight="400" fill="#5B6068" text-anchor="middle">One entry point, Tap FLY, then three separate games with nothing shared between them.</text>
+</svg>

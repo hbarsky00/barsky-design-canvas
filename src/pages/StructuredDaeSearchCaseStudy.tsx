@@ -33,16 +33,8 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
           "That isn't really searching; it's just opening up tabs. You click on a table, identify the owner, check when it last refreshed, look for anything else that's still reading from it, then return and carry out the same process for the next item, and if you're being careful you'll do this forty times, even though no one actually does. The analysts had a lot of results. The only thing they lacked was one that they could claim as their own.",
           "The kind of data shown in these screenshots relates to the life sciences: specifically, therapeutic areas, registries, trial sets and claims sets. If you replace 'revenue' with 'diabetes' then nothing about the problem is affected, which is the reason why I am at ease in using the finance example.",
         ],
-        imageLayout: "pair",
         images: [
           { src: "/images/dae-search/decisions-1.webp", alt: "Hand sketches of advanced search: a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed", width: 1733, height: 1274, caption: "An illustration of the amount that could be included in the list before it ceased to be a list\u2014such as multiple search terms, the entities that had been selected, and the meta tags carried over into the results." },
-          {
-            src: "/images/dae-search/flow-how-i-worked.svg",
-            alt: "How I worked on DAE Search: watch analysts, design consumer search first, wrong audience, density, semantic search, trust signals on the row, hide restricted results, backfired, show them locked, build autocomplete, security review cuts it, shipped with a style guide",
-            caption: "A step-by-step explanation of how I worked on it, according to the study itself. The decision known as Terracotta was the one on which the rest was based. The more subdued steps were my own constructions which I later deleted.",
-            width: 492,
-            height: 1100,
-          },
         ],
       },
       {

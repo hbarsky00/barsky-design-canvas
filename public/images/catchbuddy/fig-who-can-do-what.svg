@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 400" width="1150" height="400" font-family='"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif'>
+<rect width="1150" height="400" fill="#FBFAF8"/>
+<text x="40" y="46" font-size="24" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>Who can do what on CatchBuddy</text>
+<text x="40" y="74" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">Posting is the one thing the age gate controls. The two safety features are on every game regardless.</text>
+<text x="420" y="102" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">BROWSE GAMES</text>
+<text x="590" y="102" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">POST A GAME</text>
+<text x="790" y="102" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">MEETING SPOT FROM</text>
+<text x="790" y="117" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">THE CURATED LIST</text>
+<text x="1010" y="102" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">PANIC BUTTON ON</text>
+<text x="1010" y="117" font-size="12" font-weight="600" fill="#5B6068" text-anchor="middle" letter-spacing="0.08em">EVERY SCREEN</text>
+<line x1="40" y1="136" x2="1110" y2="136" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="40" y="182" font-size="18" font-weight="400" fill="#231E1A" text-anchor="start">Adult</text>
+<circle cx="420" cy="176" r="9" fill="#B04321"/>
+<circle cx="590" cy="176" r="9" fill="#B04321"/>
+<circle cx="790" cy="176" r="9" fill="#B04321"/>
+<circle cx="1010" cy="176" r="9" fill="#B04321"/>
+<line x1="40" y1="208" x2="1110" y2="208" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="40" y="246" font-size="18" font-weight="400" fill="#231E1A" text-anchor="start">Minor, parent verified</text>
+<circle cx="420" cy="240" r="9" fill="#B04321"/>
+<circle cx="590" cy="240" r="9" fill="#B04321"/>
+<circle cx="790" cy="240" r="9" fill="#B04321"/>
+<circle cx="1010" cy="240" r="9" fill="#B04321"/>
+<line x1="40" y1="272" x2="1110" y2="272" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="40" y="310" font-size="18" font-weight="600" fill="#231E1A" text-anchor="start">Minor, not verified yet</text>
+<circle cx="420" cy="304" r="9" fill="#B04321"/>
+<line x1="583" y1="304" x2="597" y2="304" stroke="#DED7CF" stroke-width="2"/>
+<circle cx="790" cy="304" r="9" fill="#B04321"/>
+<circle cx="1010" cy="304" r="9" fill="#B04321"/>
+<line x1="40" y1="336" x2="1110" y2="336" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="40" y="374" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">From the sign-up flow: under 18 asks a parent to verify; until that comes back the account reads the app but cannot put a game on it.</text>
+</svg>

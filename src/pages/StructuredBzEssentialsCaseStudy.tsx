@@ -50,13 +50,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
         ],
         imageLayout: "pair",
         images: [
-          {
-            src: "/images/bz-essentials/flow-how-i-worked.svg",
-            alt: "How I worked on BZ Essentials: read the PRD, decide three domains and four categories, build it clickable, region as a lens, metadata panel first, browse first with facets, live prototype",
-            caption: "A step-by-step explanation of how I dealt with it, based on the account in the study. The choice of Terracotta was the one that the others rested their decision on. The more subdued steps were my own constructions which I then deleted.",
-            width: 502,
-            height: 594,
-          },
           { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow: Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "There are two ways of getting to the same destination\u2014browsing enables you to learn the vocabulary and search allows you to bypass the hierarchy once you already have it.",
  width: 1500,
  height: 806,

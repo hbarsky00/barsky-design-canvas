@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 420" width="1150" height="420" font-family='"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif'>
+<rect width="1150" height="420" fill="#FBFAF8"/>
+<text x="40" y="46" font-size="24" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>The boundary</text>
+<text x="40" y="74" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">The apps record. The website stores and shares. One file crosses, in one direction.</text>
+<rect x="40" y="100" width="440" height="250" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="64" y="132" font-size="12" font-weight="600" fill="#5B6068" text-anchor="start" letter-spacing="0.08em">THE APP · MAC AND ANDROID</text>
+<circle cx="72" cy="170" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="96" y="175" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Records the screen, natively</text>
+<circle cx="72" cy="210" r="9" fill="#B04321"/><circle cx="72" cy="210" r="4" fill="#FFFFFF"/>
+<text x="96" y="215" font-size="17" font-weight="600" fill="#231E1A" text-anchor="start">Stop plays the local file at once</text>
+<circle cx="72" cy="250" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="96" y="255" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Uploads in the background</text>
+<circle cx="72" cy="290" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="96" y="295" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Warms the upload stack at launch</text>
+<rect x="670" y="100" width="440" height="250" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="694" y="132" font-size="12" font-weight="600" fill="#5B6068" text-anchor="start" letter-spacing="0.08em">THE WEBSITE · RECASTVID.COM</text>
+<circle cx="702" cy="170" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="726" y="175" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Library</text>
+<circle cx="702" cy="210" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="726" y="215" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Playback</text>
+<circle cx="702" cy="250" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="726" y="255" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Share link, no account to watch</text>
+<circle cx="702" cy="290" r="7" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="726" y="295" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Never records</text>
+<line x1="504" y1="225" x2="646" y2="225" stroke="#231E1A" stroke-width="2"/>
+<path d="M646,225 L635.2,230.2 L635.2,219.8 Z" fill="#231E1A"/>
+<text x="575.0" y="208" font-size="14" font-weight="400" fill="#5B6068" text-anchor="middle">the finished file</text>
+<text x="40" y="392" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">The browser recorder was built, demoed and deleted: twenty-one files. Nothing to the left of the arrow runs in a tab.</text>
+</svg>

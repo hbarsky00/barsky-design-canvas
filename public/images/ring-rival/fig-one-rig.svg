@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 400" width="1150" height="400" font-family='"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif'>
+<rect width="1150" height="400" fill="#FBFAF8"/>
+<text x="40" y="46" font-size="24" font-weight="600" fill="#231E1A" text-anchor="start" font-family='"Fraunces", ui-serif, Georgia, serif'>One rig, every fighter</text>
+<text x="40" y="74" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">A shared skeleton and one proportions sheet per fighter. The fight code counts on eight poses; each fighter gets one of their own.</text>
+<rect x="40" y="110" width="250" height="200" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="64" y="142" font-size="12" font-weight="600" fill="#5B6068" text-anchor="start" letter-spacing="0.08em">SHARED RIG</text>
+<circle cx="72" cy="176" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92" y="181" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Body</text>
+<circle cx="72" cy="208" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92" y="213" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Arms</text>
+<circle cx="72" cy="240" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92" y="245" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Legs</text>
+<circle cx="72" cy="272" r="6" fill="#F6EBDF" stroke="#B04321" stroke-width="2"/>
+<text x="92" y="277" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Head</text>
+<line x1="300" y1="210" x2="360" y2="210" stroke="#231E1A" stroke-width="2"/>
+<path d="M360,210 L349.2,215.2 L349.2,204.8 Z" fill="#231E1A"/>
+<rect x="370" y="110" width="210" height="200" rx="10" fill="#FFFFFF" stroke="#DED7CF" stroke-width="1.5"/>
+<text x="394" y="142" font-size="12" font-weight="600" fill="#5B6068" text-anchor="start" letter-spacing="0.08em">PER FIGHTER</text>
+<text x="394" y="186" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Proportions</text>
+<text x="394" y="214" font-size="17" font-weight="400" fill="#231E1A" text-anchor="start">Nine-pose sheet</text>
+<line x1="590" y1="210" x2="650" y2="210" stroke="#231E1A" stroke-width="2"/>
+<path d="M650,210 L639.2,215.2 L639.2,204.8 Z" fill="#231E1A"/>
+<text x="664" y="142" font-size="12" font-weight="600" fill="#5B6068" text-anchor="start" letter-spacing="0.08em">THE NINE POSES</text>
+<rect x="664" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="684" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">1</text>
+<rect x="714" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="734" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">2</text>
+<rect x="764" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="784" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">3</text>
+<rect x="814" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="834" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">4</text>
+<rect x="864" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="884" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">5</text>
+<rect x="914" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="934" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">6</text>
+<rect x="964" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="984" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">7</text>
+<rect x="1014" y="160" width="40" height="56" rx="6" fill="#F6EBDF" stroke="#B04321" stroke-width="1.5"/>
+<text x="1034" y="195" font-size="15" font-weight="600" fill="#231E1A" text-anchor="middle">8</text>
+<rect x="1064" y="160" width="40" height="56" rx="6" fill="#B04321" stroke="#B04321" stroke-width="1.5"/>
+<text x="1084" y="195" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">9</text>
+<text x="664" y="246" font-size="14" font-weight="400" fill="#5B6068" text-anchor="start">Eight the fight code counts on</text>
+<text x="1084" y="268" font-size="14" font-weight="600" fill="#B04321" text-anchor="middle">One special</text>
+<text x="40" y="350" font-size="15" font-weight="400" fill="#5B6068" text-anchor="start">An opponent joins the roster from a proportions sheet and nine poses. No new drawing.</text>
+</svg>
