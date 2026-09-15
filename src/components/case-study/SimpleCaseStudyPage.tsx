@@ -307,6 +307,16 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
             const indexed = imgs.map((img, idx) => ({ img, idx }));
             const portraitImgs = indexed.filter((e) => isPortrait(e.img));
             const landscapeImgs = indexed.filter((e) => !isPortrait(e.img));
+            // A pair only pairs when the two shapes are close. A 1.39 shot
+            // beside a 0.88 dialog capture left a hole under the short one
+            // the height of half the tall one (CatchBuddy, 2026-09-15). Past
+            // a 25% ratio spread they stack full width instead.
+            const ratios = landscapeImgs
+              .map(({ img }) => (img.width && img.height ? img.width / img.height : null))
+              .filter((r): r is number => r !== null);
+            const pairable =
+              b.imageLayout === "pair" &&
+              (ratios.length < 2 || Math.max(...ratios) / Math.min(...ratios) <= 1.25);
 
             return (
               <section key={b.heading} className="cs-grid mt-20 md:mt-28">
@@ -428,7 +438,7 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                 {landscapeImgs.length > 0 && (
                   <div
                     className={
-                      b.imageLayout === "pair"
+                      pairable
                         ? "mt-10 grid gap-6 sm:grid-cols-2 sm:items-start"
                         : "mt-10 space-y-10"
                     }
