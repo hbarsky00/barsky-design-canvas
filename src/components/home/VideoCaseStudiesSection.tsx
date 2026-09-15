@@ -167,15 +167,14 @@ const caseStudies: CaseStudy[] = [
     url: "/project/stips",
     liveUrl: "https://stips.bet",
     images: {
-      primary: "/images/stips/card-poster-home.jpg",
-      alt: "Stips markets board — live prices on real-world events"
+      // Four phone screens, same treatment as the other product cards (Hiram,
+      // 2026-09-14): the front door, the markets board, a market, clubs. Shot
+      // from stips.bet on an iPhone 13 viewport. No hover video: the desktop
+      // board footage would contradict the poster.
+      primary: "/images/stips/card-phones.webp",
+      alt: "Stips on a phone: the front door, the live markets board with Yes and No prices, a market page, and clubs"
     },
-    layout: "side-by-side",
-    // The old cut spent its first four seconds parked on the static landing
-    // page, so hovering looked like nothing happened. This one opens on the
-    // markets board already scrolling — motion from the first frame, and the
-    // poster is that same frame.
-    video: "/stips-card.mp4"
+    layout: "side-by-side"
   },
   {
     id: "ring-rival",
