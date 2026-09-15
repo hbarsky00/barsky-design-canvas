@@ -76,12 +76,12 @@ const caseStudies: CaseStudy[] = [
       // The desktop home with the phone home over it: one app at two sizes,
       // the Global/US lens in both headers. Three phones side by side were
       // tried first and looked odd for a portal that is mostly used at a desk
-      // (Hiram, 2026-09-14). No hover video: the desktop footage alone would
-      // contradict the poster.
+      // (Hiram, 2026-09-14).
       primary: "/images/bz-essentials/card-product.webp",
       alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/bz-essentials-card.mp4"
   },
   {
     id: "farmflow",
@@ -94,12 +94,12 @@ const caseStudies: CaseStudy[] = [
     images: {
       // Four phone screens, not the desktop dashboard. Next to QuickFlow's
       // dashboard the two cards read as the same product; the phones are
-      // what makes this one different (Hiram, 2026-09-14). No hover video:
-      // the walkthrough is the desktop app and would contradict the poster.
+      // what makes this one different (Hiram, 2026-09-14).
       primary: "/images/farmflow/card-phones.webp",
       alt: "FarmFlow on a phone: new request, my requests, a request's timeline, and reserving the farm"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/farmflow-card.mp4"
   },
   {
     id: "business-management",
@@ -111,12 +111,12 @@ const caseStudies: CaseStudy[] = [
     images: {
       // Four phone screens, same treatment as FarmFlow (Hiram, 2026-09-14):
       // recurring orders, the catalogue, delivery, drivers. The desktop
-      // overview that was here is the study's hero already. No hover video:
-      // the card footage is the desktop app and would contradict the poster.
+      // overview that was here is the study's hero already.
       primary: "/images/business-management/card-phones.webp",
       alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/business-management-card.mp4"
   },
   {
     id: "recast",
@@ -169,12 +169,12 @@ const caseStudies: CaseStudy[] = [
     images: {
       // Four phone screens, same treatment as the other product cards (Hiram,
       // 2026-09-14): the front door, the markets board, a market, clubs. Shot
-      // from stips.bet on an iPhone 13 viewport. No hover video: the desktop
-      // board footage would contradict the poster.
+      // from stips.bet on an iPhone 13 viewport.
       primary: "/images/stips/card-phones.webp",
       alt: "Stips on a phone: the front door, the live markets board with Yes and No prices, a market page, and clubs"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/stips-card.mp4"
   },
   {
     id: "ring-rival",
