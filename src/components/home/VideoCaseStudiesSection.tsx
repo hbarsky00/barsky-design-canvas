@@ -251,8 +251,13 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(
             }
           }}
           onMouseLeave={(e) => {
+            // load() rather than currentTime = 0. A paused video keeps
+            // showing the frame it is on, and the poster only shows before
+            // playback has ever started, so rewinding left the card on the
+            // footage's first frame: a different picture from the one it
+            // had before the hover. Reloading puts the poster back.
             e.currentTarget.pause();
-            e.currentTarget.currentTime = 0;
+            e.currentTarget.load();
           }}
         />
       );
