@@ -19,7 +19,6 @@ import {
   LazyExitIntentDetector,
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
-import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 import WorkCallToAction from "@/components/shared/WorkCallToAction";
 import WordOfMouthSection from "@/components/home/WordOfMouthSection";
 
@@ -72,10 +71,13 @@ const HomepageLayout: React.FC = () => {
           <WorkCallToAction secondary="message" />
         </div>
 
-        {/* Keep current projects section outside 3D container to prevent cutting off */}
+        {/* Client voices go straight under the booking CTA. What sat here before
+            was "What I'm Working on Now", dated September 2025 and listing three
+            works-in-progress: a year-old to-do list under "Available now", at the
+            moment a visitor decides whether to book. Pulled 2026-09-14. */}
         <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="bg-background py-8 md:py-12">
-          <section id="current-projects" tabIndex={-1} className="scroll-offset">
-            <CurrentProjectsSection />
+          <section id="word-of-mouth" tabIndex={-1} className="scroll-offset">
+            <WordOfMouthSection />
           </section>
         </SectionTransition>
         
@@ -93,11 +95,6 @@ const HomepageLayout: React.FC = () => {
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.22} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
-          <section id="word-of-mouth" tabIndex={-1} className="scroll-offset">
-            <WordOfMouthSection />
-          </section>
-        </SectionTransition>
         
         <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-background py-8 md:py-12">
           <section id="contact" tabIndex={-1} className="scroll-offset">

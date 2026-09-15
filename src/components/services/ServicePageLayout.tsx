@@ -1,4 +1,5 @@
 import React from "react";
+import { calendlyUrl, trackBookCall, trackEvent } from "@/lib/analytics";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { SERVICES_DATA, SERVICE_PACKAGES } from "@/data/services";
 
-const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 /** Real shipped work, so the pricing below has something standing behind it. */
 const PROOF = [
@@ -93,7 +93,7 @@ const ServicePageLayout: React.FC = () => {
 
           <motion.div variants={variants} className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="!w-auto">
-              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              <a href={calendlyUrl("services")} onClick={() => trackBookCall("services")} target="_blank" rel="noopener noreferrer">
                 Book a call
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
@@ -248,7 +248,12 @@ const ServicePageLayout: React.FC = () => {
                   ))}
                 </ul>
                 <Button asChild variant="outline" className="w-full mt-auto">
-                  <Link to="/contact">Start this</Link>
+                  <Link
+                    to={`/contact?package=${encodeURIComponent(pkg.title)}`}
+                    onClick={() => trackEvent("package_start", "services", pkg.title)}
+                  >
+                    Start this
+                  </Link>
                 </Button>
               </div>
             ))}
@@ -292,7 +297,7 @@ const ServicePageLayout: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="!w-auto">
-              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              <a href={calendlyUrl("services")} onClick={() => trackBookCall("services")} target="_blank" rel="noopener noreferrer">
                 Book a call
               </a>
             </Button>

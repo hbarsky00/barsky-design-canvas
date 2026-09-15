@@ -1,13 +1,13 @@
 import React from "react";
 import { Mail, MapPin, Phone, Linkedin, Github, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { trackContentEngagement } from "@/lib/analytics";
+import { calendlyUrl, trackBookCall } from "@/lib/analytics";
 
 const ContactInformation: React.FC = () => {
   const openCalendly = () => {
     if (typeof window !== "undefined") {
-      window.open("https://calendly.com/barskyuxdesignservices/30min", "_blank");
-      trackContentEngagement("contact", "consultation-booking", "Calendly Booking");
+      window.open(calendlyUrl("contact"), "_blank");
+      trackBookCall("contact");
     }
   };
 

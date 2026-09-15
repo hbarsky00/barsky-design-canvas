@@ -190,7 +190,7 @@ const caseStudies: CaseStudy[] = [
     // Never pulled — it was simply never added here. Hiram spotted it missing.
     id: "crypto",
     tags: ["Fintech", "Crypto", "Dual-Mode UX"],
-    title: "Gold2Crypto",
+    title: "Trading Without Friction",
     description: "A crypto trading interface for two audiences the industry insists you have to choose between — beginners paying hidden spreads, pros paying an are-you-sure tax.",
     impact: "",
     url: "/project/crypto",

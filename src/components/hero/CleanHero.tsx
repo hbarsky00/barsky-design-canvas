@@ -1,10 +1,10 @@
 import React from "react";
+import { calendlyUrl, trackBookCall } from "@/lib/analytics";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Mail, Linkedin, Github, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
 
 // Jump straight to the first case-study card (id="case-study-1", already set
 // by VideoCaseStudiesSection.tsx's CaseStudyCard), not the section wrapper —
@@ -186,7 +186,7 @@ const CleanHero: React.FC = () => {
                 See my work <ArrowRight className="w-4 h-4" />
               </Button>
               <Button variant="outline" asChild className="!w-auto">
-                <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+                <a href={calendlyUrl("hero")} onClick={() => trackBookCall("hero")} target="_blank" rel="noopener noreferrer">
                   Book a call
                 </a>
               </Button>

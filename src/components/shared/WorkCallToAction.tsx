@@ -1,4 +1,5 @@
 import React from "react";
+import { calendlyUrl, trackBookCall } from "@/lib/analytics";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { testimonials } from "@/data/testimonials";
@@ -13,7 +14,6 @@ import { testimonials } from "@/data/testimonials";
 const PROOF =
   testimonials.find((t) => t.name === "Daanish") ?? testimonials[0];
 
-export const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 interface WorkCallToActionProps {
   /**
@@ -77,7 +77,7 @@ const WorkCallToAction: React.FC<WorkCallToActionProps> = ({
     )}
     <div className="flex flex-col justify-center gap-3 sm:flex-row">
       <Button asChild size="lg">
-        <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+        <a href={calendlyUrl("work-cta")} onClick={() => trackBookCall("work-cta")} target="_blank" rel="noopener noreferrer">
           Book a call
         </a>
       </Button>

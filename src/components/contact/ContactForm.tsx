@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import { trackFormSubmission } from "@/lib/analytics";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -33,10 +34,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const shouldAutoFocus = location.pathname === "/contact";
+  // "Start this" on /services arrives with the package name so the sender
+  // does not have to retype the thing they just chose.
+  const packageName = new URLSearchParams(location.search).get("package");
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { name: "", email: "", subject: "", message: "" },
+    defaultValues: { name: "", email: "", subject: packageName ? `${packageName} package` : "", message: "" },
   });
 
   const [fallbackVisible, setFallbackVisible] = useState(false);
@@ -79,6 +83,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
         body: JSON.stringify(values),
       }).catch((e) => console.error("notification failed (submission is stored):", e));
 
+      trackFormSubmission("contact", true);
       toast({
         title: "Thanks for reaching out!",
         description: "It's in my inbox. I'll come back to you.",
@@ -101,6 +106,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
       window.setTimeout(() => navigate("/"), 600);
     } catch (error) {
       console.error("Error submitting form:", error);
+      trackFormSubmission("contact", false);
       // Never send someone away with nothing. A failed submit has to hand over
       // the direct address, and the message they already typed has to survive —
       // the form is deliberately not reset here so it is still there to copy.

@@ -73,3 +73,31 @@ export const trackFormSubmission = (
     });
   }
 };
+
+/**
+ * Every "Book a call" on the site goes through here. Before this, five
+ * components each held their own copy of the bare Calendly URL, so a booking
+ * could not be traced to the page that produced it in GA4 or in Calendly.
+ * The UTM lands on the Calendly booking record; the event lands in GA4.
+ */
+export const CALENDLY_BASE = 'https://calendly.com/barskyuxdesignservices/30min';
+
+export const calendlyUrl = (source: string) => {
+  const path = typeof window !== 'undefined' ? window.location.pathname : '';
+  const q = new URLSearchParams({
+    utm_source: 'barskydesign.pro',
+    utm_medium: 'site',
+    utm_campaign: source,
+    utm_content: path,
+  });
+  return `${CALENDLY_BASE}?${q.toString()}`;
+};
+
+export const trackBookCall = (source: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'book_call_click', {
+      source,
+      page_path: window.location.pathname,
+    });
+  }
+};

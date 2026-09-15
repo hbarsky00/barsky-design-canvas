@@ -1,4 +1,5 @@
 import React from "react";
+import { calendlyUrl, trackBookCall } from "@/lib/analytics";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
@@ -8,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { DesignServiceContent } from "@/data/designServices";
 
-const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 const container: Variants = {
   hidden: {},
@@ -72,7 +72,7 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
 
             <motion.div variants={variants} className="flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="!w-auto">
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                <a href={calendlyUrl("design-service")} onClick={() => trackBookCall("design-service")} target="_blank" rel="noopener noreferrer">
                   Book a call
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
@@ -195,7 +195,7 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="!w-auto">
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                <a href={calendlyUrl("design-service")} onClick={() => trackBookCall("design-service")} target="_blank" rel="noopener noreferrer">
                   Book a call
                 </a>
               </Button>

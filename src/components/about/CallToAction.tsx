@@ -1,11 +1,11 @@
 
 import React from 'react';
+import { calendlyUrl, trackBookCall } from "@/lib/analytics";
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
 
-const CALENDLY_URL = "https://calendly.com/barskyuxdesignservices/30min";
 
 const CallToAction: React.FC = () => {
   return (
@@ -32,7 +32,7 @@ const CallToAction: React.FC = () => {
           </Button>
 
           <Button size="lg" variant="on-dark" asChild>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+            <a href={calendlyUrl("about")} onClick={() => trackBookCall("about")} target="_blank" rel="noopener noreferrer">
               Book a Free Consultation
             </a>
           </Button>
