@@ -73,11 +73,15 @@ const caseStudies: CaseStudy[] = [
     url: "/project/bz-essentials",
     liveUrl: "https://az-essentials.netlify.app",
     images: {
-      primary: "/images/bz-essentials/card-hero.webp",
-      alt: "BZ Essentials — enterprise knowledge portal home"
+      // Three phone screens, same treatment as FarmFlow and QuickFlow (Hiram,
+      // 2026-09-14): home, the ADRD domain, a document. Shot from the live
+      // build on an iPhone 13 viewport; the Global/US lens is in every header,
+      // which is the study's point. No hover video: the card footage is the
+      // desktop portal and would contradict the poster.
+      primary: "/images/bz-essentials/card-phones.webp",
+      alt: "BZ Essentials on a phone: the portal home, the ADRD domain, and an approved document, with the Global/US region lens in every header"
     },
-    layout: "side-by-side",
-    video: "/bz-essentials-card.mp4"
+    layout: "side-by-side"
   },
   {
     id: "farmflow",
