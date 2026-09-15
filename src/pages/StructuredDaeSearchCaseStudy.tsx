@@ -13,12 +13,12 @@ const StructuredDaeSearchCaseStudy: React.FC = () => (
       // that domain no longer resolves at all. Hiram supplied the original
       // source files directly; restored locally rather than re-hosted
       // externally.
-      src: "/images/dae-search/what-i-built.webp",
+      src: "/images/dae-search/hero.webp",
+      width: 1763,
+      height: 1121,
+      alt: "DAE Search platform interface overview",
       hoverVideo: "/lovable-uploads/dae-search-hero.mp4",
-      width: 1024,
-      height: 576,
-      alt: "DAE Search — the process flow from login through advanced search to one data asset's profile",
-      caption: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+      caption: "The catalogue is displayed with the advanced search feature active: there are 350 assets, having been narrowed down by filters related to therapeutic area, data type and metadata. The difficult part was always finding candidates.",
     }}
     relatedPost={{
       slug: "finding-the-data-is-half-the-job",

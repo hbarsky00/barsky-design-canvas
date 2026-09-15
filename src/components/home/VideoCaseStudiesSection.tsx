@@ -56,9 +56,11 @@ const caseStudies: CaseStudy[] = [
     images: {
       // Was hosted on a Supabase project that's since been deprovisioned —
       // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
-      // failure). Hiram supplied the original source file directly;
-      // restored locally (same asset used as the full case study's hero).
-      primary: "/images/dae-search/what-i-built.webp",
+      // failure). Hiram supplied the original source file directly.
+      // hero.webp is the promo shot the study opens on; what-i-built.webp
+      // is the process-flow figure inside the study and was showing here
+      // by mistake (Hiram, 2026-09-15).
+      primary: "/images/dae-search/hero.webp",
       alt: "DAE Search — the process flow from login through advanced search to one data asset's profile"
     },
     layout: "side-by-side",
