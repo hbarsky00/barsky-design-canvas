@@ -26,7 +26,7 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/bz-essentials/card-product.webp",
       hoverVideo: "/bz-essentials-card.mp4",
-      alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header",
+      alt: "BZ Essentials on desktop and on a phone: the portal home and the ADRD domain, with the Global/US region lens in each header",
       caption: "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app, not a filter nobody opens.",
       width: 1600,
       height: 1000,

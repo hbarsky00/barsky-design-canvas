@@ -78,7 +78,7 @@ const caseStudies: CaseStudy[] = [
       // tried first and looked odd for a portal that is mostly used at a desk
       // (Hiram, 2026-09-14).
       primary: "/images/bz-essentials/card-product.webp",
-      alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header"
+      alt: "BZ Essentials on desktop and on a phone: the portal home and the ADRD domain, with the Global/US region lens in each header"
     },
     layout: "side-by-side",
     video: "/bz-essentials-card.mp4"

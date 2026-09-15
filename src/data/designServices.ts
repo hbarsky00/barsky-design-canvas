@@ -180,7 +180,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
         href: "/project/bz-essentials",
         title: "BZ Essentials",
         image: "/images/bz-essentials/card-product.webp",
-        alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header",
+        alt: "BZ Essentials on desktop and on a phone: the portal home and the ADRD domain, with the Global/US region lens in each header",
         caption:
           "The enterprise knowledge portal is constructed based on the client's PRD, the difficult aspect being determining if the document you have found is applicable to you.",
       },
