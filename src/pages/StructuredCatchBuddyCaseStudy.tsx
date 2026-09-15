@@ -37,10 +37,6 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
             width: 1150,
             height: 400,
           },
-          { src: "/images/catchbuddy-post-game.webp", alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee", caption: "To start posting a game you first need to choose the sport and that's all\u2014there's no need to include a team, a schedule, or a season.",
- width: 1848,
- height: 1364,
-    },
         ],
       },
       {
@@ -49,24 +45,12 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "A child won't be allowed to post a game until their parent has been verified; the panic button can be accessed from any screen that you're on while playing the game, and the meeting points are taken from a list that I have selected, so no one can drop a pin on an address of their own choosing.",
           "That one is often the subject of debate; although it would be more flexible if people were allowed to add their own locations, I still won't do so.",
         ],
-        images: [
-          { src: "/images/catchbuddy-choose-park.webp", alt: "Choose a Park: searchable list with distance and amenities", caption: "Here is a selected list of places where meetings can be held, including the distance and facilities available. It is not possible for anyone to place their own pin, and that limitation is what's intended.",
- width: 1940,
- height: 1396,
-    },
-        ],
       },
       {
         heading: "What AI Did, and What It Couldn't",
         paragraphs: [
           "The AI carried out the preparation of the RLS policies, carried out the Supabase migrations, carried out the Stripe integration and the OAuth flow, which represents a major part of the project, and it did so quickly.",
           "It wasn't clear who was allowed in, who was gatekept, and what a stranger would see about another stranger before agreeing to meet; those cases were the ones I handled manually. Although, one thing an AI security review did pick up on that I otherwise would have missed was a recursive RLS policy which would have led to data being leaked in production.",
-        ],
-        images: [
-          { src: "/images/catchbuddy-equipment-prefs.webp", alt: "Equipment and preferences: \"I'll bring a football,\" no-contact toggle", caption: "The minor details which the two strangers exchange before meeting, namely who is bringing the ball and how physical the game is going to be.",
- width: 1888,
- height: 1386,
-    },
         ],
       },
       {
@@ -76,11 +60,15 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
           "I created a Quick Start wizard which was not wanted, saw testers skip it each time, and eventually stopped having them skip it.",
           "The support for Apple, Outlook and ICS calendars was developed but then removed since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.",
         ],
-        imageLayout: "pair",
         images: [
-          { src: "/images/catchbuddy-find-players.webp", alt: "Find Players list with 92% and 81% match scores", width: 1946, height: 1404, caption: "The player cards show the match scores; the programme is now called Players since the testers always read 'Matches' as referring to a dating app." },
-          { src: "/images/catchbuddy-signup-minor-gate.webp", alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow", width: 1076, height: 1398, caption: "In version 1, the 13+ age restriction at sign-up was included as the first step in the minor-protection process rather than being added later." },
-          { src: "/images/catchbuddy-game-live.webp", alt: "Confirmation: \"Your Game is Live!\" with nearby player count, not a vanity counter", width: 1218, height: 1378, caption: "The caption indicates the number of other players around you. It is a real figure and this determines if you are able to play the game." },
+          { src: "/images/catchbuddy/m1-landing.webp", alt: "Landing on a phone: 'Your next pickup game is a block away', Join free and See open games", caption: "The front door on a phone. Join free, or look at open games first without an account.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m2-sign-up.webp", alt: "Sign-up on a phone: username, email, password, Continue with Google", caption: "Sign-up. The age gate sits behind Continue, so a minor is routed to a parent before anything else.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m3-browse.webp", alt: "Browse on a phone: How CatchBuddy Works in three steps, Post Your First Game, and the empty games list", caption: "Browse, the screen that used to be called Matches. Three steps, then the games nearby.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m4-find-people.webp", alt: "Find People on a phone: level filters and the empty state asking you to set availability", caption: "Find People. Level filters at the top; with nobody nearby yet it asks you to set your availability.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m5-safety.webp", alt: "Safety Guidelines on a phone: core safety rules and warning signs", caption: "Safety guidelines, one tap from every screen: public places only, tell someone, report private-location requests.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m6-about.webp", alt: "About on a phone: the sports supported and how it works", caption: "About: the six sports and the three steps.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m7-pro.webp", alt: "CatchBuddy Pro on a phone: monthly and annual plans", caption: "Pro. Monthly or annual; the free tier is the product, this is the upgrade.", width: 780, height: 1688 },
+          { src: "/images/catchbuddy/m8-contact.webp", alt: "Contact and Support on a phone: FAQs and a message form", caption: "Contact and the FAQs, including how safety works for minors.", width: 780, height: 1688 },
         ],
       },
       {
