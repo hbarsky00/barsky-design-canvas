@@ -39,17 +39,6 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
           "A PRD might outline an information architecture in a way that seems acceptable at first but collapses as soon as it's actually used, which is why I decided to create one. It includes three domains, four categories in each domain, and a group of documents complete with the metadata that a genuine one would have\u2014namely, owner, department, version, status, region, attachments, and related items.",
           "It's a prototype from a fictitious brand, and this fact is stated in the footer, but it is the underlying structure and behaviour that constitute the actual design work and those are the elements that this page deals with.",
         ],
-        videos: [
-          {
-            src: "/bz-essentials-walkthrough.mp4",
-            poster: "/images/bz-essentials/walkthrough-poster.jpg",
-            caption:
-              "End to end view of the full portal: starting from the home page, then the region switch which determines what is visible, followed by a domain landing page showing live counts, and then a document page displaying its metadata and the related records together with faceted search.",
-              width: 720,
-              height: 1280,
-          },
-        ],
-        imageLayout: "pair",
         images: [
           { src: "/images/bz-essentials/process-flow.webp", alt: "Process flow: Home to domain landing to category listing to document, with search as a second path straight to the document, and the region lens applying to all of it", caption: "There are two ways of getting to the same destination\u2014browsing enables you to learn the vocabulary and search allows you to bypass the hierarchy once you already have it.",
  width: 1500,
