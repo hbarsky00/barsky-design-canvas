@@ -132,8 +132,8 @@ const caseStudies: CaseStudy[] = [
       // The product, not the landing page: the web library with the Mac
       // recorder panel over it. The headline crop that was here showed the
       // pitch and nothing of the thing itself (Hiram, 2026-09-14).
-      primary: "/images/recast/card-product.webp",
-      alt: "Recast: the web library of recordings with the Mac recorder panel over it, Start Recording ready"
+      primary: "/images/recast/card-footage.webp",
+      alt: "Recast: the web library in dark mode with a recording running, from the Mac app footage"
     },
     layout: "side-by-side",
     // Real footage Hiram recorded of the Mac app, trimmed to the eight seconds

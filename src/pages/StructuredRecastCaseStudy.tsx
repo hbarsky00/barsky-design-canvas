@@ -18,12 +18,12 @@ const StructuredRecastCaseStudy: React.FC = () => (
     // showed the pitch; this shows the product. Cropped to the panel exactly —
     // a looser crop caught a card sitting behind it and read as an artifact.
     heroImage={{
-      src: "/images/recast/card-product.webp",
+      src: "/images/recast/card-footage.webp",
       hoverVideo: "/recast-card.mp4",
-      alt: "Recast: the web library of recordings with the Mac recorder panel over it, Start Recording ready",
+      alt: "Recast: the web library in dark mode with a recording running, from the Mac app footage",
       caption: "Record it once, send a link. Native capture on Mac and Android with a web library — including the browser recorder I built and then deleted.",
-      width: 1600,
-      height: 1000,
+      width: 1004,
+      height: 628,
     }}
     relatedPost={{
       slug: "i-just-wanted-to-send-someone-a-video",
