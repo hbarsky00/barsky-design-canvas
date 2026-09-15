@@ -59,10 +59,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
  width: 1500,
  height: 1041,
     },
-          { src: "/images/recast/web-library.webp", alt: "The Recast web library: recordings with durations, dates and a Shared badge", caption: "The second part of the boundary is that the site contains everything and never makes any recordings.",
- width: 1500,
- height: 1048,
-    },
         ],
       },
       {
@@ -127,10 +123,6 @@ const StructuredRecastCaseStudy: React.FC = () => (
           "The product offers storage: a free version, plus paid plans above that. Authorization is stored in a database that only the payment webhook can write to, so clients cannot assign themselves a plan. I decided to charge for storage because that's the aspect that costs me money when you use more of it.",
         ],
         images: [
-          { src: "/images/recast/mac-app.webp", alt: "The Recast recorder panel floating over a browser window: Full Screen, Window or Area, camera and mic toggles, Start Recording", caption: "The Mac app, over whatever happens to be on screen. Recording is native on both platforms. The website never captures anything.",
- width: 1050,
- height: 790,
-    },
         ],
       },
     ]}

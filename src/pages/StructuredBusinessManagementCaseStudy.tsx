@@ -14,7 +14,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
     heroImage={{
       src: "/images/business-management/card-phones.webp",
       hoverVideo: "/business-management-card.mp4",
-      alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management",
+      alt: "QuickFlow on a phone: the business overview, orders, customers and the recipe calculator",
       caption: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
       width: 1600,
       height: 1000,

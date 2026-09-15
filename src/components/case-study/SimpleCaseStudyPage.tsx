@@ -470,7 +470,10 @@ const SimpleCaseStudyPage: React.FC<SimpleCaseStudyPageProps> = ({
                     className={
                       portraitImgs.length > 4
                         ? "mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6"
-                        : "mt-10 flex flex-wrap items-start gap-6 sm:flex-nowrap sm:gap-6"
+                        : // Centred: a lone phone or a pair sat hard left with
+                          // the rest of the 1150px row empty, which read as a
+                          // layout mistake on every study that had one.
+                          "mt-10 flex flex-wrap items-start justify-center gap-6 sm:flex-nowrap sm:gap-6"
                     }
                   >
                     {portraitImgs.map(({ img, idx }) => {

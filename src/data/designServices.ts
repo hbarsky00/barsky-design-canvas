@@ -164,7 +164,7 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
         href: "/project/business-management",
         title: "QuickFlow",
         image: "/images/business-management/card-phones.webp",
-        alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management",
+        alt: "QuickFlow on a phone: the business overview, orders, customers and the recipe calculator",
         caption:
           "In this business, the warehouse, the van, and the office are three separate locations, and only one has a monitor.",
       },

@@ -113,7 +113,7 @@ const caseStudies: CaseStudy[] = [
       // recurring orders, the catalogue, delivery, drivers. The desktop
       // overview that was here is the study's hero already.
       primary: "/images/business-management/card-phones.webp",
-      alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management"
+      alt: "QuickFlow on a phone: the business overview, orders, customers and the recipe calculator"
     },
     layout: "side-by-side",
     video: "/business-management-card.mp4"
