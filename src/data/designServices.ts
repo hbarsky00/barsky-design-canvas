@@ -22,6 +22,16 @@ export interface DesignServiceProof {
   result: string;
 }
 
+export interface DesignServiceGalleryItem {
+  /** Case-study route on this site. */
+  href: string;
+  title: string;
+  image: string;
+  alt: string;
+  /** In the study's own words: a sentence lifted from the case study, never written for this page. */
+  caption: string;
+}
+
 export interface DesignServiceContent {
   slug: string;
   eyebrow: string;
@@ -30,6 +40,8 @@ export interface DesignServiceContent {
   /** Short, plain-language framing of the problem this service solves. */
   problem: string;
   capabilities: DesignServiceCapability[];
+  /** Full-width product shots with a line from each study. Optional; the mobile page carries it. */
+  gallery?: DesignServiceGalleryItem[];
   proof: DesignServiceProof[];
   faq: { question: string; answer: string }[];
 }
@@ -133,6 +145,44 @@ export const DESIGN_SERVICES: Record<string, DesignServiceContent> = {
         title: "Real-device testing",
         description:
           "Tested on actual iOS and Android hardware, including the older phone your users still have.",
+      },
+    ],
+    // The page was 401 words on the same template as its two siblings and
+    // Google left it crawled-but-unindexed (GSC, 2026-09-14). What makes it a
+    // page of its own is the evidence: the phone composites from the
+    // homepage cards, each with a sentence lifted from that study.
+    gallery: [
+      {
+        href: "/project/farmflow",
+        title: "FarmFlow",
+        image: "/images/farmflow/card-phones.webp",
+        alt: "FarmFlow on a phone: new request, my requests, a request's timeline, and reserving the farm",
+        caption:
+          "When a requester checks if the flowers for Thursday have been approved, they are not at their desk. The entire requester side operates at phone width.",
+      },
+      {
+        href: "/project/business-management",
+        title: "QuickFlow",
+        image: "/images/business-management/card-phones.webp",
+        alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management",
+        caption:
+          "In this business, the warehouse, the van, and the office are three separate locations, and only one has a monitor.",
+      },
+      {
+        href: "/project/stips",
+        title: "Stips",
+        image: "/images/stips/card-phones.webp",
+        alt: "Stips on a phone: the front door, the live markets board with Yes and No prices, a market page, and clubs",
+        caption:
+          "You can read prediction markets. They use play money, are based on real events, and give you the odds through a price so you don't have to do any math.",
+      },
+      {
+        href: "/project/bz-essentials",
+        title: "BZ Essentials",
+        image: "/images/bz-essentials/card-product.webp",
+        alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header",
+        caption:
+          "The enterprise knowledge portal is constructed based on the client's PRD, the difficult aspect being determining if the document you have found is applicable to you.",
       },
     ],
     proof: [

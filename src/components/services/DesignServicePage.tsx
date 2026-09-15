@@ -117,6 +117,45 @@ const DesignServicePage: React.FC<DesignServicePageProps> = ({ content }) => {
           </div>
         </section>
 
+        {content.gallery && (
+          <section className="px-4 sm:px-6 mt-24">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="font-display font-semibold text-foreground text-2xl sm:text-3xl mb-3">
+                On a phone
+              </h2>
+              <p className="text-base text-muted-foreground mb-10 max-w-3xl">
+                Shot from the live products. Each line under a picture is from that study, not written for this page.
+              </p>
+              <div className="space-y-14">
+                {content.gallery.map((g) => (
+                  <figure key={g.href}>
+                    <Link
+                      to={g.href}
+                      className="group block rounded-xs border border-border overflow-hidden hover:border-primary/40 transition-colors duration-200"
+                    >
+                      <img
+                        src={g.image}
+                        alt={g.alt}
+                        loading="lazy"
+                        width={1600}
+                        height={1000}
+                        className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </Link>
+                    <figcaption className="mt-4 text-base text-muted-foreground leading-relaxed">
+                      <Link to={g.href} className="font-semibold text-foreground hover:text-primary transition-colors">
+                        {g.title}
+                      </Link>
+                      {" "}
+                      {g.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Proof — real shipped work, linked */}
         <section className="px-4 sm:px-6 mt-24">
           <div className="max-w-3xl mx-auto">
