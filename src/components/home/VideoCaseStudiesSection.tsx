@@ -32,6 +32,25 @@ interface CaseStudy {
 // listing is affected.
 const caseStudies: CaseStudy[] = [
   {
+    id: "ring-rival",
+    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
+    title: "Ring-Rival",
+    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
+    impact: "",
+    url: "/project/ring-rival",
+    liveUrl: "https://ringrival.today",
+    images: {
+      // Was the title screen still + an AI-generated cinematic of a
+      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
+      // fighter. Now the card shows the thing you actually get — first-person
+      // gloves, opponent trash talk, the super-punch meter.
+      primary: "/images/ringrival-now/card-poster.jpg",
+      alt: "Ring-Rival mobile boxing gameplay"
+    },
+    layout: "side-by-side",
+    video: "/ring-rival-card.mp4"
+  },
+  {
     id: "catchbuddy",
     tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
     title: "CatchBuddy",
@@ -177,25 +196,6 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/stips-card.mp4"
-  },
-  {
-    id: "ring-rival",
-    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
-    title: "Ring-Rival",
-    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
-    impact: "",
-    url: "/project/ring-rival",
-    liveUrl: "https://ringrival.today",
-    images: {
-      // Was the title screen still + an AI-generated cinematic of a
-      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
-      // fighter. Now the card shows the thing you actually get — first-person
-      // gloves, opponent trash talk, the super-punch meter.
-      primary: "/images/ringrival-now/card-poster.jpg",
-      alt: "Ring-Rival mobile boxing gameplay"
-    },
-    layout: "side-by-side",
-    video: "/ring-rival-card.mp4"
   },
   {
     // Never pulled — it was simply never added here. Hiram spotted it missing.

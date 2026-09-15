@@ -20,6 +20,11 @@ export interface CaseStudyIndexEntry {
 
 export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
   {
+    id: "ring-rival",
+    title: "Ring-Rival",
+    blurb: "Console boxing feel on the mobile web.",
+  },
+  {
     id: "catchbuddy",
     title: "CatchBuddy",
     blurb: "Same-day pickup sports, designed for trust.",
@@ -58,11 +63,6 @@ export const CASE_STUDY_ORDER: CaseStudyIndexEntry[] = [
     id: "stips",
     title: "Stips",
     blurb: "Prediction markets you can actually read.",
-  },
-  {
-    id: "ring-rival",
-    title: "Ring-Rival",
-    blurb: "Console boxing feel on the mobile web.",
   },
 ];
 
