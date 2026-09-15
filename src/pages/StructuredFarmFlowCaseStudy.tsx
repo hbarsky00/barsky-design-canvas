@@ -13,11 +13,10 @@ const StructuredFarmFlowCaseStudy: React.FC = () => (
     ]}
     liveUrl="https://farmflow-app.netlify.app"
     heroImage={{
-      src: "/images/farmflow/01-requester-home.webp",
-      alt: "FarmFlow requester home: what's available this week, five ways to start a request, and the department's pending, approved and upcoming counts",
-      hoverVideo: "/farmflow-walkthrough.mp4",
-      caption:
-        "The page that is displayed after logging in. To see this, play the walkthrough, which goes from Sarah's request in Events all the way to James on the farm team: a new request, the queue, the ticket, the calendar, the catalogue, the reports and the availability rules. The recording was made using Playwright from the current live build, so it shows the application as it is at the present time, including the names and figures from the demo dataset.",
+      src: "/images/farmflow/card-phones.webp",
+      hoverVideo: "/farmflow-card.mp4",
+      alt: "FarmFlow on a phone: new request, my requests, a request's timeline, and reserving the farm",
+      caption: "An organisation's farm was taking plant requests by email. Four roles, a request lifecycle with photo confirmation, landscaping and reservations — twelve screens became twenty-two after the stakeholder's feedback.",
       width: 1600,
       height: 1000,
     }}

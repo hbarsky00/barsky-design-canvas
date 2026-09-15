@@ -14,16 +14,17 @@ const StructuredRingRivalCaseStudy: React.FC = () => (
     // so the first thing the page did was set the wrong expectation and the
     // second thing it did was break it.
     heroImage={{
-      src: "/images/ringrival-now/hero-triptych.webp",
-      alt: "Ring-Rival mid-fight: first-person gloves, Denny Frost blocking, trash talk and the super-punch meter",
+      src: "/images/ringrival-now/card-poster.jpg",
+      hoverVideo: "/ring-rival-card.mp4",
+      alt: "Ring-Rival mobile boxing gameplay",
       // No hover video here any more. This still sat directly above the
       // star-punch clip, so the top of the page was two video surfaces back to
       // back showing two different fights — a wide landscape one you had to
       // hover to see, then a narrow portrait one that played itself. One
       // moving thing at the top, and it should be the newest work.
-      caption: "During the battle: the gloves, the opponent attempting to block, some trash talk and the super meter. The opening frame of the gameplay, since the cinematic which used to be in this position promised a game that didn't exist.",
-      width: 1672,
-      height: 992,
+      caption: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
+      width: 1080,
+      height: 624,
     }}
     relatedPost={{
       slug: "the-work-is-deleting-not-generating",

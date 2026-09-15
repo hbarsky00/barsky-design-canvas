@@ -11,13 +11,13 @@ const StructuredHerbalinkCaseStudy: React.FC = () => (
     liveUrl="https://herbalink.live"
     heroImage={{
       // Live screenshots of the shipped app, replacing dead barskyux.com links.
-      src: "/images/herbalink/home-hero.webp",
-      alt: "HerbaLink homepage: personalized wellness guided by certified herbalists",
+      src: "/images/herbalink/card-poster-home.jpg",
+      hoverVideo: "/herbalink-card.mp4",
+      alt: "HerbaLink practitioner booking interface",
       // Full booking-demo capture: directory → booking → checkout → herb library.
-      hoverVideo: "/herbalink-demo.mp4",
-      caption: "The practitioner is what is promised on the front door. The catalogue size is never mentioned, and everything behind it is conditional on that promise being true.",
-      width: 2880,
-      height: 1800,
+      caption: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
+      width: 1152,
+      height: 720,
     }}
     relatedPost={{
       slug: "verification-is-a-door-not-a-sticker",

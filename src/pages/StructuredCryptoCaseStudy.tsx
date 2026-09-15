@@ -9,11 +9,11 @@ const StructuredCryptoCaseStudy: React.FC = () => (
     tags={["Fintech", "Crypto", "Product Design", "Dual-Mode UX"]}
     meta={[{ label: "Role", value: "Lead UX Designer" }]}
     heroImage={{
-      src: "/images/crypto/hero.webp",
-      alt: "Crypto trading dashboard on mobile and desktop",
-      caption: "The same account is used on both the phone and the desktop, with the mode set as a setting.",
-      width: 2096,
-      height: 1259,
+      src: "/images/crypto/hero-card.webp",
+      alt: "Gold2Crypto trading interface — one platform serving beginners and pros",
+      caption: "A crypto trading interface for two audiences the industry insists you have to choose between — beginners paying hidden spreads, pros paying an are-you-sure tax.",
+      width: 900,
+      height: 541,
     }}
     relatedPost={{
       slug: "beginner-or-pro-is-a-false-choice",

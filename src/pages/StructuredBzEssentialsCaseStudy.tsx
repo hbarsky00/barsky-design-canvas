@@ -24,11 +24,12 @@ const StructuredBzEssentialsCaseStudy: React.FC = () => (
       blurb: "Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it\u2026",
     }}
     heroImage={{
-      src: "/images/bz-essentials/home.webp",
-      alt: "BZ Essentials home: hero, quick access panel, and the four entry points into the portal",
-      caption: "The three domains are the front door and search is the fourth choice. It is not possible to search for a process about which you do not know the name yet.",
-      width: 1800,
-      height: 1013,
+      src: "/images/bz-essentials/card-product.webp",
+      hoverVideo: "/bz-essentials-card.mp4",
+      alt: "BZ Essentials on desktop and on a phone: the portal home at both sizes, with the Global/US region lens in each header",
+      caption: "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app, not a filter nobody opens.",
+      width: 1600,
+      height: 1000,
     }}
     blocks={[
       {

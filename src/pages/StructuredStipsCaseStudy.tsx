@@ -14,12 +14,12 @@ const StructuredStipsCaseStudy: React.FC = () => (
       // screenshot further down — the hero and a body image were the same
       // screen. The board is what the product actually is, and it looks like
       // nothing else on the page.
-      src: "/images/stips/landing.webp",
-      alt: "Stips landing: buy Yes or No on real-world events, $500 in play money to start",
-      hoverVideo: "/stips-promo.mp4",
-      caption: "$500 in play money and a simple question; it's stated upfront as the play money when you enter, before any question is asked.",
+      src: "/images/stips/card-phones.webp",
+      hoverVideo: "/stips-card.mp4",
+      alt: "Stips on a phone: the front door, the live markets board with Yes and No prices, a market page, and clubs",
+      caption: "Prediction markets you can actually read — play-money trading on real-world events, where the price is the probability.",
       width: 1600,
-      height: 900,
+      height: 1000,
     }}
     relatedPost={{
       slug: "if-you-make-people-do-math",

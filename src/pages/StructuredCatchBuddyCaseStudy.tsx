@@ -10,12 +10,12 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
     meta={[{ label: "Role", value: "Lead UX Designer & Developer" }]}
     liveUrl="https://catchbuddy.fit"
     heroImage={{
-      src: "/images/catchbuddy-hero-landing.webp",
-      width: 1960,
-      height: 1380,
-      alt: "CatchBuddy pickup sports landing hero",
+      src: "/images/catchbuddy-hero-landing-card.webp",
       hoverVideo: "/catchbuddy-card.mp4",
-      caption: "There's a game on on Saturday and the entire front door is directed towards the person who wants a whole afternoon.",
+      width: 900,
+      height: 507,
+      alt: "CatchBuddy pickup sports app",
+      caption: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     }}
     relatedPost={{
       slug: "when-trust-is-the-product",

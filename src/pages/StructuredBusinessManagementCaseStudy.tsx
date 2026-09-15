@@ -12,13 +12,12 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => (
       { label: "Industry", value: "Wholesale distribution" },
     ]}
     heroImage={{
-      src: "/images/business-management/v2/overview.webp",
-      alt: "QuickFlow Business Overview: today's sales, total revenue, orders delivered and active customers, above quick actions and a product-category breakdown",
-      hoverVideo: "/quickflow-walkthrough.mp4",
-      caption:
-        "The first screen he opens shows a day's sales compared with the weekly target, together with the revenue, deliveries and customers all on a single ledger. To see the rest, play it: the costing, the catalogue, the customers and the credit, the orders, the standing orders, the driver interface, the design system, and the connection to QuickBooks. This has been recorded from the running app, so it is the build that is currently live. The figures are taken from the demo dataset. His actual financial records remain his own.",
-      width: 2300,
-      height: 1438,
+      src: "/images/business-management/card-phones.webp",
+      hoverVideo: "/business-management-card.mp4",
+      alt: "QuickFlow on a phone: recurring orders, the product catalogue, delivery management and driver management",
+      caption: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
+      width: 1600,
+      height: 1000,
     }}
     blocks={[
       {
