@@ -241,7 +241,10 @@ const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(
         <video
           src={study.video}
           poster={study.images.primary}
-          className="w-full h-full object-cover object-top"
+          // contain, not cover. Every card clip is 16:9 in a 16:10 frame and
+          // cover cut a strip off both sides and the bottom, so a hover
+          // opened on a page with its edges missing (Hiram, 2026-09-15).
+          className="w-full h-full object-contain bg-muted/20"
           muted
           loop
           playsInline
