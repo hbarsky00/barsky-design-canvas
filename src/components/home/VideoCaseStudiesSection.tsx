@@ -88,11 +88,14 @@ const caseStudies: CaseStudy[] = [
     url: "/project/farmflow",
     liveUrl: "https://farmflow-app.netlify.app",
     images: {
-      primary: "/images/farmflow/card-hero.webp",
-      alt: "FarmFlow requester home — what's available this week and five ways to start a request"
+      // Four phone screens, not the desktop dashboard. Next to QuickFlow's
+      // dashboard the two cards read as the same product; the phones are
+      // what makes this one different (Hiram, 2026-09-14). No hover video:
+      // the walkthrough is the desktop app and would contradict the poster.
+      primary: "/images/farmflow/card-phones.webp",
+      alt: "FarmFlow on a phone: new request, my requests, a request's timeline, and reserving the farm"
     },
-    layout: "side-by-side",
-    video: "/farmflow-card.mp4"
+    layout: "side-by-side"
   },
   {
     id: "business-management",
@@ -117,11 +120,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/recast",
     liveUrl: "https://recastvid.com",
     images: {
-      // Tight crop on the headline, not the full 1440px page capture. On a
-      // phone the card is ~350px wide and there is no hover, so the whole
-      // screenshot became an unreadable smudge — this crop still reads.
-      primary: "/images/recast/card-hero.webp",
-      alt: "Recast — record it once, send a link"
+      // The product, not the landing page: the web library with the Mac
+      // recorder panel over it. The headline crop that was here showed the
+      // pitch and nothing of the thing itself (Hiram, 2026-09-14).
+      primary: "/images/recast/card-product.webp",
+      alt: "Recast: the web library of recordings with the Mac recorder panel over it, Start Recording ready"
     },
     layout: "side-by-side",
     // Real footage Hiram recorded of the Mac app, trimmed to the eight seconds
