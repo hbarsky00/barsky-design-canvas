@@ -84,14 +84,14 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Turning a commodity-to-crypto trading flow into something a first-timer can follow, by designing for the fear rather than around it.",
     image: "https://barskydesign.pro/images/og/crypto.png",
     published: "2025-08-24",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   },
   "herbalink": {
     title: "HerbaLink — Healthcare Marketplace UX Case Study",
     description: "A booking platform for verified herbalists, built solo end to end. Nobody is listed until their credentials check out — the problem was trust, not search.",
     image: "https://barskydesign.pro/images/og/herbalink.png",
     published: "2025-08-07",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   },
   "splittime": {
     title: "SplitTime — Co-Parenting App UX Case Study",
@@ -103,7 +103,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Play-money prediction markets designed so the price reads as a probability — 67¢ means 67% likely, with the payout worked out before you commit.",
     image: "https://barskydesign.pro/images/og/stips.png",
     published: "2026-08-08",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform — Investment UX Case Study",
@@ -127,63 +127,63 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
     image: "https://barskydesign.pro/images/business-management/v2/overview.webp",
     published: "2026-08-30",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "dae-search": {
     title: "Enterprise Data Search — UX Case Study",
     description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
     image: "https://barskydesign.pro/images/og/dae-search.png",
     published: "2026-05-20",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "fire-lion": {
     title: "Fire Lion — AI-Built Game Design Case Study",
     description: "A shipped mobile web game built solo with AI as co-builder — three modes, hand-tuned game feel, and a deletion list longer than the feature list.",
     image: "https://barskydesign.pro/images/og/fire-lion.png",
     published: "2026-05-19",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   },
   "recast": {
     title: "Recast — Cross-Platform Screen Recorder Case Study",
     description: "Record once, send a link. Native Mac and Android capture with a web library — including the browser recorder I built, then deleted.",
     image: "https://barskydesign.pro/images/og/recast.png",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "farmflow": {
     title: "FarmFlow — Farm Operations Request System Case Study",
     description: "A farm took plant requests by email and phone. FarmFlow replaced the inbox: four roles, a request lifecycle with photo confirmation, and reservations.",
     image: "https://barskydesign.pro/images/og/farmflow.png",
     published: "2026-09-11",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "bz-essentials": {
     title: "BZ Essentials — Enterprise Knowledge Portal Case Study",
     description: "An internal knowledge portal built from a client PRD, where region is a lens over the whole app instead of a filter nobody opens.",
     image: "https://barskydesign.pro/images/og/bz-essentials.png",
     published: "2026-08-27",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "ring-rival": {
     title: "Ring-Rival — AI Boxing Game Case Study",
     description: "A shipped boxing game: distinct AI opponents, generated trash talk, hand-tuned feel. Time-to-first-punch cut from 22 seconds to 6 by deleting four screens.",
     image: "https://barskydesign.pro/images/og/ring-rival.png",
     published: "2026-05-19",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   },
   "catchbuddy": {
     title: "CatchBuddy — Safe Sports Matching Case Study",
     description: "Same-day pickup sports built solo with AI — phone verification, a panic button, and curated meeting spots designed in from day one, not bolted on.",
     image: "https://barskydesign.pro/images/og/catchbuddy.png",
     published: "2026-05-19",
-    modified: "2026-09-13"
+    modified: "2026-09-15"
   },
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",
     description: "A concept for AI-assisted pharma HCP email production, designed around the approval gates — AI handles the work between humans, not the decisions.",
     image: "https://barskydesign.pro/images/og/email-creation-ai.png",
     published: "2026-05-20",
-    modified: "2026-09-13"
+    modified: "2026-09-14"
   }
 };
 

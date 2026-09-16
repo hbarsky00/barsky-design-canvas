@@ -26,6 +26,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
@@ -42,6 +43,12 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              // once: without it, a card that scrolls out of view animates back
+              // to opacity 0 and replays its staggered delay on the way back in.
+              // Measured 2026-09-15: a reader returning to re-read an answer saw
+              // it blank for ~0.8s, then a 0.6s fade — at 375 and 1440. Every
+              // other whileInView on the site already sets this.
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="glass-card p-6 layered-depth"
             >

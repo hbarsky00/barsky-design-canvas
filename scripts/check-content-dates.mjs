@@ -12,6 +12,7 @@ import { readFileSync } from "node:fs";
 
 const STYLE_ONLY = new Set([
   "c3937c91", // 2026-09-07 photo-credit span: opacity-70 → text-xs, on 12 posts
+  "62ad56ba", // 2026-09-14 four inline Investor Loan links unlinked; the words stayed
 ]);
 
 const seo = readFileSync("src/data/seoData.ts", "utf8");
