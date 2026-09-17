@@ -291,6 +291,93 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
   by one day the moment it lands — `check-content-dates.mjs` will say so.
 
 
+## Cycle 2 — started 2026-09-17
+
+- [x] **1 entity hardening** — 2026-09-17 — SEO/AEO was the staler half
+  (AEO 09-13, design 09-15). Cycle 1's lever 1 and lever 4 built the graph —
+  `#business`, `#hiram`, `#website`, every article's `author`/`publisher` by
+  `@id`. The gap this run found was the one page **about** the person.
+
+  **Measured first.** `seo_audit_all_routes.py` PROBLEMS: 0.
+  `check-content-dates.mjs` 35 routes, 0 stale. `schema_recommended_fields.py`
+  on live `/about`: Person **100** — every recommended field present. So the
+  Person node was not the weak point. The page was: `#hiram` declared
+  `url: https://barskydesign.pro/about`, and `/about` answered with a plain
+  `WebPage` carrying no `mainEntity`, no `about`, nothing that said "this
+  page is that person". One-directional edge. Google's ProfilePage
+  structured-data type (documented Jan 2024) exists for exactly this: a page
+  whose `mainEntity` is a single Person, which is what Google uses to tie a
+  creator identity to the pages that carry it.
+
+  Also checked and left alone: `sameAs` still LinkedIn + GitHub only. A
+  `twitter.com/hirambarsky` URL sits in `seoConstants.ts` `SOCIAL_PROFILES`,
+  which nothing imports — dead code, and unverified, so it stays out of the
+  graph. The Person `knowsAbout` list lives on `#business`, not `#hiram`; a
+  one-person business's expertise is the person's, but duplicating the array
+  into `index.html` twice buys little and starts a second copy to drift.
+  Not done.
+
+  **Changed — two files, two `@id` edges, zero new facts.**
+  - `src/utils/seo/structuredDataUtils.ts` — the base node for
+    `canonical === https://barskydesign.pro/about` is `@type: ProfilePage`
+    with `mainEntity: { "@id": "…/#hiram" }`. ProfilePage is a WebPage
+    subtype, so `isPartOf`, `publisher`, `image`, `primaryImageOfPage` all
+    stay valid. Every other route is unchanged (`WebPage`). Comment in the
+    file says why, so the next "always WebPage" tidy-up does not undo it.
+  - `index.html` — `#hiram` gains `mainEntityOfPage:
+    https://barskydesign.pro/about`, the reverse edge, served sitewide.
+
+  **Deliberately omitted:** `dateCreated` / `dateModified` on the ProfilePage.
+  The checker lists them as recommended. `/about` has no date in
+  `STATIC_PAGE_SEO`, `check-content-dates.mjs` only watches the 35 dated
+  routes, and lever 6 (09-13) exists because hand-maintained dates drift the
+  moment nothing checks them. A date nothing watches is worse than none.
+
+  **Measured.** `npx tsc --noEmit` 0, eslint 0, build 44 / 44 prerendered,
+  0 head-only. Built output parsed across all 44 pages: 0 JSON-LD parse
+  errors, **exactly 1** ProfilePage (`/about`), **0 dangling `@id`
+  references**. No `capture-bodies`: head JSON-LD only, no visible copy.
+
+  | check | live before | live after |
+  |---|---|---|
+  | `/about` base node type | WebPage | **ProfilePage** |
+  | `/about` → `#hiram` edge (`mainEntity`) | none | **present** |
+  | `#hiram` → `/about` edge (`mainEntityOfPage`) | none | **present** |
+  | ProfilePage nodes on `/`, `/blog`, a case study | 0 | **0** (contained) |
+  | `schema_recommended_fields.py` items missing a required field | 0 | **0** |
+  | sitemap URLs answering 200 | 44 / 44 | **44 / 44** |
+  | unknown path | 404 | **404** |
+
+  "After" is **barskydesign.pro** re-fetched after deploy `25372792`,
+  served chunk `index-Kmtuzy4X.js` = the local `dist/` hash. The checker's
+  remaining "recommended missing" on ProfilePage are `sameAs` (on the
+  Person it points to — the checker does not resolve `@id`) and the two
+  dates above.
+
+  **Out of scope but blocking — the first push did not deploy.** Deploy
+  `16930fd5` failed in `onPreBuild`, before `npm run build` ran: *"Node
+  version 18 is incompatible with the Prerender Extension — please upgrade
+  to Node 20.x or later"*. `.nvmrc` pinned `18.18.0`, added by a Lovable
+  bot commit (`8747c169`, Aug 2025) with no stated reason; react-router 7
+  had been warning `EBADENGINE >=20` on every deploy since. The extension
+  moved between the 09-16 deploy (green) and today, so **any** push this
+  week would have failed. Fixed in `25372792`: `.nvmrc` → `22`, the
+  version every local verification build has run on, so Netlify now builds
+  what was checked. Read from the Netlify deploy log in the browser pane —
+  the public API's `/log` endpoint 404s, and the CLI's `getDeploy` only
+  carries the one-line error. The playbook's "poll the live URL" step
+  caught it: after ~13 minutes the served chunk was still `DPn0Oi07`.
+
+  **Left open:**
+  - `seoConstants.ts` `SOCIAL_PROFILES` is dead code carrying an unverified
+    Twitter URL. Delete or verify — small, but not this lever's job.
+  - `/about`'s meta description still names AstraZeneca while
+    `careerHistory.ts` says Express Scripts (FLAGGED 08-29, still Hiram's).
+  - Lever 4's leftover from cycle 1: `/blog`, `/services`, `/store` and the
+    `/design-services/*` pages carry only `WebPage`. Still a content
+    question, not a validation one.
+  - Next lever: **2 extractable Q&A.**
+
 ### Out of rotation — 2026-09-09 — case studies had no BreadcrumbList
 
 SEO/AEO was the staler half (AEO 09-06, design 09-07). Lever 5 was next, and it
