@@ -18,9 +18,18 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
   // or Article schema is pushed separately below with richer (headline/author/
   // publisher) data. Emitting "Article" here too just produced two overlapping,
   // near-duplicate Article-typed blocks on the same page for no added value.
+  //
+  // Except /about, which is a ProfilePage — the one page whose subject IS the
+  // #hiram Person node served on every route. Before this, #hiram said
+  // `url: /about` and /about said nothing back; the entity had a homepage the
+  // homepage did not acknowledge. ProfilePage is a WebPage subtype, so every
+  // other field here (isPartOf, publisher, image) stays valid, and `mainEntity`
+  // is the one edge Google's ProfilePage spec exists to carry.
+  const isProfilePage = canonicalUrl === "https://barskydesign.pro/about";
   const baseStructuredData: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": isProfilePage ? "ProfilePage" : "WebPage",
+    ...(isProfilePage && { mainEntity: { "@id": "https://barskydesign.pro/#hiram" } }),
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
