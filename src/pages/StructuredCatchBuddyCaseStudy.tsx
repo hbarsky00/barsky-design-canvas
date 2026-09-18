@@ -57,7 +57,7 @@ const StructuredCatchBuddyCaseStudy: React.FC = () => (
         heading: "What I Cut",
         paragraphs: [
           "People always read \"Matches\" as referring to a dating service; it's now called \"Browse\" and \"Players\".",
-          "I created a Quick Start wizard which was not wanted, saw testers skip it each time, and eventually stopped having them skip it.",
+          "I built a Quick Start wizard nobody had asked for, watched testers skip it every time, and removed it.",
           "The support for Apple, Outlook and ICS calendars was developed but then removed since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.",
         ],
         images: [

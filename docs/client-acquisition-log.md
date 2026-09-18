@@ -1276,3 +1276,129 @@ Hiram's move, not the loop's.
   dist and reports 45/45 anyway, and the new sentence never reaches
   `prerendered-bodies/`. Gates: tsc clean, both builds clean, sentence
   confirmed in `dist/project/bz-essentials/index.html`. Committed, not pushed.
+
+- [x] **Lever 2 — proof audit** — 2026-09-17 — Audited **catchbuddy**, the
+  study most exposed to product drift after ring-rival: it links a live app,
+  it makes safety claims a founder would test by clicking through, and it had
+  never had a proof pass. One sentence fixed. Three claims do not match the
+  shipped product and are flagged, not rewritten.
+
+  **The mandated 200 check.** `https://catchbuddy.fit` returns 200. All 14
+  assets the page references exist in `public/` (hero card + hover video,
+  the who-can-do-what SVG, m1–m8, the design-system board, the walkthrough
+  video and its poster). Checked in *this* repo's `public/` — the first pass
+  ran the loop from the wrong directory and reported 14 missing; recorded
+  because a confident wrong finding is the failure mode this lever exists to
+  catch.
+
+  **Claims that trace.** Read the CatchBuddy repo (`~/Documents/catchbuddy`,
+  read-only, another agent's lane) and the live bundles at catchbuddy.fit:
+  - "Matches" → "Browse": commit `32959b3` (2026-07-15), and both navs read
+    Browse today. "Players" is loose — the screen is titled "Find People" —
+    but the study's own screenshot says so; left alone.
+  - Quick Start wizard built then removed: commit `f12ec6e` "remove Quick
+    Start" deletes 60 lines from `CreateCatchRequest.tsx`.
+  - Apple/Outlook/ICS calendars built then removed: commit `10b89c9`
+    "Simplify calendar to Google … drop Outlook/Apple options".
+    `AddToCalendarButton` is Google-only today.
+  - Stripe (`create-checkout`, `customer-portal` edge functions), Google
+    OAuth (`signInWithOAuth` in `Auth.tsx`), realtime (`postgres_changes`
+    subscriptions in three components), six sports (`SportSelector.tsx`),
+    Pro monthly/annual (both strings in the live `Upgrade` chunk), phone
+    verification and emergency contacts (both mounted in `MyProfile.tsx`,
+    both present in the live `MyProfile` chunk).
+  - The recursive RLS policy: migration `20251103213025` carries a
+    SECURITY DEFINER role check with the comment "avoids RLS recursion".
+    Defensible as written.
+
+  **The change.** "What I Cut", paragraph 2 read: *"I created a Quick Start
+  wizard which was not wanted, saw testers skip it each time, and eventually
+  stopped having them skip it."* The last clause says the opposite of what
+  the commit shows and reads as a garble from an earlier copy pass. Now:
+  *"I built a Quick Start wizard nobody had asked for, watched testers skip it
+  every time, and removed it."* Same claim, now matching `f12ec6e`. No
+  content removed.
+
+  **Three claims that do NOT match the product — flagged, not rewritten**,
+  per the playbook rule that whether a study tracks the product or stays a
+  snapshot is Hiram's call:
+
+  1. **There is no panic button in the shipped app.** `PanicButton.tsx` exists
+     in the repo with a `// TODO: Trigger edge function to notify emergency
+     contacts` and has **never been rendered in any commit** — it is imported
+     into `MatchDetails.tsx` and never placed in JSX (`git log -G"<PanicButton"`
+     across all history returns nothing). Vite tree-shakes it: the string
+     "panic" appears **zero** times across the live `index`, `MatchDetails`,
+     `MyProfile`, `SafetyGuidelines`, `GameDetails` and `CreateCatchRequest`
+     chunks. The study says it "can be accessed from any screen" (block 2),
+     the figure caption calls it one of "the two things which every game has
+     no matter what", and — the part that reaches a searcher before they
+     click — the **meta description, og:description, twitter:description and
+     JSON-LD** in `src/data/seoData.ts:176` all promise "a panic button".
+     `structuredCaseStudies.ts` repeats it four times (not rendered) and the
+     blog post at `blogData.ts:713` once. What the app *does* ship: emergency
+     contacts on the profile, phone verification, a post-game safety check-in
+     with "Did you feel safe?", and a Safety Guidelines page. Tellingly,
+     "Where It Landed" lists what shipped and does not include the panic
+     button.
+  2. **Minors are not gated on posting; they are gated on joining.** The study
+     heading is "A Parent Verifies Before a Kid Can Post" and the figure says
+     "an unverified minor can browse but not post". In the app, sign-up
+     requires a parent email for under-18s (`Auth.tsx`), and a minor
+     *joining* a game creates a match with `parental_approval_status:
+     "pending"` plus a `game_approvals` row for the guardian
+     (`GameDetails.tsx:85-130`). `CreateCatchRequest.tsx` has no
+     minor/parent/account_type check at all, and no RLS on `catch_requests`
+     enforces one. The product's own Safety Guidelines say "Parent/guardian
+     approval required for all games", which is the accurate version.
+  3. **Users can add their own meeting spots, since 2026-05-28.** The study
+     says meeting points come "from a list that I have selected, so no one
+     can drop a pin on an address of their own choosing" and "I still won't
+     do so." Migration `20260528013322` added a policy "Authenticated users
+     can suggest parks"; `ParkSelector` falls through to Google Places
+     (filtered to park/stadium/sports_complex/tennis_court) and to an "Add a
+     park" dialog that takes a typed name + address + city and geocodes it
+     (`created_via: 'user_manual'`). Both land as `status: 'pending_review'`
+     — but `onSelectPark(inserted.id)` selects the new park immediately, and
+     nothing in the post flow or the DB requires an approved park, so a game
+     can be posted at a user-supplied address before anyone reviews it.
+     Browse only lists approved parks (`useParks.ts`), so the *default* is
+     still curated; the flat "no one can" and "I still won't" are what no
+     longer hold. Literally, nobody drops a pin on a map — but an address is
+     an address.
+
+  **What I would change if told to.** Block 2 and the figure to say what
+  ships: parent email at sign-up, parent approval to *join* a game, emergency
+  contacts and phone verification on the profile, curated parks by default
+  with user suggestions held for review. And `seoData.ts:176` to drop "a panic
+  button" for "emergency contacts" — that one is the first thing a searcher
+  reads, and the only one of the three a founder would check in thirty
+  seconds. Not done without you: it is your account of your own product, and
+  the panic button may be on your roadmap rather than a mistake.
+
+  **One thing I nearly committed.** `capture-bodies` rewrote
+  `prerendered-bodies/blog.html` with a single em dash mangled to `���` in a
+  post thumbnail's alt text. Not my change and not an improvement, so
+  reverted before staging; the catchbuddy snapshot has zero replacement
+  characters. If the next run sees the same, the capture script's encoding
+  is worth a look, not the content.
+
+  Gates: `npx tsc --noEmit` clean, `npm run build` clean, `capture-bodies`
+  44/44, rebuilt, new sentence confirmed in `dist/project/catchbuddy/index.html`
+  and the old one gone. Committed, not pushed.
+
+  **Flagged for Hiram:**
+  1. **Panic button** — never shipped, promised in the study body, the figure,
+     and the search snippet. Roadmap item, or copy to correct? Say which and
+     the loop will do the copy (study + `seoData.ts` + the blog line).
+  2. **"Before a kid can post"** — the gate is on joining, not posting. Keep
+     the heading as intent, or change it to what the app does?
+  3. **User-added parks** — the study says you refused this; the app has
+     allowed it (held for review) since 2026-05-28. Snapshot of the earlier
+     decision, or update? If update, the honest line is "curated by default,
+     suggestions held for review" — and worth knowing that a pending park can
+     host a game before review, which may be a product bug rather than a copy
+     one. That is your repo, not this loop's; noting, not fixing.
+
+  Next lever: **4, entry-point coverage.** Lever 1's rotation sits at
+  **farmflow**. Lever 3 stays closed.
