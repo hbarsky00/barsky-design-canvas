@@ -765,3 +765,85 @@ broken. Do not redesign what works.
     `#3B82F6`.
   - The AEO rotation's cycle 1 is complete (all six levers ticked); the
     next SEO/AEO run opens cycle 2 in `docs/aeo-log.md`.
+
+- **2026-09-20 — "Hover to watch it run" told phones to hover; and the
+  capture pipeline was eating multi-byte characters.** Design was the staler
+  half (design 09-15, AEO 09-17). Chose the item the 09-15 run left open with
+  its fix already named, because it is the only copy on the site that gives
+  an instruction the reader's device cannot follow.
+
+  **Measured first**, on the built `dist/` in headless Chrome with touch
+  emulation and `(hover: none)`, 375×812, `/project/ring-rival`: the hero
+  label read **"Hover to watch it run"** at `opacity 1` under a thumb. The
+  09-15 claim that tapping works was re-checked rather than trusted: three
+  taps via `Input.dispatchTouchEvent` toggled the walkthrough
+  playing → paused → playing (`video.paused` false/true/false, video opacity
+  1/0/1, label opacity 0/1/0). The control was right, the word was wrong.
+  Checked before touching: dark mode is still unreachable (`darkMode:
+  ["class"]`, nothing sets the class — the 08-31 and 09-03 notes stand), so
+  "light and dark" is light. The header badge already reads "Designer and
+  Developer" — the 08-29 "Product Designer + AI" leftover is gone.
+
+  **Changed — `src/components/case-study/CaseStudyFigure.tsx`, the label
+  only.** Two spans inside the existing pill: `[@media(hover:none)]:hidden`
+  on "Hover to watch it run", `hidden [@media(hover:none)]:inline` on "Tap
+  to watch it run". A media query, not a JS `matchMedia`, so the served HTML
+  already carries the right word and nothing flashes on hydrate. The
+  `aria-label` on the button ("Play the … walkthrough") was already
+  device-neutral and is untouched. Pill position, size, motion, the
+  hover/click handlers: untouched.
+
+  **Rider, found by the mandated `capture-bodies` run —
+  `scripts/capture-prerendered-bodies.ts`, one line.** The recapture changed
+  `prerendered-bodies/blog.html`, a route this change does not touch: the em
+  dash in one blog card's alt ("Design for the Gates — Not the AI") arrived as
+  **three U+FFFD** (`ef bf bd` ×3 where git had `e2 80 94`). Cause:
+  `dumpDom` did `out += d.toString()` per stdout chunk, so a multi-byte
+  sequence straddling a pipe-chunk boundary decoded as one replacement
+  character per byte. Nondeterministic — it depends on where the pipe splits
+  — and silent. `git log -S` on the replacement character shows it has
+  entered `prerendered-bodies/` in at least **eight** past commits
+  (`59f3aeeb`, `ef2ddb89`, `52b7a027`, `85f1486c`, `b24f0cc0`, `d6cc6801`,
+  `3315aade`, `e434eeb2`) and been silently repaired by later recaptures.
+  Fix: `child.stdout.setEncoding("utf8")` — Node's string decoder carries
+  the partial sequence across chunks. Recaptured `/blog` after the fix:
+  byte-identical to the committed snapshot. Ten live routes checked for
+  U+FFFD before deploy: **0** on all ten, so nothing corrupt is in
+  production right now; the fix is so it stays that way.
+
+  **Second rider, from `check-content-dates.mjs` — `src/data/seoData.ts`.**
+  `/project/catchbuddy` declared `modified: 2026-09-15`; git had `c8f03d87`
+  (09-17), the client-acquisition loop's one-sentence Quick Start correction.
+  Copy change, so bumped to 09-17 per the playbook. That commit was sitting
+  **unpushed** on `main` (that loop commits and never pushes), so it deploys
+  with this push. Reviewed here: one sentence in
+  `StructuredCatchBuddyCaseStudy.tsx` plus its snapshot and log entry. Not
+  added to `STYLE_ONLY`; the sitemap `<lastmod>` follows.
+
+  **Measured.** `tsc --noEmit` 0, eslint 0 on the component, build
+  **44 / 44 prerendered, 0 head-only**. `capture-bodies` **44 / 44, 0
+  failures** (12 case-study snapshots changed with the new spans; one blog
+  snapshot changed with the corruption, reverted, recaptured clean after
+  the fix). Built output: **11 / 11** case-study pages with a walkthrough
+  carry both spans; 0 U+FFFD in `dist/blog/index.html`. Re-rendered the
+  built site:
+
+  | | 375, `(hover: none)` | 1440, `(hover: hover)` |
+  |---|---|---|
+  | label before | "Hover to watch it run" | "Hover to watch it run" |
+  | label after | **"Tap to watch it run"** | "Hover to watch it run" |
+  | tap toggles playback | yes (before and after) | — |
+
+  **Left open:**
+  - iOS Safari was not in the loop — Chrome's touch emulation is what was
+    measured. If a real iPhone ever shows the first tap not starting the clip
+    (a synthetic `mouseenter` firing `start()` before `click` fires `stop()`),
+    the fix is `onPointerEnter` gated on `pointerType === "mouse"`, not more
+    copy.
+  - `contrast-walk` has not been re-run on the pill; the text and background
+    are unchanged, only the word.
+  - Unchanged from 09-15: the homepage contact section's empty band at
+    1440×900, `heading-order` on `/blog` and `/store`, the case-study tag
+    separator at 1.37:1, comments still off, `<meta name="theme-color">`
+    still `#3B82F6`.
+  - AEO's next lever is still **2 extractable Q&A** (cycle 2).

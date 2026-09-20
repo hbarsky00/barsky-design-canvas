@@ -178,8 +178,14 @@ function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
     // working and the harness was throwing the result away. Measured on
     // /project/ring-rival: 50,959 bytes of correct markup, still running at
     // 45s. The closing tag is the real completion signal.
-    child.stdout.on("data", (d) => {
-      out += d.toString();
+    // Decode as a stream, not per chunk. `d.toString()` on each Buffer splits
+    // any multi-byte character that straddles a pipe-chunk boundary into
+    // U+FFFDs — an em dash in a /blog alt landed in the snapshot as three
+    // replacement characters on 2026-09-20, silently, on a route whose copy
+    // had not changed. setEncoding carries the partial sequence across chunks.
+    child.stdout.setEncoding("utf8");
+    child.stdout.on("data", (d: string) => {
+      out += d;
       if (out.trimEnd().endsWith("</html>")) finish(() => resolvePromise(out));
     });
 

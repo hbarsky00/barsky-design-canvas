@@ -176,7 +176,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Same-day pickup sports built solo with AI — phone verification, a panic button, and curated meeting spots designed in from day one, not bolted on.",
     image: "https://barskydesign.pro/images/og/catchbuddy.png",
     published: "2026-05-19",
-    modified: "2026-09-15"
+    modified: "2026-09-17"
   },
   "email-creation-ai": {
     title: "ManuscriptRx — Pharma Email AI Case Study",

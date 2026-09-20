@@ -409,7 +409,12 @@ export const CaseStudyHeroMedia: React.FC<HeroMediaProps> = ({
             style={{ opacity: playing ? 0 : 1 }}
           >
             <Play className="h-3.5 w-3.5 fill-current" />
-            Hover to watch it run
+            {/* A phone has no hover. Tapping toggles playback (onClick above),
+                so only the instruction changes: `(hover: none)` is the media
+                query for a primary input that cannot hover. Two spans, not a
+                JS check, so the served HTML already carries the right word. */}
+            <span className="[@media(hover:none)]:hidden">Hover to watch it run</span>
+            <span className="hidden [@media(hover:none)]:inline">Tap to watch it run</span>
           </span>
         </button>
       </div>
