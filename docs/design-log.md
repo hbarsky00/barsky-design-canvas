@@ -822,7 +822,7 @@ broken. Do not redesign what works.
 
   **Measured.** `tsc --noEmit` 0, eslint 0 on the component, build
   **44 / 44 prerendered, 0 head-only**. `capture-bodies` **44 / 44, 0
-  failures** (12 case-study snapshots changed with the new spans; one blog
+  failures** (11 case-study snapshots changed with the new spans; one blog
   snapshot changed with the corruption, reverted, recaptured clean after
   the fix). Built output: **11 / 11** case-study pages with a walkthrough
   carry both spans; 0 U+FFFD in `dist/blog/index.html`. Re-rendered the
@@ -833,6 +833,15 @@ broken. Do not redesign what works.
   | label before | "Hover to watch it run" | "Hover to watch it run" |
   | label after | **"Tap to watch it run"** | "Hover to watch it run" |
   | tap toggles playback | yes (before and after) | — |
+
+  **Verified on barskydesign.pro, not on the local build.** Live ~60s after
+  the push (`7a5a63ea`): served chunk `index-CP-8fdJh.js` = `dist/`.
+  **11 / 11** case-study pages serve both spans; the `@media (hover:none)`
+  rule is in the served CSS; `/project/catchbuddy` serves `dateModified:
+  2026-09-17` and the sitemap agrees. Rendered production at 375 with
+  `(hover: none)`: label **"Tap to watch it run"**; at 1440: "Hover to watch
+  it run". `/`, `/blog`, `/project/ring-rival`, `/project/catchbuddy` all
+  200 with 0 U+FFFD.
 
   **Left open:**
   - iOS Safari was not in the loop — Chrome's touch emulation is what was
