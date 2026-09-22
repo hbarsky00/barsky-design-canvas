@@ -34,7 +34,6 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
-const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
 const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
 const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
@@ -71,14 +70,15 @@ function AppContent() {
               {/* Structured case studies - these override the generic ProjectDetail routing */}
               {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              <Route path="/project/business-management" element={<Navigate to="/" replace />} />
               <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
               <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
               <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
               <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
+              <Route path="/project/dae-search" element={<ProjectDetail />} />
 
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
+              <Route path="/project/wholesale-distribution" element={<Navigate to="/" replace />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />

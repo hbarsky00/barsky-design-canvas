@@ -16,8 +16,8 @@
 
 ## Case studies
 
-- [Business Management](/project/business-management): Modular business management platform that reduced manual work 60% by centralizing inventory, workflows, and analytics with actionable insights across teams.
 - [CatchBuddy](/project/catchbuddy): Same-day pickup sports, designed for trust and safety.
+- [DAE Search](/project/dae-search): Enterprise data discovery and search, redesigned around trust in the result, not just relevance.
 - [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
 - [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
 - [Investor Loan App](/project/investor-loan-app): Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.

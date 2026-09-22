@@ -71,7 +71,7 @@ const BlogPostPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
         
-        <main className="pt-24 pb-16">
+        <main className="pt-[calc(var(--header-height,64px)+32px)] pb-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.article
               initial={{ opacity: 0, y: 30 }}

@@ -87,6 +87,22 @@ const featuredCaseStudies: FeaturedStudy[] = [
       designTools: ["Figma", "Protopie"],
     }
   },
+  {
+    id: "dae-search",
+    title: "DAE Search",
+    subtitle: "Enterprise Search Redesigned Around Trust, Not Just Relevance",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest. Semantic match with lineage and permissions inline reframed the product from a search tool into a data discovery tool.",
+    image: "/images/dae-search/hero.webp",
+    url: "/project/dae-search",
+    category: "Enterprise",
+    impact: "From 40 results to 4 trusted picks",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    techStack: {
+      aiTools: ["Semantic Search"],
+      devStack: ["React", "TypeScript"],
+      designTools: ["Figma"],
+    }
+  },
 ];
 
 const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study, index }) => {

@@ -7,7 +7,7 @@ import BlogPreview from '@/components/blog/BlogPreview';
 const Contact = () => {
   return <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-16">
+      <main className="flex-grow pt-[calc(var(--header-height,64px)+24px)] pb-12">
         <section className="py-12 dark:bg-gray-900">
           <div className="px-0 md:px-6 lg:px-10 max-w-6xl mx-auto">
             

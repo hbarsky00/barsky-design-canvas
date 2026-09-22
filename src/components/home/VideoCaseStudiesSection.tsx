@@ -88,6 +88,19 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "side-by-side",
     video: "/herbalink-card.mp4"
+  },
+  {
+    id: "dae-search",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
+    title: "DAE Search",
+    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    impact: "",
+    url: "/project/dae-search",
+    images: {
+      primary: "/images/dae-search/hero.webp",
+      alt: "DAE Search platform interface"
+    },
+    layout: "side-by-side"
   }
 ];
 

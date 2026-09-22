@@ -89,7 +89,7 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
       for (const keyword of rule.keywords) {
         // Create a regex that matches the keyword but not if it's already in a link
         const keywordRegex = new RegExp(
-          `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)`,
+          `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)(?![^<]*>)`,
           'i'
         );
         

@@ -11,7 +11,8 @@
 /mobile-app-design     /design-services/mobile-app-design  301
 /case-studies/*        /project/:splat                     301
 /project/barskyjoint   /                                   301
-/project/wholesale-distribution   /project/business-management   301
+/project/wholesale-distribution   /                                   301
+/project/business-management      /                                   301
 /project/farmflow      /                                   301
 /project/bz-essentials /                                   301
 /project/recast        /                                   301
@@ -37,8 +38,6 @@
 /blog/                                               /blog/index.html                                     200
 /project/herbalink                                   /project/herbalink/index.html                        200
 /project/herbalink/                                  /project/herbalink/index.html                        200
-/project/business-management                         /project/business-management/index.html              200
-/project/business-management/                        /project/business-management/index.html              200
 /project/investor-loan-app                           /project/investor-loan-app/index.html                200
 /project/investor-loan-app/                          /project/investor-loan-app/index.html                200
 /project/fire-lion                                   /project/fire-lion/index.html                        200
@@ -47,6 +46,8 @@
 /project/ring-rival/                                 /project/ring-rival/index.html                       200
 /project/catchbuddy                                  /project/catchbuddy/index.html                       200
 /project/catchbuddy/                                 /project/catchbuddy/index.html                       200
+/project/dae-search                                  /project/dae-search/index.html                       200
+/project/dae-search/                                 /project/dae-search/index.html                       200
 /blog/a-filter-nobody-opens                          /blog/a-filter-nobody-opens/index.html               200
 /blog/a-filter-nobody-opens/                         /blog/a-filter-nobody-opens/index.html               200
 /blog/a-to-do-app-doesnt-prove-anything              /blog/a-to-do-app-doesnt-prove-anything/index.html   200
