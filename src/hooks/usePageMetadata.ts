@@ -51,44 +51,8 @@ export const usePageMetadata = (path: string) => {
   return { metadata, loading };
 };
 
-export const useBlogPostMetadata = (slug: string) => {
-  const [metadata, setMetadata] = useState<BlogPostMetadata | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchBlogMetadata = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .eq('slug', slug)
-          .single();
-
-        if (error && error.code !== 'PGRST116') {
-          console.error('Error fetching blog post metadata:', error);
-        } else if (data) {
-          setMetadata({
-            title: data.title || '',
-            excerpt: data.excerpt || '',
-            featuredImage: data.featured_image || undefined,
-            author: data.author || 'Hiram Barsky',
-            publishedDate: data.published_date || '',
-            tags: data.tags || []
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching blog post metadata:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (slug) {
-      fetchBlogMetadata();
-    } else {
-      setLoading(false);
-    }
-  }, [slug]);
-
-  return { metadata, loading };
+export const useBlogPostMetadata = (_slug: string) => {
+  // The Supabase blog_posts table went with the Lovable backend; posts live in
+  // src/data/blogData.ts, which every caller already falls back to.
+  return { metadata: null as BlogPostMetadata | null, loading: false };
 };
