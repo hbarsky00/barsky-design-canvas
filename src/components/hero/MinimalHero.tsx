@@ -22,7 +22,7 @@ const MinimalHero: React.FC = () => {
   // Video timing hook for crack effect synchronization
   const { addTimestampTrigger } = useVideoTiming(videoRef, 3.5);
 
-  const imageUrl = '/images/hiram-barsky-profile.webp';
+  const imageUrl = '/images/hiram-barsky-profile.png';
   const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
 
   // Track scroll position to show/hide continue button

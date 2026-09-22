@@ -17,13 +17,13 @@ interface CaseStudySectionProps {
 const CaseStudySection: React.FC<CaseStudySectionProps> = ({ id, title, content }) => {
   return (
     <SectionTransition as="section" id={id} className="mb-20" variant="wipe">
-      <h2 className="text-lg md:text-2xl lg:text-3xl font-semibold md:font-bold text-foreground mb-8 text-left lg:text-center">
+      <h2 className="text-lg md:text-2xl lg:text-3xl font-display font-semibold md:font-bold text-foreground mb-8 text-left lg:text-center">
         {title}
       </h2>
       
       <div className="space-y-8">
         <div className="relative">
-          <div className="aspect-video bg-muted rounded-lg overflow-hidden shadow-lg">
+          <div className="aspect-video bg-muted rounded-sm overflow-hidden shadow-lg">
             <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-muted-foreground mb-2">Image Placeholder</p>

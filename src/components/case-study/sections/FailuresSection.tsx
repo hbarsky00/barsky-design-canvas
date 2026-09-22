@@ -27,7 +27,7 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
 
       <div className="space-y-6">
         {failures.map((failure, index) => (
-          <div key={index} className="border border-red-200 rounded-lg overflow-hidden">
+          <div key={index} className="border border-red-200 rounded-sm overflow-hidden">
             <div className="bg-red-50 p-6">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg">
@@ -48,7 +48,7 @@ const FailuresSection: React.FC<FailuresSectionProps> = ({
                 <MaximizableImage
                   src={failure.image}
                   alt={`Failed approach ${index + 1}`}
-                  className="w-full h-48 object-cover rounded-lg shadow-elevated glass-card layered-depth"
+                  className="w-full h-48 object-cover rounded-sm shadow-elevated glass-card layered-depth"
                 />
               </div>
             )}

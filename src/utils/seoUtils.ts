@@ -10,7 +10,6 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   // High priority pages - note the trailing slash for homepage
   { path: '/', priority: 'high', changeFreq: 'weekly' },
   { path: '/projects', priority: 'high', changeFreq: 'weekly' },
-  { path: '/services', priority: 'high', changeFreq: 'monthly' },
   
   // Case study pages - high priority for SEO
   { path: '/case-studies/herbalink-mobile-herbalist-ux-design', priority: 'high', changeFreq: 'monthly' },
@@ -22,7 +21,7 @@ export const pageIndexingConfigs: PageIndexingConfig[] = [
   { path: '/case-studies/medication-app', priority: 'medium', changeFreq: 'monthly' },
   { path: '/case-studies/gold2crypto', priority: 'medium', changeFreq: 'monthly' },
   { path: '/case-studies/dae-search', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/case-studies/barskyjoint', priority: 'medium', changeFreq: 'monthly' },
+  
   
   // Service pages - medium priority
   { path: '/design-services/ux-ui-design', priority: 'medium', changeFreq: 'monthly' },

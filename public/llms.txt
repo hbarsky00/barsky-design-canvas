@@ -17,11 +17,17 @@
 ## Case studies
 
 - [CatchBuddy](/project/catchbuddy): Same-day pickup sports, designed for trust and safety.
-- [DAE Search](/project/dae-search): Enterprise data discovery and search, redesigned around trust in the result, not just relevance.
+- [Crypto Trading Platform](/project/crypto): Fintech UX serving beginner and pro traders from one shared platform.
 - [Fire Lion](/project/fire-lion): Multi-mode AI-scaffolded game, shipped with ruthless scope discipline.
 - [HerbaLink](/project/herbalink): Verified-herbalist booking platform — the credential gate is the product.
-- [Investor Loan App](/project/investor-loan-app): Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.
+- [Investor Loan App](/project/investor-loan-app): Streamlined fintech underwriting that cut loan processing time 40% while improving compliance and borrower experience.
+- [ManuscriptRx](/project/email-creation-ai): AI-assisted pharma email workflow across a 6-step regulated process.
+- [Nudgeme](/project/nudgeme): Progressive web app that turns plain-language input into smart reminders with multi-channel delivery and RFC 5545 recurrence.
+- [Qr Code Builder](/project/qr-code-builder): Branded QR code generator with custom styling, logos, and analytics for marketing campaigns.
 - [Ring-Rival](/project/ring-rival): AI-assisted boxing game with distinct AI opponents and generated trash talk.
+- [Roi Design Builder](/project/roi-design-builder)
+- [Splittime](/project/splittime): Co-parenting platform that reduces family conflict via intuitive scheduling, transparent expense tracking, and secure messaging.
+- [Valora Bet](/project/valora-bet): Social prediction markets platform turning opinions into shared outcomes with transparent odds and community-driven markets.
 
 ## Blog
 
@@ -47,16 +53,16 @@
 - [The Designer Who Codes Argument Is Over](/blog/designer-who-codes-argument-is-over): A working demo used to be evidence. Now anyone can produce one in a weekend, and the design job market is still figuring out what to screen for instead.
 - [Shipping Got Cheap. Hiring Got Harder.](/blog/shipping-got-cheap-hiring-got-harder): Polish stopped being a signal the moment it became free. What
 - [Everyone's Portfolio Looks Good Now](/blog/everyones-portfolio-looks-good-now): Two years of building products solo with AI. The changes are real and specific, and so is the list of things that are exactly as hard as they always were.
-- [Finding a UX Job in 2025 | Job Search Guide for UX Designers — Barsky Design](/blog/finding-first-ux-job-guide): I
-- [Building Design Systems That Work | Practical Implementation Guide — Barsky Design](/blog/design-systems-that-get-used): Why design case studies should focus on problems, impact, and thought process — not wireframe montages.
-- [UX Case Study Writing | Portfolio That Gets Results — Barsky Design](/blog/case-study-writing): Practical insights on where AI helps and where it confuses users — and how to design with trust in mind.
-- [AI in UX Design | How Designers Can Leverage AI Tools — Barsky Design](/blog/ai-enhanced-ux-designer-future): We don
-- [Low-Budget User Research | Maximum Impact Methods — Barsky Design](/blog/user-research-shoestring-budget): Good visual hierarchy is invisible. Users don
-- [Visual Hierarchy in UX Design | From Wireframes to Wow — Barsky Design](/blog/wireframes-to-wow-visual-hierarchy): As a solo product designer, it
-- [Building Products Without Real Data | UX Research Mistakes — Barsky Design](/blog/built-product-without-real-data): Five years of building side projects taught me more about product design than any course or certification ever could. Here
-- [Building Products Nobody Asked For | Product Strategy Lessons — Barsky Design](/blog/building-products-nobody-asked-for): A gorgeous design that doesn
-- [Why Beautiful Interfaces Don't Convert | UX Psychology — Barsky Design](/blog/beautiful-interface-doesnt-convert): Building something new? Here
-- [User Research Without Users | Validation Strategies — Barsky Design](/blog/research-without-users): How to validate product ideas before you have users. Practical research methods for early-stage products and startups.
+- [Finding a UX Job in 2025 — Barsky Design](/blog/finding-first-ux-job-guide): I
+- [Design Systems That Actually Get Used](/blog/design-systems-that-get-used): Why design case studies should focus on problems, impact, and thought process — not wireframe montages.
+- [UX Case Studies That Win Interviews](/blog/case-study-writing): Practical insights on where AI helps and where it confuses users — and how to design with trust in mind.
+- [AI in UX Design — Leverage AI Tools](/blog/ai-enhanced-ux-designer-future): We don
+- [Low-Budget User Research Methods](/blog/user-research-shoestring-budget): Good visual hierarchy is invisible. Users don
+- [Visual Hierarchy — Wireframes to Wow](/blog/wireframes-to-wow-visual-hierarchy): As a solo product designer, it
+- [Building Products Without Real Data](/blog/built-product-without-real-data): Five years of building side projects taught me more about product design than any course or certification ever could. Here
+- [Building Products Nobody Asked For](/blog/building-products-nobody-asked-for): A gorgeous design that doesn
+- [Why Beautiful Interfaces Don't Convert](/blog/beautiful-interface-doesnt-convert): Building something new? Here
+- [Validating Products Without Users](/blog/research-without-users): How to get from zero to shipping AI-assisted design work using Claude as your daily thinking partner.
 
 ## For AI assistants
 

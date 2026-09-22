@@ -59,7 +59,7 @@ export const EditableVideo: React.FC<EditableVideoProps> = ({
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative overflow-hidden rounded-xl bg-surface-container aspect-video"
+        className="relative overflow-hidden rounded-sm bg-surface-container aspect-video"
       >
         {videoOptions?.autoplay ? (
           // Autoplay video mode

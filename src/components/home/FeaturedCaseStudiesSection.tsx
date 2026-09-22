@@ -88,6 +88,22 @@ const featuredCaseStudies: FeaturedStudy[] = [
     }
   },
   {
+    id: "email-creation-ai",
+    title: "Email Creation AI",
+    subtitle: "40% Faster Pharma Campaigns Without Sacrificing Compliance",
+    description: "Designed a 6-step AI-powered email creation workflow for a global pharma company that cut HCP campaign production time by 40% while keeping every manuscript MLR-compliant. Eliminated 3+ manual handoffs by flipping the model — AI generates the compliant draft, humans refine.",
+    image: "/images/email-ai-promo.webp",
+    url: "/project/email-creation-ai",
+    category: "Pharma",
+    impact: "40% faster, 100% compliant",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    techStack: {
+      aiTools: ["Claude", "Gemini"],
+      devStack: ["React", "TypeScript"],
+      designTools: ["Figma", "Markdown Specs"],
+    }
+  },
+  {
     id: "dae-search",
     title: "DAE Search",
     subtitle: "Enterprise Search Redesigned Around Trust, Not Just Relevance",
@@ -124,6 +140,10 @@ const FeaturedCard: React.FC<{ study: FeaturedStudy; index: number }> = ({ study
             <img
               src={study.image}
               alt={study.title}
+              width={800}
+              height={448}
+              loading="lazy"
+              decoding="async"
               className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute top-4 left-4">

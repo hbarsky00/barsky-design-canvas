@@ -133,8 +133,6 @@ export const useOpenAiCaptions = () => {
     let projectContext = `${projectId} application interface`;
     if (projectId === 'splittime') {
       projectContext = 'splittime co-parenting family coordination app';
-    } else if (projectId === 'barskyjoint') {
-      projectContext = 'barskyjoint food truck restaurant ordering platform';
     } else if (projectId === 'herbalink') {
       projectContext = 'herbalink herbal medicine wellness platform';
     }

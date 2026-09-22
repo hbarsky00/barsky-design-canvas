@@ -148,7 +148,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                   <ProjectVideo
                     src={researchSection.researchVideo}
                     title="Research Video"
-                    className="w-full rounded-xl"
+                    className="w-full rounded-sm"
                   />
                 ) : (
                   /* Maximizable Images Display */

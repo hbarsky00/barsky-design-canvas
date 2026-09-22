@@ -66,14 +66,14 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                       src={images[0].src}
                       alt={images[0].alt}
                       annotations={images[0].annotations}
-                      className="w-full rounded-lg"
+                      className="w-full rounded-sm"
                     />
                   ) : (
                     <MaximizableImage
                       src={images[0].src}
                       alt={images[0].alt}
                       caption={images[0].caption}
-                      className="w-full rounded-lg"
+                      className="w-full rounded-sm"
                     />
                   )}
                 </motion.div>
@@ -127,14 +127,14 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                       src={images[1].src}
                       alt={images[1].alt}
                       annotations={images[1].annotations}
-                      className="w-full rounded-lg"
+                      className="w-full rounded-sm"
                     />
                   ) : (
                     <MaximizableImage
                       src={images[1].src}
                       alt={images[1].alt}
                       caption={images[1].caption}
-                      className="w-full rounded-lg"
+                      className="w-full rounded-sm"
                       fit="contain"
                     />
                   )}

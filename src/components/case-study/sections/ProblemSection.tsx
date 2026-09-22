@@ -54,7 +54,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({
             src={wireframingImage}
             alt="Splittime Wireframing Concepts"
             caption="Wireframes established core structure and user flows early."
-            className="w-full max-w-3xl mx-auto rounded-lg shadow-lg"
+            className="w-full max-w-3xl mx-auto rounded-sm shadow-lg"
             projectId="splittime"
           />
         </div>

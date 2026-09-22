@@ -62,7 +62,7 @@ export const useAnalytics = () => {
     if (path === '/' || path === '') return 'home';
     if (path.includes('/project/') || path.includes('/case-studies/')) return 'portfolio';
     if (path.includes('/projects')) return 'portfolio-list';
-    if (path.includes('/services')) return 'services';
+    
     if (path.includes('/design-services')) return 'design-services';
     return 'other';
   };
@@ -71,7 +71,7 @@ export const useAnalytics = () => {
   const getPageType = (path: string): string => {
     if (path === '/' || path === '') return 'landing';
     if (path.includes('/project/') || path.includes('/case-studies/')) return 'detail';
-    if (path.match(/\/(projects|services|design-services)$/)) return 'category';
+    if (path.match(/\/(projects|design-services)$/)) return 'category';
     if (path.includes('/contact')) return 'contact';
     return 'content';
   };
@@ -80,7 +80,7 @@ export const useAnalytics = () => {
   const getUserJourney = (path: string): string => {
     if (path === '/' || path === '') return 'discovery';
     if (path.includes('/projects') || path.includes('/project/') || path.includes('/case-studies/')) return 'consideration';
-    if (path.includes('/services') || path.includes('/design-services')) return 'evaluation';
+    if (path.includes('/design-services')) return 'evaluation';
     if (path.includes('/contact')) return 'conversion';
     return 'engagement';
   };

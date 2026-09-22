@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global pointer cursor on all interactive elements */
+button,
+[role="button"],
+a,
+summary,
+label[for],
+select,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+button:disabled,
+[role="button"][aria-disabled="true"],
+button[disabled] {
+  cursor: not-allowed;
+}
+
 /* Image Quality Enhancement */
 @layer utilities {
   .image-render-crisp-edges {
@@ -381,8 +401,8 @@ select:focus-visible, a:focus-visible,
   
 /* Hero responsive containers - ensures safe margins on all devices */
 .hero-container-mobile {
-  padding-left: max(16px, env(safe-area-inset-left));
-  padding-right: max(16px, env(safe-area-inset-right));
+  padding-left: max(4px, env(safe-area-inset-left));
+  padding-right: max(4px, env(safe-area-inset-right));
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -1034,7 +1054,7 @@ body {
 
 /* Layout Normalization - Section Shell & Content Rails */
 .section-container {
-  @apply max-w-[1280px] mx-auto px-6 md:px-10;
+  @apply max-w-[1280px] mx-auto px-2 sm:px-6 md:px-10;
 }
 
 .content-rail {
@@ -1671,4 +1691,11 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
     color: #ffffff !important;
   }
 }
+
+/* Global heading font — all headings use Space Grotesk */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
+}
+
+
 

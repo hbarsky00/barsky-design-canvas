@@ -1,11 +1,16 @@
 import React from "react";
-import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
-import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import SimpleCaseStudyPage from "@/components/case-study/SimpleCaseStudyPage";
+import { getSimpleCaseStudyPageProps } from "@/utils/simpleCaseStudyAdapter";
 
 const StructuredCatchBuddyCaseStudy: React.FC = () => {
-  const caseStudyData = getStructuredCaseStudy("catchbuddy");
-  if (!caseStudyData) return <div>Case study not found</div>;
-  return <StructuredCaseStudyLayout caseStudyData={caseStudyData} />;
+  const props = getSimpleCaseStudyPageProps("catchbuddy");
+  if (!props) return null;
+  return (
+    <SimpleCaseStudyPage
+      {...props}
+      overviewUrl="/project/catchbuddy"
+    />
+  );
 };
 
 export default StructuredCatchBuddyCaseStudy;

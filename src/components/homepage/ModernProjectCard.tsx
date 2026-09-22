@@ -5,6 +5,7 @@ import { ArrowRight, Hash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import TechStackDisplay, { TechStack } from "@/components/tech-stack/TechStackDisplay";
+import IntentRippleWrap from "@/components/shared/IntentRippleWrap";
 
 interface ModernProjectCardProps {
   title: string;
@@ -214,7 +215,9 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
         className="block outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
         onKeyDown={handleKeyDown}
       >
+        <IntentRippleWrap className="block rounded-xl overflow-hidden">
         <Card className="overflow-hidden bg-white/95 backdrop-blur-sm border border-gray-200/80 hover:shadow-xl hover:shadow-gray-200/20 transition-all duration-300 group cursor-pointer will-change-transform">
+
           {/* Video/Thumbnail Section */}
           <div className="relative aspect-video bg-surface-variant overflow-hidden">
             {isDirectVideo ? (
@@ -301,6 +304,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             </div>
           </div>
         </Card>
+        </IntentRippleWrap>
+
       </Link>
     </motion.div>
   );

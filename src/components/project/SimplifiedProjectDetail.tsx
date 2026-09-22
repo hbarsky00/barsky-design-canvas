@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useParams, useLocation, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,9 +10,7 @@ import StructuredCaseStudyLayout from "@/components/case-study/structured/Struct
 
 
 const SimplifiedProjectDetail: React.FC = () => {
-  const { pathname } = useLocation();
-  // /project/dae-search is an explicit route (so it prerenders) and has no :projectId.
-  const projectId = useParams<{ projectId: string }>().projectId ?? pathname.split("/").filter(Boolean).pop();
+  const { projectId } = useParams<{ projectId: string }>();
   
   if (!projectId) {
     return <Navigate to="/projects" replace />;

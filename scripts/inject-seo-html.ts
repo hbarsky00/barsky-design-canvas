@@ -25,6 +25,7 @@ const DIST = resolve("dist");
 const STATIC_PATHS = [
   "/",
   "/services",
+  "/case-studies",
   "/design-services/ux-ui-design",
   "/design-services/mobile-app-design",
   "/design-services/web-development",

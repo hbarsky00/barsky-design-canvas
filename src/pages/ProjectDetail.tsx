@@ -1,13 +1,11 @@
 
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ImageMaximizerProvider } from "@/context/ImageMaximizerContext";
 import SimplifiedProjectDetail from "@/components/project/SimplifiedProjectDetail";
 
 const ProjectDetail = () => {
-  const { pathname } = useLocation();
-  // /project/dae-search is an explicit route (so it prerenders) and has no :projectId.
-  const projectId = useParams<{ projectId: string }>().projectId ?? pathname.split("/").filter(Boolean).pop();
+  const { projectId } = useParams<{ projectId: string }>();
   
   if (!projectId) {
     return (

@@ -61,19 +61,9 @@ const InternalLinkingHub: React.FC = () => {
       icon: <Smartphone className="w-6 h-6" />,
       links: [
         {
-          text: "BarskyJoint - Restaurant Ordering",
-          url: "/project/barskyjoint",
-          description: "Dual-format restaurant ordering platform"
-        },
-        {
           text: "HerbaLink - Telemedicine Platform", 
           url: "/project/herbalink",
           description: "Digital healthcare consultation app"
-        },
-        {
-          text: "Barsky Joint - Restaurant Tech",
-          url: "/case-studies/barskyjoint",
-          description: "Dual-format restaurant ordering system"
         }
       ]
     },

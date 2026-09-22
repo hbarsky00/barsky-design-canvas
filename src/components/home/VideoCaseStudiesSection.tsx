@@ -51,7 +51,7 @@ const caseStudies: CaseStudy[] = [
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
     url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
+    liveUrl: "https://ringrival.today",
     images: {
       primary: "/images/ringrival-hero-title.webp",
       alt: "Ring-Rival mobile boxing gameplay"
@@ -66,7 +66,7 @@ const caseStudies: CaseStudy[] = [
     description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     impact: "",
     url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
+    liveUrl: "https://catchbuddy.fit",
     images: {
       primary: "/images/catchbuddy-hero-landing.webp",
       alt: "CatchBuddy pickup sports app"
@@ -90,6 +90,20 @@ const caseStudies: CaseStudy[] = [
     video: "/herbalink-card.mp4"
   },
   {
+    id: "email-creation-ai",
+    tags: ["Enterprise", "Gen AI", "Pharma", "Workflow Design"],
+    title: "Email Creation AI",
+    description: "A self-initiated concept for AI-assisted pharma HCP email production — designed around the approval gates, not around the AI.",
+    impact: "",
+    url: "/project/email-creation-ai",
+    images: {
+      primary: "/images/email-ai-promo.webp",
+      alt: "Email Creation AI workflow"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/email-creation-ai-hero.mp4"
+  },
+  {
     id: "dae-search",
     tags: ["Enterprise", "Data Discovery", "Search UX"],
     title: "DAE Search",
@@ -100,7 +114,8 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/dae-search/hero.webp",
       alt: "DAE Search platform interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    video: "/lovable-uploads/dae-search-hero.mp4"
   }
 ];
 
@@ -151,25 +166,27 @@ const CaseStudyCard: React.FC<{
           className="block h-full group cursor-pointer"
         >
           <div className="flex justify-center h-full">
-            <video 
-              src={study.video}
-              poster={study.images.primary}
-              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
-              muted
-              loop
-              playsInline
-              style={{ maxWidth: '625px', height: 'auto' }}
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => {
-                e.currentTarget.pause();
-                e.currentTarget.currentTime = 0;
-                e.currentTarget.load();
-              }}
-            />
+            <div className="w-full aspect-video overflow-hidden" style={{ maxWidth: '625px' }}>
+              <video 
+                src={study.video}
+                poster={study.images.primary}
+                className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                muted
+                loop
+                playsInline
+                onMouseEnter={(e) => e.currentTarget.play()}
+                onMouseLeave={(e) => {
+                  e.currentTarget.pause();
+                  e.currentTarget.currentTime = 0;
+                  e.currentTarget.load();
+                }}
+              />
+            </div>
           </div>
         </div>
       );
     }
+
     
     return (
       <div 
@@ -180,8 +197,11 @@ const CaseStudyCard: React.FC<{
           <img 
             src={study.images.primary} 
             alt={study.images.alt}
+            width={1250}
+            height={781}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
+            decoding="async"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
             style={{ maxWidth: '625px', height: 'auto' }}
           />

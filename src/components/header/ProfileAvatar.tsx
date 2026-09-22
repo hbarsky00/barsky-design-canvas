@@ -6,7 +6,7 @@ import { useHeaderNavigation } from "./useHeaderNavigation";
 
 const ProfileAvatar: React.FC = () => {
   // Using your working external image URL
-  const imageUrl = '/images/hiram-barsky-profile.webp';
+  const imageUrl = '/images/hiram-barsky-profile.png';
   const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
   
   const { setIsIntentionalScrolling } = useHeaderNavigation();

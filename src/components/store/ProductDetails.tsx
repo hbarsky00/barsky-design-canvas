@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Award, ArrowLeft, CreditCard } from "lucide-react";
+import { ShoppingCart, Award, CreditCard } from "lucide-react";
+import BackButton from "@/components/ui/BackButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -60,20 +61,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-6">
-        <Button variant="ghost" asChild>
-          <Link to="/store" className="flex items-center text-slate-600 dark:text-slate-300 hover:text-barsky-blue">
-            <ArrowLeft className="h-4 w-4 mr-2" /> Back to Store
-          </Link>
-        </Button>
+        <BackButton to="/store" label="Back to Store" />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="overflow-hidden rounded-lg relative">
+        <div className="overflow-hidden rounded-lg relative aspect-video bg-muted">
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-auto object-cover"
+            width={1200}
+            height={675}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
           />
+
           {product.badge && (
             <div className="absolute top-4 right-4">
               <Badge className="bg-barsky-blue text-white flex items-center gap-1 px-2 py-1">

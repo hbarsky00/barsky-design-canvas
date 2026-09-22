@@ -28,6 +28,7 @@ const staticEntries: Entry[] = [
       title: "Hiram Barsky — designer and developer",
     },
   },
+  { path: "/case-studies", changefreq: "monthly", priority: "0.9" },
   { path: "/services", changefreq: "monthly", priority: "0.9" },
   { path: "/design-services/ux-ui-design", changefreq: "monthly", priority: "0.8" },
   { path: "/design-services/mobile-app-design", changefreq: "monthly", priority: "0.8" },

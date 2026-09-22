@@ -1,11 +1,10 @@
 import React from "react";
-import StructuredCaseStudyLayout from "@/components/case-study/structured/StructuredCaseStudyLayout";
-import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
+import { getSimpleCaseStudyPageProps, SimpleCaseStudyPage } from "@/utils/simpleCaseStudyAdapter";
 
 const StructuredFireLionCaseStudy: React.FC = () => {
-  const caseStudyData = getStructuredCaseStudy("fire-lion");
-  if (!caseStudyData) return <div>Case study not found</div>;
-  return <StructuredCaseStudyLayout caseStudyData={caseStudyData} />;
+  const props = getSimpleCaseStudyPageProps("fire-lion");
+  if (!props) return null;
+  return <SimpleCaseStudyPage {...props} />;
 };
 
 export default StructuredFireLionCaseStudy;

@@ -40,6 +40,7 @@ const CHROME =
 function getRoutes(): string[] {
   const staticPaths = [
     "/",
+    "/case-studies",
     "/services",
     "/design-services/ux-ui-design",
     "/design-services/mobile-app-design",

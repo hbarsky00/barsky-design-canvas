@@ -1,0 +1,71 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { Mail, Linkedin, Github, Calendar, ArrowRight } from "lucide-react";
+
+const SHIPPED = [
+  { label: "CatchBuddy", desc: "Same-day pickup sports", to: "/project/catchbuddy" },
+  { label: "HerbaLink", desc: "Verified herbalist platform", to: "/project/herbalink" },
+  { label: "NudgeMe", desc: "Natural-language reminder app", to: "/project/nudgeme" },
+  { label: "Valora Bet", desc: "Social prediction markets platform", to: "/project/valora-bet" },
+];
+
+const CONCEPTS = [
+  { label: "Ring-Rival", desc: "Mobile web boxing", to: "/project/ring-rival" },
+  { label: "Fire Lion", desc: "Word-casting arcade game", to: "/project/fire-lion" },
+];
+
+const ProductSection: React.FC<{ label: string; items: typeof SHIPPED }> = ({ label, items }) => (
+  <div className="product-section">
+    <h2 className="section-label">{label}</h2>
+    {items.map((it) => (
+      <a key={it.label} href={it.to} title={`${it.label} — ${it.desc}`} className="product-row">
+        <span className="product-pill">{it.label}</span>
+        <span className="product-description">{it.desc}</span>
+      </a>
+    ))}
+  </div>
+);
+
+const HeroContent: React.FC = () => {
+  return (
+    <div className="hero-inner">
+      <p className="hero-eyebrow">Hey there! I am</p>
+      <h1 className="hero-name">HIRAM BARSKY<span className="sr-only"> — Lead Product & AI Designer</span></h1>
+      <div className="hero-divider" />
+      <p className="hero-role">Lead Product &amp; AI Designer · Clifton, NJ</p>
+      <p className="hero-tagline">I design AI-first products that ship.</p>
+
+      <div id="projects" className="product-list">
+        <ProductSection label="SHIPPED PRODUCTS" items={SHIPPED} />
+        <ProductSection label="CONCEPT GAMES" items={CONCEPTS} />
+      </div>
+
+      <div className="hero-bottom-contrast mb-3">
+        <Link to="/case-studies" className="inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline opacity-90 hover:opacity-100">
+          View Case Studies <ArrowRight size={14} />
+        </Link>
+      </div>
+
+      <div className="social-icons hero-bottom-contrast">
+        {[
+          { Icon: Mail, href: "mailto:hbarsky01@gmail.com", label: "Email" },
+          { Icon: Linkedin, href: "https://www.linkedin.com/in/hiram-barsky", label: "LinkedIn" },
+          { Icon: Github, href: "https://github.com/hbarsky", label: "GitHub" },
+          { Icon: Calendar, href: "https://calendly.com/barskyuxdesignservices/30min", label: "Book" },
+        ].map(({ Icon, href, label }) => (
+          <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="social-link">
+            <Icon size={20} />
+          </a>
+        ))}
+      </div>
+
+      <div className="book-call-wrap hero-bottom-contrast">
+        <a className="book-call" href="https://calendly.com/barskyuxdesignservices/30min" target="_blank" rel="noopener noreferrer">
+          Book a Call
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default HeroContent;

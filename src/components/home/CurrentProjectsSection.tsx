@@ -93,8 +93,10 @@ const CurrentProjectsSection: React.FC = () => {
               >
                 <Card variant="outlined" className="h-full hover:shadow-md transition-shadow duration-300 bg-background/50 backdrop-blur-sm">
                   {/* Video Preview */}
-                  <div 
-                    className="relative aspect-video bg-muted rounded-t-lg overflow-hidden cursor-pointer group"
+                  <button
+                    type="button"
+                    aria-label={`Play ${project.title} video`}
+                    className="relative aspect-video bg-muted rounded-t-lg overflow-hidden cursor-pointer group w-full block p-0 border-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     onClick={() => handleVideoClick(project.videoUrl)}
                     onMouseEnter={() => setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
@@ -116,6 +118,8 @@ const CurrentProjectsSection: React.FC = () => {
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          width={1280}
+                          height={720}
                         />
                         {/* Play button overlay */}
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -127,7 +131,7 @@ const CurrentProjectsSection: React.FC = () => {
                         </div>
                       </>
                     )}
-                  </div>
+                  </button>
 
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between gap-3 mb-3">

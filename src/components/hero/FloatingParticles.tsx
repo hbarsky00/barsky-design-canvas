@@ -12,23 +12,14 @@ interface Particle {
 }
 
 const FloatingParticles: React.FC = () => {
-  // Generate subtle particles
-  const particles: Particle[] = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    duration: Math.random() * 15 + 20,
-    delay: Math.random() * 8,
-    color: [
-      'rgba(59, 130, 246, 0.3)',
-      'rgba(147, 51, 234, 0.3)',
-      'rgba(99, 102, 241, 0.3)',
-      'rgba(255, 255, 255, 0.2)',
-      'rgba(16, 185, 129, 0.3)',
-      'rgba(245, 101, 101, 0.3)'
-    ][Math.floor(Math.random() * 6)]
-  }));
+  const particles: Particle[] = [
+    { id: 0, x: 12, y: 18, size: 5, duration: 22, delay: 0, color: "rgba(147, 51, 234, 0.45)" },
+    { id: 1, x: 78, y: 22, size: 3, duration: 18, delay: 2.5, color: "rgba(59, 130, 246, 0.5)" },
+    { id: 2, x: 88, y: 65, size: 6, duration: 25, delay: 5, color: "rgba(255, 255, 255, 0.35)" },
+    { id: 3, x: 8, y: 55, size: 2.5, duration: 16, delay: 1.2, color: "rgba(16, 185, 129, 0.55)" },
+    { id: 4, x: 55, y: 78, size: 4, duration: 20, delay: 7, color: "rgba(245, 101, 101, 0.4)" },
+    { id: 5, x: 35, y: 35, size: 3.5, duration: 24, delay: 3.8, color: "rgba(99, 102, 241, 0.45)" },
+  ];
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -46,16 +37,16 @@ const FloatingParticles: React.FC = () => {
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0.5],
-            y: [-20, -100, -200],
-            x: [0, Math.random() * 40 - 20, Math.random() * 60 - 30],
+            opacity: [0, particle.size > 4 ? 0.9 : 0.7, 0],
+            scale: particle.id % 2 === 0 ? [0, 1, 0.4] : [0, 1.2, 0.6],
+            y: particle.id % 3 === 0 ? [-10, -140, -60] : [-20, -80, -180],
+            x: particle.id % 2 === 0 ? [0, 30, -20] : [0, -25, 40],
           }}
           transition={{
             duration: particle.duration,
             delay: particle.delay,
             repeat: Infinity,
-            ease: "easeOut",
+            ease: "easeInOut",
           }}
         />
       ))}
