@@ -1871,7 +1871,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "May 16, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
+    coverImage: "/lovable-uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
     tags: ["Product Design", "Marketing", "Solo Designer", "UX Design"],
     slug: "built-product-without-real-data",
     content: `
