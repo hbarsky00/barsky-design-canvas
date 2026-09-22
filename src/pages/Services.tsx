@@ -13,7 +13,7 @@ const CALENDLY = "https://calendly.com/barskyuxdesignservices/30min";
 const liveProof = [
   { name: "HerbaLink", what: "Credential-gated herbalist booking", url: "https://herbalink.live", study: "/case-studies/herbalink" },
   { name: "NudgeMe", what: "Natural-language reminders (PWA)", url: "https://nudgemeapp.netlify.app", study: "/case-studies/nudgeme" },
-  { name: "ROI Calculator", what: "Design value modeling for finance", url: "https://roicalc.one", study: "/case-studies/roi-design-builder" },
+  { name: "ROI Calculator", what: "Design value modeling for finance", url: "https://roicalc.site", study: "/case-studies/roi-design-builder" },
 ];
 
 const services = [

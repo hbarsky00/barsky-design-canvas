@@ -117,15 +117,14 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   // Add specific schemas based on content type
   if (seoData.type === 'article' || seoData.kind === 'post') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const datePublished = seoData.publishedTime || seoData.published;
     const blogPostSchema: any = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      datePublished,
+      ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
       author: {
         "@type": "Person",
@@ -139,15 +138,14 @@ export const generateStructuredData = (seoData: SEOData) => {
 
   // Add Article schema for projects/case studies (editorial content, not products)
   if (seoData.kind === 'project') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const datePublished = seoData.publishedTime || seoData.published;
     const articleSchema: any = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      datePublished,
+      ...(datePublished && { datePublished }),
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
       author: {
         "@type": "Person",

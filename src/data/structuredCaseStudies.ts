@@ -587,7 +587,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: roiDesignCalculatorImage,
       alt: `ROI Design Calculator interface showing business value and payback outputs`,
     },
-    projectLink: `https://roicalc.one/`,
+    projectLink: `https://roicalc.site/`,
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
       statement: `Designers lose budget conversations because they speak in craft and stakeholders speak in money. The brief was a tool that translates. The hard part isn't the math — it's knowing which numbers stakeholders actually trust. Industry benchmarks get challenged immediately unless they're citable. That's the core design problem this tool is solving.`,

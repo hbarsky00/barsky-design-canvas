@@ -3,6 +3,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Per-page title, description, canonical, og:* and twitter:* are written
+         per route by scripts/inject-seo-html.ts (and by UnifiedSEO at runtime).
+         Hard-coding them here shipped a second, generic copy first, and the
+         first title tag is the one Google reads. Keep only sitewide tags below. -->
+
     <meta name="google-site-verification" content="qtRvrh4E-LoAlYx6yBRup7DFikg4HyeElgRyi-ESsPE" />
     <meta name="google-site-verification" content="vOrOr_Y5MMf82UfN5XNFGNLrFu1-_ozGvmoMIewDGMg" />
     
@@ -22,23 +27,7 @@
     <link rel="icon" type="image/jpeg" href="/images/hiram-barsky-profile.png" />
     <link rel="apple-touch-icon" href="/images/hiram-barsky-profile.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UX Designer Portfolio — Hiram Barsky</title>
-    <meta data-rh="true" name="description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
-    <link data-rh="true" rel="canonical" href="https://barskydesign.pro/" />
-    <link data-rh="true" rel="alternate" hreflang="en" href="https://barskydesign.pro/" />
-    <link data-rh="true" rel="alternate" hreflang="x-default" href="https://barskydesign.pro/" />
 
-    <!-- Static Open Graph for non-JS crawlers (LinkedIn, Slack, Facebook); replaced at hydration via data-rh. -->
-    <meta data-rh="true" property="og:type" content="website" />
-    <meta data-rh="true" property="og:url" content="https://barskydesign.pro/" />
-    <meta data-rh="true" property="og:title" content="UX Designer Portfolio — Hiram Barsky" />
-    <meta data-rh="true" property="og:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
-    <meta data-rh="true" property="og:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
-    <meta data-rh="true" property="og:site_name" content="Hiram Barsky Design" />
-    <meta data-rh="true" name="twitter:card" content="summary_large_image" />
-    <meta data-rh="true" name="twitter:title" content="UX Designer Portfolio — Hiram Barsky" />
-    <meta data-rh="true" name="twitter:description" content="Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact." />
-    <meta data-rh="true" name="twitter:image" content="https://barskydesign.pro/images/hiram-barsky-profile.png" />
     <base href="/" />
 
     <!-- Performance & Critical Resource Hints -->

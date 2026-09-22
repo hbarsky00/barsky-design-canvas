@@ -71,17 +71,66 @@ function getBlogSlugs(): string[] {
   return Array.from(new Set(slugs)).sort();
 }
 
+/**
+ * Per-post title/description/author/date, read straight out of blogData.ts.
+ *
+ * This file cannot import blogData: the module imports .jpg cover images, which
+ * tsx has no loader for. So the fields are parsed out of the source the same way
+ * getBlogSlugs() above parses slugs.
+ *
+ * Without this, every post not listed in BLOG_SEO_MAP shipped static HTML titled
+ * "Blog Post: <slug>" with the site's default description, no author and no
+ * datePublished — so the BlogPosting schema had neither an author nor a date for
+ * 28 of the 30 posts.
+ */
+type BlogMeta = { title: string; description: string; author: string; published?: string; image?: string };
+
+function parseBlogMeta(): Record<string, BlogMeta> {
+  const p = resolve("src/data/blogData.ts");
+  if (!existsSync(p)) return {};
+  const txt = readFileSync(p, "utf8");
+  const out: Record<string, BlogMeta> = {};
+
+  // Split on the top-level entries: each post object starts at a 4-space `id:`.
+  const chunks = txt.split(/\n  \{\n/).slice(1);
+  for (const chunk of chunks) {
+    const slug = /slug:\s*"([a-z0-9-]+)"/.exec(chunk)?.[1];
+    if (!slug) continue;
+    const title = /title:\s*"((?:[^"\\]|\\.)*)"/.exec(chunk)?.[1];
+    const excerpt = /excerpt:\s*"((?:[^"\\]|\\.)*)"/.exec(chunk)?.[1];
+    const author = /author:\s*"([^"]*)"/.exec(chunk)?.[1];
+    const date = /date:\s*"([^"]*)"/.exec(chunk)?.[1];
+    const cover = /coverImage:\s*"(\/[^"]*)"/.exec(chunk)?.[1];
+    if (!title) continue;
+    const unescape = (v: string) => v.replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    // "August 27, 2026" -> ISO. An unparseable date is left off rather than faked.
+    const parsed = date ? new Date(date) : null;
+    out[slug] = {
+      title: unescape(title),
+      description: excerpt ? unescape(excerpt) : SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+      author: author || SEO_CONSTANTS.AUTHOR,
+      published: parsed && !isNaN(parsed.getTime()) ? parsed.toISOString() : undefined,
+      image: cover,
+    };
+  }
+  return out;
+}
+
+const BLOG_META = parseBlogMeta();
+
 function seoInputFor(pathname: string): SEOInput {
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "");
+    const post = BLOG_META[slug];
     const override = getBlogSEO(slug) || {};
     return {
       path: pathname,
       kind: "post",
-      title: override.title ?? `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
-      description: override.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-      image: override.image,
-      published: override.published,
+      title: override.title ?? post?.title ?? `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
+      description: override.description ?? post?.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+      image: override.image ?? post?.image,
+      author: post?.author,
+      published: override.published ?? post?.published,
       modified: override.modified,
     };
   }

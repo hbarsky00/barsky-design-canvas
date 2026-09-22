@@ -24,7 +24,7 @@ const RoiDesignPromo: React.FC = () => (
       <ProjectNav
       brand={<span style={{ color: "#111" }}>ROI Design Calculator</span>}
       links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }]}
-      cta={{ label: "Try It Free →", href: "https://roicalc.one/" }}
+      cta={{ label: "Try It Free →", href: "https://roicalc.site/" }}
       bg="#fff" border="1px solid #e2e8f0" textColor="#111" backColor="rgba(0,0,0,0.35)"
       ctaBg={BLUE} ctaColor="#fff"
     />
@@ -54,7 +54,7 @@ const RoiDesignPromo: React.FC = () => (
         </div>
 
         <div style={{ display: "flex", gap: 12, marginTop: 24, flexWrap: "wrap" }}>
-          <a href="https://roicalc.one/" target="_blank" rel="noopener noreferrer"
+          <a href="https://roicalc.site/" target="_blank" rel="noopener noreferrer"
             style={{ background: BLUE, color: "#fff", padding: "14px 24px", borderRadius: 8, fontWeight: 700, textDecoration: "none" }}>
             Try It Free →
           </a>
@@ -100,7 +100,7 @@ const RoiDesignPromo: React.FC = () => (
         Try ROI Design Calculator Free →
       </h2>
       <p style={{ color: "rgba(255,255,255,0.85)", marginTop: 12 }}>Build the case that gets design funded.</p>
-      <a href="https://roicalc.one/" target="_blank" rel="noopener noreferrer"
+      <a href="https://roicalc.site/" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-block", marginTop: 24, background: "#fff", color: BLUE, padding: "16px 32px", borderRadius: 8, fontWeight: 800, textDecoration: "none" }}>
         Open Calculator →
       </a>
