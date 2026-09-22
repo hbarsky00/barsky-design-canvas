@@ -3,11 +3,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const SeoCheckRunner: React.FC = () => {
-  // Holds an arbitrary JSON response from the seo-verify edge function and this
-  // debug page indexes into it freely. `unknown` is the correct type and it
-  // produced 41 errors here; typing the whole response shape is real work for a
-  // page only reachable at an unlisted admin URL.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [json, setJson] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [slug, setSlug] = useState("/");
@@ -30,8 +25,8 @@ const SeoCheckRunner: React.FC = () => {
       console.log("[SEO_VERIFY_JSON]", JSON.stringify(data, null, 2));
       
       setError(data.ok ? "" : data.error || data.message || "Verification reported an issue.");
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Network error");
+    } catch (e: any) {
+      setError(e?.message || "Network error");
       console.error("[SEO_VERIFY_ERROR]", e);
     } finally {
       setLoading(false);
@@ -39,10 +34,8 @@ const SeoCheckRunner: React.FC = () => {
   };
 
   useEffect(() => {
-    // Mount-only on purpose. `slug` is bound to an input the user edits, so
-    // depending on it would re-run the check on every keystroke.
+    // Auto-run on mount with default slug
     runCheck(slug);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCheck = () => {

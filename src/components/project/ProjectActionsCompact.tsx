@@ -43,8 +43,21 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
     }
   };
 
-  const shareUrl = projectPageUrl || liveUrl || '';
-  const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+  const handleLinkedInShare = () => {
+    const shareUrl = projectPageUrl || liveUrl;
+    const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    
+    // Open LinkedIn sharing dialog in popup
+    if (typeof window !== 'undefined') {
+      window.open(
+        linkedinUrl,
+        '_blank',
+        'width=550,height=420,menubar=no,toolbar=no,status=no,scrollbars=yes,resizable=yes'
+      );
+    }
+    
+    onShare?.();
+  };
 
   if (!liveUrl) return null;
 
@@ -63,17 +76,14 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
       </a>
 
       <div className="flex items-center gap-3 sm:gap-4">
-        <a
-          href={linkedinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => onShare?.()}
+        <button
+          onClick={handleLinkedInShare}
           className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-background text-foreground shadow-md border border-border hover:bg-muted transition-colors active:scale-[.95]"
           aria-label="Share on LinkedIn"
           title="Share on LinkedIn"
         >
           <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-        </a>
+        </button>
 
         <button
           onClick={handleCopy}

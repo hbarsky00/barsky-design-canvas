@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // Move navLinks outside the hook to prevent new array reference on every render
 const NAV_LINKS = [
-  { name: "Case Studies", href: "/#case-studies" },
+  { name: "Case Studies", href: "#case-studies" },
   { name: "Services", href: "/services" },
   { name: "Store", href: "/store" },
   { name: "Blog", href: "/blog" },
@@ -17,19 +17,6 @@ export const useHeaderNavigation = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isIntentionalScrolling, setIsIntentionalScrolling] = useState(false);
-  // The scroll listener is attached once and closed over whatever this was at
-  // attach time, so reading the state directly always saw the initial `false`.
-  // The ref is read live inside the handler.
-  //
-  // NOTE this only fixes half the problem: ProfileAvatar calls
-  // useHeaderNavigation() itself, which is a *separate* hook instance with its
-  // own state, so its setIsIntentionalScrolling(true) never reaches the
-  // header's copy either way. Making that work needs a shared context, which is
-  // a behaviour change and not in scope for a lint pass.
-  const isIntentionalScrollingRef = useRef(false);
-  useEffect(() => {
-    isIntentionalScrollingRef.current = isIntentionalScrolling;
-  }, [isIntentionalScrolling]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -51,7 +38,7 @@ export const useHeaderNavigation = () => {
   const isHomepage = location.pathname === '/';
   const isProjectPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/case-studies/');
 
-  const scrollToSection = useCallback((sectionId: string) => {
+  const scrollToSection = (sectionId: string) => {
     
     // First check if we're on the homepage
     if (location.pathname !== '/') {
@@ -111,9 +98,7 @@ export const useHeaderNavigation = () => {
     };
     
     attemptScroll();
-    // location.pathname and navigate are the only outer values it reads;
-    // setIsIntentionalScrolling is a setState and stable by contract.
-  }, [location.pathname, navigate]);
+  };
 
   const handleLinkClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -126,14 +111,13 @@ export const useHeaderNavigation = () => {
       return;
     }
     
-    const hashIndex = href.indexOf('#');
-    if (hashIndex !== -1) {
-      const sectionId = href.substring(hashIndex + 1);
-
+    if (href.startsWith('#')) {
+      const sectionId = href.substring(1);
+      
       // Special handling for contact section
       if (sectionId === 'contact') {
         const isHomepage = location.pathname === '/';
-
+        
         if (isHomepage) {
           // On homepage, scroll to contact form
           scrollToSection('contact');
@@ -143,7 +127,7 @@ export const useHeaderNavigation = () => {
         }
         return;
       }
-
+      
       // For other anchor links, scroll to the section
       scrollToSection(sectionId);
     } else if (href === '/') {
@@ -193,9 +177,8 @@ export const useHeaderNavigation = () => {
       return location.pathname === "/services" || location.pathname.startsWith("/design-services");
     }
     
-    const linkHashIndex = link.indexOf('#');
-    if (linkHashIndex !== -1) {
-      const sectionId = link.substring(linkHashIndex + 1);
+    if (link.startsWith('#')) {
+      const sectionId = link.substring(1);
       const isActive = activeSection === sectionId;
       return isActive;
     }
@@ -240,7 +223,7 @@ export const useHeaderNavigation = () => {
       }
 
       // Skip section detection during intentional scrolling to prevent conflicts
-      if (isIntentionalScrollingRef.current) {
+      if (isIntentionalScrolling) {
         return;
       }
 
@@ -253,11 +236,11 @@ export const useHeaderNavigation = () => {
       if (location.pathname === '/') {
         // Get all section elements that correspond to navigation links
         const sections = navLinks
-          .filter(link => link.href.includes('#'))
-          .map(link => {
-            const id = link.href.substring(link.href.indexOf('#') + 1);
-            return { id, element: document.getElementById(id) };
-          });
+          .filter(link => link.href.startsWith('#'))
+          .map(link => ({
+            id: link.href.substring(1),
+            element: document.getElementById(link.href.substring(1))
+          }));
         
         // Simple approach: find the section whose top is closest to the middle of the viewport
         let activeSection = "home";
@@ -294,7 +277,7 @@ export const useHeaderNavigation = () => {
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
-  }, [location.pathname, isHomepage, isProjectPage, navLinks]);
+  }, [location.pathname, isHomepage, isProjectPage]);
 
   useEffect(() => {
     if (location.pathname === '/') {
@@ -311,7 +294,7 @@ export const useHeaderNavigation = () => {
       // For non-homepage routes, show logo immediately
       setIsScrolledPastHero(true);
     }
-  }, [location.pathname, location.state, scrollToSection]);
+  }, [location.pathname, location.state]);
 
   return {
     isScrolled,

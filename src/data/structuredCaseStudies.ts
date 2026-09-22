@@ -271,14 +271,61 @@ export interface StructuredCaseStudyData {
 }
 
 export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
+  "barskyjoint": {
+    id: `barskyjoint`,
+    title: `BarskyJoint`,
+    description: `One ordering system that works on a kiosk and a phone, without making either feel like a compromise.`,
+    tags: [`Restaurant Tech`, `Food Service`, `Kiosk Design`],
+    heroImage: {
+      src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png`,
+      alt: `BarskyJoint ordering platform overview`,
+    },
+    projectLink: `https://barskyjoint.com`,
+    problemCallout: {
+      eyebrow: `THE PROBLEM`,
+      statement: `A burger with 14 customizations, all shown at once, freezes people. On a kiosk a line forms behind them. On web they close the tab.`,
+    },
+    finalProductSection: {
+      eyebrow: `WHAT I DID`,
+      title: `What I Did`,
+      description: `Every item ships with a sensible default. Two taps and you're done — customize inline if you want, no modal, no new screen. Same components on kiosk and web, with tap targets sized for thumbs vs. cursors: one design system, calibrated per device. The order summary stays visible at all times instead of living on a separate cart page.`,
+      images: [
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/mainpagedesktop.jpg`, alt: `Menu confusion analysis from restaurant ordering interface` },
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/journeymap0.jpg`, alt: `Customer journey mapping for restaurant ordering flow` },
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/uxpilot-design-1757973264652.png`, alt: `Decision point analysis for ordering platform design` },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: `HICCUP`,
+      title: `Hiccup`,
+      content: `First version showed all customization upfront. I thought I was being thorough. Three test sessions in, people were stalling on the toppings screen for a burger they'd already decided on — pulled it back to defaults-plus-expand. Also tried to make the kiosk feel 'modern' with animation. On a kiosk, animation is latency. Cut almost all of it.`,
+      images: [
+        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barskyjoint800.jpg`, alt: `Failed early restaurant ordering interface design` },
+      ],
+    },
+    outcomeSection: {
+      eyebrow: `OUTCOME`,
+      title: `Outcome`,
+      description: `Faster orders and fewer mid-order abandonments in early testing. No post-launch numbers I'd stand behind.`,
+    },
+    sections: [],
+    seoData: {
+      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/barskyjoint/Barsky%20Joint%20Promo.png`,
+      projectName: `BarskyJoint`,
+      results: [],
+      technologies: [],
+      path: `/project/barskyjoint`,
+    },
+  },
   "crypto": {
     id: `crypto`,
     title: `Trading Without Friction`,
     description: `A crypto trading interface designed for two audiences the industry insists you have to choose between.`,
     tags: [`Fintech`, `Crypto`, `Product Design`, `Dual-Mode UX`],
-    // heroVideo dropped: /lovable-uploads/crypto-hero.mp4 doesn't exist locally and
-    // the poster lived on a deprovisioned Supabase project. Hero falls back to
-    // seoData.image.
+    heroImage: {
+      src: `/images/crypto/hero.webp`,
+      alt: `Crypto trading platform overview`,
+    },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `'Easy' crypto apps (Coinbase, Cash App) hide complexity and charge premium spreads. 'Pro' apps (Kraken, Binance) expose everything and assume you brought your own confidence. Both audiences get screwed differently. Beginners pay for hidden fees and never graduate. Pros pay for every 'are you sure?' tax built for someone else.`,
@@ -288,10 +335,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Two modes, one platform, shared core. Beginner mode strips the chart, uses plain English, surfaces explanations next to anything that costs money. Pro mode shows the full order book and zero hand-holding. Mode is a setting, not a separate product — beginners can see Pro exists, pros can flip to Beginner to help a friend without switching accounts. Plain language as a design constraint, not a copy pass: if we couldn't explain something in one sentence, we either explained it inline or cut it from beginner mode. Total cost — including spread — sits next to the action button. Every time. Most-fought decision, one I'd defend hardest.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/competetive-2.png`, alt: `Competitor analysis exposing beginner exploitation` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/09/cryptotrade_site_map_flowchart_better.png`, alt: `User Flow Chart for Crypto App` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/09/Initial-Flow-of-screens-scaled.png`, alt: `Initial concepts challenging crypto app conventions` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/09/designthinkingupdate.png`, alt: `Design thinking process for crypto platform` },
+        { src: `/images/crypto/competitive.webp`, alt: `Competitor analysis exposing beginner exploitation` },
+        { src: `/images/crypto/site-map.webp`, alt: `User Flow Chart for Crypto App` },
+        { src: `/images/crypto/initial-flow.webp`, alt: `Initial concepts challenging crypto app conventions` },
+        { src: `/images/crypto/design-thinking.webp`, alt: `Design thinking process for crypto platform` },
       ],
     },
     whatDidntWorkSection: {
@@ -299,15 +346,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First version of beginner mode was too protected. Confirmations everywhere, tooltips on every term, an onboarding tour that wouldn't quit. People felt patronized, not safe. Fix: explain on hover, confirm only above a threshold, get out of the way otherwise. Pro mode had the opposite problem — I'd cut so much that some pros couldn't find features they relied on. Density is a feature for that audience, not a bug.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Learning.jpg`, alt: `Failed prototype iterations and stakeholder feedback sessions` },
+        { src: `/images/crypto/learning.webp`, alt: `Failed prototype iterations and stakeholder feedback sessions` },
       ],
     },
     outcomeSection: {
       eyebrow: `OUTCOME`,
       title: `Outcome`,
-      description: `Nothing here shipped, and that is worth saying plainly rather than letting the screens imply otherwise. What exists is the reasoning: the teardown of who each pricing model is really charging, the decision to make mode a setting instead of a second product, and the cost-next-to-the-button rule. The gap I never closed is the intermediate trader, who is wrong in both modes — past hand-holding, not yet fluent in an order book. That needs a third mode or per-control customisation, which is a harder problem than the one I solved.`,
+      description: `Pros and beginners using the same platform without either feeling like it was built for the other one. That was the goal. — What I Didn't Solve: Intermediate traders fit awkwardly in either mode. A v2 would probably need a third mode or more granular customization.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Onboarding-Section.png`, alt: `Finished crypto platform breaking industry conventions` },
+        { src: `/images/crypto/hero-card.webp`, alt: `Finished crypto platform breaking industry conventions` },
       ],
     },
     sections: [],
@@ -325,7 +372,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     description: `Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.`,
     tags: [`Enterprise`, `Data Discovery`, `Search UX`],
     heroImage: {
-      src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
+      src: `/images/dae-search/hero.webp`,
       alt: `DAE Search Platform interface overview`,
     },
     problemCallout: {
@@ -337,9 +384,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Semantic search over metadata, not keyword match. Tables called \`arr_monthly\` show up for 'revenue.' Cut results from 40-to-narrow-down to 4-to-pick-from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.`,
       images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/user%20flow%20process.webp`, alt: `Information architecture analysis of existing data systems` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/drawingouttheplan.webp`, alt: `Initial concepts for enterprise search interface design` },
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/filterselect0.png`, alt: `Search paradigm exploration and decision framework` },
+        { src: `/images/dae-search/what-i-built.webp`, alt: `Information architecture analysis of existing data systems` },
+        { src: `/images/dae-search/decisions-1.webp`, alt: `Initial concepts for enterprise search interface design` },
+        { src: `/images/dae-search/decisions-2.webp`, alt: `Search paradigm exploration and decision framework` },
       ],
     },
     whatDidntWorkSection: {
@@ -347,7 +394,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `Started by treating this as consumer search with enterprise wrapper — clean ranked list, minimal chrome. Wrong audience. Enterprise users want context, signals, density. Redesign added the kind of density I'd normally argue against. Also assumed natural-language queries would dominate. They didn't. Analysts type fragments and abbreviations. The 'I know what I want, find it fast' use case mattered more than the conversational one.`,
       images: [
-        { src: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae/advancedsearch0.jpg`, alt: `Learning from design iterations that didn't meet enterprise needs` },
+        { src: `/images/dae-search/the-problem.webp`, alt: `Learning from design iterations that didn't meet enterprise needs` },
       ],
     },
     outcomeSection: {
@@ -357,7 +404,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: `https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg`,
+      image: `/images/dae-search/hero.webp`,
       projectName: `DAE Search`,
       results: [],
       technologies: [],
@@ -369,9 +416,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: `HerbaLink`,
     description: `Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.`,
     tags: [`AI-Assisted Product`, `Healthcare`, `Trust & Safety`, `Solo Build`],
-    // heroVideo dropped: both the mp4 and its poster lived on barskyux.com, which
-    // no longer resolves. Hero falls back to seoData.image.
-    projectLink: `https://herbalink.live`,
+    heroVideo: {
+      src: `/herbalink-card.mp4`,
+      poster: `/images/herbalink/card-poster-home.jpg`,
+      alt: `HerbaLink booking platform overview`,
+    },
+    projectLink: `http://herbalink.live`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Credentials as a Gate`, label: `Verified against an external registry, not a badge` },
@@ -396,7 +446,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           drove: `Drove: replaced filters with a guided triage intake.`,
         },
       ],
-      researchImage: `https://barskyux.com/wp-content/uploads/2025/08/AHG-directory-2025-release-animation-1.gif`,
+      researchImage: `/images/herbalink/herbalist-directory.webp`,
       researchImageAlt: `The American Herbalists Guild directory — the external credential source HerbaLink verifies against`,
     },
     problemCallout: {
@@ -410,8 +460,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       explorations: `Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.`,
       decisionPoint: `Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/findanherbalistsketch.png`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-11_19_58-PM.png`, alt: `Flow exploration — credential gate sits before any browsing` },
+        { src: `/images/herbalink/find-herbalist-sketch.webp`, alt: `Initial concepts and sketches focused on the credential gate, not the directory layout` },
+        { src: `/images/herbalink/thought-process.webp`, alt: `Flow exploration — credential gate sits before any browsing` },
       ],
     },
     keyInsights: [
@@ -439,7 +489,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: `Yelp-style "Verified" badge`, description: `Scrapped in favor of a gate that controls visibility entirely.` },
       ],
       wireframeImage: {
-        src: `https://i0.wp.com/barskyux.com/wp-content/uploads/2025/07/UserFlow.png?fit=1232%2C928&ssl=1`,
+        src: `/images/herbalink/sitemap.png`,
         alt: `HerbaLink user flow from onboarding to booking`,
         caption: `Final flow — onboarding feeds a guided intake, not a search bar`,
       },
@@ -454,7 +504,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `User Testing`,
       description: `Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: "This feels like WebMD" → filter panel replaced with guided triage intake. "I want to know what changed since last time" → symptom tracker cut from health diary to a single follow-up question. "Are these people actually qualified?" → credential gate made visible on the profile, not buried in an FAQ.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Symptom-Trackerupdate-scaled.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
+        { src: `/images/herbalink/booking-intake.png`, alt: `Symptom tracker — final form, after the comprehensive version was cut` },
       ],
     },
     whatDidntWorkSection: {
@@ -462,7 +512,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What Didn't Work`,
       content: `The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The "Verified" badge approach was abandoned entirely in favor of the gate model.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/07/herbalistdemo-2.png`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
+        { src: `/images/herbalink/before-poster.jpg`, alt: `HerbaLink early Book an Herbalist concept — before the credential gate was inverted` },
       ],
     },
     outcomeSection: {
@@ -470,13 +520,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/macbookpro.png`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/herbalink-book-an-herbalist-scaled.png`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
+        { src: `/images/herbalink/home-hero.webp`, alt: `HerbaLink final desktop — credentials visible, intake-first, no filter panel` },
+        { src: `/images/herbalink/mobile-booking-guided.webp`, alt: `HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/images/herbalink/home-2026.webp`,
+      image: `/images/herbalink/card-poster-home.jpg`,
       projectName: `HerbaLink`,
       results: [],
       technologies: [],
@@ -493,8 +543,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       src: `/images/splittime/hero.webp`,
       alt: `SplitTime co-parenting platform overview`,
     },
-    // No live link: splittime.pro no longer resolves at its host (Cloudflare 1001,
-    // TLS handshake failure). Do not re-add without a URL that returns 200.
+    projectLink: `https://splittime.pro`,
     problemCallout: {
       eyebrow: `THE PROBLEM`,
       statement: `Most co-parenting apps are calendars with chat bolted on. They treat the job as logistics. The hard part isn't logistics — it's that 'are you picking her up at 5 or 5:30?' reads as accusatory when you're already angry, and by message four nobody's talking about pickup anymore.`,
@@ -504,14 +553,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Structured requests, not open chat. The primary pattern is a clear ask → approve / decline / counter-propose → stamped timestamp. No room for tone, clean record if it ever needs to be one. Templates for the 80% of co-parenting communication that's the same conversation every week — pickup confirmations, expense reimbursements, schedule adjustments — strip the emotional charge out of routine messages. Change history as a first-class feature: every approval, modification, expense — timestamped and immutable. Knowing the record exists changes how people behave. Shared schedule and child profile, both parents can see everything.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/Dashboard0.jpg`, alt: `Initial Concepts & Sketches` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/wireframing-1.webp`, alt: `User Flow Explorations` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/6.Messages.png`, alt: `Messaging System` },
-        { src: `https://barskyux.com/wp-content/uploads/2016/08/ideation_phase_design.png`, alt: `Splittime user satisfaction metrics and communication improvements` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/4.Expenses.png`, alt: `Expenses Tracking` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/5.Documents.png`, alt: `Documents Storage` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/3.calendar.png`, alt: `Calendar View` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/7.ChildProfile.png`, alt: `Child Profile` },
+        { src: `/images/splittime/dashboard-concept.png`, alt: `Initial Concepts & Sketches` },
+        { src: `/images/splittime/wireframing.webp`, alt: `User Flow Explorations` },
+        { src: `/images/splittime/messaging.png`, alt: `Messaging System` },
+        { src: `/images/splittime/features.webp`, alt: `Splittime user satisfaction metrics and communication improvements` },
+        { src: `/images/splittime/features.webp`, alt: `Expenses Tracking` },
+        { src: `/images/splittime/documents.webp`, alt: `Documents Storage` },
+        { src: `/images/splittime/app-screens.webp`, alt: `Calendar View` },
+        { src: `/images/splittime/child-profile.png`, alt: `Child Profile` },
       ],
     },
     whatDidntWorkSection: {
@@ -519,7 +568,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First cut had a free-form messaging feature because it felt cruel not to. Wrong — open messaging is where the conflict lives. Removing it felt counterintuitive until I watched someone visibly relax when I told them there wasn't one. Also tried neutral-language nudges ('did you mean to say...'). Felt patronizing in testing. Templates are the version of that idea that works.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2024/01/Screenshot-2025-05-03-at-10.10.22%E2%80%AFPM-e1748480830908.png`, alt: `Early Splittime interface with feature overload` },
+        { src: `/images/splittime/early-dashboard.webp`, alt: `Early Splittime interface with feature overload` },
       ],
     },
     outcomeSection: {
@@ -527,13 +576,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `Parents testing it described it as 'the first one that didn't make me feel like I was being managed.' That's the response I was designing for.`,
       images: [
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/1.Dashboard.png`, alt: `Splittime Dashboard` },
-        { src: `https://barskyux.com/wp-content/uploads/2025/08/2.Dashboard-Add.png`, alt: `Dashboard Add Function` },
+        { src: `/images/splittime/early-dashboard.webp`, alt: `Splittime Dashboard` },
+        { src: `/images/splittime/dashboard-concept.png`, alt: `Dashboard Add Function` },
       ],
     },
     sections: [],
     seoData: {
-      image: `/images/splittime/hero.webp`,
+      image: `/images/herbalink/card-poster-home.jpg`,
       projectName: `SplitTime`,
       results: [],
       technologies: [],
@@ -544,11 +593,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     id: `investor-loan-app`,
     title: `Investor Loan Platform`,
     description: `Replacing Excel as the system of record for multi-million-dollar loan deals — without anyone losing their workflow.`,
-    tags: [`Enterprise`, `Fintech`, `Workflow Design`],
+    tags: [`Enterprise`, `FinTech`, `Workflow Design`],
     heroVideo: {
       src: `investor-loan-demo.mp4`,
       poster: `/images/investor-loan-app/hero.webp`,
-      alt: `Investor Loan Platform — Loan Deals grid and Orderbook with live comments, shown across two screens`,
+      alt: `Investor Loan Platform overview`,
     },
     problemCallout: {
       eyebrow: `THE PROBLEM`,
@@ -559,10 +608,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What I Did`,
       description: `Inline validation that catches malformed entries the moment they happen. Invisible when right, obvious when wrong. No modals, no error logs. Predictive search instead of filters — loan officers think in fragments, a name, a deal code. Bloomberg-style search beats filter panels for this audience. Guided order builder with disabled forward steps: pick the lender, then terms become editable. Feels restrictive in screenshots, less restrictive in practice. Audit trail surfaced next to the record, not buried in an admin tool. This is the feature that made compliance actually advocate for adoption.`,
       images: [
-        { src: `/images/investor-loan-app/excel-error.webp`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals — the system it replaced` },
-        { src: `/images/investor-loan-app/book-builder-lofi.png`, alt: `Low-fidelity order builder wireframe for loan workflows` },
+        { src: `/images/investor-loan-app/excel-error.webp`, alt: `Excel-based loan tracking spreadsheet with inconsistent fields and manual totals` },
+        { src: `/images/investor-loan-app/before-after.webp`, alt: `Collage highlighting legacy manual steps and fragmentation` },
+        { src: `/images/investor-loan-app/book-builder-lofi.webp`, alt: `Low-fidelity order builder wireframe for loan workflows` },
         { src: `/images/investor-loan-app/whiteboarding.webp`, alt: `Whiteboard mapping of loan lifecycle from application to audit` },
-        { src: `/images/investor-loan-app/loan-officer.webp`, alt: `Cashless Rolls Orderbook with the comments panel open — audit trail surfaced next to the record, not buried in an admin tool` },
+        { src: `/images/investor-loan-app/user-journey.webp`, alt: `Investor loan platform user workflow and process improvements` },
       ],
     },
     whatDidntWorkSection: {
@@ -570,7 +620,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Hiccup`,
       content: `First version replicated too much of Excel's structure because I was trying to minimize cognitive change. Worst of both worlds — looked like Excel, didn't behave like it. Rewrite went the other direction: looked nothing like Excel, behaved like what officers actually needed. Also over-invested in dashboards early. Officers don't start their day on a dashboard. They open a specific deal.`,
       images: [
-        { src: `/images/investor-loan-app/before-after.webp`, alt: `Old Excel system vs. the new Loan Central platform — the rewrite that finally looked and behaved differently from Excel` },
+        { src: `/images/investor-loan-app/loan-officer.webp`, alt: `User testing session showing loan officer workflow validation` },
       ],
     },
     outcomeSection: {
@@ -578,7 +628,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `Outcome`,
       description: `Adoption happened — which for an Excel-replacement project is the only outcome that matters. Three previous attempts hadn't gotten that far.`,
       images: [
-        { src: `/images/investor-loan-app/user-journey.webp`, alt: `The loan-officer workflow — select a deal, choose Cashless Roll or Book-builder, add an order or attest, update the grid — validated end to end` },
+        { src: `/images/investor-loan-app/my-deals-list-view.webp`, alt: `My Deals list view with quick filters, status chips, and bulk actions` },
+        { src: `/images/investor-loan-app/loan-deals-poster.jpg`, alt: `Loan deals table with summary sidebar, inline validation, and audit trail` },
+        { src: `/images/investor-loan-app/manage-loan-limits.webp`, alt: `Orderbook screen emphasizing guided steps and real-time totals` },
       ],
     },
     sections: [],
@@ -667,7 +719,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     problemCallout: {
       eyebrow: `THE REAL PROBLEM`,
-      statement: `Most "I built X with AI" portfolios are a calculator, a to-do app, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
+      statement: `Most "I built X with AI" portfolios are a calculator, a dashboard, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.`,
     },
     sprintZeroSection: {
       eyebrow: `SPRINT ZERO`,
@@ -753,7 +805,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/ringrival-hero-title.webp`,
       alt: `Ring-Rival mobile boxing gameplay`,
     },
-    projectLink: `https://ringrival.today`,
+    projectLink: `https://rival.li`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, no team` },
       { value: `22s → 6s`, label: `Time to first punch after testing` },
@@ -845,7 +897,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: `What Didn't Work`,
       content: `The original calibration wizard, daily challenges modal, and how-to page were all built and all ignored. Cut. Webcam-based hand-tracking was technically impressive and the wrong mechanic for the audience. Removed entirely, along with all AR-mode references in SEO and the menu. Multiplayer and leaderboards exist as components but are gated. Shipping them requires moderation I didn't want to own in v1.`,
       images: [
-        { src: `/images/ringrival-discodan.png`, alt: `Disco Dan — completely different silhouette and personality from Glass Joe` },
+        { src: `/images/ringrival-now/disco-flurry.jpg`, alt: `Disco Dan — completely different silhouette and personality from Glass Joe` },
       ],
     },
     outcomeSection: {
@@ -872,7 +924,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       poster: `/images/catchbuddy-hero-landing.webp`,
       alt: `CatchBuddy pickup sports app overview`,
     },
-    projectLink: `https://catchbuddy.fit`,
+    projectLink: `https://catchbuddy.me`,
     heroMetrics: [
       { value: `Solo Build`, label: `Designer + AI, end-to-end` },
       { value: `Safety-First Architecture`, label: `Minor approval, panic button, curated meeting spots` },
@@ -983,230 +1035,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       technologies: [],
       path: `/project/catchbuddy`,
     },
-  },
-  // Restored 2026-08-08 from commit f3f49d7a (last real content before the site-wide
-  // reverts this session dropped it) — Hiram asked for it back. Images re-sourced
-  // 2026-08-08 from real project screenshots (warehouse-distro export) and moved to
-  // /public/images/business-management/. The old heroVideo pointed at barskyux.com,
-  // which no longer resolves — dropped, so the hero falls back to seoData.image
-  // (the same frame the video's poster used). Re-add heroVideo if a real file lands.
-  "business-management": {
-    id: "business-management",
-    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
-    description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
-    tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
-    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    // No live link: the Lovable prototype was deleted and returns "Project not found".
-    // Do not re-add without a URL that returns 200.
-    researchSection: {
-      subhead: "REPETITIVE MANUAL WORK\n\"I spend more time entering the same client info into different systems than actually serving clients.\" – Mike, freelance photographer\nSolved with smart templates + automation.\n\nPRIORITY BLINDNESS\n\"I missed a $12K payment because the overdue notice got buried under 47 other notifications.\" – Lisa, web developer\nSolved with Today dashboard + priority scoring.",
-      blurb: "Gathering insights from 47 small business owners",
-        emergingThemes: [
-        {
-          eyebrow: "CONSOLIDATION",
-          insight: "Scheduling, invoicing, and tasks lived in separate systems.",
-          drove: "Unified dashboard with linked records."
-        },
-        {
-          eyebrow: "AUTOMATION",
-          insight: "Recurring work (invoices, reminders) was manual.",
-          drove: "Recurrence, templates, and smart reminders."
-        },
-        {
-          eyebrow: "VISIBILITY & PRIORITY",
-          insight: "Hard to see what needs attention now.",
-          drove: "'Today' view with aging statuses and alerts."
-        }
-      ],
-      researchImage: "/images/business-management/competitive-landscape.jpg",
-      researchImageAlt: "Competitive landscape review — Sage X3, Zoho One, and other disconnected tools small businesses were stitching together",
-      researchImages: [
-        {
-          src: "/images/business-management/inventory-management-mobile.jpg",
-          alt: "Inventory Management — total products, low-stock alerts, and category breakdown"
-        }
-      ]
-    },
-    problemCallout: {
-      eyebrow: "Problem to Solve",
-      statement: "Small businesses often juggle disconnected tools for scheduling, invoicing, and tasks, wasting hours weekly and losing revenue."
-    },
-    sprintZeroSection: {
-      eyebrow: "0 → 1 EXPLORATION",
-      title: "Sprint Zero: Blue-Sky Thinking",
-      workshopKickoff: "Initial concept sitemap mapping core modules and navigation.",
-      explorations: "I explored blue-sky concepts ranging from AI-powered workflow automation to intelligent business insights. Early sketches included predictive cash flow modeling, automated client follow-ups, and integrated marketing campaigns. I tested divergent ideas like voice-controlled task management and smart scheduling optimization to understand what would genuinely improve daily business operations.",
-      decisionPoint: "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
-      images: [
-        {
-          src: "/images/business-management/sitemap-draft.jpg",
-          alt: "Early sitemap draft",
-          caption: "Early sitemap draft — mapping login, products, customers, orders, delivery, and recurring modules."
-        },
-        {
-          src: "/images/business-management/sitemap-refined.jpg",
-          alt: "Refined sitemap",
-          caption: "Refined structure after cleanup — same modules, corrected flow labels and terminology."
-        }
-      ]
-    },
-    keyInsights: [
-      { number: 1, title: "One platform eliminates chaos", description: "Consolidating core ops cuts tool chaos." },
-      { number: 2, title: "Automation saves hours", description: "Recurring invoices and reminders save hours weekly." },
-      { number: 3, title: "Priority-at-a-glance prevents oversights", description: "A single dashboard surfaces what needs attention now." }
-    ],
-    ideationSection: {
-      subhead: "Multiple iterations on the \"run your day\" loop",
-      bubbles: [
-        { title: "Dashboard KPIs", description: "only critical alerts" },
-        { title: "Tasks", description: "Today view + smart priority" },
-        { title: "Invoices", description: "template-driven workflow" },
-        { title: "Scheduling", description: "auto-generates tasks + invoices" }
-      ],
-      iterations: [
-        {
-          label: "Iteration 1",
-          imageSrc: "/images/business-management/business-analytics-mobile.jpg",
-          alt: "Business Analytics dashboard",
-          blurb: "Business Analytics — today's sales, delivery success rate, and revenue progress in one view",
-          annotations: [
-            { text: "Delivery success rate surfaced next to revenue, not buried in a separate report", x: 50, y: 30, type: "feature" },
-            { text: "Revenue progress chart replaces the spreadsheet owners used to keep by hand", x: 70, y: 60, type: "improvement" }
-          ]
-        },
-        {
-          label: "Iteration 2",
-          imageSrc: "/images/business-management/recurring-orders-mobile.jpg",
-          alt: "Recurring Orders view",
-          blurb: "Recurring Orders — the \"what needs attention today\" view",
-          annotations: [
-            { text: "Active schedules and weekly volume surfaced at the top", x: 35, y: 25, type: "feature" },
-            { text: "Scheduled orders list replaces manual follow-up tracking", x: 80, y: 50, type: "improvement" }
-          ]
-        },
-        {
-          label: "Iteration 3",
-          imageSrc: "/images/business-management/order-management-desktop.jpg",
-          alt: "Order Management desktop view",
-          blurb: "Order Management — pending, delivered, and revenue at a glance",
-          annotations: [
-            { text: "Revenue total sits next to pending/delivered counts", x: 40, y: 35, type: "feature" },
-            { text: "Recent Orders table replaces manual invoice tracking", x: 65, y: 65, type: "improvement" }
-          ]
-        },
-        {
-          label: "Iteration 4",
-          imageSrc: "/images/business-management/driver-management-mobile.jpg",
-          alt: "Driver Management view",
-          blurb: "Driver Management — scheduling and dispatch in one screen",
-          annotations: [
-            { text: "Active drivers and availability replace a manual dispatch call sheet", x: 50, y: 25, type: "feature" },
-            { text: "Average response time surfaced as a live metric", x: 60, y: 70, type: "improvement" }
-          ]
-        }
-      ]
-    },
-    userTestingSection: {
-      title: "User Testing & Validation",
-      description: "User Testing & Validation",
-      eyebrow: "Validation & Testing",
-      metrics: [
-        { value: "90%", label: "satisfaction" },
-        { value: "68%", label: "fewer errors" },
-        { value: "5 min", label: "daily setup time" }
-      ],
-      images: [
-        {
-          src: "/images/business-management/product-catalog-desktop.jpg",
-          alt: "Product Catalog desktop view",
-          caption: "Product Catalog — one of the screens walked through in testing sessions."
-        }
-      ]
-    },
-    finalProductSection: {
-      title: "The Final Product",
-      description: "Unified platform with: Smart priority dashboard, Automated invoicing, Connected scheduling, Error reduction by 68%",
-      eyebrow: "The Result",
-      images: [
-        {
-          src: "/images/business-management/final-product-four-panel.jpg",
-          alt: "Product Management, Order Management, and Driver Management shown side by side",
-          caption: "The final product — Product Management, Order Management, and Driver Management, three of the platform's core modules.",
-          annotations: [
-            {
-              x: 15,
-              y: 30,
-              type: "feature",
-              text: "Product Management — inventory sources, stock levels, and reorder alerts"
-            },
-            {
-              x: 50,
-              y: 30,
-              type: "feature",
-              text: "Order Management — total orders, pending count, and revenue tracking in one view"
-            },
-            {
-              x: 83,
-              y: 30,
-              type: "feature",
-              text: "Driver Management — active drivers and delivery response time"
-            }
-          ]
-        }
-      ]
-    },
-    outcomeSection: {
-      title: "Outcome",
-      description: "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"",
-      eyebrow: "Outcomes & Impact",
-      metrics: [
-        { value: "68%", label: "Fewer Errors" },
-        { value: "35%", label: "Faster Processing" },
-        { value: "90%", label: "User Satisfaction" }
-      ],
-      images: [
-        {
-          src: "/images/business-management/business-overview-dashboard.jpg",
-          alt: "Business Overview dashboard",
-          caption: "Business Overview — today's sales, total revenue, and weekly performance, the dashboard business owners check now instead of a spreadsheet."
-        }
-      ]
-    },
-    myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "Approach & Decision Making",
-      content: "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
-      images: [
-        {
-          src: "/images/business-management/product-management-mobile.jpg",
-          alt: "Product Management on mobile",
-          annotations: [
-            { text: "I designed around how small businesses actually work—jumping between tools and losing revenue to forgotten follow-ups and manual errors.", x: 25, y: 40, type: "improvement" },
-            { text: "The result: a unified platform that thinks like a business owner, automatically handling the details so teams can focus on growth.", x: 75, y: 60, type: "feature" }
-          ]
-        }
-      ]
-    },
-    whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "Lessons Learned",
-      content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
-      images: [
-        {
-          src: "/images/business-management/tablet-customer-product.jpg",
-          alt: "Customer Management and Product Catalog on tablet",
-          caption: "Customer Management and Product Catalog — two of the screens where scope discipline mattered most."
-        }
-      ]
-    },
-    sections: [],
-    seoData: {
-      image: "/images/business-management/hero-three-laptops.jpg",
-      projectName: "QuickFlow",
-      results: ["Unified operations platform"],
-      technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
-      path: "/project/business-management"
-    }
   },
 };
 

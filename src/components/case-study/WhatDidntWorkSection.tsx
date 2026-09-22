@@ -100,15 +100,15 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
                   src={image.src}
                   alt={image.alt}
                   annotations={image.annotations}
-                  className="w-full rounded-sm shadow-sm"
+                  className="w-full rounded-lg shadow-sm"
                 />
               ) : (
                 <MaximizableImage
                   src={image.src}
                   alt={image.alt}
-                  caption={image.caption || image.alt}
+                  caption={image.caption}
                   fit="contain"
-                  className="w-full rounded-sm shadow-sm"
+                  className="w-full rounded-lg shadow-sm"
                 />
               )}
             </motion.div>

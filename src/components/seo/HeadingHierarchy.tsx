@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import clsx from "clsx";
-import { useHeadingHierarchy } from "./headingHierarchyContext";
+import { useHeadingHierarchy } from "./HeadingHierarchyProvider";
 
 export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 

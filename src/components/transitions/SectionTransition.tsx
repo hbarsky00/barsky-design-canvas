@@ -38,7 +38,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
   }
 
   // Original fade and wipe animations
-  const MotionTag = (motion[as as keyof typeof motion] ?? motion.section) as React.ElementType;
+  const MotionTag: any = motion[as as keyof typeof motion] || motion.section;
 
   return (
     <MotionTag
@@ -46,7 +46,7 @@ const SectionTransition: React.FC<SectionTransitionProps> = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className={`relative ${className}`}
       style={{ 
         transform: 'translate3d(0,0,0)',

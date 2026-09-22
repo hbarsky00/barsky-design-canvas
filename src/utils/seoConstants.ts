@@ -15,16 +15,11 @@ export const SEO_CONSTANTS = {
   get BASE_URL() {
     return getDynamicBaseUrl();
   },
-  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-profile.png',
-  // 1200x630 — the actual OG/Twitter card size every platform expects. The old
-  // fallback was the 896x1195 portrait headshot, which every share preview
-  // (Slack, iMessage, LinkedIn, X) was center-cropping or squashing into a
-  // landscape frame despite buildSEO() declaring 1200x630 for it.
-  DEFAULT_OG_IMAGE: 'https://barskydesign.pro/images/og/site.png',
-  SITE_NAME: 'Hiram Barsky | I Design and Develop Software',
+  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-headshot.webp',
+  SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
   AUTHOR: 'Hiram Barsky',
   TWITTER_HANDLE: '@hirambarsky',
-  DEFAULT_DESCRIPTION: 'I design and develop SaaS, web apps, mobile apps and internal tools. One person, start to finish: design, front end, database and launch.',
+  DEFAULT_DESCRIPTION: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',
   
   // Meta tag defaults
   THEME_COLOR: '#3B82F6',
@@ -33,8 +28,8 @@ export const SEO_CONSTANTS = {
   
   // Social profiles
   SOCIAL_PROFILES: [
-    'https://www.linkedin.com/in/hiram-barsky',
+    'https://www.linkedin.com/in/hirambarsky',
     'https://twitter.com/hirambarsky',
-    'https://github.com/hbarsky00'
+    'https://github.com/hirambarsky'
   ]
 };

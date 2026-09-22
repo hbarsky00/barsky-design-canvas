@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Home } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
@@ -90,27 +88,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         />
         
         <main className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
-          {/* Back to projects bar — clear exit from case study */}
-          <div className="section-container mb-4 flex items-center justify-between gap-3">
-            <Link
-              to="/#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted transition-colors"
-              aria-label="Back to all projects"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to projects
-            </Link>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Home"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-          </div>
           <div className="section-container bg-white">
-
           {/* Unified Hero Section */}
           <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
@@ -300,9 +278,9 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   <ProjectVideo
                     src={caseStudyData.userTestingSection.video.src}
                     title={caseStudyData.userTestingSection.video.title}
-                    caption={caseStudyData.userTestingSection.video.caption || caseStudyData.userTestingSection.video.title}
+                    caption={caseStudyData.userTestingSection.video.caption}
                     projectId={caseStudyData.id}
-                    className="rounded-sm shadow-sm"
+                    className="rounded-lg shadow-sm"
                     hoverToPlay={true}
                     showControls={false}
                   />
@@ -348,12 +326,12 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
+                      className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                     >
                       <MaximizableImage
                         src={image.src}
                         alt={image.alt}
-                        caption={image.caption || image.alt}
+                        caption={image.caption}
                         className="w-full h-auto object-contain image-high-quality"
                         imageList={caseStudyData.userTestingSection?.images?.map(img => img.src)}
                         currentIndex={index}
@@ -400,7 +378,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 <ProjectVideo
                   src={caseStudyData.finalProductSection.video.src}
                   title={caseStudyData.finalProductSection.video.title}
-                  caption={caseStudyData.finalProductSection.video.caption || caseStudyData.finalProductSection.video.title}
+                  caption={caseStudyData.finalProductSection.video.caption}
                   className="mb-8"
                   projectId={caseStudyData.id}
                 />
@@ -410,10 +388,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                     images={caseStudyData.finalProductSection.images.map(img => img.src)}
                     imageCaptions={caseStudyData.finalProductSection.images.reduce((acc, img) => {
                       if (img.caption) acc[img.src] = img.caption;
-                      return acc;
-                    }, {} as Record<string, string>)}
-                    imageAlts={caseStudyData.finalProductSection.images.reduce((acc, img) => {
-                      if (img.alt) acc[img.src] = img.alt;
                       return acc;
                     }, {} as Record<string, string>)}
                     imageAnnotations={caseStudyData.finalProductSection.images.reduce((acc, img) => {
@@ -430,24 +404,30 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                        className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
+                        className="bg-white rounded-lg overflow-hidden shadow-sm border border-border/20"
                       >
                         {image.annotations && image.annotations.length > 0 ? (
                           <AnnotatedImage
                             src={image.src}
                             alt={image.alt}
                             annotations={image.annotations}
-                            className="w-full h-auto rounded-sm"
+                            className="w-full h-auto rounded-lg"
                           />
                         ) : (
-                          <MaximizableImage
-                            src={image.src}
-                            alt={image.alt}
-                            caption={image.caption || image.alt}
-                            imageList={caseStudyData.finalProductSection.images.map(img => img.src)}
-                            currentIndex={index}
-                            className="w-full h-auto image-high-quality"
-                          />
+                          <div className="group cursor-pointer">
+                            <div className="overflow-hidden">
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
+                              />
+                            </div>
+                            {image.caption && (
+                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
+                                {image.caption}
+                              </div>
+                            )}
+                          </div>
                         )}
                       </motion.div>
                     ))}
@@ -466,9 +446,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               className="section-snap mb-12 py-6 scroll-mt-[calc(var(--header-height,64px)+1rem)]"
             >
               <h2 id="outcome-heading" className="sr-only">{caseStudyData.outcomeSection.title} Section</h2>
-
+              
+              {/* Full-width content since no images */}
               <div className="mb-12">
-              <motion.div
+              <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -512,30 +493,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   )}
                 </div>
               </div>
-
-              {caseStudyData.outcomeSection.images && (
-                <div className="grid gap-6 md:gap-8">
-                  {caseStudyData.outcomeSection.images.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-sm overflow-hidden shadow-sm border border-border/20"
-                    >
-                      <MaximizableImage
-                        src={image.src}
-                        alt={image.alt}
-                        caption={image.caption || image.alt}
-                        imageList={caseStudyData.outcomeSection.images.map(img => img.src)}
-                        currentIndex={index}
-                        className="w-full h-auto image-high-quality"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              )}
             </section>
           )}
 

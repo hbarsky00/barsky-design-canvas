@@ -22,7 +22,6 @@
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { resolve } from "path";
 import { BLOG_SEO_MAP, PROJECT_SEO_MAP } from "../src/data/seoData";
-import { blogPosts } from "../src/data/blogData";
 
 // The positioning line and the page list are curated on purpose. Positioning is
 // settled ("I design and develop SaaS, web apps, mobile apps and internal
@@ -128,7 +127,11 @@ const blogSlugs = getBlogSlugs()
 // end mid-sentence on an ellipsis. That is fine in a search result, where the
 // page is one click away, and bad here: an answer engine quoting llms.txt would
 // cite a fragment. Excerpts in blogData are complete sentences.
-const excerptBySlug = new Map(blogPosts.map((p) => [p.slug, p.excerpt]));
+// Parsed from the file rather than imported: blogData.ts imports its cover
+// images as modules, which Node cannot load outside Vite.
+const excerptBySlug = new Map<string, string>(
+  Array.from(readFileSync(resolve("src/data/blogData.ts"), "utf8").matchAll(/slug:\s*["'`]([a-z0-9-]+)["'`][\s\S]*?excerpt:\s*["'`]([^"'`]+)["'`]/g)).map((m) => [m[1], m[2]]),
+);
 
 const blogLines = blogSlugs.map((slug) => {
   const { title, description } = BLOG_SEO_MAP[slug];

@@ -14,17 +14,17 @@ const ServicesCallToAction = () => {
         </div>
         
         <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
-          Tell me what you want built
+          Start Your AI-Enhanced Project Today
         </h2>
         
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          A free call to scope it, then a written proposal with the work and the price in it. If I&apos;m not the right fit, I&apos;ll say so on the call.
+          Get a personalized project plan with AI-powered analysis, competitive insights, and a clear roadmap to 40%+ improvement.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <CheckCircle className="h-4 w-4 text-green-600" />
-            <span>I reply to everything myself</span>
+            <span>24-hour response time</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <CheckCircle className="h-4 w-4 text-green-600" />
@@ -42,7 +42,7 @@ const ServicesCallToAction = () => {
             variant="brand"
             asChild
           >
-            <Link to="/contact" className="flex items-center justify-center">
+            <Link to="/get-started" className="flex items-center justify-center">
               <Sparkles className="mr-2 h-5 w-5" />
               Get Your Custom Project Plan
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -54,7 +54,7 @@ const ServicesCallToAction = () => {
             size="lg"
             asChild
           >
-            <Link to="/#case-studies" className="flex items-center justify-center">
+            <Link to="/projects" className="flex items-center justify-center">
               View More Projects
             </Link>
           </Button>

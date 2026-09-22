@@ -21,30 +21,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 }) => {
   // Show all links in one list across all breakpoints
   const menuLinks = links;
-  const rootRef = React.useRef<HTMLDivElement>(null);
-
-  // Dismiss the open menu on Escape or a click/tap outside it
-  React.useEffect(() => {
-    if (!isMobileMenuOpen) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") toggleMobileMenu();
-    };
-    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
-        toggleMobileMenu();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("touchstart", handlePointerDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("touchstart", handlePointerDown);
-    };
-  }, [isMobileMenuOpen, toggleMobileMenu]);
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
@@ -66,9 +42,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   };
 
   return (
-    <div className="relative" ref={rootRef}>
-      <button
-        className="text-barsky-dark dark:text-white p-1 min-w-11 min-h-11 flex items-center justify-center transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none"
+    <div className="relative">
+      <button 
+        className="text-barsky-dark dark:text-white p-1 transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none" 
         onClick={toggleMobileMenu}
         aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isMobileMenuOpen}
@@ -80,6 +56,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
         {isMobileMenuOpen && (
           <div
             id="mobile-navigation"
+            role="menu"
             aria-label="Mobile navigation menu"
             className="fixed inset-x-0 top-[var(--header-height,64px)] w-screen max-w-none rounded-none border-t border-gray-200/60 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg z-40 p-2"
           >
@@ -104,9 +81,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <Link
                     key={link.name}
                     to={link.href}
-                    onClick={link.href.includes('#') ? (e) => {
+                    onClick={link.href.startsWith('#') ? (e) => {
                       // Allow native anchor for contact; prevent only for other anchors
-                      if (!link.href.endsWith('#contact')) {
+                      if (link.href !== '#contact') {
                         e.preventDefault();
                         handleLinkClick(link.href);
                       }

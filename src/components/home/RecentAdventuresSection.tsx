@@ -2,7 +2,53 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import SectionHeader from "../shared/SectionHeader";
-import { careerHistory } from "@/data/careerHistory";
+
+interface Experience {
+  role: string;
+  company: string;
+  description: string;
+  duration: string;
+  companyLogo?: string;
+}
+
+const experiences: Experience[] = [
+  {
+    role: "Senior Lead Product Designer",
+    company: "PNC",
+    description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%",
+    duration: "2024 - July 2025"
+  },
+  {
+    role: "Senior UX/UI Designer",
+    company: "Bank of America",
+    description: "Led UX for Loan Central and ServiceNow IRM, cutting errors by 15% and lifting engagement by 10%",
+    duration: "2023 - 2024"
+  },
+  {
+    role: "Senior User Experience Designer",
+    company: "Deloitte",
+    description: "Elevated platform engagement by 20% through user-centered prototypes and innovative design solutions",
+    duration: "2021 - 2023"
+  },
+  {
+    role: "UX Strategist & Design Lead",
+    company: "Tata Consultancy Services",
+    description: "Designed fintech apps that drove a 15% revenue lift; built a document manager app reducing support workload by 10%",
+    duration: "2019 - 2021"
+  },
+  {
+    role: "Senior UX Designer",
+    company: "KPMG",
+    description: "Created dashboards and data visualizations that reduced client costs by 10% and increased platform revenue by 14%",
+    duration: "2014 - 2019"
+  },
+  {
+    role: "Senior UX Designer",
+    company: "Express Scripts",
+    description: "Led design initiatives that improved satisfaction and engagement by 30%, while cutting project turnaround by 20%",
+    duration: "2013 - 2014"
+  }
+];
 
 const RecentAdventuresSection: React.FC = () => {
   return (
@@ -17,7 +63,7 @@ const RecentAdventuresSection: React.FC = () => {
         >
           <SectionHeader
             eyebrow="Experience"
-            title="Recent Adventures"
+            title="Recent adventures"
             subtitle="A journey through innovative product design and user experience at leading tech companies"
           />
           <div className="flex justify-center mb-8">
@@ -27,7 +73,7 @@ const RecentAdventuresSection: React.FC = () => {
 
         {/* Timeline */}
         <div className="space-y-6 md:space-y-8">
-          {careerHistory.map((experience, index) => (
+          {experiences.map((experience, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}

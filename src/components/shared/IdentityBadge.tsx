@@ -60,7 +60,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
   autoPlay = false,
 }) => {
   const s = sizeMap[size];
-  const Wrapper = (to ? Link : "div") as React.ElementType;
+  const Wrapper: any = to ? Link : "div";
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -107,8 +107,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
       <div
         className={cn(
           "relative rounded-full p-[2px] bg-gradient-to-tr",
-          "from-primary via-primary to-foreground",
-          "dark:from-primary dark:via-primary dark:to-foreground",
+          "from-blue-600 via-blue-500 to-slate-800",
+          "dark:from-blue-400 dark:via-blue-300 dark:to-slate-600",
           "transition-transform duration-300 motion-safe:group-hover:scale-[1.03]"
         )}
       >
@@ -149,7 +149,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
             </video>
           )}
           
-          <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+          <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
             {getInitials(name)}
           </AvatarFallback>
         </Avatar>
@@ -172,8 +172,8 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
               className={cn(
                 s.subtitle,
                 "inline-flex items-center rounded-full mt-1 px-2.5 py-0.5",
-                "border border-primary/25",
-                "bg-primary/10 text-primary"
+                "border border-blue-500/25",
+                "bg-blue-500/10 text-blue-600 dark:text-blue-400"
               )}
             >
               {subtitle}
@@ -182,7 +182,7 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
             <span
               className={cn(
                 s.subtitle,
-                "mt-0.5 text-primary opacity-90"
+                "mt-0.5 text-blue-600 dark:text-blue-400 opacity-90"
               )}
             >
               {subtitle}

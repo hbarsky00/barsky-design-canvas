@@ -104,7 +104,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
 
   return (
     <section id={id} className="scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-      <Card className={`p-3 sm:p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
+      <Card className={`p-8 lg:p-12 shadow-elevated ${styles.cardClass}`}>
         <CaseStudySectionHeader
           title={title}
           icon={Icon}
@@ -116,7 +116,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
         <div className="space-y-8">
           {/* Multiple Images Support */}
           {images && images.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {images.map((image, index) => {
                 const showPlaceholder = needsPlaceholder(image.src);
                 return showPlaceholder ? (
@@ -126,8 +126,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                     key={index}
                     src={image.src}
                     alt={image.alt}
-                    caption={image.caption || image.alt}
-                    className="w-full rounded-sm shadow-lg"
+                    caption={image.caption}
+                    className="w-full rounded-lg shadow-lg"
                     projectId="case-study"
                     fit="contain"
                   />
@@ -144,8 +144,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                   <MaximizableImage
                     src={media.src}
                     alt={media.alt}
-                    caption={media.caption || media.alt}
-                    className="w-full max-w-full rounded-sm shadow-lg"
+                    caption={media.caption}
+                    className="w-full max-w-full rounded-lg shadow-lg"
                     projectId="case-study"
                     fit="contain"
                   />
@@ -154,8 +154,8 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                 <EditableVideo
                   src={media.src}
                   alt={media.alt}
-                  caption={media.caption || media.alt}
-                  className="w-full max-w-full rounded-sm shadow-lg"
+                  caption={media.caption}
+                  className="w-full max-w-full rounded-lg shadow-lg"
                   videoOptions={media.videoOptions}
                 />
               )}

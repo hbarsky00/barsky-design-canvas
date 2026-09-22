@@ -1,6 +1,21 @@
-import React, { useState, useCallback } from 'react';
-import { ImageMaximizerContext } from './imageMaximizer';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 import ImageMaximizer from '@/components/project/ImageMaximizer';
+
+interface ImageMaximizerContextType {
+  maximizeImage: (image: string, title: string, imageList?: string[], currentIndex?: number) => void;
+}
+
+const ImageMaximizerContext = createContext<ImageMaximizerContextType | undefined>(undefined);
+
+export const useImageMaximizer = () => {
+  const context = useContext(ImageMaximizerContext);
+  if (!context) {
+    // Fallback no-op so consumers rendered outside a provider don't crash the page.
+    console.warn('useImageMaximizer used outside ImageMaximizerProvider — using no-op fallback.');
+    return { maximizeImage: () => {} } as ImageMaximizerContextType;
+  }
+  return context;
+};
 
 interface ImageMaximizerProviderProps {
   children: React.ReactNode;
@@ -13,6 +28,10 @@ export const ImageMaximizerProvider: React.FC<ImageMaximizerProviderProps> = ({ 
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const maximizeImage = useCallback((image: string, title: string, images?: string[], index?: number) => {
+    console.log("Maximizing image:", image);
+    console.log("With title:", title);
+    if (images) console.log("Image list length:", images.length);
+    
     setMaximizedImage(image);
     setMaximizedTitle(title);
     

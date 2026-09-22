@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useImageMaximizer } from "@/context/imageMaximizer";
+import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ImageControls from "./image-maximizer/ImageControls";
 
@@ -9,31 +9,65 @@ interface FlipCardProps {
   image: string;
   title: string;
   scale: number;
+  onClose: () => void;
 }
 
-const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale }) => {
+const FlipCard: React.FC<FlipCardProps> = ({ image, title, scale, onClose }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setIsOpen(true));
+    const t = setTimeout(() => setIsAnimating(false), 1100);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (isAnimating || isClosing) return;
+    setIsAnimating(true);
+    setIsClosing(true);
+    setTimeout(onClose, 500);
+  };
+
+  const transform = isOpen
+    ? `rotateX(8deg) rotateY(360deg) rotateZ(-4deg) scale(${scale})`
+    : `rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(${scale})`;
+
   return (
     <div
-      className="relative"
+      className="relative cursor-pointer"
       style={{
         width: "min(90vw, 1200px)",
         height: "80vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        perspective: "1200px",
       }}
+      onClick={handleClick}
     >
-      <img
-        src={image}
-        alt={title}
+      <div
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "contain",
-          transform: `scale(${scale})`,
-          transition: "transform 0.2s ease",
+          transformStyle: "preserve-3d",
+          transition: isClosing
+            ? "opacity 0.5s ease-in"
+            : "transform 1.1s cubic-bezier(0.45, 0.05, 0.15, 1.0)",
+          transform,
+          opacity: isClosing ? 0 : 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-      />
+      >
+        <img
+          src={image}
+          alt={title}
+          style={{ width: "100%", height: "100%", objectFit: "contain", pointerEvents: "none" }}
+        />
+      </div>
     </div>
   );
 };
@@ -60,9 +94,18 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   const [scale, setScale] = useState(1);
   const { maximizeImage } = useImageMaximizer();
   const hasMultipleImages = imageList && imageList.length > 1;
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
-
+  
+  // Debug logging
+  useEffect(() => {
+    console.log("ImageMaximizer rendered:", { 
+      image, 
+      isOpen, 
+      listLength: imageList?.length,
+      currentIndex,
+      hasMultipleImages
+    });
+  }, [image, isOpen, imageList?.length, currentIndex, hasMultipleImages]);
+  
   const handleZoomIn = () => {
     setScale((prevScale) => Math.min(prevScale + 0.25, 3));
   };
@@ -75,30 +118,29 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     setScale(1);
   };
   
-  // Memoised so the keyboard effect below can depend on them honestly rather
-  // than closing over a version that is recreated on every render.
-  const handleNextImage = useCallback(() => {
+  const handleNextImage = () => {
+    console.log("Next image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const nextIndex = (currentIndex + 1) % imageList.length;
+      console.log("Moving to next image:", nextIndex, imageList[nextIndex]);
       maximizeImage(imageList[nextIndex], title, imageList, nextIndex);
     }
-  }, [hasMultipleImages, imageList, currentIndex, title, maximizeImage]);
-
-  const handlePrevImage = useCallback(() => {
+  };
+  
+  const handlePrevImage = () => {
+    console.log("Previous image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const prevIndex = (currentIndex - 1 + imageList.length) % imageList.length;
+      console.log("Moving to previous image:", prevIndex, imageList[prevIndex]);
       maximizeImage(imageList[prevIndex], title, imageList, prevIndex);
     }
-  }, [hasMultipleImages, imageList, currentIndex, title, maximizeImage]);
-
-  // Keyboard navigation for viewer (matching Splittime implementation).
-  // currentIndex must be in the deps: the listener closes over it via the
-  // prev/next handlers, so without it arrow-key navigation acts on a stale
-  // index after the first move.
+  };
+  
+  // Keyboard navigation for viewer (matching Splittime implementation)
   useEffect(() => {
     const handleKeyboard = (event: KeyboardEvent) => {
       if (!isOpen) return;
-
+      
       switch(event.key) {
         case 'Escape':
           onClose();
@@ -109,50 +151,13 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
         case 'ArrowRight':
           if (hasMultipleImages) handleNextImage();
           break;
-        case 'Tab': {
-          // Keep focus inside the dialog while it's open
-          const focusables = dialogRef.current?.querySelectorAll<HTMLElement>(
-            'button:not([disabled]), [href]'
-          );
-          if (!focusables || focusables.length === 0) break;
-          const first = focusables[0];
-          const last = focusables[focusables.length - 1];
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-          break;
-        }
       }
     };
 
     document.addEventListener('keydown', handleKeyboard);
     return () => document.removeEventListener('keydown', handleKeyboard);
-  }, [isOpen, hasMultipleImages, currentIndex, imageList?.length, handleNextImage, handlePrevImage, onClose]);
-
-  // Move focus into the dialog on open; restore it to the trigger on close.
-  // Restore happens in the effect cleanup because the provider unmounts this
-  // component on close (isOpen never flips to false while mounted). setTimeout
-  // rather than rAF so focus still lands when the page isn't actively painting.
-  useEffect(() => {
-    if (!isOpen) return;
-    previousFocusRef.current = document.activeElement as HTMLElement | null;
-    const timer = window.setTimeout(() => {
-      const closeButton = dialogRef.current?.querySelector<HTMLElement>(
-        '[aria-label="Close image viewer"]'
-      );
-      (closeButton ?? dialogRef.current)?.focus();
-    }, 50);
-    return () => {
-      window.clearTimeout(timer);
-      previousFocusRef.current?.focus?.();
-      previousFocusRef.current = null;
-    };
-  }, [isOpen]);
-
+  }, [isOpen, hasMultipleImages]);
+  
   // Reset scale when dialog closes
   useEffect(() => {
     if (!isOpen) {
@@ -164,12 +169,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={title || "Image viewer"}
-          tabIndex={-1}
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 outline-none"
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -201,6 +201,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
               image={image}
               title={title}
               scale={scale}
+              onClose={onClose}
             />
 
             <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4 max-w-[80%] text-center">

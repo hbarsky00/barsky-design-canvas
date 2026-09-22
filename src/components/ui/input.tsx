@@ -31,39 +31,39 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, variant, type, tiltDisabled, onMouseMove, onMouseLeave, onFocus, onBlur, ...props }, ref) => {
+  ({ className, variant, type, tiltDisabled, ...props }, ref) => {
     const tilt = useHoverTilt<HTMLInputElement>({ maxTilt: 2, scale: 1.01, disabled: tiltDisabled });
 
     const handleMouseMove = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
       (e) => {
-        onMouseMove?.(e);
+        props.onMouseMove?.(e);
         tilt.onMouseMove(e);
       },
-      [onMouseMove, tilt]
+      [props.onMouseMove, tilt]
     );
 
     const handleMouseLeave = React.useCallback<React.MouseEventHandler<HTMLInputElement>>(
       (e) => {
-        onMouseLeave?.(e);
+        props.onMouseLeave?.(e);
         tilt.onMouseLeave(e);
       },
-      [onMouseLeave, tilt]
+      [props.onMouseLeave, tilt]
     );
 
     const handleFocus = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
       (e) => {
-        onFocus?.(e);
+        props.onFocus?.(e);
         tilt.onFocus(e);
       },
-      [onFocus, tilt]
+      [props.onFocus, tilt]
     );
 
     const handleBlur = React.useCallback<React.FocusEventHandler<HTMLInputElement>>(
       (e) => {
-        onBlur?.(e);
+        props.onBlur?.(e);
         tilt.onBlur(e);
       },
-      [onBlur, tilt]
+      [props.onBlur, tilt]
     );
 
     return (
@@ -82,4 +82,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 Input.displayName = "Input"
 
-export { Input }
+export { Input, inputVariants }

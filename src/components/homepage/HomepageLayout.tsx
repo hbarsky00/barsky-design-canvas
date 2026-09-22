@@ -1,26 +1,26 @@
 import React, { Suspense } from "react";
 import Header from "@/components/Header";
-import CleanHero from "@/components/hero/CleanHero";
+import MinimalHero from "@/components/hero/MinimalHero";
 import BioSection from "@/components/hero/BioSection";
 import { homepageFaqs } from "@/data/seoFaqs";
-import SeoFaqSection from "@/components/seo/SeoFaqSection";
-import InternalLinkingEnhancer from "@/components/seo/InternalLinkingEnhancer";
 import Footer from "@/components/Footer";
 import FloatingConsultationBubble from "@/components/FloatingConsultationBubble";
 import FloatingButtonGroup from "@/components/shared/FloatingButtonGroup";
 import SectionTransition from "@/components/transitions/SectionTransition";
 
 import { useBounceReduction } from "@/hooks/useBounceReduction";
+import LazySection from "@/components/lazy/LazySection";
 import {
   LazyVideoCaseStudiesSection,
   LazyRecentAdventuresSection,
   LazyContactForm,
+  LazySeoFaqSection,
   LazyBlogPreview,
+  LazyInternalLinkingEnhancer,
   LazyExitIntentDetector,
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
-import WorkCallToAction from "@/components/shared/WorkCallToAction";
-import WordOfMouthSection from "@/components/home/WordOfMouthSection";
+import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
 
 const HomepageLayout: React.FC = () => {
   
@@ -35,15 +35,11 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
       <Header />
       
-      {/* space-y-2 put an 8px band of bare page background between the hero and
-          the work section. Invisible while everything was the same flat colour;
-          the moment the two got gradients that are built to meet, it showed up
-          as a hairline seam across the join. */}
-      <main className="space-y-0 relative z-10">
+      <main className="space-y-0 md:space-y-2 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">
-            <CleanHero />
+            <MinimalHero />
           </section>
         </SectionTransition>
         
@@ -51,84 +47,71 @@ const HomepageLayout: React.FC = () => {
         <div className="space-y-2 md:space-y-6">
         
         <section id="case-studies" tabIndex={-1} className="scroll-offset">
-          {/* Not LazySection. This is the first thing under the hero, so every
-              visitor scrolls into it — gating it on an IntersectionObserver
-              only guaranteed a placeholder-then-content swap, which is the
-              odd empty band that used to sit between the hero and the work.
-              Suspense still code-splits it; it just starts fetching on mount
-              instead of waiting to be scrolled at. */}
-          <Suspense fallback={<div className="min-h-[40vh]" aria-hidden="true" />}>
-            <SectionTransition variant="fade" delay={0.05} intensity={0.3}>
+          <LazySection threshold={0.05} fallback={<div className="min-h-[60vh] animate-pulse bg-muted/20 rounded-lg" />}>
+            <SectionTransition variant="fade" delay={0.05} intensity={0.3} className="py-0 md:py-12">
               <LazyVideoCaseStudiesSection />
             </SectionTransition>
-          </Suspense>
+          </LazySection>
         </section>
-
-        {/* Peak intent is here, straight after the work — not in the hero, where
-            the site's only booking CTA used to live, five screens before anyone
-            had seen a project. */}
-        <div className="container mx-auto max-w-4xl px-4 py-8 sm:px-6 md:py-12 lg:px-8">
-          <WorkCallToAction secondary="message" />
-        </div>
-
-        {/* Client voices go straight under the booking CTA. What sat here before
-            was "What I'm Working on Now", dated September 2025 and listing three
-            works-in-progress: a year-old to-do list under "Available now", at the
-            moment a visitor decides whether to book. Pulled 2026-09-14. */}
-        <SectionTransition variant="fade" delay={0.1} intensity={0.3} className="bg-background py-8 md:py-12">
-          <section id="word-of-mouth" tabIndex={-1} className="scroll-offset">
-            <WordOfMouthSection />
+        
+        {/* Keep current projects section outside 3D container to prevent cutting off */}
+        <SectionTransition variant="fade" delay={0.1} intensity={0.3}>
+          <section id="current-projects" tabIndex={-1} className="scroll-offset">
+            <CurrentProjectsSection />
           </section>
         </SectionTransition>
         
-        <SectionTransition variant="fade" delay={0.15} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
-          <section id="adventures" tabIndex={-1} className="scroll-offset">
-            <Suspense fallback={<div className="h-32" />}>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.15} intensity={0.3}>
+            <section id="adventures" tabIndex={-1} className="scroll-offset">
               <LazyRecentAdventuresSection />
-            </Suspense>
-          </section>
-        </SectionTransition>
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.2} intensity={0.3} className="bg-background py-8 md:py-12">
+        <SectionTransition variant="fade" delay={0.2} intensity={0.3}>
           <section id="bio" tabIndex={-1} className="scroll-offset">
             <BioSection />
           </section>
         </SectionTransition>
         
-        
-        <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-background py-8 md:py-12">
-          <section id="contact" tabIndex={-1} className="scroll-offset">
-            <Suspense fallback={<div className="h-32" />}>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.25} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
+            <section id="contact" tabIndex={-1} className="scroll-offset">
               <LazyContactForm />
-            </Suspense>
-          </section>
-        </SectionTransition>
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
-          <section id="blog" tabIndex={-1} className="scroll-offset">
-            <Suspense fallback={<div className="h-32" />}>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.3} intensity={0.3} className="bg-background py-8 md:py-12">
+            <section id="blog" tabIndex={-1} className="scroll-offset">
               <LazyBlogPreview />
-            </Suspense>
-          </section>
-        </SectionTransition>
+            </section>
+          </SectionTransition>
+        </LazySection>
         
-        <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-background py-8 md:py-12">
-          <section id="faq" tabIndex={-1} className="scroll-offset">
-            <SeoFaqSection
-              title="Frequently Asked Questions"
-              faqs={homepageFaqs}
-            />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
+            <section id="faq" tabIndex={-1} className="scroll-offset">
+              <LazySeoFaqSection 
+                title="Frequently Asked Questions"
+                faqs={homepageFaqs}
+              />
+            </section>
+          </SectionTransition>
+        </LazySection>
 
-        <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
-          <section id="internal-linking" tabIndex={-1} className="scroll-offset">
-            <InternalLinkingEnhancer
-              currentPage="home"
-              showRelatedLinks={true}
-            />
-          </section>
-        </SectionTransition>
+        <LazySection>
+          <SectionTransition variant="fade" delay={0.4} intensity={0.3} className="bg-background py-8 md:py-12">
+            <section id="internal-linking" tabIndex={-1} className="scroll-offset">
+              <LazyInternalLinkingEnhancer 
+                currentPage="home" 
+                showRelatedLinks={true}
+              />
+            </section>
+          </SectionTransition>
+        </LazySection>
         </div>
       </main>
       

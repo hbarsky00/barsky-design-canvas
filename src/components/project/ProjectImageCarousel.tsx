@@ -10,7 +10,6 @@ import { ImageAnnotation } from "@/data/structuredCaseStudies";
 interface ProjectImageCarouselProps {
   images: string[];
   imageCaptions?: Record<string, string>;
-  imageAlts?: Record<string, string>;
   imageAnnotations?: Record<string, ImageAnnotation[]>;
   projectId?: string;
 }
@@ -18,10 +17,13 @@ interface ProjectImageCarouselProps {
 const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
   images,
   imageCaptions = {},
-  imageAlts = {},
   imageAnnotations = {},
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (!images || images.length === 0) {
+    return null;
+  }
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -36,13 +38,13 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (images.length <= 1) return;
       
-      // The index maths is inlined rather than calling nextImage/prevImage,
-      // which are redefined every render and would have to be dependencies.
-      // Functional setState means this closes over nothing but images.length.
-      if (e.key === 'ArrowRight') {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-      } else if (e.key === 'ArrowLeft') {
-        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      switch (e.key) {
+        case 'ArrowRight':
+          nextImage();
+          break;
+        case 'ArrowLeft':
+          prevImage();
+          break;
       }
     };
     
@@ -51,14 +53,6 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [images.length]);
-
-  // Guard moved here, below the hooks. It used to sit above the useEffect, so a
-  // carousel rendered with no images registered one fewer hook than one with
-  // images — React's hook order is positional and it throws when that count
-  // changes between renders of the same component.
-  if (!images || images.length === 0) {
-    return null;
-  }
 
   return (
     <div className="case-study-image-container case-study-image-hero">
@@ -77,8 +71,8 @@ const ProjectImageCarousel: React.FC<ProjectImageCarouselProps> = ({
           >
             <MaximizableImage
               src={images[currentIndex]}
-              alt={imageAlts[images[currentIndex]] || `Carousel image ${currentIndex + 1}`}
-              caption={imageCaptions[images[currentIndex]] || imageAlts[images[currentIndex]]}
+              alt={`Carousel image ${currentIndex + 1}`}
+              caption={imageCaptions[images[currentIndex]]}
               annotations={imageAnnotations[images[currentIndex]]}
               imageList={images}
               currentIndex={currentIndex}

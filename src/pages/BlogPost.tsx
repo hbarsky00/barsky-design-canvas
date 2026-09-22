@@ -8,8 +8,6 @@ import { useBlogPostMetadata } from '@/hooks/usePageMetadata';
 import { blogPosts } from '@/data/blogData';
 import { InternalLinkEnhancer, RelatedPosts } from '@/components/blog/InternalLinkEnhancer';
 import BlogBreadcrumbs from '@/components/seo/BlogBreadcrumbs';
-import Comments from '@/components/blog/Comments';
-import WorkCallToAction from '@/components/shared/WorkCallToAction';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,7 +22,7 @@ const BlogPostPage: React.FC = () => {
       <>
         <Header />
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-lg text-muted-foreground">Loading blog post...</p>
+          <p className="text-lg text-gray-600">Loading blog post...</p>
         </div>
         <Footer />
       </>
@@ -37,8 +35,8 @@ const BlogPostPage: React.FC = () => {
         <Header />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Post Not Found</h1>
-            <p className="text-muted-foreground">The blog post you're looking for doesn't exist.</p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
+            <p className="text-gray-600">The blog post you're looking for doesn't exist.</p>
           </div>
         </div>
         <Footer />
@@ -70,39 +68,30 @@ const BlogPostPage: React.FC = () => {
     <>
       {/* SEO is now handled globally by UnifiedSEO in App.tsx */}
       
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Header />
-
-        <main className="pt-[calc(var(--header-height,64px)+32px)] pb-16">
-          <div className="section-container">
+        
+        <main className="pt-24 pb-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.article
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-background border border-border/10 rounded-xs shadow-elevation-3 overflow-hidden"
+              className="bg-white rounded-2xl shadow-xl overflow-hidden"
             >
               {/* Featured Image */}
               {(metadata?.featuredImage || staticPost?.coverImage) && (
-                <figure className="w-full">
-                  <div className="h-96 w-full overflow-hidden">
-                    <img
-                      src={metadata?.featuredImage || staticPost?.coverImage}
-                      alt={post.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  {/* Every image on this site gets a caption. The cover is no
-                      exception — it is the one image every reader sees. */}
-                  {staticPost?.coverCaption && (
-                    <figcaption className="px-5 pt-3 text-sm leading-relaxed text-muted-foreground sm:px-8 lg:px-12">
-                      {staticPost.coverCaption}
-                    </figcaption>
-                  )}
-                </figure>
+                <div className="w-full h-96 overflow-hidden">
+                  <img
+                    src={metadata?.featuredImage || staticPost?.coverImage}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               )}
               
               {/* Article Content */}
-              <div className="p-5 sm:p-8 lg:p-12">
+              <div className="p-8 lg:p-12">
                 {/* SEO Breadcrumbs */}
                 <BlogBreadcrumbs 
                   currentTitle={post.title} 
@@ -110,11 +99,11 @@ const BlogPostPage: React.FC = () => {
                 />
                 
                 <header className="mb-8">
-                  <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                     {post.title}
                   </h1>
-
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+                  
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
                     <span>By {metadata?.author || staticPost?.author}</span>
                     <span>•</span>
                     <time dateTime={metadata?.publishedDate || staticPost?.date}>
@@ -129,7 +118,7 @@ const BlogPostPage: React.FC = () => {
                     {(metadata?.tags || staticPost?.tags || []).map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
                       >
                         {tag}
                       </span>
@@ -138,14 +127,14 @@ const BlogPostPage: React.FC = () => {
                 </header>
                 
                 {/* Article Body */}
-                <div className="prose sm:prose-lg max-w-none">
-                  <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8">
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-8">
                     {metadata?.excerpt || staticPost?.excerpt}
                   </p>
                   
                   {/* Enhanced blog content with internal SEO links */}
                   {staticPost?.content && (
-                    <div className="prose sm:prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary">
+                    <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-on-surface prose-p:text-on-surface-variant prose-a:text-primary">
                       <InternalLinkEnhancer 
                         content={staticPost.content} 
                         currentSlug={staticPost.slug} 
@@ -153,31 +142,10 @@ const BlogPostPage: React.FC = () => {
                     </div>
                   )}
                   
-                  {/* The post ends here, and this is the highest-intent
-                      moment on the page. Until now a reader arriving from
-                      search — which is how nearly everyone reaches a blog
-                      post — finished the argument and was handed related
-                      posts and a comment box that says commenting is not
-                      switched on. No way to hire him anywhere on the page.
-                      Case studies have closed with this block all along;
-                      posts never did. `not-prose` because the surrounding
-                      wrapper is `prose`, which would restyle the heading. */}
-                  <div className="not-prose my-12">
-                    <WorkCallToAction
-                      heading="Is this the kind of problem you're sitting on?"
-                      blurb="I design and develop SaaS, web apps, mobile apps and internal tools, and the thinking above is how I work. Tell me what you're building, or grab a time and we'll talk it through."
-                    />
-                  </div>
-
                   {/* Related posts section for additional internal linking */}
                   {staticPost && (
                     <RelatedPosts currentSlug={staticPost.slug} maxPosts={3} />
                   )}
-
-                  {/* Keyed off the route slug, not `post` — `post` may be the
-                      database metadata record, which carries no slug at all,
-                      and Comments would have queried for `undefined`. */}
-                  {slug && <Comments slug={slug} />}
                 </div>
               </div>
             </motion.article>

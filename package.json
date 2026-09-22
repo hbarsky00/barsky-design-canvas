@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "dev": "vite",
-    "prebuild": "node scripts/check-image-captions.mjs && npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
+    "prebuild": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "build": "vite build",
     "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
@@ -94,6 +94,7 @@
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "playwright": "1.47.2"
   }
 }

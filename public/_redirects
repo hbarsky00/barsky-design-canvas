@@ -1,134 +1,124 @@
-# Netlify processes this file BEFORE netlify.toml, and first match wins.
-# The catch-all at the bottom is what makes client-side routing work, but it
-# also means any deleted URL answers 200 with the app shell. Anything that
-# should genuinely be gone has to be listed above it.
+# Regenerated 2026-09-21 for the May 18 restore.
+# One 200 per prerendered route so Netlify serves the baked HTML; the SPA
+# shell for the client-only routes; everything else is a 404 via the shell.
 
-# Retired blog posts (replaced 2026-08-09) -> blog index
-/blog/finding-first-ux-job-guide          /blog   301
-/blog/design-systems-that-get-used        /blog   301
-/blog/design-system-that-gets-used        /blog   301
-/blog/case-study-writing                  /blog   301
-/blog/ai-enhanced-ux-designer-future      /blog   301
-/blog/user-research-shoestring-budget     /blog   301
-/blog/wireframes-to-wow-visual-hierarchy  /blog   301
-/blog/built-product-without-real-data     /blog   301
-/blog/building-products-nobody-asked-for  /blog   301
-/blog/beautiful-interface-doesnt-convert  /blog   301
-/blog/research-without-users              /blog   301
-/blog/portfolio-red-flags-no-interviews   /blog   301
+# Legacy URLs still in Google's index
+/get-started           /contact                            301
+/$1                    /                                   301
+/projects              /#projects                          301!
+/web-development       /design-services/web-development    301
+/ux-ui-design          /design-services/ux-ui-design       301
+/mobile-app-design     /design-services/mobile-app-design  301
+/case-studies/*        /project/:splat                     301
+/project/barskyjoint   /                                   301
+/project/wholesale-distribution   /project/business-management   301
+/project/farmflow      /                                   301
+/project/bz-essentials /                                   301
+/project/recast        /                                   301
+/project/stips         /                                   301
 
-# Soft 404s reported by Search Console 2026-08-21. None of these paths have
-# ever existed on this site — they're links from an older structure or from
-# elsewhere — but the SPA catch-all below answers every unmatched URL with 200
-# and a client-rendered Not Found, which Google reads as a soft 404 rather than
-# a missing page. Redirecting them turns each one into a clean signal.
+# Prerendered routes
+/                                                    /index.html                                          200
+/services                                            /services/index.html                                 200
+/services/                                           /services/index.html                                 200
+/design-services/ux-ui-design                        /design-services/ux-ui-design/index.html             200
+/design-services/ux-ui-design/                       /design-services/ux-ui-design/index.html             200
+/design-services/mobile-app-design                   /design-services/mobile-app-design/index.html        200
+/design-services/mobile-app-design/                  /design-services/mobile-app-design/index.html        200
+/design-services/web-development                     /design-services/web-development/index.html          200
+/design-services/web-development/                    /design-services/web-development/index.html          200
+/about                                               /about/index.html                                    200
+/about/                                              /about/index.html                                    200
+/contact                                             /contact/index.html                                  200
+/contact/                                            /contact/index.html                                  200
+/store                                               /store/index.html                                    200
+/store/                                              /store/index.html                                    200
+/blog                                                /blog/index.html                                     200
+/blog/                                               /blog/index.html                                     200
+/project/herbalink                                   /project/herbalink/index.html                        200
+/project/herbalink/                                  /project/herbalink/index.html                        200
+/project/business-management                         /project/business-management/index.html              200
+/project/business-management/                        /project/business-management/index.html              200
+/project/investor-loan-app                           /project/investor-loan-app/index.html                200
+/project/investor-loan-app/                          /project/investor-loan-app/index.html                200
+/project/fire-lion                                   /project/fire-lion/index.html                        200
+/project/fire-lion/                                  /project/fire-lion/index.html                        200
+/project/ring-rival                                  /project/ring-rival/index.html                       200
+/project/ring-rival/                                 /project/ring-rival/index.html                       200
+/project/catchbuddy                                  /project/catchbuddy/index.html                       200
+/project/catchbuddy/                                 /project/catchbuddy/index.html                       200
+/blog/a-filter-nobody-opens                          /blog/a-filter-nobody-opens/index.html               200
+/blog/a-filter-nobody-opens/                         /blog/a-filter-nobody-opens/index.html               200
+/blog/a-to-do-app-doesnt-prove-anything              /blog/a-to-do-app-doesnt-prove-anything/index.html   200
+/blog/a-to-do-app-doesnt-prove-anything/             /blog/a-to-do-app-doesnt-prove-anything/index.html   200
+/blog/ai-enhanced-ux-designer-future                 /blog/ai-enhanced-ux-designer-future/index.html      200
+/blog/ai-enhanced-ux-designer-future/                /blog/ai-enhanced-ux-designer-future/index.html      200
+/blog/beautiful-interface-doesnt-convert             /blog/beautiful-interface-doesnt-convert/index.html  200
+/blog/beautiful-interface-doesnt-convert/            /blog/beautiful-interface-doesnt-convert/index.html  200
+/blog/beginner-or-pro-is-a-false-choice              /blog/beginner-or-pro-is-a-false-choice/index.html   200
+/blog/beginner-or-pro-is-a-false-choice/             /blog/beginner-or-pro-is-a-false-choice/index.html   200
+/blog/building-products-nobody-asked-for             /blog/building-products-nobody-asked-for/index.html  200
+/blog/building-products-nobody-asked-for/            /blog/building-products-nobody-asked-for/index.html  200
+/blog/built-product-without-real-data                /blog/built-product-without-real-data/index.html     200
+/blog/built-product-without-real-data/               /blog/built-product-without-real-data/index.html     200
+/blog/case-study-writing                             /blog/case-study-writing/index.html                  200
+/blog/case-study-writing/                            /blog/case-study-writing/index.html                  200
+/blog/demo-works-shipping-is-different               /blog/demo-works-shipping-is-different/index.html    200
+/blog/demo-works-shipping-is-different/              /blog/demo-works-shipping-is-different/index.html    200
+/blog/design-for-the-approval-gates                  /blog/design-for-the-approval-gates/index.html       200
+/blog/design-for-the-approval-gates/                 /blog/design-for-the-approval-gates/index.html       200
+/blog/design-systems-that-get-used                   /blog/design-systems-that-get-used/index.html        200
+/blog/design-systems-that-get-used/                  /blog/design-systems-that-get-used/index.html        200
+/blog/designer-who-codes-argument-is-over            /blog/designer-who-codes-argument-is-over/index.html 200
+/blog/designer-who-codes-argument-is-over/           /blog/designer-who-codes-argument-is-over/index.html 200
+/blog/designing-for-trust-when-the-product-is-the-risk /blog/designing-for-trust-when-the-product-is-the-risk/index.html 200
+/blog/designing-for-trust-when-the-product-is-the-risk/ /blog/designing-for-trust-when-the-product-is-the-risk/index.html 200
+/blog/everyones-portfolio-looks-good-now             /blog/everyones-portfolio-looks-good-now/index.html  200
+/blog/everyones-portfolio-looks-good-now/            /blog/everyones-portfolio-looks-good-now/index.html  200
+/blog/finding-first-ux-job-guide                     /blog/finding-first-ux-job-guide/index.html          200
+/blog/finding-first-ux-job-guide/                    /blog/finding-first-ux-job-guide/index.html          200
+/blog/finding-the-data-is-half-the-job               /blog/finding-the-data-is-half-the-job/index.html    200
+/blog/finding-the-data-is-half-the-job/              /blog/finding-the-data-is-half-the-job/index.html    200
+/blog/how-to-interview-a-designer-now                /blog/how-to-interview-a-designer-now/index.html     200
+/blog/how-to-interview-a-designer-now/               /blog/how-to-interview-a-designer-now/index.html     200
+/blog/i-just-wanted-to-send-someone-a-video          /blog/i-just-wanted-to-send-someone-a-video/index.html 200
+/blog/i-just-wanted-to-send-someone-a-video/         /blog/i-just-wanted-to-send-someone-a-video/index.html 200
+/blog/if-you-make-people-do-math                     /blog/if-you-make-people-do-math/index.html          200
+/blog/if-you-make-people-do-math/                    /blog/if-you-make-people-do-math/index.html          200
+/blog/research-without-users                         /blog/research-without-users/index.html              200
+/blog/research-without-users/                        /blog/research-without-users/index.html              200
+/blog/scope-discipline-when-building-is-cheap        /blog/scope-discipline-when-building-is-cheap/index.html 200
+/blog/scope-discipline-when-building-is-cheap/       /blog/scope-discipline-when-building-is-cheap/index.html 200
+/blog/shipping-got-cheap-hiring-got-harder           /blog/shipping-got-cheap-hiring-got-harder/index.html 200
+/blog/shipping-got-cheap-hiring-got-harder/          /blog/shipping-got-cheap-hiring-got-harder/index.html 200
+/blog/taste-is-the-whole-job                         /blog/taste-is-the-whole-job/index.html              200
+/blog/taste-is-the-whole-job/                        /blog/taste-is-the-whole-job/index.html              200
+/blog/the-work-is-deleting-not-generating            /blog/the-work-is-deleting-not-generating/index.html 200
+/blog/the-work-is-deleting-not-generating/           /blog/the-work-is-deleting-not-generating/index.html 200
+/blog/two-bugs-ai-wrote-that-i-had-to-find           /blog/two-bugs-ai-wrote-that-i-had-to-find/index.html 200
+/blog/two-bugs-ai-wrote-that-i-had-to-find/          /blog/two-bugs-ai-wrote-that-i-had-to-find/index.html 200
+/blog/user-research-shoestring-budget                /blog/user-research-shoestring-budget/index.html     200
+/blog/user-research-shoestring-budget/               /blog/user-research-shoestring-budget/index.html     200
+/blog/verification-is-a-door-not-a-sticker           /blog/verification-is-a-door-not-a-sticker/index.html 200
+/blog/verification-is-a-door-not-a-sticker/          /blog/verification-is-a-door-not-a-sticker/index.html 200
+/blog/what-ai-changed-and-what-it-didnt              /blog/what-ai-changed-and-what-it-didnt/index.html   200
+/blog/what-ai-changed-and-what-it-didnt/             /blog/what-ai-changed-and-what-it-didnt/index.html   200
+/blog/what-one-person-can-ship-now                   /blog/what-one-person-can-ship-now/index.html        200
+/blog/what-one-person-can-ship-now/                  /blog/what-one-person-can-ship-now/index.html        200
+/blog/when-trust-is-the-product                      /blog/when-trust-is-the-product/index.html           200
+/blog/when-trust-is-the-product/                     /blog/when-trust-is-the-product/index.html           200
+/blog/why-enterprise-tools-lose-to-excel             /blog/why-enterprise-tools-lose-to-excel/index.html  200
+/blog/why-enterprise-tools-lose-to-excel/            /blog/why-enterprise-tools-lose-to-excel/index.html  200
+/blog/wireframes-to-wow-visual-hierarchy             /blog/wireframes-to-wow-visual-hierarchy/index.html  200
+/blog/wireframes-to-wow-visual-hierarchy/            /blog/wireframes-to-wow-visual-hierarchy/index.html  200
+/blog/you-dont-replace-excel-by-being-better         /blog/you-dont-replace-excel-by-being-better/index.html 200
+/blog/you-dont-replace-excel-by-being-better/        /blog/you-dont-replace-excel-by-being-better/index.html 200
 
-# /get-started was a CTA URL on an earlier version of the site and is still
-# linked from outside. Booking a call is what it promised, so send it to the
-# page that does that rather than let the catch-all answer 200 with a
-# client-rendered Not Found.
-/get-started    /contact    301
-
-# Literal "$1" — an old redirect rule written Apache-style instead of with
-# Netlify's :splat, so the placeholder itself got crawled. The rule is long
-# gone but the URL is still in Google's index answering 200.
-/$1             /           301
-
-# /case-studies/* was never this site's URL shape; the work lives under /project/*
-/case-studies/ring-rival        /project/ring-rival   301
-/case-studies/roi-design-builder  /#case-studies      301
-/case-studies/*                 /#case-studies        301
-
-# Posts that don't exist here. The trust one has a real counterpart; the other
-# two have no close match, so they go to the index rather than to a post that
-# only vaguely resembles what the link promised.
-/blog/designing-trust-into-ai      /blog/designing-for-trust-when-the-product-is-the-risk   301
-/blog/figma-to-production-with-ai  /blog   301
-/blog/designing-ai-native-interfaces  /blog   301
-
-# business-management was taken down 2026-08-09 and is back as a full case
-# study on the current layout. wholesale-distribution was the older URL for the
-# same project, so it points at the page rather than at the index.
-/project/wholesale-distribution  /project/business-management   301
-
-# SplitTime hidden 2026-08-22 (splittime.pro is dead). This rule has to live
-# HERE, not only in netlify.toml: this file is processed first and its catch-all
-# on the last line matches before netlify.toml is ever consulted, so a 301 that
-# exists only in the toml never fires for a path this file does not name.
-/project/splittime               /#case-studies   301
-
-# /projects was never a page. It was a client-side <Navigate> to /#case-studies,
-# which means React had to boot before anything happened — so the URL answered
-# 200 with an empty #root, while still carrying index,follow, a self-referential
-# canonical, its own OG card and sitemap priority 0.9. Every non-JS crawler and
-# answer engine saw a blank document at the site's most-linked URL after the
-# homepage, and the five rules above were funnelling retired-URL equity into it.
-#
-# It is a redirect, so it belongs here rather than in the router. Forced (301!)
-# because rules in this file do not shadow real files by default, and this must
-# fire even if a stale projects/index.html ever survives into a deploy.
-#
-# The work itself is not moving: /#case-studies is the homepage section that has
-# always been the real index, and /project/* detail pages are untouched.
-/projects                        /#case-studies   301!
-
-# Old flat service URLs. The service pages live under /design-services/*; these
-# bare paths are from an earlier structure and are still crawled. Confirmed via
-# Search Console 2026-08-29: /web-development was answering 200 with an empty
-# #root and no canonical, which Google reads as a soft 404 rather than a move.
-/web-development       /design-services/web-development   301
-/ux-ui-design          /design-services/ux-ui-design      301
-/mobile-app-design     /design-services/mobile-app-design 301
-/design-services       /services                          301
-
-# Live products of Hiram's that were never case studies here. Each answered 200
-# with a blank document: SimplifiedProjectDetail does redirect them, but
-# client-side, so a crawler files the empty 200 as a soft 404 before React runs.
-# /project/nudgeme is confirmed in Search Console; the other two are the same
-# shape and were verified returning an empty #root on 2026-08-29.
-#
-# Listed explicitly rather than as /project/* on purpose. A wildcard here would
-# be one line instead of three, but it only stays safe as long as non-forced
-# rules never shadow the real prerendered case-study files — and if that
-# assumption is ever wrong, every case study 301s to the homepage. Not worth
-# finding out on a live portfolio to save two lines.
-/project/nudgeme       /#case-studies                     301
-/project/roi-calculator /#case-studies                    301
-/project/quickqr       /#case-studies                     301
-
-# Same defect /projects had: a client-side <Navigate to="/"> in App.tsx, which
-# means the URL answers 200 with an empty #root and React does the redirect
-# only after it boots. A crawler files that as a soft 404. Server-side 301 is
-# what it always meant.
-/project/barskyjoint             /                301
-/project/investor-loan-app       /                301
-/project/investor-loan-app/      /                301
-
-# Real routes that have NO prerendered file, so they fall through to the
-# catch-all below. They must keep answering 200 now that the catch-all is a
-# 404, or pages that genuinely exist would start reporting as missing:
-#   - two real store products (case-study-templates, content-templates)
-#   - the post-checkout page a paying customer lands on
-#   - the two internal tools
+# SPA shell for the client-only routes
 /store/product/*                 /spa-shell.html   200
 /store/success                   /spa-shell.html   200
 /__seo-check                     /spa-shell.html   200
 /admin/content-export-2024       /spa-shell.html   200
 
-# SPA fallback — must stay last. Does not shadow real files, so the
-# per-route HTML written by scripts/inject-seo-html.ts is still served.
-#
-# Points at spa-shell.html, not index.html: index.html now carries the
-# homepage's prerendered body, so using it as the catch-all would serve
-# homepage content for every unmatched URL — a soft 200 on what should read as
-# a 404. spa-shell.html is the same shell with an empty #root, so unmatched
-# routes client-render whatever they should (including NotFound).
-#
-# Status is 404, not 200. Every unmatched URL used to answer 200 with this
-# shell — verified 2026-09-06, three nonsense paths all returned 200 and an
-# identical 22,106-byte body. That is the textbook soft-404 shape, and Search
-# Console has been reporting it. The 44 prerendered routes are real files and
-# are unaffected; the explicit 200s above cover the routes that have no file.
-# The body still renders, so a human who mistypes a URL sees NotFound as before
-# — only the status line changes.
-/*    /spa-shell.html   404
+# Anything else is a 404, served by the shell so the SPA can show its own page
+/*                               /spa-shell.html   404

@@ -1,9 +1,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import SectionHeader from "@/components/shared/SectionHeader";
+import AnimatedText from "@/components/AnimatedText";
+import { useIsMobile } from "@/hooks/use-mobile";
 import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
 import { shouldShowPromoImpact } from "@/utils/promoCopy";
 
@@ -24,13 +28,22 @@ interface CaseStudy {
   video?: string;
 }
 
-// Pulled from featured work, routes/pages/content all untouched:
-//   "fire-lion"         2026-08-07 — Hiram: "were going to work on that later."
-//   "business-management" 2026-08-08 — page needs rebuilding on the current template.
-//   "email-creation-ai" 2026-08-09 — Hiram: park it as a draft, revisit later.
-// Each is still live at its own /project/<id> URL; only the homepage
-// listing is affected.
 const caseStudies: CaseStudy[] = [
+  {
+    id: "fire-lion",
+    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
+    title: "Fire Lion",
+    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
+    impact: "",
+    url: "/project/fire-lion",
+    liveUrl: "https://firelion.me",
+    images: {
+      primary: "/images/firelion-hero-title.webp",
+      alt: "Fire Lion gameplay"
+    },
+    layout: "side-by-side",
+    video: "/lovable-uploads/fire-lion-hero.mp4"
+  },
   {
     id: "ring-rival",
     tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
@@ -38,17 +51,13 @@ const caseStudies: CaseStudy[] = [
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
     impact: "",
     url: "/project/ring-rival",
-    liveUrl: "https://ringrival.today",
+    liveUrl: "https://rival.li",
     images: {
-      // Was the title screen still + an AI-generated cinematic of a
-      // photorealistic boxer. Neither is the game: it's a flat-shaded 2D
-      // fighter. Now the card shows the thing you actually get — first-person
-      // gloves, opponent trash talk, the super-punch meter.
-      primary: "/images/ringrival-now/card-poster.jpg",
+      primary: "/images/ringrival-hero-title.webp",
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/ring-rival-card.mp4"
+    video: "/lovable-uploads/ring-rival-hero.mp4"
   },
   {
     id: "catchbuddy",
@@ -57,331 +66,364 @@ const caseStudies: CaseStudy[] = [
     description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
     impact: "",
     url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.fit",
+    liveUrl: "https://catchbuddy.me",
     images: {
-      primary: "/images/catchbuddy-hero-landing-card.webp",
+      primary: "/images/catchbuddy-hero-landing.webp",
       alt: "CatchBuddy pickup sports app"
     },
     layout: "side-by-side",
-    video: "/catchbuddy-card.mp4"
-  },
-  {
-    id: "dae-search",
-    tags: ["Enterprise", "Data Discovery", "Search UX"],
-    title: "DAE Search",
-    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
-    impact: "",
-    url: "/project/dae-search",
-    images: {
-      // Was hosted on a Supabase project that's since been deprovisioned —
-      // ctqttomppgkjbjkckise.supabase.co no longer resolves at all (DNS
-      // failure). Hiram supplied the original source file directly.
-      // hero.webp is the promo shot the study opens on; what-i-built.webp
-      // is the process-flow figure inside the study and was showing here
-      // by mistake (Hiram, 2026-09-15).
-      primary: "/images/dae-search/hero.webp",
-      alt: "DAE Search — the process flow from login through advanced search to one data asset's profile"
-    },
-    layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
-  },
-  {
-    id: "bz-essentials",
-    tags: ["Enterprise", "Information Architecture", "Solo Build"],
-    title: "BZ Essentials",
-    description: "An enterprise knowledge portal built from a client PRD. Region is a lens over the whole app, not a filter nobody opens.",
-    impact: "",
-    url: "/project/bz-essentials",
-    liveUrl: "https://az-essentials.netlify.app",
-    images: {
-      // The desktop home with the phone home over it: one app at two sizes,
-      // the Global/US lens in both headers. Three phones side by side were
-      // tried first and looked odd for a portal that is mostly used at a desk
-      // (Hiram, 2026-09-14).
-      primary: "/images/bz-essentials/card-product.webp",
-      alt: "BZ Essentials on desktop and on a phone: the portal home and the ADRD domain, with the Global/US region lens in each header"
-    },
-    layout: "side-by-side",
-    video: "/bz-essentials-card.mp4"
-  },
-  {
-    id: "farmflow",
-    tags: ["Internal Tools", "Operations", "Solo Build"],
-    title: "FarmFlow",
-    description: "An organisation's farm was taking plant requests by email. Four roles, a request lifecycle with photo confirmation, landscaping and reservations — twelve screens became twenty-two after the stakeholder's feedback.",
-    impact: "",
-    url: "/project/farmflow",
-    liveUrl: "https://farmflow-app.netlify.app",
-    images: {
-      // Four phone screens, not the desktop dashboard. Next to QuickFlow's
-      // dashboard the two cards read as the same product; the phones are
-      // what makes this one different (Hiram, 2026-09-14).
-      primary: "/images/farmflow/card-phones.webp",
-      alt: "FarmFlow on a phone: new request, my requests, a request's timeline, and reserving the farm"
-    },
-    layout: "side-by-side",
-    video: "/farmflow-card.mp4"
-  },
-  {
-    id: "business-management",
-    tags: ["Business Software", "Distribution", "Solo Build"],
-    title: "QuickFlow",
-    description: "A wholesale distributor was paying for software that fought them. Excel scripts first, then a product built around how the business actually runs.",
-    impact: "",
-    url: "/project/business-management",
-    images: {
-      // Four phone screens, same treatment as FarmFlow (Hiram, 2026-09-14):
-      // recurring orders, the catalogue, delivery, drivers. The desktop
-      // overview that was here is the study's hero already.
-      primary: "/images/business-management/card-phones.webp",
-      alt: "QuickFlow on a phone: the business overview, orders, customers and the recipe calculator"
-    },
-    layout: "side-by-side",
-    video: "/business-management-card.mp4"
-  },
-  {
-    id: "recast",
-    tags: ["Product Design", "Cross-Platform", "Native + Web"],
-    title: "Recast",
-    description: "Record it once, send a link. Native capture on Mac and Android with a web library — including the browser recorder I built and then deleted.",
-    impact: "",
-    url: "/project/recast",
-    liveUrl: "https://recastvid.com",
-    images: {
-      // The product, not the landing page: the web library with the Mac
-      // recorder panel over it. The headline crop that was here showed the
-      // pitch and nothing of the thing itself (Hiram, 2026-09-14).
-      primary: "/images/recast/card-footage.webp",
-      alt: "Recast: the web library in dark mode with a recording running, from the Mac app footage"
-    },
-    layout: "side-by-side",
-    // Real footage Hiram recorded of the Mac app, trimmed to the eight seconds
-    // that are the whole pitch: recording running, stop, the player opening
-    // immediately from the local file with Copy Link already there.
-    video: "/recast-card.mp4"
+    video: "/lovable-uploads/catchbuddy-hero.mp4"
   },
   {
     id: "herbalink",
-    tags: ["Healthcare", "Marketplace", "Trust & Safety"],
+    tags: ["Health", "Marketplace", "Trust & Safety"],
     title: "HerbaLink",
     description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
     impact: "",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      // The old barskyux.com-hosted video died with that domain; this card sat
-      // static ever since. Hiram's booking-demo capture (Aug 2026) restores
-      // the hover loop — poster is its first frame so hover continues the
-      // same scene instead of jumping.
       primary: "/images/herbalink/card-poster-home.jpg",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side",
     video: "/herbalink-card.mp4"
-  },
-  {
-    id: "stips",
-    tags: ["AI-Assisted Product", "Fintech", "Solo Build"],
-    title: "Stips",
-    description: "Prediction markets you can actually read — play-money trading on real-world events, where the price is the probability.",
-    impact: "",
-    url: "/project/stips",
-    liveUrl: "https://stips.bet",
-    images: {
-      // Four phone screens, same treatment as the other product cards (Hiram,
-      // 2026-09-14): the front door, the markets board, a market, clubs. Shot
-      // from stips.bet on an iPhone 13 viewport.
-      primary: "/images/stips/card-phones.webp",
-      alt: "Stips on a phone: the front door, the live markets board with Yes and No prices, a market page, and clubs"
-    },
-    layout: "side-by-side",
-    video: "/stips-card.mp4"
-  },
-  {
-    // Never pulled — it was simply never added here. Hiram spotted it missing.
-    id: "crypto",
-    tags: ["Fintech", "Crypto", "Dual-Mode UX"],
-    title: "Trading Without Friction",
-    description: "A crypto trading interface for two audiences the industry insists you have to choose between — beginners paying hidden spreads, pros paying an are-you-sure tax.",
-    impact: "",
-    url: "/project/crypto",
-    images: {
-      primary: "/images/crypto/hero-card.webp",
-      alt: "Gold2Crypto trading interface — one platform serving beginners and pros"
-    },
-    layout: "side-by-side"
   }
 ];
 
-/**
- * One case study, presented editorially rather than as a card.
- *
- * The previous version wrapped every study in a full-bleed grey gradient panel
- * with its own borders, and rendered the whole thing twice (a `lg:hidden`
- * mobile copy and a separate desktop copy). That produced a stack of heavy
- * boxes and double the DOM. This is a single responsive layout: the work is
- * the visual, the page background is left alone, and the media side alternates
- * so a column of studies has some rhythm.
- */
-const CaseStudyCard: React.FC<{ study: CaseStudy; index: number }> = React.memo(({ study, index }) => {
+const CaseStudyCard: React.FC<{ 
+  study: CaseStudy; 
+  index: number;
+}> = React.memo(({ study, index }) => {
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const showImpact = shouldShowPromoImpact(study.title, study.description, study.impact);
-  const mediaFirst = index % 2 === 0;
 
-  const needsPlaceholder = (src?: string) =>
-    Boolean(src && src.includes("/assets/case-studies/smarter-health/"));
-  const showPlaceholder =
-    needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
+  // Check if we need a placeholder for Smarter Health assets
+  const needsPlaceholder = (src?: string) => {
+    return src && src.includes('/assets/case-studies/smarter-health/');
+  };
+
+  const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
+
+  // Debug logging
+  if (study.id === 'smarterhealth') {
+    console.log('🔍 Smarter Health Debug:', {
+      studyId: study.id,
+      video: study.video,
+      primaryImage: study.images.primary,
+      showPlaceholder,
+      needsVideoPlaceholder: needsPlaceholder(study.video),
+      needsImagePlaceholder: needsPlaceholder(study.images.primary)
+    });
+  }
 
   const renderMedia = () => {
     if (showPlaceholder) {
-      return <PlaceholderImage title={study.title} className="w-full h-full" />;
-    }
-    if (study.video) {
+      console.log('📦 Rendering PlaceholderImage for:', study.title);
       return (
-        <video
-          src={study.video}
-          poster={study.images.primary}
-          // contain, not cover. Every card clip is 16:9 in a 16:10 frame and
-          // cover cut a strip off both sides and the bottom, so a hover
-          // opened on a page with its edges missing (Hiram, 2026-09-15).
-          className="w-full h-full object-contain bg-muted/20"
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={study.images.alt}
-          onMouseEnter={(e) => {
-            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-              e.currentTarget.play().catch(() => {});
-            }
-          }}
-          onMouseLeave={(e) => {
-            // load() rather than currentTime = 0. A paused video keeps
-            // showing the frame it is on, and the poster only shows before
-            // playback has ever started, so rewinding left the card on the
-            // footage's first frame: a different picture from the one it
-            // had before the hover. Reloading puts the poster back.
-            e.currentTarget.pause();
-            e.currentTarget.load();
-          }}
-        />
+        <div 
+          onClick={() => navigate(study.url)}
+          className="block h-full cursor-pointer"
+        >
+          <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
+        </div>
       );
     }
+
+    if (study.video) {
+      return (
+        <div 
+          onClick={() => navigate(study.url)}
+          className="block h-full group cursor-pointer"
+        >
+          <div className="flex justify-center h-full">
+            <video 
+              src={study.video}
+              poster={study.images.primary}
+              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
+              muted
+              loop
+              playsInline
+              style={{ maxWidth: '625px', height: 'auto' }}
+              onMouseEnter={(e) => e.currentTarget.play()}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+                e.currentTarget.load();
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+    
     return (
-      <img
-        src={study.images.primary}
-        alt={study.images.alt}
-        loading="lazy"
-        width={1600}
-        height={1000}
-        className="w-full h-full object-cover object-top"
-      />
+      <div 
+        onClick={() => navigate(study.url)}
+        className="block h-full group cursor-pointer"
+      >
+        <div className="flex justify-center h-full">
+          <img 
+            src={study.images.primary} 
+            alt={study.images.alt}
+            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
+            style={{ maxWidth: '625px', height: 'auto' }}
+          />
+        </div>
+      </div>
     );
   };
 
   return (
-    <motion.article
+    <motion.div
       id={`case-study-${index + 1}`}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group grid lg:grid-cols-2 gap-6 lg:gap-14 items-center"
+      viewport={{ once: true, margin: "100px" }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="case-study-card overflow-hidden relative"
+      tabIndex={-1}
     >
-      {/* Media — the work leads */}
-      <Link
-        to={study.url}
-        tabIndex={-1}
-        aria-hidden="true"
-        className={`block overflow-hidden rounded-xs border border-border bg-muted/20 aspect-[16/10] ${
-          mediaFirst ? "" : "lg:order-2"
-        }`}
-      >
-        <div className="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
-          {renderMedia()}
-        </div>
-      </Link>
-
-      {/* Copy */}
-      <div className={`min-w-0 ${mediaFirst ? "" : "lg:order-1"}`}>
-        <div className="flex items-center gap-3 mb-4">
-          <span className="font-display text-sm tabular-nums text-muted-foreground">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <span className="h-px w-6 bg-border" aria-hidden="true" />
-          <div className="flex flex-wrap gap-x-3 gap-y-1 min-w-0">
-            {study.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground"
-              >
-                {tag}
-              </span>
-            ))}
+      {/* Mobile Layout: Stacked with Premium Background */}
+      <div className="lg:hidden py-8 relative overflow-hidden"
+           style={{
+             background: `
+               linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+               radial-gradient(circle at 50% 0%, hsl(231 92% 98% / 0.5) 0%, transparent 50%)
+             `,
+             border: "1px solid hsl(220 20% 92%)",
+             borderRadius: "24px",
+             backdropFilter: "blur(8px)"
+           }}>
+        {/* Image Section - Full Width on Mobile */}
+        <div className="relative py-4 min-h-[200px] flex items-center justify-center">
+          <div className="w-full max-w-[625px] flex justify-center">
+            {renderMedia()}
           </div>
         </div>
 
-        <h3 className="font-display font-bold text-foreground text-2xl sm:text-3xl lg:text-4xl leading-tight mb-4">
-          <Link to={study.url} className="hover:text-primary transition-colors duration-200">
-            {study.title}
-          </Link>
-        </h3>
+        {/* Content Section */}
+        <div className="p-6 space-y-4">
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2">
+            {study.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                #{tag}
+              </Badge>
+            ))}
+          </div>
 
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-          {study.description}
-        </p>
+          {/* Title */}
+          <AnimatedText
+            text={study.title}
+            tag="h3"
+            className="heading-subsection text-gray-900 leading-tight break-words"
+            type="word"
+            animation="slide"
+            delay={300}
+            staggerChildren={0.05}
+          />
 
-        {showImpact ? <div className="text-impact-metric-md mb-6">{study.impact}</div> : null}
+          {/* Description */}
+          <p className="text-gray-600 text-lg leading-relaxed break-words">
+            {study.description}
+          </p>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <Button asChild className="!w-auto">
-            <Link to={study.url}>
-              View Case Study
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          {study.liveUrl && (
-            <a
-              href={study.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 min-h-[44px] px-2 -mx-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+          {/* Impact Metrics */}
+          {showImpact ? (
+            <div className="text-impact-metric-md">
+              {study.impact}
+            </div>
+          ) : null}
+
+          {/* CTA Buttons */}
+          <div className="flex flex-row gap-3 pt-2">
+            <Button 
+              variant="case-study" 
+              className="flex-1"
+              onClick={() => navigate(study.url)}
             >
-              View Live
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          )}
+              View Case Study
+            </Button>
+            {study.liveUrl && (
+              <Button asChild variant="outline" className="flex-1">
+                <a 
+                  href={study.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
+                >
+                  View Live
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
-    </motion.article>
+
+      {/* Desktop Layout: Full-width background */}
+      <div className="hidden lg:block">
+        {/* Full-width Premium Background wrapper */}
+        <div className="w-screen relative left-1/2 -ml-[50vw] py-8 lg:py-10 overflow-hidden"
+             style={{
+               background: `
+                 linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
+                 radial-gradient(circle at 20% 50%, hsl(231 92% 98% / 0.3) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 50%, hsl(263 85% 98% / 0.2) 0%, transparent 50%)
+               `,
+               borderTop: "1px solid hsl(220 20% 92%)",
+               borderBottom: "1px solid hsl(220 20% 92%)",
+             }}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            {/* Desktop content grid */}
+            <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
+                            [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
+                            2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
+              
+              {/* Images Section */}
+              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
+                   style={{ marginRight: '-24px' }}>
+                <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
+                  {renderMedia()}
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
+                   style={{ 
+                     paddingLeft: '24px',
+                     paddingRight: '24px',
+                     wordWrap: 'break-word',
+                     whiteSpace: 'normal'
+                   }}>
+                <div className="w-full max-w-[600px] space-y-3 break-words">
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {study.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <AnimatedText
+                    text={study.title}
+                    tag="h3"
+                    className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
+                    type="word"
+                    animation="slide"
+                    delay={300}
+                    staggerChildren={0.05}
+                  />
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
+                    {study.description}
+                  </p>
+
+                  {/* Impact Metrics */}
+                  {showImpact ? (
+                    <div className="text-impact-metric-md mb-4">
+                      {study.impact}
+                    </div>
+                  ) : null}
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button 
+                      variant="case-study" 
+                      className="flex-1 sm:flex-none"
+                      onClick={() => navigate(study.url)}
+                    >
+                      View Case Study
+                    </Button>
+                    {study.liveUrl && (
+                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
+                        <a 
+                          href={study.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          View Live
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 });
 
-CaseStudyCard.displayName = "CaseStudyCard";
-
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section className="work-section work-canvas pt-8 md:pt-14 pb-20 md:pb-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section 
+      className="py-12 md:py-16 relative overflow-hidden" 
+      tabIndex={-1}
+      style={{
+        background: `
+          radial-gradient(circle at 10% 20%, hsl(231 92% 98% / 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 90% 80%, hsl(263 85% 98% / 0.3) 0%, transparent 50%),
+          linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 99%) 100%)
+        `
+      }}
+    >
+      {/* Premium Background Elements */}
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        animate={{
+          background: [
+            "radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.1) 0%, transparent 40%)",
+            "radial-gradient(circle at 60% 20%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
+          ]
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 md:mb-16 max-w-2xl"
+          viewport={{ once: true, margin: "50px" }}
+          transition={{ duration: 0.4 }}
         >
-          <h2 className="font-display font-bold text-foreground text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
-            Selected Work
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Products I designed and shipped — most of them live, all of them with the
-            decisions written down.
-          </p>
+          <SectionHeader
+            as="h2"
+            title="Case Studies That Drive Results"
+            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
+            subtitleClassName="max-w-4xl mx-auto"
+            titleAnimation="elastic"
+            subtitleAnimation="fade"
+            titleDelay={0}
+            subtitleDelay={0.3}
+          />
         </motion.div>
 
-        <div className="space-y-20 md:space-y-28">
+        {/* Case Studies Grid */}
+        <div className="space-y-8">
           {caseStudies.map((study, index) => (
-            <CaseStudyCard key={study.id} study={study} index={index} />
+            <CaseStudyCard 
+              key={study.id} 
+              study={study} 
+              index={index}
+            />
           ))}
         </div>
       </div>

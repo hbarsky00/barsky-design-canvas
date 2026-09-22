@@ -5,11 +5,10 @@ import { useScrollToHomeTop } from "@/hooks/useScrollToHomeTop";
 import { useHeaderNavigation } from "./useHeaderNavigation";
 
 const ProfileAvatar: React.FC = () => {
-  // 96px source for a 48px avatar (2x DPR). The full 720x960 file was being
-  // served here — 15x oversized, 101 KB, and eager, so it competed with LCP
-  // for a picture the size of a thumbnail.
-  const imageUrl = '/images/hiram-barsky-profile-96.webp';
-
+  // Using your working external image URL
+  const imageUrl = '/images/hiram-barsky-profile.webp';
+  const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
+  
   const { setIsIntentionalScrolling } = useHeaderNavigation();
   
   const scrollToHomeTop = useScrollToHomeTop(() => {
@@ -25,8 +24,9 @@ const ProfileAvatar: React.FC = () => {
       <IdentityBadge
         ariaLabel="Go to homepage"
         imageSrc={imageUrl}
+        videoSrc={videoUrl}
         name="Hiram Barsky"
-        subtitle="Designer and Developer"
+        subtitle="Product Designer + AI"
         size="md"
         subtitleStyle="pill"
         autoPlay={true}

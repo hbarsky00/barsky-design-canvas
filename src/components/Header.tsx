@@ -7,7 +7,6 @@ import Navigation from "./header/Navigation";
 import ProfileAvatar from "./header/ProfileAvatar";
 import { useLocation, Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { MainContentSkipLink } from "@/components/ui/skip-link";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -49,37 +48,10 @@ const Header: React.FC = () => {
     }
   }, [isScrolled]);
 
-  // Keep the visually-hidden header (opacity-0 / translated off-screen before
-  // scrolling past the hero) out of the tab order so keyboard users don't land
-  // on invisible focused links.
-  React.useEffect(() => {
-    if (headerRef.current) {
-      headerRef.current.inert = !shouldShowHeader;
-    }
-  }, [shouldShowHeader]);
-
-  // Give the skip link a target. There are ~29 separate <main> layouts in this
-  // app, so rather than tag each one, tag whichever main this page rendered.
-  React.useEffect(() => {
-    const main = document.querySelector("main");
-    if (main && !main.id) {
-      main.id = "main-content";
-      main.setAttribute("tabindex", "-1");
-    }
-  }, [location.pathname]);
-
   return (
     <>
-      <MainContentSkipLink />
       <header ref={headerRef} className={cn(
-        // transition-all animated every property on a permanently-mounted
-        // fixed element — background, border and shadow included, none of
-        // which change. Only transform and opacity do, and limiting it to
-        // those keeps the reveal on the compositor. Same curve as the route
-        // fade and the section reveals.
-        "fixed top-0 left-0 right-0 z-50",
-        "transition-[transform,opacity] duration-500 ease-brand",
-        "motion-reduce:transition-none",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         "pointer-events-auto",
         "py-3 sm:py-4",
         "md:translate-y-0",

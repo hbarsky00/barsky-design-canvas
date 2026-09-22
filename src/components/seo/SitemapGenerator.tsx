@@ -19,9 +19,8 @@ const SitemapGenerator: React.FC = () => {
         const sitemapXml = generateSitemapXML();
         console.log('[Sitemap] Generated XML length:', sitemapXml.length);
         await submitSitemapToSearchEngines();
-        const w = window as Window & { gtag?: (...args: unknown[]) => void };
-    if (typeof window !== 'undefined' && w.gtag) {
-          w.gtag('event', 'sitemap_submitted', {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'sitemap_submitted', {
             event_category: 'SEO',
             value: 1,
           });

@@ -16,159 +16,83 @@
     <meta name="geo.placename" content="Clifton, New Jersey">
     
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/jpeg" href="/images/hiram-barsky-headshot.jpg" />
+    <link rel="apple-touch-icon" href="/images/hiram-barsky-headshot.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     
     <!-- Performance & Critical Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Critical CSS -->
     <style>
       .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
       .hero-loading { opacity: 0; animation: fade-in-fast 0.3s ease-out forwards; }
       @keyframes fade-in-fast { to { opacity: 1; } }
+      img[loading="eager"] { content-visibility: auto; }
     </style>
 
     <!-- SEO meta tags dynamically rendered by React Helmet in UnifiedSEO.tsx -->
 
-    <!-- Site-wide entity graph.
-         One @graph, three @id-addressable nodes, because this used to be two
-         unlinked scripts describing the same business under two different names
-         ("Barsky Design" here, "Hiram Barsky Design" in structuredDataUtils) at
-         two different URLs (with and without the trailing slash), neither
-         carrying an @id. Nothing in the markup said they were one entity, and
-         "Hiram Barsky" appeared as three or four bare Person stubs per page —
-         founder here, founder there, author of every article — none of them
-         joined to the sameAs links that identify him. An answer engine had no
-         way to resolve any of it.
-         Now: #business is the single organization node (LocalBusiness is an
-         Organization subtype, so one node carries both roles), #hiram is the
-         single person node, and every author/publisher/founder reference
-         elsewhere on the site is an {"@id": ...} pointer into this graph. The
-         old alternate name is kept as alternateName rather than dropped.
-         Do NOT re-add an Organization block to structuredDataUtils: that is
-         exactly the duplicate this replaced. -->
+    <!-- LocalBusiness JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://barskydesign.pro/#business",
-          "name": "Barsky Design",
-          "alternateName": "Hiram Barsky Design",
-          "url": "https://barskydesign.pro/",
-          "image": "https://barskydesign.pro/images/hiram-barsky-profile.png",
-          "logo": "https://barskydesign.pro/images/hiram-barsky-profile.png",
-          "telephone": "+1-201-668-4754",
-          "email": "hbarsky01@gmail.com",
-          "description": "Design and development of SaaS, web apps, mobile apps and internal tools. One person, start to finish: product design, React and TypeScript front end, database and launch.",
-          "priceRange": "$$$",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Clifton",
-            "addressRegion": "NJ",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 40.8584,
-            "longitude": -74.1638
-          },
-          "areaServed": "US",
-          "serviceArea": "United States",
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-              "opens": "09:00",
-              "closes": "18:00"
-            }
-          ],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "email": "hbarsky01@gmail.com"
-          },
-          "knowsAbout": [
-            "SaaS Product Design and Development",
-            "Web Application Development",
-            "Mobile App Design and Development",
-            "Internal Tools and Admin Interfaces",
-            "AI-Assisted Product Design",
-            "UX/UI Design",
-            "Design Systems",
-            "React & TypeScript Development",
-            "Fintech UX",
-            "Healthcare UX",
-            "Product Strategy"
-          ],
-          "sameAs": [
-            "https://www.linkedin.com/in/hiram-barsky/",
-            "https://github.com/hbarsky00"
-          ],
-          "founder": { "@id": "https://barskydesign.pro/#hiram" }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://barskydesign.pro/#hiram",
-          "name": "Hiram Barsky",
-          "url": "https://barskydesign.pro/about",
-          "mainEntityOfPage": "https://barskydesign.pro/about",
-          "image": "https://barskydesign.pro/images/hiram-barsky-profile.png",
-          "jobTitle": "Product Designer & Software Developer",
-          "description": "Designs and develops SaaS, web apps, mobile apps and internal tools. 15+ years in fintech, healthcare and enterprise software.",
-          "sameAs": [
-            "https://www.linkedin.com/in/hiram-barsky/",
-            "https://github.com/hbarsky00"
-          ],
-          "worksFor": { "@id": "https://barskydesign.pro/#business" }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://barskydesign.pro/#website",
-          "name": "Barsky Design",
-          "url": "https://barskydesign.pro/",
-          "description": "Portfolio of Hiram Barsky, who designs and develops SaaS, web apps, mobile apps and internal tools. Case studies from products shipped end to end.",
-          "inLanguage": "en-US",
-          "publisher": { "@id": "https://barskydesign.pro/#business" }
-        }
+      "@type": "LocalBusiness",
+      "name": "Barsky Design",
+      "image": "https://barskydesign.pro/images/hiram-barsky-headshot.jpg",
+      "url": "https://barskydesign.pro/",
+      "telephone": "+1-201-668-3324",
+      "email": "hbarsky01@gmail.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Clifton",
+        "addressRegion": "NJ",
+        "addressCountry": "US"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Hiram Barsky"
+      },
+      "areaServed": "US",
+      "sameAs": [
+        "https://www.linkedin.com/in/hirambarsky/"
       ]
     }
     </script>
 
-    <!-- No SearchAction on the WebSite node: it advertised
-         https://barskydesign.pro/?s={search_term_string} and this site has no
-         search. Google took the template literally and crawled
-         /?s={search_term_string}, which the SPA catch-all answered 200 — one
-         self-inflicted duplicate of the homepage, reported back as "Alternate
-         page with proper canonical tag". Declaring a sitelinks searchbox you
-         cannot service is worse than declaring none. -->
+    <!-- WebSite JSON-LD with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Barsky Design",
+      "url": "https://barskydesign.pro/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://barskydesign.pro/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYKW0Y9K0T"></script>
-    <script src="/js/analytics-bootstrap.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VYKW0Y9K0T');
+    </script>
     
     
-    <!-- Google Fonts.
-         Was requesting 23 font files: Space Grotesk 300-700, Inter 100-900, and
-         all nine weights of Outfit — which isn't referenced anywhere in the app.
-         It also loaded the stylesheet with the preload/onload swap trick, so the
-         font CSS wasn't even discovered until after first paint, which is what
-         made every heading visibly change font mid-load. Now: only the two
-         families actually in tailwind.config.ts, only the weights in use, and
-         fetched in the critical path so the swap window is as short as possible. -->
-    <!-- Self-hosted fonts. The Google Fonts stylesheet measured 796 ms of
-         render-blocking time in Lighthouse, and cost two extra origins
-         (googleapis + gstatic) of DNS + TLS before a single glyph arrived.
-         The two faces above the fold are preloaded; unicode-range in
-         fonts.css keeps the browser from fetching subsets it does not need. -->
-    <link rel="preload" href="/fonts/Fraunces-700-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/IBMPlexSans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/fonts/fonts.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -177,44 +101,58 @@
     <!-- Additional meta tags -->
     <meta name="theme-color" content="#3B82F6" />
     <meta name="language" content="English" />
-
-    <!-- Preload LCP hero image -->
-    <!-- Preload the WebP, not the PNG. This preloaded a 492 KB PNG at high
-         priority that nothing on the page renders — it competed directly with
-         the real LCP element, which is the 99 KB .webp below. -->
-    <link rel="preload" as="image" href="/images/hiram-barsky-profile-576.webp"
-          imagesrcset="/images/hiram-barsky-profile-448.webp 448w, /images/hiram-barsky-profile-576.webp 576w, /images/hiram-barsky-profile-960.webp 960w"
-          imagesizes="(min-width: 1024px) 480px, (min-width: 640px) 288px, 224px" fetchpriority="high" />
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-  </head>
+</head>
   <body>
-    <!--
-      Netlify Forms detection stub.
-
-      Netlify's build bot scans the deployed HTML for forms; it never executes
-      JavaScript, so a form that only exists inside the React bundle is invisible
-      to it and every POST comes back 404. This hidden copy is what registers the
-      form and its field names at deploy time. The real, styled form is the React
-      one, which POSTs to it.
-
-      Why this exists at all: the contact form used to run through a Supabase
-      edge function, and Supabase's free tier paused the project after ~7 days
-      idle. A paused project stops resolving, so the form died silently and
-      stayed dead. Netlify Forms is part of the host that already serves the
-      site — there is no second service to keep awake.
-    -->
-    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="subject" />
-      <textarea name="message"></textarea>
-      <input type="text" name="bot-field" />
-    </form>
-
     <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Mobile Link Fix -->
-    <script src="/js/link-safety.js"></script>
+    <script>
+    (function () {
+      const SAFE = /^(https?:\/\/|mailto:|tel:|\/|#)/i;
+      function normalize(href) {
+        if (!href) return href;
+        href = href.trim();
+        href = href.replace(/^project:/i, '/project/');
+        href = href.replace(/^(app|intent):\/\/?/i, '/');
+        href = href.replace(/^\/\/(project)/i, '/$1');
+        href = href.replace(/^http:barskydesign\.pro/i, 'https://barskydesign.pro');
+        if (/^[a-z0-9.-]+\.[a-z]{2,}([\/?#].*)?$/i.test(href)) {
+          href = 'https://' + href;
+        }
+        if (/^project(\/|$)/i.test(href)) href = '/' + href;
+        return href;
+      }
+
+      function normalizeLinks() {
+        document.querySelectorAll('a[href]').forEach(a => {
+          const fixed = normalize(a.getAttribute('href'));
+          if (fixed) a.setAttribute('href', fixed);
+          if (/^\//.test(fixed || '')) a.setAttribute('target', '_self');
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', normalizeLinks);
+      } else {
+        normalizeLinks();
+      }
+
+      const observer = new MutationObserver(normalizeLinks);
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        if (!SAFE.test(href)) return;
+        if (/^https?:\/\//i.test(href)) return;
+        if (href.startsWith('/')) {
+          e.preventDefault();
+          window.location.assign(href);
+        }
+      }, true);
+    })();
+    </script>
   </body>
 </html>

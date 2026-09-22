@@ -53,7 +53,7 @@ function getProjectPaths(): string[] {
   const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
   const found = new Set<string>();
   for (const line of src.split("\n")) {
-    const m = /<Route\s+path="(\/project\/[a-z0-9-]+)"/i.exec(line);
+    const m = /<Route\s+path="(\/(?:project|case-studies)\/[a-z0-9-]+)"/i.exec(line);
     if (m && !line.includes("Navigate")) {
       found.add(m[1]);
     }

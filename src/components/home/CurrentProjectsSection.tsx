@@ -17,22 +17,10 @@ const currentProjects: CurrentProject[] = [
     {
     id: "qr-code-creator",
     title: "Vibe-Coding a QR Code Maker",
-    description: "A QR code maker in three steps — content, style, export. Mobile-first, and the codes don't expire.",
+    description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
-    thumbnailSrc: "/images/projects/d355adb5e73c.webp"
-  },
-  {
-    id: "inclusive-shopping-experience",
-    title: "Creating an Inclusive Online Shopping Experience",
-    description: "An e-commerce platform built for accessibility, focused on the checkout flow and the community reviews around it.",
-    status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
-    // Loom's own thumbnail 403s for this video (expired signed asset), so this
-    // is a frame pulled from the recording itself: the Super Sha Project store
-    // front. Cropped to exclude the webcam bubble, same framing rule as the
-    // case-study card clips. Regenerate with scripts/loom-thumbnail.sh.
-    thumbnailSrc: "/images/projects/inclusive-shopping.webp"
+    thumbnailSrc: "/images/working-on/qr-code-creator.png"
   },
   {
     id: "roi-calculator",
@@ -40,32 +28,23 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "/images/projects/f30542a71d55.webp"
-  },
-  {
-    id: "nail-salon-platform",
-    title: "Multi-Business Nail Salon Platform",
-    description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
-    status: "Work in Progress",
-    videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
-    // Loom's own thumbnail for this video 403s (expired signed asset) — real profile photo as an honest fallback rather than a dead link.
-    thumbnailSrc: "/images/hiram-barsky-profile-448.webp"
+    thumbnailSrc: "/images/working-on/roi-calculator.png"
   },
   {
     id: "faces-of-hunger",
     title: "Faces of Hunger",
-    description: "An awareness platform using design and AI to make food insecurity legible as people rather than statistics.",
+    description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "/images/projects/1ad2ef714038.webp"
+    thumbnailSrc: "/images/working-on/faces-of-hunger.png"
   },
   {
     id: "crypto-app-learning",
     title: "Crypto App Learning",
-    description: "A learning section inside a crypto app that explains blockchain concepts to people starting from zero.",
+    description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "/images/projects/80a0a13cdf11.webp"
+    thumbnailSrc: "/images/working-on/crypto-app-learning.png"
   }
 ];
 
@@ -93,7 +72,7 @@ const CurrentProjectsSection: React.FC = () => {
         >
           <SectionHeader
             as="h2"
-            title="What I'm Working on Now"
+            title="What I'm Working On Now"
             eyebrow="Last Updated Friday September 19th, 2025"
           />
           
@@ -137,8 +116,6 @@ const CurrentProjectsSection: React.FC = () => {
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"
                           loading="lazy"
-                          width={1600}
-                          height={900}
                         />
                         {/* Play button overlay */}
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">

@@ -1,83 +1,71 @@
-import type { BuiltSEO } from "./seoBuilder";
 
-import { homepageFaqs } from "@/data/seoFaqs";
+interface SEOData {
+  title: string;
+  description: string;
+  canonical?: string;
+  canonicalUrl?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  kind?: 'page' | 'post' | 'project';
+  publishedTime?: string;
+  published?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+}
 
-// Both callers — UnifiedSEO and scripts/inject-seo-html — pass a BuiltSEO, so
-// take one. There used to be a local SEOData interface here with `canonicalUrl`
-// and `published` alternates that BuiltSEO does not have (so they always read
-// undefined) and a `kind` union missing "home", which is what made BuiltSEO
-// unassignable and forced an `as any` at the script call site.
-export const generateStructuredData = (seoData: BuiltSEO) => {
-  const canonicalUrl = seoData.canonical;
-  const publishedDate = seoData.publishedTime;
-  // Fall back to the publish date rather than emitting today's — a dateModified
-  // that moves every deploy tells crawlers the page changed when it didn't.
-  const modifiedDate = seoData.modifiedTime || publishedDate;
+export const generateStructuredData = (seoData: SEOData) => {
+  const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
   
-  // Always WebPage here, even for posts/projects — the more specific BlogPosting
-  // or Article schema is pushed separately below with richer (headline/author/
-  // publisher) data. Emitting "Article" here too just produced two overlapping,
-  // near-duplicate Article-typed blocks on the same page for no added value.
-  //
-  // Except /about, which is a ProfilePage — the one page whose subject IS the
-  // #hiram Person node served on every route. Before this, #hiram said
-  // `url: /about` and /about said nothing back; the entity had a homepage the
-  // homepage did not acknowledge. ProfilePage is a WebPage subtype, so every
-  // other field here (isPartOf, publisher, image) stays valid, and `mainEntity`
-  // is the one edge Google's ProfilePage spec exists to carry.
-  const isProfilePage = canonicalUrl === "https://barskydesign.pro/about";
-  const baseStructuredData: Record<string, unknown> = {
+  const baseStructuredData: any = {
     "@context": "https://schema.org",
-    "@type": isProfilePage ? "ProfilePage" : "WebPage",
-    ...(isProfilePage && { mainEntity: { "@id": "https://barskydesign.pro/#hiram" } }),
+    "@type": seoData.type === 'article' ? "Article" : "WebPage",
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
-    inLanguage: "en-US",
-    isPartOf: { "@id": "https://barskydesign.pro/#website" },
-    publisher: { "@id": "https://barskydesign.pro/#business" },
-    // Only case studies carry a breadcrumb today; blog posts get theirs from
-    // BlogBreadcrumbs.tsx, which renders into the body rather than through here.
-    ...(seoData.kind === 'project' && canonicalUrl && {
-      breadcrumb: { "@id": `${canonicalUrl}#breadcrumb` },
-    }),
-    ...(seoData.image && {
-      image: seoData.image,
-      primaryImageOfPage: { "@type": "ImageObject", url: seoData.image },
-    }),
-    ...(publishedDate && { datePublished: publishedDate }),
-    ...(modifiedDate && { dateModified: modifiedDate }),
+    ...(seoData.image && { image: seoData.image })
   };
 
-  // No Organization block here. The site-wide entity graph lives in index.html
-  // (#business, #hiram, #website) and is served on every route, so this file
-  // references those nodes by @id instead of re-declaring a second, differently
-  // named organization on top of them. Re-adding one here recreates the exact
-  // duplicate-entity defect the 2026-09-01 sweep removed.
-  const BUSINESS = { "@id": "https://barskydesign.pro/#business" };
-  const AUTHOR = { "@id": "https://barskydesign.pro/#hiram" };
+  // Add Organization schema for all pages
+  const organizationSchema: any = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Hiram Barsky Design",
+    url: "https://barskydesign.pro",
+    logo: "https://barskydesign.pro/logo.png",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "hbarsky01@gmail.com"
+    },
+    founder: {
+      "@type": "Person",
+      name: "Hiram Barsky",
+      jobTitle: "UX/UI Designer & AI Developer",
+      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
+    },
+    serviceArea: "United States",
+    priceRange: "$$$"
+  };
 
-  const schemas: Record<string, unknown>[] = [baseStructuredData];
+  const schemas: any[] = [baseStructuredData, organizationSchema];
 
-  // Add specific schemas based on content type. Discriminate on `kind`, not
-  // `type` — buildSEO() sets `type: 'article'` for BOTH posts and projects, so
-  // checking `type === 'article'` here made every case study emit a BlogPosting
-  // block in addition to its own Article block below (kind is the precise signal).
-  if (seoData.kind === 'post') {
-    const datePublished = seoData.publishedTime;
-    const blogPostSchema: Record<string, unknown> = {
+  // Add specific schemas based on content type
+  if (seoData.type === 'article' || seoData.kind === 'post') {
+    const datePublished =
+      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const blogPostSchema: any = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      ...(datePublished && { datePublished }),
+      datePublished,
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: AUTHOR,
-      publisher: BUSINESS,
-      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
-      articleSection: seoData.tags?.[0] || "Design",
-      inLanguage: "en-US",
+      author: {
+        "@type": "Person",
+        name: seoData.author || "Hiram Barsky"
+      },
       ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
       ...(seoData.image && { image: seoData.image })
     };
@@ -86,71 +74,69 @@ export const generateStructuredData = (seoData: BuiltSEO) => {
 
   // Add Article schema for projects/case studies (editorial content, not products)
   if (seoData.kind === 'project') {
-    const datePublished = seoData.publishedTime;
-    const articleSchema: Record<string, unknown> = {
+    const datePublished =
+      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+    const articleSchema: any = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      ...(datePublished && { datePublished }),
+      datePublished,
       ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: AUTHOR,
-      publisher: BUSINESS,
-      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
-      articleSection: "Case Study",
-      inLanguage: "en-US",
-      ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
+      author: {
+        "@type": "Person",
+        name: seoData.author || "Hiram Barsky"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Hiram Barsky Design",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://barskydesign.pro/logo.png"
+        }
+      },
       ...(seoData.image && { image: seoData.image })
     };
     schemas.push(articleSchema);
-
-    // BreadcrumbList. Every blog post has had one since BlogBreadcrumbs shipped;
-    // no case study ever did, which left the site's conversion path as the one
-    // page type with no SERP breadcrumb and no stated position in the hierarchy.
-    //
-    // The middle rung is `/#case-studies`, not `/projects`. That is the real
-    // navigation path: `/projects` was retired on 2026-08-23 (it was a
-    // client-side <Navigate> serving an empty 200) and now 301s here, the header
-    // nav points here, and the homepage section IS the work index by settled
-    // editorial decision. A breadcrumb naming a URL that 301s away would be
-    // describing a hierarchy the site does not have.
-    if (canonicalUrl) {
-      schemas.push({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "@id": `${canonicalUrl}#breadcrumb`,
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://barskydesign.pro/" },
-          { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://barskydesign.pro/#case-studies" },
-          { "@type": "ListItem", position: 3, name: seoData.title, item: canonicalUrl },
-        ],
-      });
-    }
   }
 
-  // Add FAQ schema for homepage.
-  //
-  // Generated from seoFaqs — the same array SeoFaqSection renders — rather than
-  // a separate hardcoded list. Google requires FAQPage markup to match the
-  // question-and-answer content actually visible on the page; this file used to
-  // declare three questions while the visible section showed eight different
-  // ones, so neither matched the other. One source now feeds both.
-  if (canonicalUrl?.includes('barskydesign.pro') &&
-      !canonicalUrl?.includes('/blog/') &&
+  // Add FAQ schema for homepage
+  if (canonicalUrl?.includes('barskydesign.pro') && 
+      !canonicalUrl?.includes('/blog/') && 
       !canonicalUrl?.includes('/project/') &&
       (canonicalUrl?.endsWith('/') || canonicalUrl?.endsWith('barskydesign.pro'))) {
-    schemas.push({
+    const faqSchema: any = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      name: "Working with Hiram Barsky — common questions",
-      inLanguage: "en-US",
-      mainEntity: homepageFaqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    });
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What makes your UX design approach different?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "I combine traditional UX research with AI-powered analytics to create data-driven designs that boost conversion by 40%+. Unlike designers who rely on assumptions, I use AI to understand user behavior patterns and optimize accordingly."
+          }
+        },
+        {
+          "@type": "Question", 
+          name: "How quickly can you deliver results?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Most clients see measurable improvements within 2-4 weeks of implementation. My AI-enhanced design process allows for rapid iteration and testing, significantly reducing time-to-market compared to traditional design approaches."
+          }
+        },
+        {
+          "@type": "Question",
+          name: "Do you work with fintech and healthcare companies?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, I specialize in fintech, healthcare, and SaaS applications. I have 15+ years of experience designing compliant, user-friendly interfaces for regulated industries while maintaining high conversion rates."
+          }
+        }
+      ]
+    };
+    schemas.push(faqSchema);
   }
 
   return schemas.length === 1 ? schemas[0] : schemas;

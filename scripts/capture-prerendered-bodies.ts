@@ -56,7 +56,7 @@ function getRoutes(): string[] {
   const appSrc = readFileSync(resolve("src/App.tsx"), "utf8");
   const projects = new Set<string>();
   for (const line of appSrc.split("\n")) {
-    const m = /<Route\s+path="(\/project\/[a-z0-9-]+)"/i.exec(line);
+    const m = /<Route\s+path="(\/(?:project|case-studies)\/[a-z0-9-]+)"/i.exec(line);
     if (m && !line.includes("Navigate")) projects.add(m[1]);
   }
 
@@ -101,104 +101,28 @@ function sanitize(html: string): string {
 
 let launchSeq = 0;
 
-function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
-  return new Promise((resolvePromise, reject) => {
-    // A fresh profile per launch. Sharing one directory across routes meant a
-    // SIGKILLed Chrome left renderers holding the profile lock, and every
-    // subsequent launch blocked on it forever — which looked like slow pages
-    // but was really the previous route's corpse.
-    const profile = `/tmp/cc-prerender-${process.pid}-${launchSeq++}`;
-
-    const child = spawn(
-      CHROME,
-      [
-        "--headless=new",
-        "--disable-gpu",
-        "--no-sandbox",
-        "--no-first-run",
-        "--disable-extensions",
-        "--disable-background-networking",
-        "--disable-sync",
-        "--disable-default-apps",
-        `--user-data-dir=${profile}`,
-        // Case-study pages carry several <video preload="metadata"> elements.
-        // Chrome's virtual clock does not advance past pending media fetches,
-        // so those routes never hit the budget and sat until the wall timeout —
-        // 22 of 32 routes failed that way, every one of them a page with video
-        // or a heavy hero. The DOM is all we want here, so refuse the bytes.
-        "--blink-settings=imagesEnabled=false",
-        "--disable-remote-fonts",
-        // Every route that failed has <video preload="metadata"> on it; the ten
-        // that succeeded were blog posts, which have none. Chrome's virtual
-        // clock is paused while network fetches are outstanding, and a media
-        // range request that never settles pauses it forever — so those routes
-        // burned the whole wall timeout instead of reaching the budget.
-        // The videos share the page's origin, so no Chrome host rule can single
-        // them out — they are stashed out of dist/ for the duration of the run
-        // instead (see stashMedia below), which turns each request into an
-        // immediate 404 and lets virtual time advance.
-        "--force-prefers-reduced-motion",
-        "--virtual-time-budget=15000",
-        "--dump-dom",
-        url,
-      ],
-      { stdio: ["ignore", "pipe", "ignore"] }
-    );
-
-    // Chrome is still flushing into its profile when we SIGKILL it, so an
-    // immediate recursive delete races the writes and throws ENOTEMPTY — which
-    // took down a whole 32-route run after the DOM had already been captured.
-    // A leftover directory under /tmp is not worth failing a capture over.
-    const cleanupProfile = () => {
-      try {
-        rmSync(profile, { recursive: true, force: true, maxRetries: 3, retryDelay: 150 });
-      } catch {
-        /* best effort — /tmp is swept by the OS */
-      }
-    };
-
-    let out = "";
-    let settled = false;
-
-    const finish = (fn: () => void) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      child.kill("SIGKILL");
-      cleanupProfile();
-      fn();
-    };
-
-    // Resolve on the DOM, not on the process.
-    //
-    // --dump-dom writes the serialised document and then, on any page heavy
-    // enough to keep a task queue warm, simply does not exit. Waiting for
-    // 'close' meant 22 of 32 routes were killed at the wall timeout *after*
-    // they had already produced a complete, correct DOM — the capture was
-    // working and the harness was throwing the result away. Measured on
-    // /project/ring-rival: 50,959 bytes of correct markup, still running at
-    // 45s. The closing tag is the real completion signal.
-    // Decode as a stream, not per chunk. `d.toString()` on each Buffer splits
-    // any multi-byte character that straddles a pipe-chunk boundary into
-    // U+FFFDs — an em dash in a /blog alt landed in the snapshot as three
-    // replacement characters on 2026-09-20, silently, on a route whose copy
-    // had not changed. setEncoding carries the partial sequence across chunks.
-    child.stdout.setEncoding("utf8");
-    child.stdout.on("data", (d: string) => {
-      out += d;
-      if (out.trimEnd().endsWith("</html>")) finish(() => resolvePromise(out));
-    });
-
-    const timer = setTimeout(() => {
-      // Partial output past the opening shell is still worth nothing — a
-      // truncated body would be baked into the page as if it were whole.
-      finish(() => reject(new Error(`timed out after ${timeoutMs}ms`)));
-    }, timeoutMs);
-
-    // Still handle a clean exit, for pages that do terminate normally.
-    child.on("close", () => finish(() => resolvePromise(out)));
-    child.on("error", (e) => finish(() => reject(e)));
+// Playwright driving the installed Chrome, not `chrome --dump-dom`. The June 29
+// homepage hero is a WebGL parallax scene with a requestAnimationFrame loop, and
+// the dump-dom path's virtual-time budget never settled on it: the capture hung
+// past its wall timeout on every run (2026-09-21). A real page with a
+// network-idle wait finishes in a few seconds and hands back the same DOM.
+async function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
+  const { chromium } = await import("playwright");
+  const browser = await chromium.launch({
+    channel: "chrome",
+    headless: true,
+    // SwiftShader so the WebGL hero renders without a GPU.
+    args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
   });
+  try {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(url, { waitUntil: "networkidle", timeout: timeoutMs }).catch(() => {});
+    await page.waitForTimeout(1500);
+    return await page.content();
+  } finally {
+    await browser.close();
+  }
 }
 
 /** Pull the inner HTML of <div id="root"> out of a full DOM dump. */

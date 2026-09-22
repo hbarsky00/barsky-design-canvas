@@ -24,37 +24,37 @@ interface CaseStudy {
   video?: string;
 }
 
-// "More Work" preview entries. Copy mirrors the honest homepage cards in
-// VideoCaseStudiesSection (no invented metrics), and media is local — the
-// old barskyux.com images/videos are on a domain that no longer resolves.
+// Homepage case studies data with actual image URLs
 const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Trust & Safety"],
-    title: "HerbaLink",
-    description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
-    impact: "",
+    tags: ["Health", "Marketplace", "Gen AI"],
+    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
+    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
+    impact: "+3x Booking Rate Increase",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink/home-2026.webp",
-      alt: "HerbaLink practitioner booking interface"
+      primary: "/images/herbalink-promo.png",
+      secondary: "/images/herbalink-promo.png",
+      alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
   },
   {
     id: "splittime",
-    tags: ["Family Tech", "Legal UX", "Mobile"],
-    title: "SplitTime",
-    description: "A co-parenting app designed around the fact that every interaction is potential evidence.",
-    impact: "",
+    tags: ["Family Tech", "iOS→Android", "Legal UX"],
+    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
+    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
+    impact: "-40% Conflict Reduction",
     url: "/project/splittime",
+    liveUrl: "https://splittime.pro",
     images: {
-      primary: "/images/splittime/hero.webp",
-      secondary: "/images/desktop-signup-1.webp",
-      alt: "SplitTime co-parenting platform overview"
+      primary: "/images/splittime/app-screens.webp",
+      secondary: "images/desktop-signup-1.png",
+      alt: "SplitTime web and mobile views showing scheduling features"
     },
-    layout: "web-mobile"
+    layout: "web-mobile",
   },
   // business-management entry removed
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
@@ -158,7 +158,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
           >
             {/* Image Section */}
             <div className="order-2 lg:order-1">
-              <div className="relative bg-muted/20 rounded-xs overflow-hidden min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
+              <div className="relative bg-muted/20 rounded-xl overflow-hidden min-h-[200px] lg:min-h-[280px] flex items-center justify-center">
                 {renderMedia()}
               </div>
             </div>

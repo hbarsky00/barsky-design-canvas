@@ -63,9 +63,9 @@ const Navigation: React.FC<NavigationProps> = ({
           <Link
             key={link.name}
             to={link.href}
-            onClick={link.href.includes('#') ? (e) => {
+            onClick={link.href.startsWith('#') ? (e) => {
               // For contact anchor, allow native anchor behavior (no preventDefault)
-              if (!link.href.endsWith('#contact')) {
+              if (link.href !== '#contact') {
                 e.preventDefault();
                 handleLinkClick(link.href);
               }

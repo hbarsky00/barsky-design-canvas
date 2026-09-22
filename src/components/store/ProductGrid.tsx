@@ -17,9 +17,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   }
 
   return (
-    // Single column stretched each card to the full container width, so the
-    // 16:9 cover rendered enormous on desktop.
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 gap-6">
       {products.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}

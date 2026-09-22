@@ -36,17 +36,8 @@
 :root {
   /* Material Design 3.0 Color System - Light Theme - Award-Winning Color Palette */
   
-  /* Primary Colors - Terracotta. The comment here said "Deep Blue with
-     Sophisticated Purple Undertones" long after the palette became hue 14;
-     it was describing a colour this site has not used in a long time.
-     Lightness is 41%, not 44%: `text-primary` on `bg-primary/10` is the
-     site's badge/pill pattern (16 call sites), and at 44% it composited to
-     4.17-4.29:1 against every page background - under the 4.5:1 that WCAG
-     2.1 AA requires for text below 24px. 41% lands the worst case at 4.64:1.
-     Darkening the token fixes all 16 sites at once and any future one; it
-     also raises contrast on solid `bg-primary` buttons, which carry white
-     text. Do not raise this back to 44% without re-running axe-core. */
-  --md-sys-color-primary: 14 68% 41%;
+  /* Primary Colors - Deep Blue with Sophisticated Purple Undertones */
+  --md-sys-color-primary: 231 92% 58%;
   --md-sys-color-on-primary: 0 0% 100%;
   --md-sys-color-primary-container: 231 100% 96%;
   --md-sys-color-on-primary-container: 231 100% 8%;
@@ -54,14 +45,14 @@
   /* Secondary Colors - Warm Slate with Premium Feel */
   --md-sys-color-secondary: 220 14% 32%;
   --md-sys-color-on-secondary: 0 0% 100%;
-  --md-sys-color-secondary-container: 36 22% 94%;
-  --md-sys-color-on-secondary-container: 30 22% 14%;
+  --md-sys-color-secondary-container: 220 20% 95%;
+  --md-sys-color-on-secondary-container: 220 30% 12%;
   
   /* Tertiary Colors - Energetic Purple for Accents */
   --md-sys-color-tertiary: 263 85% 67%;
   --md-sys-color-on-tertiary: 0 0% 100%;
-  --md-sys-color-tertiary-container: 32 55% 92%;
-  --md-sys-color-on-tertiary-container: 28 40% 16%;
+  --md-sys-color-tertiary-container: 263 100% 95%;
+  --md-sys-color-on-tertiary-container: 263 100% 12%;
   
   /* Error Colors */
   --md-sys-color-error: 0 84% 60%;
@@ -71,19 +62,19 @@
   
   /* Surface Colors - Premium Glass-like Surfaces */
   --md-sys-color-surface-dim: 220 15% 88%;
-  --md-sys-color-surface: 38 30% 98%;
+  --md-sys-color-surface: 0 0% 99%;
   --md-sys-color-surface-bright: 0 0% 100%;
   --md-sys-color-surface-container-lowest: 0 0% 100%;
-  --md-sys-color-surface-container-low: 38 28% 97%;
-  --md-sys-color-surface-container: 38 26% 95%;
-  --md-sys-color-surface-container-high: 36 24% 93%;
-  --md-sys-color-surface-container-highest: 34 22% 90%;
-  --md-sys-color-on-surface: 24 14% 12%;
+  --md-sys-color-surface-container-low: 220 20% 97%;
+  --md-sys-color-surface-container: 220 25% 95%;
+  --md-sys-color-surface-container-high: 220 30% 93%;
+  --md-sys-color-surface-container-highest: 220 35% 91%;
+  --md-sys-color-on-surface: 220 15% 8%;
   --md-sys-color-on-surface-variant: 220 12% 28%;
   
   /* Outline Colors - Sophisticated Borders */
   --md-sys-color-outline: 220 15% 48%;
-  --md-sys-color-outline-variant: 34 18% 84%;
+  --md-sys-color-outline-variant: 220 20% 82%;
   
   /* Other Colors */
   --md-sys-color-inverse-surface: 0 0% 20%;
@@ -178,9 +169,9 @@
 
   /* Award-Winning Gradient System */
   --gradient-primary: linear-gradient(135deg, hsl(231 92% 58%), hsl(263 85% 67%));
-  --gradient-secondary: linear-gradient(135deg, hsl(28 16% 30%), hsl(36 22% 94%));
+  --gradient-secondary: linear-gradient(135deg, hsl(220 14% 32%), hsl(220 20% 95%));
   --gradient-accent: linear-gradient(135deg, hsl(263 85% 67%), hsl(284 100% 75%));
-  --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(38 28% 97%));
+  --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 20% 97%));
   --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
   
   /* Advanced Shadow System */
@@ -357,20 +348,19 @@
   touch-action: manipulation;
 }
 
-/* Focus indicators.
-   Mouse and touch interactions get no ring (that's what the old blanket
-   `outline: none !important` was really after), but keyboard users must be
-   able to see where they are — WCAG 2.4.7 Focus Visible / 2.4.13 Focus
-   Appearance. Removing the indicator entirely also silently defeated the
-   image-lightbox focus trap: focus moved correctly, nothing showed it. */
-*:focus:not(:focus-visible) {
-  outline: none;
+/* Global focus style removal - Remove all focus indicators */
+*, *:before, *:after {
+  outline: none !important;
 }
 
-:focus-visible {
-  outline: 2px solid hsl(var(--primary));
-  outline-offset: 2px;
-  border-radius: 2px;
+button:focus, input:focus, textarea:focus, select:focus, a:focus,
+button:focus-visible, input:focus-visible, textarea:focus-visible, 
+select:focus-visible, a:focus-visible,
+[tabindex]:focus, [tabindex]:focus-visible,
+[role="button"]:focus, [role="button"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  ring: none !important;
 }
 
 /* Mobile-specific utilities */
@@ -391,8 +381,8 @@
   
 /* Hero responsive containers - ensures safe margins on all devices */
 .hero-container-mobile {
-  padding-left: max(4px, env(safe-area-inset-left));
-  padding-right: max(4px, env(safe-area-inset-right));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
   padding-top: 16px;
   padding-bottom: 16px;
 }
@@ -1044,7 +1034,7 @@ body {
 
 /* Layout Normalization - Section Shell & Content Rails */
 .section-container {
-  @apply max-w-[1280px] mx-auto px-2 sm:px-6 md:px-10;
+  @apply max-w-[1280px] mx-auto px-6 md:px-10;
 }
 
 .content-rail {
@@ -1152,7 +1142,7 @@ body {
   @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-foreground;
 }
 
-/* All headings and display text */
+/* All headings and display text - Space Grotesk */
 .heading {
   @apply font-display font-bold;
 }
@@ -1182,7 +1172,7 @@ body {
   @apply text-xl font-display font-bold;
 }
 
-/* Button and UI element text */
+/* Button and UI element text - Space Grotesk */
 .btn-text {
   @apply font-display font-medium;
 }
@@ -1424,84 +1414,12 @@ body {
 /* Simple cursor for interactive elements */
 button, a, .interactive, [role="button"], input[type="submit"], input[type="button"] {
   cursor: pointer;
-  /* Was `transition: all`, on every button and link on the site. That makes
-     width, height, margin and padding animatable, so any layout change on
-     hover animates too — the classic source of soft, laggy-feeling buttons.
-     Listing the properties that actually change keeps hovers on the
-     compositor, and uses the site curve rather than a fifth one. */
-  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ============= HEADER NAVIGATION ============= */
-
-/* The nav had no way to show where you are. Active and hover were both just
-   `text-primary`, so while the cursor was anywhere in the nav the current
-   page was indistinguishable from the one under the pointer. The rule is now:
-   colour reads as "pointing at", the underline reads as "you are here". */
-.nav-link {
-  position: relative;
-  color: hsl(var(--muted-foreground));
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  height: 2px;
-  border-radius: 2px;
-  background: hsl(var(--primary));
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-link:hover,
-.nav-link:focus-visible {
-  color: hsl(var(--foreground));
-}
-
-.nav-link:hover::after,
-.nav-link:focus-visible::after {
-  transform: scaleX(1);
-}
-
-/* Current page: underline stays, and the label carries the brand colour. */
-.nav-link.active {
-  color: hsl(var(--primary));
-}
-
-.nav-link.active::after {
-  transform: scaleX(1);
-}
-
-/* Leaving a link wipes the underline out to the right rather than back to
-   the left, so it reads as the cursor carrying it away instead of rewinding. */
-.nav-link:not(:hover):not(.active)::after {
-  transform-origin: right center;
-}
-
-/* The icon leans in very slightly on approach. Two pixels — enough to feel
-   alive on a real pointer, not enough to notice as movement. */
-.nav-link svg {
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-link:hover svg {
-  transform: translateX(2px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-link::after,
-  .nav-link svg {
-    transition: none;
-  }
-  .nav-link:hover svg {
-    transform: none;
-  }
+/* Simple navigation hover - just color change */
+.nav-clean:hover {
+  color: hsl(var(--primary)) !important;
 }
 
 /* Enhanced animation styles */
@@ -1708,40 +1626,35 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
    do NOT trigger the always-on rule. Only the un-prefixed token
    (or the Tailwind !important prefix form) wins.
    ============================================================ */
-/* Scoped away from :hover / :focus-visible. These !important overrides
-   set the resting colour, but !important also outranks every Tailwind
-   hover: variant — so `text-primary hover:text-primary-foreground` kept
-   blue text on a blue hover fill and the label disappeared. Reported on
-   the contact CTA; it affected every button using that pattern. */
 @layer utilities {
-  button[class~="text-white"]:not(:hover):not(:focus-visible), button[class~="!text-white"]:not(:hover):not(:focus-visible),
-  a[class~="text-white"]:not(:hover):not(:focus-visible), a[class~="!text-white"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-white"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-white"]:not(:hover):not(:focus-visible) {
+  button[class~="text-white"], button[class~="!text-white"],
+  a[class~="text-white"], a[class~="!text-white"],
+  [role="button"][class~="text-white"], [role="button"][class~="!text-white"] {
     color: #ffffff !important;
   }
-  button[class~="text-primary-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-primary-foreground"]:not(:hover):not(:focus-visible),
-  a[class~="text-primary-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-primary-foreground"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-primary-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-primary-foreground"]:not(:hover):not(:focus-visible) {
+  button[class~="text-primary-foreground"], button[class~="!text-primary-foreground"],
+  a[class~="text-primary-foreground"], a[class~="!text-primary-foreground"],
+  [role="button"][class~="text-primary-foreground"], [role="button"][class~="!text-primary-foreground"] {
     color: hsl(var(--primary-foreground)) !important;
   }
-  button[class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible),
-  a[class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-secondary-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-secondary-foreground"]:not(:hover):not(:focus-visible) {
+  button[class~="text-secondary-foreground"], button[class~="!text-secondary-foreground"],
+  a[class~="text-secondary-foreground"], a[class~="!text-secondary-foreground"],
+  [role="button"][class~="text-secondary-foreground"], [role="button"][class~="!text-secondary-foreground"] {
     color: hsl(var(--secondary-foreground)) !important;
   }
-  button[class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible),
-  a[class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-destructive-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-destructive-foreground"]:not(:hover):not(:focus-visible) {
+  button[class~="text-destructive-foreground"], button[class~="!text-destructive-foreground"],
+  a[class~="text-destructive-foreground"], a[class~="!text-destructive-foreground"],
+  [role="button"][class~="text-destructive-foreground"], [role="button"][class~="!text-destructive-foreground"] {
     color: hsl(var(--destructive-foreground)) !important;
   }
-  button[class~="text-primary"]:not(:hover):not(:focus-visible), button[class~="!text-primary"]:not(:hover):not(:focus-visible),
-  a[class~="text-primary"]:not(:hover):not(:focus-visible), a[class~="!text-primary"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-primary"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-primary"]:not(:hover):not(:focus-visible) {
+  button[class~="text-primary"], button[class~="!text-primary"],
+  a[class~="text-primary"], a[class~="!text-primary"],
+  [role="button"][class~="text-primary"], [role="button"][class~="!text-primary"] {
     color: hsl(var(--primary)) !important;
   }
-  button[class~="text-foreground"]:not(:hover):not(:focus-visible), button[class~="!text-foreground"]:not(:hover):not(:focus-visible),
-  a[class~="text-foreground"]:not(:hover):not(:focus-visible), a[class~="!text-foreground"]:not(:hover):not(:focus-visible),
-  [role="button"][class~="text-foreground"]:not(:hover):not(:focus-visible), [role="button"][class~="!text-foreground"]:not(:hover):not(:focus-visible) {
+  button[class~="text-foreground"], button[class~="!text-foreground"],
+  a[class~="text-foreground"], a[class~="!text-foreground"],
+  [role="button"][class~="text-foreground"], [role="button"][class~="!text-foreground"] {
     color: hsl(var(--foreground)) !important;
   }
 }
@@ -1759,259 +1672,3 @@ button, a, .interactive, [role="button"], input[type="submit"], input[type="butt
   }
 }
 
-/* Global heading font. Catches headings that don't carry `font-display`
-   themselves. Deliberately NOT !important — that was the bug: it beat the
-   font-display utility, so the switch to Fraunces silently never applied to
-   any heading on the site. */
-h1, h2, h3, h4, h5, h6 {
-  font-family: Fraunces, ui-serif, Georgia, serif;
-}
-
-
-
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Case study reading layout
-
-   Long-form prose wants a ~65-character measure, but product screenshots
-   want room. Constraining both to one column meant 1600px-wide app
-   screenshots rendered at 720px — 45% of native — while 670px of viewport
-   sat empty on either side. Dense UI (a trading board, a dashboard) is
-   unreadable at that scale, which defeats the point of showing the work.
-
-   So the page is a grid with named tracks instead of a single max-width:
-   text keeps its measure, figures break out to the wider track, and the
-   hero can go wider still.
-   ───────────────────────────────────────────────────────────────────── */
-@layer components {
-  .cs-grid {
-    display: grid;
-    grid-template-columns:
-      [full-start] minmax(1.25rem, 1fr)
-      [wide-start] minmax(0, 15rem)
-      [text-start] min(42rem, 100% - 2.5rem)
-      [text-end] minmax(0, 15rem)
-      [wide-end] minmax(1.25rem, 1fr)
-      [full-end];
-  }
-
-  /* The page has ONE left edge. Everything — title, prose, figures — starts
-     on the wide track, and prose is held to its measure by max-width rather
-     than by a narrower column. Putting text in its own narrower track looked
-     right in isolation but gave headings and screenshots two different left
-     edges, which reads as a misalignment on every scroll. */
-  .cs-grid > * {
-    grid-column: wide;
-  }
-
-  .cs-grid > .cs-full {
-    grid-column: full;
-  }
-
-  /* Text spans the same track as the media. There used to be a 42rem
-     "reading measure" here — typographically orthodox, but on a 1150px
-     content track it left more empty page than paragraph, and every case
-     study read as a thin ribbon of text beside a void. Hiram's call: no
-     half-page text, anywhere. The grid still caps line length at the wide
-     track, which stays within reason on laptop widths. */
-  .cs-measure {
-    max-width: none;
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Page canvas: hero → work.
-
-   Every section was painted the same flat --background, so the whole page
-   read as one undifferentiated sheet and the eye had nothing to travel
-   along. These two gradients are built to meet: the hero settles into a
-   tinted tone at its bottom edge, and the work section starts on that
-   exact tone before resolving back to the page colour. No seam, but the
-   colour visibly moves as you scroll.
-
-   Kept low-saturation on purpose — this is a backdrop for screenshots of
-   real products, and anything stronger would start competing with them.
-   ───────────────────────────────────────────────────────────────────── */
-/* The hero owns the first screen. It is the only thing above the fold —
-   nothing from the next section should peek in underneath it.
-
-   100svh, not 100vh: on mobile 100vh is measured against the *expanded*
-   viewport, so the browser chrome overlaps the bottom of the section and
-   crops it. svh is the small-viewport unit and stays correct whether the
-   URL bar is showing or hidden. vh is kept as the fallback for anything
-   that doesn't know svh. */
-.hero-canvas {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-canvas > .hero-shell {
-  width: 100%;
-}
-
-.hero-canvas {
-  background-image: linear-gradient(
-    to bottom,
-    hsl(var(--primary) / 0.10) 0%,
-    hsl(var(--background)) 46%,
-    hsl(32 78% 46% / 0.07) 80%,
-    hsl(var(--muted) / 0.85) 100%
-  );
-}
-
-/* The glows drift. The first pass at this was too polite to notice — 4%
-   travel at 0.20 alpha, which is indistinguishable from a still image unless
-   you stare. These move roughly twice as far, sit brighter, and there are
-   three of them on coprime periods (19s / 25s / 31s) so the composite never
-   repeats a recognisable pattern.
-
-   Transform and opacity only. No layout, no paint, entirely on the
-   compositor, and off completely under prefers-reduced-motion. */
-@keyframes hero-drift-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: translate3d(-9%, 7%, 0) scale(1.25);
-    opacity: 1;
-  }
-}
-
-@keyframes hero-drift-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1.18);
-    opacity: 1;
-  }
-  50% {
-    transform: translate3d(11%, -8%, 0) scale(1);
-    opacity: 0.7;
-  }
-}
-
-@keyframes hero-drift-c {
-  0%,
-  100% {
-    transform: translate3d(-6%, 0, 0) scale(1.05);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate3d(8%, -6%, 0) scale(1.22);
-    opacity: 0.95;
-  }
-}
-
-/* A slow rise and fall on the portrait, so the right-hand column is not the
-   one dead thing on an otherwise moving screen. 6px is small enough that it
-   reads as breathing rather than as an animation asking for attention. */
-@keyframes hero-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -6px, 0);
-  }
-}
-
-.hero-aurora {
-  will-change: transform, opacity;
-}
-
-.hero-aurora-a {
-  animation: hero-drift-a 19s ease-in-out infinite;
-}
-
-.hero-aurora-b {
-  animation: hero-drift-b 25s ease-in-out infinite;
-}
-
-.hero-aurora-c {
-  animation: hero-drift-c 31s ease-in-out infinite;
-}
-
-.hero-float {
-  animation: hero-float 7s ease-in-out infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-aurora,
-  .hero-float,
-  .hero-cue {
-    animation: none;
-    will-change: auto;
-  }
-}
-
-.work-canvas {
-  background-image: linear-gradient(
-    to bottom,
-    hsl(var(--muted) / 0.85) 0%,
-    hsl(var(--background)) 26%,
-    hsl(var(--background)) 100%
-  );
-}
-
-@media (prefers-color-scheme: dark) {
-  .hero-canvas {
-    background-image: linear-gradient(
-      to bottom,
-      hsl(var(--primary) / 0.12) 0%,
-      hsl(var(--background)) 45%,
-      hsl(32 78% 46% / 0.08) 80%,
-      hsl(var(--muted) / 0.35) 100%
-    );
-  }
-  .work-canvas {
-    background-image: linear-gradient(
-      to bottom,
-      hsl(var(--muted) / 0.35) 0%,
-      hsl(var(--background)) 22%,
-      hsl(var(--background)) 100%
-    );
-  }
-}
-
-@layer utilities {
-  /* Figures fade up as they enter the viewport. Transform/opacity only, so
-     it stays on the compositor. */
-  .cs-reveal {
-    opacity: 0;
-    transform: translateY(12px);
-    /* Same curve as SectionTransition and the route fade — one motion
-       language across sections, figures and page changes. */
-    transition: opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
-                transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .cs-reveal.is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cs-reveal,
-    .cs-reveal.is-visible {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-}
-
-/* The site's one motion curve, as a utility.
-   Written here rather than as a Tailwind arbitrary value: `ease-[cubic-bezier(
-   0.22,1,0.36,1)]` was silently dropped by the JIT extractor — the sibling
-   `transition-[transform,opacity]` in the same string compiled fine, so it
-   failed quietly and the element fell back to the default easing. A named
-   utility cannot fail that way. */
-@layer utilities {
-  .ease-brand {
-    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-}

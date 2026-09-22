@@ -2,7 +2,6 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import { getSeoBySlug, type SeoMetaRecord } from "@/lib/supabase/seoQueries";
 import { generateStructuredData } from "@/utils/seo/structuredDataUtils";
 import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
 import { blogPosts } from "@/data/blogData";
@@ -11,18 +10,15 @@ import { buildSEO, SEOInput, BuiltSEO } from "@/utils/seo/seoBuilder";
 import { resolveUrlAliases } from "@/utils/seo/urlNormalizer";
 import { getStaticPageSEO, getProjectSEO, getBlogSEO } from "@/data/seoData";
 
-const devLog = (...args: unknown[]) => {
+const devLog = (...args: any[]) => {
   if (import.meta.env.DEV) console.warn(...args);
 };
 
 const UnifiedSEO: React.FC = () => {
   const location = useLocation();
-  // The seo_meta lookup that used to run here is gone. It let the database
-  // override the SEO built from src/data — but that table doesn't exist on the
-  // current Supabase project, so every navigation fired a request that came
-  // back PGRST205 and then fell through to the local data anyway. All of it
-  // now comes from src/data/seoData.ts, which is what was rendering regardless.
-  const dbSeo: SeoMetaRecord | null = null;
+  const dbSeo: null | { title?: string; description?: string; canonical_url?: string; og_image?: string; [k: string]: unknown } = null;
+
+  // The Supabase seo_meta override is gone with the Lovable backend.
 
   // Generate SEO data using unified builder
   const seoData = useMemo((): BuiltSEO => {
@@ -68,14 +64,7 @@ const UnifiedSEO: React.FC = () => {
       const caseStudyData = getStructuredCaseStudy(projectId);
       const projectSeoOverride = getProjectSEO(projectId);
       
-      // An explicit PROJECT_SEO_MAP entry is authoritative on its own. It used
-      // to require structured case-study data alongside it, which meant a study
-      // built with SimpleCaseStudyPage — where the content is passed as props
-      // and never lands in structuredCaseStudies.ts — fell through to the
-      // generic "Project: <id>" fallback the moment React hydrated. The served
-      // HTML was correct (inject-seo-html reads the same map), so the title
-      // only broke after hydration, which is why it went unnoticed on /stips.
-      if (projectSeoOverride) {
+      if (caseStudyData && projectSeoOverride) {
         seoInput = {
           path: pathname,
           kind: 'project',
@@ -138,9 +127,6 @@ const UnifiedSEO: React.FC = () => {
   }, [location?.pathname, dbSeo]);
 
   const structuredData = generateStructuredData(seoData);
-  const bakedSchemaPresent =
-    typeof document !== "undefined" &&
-    document.querySelector(`script[data-seo-route="${window.location.pathname}"]`) !== null;
 
   return (
     <Helmet>
@@ -148,11 +134,7 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      {/* Must match index.html's static directive. Helmet replaces the
-          static tag on hydration, and the bare "index, follow" it used to
-          emit here silently dropped max-snippet and max-image-preview for
-          every page Google rendered. */}
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="robots" content="index, follow" />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />
@@ -191,15 +173,8 @@ const UnifiedSEO: React.FC = () => {
         <meta property="article:modified_time" content={seoData.modifiedTime} />
       )}
       
-      {/* Structured Data. The build bakes this exact block into every
-          route's HTML (scripts/inject-seo-html.ts, marked data-seo-route),
-          so on a direct load it is already in the document and emitting it
-          again only produces a duplicate. It is still needed after a
-          client-side navigation, where the baked block belongs to the
-          previous route. */}
-      {!bakedSchemaPresent && (
-        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
-      )}
+      {/* Structured Data */}
+      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );
 };

@@ -21,19 +21,18 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
   className = ""
 }) => {
   return (
-    <section id="faq-section" className={`py-12 md:py-16 relative ${className}`}>
+    <section id="faq-section" className={`min-h-screen flex flex-col justify-center py-16 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 relative ${className}`}>
       <div className="container px-4 mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
           <SectionHeader
             as="h2"
             title={title}
-            subtitle="What people ask before hiring someone to design and build their product"
+            subtitle="Common questions about AI-Enhanced UX Design and Frontend Gen AI Development"
           />
         </motion.div>
 
@@ -43,12 +42,6 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              // once: without it, a card that scrolls out of view animates back
-              // to opacity 0 and replays its staggered delay on the way back in.
-              // Measured 2026-09-15: a reader returning to re-read an answer saw
-              // it blank for ~0.8s, then a 0.6s fade — at 375 and 1440. Every
-              // other whileInView on the site already sets this.
-              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="glass-card p-6 layered-depth"
             >
@@ -67,7 +60,7 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
                   {faq.keywords.map((keyword, kIndex) => (
                     <span
                       key={kIndex}
-                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full"
+                      className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
                     >
                       {keyword}
                     </span>
@@ -79,6 +72,26 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
         </div>
       </div>
 
+      {/* Structured Data for FAQ */}
+      <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ${faqs.map(faq => `
+              {
+                "@type": "Question",
+                "name": "${faq.question}",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "${faq.answer.replace(/"/g, '\\"')}"
+                }
+              }`).join(',')}
+            ]
+          }
+        `}
+      </script>
     </section>
   );
 };

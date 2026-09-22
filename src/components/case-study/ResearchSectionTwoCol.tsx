@@ -148,7 +148,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                   <ProjectVideo
                     src={researchSection.researchVideo}
                     title="Research Video"
-                    className="w-full rounded-sm"
+                    className="w-full rounded-xl"
                   />
                 ) : (
                   /* Maximizable Images Display */
@@ -158,7 +158,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                         key={index}
                         src={image.src}
                         alt={image.alt || `Research image ${index + 1}`}
-                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : image.alt}
+                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : undefined}
                         imageList={allMedia.map(img => img.src)}
                         currentIndex={index}
                         className="shadow-elevated w-full glass-card layered-depth"

@@ -48,7 +48,7 @@ export const useOpenAiCaptions = () => {
         throw new Error(result.error || 'No caption received');
       }
       
-      const caption = result.caption.trim();
+      let caption = result.caption.trim();
       
       console.log('✅ AI Caption received:', caption);
       return { caption };
@@ -133,6 +133,8 @@ export const useOpenAiCaptions = () => {
     let projectContext = `${projectId} application interface`;
     if (projectId === 'splittime') {
       projectContext = 'splittime co-parenting family coordination app';
+    } else if (projectId === 'barskyjoint') {
+      projectContext = 'barskyjoint food truck restaurant ordering platform';
     } else if (projectId === 'herbalink') {
       projectContext = 'herbalink herbal medicine wellness platform';
     }

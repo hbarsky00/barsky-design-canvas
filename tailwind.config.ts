@@ -31,72 +31,6 @@ const config: Config = {
         'desktop': {'min': '1024px'},
       },
       colors: {
-        /* The site's palette is rust + gold. A lot of legacy markup still asks
-           for Tailwind's stock blue/indigo/violet/purple, and chasing every
-           one of those ~300 call sites by hand is how strays survive a
-           redesign. Remapping the cool families onto brand ramps fixes them
-           all at once, keeps the 50->900 lightness relationships intact, and
-           means a future stray `text-blue-600` still lands on-brand.
-           600 is the text-safe step in each ramp (>=4.5:1 on the light
-           ground); the brighter steps are for fills and gradients. */
-        /* Same trick for the neutrals, and for the same reason. The chromatic
-           remap below never covered gray/slate/zinc/neutral/stone, so ~370
-           legacy call sites still resolved to Tailwind's stock cool greys —
-           text-gray-900 is rgb(17,24,39), a blue-black, sitting next to the
-           warm rgb(35,30,26) of --foreground on the same page. These ramps
-           keep each stock step's LIGHTNESS exactly and only re-hue it to the
-           palette's warm 30deg, so nothing shifts in contrast except the cast.
-           Step 500 is the one exception: at stock lightness it landed on
-           4.22:1, under AA, so it is a touch darker (4.59:1). Verified against
-           the cream ground, not assumed. */
-        gray: {
-          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
-          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
-          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
-          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
-        },
-        slate: {
-          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
-          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
-          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
-          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
-        },
-        zinc: {
-          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
-          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
-          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
-          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
-        },
-        neutral: {
-          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
-          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
-          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
-          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
-        },
-        stone: {
-          50: "hsl(30 18% 98%)", 100: "hsl(30 18% 96%)", 200: "hsl(30 18% 91%)",
-          300: "hsl(30 18% 84%)", 400: "hsl(30 17% 65%)", 500: "hsl(30 12% 44%)",
-          600: "hsl(30 18% 34%)", 700: "hsl(30 18% 27%)", 800: "hsl(30 18% 17%)",
-          900: "hsl(30 18% 11%)", 950: "hsl(30 18% 4%)",
-        },
-        blue: {
-          50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)",
-          300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)",
-          600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)",
-          900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)",
-        },
-        purple: {
-          50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)",
-          300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)",
-          600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)",
-          900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)",
-        },
-        indigo: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
-        violet: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
-        fuchsia: { 50: "hsl(36 80% 96%)", 100: "hsl(36 80% 91%)", 200: "hsl(34 78% 82%)", 300: "hsl(34 78% 70%)", 400: "hsl(33 78% 58%)", 500: "hsl(32 78% 46%)", 600: "hsl(30 80% 36%)", 700: "hsl(29 80% 31%)", 800: "hsl(28 75% 26%)", 900: "hsl(26 70% 21%)", 950: "hsl(26 65% 14%)" },
-        sky: { 50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)", 300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)", 600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)", 900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)" },
-        cyan: { 50: "hsl(14 70% 96%)", 100: "hsl(14 70% 92%)", 200: "hsl(14 68% 84%)", 300: "hsl(14 66% 72%)", 400: "hsl(14 66% 58%)", 500: "hsl(14 68% 50%)", 600: "hsl(14 68% 44%)", 700: "hsl(14 70% 37%)", 800: "hsl(14 70% 30%)", 900: "hsl(16 65% 24%)", 950: "hsl(16 60% 16%)" },
-
         // Legacy color mappings for compatibility
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -241,29 +175,11 @@ const config: Config = {
       minHeight: {
         'touch': '44px',
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            '--tw-prose-body': 'hsl(var(--muted-foreground))',
-            '--tw-prose-headings': 'hsl(var(--foreground))',
-            '--tw-prose-bold': 'hsl(var(--foreground))',
-            '--tw-prose-links': 'hsl(var(--primary))',
-            '--tw-prose-bullets': 'hsl(var(--border))',
-            '--tw-prose-quotes': 'hsl(var(--foreground))',
-            '--tw-prose-quote-borders': 'hsl(var(--primary))',
-            maxWidth: 'none',
-            h2: { fontFamily: 'Fraunces, ui-serif, Georgia, serif', fontWeight: '700' },
-            h3: { fontFamily: 'Fraunces, ui-serif, Georgia, serif', fontWeight: '600' },
-            figure: { marginTop: '2rem', marginBottom: '2rem' },
-            figcaption: { fontSize: '0.875rem' },
-          },
-        },
-      },
       fontFamily: {
-        sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui"],
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
         mono: ["ui-monospace", "SFMono-Regular"],
-        display: ["Fraunces", "ui-serif", "Georgia", "serif"],
-        body: ["IBM Plex Sans", "ui-sans-serif", "system-ui"],
+        display: ["Space Grotesk", "ui-sans-serif", "system-ui"],
+        body: ["Inter", "ui-sans-serif", "system-ui"],
       },
       keyframes: {
         "accordion-down": {
@@ -409,17 +325,7 @@ const config: Config = {
       },
     },
   },
-  // require() is the documented way to register Tailwind plugins and the config
-  // is loaded by Tailwind's own CJS-capable loader, not by the app bundle.
-  /* eslint-disable @typescript-eslint/no-require-imports */
-  plugins: [
-    require("tailwindcss-animate"),
-    // @tailwindcss/typography was a dependency but was never registered here,
-    // so every `prose` class in the blog was a no-op and article bodies fell
-    // back to raw browser defaults.
-    require("@tailwindcss/typography"),
-  ],
-  /* eslint-enable @typescript-eslint/no-require-imports */
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;

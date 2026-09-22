@@ -27,7 +27,7 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
     animateOnce,
     onComplete
   });
-  const Tag = tag as React.ElementType;
+  const Tag = tag as any;
 
   // Render characters or words based on type
   const renderElements = () => {
@@ -40,27 +40,9 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
         </motion.span>);
     } else {
       // type === "word"
-      //
-      // The gap between words is a real space character, not a margin. It used
-      // to be `mr-[0.25em]` with nothing between the spans, which looked right
-      // and made the DOM text one run-on token: every heading rendered through
-      // here came out as "FrequentlyAskedQuestions". Google's extractor, screen
-      // readers and copy-paste all read that, not the visual gap.
-      //
-      // Whitespace between inline-block elements collapses to a single word
-      // space, so this spaces identically without the margin.
-      const words = text.split(" ");
-      const nodes: React.ReactNode[] = [];
-      words.forEach((word, index) => {
-        nodes.push(<motion.span key={`word-${index}`} custom={index} variants={characterAnimation[animation]} className="inline-block">
-            {word}
-          </motion.span>);
-        // A real space, as its own text node. Not a Fragment: lovable-tagger
-        // puts data-lov-id on every JSX element and React.Fragment takes only
-        // key and children, so wrapping each word warned on every render.
-        if (index < words.length - 1) nodes.push(" ");
-      });
-      return nodes;
+      return text.split(" ").map((word, index) => <motion.span key={`word-${index}`} custom={index} variants={characterAnimation[animation]} className="inline-block mr-[0.25em]">
+          {word}
+        </motion.span>);
     }
   };
   return <Tag ref={elementRef} className={cn("block", className)}>
