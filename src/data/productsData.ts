@@ -7,7 +7,7 @@ export const products: Product[] = [
     name: "5 Case Studies That Changed My Portfolio Game",
     description: "Professional case study templates that helped me land high-paying clients and transform my portfolio from average to outstanding.",
     price: 10,
-    image: "/images/og/catchbuddy.png",
+    image: "/images/store/case-study-templates.jpg",
     category: "templates",
     badge: "Best Seller"
   },
@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: "Professional Content Templates That Work Across All Platforms",
     description: "Ready-to-use content templates for LinkedIn, Twitter, Instagram, Facebook, and Email that drive engagement and grow your personal brand.",
     price: 10,
-    image: "/images/linkedin-products.png",
+    image: "/images/store/content-templates.jpg",
     category: "templates"
   }
 ];

@@ -72,8 +72,8 @@ export const projectVariables: Record<string, ProjectVariable> = {
     
     techStack: ["React", "Node.js", "PostgreSQL", "TypeScript", "QuickBooks API", "PDF Generation"],
     imageConfig: {
-      hero: "/images/business-management/hero-three-laptops.jpg",
-      challenge: ["/images/business-management/hero-three-laptops.jpg"]
+      hero: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1",
+      challenge: ["https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/warehouse/heroimage.png?v=1"]
     }
   }
 };

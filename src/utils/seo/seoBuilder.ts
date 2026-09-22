@@ -1,5 +1,7 @@
 import { SEO_CONSTANTS } from "@/utils/seoConstants";
 
+export type FaqItem = { question: string; answer: string };
+
 export type SEOInput = {
   path: string;               // e.g. "/project/herbalink"
   kind: "home" | "page" | "project" | "post";
@@ -12,6 +14,10 @@ export type SEOInput = {
   published?: string;         // ISO
   modified?: string;          // ISO
   robots?: string;
+  // Only set this when the page actually renders this exact Q&A content —
+  // FAQPage schema must match visible content or it's a violation Google
+  // explicitly flags, not just an accuracy nicety.
+  faqs?: FaqItem[];
 };
 
 export type BuiltSEO = {
@@ -31,6 +37,7 @@ export type BuiltSEO = {
   tags?: string[];
   publishedTime?: string;
   modifiedTime?: string;
+  faqs?: FaqItem[];
 };
 
 export function toAbs(url?: string): string {
@@ -77,5 +84,6 @@ export function buildSEO(input: SEOInput): BuiltSEO {
     tags: isArticle ? input.tags : undefined,
     publishedTime: isArticle ? input.published : undefined,
     modifiedTime: isArticle ? input.modified : undefined,
+    faqs: input.faqs,
   };
 }

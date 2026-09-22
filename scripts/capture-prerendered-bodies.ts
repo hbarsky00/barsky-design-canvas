@@ -41,6 +41,7 @@ function getRoutes(): string[] {
   const staticPaths = [
     "/",
     "/case-studies",
+    "/free-audit",
     "/services",
     "/design-services/ux-ui-design",
     "/design-services/mobile-app-design",

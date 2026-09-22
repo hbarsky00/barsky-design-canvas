@@ -8,7 +8,7 @@ const RED = "#ef4444";
 const GREEN = "#22c55e";
 
 const compare = [
-  { b: '"Design is too expensive"', a: "ROI Calculator shows 9.2K% return, $5.8M business value" },
+  { b: '"Design is too expensive"', a: "A modeled checkout redesign shows 231% first-year ROI — with every assumption visible" },
   { b: "Stakeholders don't understand design value", a: "Board-ready report generated in minutes" },
   { b: "Generic industry benchmarks get challenged", a: "Industry-template benchmarks pre-loaded and citable by vertical" },
   { b: "Designer has no seat at the table", a: "Designer walks in with a defensible financial model" },
@@ -44,12 +44,12 @@ const RoiDesignPromo: React.FC = () => (
         </p>
 
         <div style={{ background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: 12, padding: 20, marginTop: 24 }}>
-          <div style={{ color: BLUE, fontSize: 32, fontWeight: 800 }}>9.2K% ROI</div>
-          <div style={{ color: "#555", fontSize: 14, marginTop: 4 }}>Generated $5.8M in total business value.</div>
+          <div style={{ color: BLUE, fontSize: 32, fontWeight: 800 }}>231% ROI</div>
+          <div style={{ color: "#555", fontSize: 14, marginTop: 4 }}>Example: a checkout redesign modeled at $464K in first-year business value.</div>
           <div style={{ display: "flex", gap: 16, marginTop: 12, flexWrap: "wrap", color: "#475569", fontSize: 13 }}>
-            <span><strong style={{ color: "#0f172a" }}>Revenue</strong> $5.1M</span>
-            <span><strong style={{ color: "#0f172a" }}>Savings</strong> $632K</span>
-            <span><strong style={{ color: "#0f172a" }}>Payback</strong> 3 days</span>
+            <span><strong style={{ color: "#0f172a" }}>Revenue</strong> $230K</span>
+            <span><strong style={{ color: "#0f172a" }}>Savings</strong> $234K</span>
+            <span><strong style={{ color: "#0f172a" }}>Payback</strong> 3.6 mo</span>
           </div>
         </div>
 

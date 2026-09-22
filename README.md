@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# barskydesign.pro
 
-## Project info
+Portfolio of Hiram Barsky — Lead Product & AI Designer. Case studies, product
+promo pages, blog, and store, served as a prerendered React SPA.
 
-**URL**: https://lovable.dev/projects/0fd089db-a4e5-4e17-ab5f-74878fb2d656
+**Live:** https://barskydesign.pro
 
-## How can I edit this code?
+## Stack
 
-There are several ways of editing your application.
+- Vite + React 18 + TypeScript
+- Tailwind CSS + shadcn/ui (Radix)
+- React Router (SPA) with per-route prerendered HTML for SEO
+- Supabase (storage for some published images)
+- Netlify (hosting + redirects; deploys automatically on push to `main`)
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/0fd089db-a4e5-4e17-ab5f-74878fb2d656) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Develop
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # dev server on :8080
 ```
 
-**Edit a file directly in GitHub**
+## Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build      # sitemap -> vite build -> per-route SEO prerender into dist/
+npm run preview    # serve the production build locally
+```
 
-**Use GitHub Codespaces**
+The build pipeline matters: plain `vite build` skips the sitemap and the
+prerendered per-route HTML that search and social crawlers rely on. Always go
+through `npm run build` (Netlify does — see `netlify.toml`).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## SEO architecture
 
-## What technologies are used for this project?
+- `scripts/seo-routes.ts` — single source of truth for every indexable route;
+  feeds both the sitemap generator and the prerenderer so they can't drift.
+- `scripts/generate-sitemap.ts` — writes `public/sitemap.xml` before the build.
+- `scripts/prerender-seo.ts` — after the build, writes `dist/<route>.html` for
+  every indexable route with per-page title/description/canonical/OG tags.
+- `src/components/seo/UnifiedSEO.tsx` — runtime tags via react-helmet-async
+  (`defer={false}` everywhere; head tags in HTML carry `data-rh="true"` so
+  helmet replaces them at hydration instead of duplicating).
+- `src/data/seoData.ts` — per-page titles, descriptions, and OG images.
 
-This project is built with:
+## Deploying
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0fd089db-a4e5-4e17-ab5f-74878fb2d656) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Push to `main` → Netlify builds and publishes to barskydesign.pro.

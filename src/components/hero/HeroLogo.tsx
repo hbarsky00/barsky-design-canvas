@@ -10,7 +10,7 @@ interface HeroLogoProps {
 const HeroLogo: React.FC<HeroLogoProps> = ({ isVisible }) => {
   // Using your working external image URL
   const imageUrl = '/images/hiram-barsky-profile.png';
-  const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
+  const videoUrl = '/uploads/archive/profile-hero.mp4';
   
   const MotionIdentityBadge = motion(IdentityBadge);
   

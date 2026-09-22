@@ -96,6 +96,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/project/business-management</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/project/catchbuddy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -166,17 +171,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/ai-enhanced-ux-designer-future</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/blog/ai-powered-prototype-weekend</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/beautiful-interface-doesnt-convert</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -186,22 +181,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/building-products-nobody-asked-for</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/built-product-without-real-data</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/case-study-writing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/blog/chatgpt-vs-claude-vs-gemini-for-ux</loc>
+    <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -212,11 +193,6 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/design-for-the-approval-gates</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/design-systems-that-get-used</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -251,11 +227,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/finding-first-ux-job-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/blog/finding-the-data-is-half-the-job</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -277,16 +248,12 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/learning-ai-design-with-claude</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/prompt-engineering-for-designers</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/research-without-users</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -316,11 +283,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/blog/user-research-shoestring-budget</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/blog/verification-is-a-door-not-a-sticker</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -342,11 +304,6 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/why-enterprise-tools-lose-to-excel</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/blog/wireframes-to-wow-visual-hierarchy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

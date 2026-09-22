@@ -205,12 +205,11 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
 
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+  } catch (error: any) {
     console.error("Error in process-free-audit function:", error);
     return new Response(
       JSON.stringify({ 
-        error: message || "Failed to process audit request",
+        error: error.message || "Failed to process audit request",
         success: false 
       }),
       {

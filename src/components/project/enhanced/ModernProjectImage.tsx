@@ -50,7 +50,7 @@ const ModernProjectImage: React.FC<ModernProjectImageProps> = ({
   // Get video for Herbalink project specifically
   const getProjectVideo = () => {
     if (projectId === "herbalink") {
-      return "/herbalink-card.mp4";
+      return "/uploads/archive/herbalink-promo.mp4";
     }
     return undefined;
   };

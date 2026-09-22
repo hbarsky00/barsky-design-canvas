@@ -24,7 +24,7 @@ const HerbalinkPromo: React.FC = () => (
       <ProjectNav
       brand={<span style={{ color: SAGE, fontFamily: "Georgia, serif" }}>HerbaLink</span>}
       links={[{ label: "Home", href: "#hero" }, { label: "Features", href: "#features" }]}
-      cta={{ label: "Find an Herbalist →", href: "https://herbalink.live" }}
+      cta={{ label: "Find an Herbalist →", href: "http://herbalink.live" }}
       bg={CREAM} border={`1px solid ${BORDER}`} textColor="#2d2d2d" backColor="rgba(0,0,0,0.3)"
       ctaBg={SAGE} ctaColor="#fff"
     />
@@ -44,7 +44,7 @@ const HerbalinkPromo: React.FC = () => (
           Every practitioner verified against the American Herbalists Guild. No unverified listings, ever.
         </p>
         <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
-          <a href="https://herbalink.live" target="_blank" rel="noopener noreferrer"
+          <a href="http://herbalink.live" target="_blank" rel="noopener noreferrer"
             style={{ background: SAGE, color: "#fff", padding: "14px 24px", borderRadius: 4, fontWeight: 700, textDecoration: "none", fontFamily: "Inter, sans-serif" }}>
             Find an Herbalist →
           </a>
@@ -91,7 +91,7 @@ const HerbalinkPromo: React.FC = () => (
       <p style={{ color: "rgba(255,255,255,0.85)", marginTop: 48, fontStyle: "italic" }}>
         Every practitioner verified. No exceptions.
       </p>
-      <a href="https://herbalink.live" target="_blank" rel="noopener noreferrer"
+      <a href="http://herbalink.live" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-block", marginTop: 20, background: "#fff", color: SAGE, padding: "16px 32px", borderRadius: 4, fontWeight: 700, textDecoration: "none", fontFamily: "Inter, sans-serif" }}>
         Find an Herbalist on HerbaLink →
       </a>

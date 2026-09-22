@@ -9,7 +9,7 @@ const ValoraBetCaseStudy: React.FC = () => {
       title="Valora Bet — Social Prediction Markets"
       description="A betting interface a casual user can play in 10 seconds, sitting on top of honest CPMM pricing that doesn't lie about the odds."
       tags={["Product Design", "Prediction Markets", "CPMM", "Beta"]}
-      liveUrl="https://stips.bet"
+      liveUrl="http://valora.bet"
       overviewUrl="/project/valora-bet"
       heroImage={{ src: heroImg, alt: "Valora Bet prediction markets dashboard" }}
       blocks={[
@@ -29,9 +29,9 @@ const ValoraBetCaseStudy: React.FC = () => {
           ],
         },
         {
-          heading: "AI vs. Judgment",
+          heading: "What AI Couldn't Decide",
           paragraphs: [
-            "AI scaffolded the CPMM math, Supabase schemas, RLS policies, and the clubs/leaderboards plumbing. What I wouldn't let it decide: how the bet screen frames a position. Getting that wrong turns \"social prediction\" into a casino UI, and the whole premise breaks.",
+            "The CPMM math, Supabase schemas, RLS policies, and the clubs/leaderboards plumbing were all scaffolding. The call that stayed human: how the bet screen frames a position. Get that wrong and \"social prediction\" turns into a casino UI, and the whole premise breaks.",
           ],
         },
         {

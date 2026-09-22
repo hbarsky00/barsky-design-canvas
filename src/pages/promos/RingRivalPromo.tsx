@@ -20,7 +20,7 @@ const dataPoints = [
   { k: "Status", v: "Live" },
   { k: "Latency", v: "100ms" },
   { k: "Install", v: "None" },
-  { k: "URL", v: "rival.li" },
+  { k: "URL", v: "ringrival.today" },
 ];
 
 const RingRivalPromo: React.FC = () => (
@@ -28,7 +28,7 @@ const RingRivalPromo: React.FC = () => (
     <ProjectSeo
       slug="ring-rival"
       title="Ring-Rival — Mobile Web Boxing"
-      description="Console boxing feel with zero install. AI opponents, career mode, 100ms latency in the browser. Play at rival.li."
+      description="Console boxing feel with zero install. AI opponents, career mode, 100ms latency in the browser. Play at ringrival.today."
       image={heroImg}
     />
 
@@ -51,7 +51,7 @@ const RingRivalPromo: React.FC = () => (
     {/* HERO */}
     <section id="hero" style={{ padding: "96px 24px 64px", textAlign: "center" }}>
       <p style={{ color: RED, fontSize: 11, fontWeight: 800, letterSpacing: "0.2em", margin: 0 }}>
-        SHIPPED PRODUCT · ● LIVE at rival.li
+        SHIPPED PRODUCT · ● LIVE at ringrival.today
       </p>
       <h1 style={{ color: INK, fontSize: "clamp(36px,5.5vw,68px)", fontWeight: 900, lineHeight: 1.05, margin: "20px auto 16px", maxWidth: 900, letterSpacing: "-0.02em" }}>
         Console boxing feel.<br />Zero install.

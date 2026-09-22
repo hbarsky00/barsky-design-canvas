@@ -248,23 +248,80 @@ const SkyEffects: React.FC = () => {
     const spawnUfo = () => {
       const heroW = layer.clientWidth || window.innerWidth;
       const rtl = Math.random() < 0.5;
+      const isDay = !!layer.closest(".parallax-hero")?.classList.contains("is-day");
+      // Rare event: a mothership — much bigger, higher, slower, brighter beam.
+      const isMothership = Math.random() < 0.18;
+
       const el = document.createElement("span");
-      el.className = "sky-ufo";
-      el.textContent = "🛸";
-      el.style.top = `${rand(8, 45)}%`;
+      el.className = "sky-ufo" + (isMothership ? " sky-ufo--mothership" : "");
+      el.style.top = isMothership ? `${rand(4, 16)}%` : `${rand(8, 45)}%`;
+      const durS = isMothership ? rand(26, 34) : rand(14, 20);
+      el.style.animationDuration = `${durS}s`;
+
+      const img = document.createElement("img");
+      img.src = isDay ? alienShipDayUrl : alienShipNightUrl;
+      img.alt = "";
+      // Ship art faces left; mirror it when the flight path goes left-to-right.
+      img.className = "sky-ufo-img" + (rtl ? "" : " is-mirrored");
+      el.appendChild(img);
 
       const beam = document.createElement("span");
       beam.className = "sky-ufo-beam";
       el.appendChild(beam);
 
       if (rtl) {
-        el.style.left = `${heroW + 60}px`;
-        el.style.setProperty("--ufo-distance", `${-(heroW + 140)}px`);
+        el.style.left = `${heroW + 80}px`;
+        el.style.setProperty("--ufo-distance", `${-(heroW + 240)}px`);
       } else {
-        el.style.left = `-60px`;
-        el.style.setProperty("--ufo-distance", `${heroW + 100}px`);
+        el.style.left = `-80px`;
+        el.style.setProperty("--ufo-distance", `${heroW + 200}px`);
       }
-      append(el, 18000);
+      append(el, durS * 1000 + 500);
+    };
+
+    // Fighter jets: fast, straight, afterburner + contrails, sometimes a
+    // two-ship formation. Night flights get a hotter afterburner glow via CSS.
+    const spawnJet = () => {
+      const heroW = layer.clientWidth || window.innerWidth;
+      const rtl = Math.random() < 0.5;
+      const formation = Math.random() < 0.35 ? 2 : 1;
+
+      const flight = document.createElement("span");
+      flight.className = "sky-jet-flight" + (rtl ? " is-rtl" : "");
+      flight.style.top = `${rand(6, 36)}%`;
+      const durS = rand(3.8, 6);
+      flight.style.animationDuration = `${durS}s`;
+      flight.style.setProperty("--jet-climb", `${rand(-36, 20)}px`);
+
+      const jetSvg =
+        '<svg viewBox="0 0 64 20" width="38" height="12" aria-hidden="true" focusable="false">' +
+        '<path fill="currentColor" d="M63 10 L46 7.4 L38 4.5 L34.5 1 L33 4.2 L20 5.6 L14 1.8 L16.5 6.4 L4 8.2 L1 10 L4 11.8 L16.5 13.6 L14 18.2 L20 14.4 L33 15.8 L34.5 19 L38 15.5 L46 12.6 Z"/>' +
+        "</svg>";
+
+      for (let i = 0; i < formation; i++) {
+        const jet = document.createElement("span");
+        jet.className = "sky-jet" + (i === 1 ? " sky-jet--wingman" : "");
+        const trail = document.createElement("span");
+        trail.className = "sky-jet-contrail";
+        const trail2 = document.createElement("span");
+        trail2.className = "sky-jet-contrail sky-jet-contrail--lower";
+        const body = document.createElement("span");
+        body.className = "sky-jet-body";
+        body.innerHTML = jetSvg;
+        const flame = document.createElement("span");
+        flame.className = "sky-jet-flame";
+        jet.append(trail, trail2, flame, body);
+        flight.appendChild(jet);
+      }
+
+      if (rtl) {
+        flight.style.left = `${heroW + 220}px`;
+        flight.style.setProperty("--jet-distance", `${-(heroW + 460)}px`);
+      } else {
+        flight.style.left = `-220px`;
+        flight.style.setProperty("--jet-distance", `${heroW + 460}px`);
+      }
+      append(flight, durS * 1000 + 500);
     };
 
     const scheduleLoop = (fn: () => void, minS: number, maxS: number) => {
@@ -292,6 +349,7 @@ const SkyEffects: React.FC = () => {
     const cancelPlane = scheduleLoop(spawnAirplane, 45, 90);
     const cancelHeli = scheduleLoop(spawnHelicopter, 20, 50);
     const cancelUfo = scheduleLoop(spawnUfo, 30, 70);
+    const cancelJet = scheduleLoop(spawnJet, 22, 50);
 
     return () => {
       cancelStar();
@@ -299,6 +357,7 @@ const SkyEffects: React.FC = () => {
       cancelPlane();
       cancelHeli();
       cancelUfo();
+      cancelJet();
       timeouts.forEach(clearTimeout);
       rafs.forEach((id) => cancelAnimationFrame(id));
       rafs.clear();

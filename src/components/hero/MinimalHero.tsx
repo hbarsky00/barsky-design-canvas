@@ -23,7 +23,7 @@ const MinimalHero: React.FC = () => {
   const { addTimestampTrigger } = useVideoTiming(videoRef, 3.5);
 
   const imageUrl = '/images/hiram-barsky-profile.png';
-  const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
+  const videoUrl = '/uploads/archive/profile-hero.mp4';
 
   // Track scroll position to show/hide continue button
   useEffect(() => {

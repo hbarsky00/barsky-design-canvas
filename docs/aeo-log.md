@@ -1,705 +1,211 @@
-# AEO rotation log — barskydesign.pro
-
-One lever per run, six in a cycle. Pick the first lever not yet ticked in the
-current cycle; when all six are done, start a new cycle below with the date.
-
-Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
-4 structured-data validation sweep · 5 llms.txt / cross-web consistency ·
-6 content freshness / gap-fill
-
-## Cycle 1 — started 2026-08-22
-
-- [x] **1 entity hardening** — 2026-08-22 — Organization schema `jobTitle`,
-  Person description and Org description rewritten to the design-and-develop
-  positioning; `knowsAbout` extended with SaaS / web app / mobile app / internal
-  tools entries. `sameAs` was already present. Also fixed a real corruption bug:
-  `inject-seo-html.ts` passed the rendered body to `String.replace()` as a
-  replacement *string*, which expands `$$`, so `priceRange: "$$$"` was shipping
-  as `"$$"`. Both call sites now use replacer functions.
-
-- [x] **2 extractable Q&A** — 2026-08-22 — the homepage FAQ was the weakest
-  thing on the site and broke Google's FAQ guidelines three ways at once:
-    1. Two competing `FAQPage` blocks — three hardcoded questions in the head
-       from `structuredDataUtils`, and eight different ones emitted inline by
-       `SeoFaqSection` once its lazy chunk loaded. Neither matched the other.
-    2. The visible section was `hidden md:block`. Google indexes mobile-first,
-       so the markup described content that is `display:none` in the viewport it
-       actually crawls.
-    3. It was lazy-loaded, so the Q&A was absent from the prerendered HTML that
-       answer engines without a JS runtime read — the exact audience this lever
-       exists for.
-  Fixed: `structuredDataUtils` now generates the `FAQPage` from `homepageFaqs`,
-  the same array the section renders, so one source feeds both. Removed the
-  duplicate inline block. Dropped `min-h-screen` from the section (the only
-  reason it needed hiding on mobile) and unhid it. Renders eagerly now, so the
-  questions are in the served HTML.
-  Content was rewritten separately in b5f5bcdb — the previous answers claimed
-  "conversion rates by 40%+", "47+ successful projects", "60% faster design
-  cycles", "24-hour response times", a "$150-250/hour" rate and "WCAG 2.1 AA
-  certified". The 2026-07-15 honesty pass cleaned the FAQ *schema* and never
-  touched `seoFaqs.ts`, which is what the visible section reads from.
-
-- [x] **3 citable resource content** — 2026-08-30 — `what-one-person-can-ship-now`,
-  the post closest to the differentiator this loop exists to get cited for
-  ("can one person actually design and build a product with AI").
-
-  **Two extraction defects, both structural rather than editorial.**
-
-  1. *The most liftable passage on the page had no structure.* "Four walls, in
-     the order I hit them" was followed by four unmarked `<p>` elements. A
-     numbered constraint list is exactly the shape an answer engine quotes, and
-     nothing in the markup said it was one. Added a four-item `<ul>` with bolded
-     lead-ins (Distribution / Institutional trust / Operations / Nobody checking
-     your work) directly under that sentence, one clause each, with the existing
-     prose kept below as the argument. Answer-first, then detail — no paragraph
-     was rewritten or removed, so the human-voice pass of 2026-08-27 is intact.
-  2. *The post's own headline number did not check out on the page.* It opens
-     "I have four products live that I designed and built by myself" and then
-     names three: Stips, Ring-Rival, CatchBuddy. The fourth was only ever
-     asserted by the closing image's alt text. An engine reading this counts
-     three and the claim reads inflated. Named Recast in the product paragraph
-     (it is live at recastvid.com, has its own case study, and is referenced by
-     four other posts in this file) and corrected "Three different shapes of
-     product" to "Four".
-
-  Also gave the closing `/images/recast/landing-light.webp` figure its real
-  `width`/`height` (1500x831) and `loading="lazy"` — it was the one image in the
-  post without dimensions, so it was the one that could shift layout.
-
-  **Deliberately not done: manufacturing an "X is..." definition sentence.** The
-  lever's checklist asks for one, but the post already carries its citable claim
-  in the second paragraph — "One person can ship real software. One person still
-  cannot ship a real company." Bolting a definitional opener on top of that would
-  add nothing an engine can't already extract and would read as SEO-shaped
-  writing, which is the exact regression the 2026-08-27 pass was undoing.
-
-  **Measured.** `tsc -p tsconfig.app.json` unchanged (12 pre-existing errors in
-  `analytics.ts` / `Comments.tsx` / `test/setup.ts`, none introduced; the root
-  `tsconfig.json` is looser and reports 0 — both numbers are correct for their
-  config). Build clean, 44/44 prerendered, 0 head-only. `capture-bodies` 44/44
-  with **exactly one** snapshot changing, which is the confirmation that the edit
-  was contained. Served non-JS HTML for the post now carries all four `<li>`
-  elements and the corrected count. Media intact: 23 files in `public`, 23 in
-  `dist`, no `.capture-media-stash` left behind.
-
-  **Noted, not acted on:** a `vite preview --strictPort 4199` from an earlier run
-  was already alive when this run started (pid 29090). It did not corrupt
-  anything — `vite preview` serves `dist/` from disk, so it picked up the fresh
-  build — but it is the same leftover-process class of hazard as the 2026-08-23
-  entry, and it means `--strictPort` is not actually protecting this script from
-  a concurrent run the way the header comment implies.
-
-- [x] **4 structured-data validation sweep** — 2026-09-01 — the site served
-  **eight JSON-LD types across 44 routes with exactly one addressable `@id`**
-  between them. Everything else was an anonymous node, so nothing could be
-  joined to anything.
-
-  **What the sweep found** (parsed every `<script type="application/ld+json">`
-  in `dist/`, 44 pages, 0 parse errors, 0 duplicate `@type` per page):
-
-  1. **Two organizations, two names, two URLs, describing one business.**
-     `index.html` declared `LocalBusiness` "Barsky Design" at
-     `https://barskydesign.pro/`; `structuredDataUtils` declared `Organization`
-     "Hiram Barsky Design" at `https://barskydesign.pro` (no trailing slash).
-     Neither carried an `@id`, neither named the other in `sameAs`. On all 44
-     pages. Every article added a third stub under the second name as its
-     `publisher`, and `WebSite.publisher` was a fourth.
-  2. **"Hiram Barsky" existed as 2–3 unresolvable people per page** — founder of
-     the LocalBusiness, founder of the Organization, author of the article —
-     each a bare `{"@type":"Person","name":"Hiram Barsky"}`. The `sameAs` links
-     that actually identify him (LinkedIn, GitHub) hung off the *organizations*,
-     so no Person node on the site was connected to them. For a lever whose
-     whole purpose is being cited by name, that is the defect that matters.
-  3. `WebPage` referenced `#website` and nothing else — no link to the publisher.
-
-  **Changed.** `index.html` now carries one `@graph` with three `@id`-addressable
-  nodes: `#business` (LocalBusiness — an Organization subtype, so one node does
-  both jobs, holding the union of the two old blocks' fields), `#hiram` (Person,
-  with the `sameAs` links moved onto him and `worksFor` pointing back), and
-  `#website` (`publisher` now an `@id` pointer). `structuredDataUtils` lost its
-  Organization block entirely and references `#business` / `#hiram` by `@id` from
-  every `author`, `publisher` and `WebPage.publisher`.
-
-  Name conflict resolved to **"Barsky Design"** — it is what `WebSite`,
-  `LocalBusiness` and the domain already said; "Hiram Barsky Design" is kept as
-  `alternateName` rather than deleted. `WebPage.publisher`, not `about`: a blog
-  post is published by the business, it is not *about* the business.
-
-  Nothing was invented. Every field in the merged node came from one of the two
-  blocks it replaced. The one description dropped as redundant ("15+ years across
-  fintech, healthcare and pharma") is still stated verbatim on `#hiram`.
-
-  A side effect worth noting: `priceRange: "$$$"` is now static in `index.html`
-  instead of passing through `inject-seo-html`'s string replacement, which is
-  where the `$$$` → `$$` corruption of 2026-08-22 came from. That class of bug
-  can no longer reach this field.
-
-  **Measured.** `npx tsc --noEmit` 0, build clean at 44/44 prerendered, 0
-  head-only. No `capture-bodies` run: this change is head-only JSON-LD and
-  touches no visible copy, and no prerendered body changed.
-
-  | check (per page) | live before | live after |
-  |---|---|---|
-  | organization-ish nodes | **3–4**, under 2 names | **1** |
-  | `@id`-less `Person` stubs | **2–3** | **0** |
-  | addressable `@id`s sitewide | **1** (`#website`) | **3** + per-page |
-  | dangling `@id` references | — | **0 / 44 pages** |
-  | JSON-LD parse errors | 0 | **0** |
-
-  The "after" column is **barskydesign.pro**, not the local build: ten live
-  routes re-fetched after the deploy, one per page type — `/`, `/about`,
-  `/contact`, `/services`, `/store`, `/blog`, a blog post, two case studies and
-  a `/design-services/*` page. All ten identical on every row. (The built
-  output measured the same across all 44.)
-
-  **Left open:**
-  - **All 12 case studies emit `Article` with no `BreadcrumbList`.** All 23 blog
-    posts have one, because `BlogBreadcrumbs.tsx` emits it and only blog routes
-    render that component. Case studies are the conversion path and the one page
-    type where a SERP breadcrumb would help most. Biggest remaining structured-
-    data gap; next AEO run should take it.
-  - `BlogPosting`/`Article` only emit `dateModified` when `seoData.modifiedTime`
-    is set. It is set on all 12 case studies and on none of the 23 posts, so
-    every post ships `datePublished` alone.
-  - `/blog`, `/services`, `/store` and the three `/design-services/*` pages carry
-    only `WebPage`. Whether `Blog` / `Service` / product types belong there is a
-    content question, not a validation one — do not bolt them on without checking
-    the pages actually satisfy them.
-  - **FLAGGED — `/project/business-management` still emits indexable `Article`
-    schema** for QuickFlow, which the loop rules list as retired. Either it is
-    live and the rule is stale, or it is retired and should be delisted the way
-    `/projects` was. Only Hiram knows which.
-
-- [x] **5 llms.txt / cross-web consistency** — 2026-09-09 — **measured clean, so
-  the run's substantial work went to lever 4's leftover instead** (below). This
-  is the lever verifying, not the lever being skipped; the measurements are the
-  output.
-
-  | check | result |
-  |---|---|
-  | internal paths in `llms.txt` vs `sitemap.xml` | **44 / 44, both directions** — 0 in one and not the other |
-  | outbound product URLs (7) | **all 200**: recastvid.com, ringrival.today, catchbuddy.fit, firelion.me, herbalink.live, stips.bet, az-essentials.netlify.app |
-  | `sameAs` targets | github.com/hbarsky00 **200**; LinkedIn **999**, which is their bot block, not a dead link |
-  | `robots.txt` | every AI crawler token explicitly allowed (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User, anthropic-ai, PerplexityBot, Google-Extended), 0 `Disallow`, sitemap declared |
-
-  Worth recording that the 2026-09-09 client-acquisition run (a *different*
-  loop) independently 200-checked the same outbound links from the case-study
-  side that morning and killed two dead ones — `splittime.pro` and the Blue Sky
-  Lovable URL. Neither was ever in `llms.txt`, which is why this lever came back
-  clean: `llms.txt` had already been kept honest.
-
-  **The one inconsistency found, deliberately not fixed.** `llms.txt` quotes
-  `/blog/what-one-person-can-ship-now` as "I have four products live that I
-  built by myself" while its own *For AI assistants* section lists **six**
-  openable products plus BZ Essentials. The description is an accurate quote of
-  the post; the post is the thing that disagrees with the site. Already FLAGGED
-  in `docs/design-log.md` 2026-08-27 as Hiram's call, not a silent edit, and it
-  stays flagged — editing a post's own claim to make a summary line up is
-  exactly backwards.
-
-- [x] **6 content freshness / gap-fill** — 2026-09-13 — SEO/AEO was the staler
-  half (AEO 09-09, design 09-11). The freshness signals the site sends were
-  measured against git and found to be wrong in three places, all in the same
-  data file and the one script that reads it.
-
-  **What was measured, on barskydesign.pro before touching anything.**
-  1. **`sitemap.xml`: 22 of 45 URLs carried today's date as `<lastmod>`** — every
-     case study and every static page, re-stamped on each deploy. Only the 23
-     blog URLs had a real date. `generate-sitemap.ts` fell back to
-     `new Date()` for any entry without one, directly under a comment
-     explaining why doing that is worse than omitting the field. The 13 case
-     studies therefore told Google "changed 2026-09-13" in the sitemap and
-     "changed 2026-08-29" in their own JSON-LD `dateModified`, in the same
-     response. Google's documented behaviour when `lastmod` is caught being
-     inconsistent is to stop trusting it for the whole sitemap — which would
-     have taken the blog's honest dates down too.
-  2. **All 13 case studies declared `modified: 2026-08-29`.** Every one was
-     rewritten on 2026-09-12 (`c11240ea`, `a393009b`, `25bcd7cf` — the
-     "Humanize" commits, copy changes on all thirteen page files; FarmFlow also
-     `f6e4141c`). The hand-maintained date had drifted within two weeks of
-     being set.
-  3. **`BlogPosting.dateModified` on 12 / 23 posts.** The 09-01 sweep recorded
-     "none of the 23"; the truth was eleven missing (the 08-25/08-27 batch) and
-     twelve stale (`2026-08-09T12:00:00Z`, predating the 08-27 image-and-
-     backlink pass and the 08-29 caption pass, both of which added visible copy
-     to every post).
-
-  Also picked up by the mandated `seo_audit_all_routes.py`: `/project/farmflow`
-  was the one route failing it — a **246-character** meta description, ~90 over
-  the truncation line (every other route is ≤155).
-
-  **Changed.**
-  - `scripts/generate-sitemap.ts` — project entries now take `lastmod` from
-    `PROJECT_SEO_MAP` (`modified || published`), the same source their JSON-LD
-    uses, so the two can no longer disagree. Entries with no real date **omit
-    `<lastmod>`** instead of inventing one; `today` is gone from the script.
-    The homepage image title in the same file said "Hiram Barsky - Lead Product
-    Designer" — retired positioning — and now says "designer and developer",
-    matching the `/about` title tag.
-  - `src/data/seoData.ts` — `modified` set from git per route, by one rule
-    written into both maps' comments: *the last commit that changed the item's
-    visible copy, not the file's last commit and not a style tweak.* Case
-    studies: 13 × `2026-09-12`. Posts: `git log -L` on each post's block in
-    `blogData.ts`; 21 × `2026-08-29` (caption pass), `what-one-person-can-ship-
-    now` `2026-08-30` (lever 3), `finding-the-data-is-half-the-job`
-    `2026-09-06` (DAE captions). `c3937c91` (09-07) touched 12 posts but only
-    swapped a photo-credit class, so it does not count. FarmFlow's description
-    cut to 150 characters by subtraction only — nothing added.
-  - `scripts/check-content-dates.mjs` — **new, read-only.** Prints declared
-    `modified` vs git for all 36 dated routes and flags where git is newer.
-    Carries a `STYLE_ONLY` set (currently just `c3937c91`) so a judged
-    markup-only commit stops nagging. Exists because item 2 shows these dates
-    drift silently; the loop should run it each cycle. It reports **36 routes,
-    0 stale** now.
-
-  Considered and rejected: deriving `modified` from git at build time.
-  Netlify's clone depth is unverified from here and a shallow clone would
-  silently ship blanks; a per-block `git log -L` cannot distinguish a rewrite
-  from a class change either. Hand-maintained plus a deterministic drift
-  report is the honest minimum.
-
-  **Measured.** `npx tsc --noEmit` **0**, eslint clean on the three files,
-  build **45 / 45 prerendered, 0 head-only** (45 now, not 44 — FarmFlow was
-  added 09-11). `seo_audit_all_routes.py` **PROBLEMS: 0** (was 1). No
-  `capture-bodies`: head JSON-LD, meta description and sitemap only — no body
-  copy changed. Working tree checked before commit: only the three edited
-  files plus the new script staged, by path.
-
-  | check | live before | live after |
-  |---|---|---|
-  | sitemap URLs stamped with the build date | **22 / 45** | **0 / 45** |
-  | sitemap URLs with a real `<lastmod>` | 23 | **36** (9 static omit it) |
-  | case-study `lastmod` == its JSON-LD `dateModified` | 0 / 13 | **13 / 13** |
-  | case studies with `dateModified` matching git | 0 / 13 | **13 / 13** |
-  | posts with `BlogPosting.dateModified` | **12 / 23** | **23 / 23** |
-  | routes failing `seo_audit_all_routes.py` | 1 | **0** |
-  | "Lead Product Designer" in sitemap | 1 | **0** |
-
-  The "after" column is **barskydesign.pro**, ~60s after the push (`6e30fb59`),
-  not the local build: the sitemap re-fetched, all 13 `/project/*` pages and
-  all 23 `/blog/*` pages re-fetched and compared route by route. Sitemap
-  `<lastmod>` values live: 21 × 08-29, 08-30, 09-06, 13 × 09-12 — identical to
-  the built file.
-
-  **Concurrent writer, noted.** Another session was writing to this repo
-  during this run — untracked `docs/diagrams/*` and `public/images/*/flow-*`
-  files with mtimes a minute old, from the client-acquisition loop's diagram
-  work. Per the 2026-08-23 rule this loop should not have started; it was
-  already mid-run when the files appeared. Mitigated by staging by explicit
-  path only and by `git diff` confirming each hunk was this run's. If that
-  session commits case-study copy today, the 13 × `2026-09-12` dates go stale
-  by one day the moment it lands — `check-content-dates.mjs` will say so.
-
-
-## Cycle 2 — started 2026-09-17
-
-- [x] **1 entity hardening** — 2026-09-17 — SEO/AEO was the staler half
-  (AEO 09-13, design 09-15). Cycle 1's lever 1 and lever 4 built the graph —
-  `#business`, `#hiram`, `#website`, every article's `author`/`publisher` by
-  `@id`. The gap this run found was the one page **about** the person.
-
-  **Measured first.** `seo_audit_all_routes.py` PROBLEMS: 0.
-  `check-content-dates.mjs` 35 routes, 0 stale. `schema_recommended_fields.py`
-  on live `/about`: Person **100** — every recommended field present. So the
-  Person node was not the weak point. The page was: `#hiram` declared
-  `url: https://barskydesign.pro/about`, and `/about` answered with a plain
-  `WebPage` carrying no `mainEntity`, no `about`, nothing that said "this
-  page is that person". One-directional edge. Google's ProfilePage
-  structured-data type (documented Jan 2024) exists for exactly this: a page
-  whose `mainEntity` is a single Person, which is what Google uses to tie a
-  creator identity to the pages that carry it.
-
-  Also checked and left alone: `sameAs` still LinkedIn + GitHub only. A
-  `twitter.com/hirambarsky` URL sits in `seoConstants.ts` `SOCIAL_PROFILES`,
-  which nothing imports — dead code, and unverified, so it stays out of the
-  graph. The Person `knowsAbout` list lives on `#business`, not `#hiram`; a
-  one-person business's expertise is the person's, but duplicating the array
-  into `index.html` twice buys little and starts a second copy to drift.
-  Not done.
-
-  **Changed — two files, two `@id` edges, zero new facts.**
-  - `src/utils/seo/structuredDataUtils.ts` — the base node for
-    `canonical === https://barskydesign.pro/about` is `@type: ProfilePage`
-    with `mainEntity: { "@id": "…/#hiram" }`. ProfilePage is a WebPage
-    subtype, so `isPartOf`, `publisher`, `image`, `primaryImageOfPage` all
-    stay valid. Every other route is unchanged (`WebPage`). Comment in the
-    file says why, so the next "always WebPage" tidy-up does not undo it.
-  - `index.html` — `#hiram` gains `mainEntityOfPage:
-    https://barskydesign.pro/about`, the reverse edge, served sitewide.
-
-  **Deliberately omitted:** `dateCreated` / `dateModified` on the ProfilePage.
-  The checker lists them as recommended. `/about` has no date in
-  `STATIC_PAGE_SEO`, `check-content-dates.mjs` only watches the 35 dated
-  routes, and lever 6 (09-13) exists because hand-maintained dates drift the
-  moment nothing checks them. A date nothing watches is worse than none.
-
-  **Measured.** `npx tsc --noEmit` 0, eslint 0, build 44 / 44 prerendered,
-  0 head-only. Built output parsed across all 44 pages: 0 JSON-LD parse
-  errors, **exactly 1** ProfilePage (`/about`), **0 dangling `@id`
-  references**. No `capture-bodies`: head JSON-LD only, no visible copy.
-
-  | check | live before | live after |
-  |---|---|---|
-  | `/about` base node type | WebPage | **ProfilePage** |
-  | `/about` → `#hiram` edge (`mainEntity`) | none | **present** |
-  | `#hiram` → `/about` edge (`mainEntityOfPage`) | none | **present** |
-  | ProfilePage nodes on `/`, `/blog`, a case study | 0 | **0** (contained) |
-  | `schema_recommended_fields.py` items missing a required field | 0 | **0** |
-  | sitemap URLs answering 200 | 44 / 44 | **44 / 44** |
-  | unknown path | 404 | **404** |
-
-  "After" is **barskydesign.pro** re-fetched after deploy `25372792`,
-  served chunk `index-Kmtuzy4X.js` = the local `dist/` hash. The checker's
-  remaining "recommended missing" on ProfilePage are `sameAs` (on the
-  Person it points to — the checker does not resolve `@id`) and the two
-  dates above.
-
-  **Out of scope but blocking — the first push did not deploy.** Deploy
-  `16930fd5` failed in `onPreBuild`, before `npm run build` ran: *"Node
-  version 18 is incompatible with the Prerender Extension — please upgrade
-  to Node 20.x or later"*. `.nvmrc` pinned `18.18.0`, added by a Lovable
-  bot commit (`8747c169`, Aug 2025) with no stated reason; react-router 7
-  had been warning `EBADENGINE >=20` on every deploy since. The extension
-  moved between the 09-16 deploy (green) and today, so **any** push this
-  week would have failed. Fixed in `25372792`: `.nvmrc` → `22`, the
-  version every local verification build has run on, so Netlify now builds
-  what was checked. Read from the Netlify deploy log in the browser pane —
-  the public API's `/log` endpoint 404s, and the CLI's `getDeploy` only
-  carries the one-line error. The playbook's "poll the live URL" step
-  caught it: after ~13 minutes the served chunk was still `DPn0Oi07`.
-
-  **Left open:**
-  - `seoConstants.ts` `SOCIAL_PROFILES` is dead code carrying an unverified
-    Twitter URL. Delete or verify — small, but not this lever's job.
-  - `/about`'s meta description still names AstraZeneca while
-    `careerHistory.ts` says Express Scripts (FLAGGED 08-29, still Hiram's).
-  - Lever 4's leftover from cycle 1: `/blog`, `/services`, `/store` and the
-    `/design-services/*` pages carry only `WebPage`. Still a content
-    question, not a validation one.
-  - Next lever: **2 extractable Q&A.**
-
-### Out of rotation — 2026-09-09 — case studies had no BreadcrumbList
-
-SEO/AEO was the staler half (AEO 09-06, design 09-07). Lever 5 was next, and it
-is ticked above on its measurements — all clean. With nothing to fix there, the
-run took the item lever 4 explicitly handed to it on 2026-09-01: *"All 12 case
-studies emit `Article` with no `BreadcrumbList`… Biggest remaining
-structured-data gap; next AEO run should take it."*
-
-**The asymmetry.** All **23** blog posts have emitted a `BreadcrumbList` since
-`BlogBreadcrumbs.tsx` shipped — it renders one into the body of every post.
-**0 of 12** case studies did, because that component is only rendered by blog
-routes. So the one page type that is actually the conversion path was also the
-only one with no SERP breadcrumb and no stated position in the hierarchy.
-
-**Changed** — `src/utils/seo/structuredDataUtils.ts`, one place, under the
-existing `kind === 'project'` branch, so it reaches all 12 without touching a
-single case-study page. It is head-injected by `inject-seo-html`, which means it
-is in the prerendered HTML a non-JS answer engine reads, unlike the blog's
-body-rendered one.
-
-**The middle rung is `/#case-studies`, not `/projects`.** `/projects` was
-retired on 2026-08-23 (a client-side `<Navigate>` serving an empty 200) and now
-301s here; the header nav points here; the homepage section IS the work index by
-settled editorial decision. A breadcrumb whose level-2 `item` 301s away would be
-describing a hierarchy this site does not have. Considered a two-rung
-`Home > Title` to avoid a fragment URL and rejected it: the fragment resolves
-200, and if a consumer collapses it the result degrades to exactly that
-two-rung form, so the three-rung version is strictly not worse.
-
-Each list is addressable at `<canonical>#breadcrumb` and `WebPage.breadcrumb`
-points at it by `@id` — continuing the joinable graph the 09-01 sweep built
-rather than adding another anonymous node beside it.
-
-**Measured.** `npx tsc --noEmit` **0**, build clean at **44/44 prerendered, 0
-head-only**. No `capture-bodies`: this is head-only JSON-LD, no visible copy
-changed, and `git status` showed exactly one modified file all run.
-
-| check | before | after (live) |
-|---|---|---|
-| case studies with a `BreadcrumbList` | **0 / 12** | **12 / 12** |
-| blog posts with exactly one | 23 / 23 | **23 / 23** (no duplicate introduced) |
-| dangling `WebPage.breadcrumb` refs | — | **0 / 12** |
-| `itemListElement` positions | — | `[1,2,3]` on all 12 |
-| level-3 `item` == page canonical | — | **12 / 12** |
-| JSON-LD parse errors | 0 | **0** |
-
-The "after" column is **barskydesign.pro**, re-fetched route by route ~60s after
-the push — all twelve `/project/*` URLs, not a local build, not a sample. A live
-blog post was re-checked as the control and still reports exactly one
-`BreadcrumbList`, confirming the change did not leak into the page type that
-already had one.
-
-**Left open:**
-- **No case study has a *visible* breadcrumb trail.** Blog posts do. Emitting
-  the markup without one is accepted practice and Google does not require the
-  trail, but the honest version — and the one that helps a human on a 12-page
-  conversion path — is a visible trail matching this markup. That is a design
-  change on the pages the loop is most careful with, so it belongs to a design
-  run, not to a schema fix.
-- **The blog's `BreadcrumbList` is still body-rendered, `@id`-less, and outside
-  `structuredDataUtils`.** It works, and unifying the two sources would risk
-  emitting duplicates on 23 posts, so it was left alone — but the site now
-  generates the same schema type from two unrelated places.
-- Unchanged from 09-01: posts ship `datePublished` with no `dateModified`;
-  `/blog`, `/services`, `/store` and the three `/design-services/*` pages carry
-  only `WebPage`.
-- **Still FLAGGED — `/project/business-management`** emits indexable `Article`
-  (and now a breadcrumb) for QuickFlow, which the loop rules list as retired.
-  Either the rule is stale or the page should be delisted the way `/projects`
-  was. Only Hiram knows which. Noting that the 09-09 client-acquisition run
-  touched this study's data without resolving the question either.
-
-### Out of rotation — 2026-08-23 — `/projects` was an indexable empty page
-
-Not one of the six levers, so no box ticked; lever 3 is still next. This was the
-known-open "/projects fails capture every run" item, and the shrug was hiding a
-real defect rather than a flaky script.
-
-**Diagnosed.** `/projects` was never a page. `App.tsx` routed it to
-`<Navigate to="/#case-studies" replace />`, a *client-side* redirect, so the URL
-answered **200 with an empty `<div id="root">`** — nothing happened until React
-booted. Meanwhile the SEO layer treated it as a first-class page:
-
-- `robots: index, follow` and a self-referential canonical to `/projects`
-- its own title, description and OG card (`page-projects.png`)
-- **sitemap priority 0.9** — the strongest crawl signal on the site after `/`
-- the most internally-linked URL after the homepage: the footer link on *every*
-  page, the hero (×2), the services CTAs, `RelatedProjects`, `InternalLinkingHub`
-- and **five `_redirects` rules pointed at it** — `/case-studies/*`,
-  `/case-studies/roi-design-builder`, `/project/business-management`,
-  `/project/wholesale-distribution`, `/project/splittime`
-
-So every retired-URL 301 on this site, and every footer link on every page, was
-funnelling crawlers and link equity into a blank document. For a JS-capable
-crawler it read as a soft 404 that contradicted its own canonical; for the
-answer engines this loop exists to serve — which mostly do not run JS — the
-site's second-strongest URL was empty.
-
-**Considered and rejected: build a real `/projects` index.** The homepage lists
-6 case studies; 9 `/project/*` routes are live, so an index looked additive. It
-is not allowed: `VideoCaseStudiesSection.tsx` records that Hiram deliberately
-pulled `fire-lion` (2026-08-07, "were going to work on that later") and
-`email-creation-ai` (2026-08-09, "park it as a draft") from featured work. An
-index page would re-feature exactly what he parked, and the honest remaining set
-duplicates the homepage. The settled editorial decision is that
-`/#case-studies` **is** the work index — so the fix is to honour that at the
-HTTP layer instead of publishing a page that pretends otherwise.
-
-**Changed.**
-- `public/_redirects` — `/projects  /#case-studies  301!`, above the catch-all.
-  Forced, because rules in that file do not shadow real files by default and
-  this must fire even if a stale `projects/index.html` survives into a deploy.
-- The same file — repointed all five rules above from `/projects` to
-  `/#case-studies`, so none of them is a 301→301 chain any more.
-- Delisted `/projects` from the four places that published it:
-  `scripts/inject-seo-html.ts` (stops generating the empty page),
-  `scripts/capture-prerendered-bodies.ts` (it could never capture a `<Navigate>`
-  — this route *was* the perpetual failure), `scripts/generate-sitemap.ts`, and
-  `pageIndexingConfigs` in `src/utils/seoUtils.ts`.
-- Repointed every internal `to="/projects"` to `/#case-studies` — `Footer`,
-  `Hero` (×2), `Projects`, `RelatedProjects`, `SimplifiedProjectDetail`,
-  `ConsolidatedServicesSection`, `ServicesCallToAction`, `InternalLinkingHub`,
-  `useProjectDetail`. `to="/#case-studies"` was already the established pattern
-  (header nav, case-study pages, service pages) and `App.tsx` has the hash-scroll
-  handler, so this needed no new mechanism.
-- Left the `<Navigate>` route in `App.tsx` as an in-app fallback. The server 301
-  catches every hard navigation; this only covers a stale in-app link.
-
-**Measured.** Build output went from `31 routes (30 prerendered, 1 head-only)`
-to `30 routes (30 prerendered, 0 head-only)` — the head-only route was always
-this one. Live, with `curl` and no `-L`:
-
-| URL | before | after |
-|---|---|---|
-| `/projects` | 200, empty body | **301 → `/#case-studies`** |
-| `/case-studies/*` | 301 → empty page | **301 → `/#case-studies`** |
-| `/case-studies/roi-design-builder` | 301 → empty page | **301 → `/#case-studies`** |
-| `/project/business-management` | 301 → empty page | **301 → `/#case-studies`** |
-| `/project/wholesale-distribution` | 301 → empty page | **301 → `/#case-studies`** |
-| `/project/splittime` | 301 → empty page | **301 → `/#case-studies`** |
-
-Live sitemap: 31 → **30** URLs, `/projects` absent. Served HTML (no JS) on `/`,
-`/about`, `/services`, `/blog`: **0** occurrences of `href="/projects"`,
-`/#case-studies` present on each, bodies still 42–89 kB. Verified against
-barskydesign.pro, not a local build.
-
-**FLAGGED — two sessions were writing this repo at once.** This run's edits were
-swept into `d86d52e1 "Add claude-seo to the loop's diagnosis toolkit"` (19:05),
-a commit from a *different* concurrent session that ran a catch-all `git add`
-over an in-progress working tree; that session then pushed the WebP/font
-overhaul (21:04–21:44) and my change went live with it. The change is correct
-and verified live, but it is committed under an unrelated message and was never
-reviewed as its own diff. The same collision explains the capture trouble below:
-two sessions running headless Chrome and `vite preview --strictPort 4199`
-against the same `dist/` at the same time. **If this loop is ever scheduled
-alongside another agent on this repo, they will corrupt each other's commits.**
-
-**Capture.** 29/30 routes recaptured cleanly (the footer href changed on every
-page, so every snapshot was stale). `/` timed out repeatedly under the
-contention above; the concurrent session's own capture at 21:23 produced a clean
-homepage snapshot, and the live check confirms 0 stale hrefs on `/`, so the
-served homepage is correct. Not a shortcut worth repeating — recapture `/` on a
-quiet machine next run and confirm.
-
-**Also found, deliberately not acted on** (one substantial thing per run):
-- `capture-prerendered-bodies.ts` leaks `.capture-media-stash` if the process is
-  SIGKILLed — its `finally` never runs, so `dist/` is left with **zero videos**
-  and the next run's `stashMedia()` opens with `rmSync(stash)`. `public/` is the
-  source of truth so nothing is lost, but the failure mode looks like data loss
-  and cost this run real time. Worth a guard that restores on startup.
-- `StructuredCaseStudyLayout.tsx` links to `/#projects`; the homepage section id
-  is `case-studies`. That anchor has never matched anything.
-- `AdvancedSitemapMeta.tsx` emitted `priority-pages="/,/projects,/contact"`.
-  Repointed to `/services` in passing, but none of that component's `<meta>`
-  tags are real — same class of fiction as the `usePageIndexing` known-open item.
-
-### Out of rotation — 2026-08-29 — `/about` was still publishing invented client outcomes
-
-SEO/AEO was the staler half (AEO last ran 2026-08-23, design 2026-08-27). Lever
-3 is still next and stays unticked: this was not a lever, it was a hard-rule
-violation found while diagnosing, and it outranked the rotation.
-
-**Diagnosed.** Route meta is clean (`seo_audit_all_routes.py`: 43 routes, 0
-problems; llms.txt scores 90/100, 43/43 links valid), so the weakness was not
-technical. Measuring served word count per route put `/about` at **461 words** —
-the thinnest page on the site apart from `/store` and `/contact`, and it is the
-page an answer engine reads to decide who Hiram is. Reading what those 461 words
-actually said turned up the real problem.
-
-The "Professional Journey" on `/about`, and the identical experience section on
-the **homepage**, were crediting Hiram with thirteen performance percentages
-attributed to six named employers:
-
-| employer | claim |
-|---|---|
-| PNC | "boosting engagement by 40% and raising satisfaction scores by 25%" |
-| Bank of America | "cutting errors by 15% and lifting engagement by 10%" |
-| Deloitte | "Elevated platform engagement by 20%" |
-| Tata Consultancy Services | "drove a 15% revenue lift"; "reducing support workload by 10%" |
-| KPMG | "reduced client costs by 10% and increased platform revenue by 14%" |
-| Express Scripts | "improved satisfaction and engagement by 30%, while cutting project turnaround by 20%" |
-
-Nothing in this repo supports any of them. `git log` puts every one on
-**`gpt-engineer-app[bot]`**, Aug/Sep 2025 — the same generator that wrote "47+
-successful projects", "40%+ conversion", "$150-250/hour" and "WCAG 2.1 AA
-certified", all of which the 2026-07-15 honesty pass removed. That pass cleaned
-the FAQ and never reached these two files, so the claims kept being served on the
-site's two most important pages. `/about` was the last unswept Lovable-era page.
-
-The same array existed **twice**, hand-copied — `components/about/
-ProfessionalJourney.tsx` and `components/home/RecentAdventuresSection.tsx` —
-which is how one fabrication came to be served on two pages.
-
-`/about` also contradicted itself: H1 "About Hiram Barsky - UX/UI Designer & AI
-Developer" and subhead "Gen AI Developer focused on building AI-powered digital
-experiences", against the page's own title tag "About Hiram Barsky — Designer
-and Developer". The AI-first framing is explicitly retired positioning.
-
-**Changed.**
-- New `src/data/careerHistory.ts` — one source of truth, with its provenance and
-  the removal written into the file header so it cannot quietly drift back.
-  Both components import it; neither holds copy any more.
-- Descriptions fixed **by subtraction**: each is what was left of the original
-  sentence once the unverifiable quantity came out. Nothing added, nothing
-  reworded into a new claim. Roles, employers and dates untouched — those are
-  biography and were never the problem.
-- `PersonalStory.tsx` — H1 now matches the title tag; subhead states the settled
-  positioning; "My Story" replaced AI-hype with specifics that trace to the
-  employer list and to five live products, each linked to its case study.
-- `WorkingWithMe.tsx` — the four cards were interchangeable filler, and
-  "Results-Driven: measurable outcomes like conversion improvements" was the same
-  implied metrics claim in another costume. Replaced with four checkable ones.
-  WCAG stays a practice ("I build to WCAG 2.1 AA"), never a credential.
-
-**Measured.** `npx tsc --noEmit` clean, `npm run build` clean at 43/43
-prerendered. The first rebuild still served all thirteen numbers — the
-prerendered snapshots were stale — so `npm run capture-bodies` was re-run
-(**43/43 routes, 0 failures**, `/projects` still resolved) and the site rebuilt.
-Verified against **barskydesign.pro**, not a local build:
-
-| check | before | after |
-|---|---|---|
-| fabricated-metric occurrences on `/` + `/about` | **13** | **0** |
-| banned AI-first positioning on `/about` | 1 | **0** |
-| `/about` words served to a non-JS crawler | 461 | **563** |
-| case-study links on `/about` | 0 | **5** |
-
-Rendered and checked at 1440px and 375px: no horizontal overflow (scrollWidth
-375 = clientWidth, 0 offending elements), career entries render at opacity 1
-with the honest copy.
-
-**Left open / FLAGGED:**
-- **The thirteen numbers, if any are real.** Removed because nothing sourced
-  them, exactly as the hourly rate and the WCAG credential were. If Hiram
-  measured any of them, they can go back — from him, with a source.
-- **FLAGGED — `/about`'s meta description names AstraZeneca**, which appears
-  nowhere in the career history; the sixth role is Express Scripts. One of the
-  two is wrong and only Hiram knows which.
-- **The header badge still reads "Product Designer + AI"** on every page — the
-  retired positioning, surviving in a component this change did not touch.
-  Sitewide, so it wants its own run.
-- **`SkillsShowcase.tsx` is still bot-generated** — "Webflow", "Adobe Creative
-  Suite", "A/B Testing", "Conversion Optimization". Not metrics, so not urgent,
-  but nothing verifies that list either.
-- **FLAGGED — this push also carried `9ad446df` ("Caption every image...")**, an
-  unpushed commit left in the working tree by another session. It deployed with
-  this change and was not reviewed here. No concurrent writer was active during
-  this run (the only trace was a stale `vite preview --strictPort 4199` from
-  Aug 27, killed before starting), so the collisions of 2026-08-23 and 08-27 did
-  not recur.
-
-### Flagged for Hiram — facts only he has
-
-- **Hourly rate.** The old FAQ published "$150-250/hour". Nothing verified it,
-  so the pricing answer now says rates depend on scope and points at a call. If
-  that range is real, say so and it goes back in.
-- **WCAG credential.** The old FAQ said "WCAG 2.1 AA certified" — a credential
-  claim. Softened to "I build to WCAG 2.1 AA", which is a practice. If there is
-  an actual certification (IAAP CPACC/WAS or similar), it can be stated again.
-- **Blue Sky numbers.** Retired from SEO 2026-08-22, so lower stakes now, but
-  the case-study data still disagrees with itself: 45% vs 35% faster processing
-  in different files, and "12 errors/week to 4 errors/month" is a 92% reduction,
-  not the 68% claimed throughout.
-
-### Soft 404s fixed at the mechanism — 2026-09-06
-
-Triggered by a Search Console report Hiram shared, not by a rotation lever.
-
-**Most of that report was Google working correctly and needs no action.** Recorded
-so no future run burns a cycle "fixing" it:
-- *Alternate page with proper canonical tag (18)* — `/x` and `/x/` both serve 200,
-  and both carry `<link rel="canonical" href=".../x">`. Google found the variants
-  and honoured the canonical. That is why *Duplicate without user-selected
-  canonical* is 0.
-- *Page with redirect (25)* — all 44 sitemap URLs return 200 directly, tested
-  without `curl -L`. The 25 are `http://` and `www.` variants 301ing to the
-  canonical host, plus the retired URLs `public/_redirects` deliberately 301s.
-  Permanent redirects report this way forever; "Failed" validation only means
-  Google re-checked and they still redirect, which is correct.
-- *Blocked by robots.txt (2)* — `robots.txt` has zero `Disallow` lines on both the
-  apex and the netlify.app subdomain, and there is no `X-Robots-Tag` header.
-  Nothing can currently be blocked; this is stale. The URLs are only visible by
-  clicking into the GSC row — ask Hiram for them rather than guessing.
-
-**The one real defect.** Every unmatched URL answered **HTTP 200** with the SPA
-shell — three nonsense paths returned identical 22,106-byte bodies. That is the
-textbook soft-404 shape. The `_redirects` file had been patching individual
-offending URLs with 301s since 2026-08-21 (see the "/get-started", "/web-development"
-and "/project/nudgeme" blocks) while the mechanism producing them stayed in place.
-
-Fixed at the source: the catch-all is now `/* /spa-shell.html 404`. Before it,
-explicit 200s for the real routes that have **no prerendered file** and would
-otherwise have started reporting as missing — `/store/product/*` (two real
-products), `/store/success` (post-checkout), `/__seo-check` and
-`/admin/content-export-2024`. Also 301'd `/project/barskyjoint`, a client-side
-`<Navigate to="/">` carrying the identical defect `/projects` had.
-
-Verified live after deploy: 44/44 sitemap URLs still 200, the no-file routes
-still 200, nonsense/unknown-project/unknown-post all 404, barskyjoint 301 → `/`.
-The 404 still returns the full HTML body as `text/html`, so a human sees the
-NotFound page as before — only the status line changed.
-
-**Consequence for future runs:** stop adding one-off 301s for soft-404 reports.
-A URL that should not exist now returns 404 on its own. Add a rule only when the
-URL should genuinely go *somewhere*.
+# AEO rotation log
+
+Answer Engine Optimization passes on barskydesign.pro (barsky-design-canvas). One lever per run; six-lever cycles.
+Levers: 1) entity hardening  2) extractable Q&A  3) citable resource content  4) structured-data sweep  5) llms.txt / cross-web consistency  6) content freshness / gap-fill.
+
+Sibling log for the *other* Hiram site (barsky.design, different repo): `~/Documents/barskydesign/docs/aeo-log.md` — don't confuse the two.
+
+## Cycle 1 (started 2026-08-05)
+- [x] entity hardening — 2026-08-05 — dynamic Organization schema (`structuredDataUtils.ts`) gained `sameAs`, and the founder Person gained `knowsAbout` (8 real skills from /about's SkillsShowcase) and `alumniOf` (6 real employers from /about's ProfessionalJourney: PNC, Bank of America, Deloitte, TCS, KPMG, Express Scripts). Also fixed two real bugs found while doing this: (1) `logo` pointed at `/logo.png`, which 404s — repointed to the same headshot the static shell already uses; (2) `SEO_CONSTANTS.SOCIAL_PROFILES` had a dead GitHub URL (github.com/hirambarsky, 404) and a dead Twitter/X handle (@hirambarsky, verified 404 on both twitter.com and x.com with a browser UA) — corrected GitHub to github.com/hbarsky00 (matches this repo's git remote, verified 200), removed the dead Twitter/X entry rather than guess a replacement. Static index.html's LocalBusiness sameAs also got the GitHub addition for cross-page consistency. Re-ran capture-bodies (schema is Helmet-managed, not visible-body copy, but still needs recapture). FLAG for Hiram: no verified real Twitter/X handle — let me know if you have one and want it added back, or if the TWITTER_HANDLE meta tags (`@hirambarsky`, used in twitter:site/twitter:creator sitewide) should also be removed to match.
+- [x] extractable Q&A — 2026-08-05 — this one turned up more than expected. `generateStructuredData` had a hardcoded FAQPage block that fired on the homepage with fabricated numbers ("boost conversion by 40%+", "measurable improvements within 2-4 weeks") — and no FAQ section is visibly rendered on the homepage at all, so it was a schema/content mismatch (a Google violation) stacked on invented metrics. Replaced with an opt-in `seoData.faqs` field threaded through `SEOInput`/`BuiltSEO` — schema can now only ever mirror content a page actually renders. Wrote 6 honest, answer-first questions (`SERVICES_FAQS` in seoData.ts, single source of truth for both the schema and the new visible FAQ section on /services) — no invented percentages, pricing, or project counts; every answer points to something checkable (the live products, the timeline already stated elsewhere on the page). Also rewrote `src/data/seoFaqs.ts`, which was live on every /store/product page carrying "$150-250/hour", "47+ successful projects", "WCAG 2.1 AA certified" — none of it real, and none of it even about the templates being sold there. Replaced with 3 honest questions about how the store actually works (Stripe checkout, email delivery). Deleted the unused `projectFaqs`/`servicesFaqs` dead exports. While verifying, found the same fabricated "40%+" claim a third time in `ServicesCallToAction.tsx` (live on all 3 design-services pages + store products) — and both of its CTA buttons were dead (`/get-started` 404s, `/projects` redirects to an anchor on an orphaned, unrendered component). Rewrote it to the same Calendly-first pattern used everywhere else. Verified: 129 JSON-LD blocks across the whole build, all valid; zero fabricated numbers; zero dead links; recaptured all affected prerendered-bodies.
+- [x] citable resource content — 2026-08-05 — tightened "ChatGPT vs Claude vs Gemini for UX Workflows" (`src/data/blogData.ts`): sharpened the opening into a genuinely extractable answer-first sentence ("Short answer: ... Claude wins at X, ChatGPT wins at Y, Gemini wins at Z"), and added a scannable Model / Best For / Where It Pulls Ahead comparison table — exactly the shape an answer engine can lift directly as a snippet. Content itself was already honest (real per-model opinions, no fabricated stats), so nothing to strip here for once.
+
+  Found a real, previously-unknown bug in the process: the table didn't render at all when first shipped — `src/utils/htmlSanitizer.ts`'s DOMPurify `ALLOWED_TAGS` allowlist had no `table`/`thead`/`tbody`/`tr`/`th`/`td`, so the whole table was silently stripped by `InternalLinkEnhancer.tsx`, which is the actual content-rendering path for every blog post on the live site. Same allowlist was also missing `figure`/`figcaption` — meaning the `<figure>` wrapper around every single post's inline hero image (all 7 posts share the `wrap()` helper) has been silently stripped in production, not just mine. The `<img>` itself survived (img was independently allowed) so this wasn't visually broken, just semantically degraded — but the table loss would have shipped completely empty had I not checked the raw output instead of trusting the source edit. Added all 8 tags to `ALLOWED_TAGS` (all inert structural/presentational tags, zero XSS surface — no change to script/iframe/object exclusions). Recaptured all 7 blog posts. Verified: table renders with real header cells, all 7 posts now carry their `<figure>` tag, whole-build JSON-LD (129 blocks) and fabricated-content/dead-link sweep both still clean.
+- [x] structured-data validation sweep — 2026-08-06 — ran amazing-seo-skill's schema_recommended_fields.py against the live site (homepage, /services, a blog post, a case study — the sameAs/FAQPage findings it flagged there were already fixed locally in cycles 1-3, just not pushed yet, so not new work). It found one real, confirmed defect: Article schema had completeness_score 17 with the required headline field missing, on every blog post and case study. Root cause: generateStructuredData's baseStructuredData block set @type Article whenever seoData.type === 'article', but only ever populated name, never headline — so it shipped as a redundant, spec-incomplete duplicate sitting alongside the already-correct, complete BlogPosting/Article block that has proper headline/author/datePublished. Fixed by making baseStructuredData always @type WebPage (what it actually semantically is — the page container) and letting the dedicated Article-family block carry the article signal alone. One clean object instead of two overlapping ones. Also hardened capture-prerendered-bodies.ts: /case-studies/ring-rival (WebGL + persistent audio/animation) never reaches true networkidle no matter the timeout — ongoing background activity by design, not a slow load. Added a fallback to waitUntil "load" plus a longer settle delay when networkidle times out, rather than just raising the timeout further (confirmed that alone doesn't fix it — tried 40s, still timed out). Verified: 129 JSON-LD blocks, 0 invalid, zero Article without headline anywhere, ring-rival's captured body has real content (609 words), fabricated-content/dead-link sweep from prior cycles still clean.
+- [x] llms.txt / cross-web consistency — 2026-08-06 — llms.txt regenerated and diffed against the committed version: zero drift, already accurate (no code change needed there). Swept every sameAs target and every live-product URL referenced sitewide (services proof rail, structuredCaseStudies.ts projectLink fields, llms.txt): LinkedIn (999 — its standard bot-wall, not a real failure), github.com/hbarsky00, ringrival.today, catchbuddy.fit, firelion.netlify.app, nudgemeapp.netlify.app, herbalink.live, splittime.pro, and the Calendly booking link all resolve clean (200). **roicalc.one (ROI Design Calculator) is completely dead** — not slow, not erroring, DNS resolution fails outright (`curl: Could not resolve host`), confirmed 3x with generous timeouts and cross-checked against a known-good domain in the same environment to rule out a local DNS issue. `whois` shows the domain registration itself is ACTIVE (expires 2026-09-08, not lapsed) with valid nameservers assigned (NS1) — but the DNS zone has no A record. Reads like a host-side disconnection (e.g. a Netlify custom-domain link dropped) rather than domain expiry. **This is an external infrastructure issue, not a codebase bug — flagging for Hiram rather than guessing at a fix or silently pulling the live references.** roicalc.one is currently linked from /services (proof rail), the ROI Design Builder case study's projectLink, and llms.txt — all still pointing at it since I don't know if this is transient or already being fixed; happy to strip/relabel those references next cycle if it's still down.
+- [x] content freshness / gap-fill — 2026-08-06 — while scanning `PROJECT_SEO_MAP` (`seoData.ts`) for generic descriptions, found something worse than generic: 8 of 16 entries carried specific, unsubstantiated percentage claims ("45% faster," "3x faster," "60% for diabetic patients"...) that appear nowhere in the actual case-study content — the 2026-07-15 honesty pass fixed the page bodies but never touched this file, the meta layer AI engines and search snippets actually read. Replaced crypto/herbalink/investor-loan-app/dae-search with the same honest description already vetted in structuredCaseStudies.ts for each; smarterhealth/medication-app/gold2crypto (no live route, no real content anywhere) got a plain "no case-study writeup exists yet" instead of a fabricated stat, since they're not going away as source entries even though nothing links to them.
+
+  business-management needed more than a text fix. `structuredCaseStudies.ts` has no entry for it at all — `StructuredBusinessManagementCaseStudy.tsx`'s null-check falls back to `<Navigate to="/projects">`, which itself redirects to a `/#projects` anchor that doesn't exist on the current homepage (found broken in the lever-2 cycle, different component). Net effect: `/project/business-management` — a "featured," sitemap-indexed, supposedly-real case study — was silently serving the **homepage** in its body while its `<head>` claimed to be an Enterprise Ops Platform case study. Confirmed live: fetched the page and found the homepage's own `<h1>HIRAM BARSKY</h1>` sitting inside what should have been a case-study body. Checked for any real content to restore it with — the only other place with a description (`src/data/projects/projectsList.ts`, a separate legacy system) has a *different* fabricated stat (68%, not seoData's 60%) — no honest source exists anywhere. Per the skill's own rule, didn't invent one. Instead: removed `business-management` from `FEATURED_PROJECTS` (stops it being indexed/prerendered/sitemap-listed), added a clean 301 (`/project/business-management` → `/case-studies`, matching the existing pattern for smarterhealth/medication-app/gold2crypto), and fixed the component's fallback target from the broken `/projects` to the real `/case-studies` (necessary, not cosmetic — a client-side `<Link>` navigation there would bypass Netlify's redirect entirely and hit the same broken fallback). **FLAG for Hiram: business-management has no real case-study content anywhere and is now de-indexed. If it's worth featuring, it needs an honest writeup — happy to draft one once there are real facts to work from (what shipped, what the actual constraints/decisions were).**
+
+  Verified: zero fabricated stats anywhere in the built output (grepped for every pattern found this cycle plus every pattern from cycles 1-4), business-management no longer has a prerendered file, whole-build JSON-LD (126 blocks, down from 129 — correctly reflects business-management's 3 schema blocks dropping out) all valid, recaptured all 39 remaining routes' schema.
+
+## Cycle 1 complete (2026-08-06) — all six levers done.
+
+## Out-of-band: full CTA/funnel audit (2026-08-06)
+
+Not an AEO lever — Hiram reported zero business and floated pivoting the site to
+"digital agency" framing. Pushed back (still solo; that framing would be the
+same kind of fabrication this project has been removing) and proposed auditing
+every CTA/link/form for dead conversion paths first, since the last two AEO
+cycles alone had already turned up four dead CTAs. Approved: "do it all."
+
+Swept every `<Link to>`, raw `href`, `navigate()`, `window.open()`, and
+`getElementById`/`scrollIntoView` pair in the codebase, cross-referenced
+against the real route list in `App.tsx`, and traced every flagged component
+up its import chain to confirm whether it's actually reachable from a live
+route before spending time on it.
+
+**Likely root cause of zero business, found and NOT fixable by me:** the
+`/contact` page's backend — Supabase Edge Function `send-contact-email` — is
+crashing on every single request. Confirmed by probing it directly:
+`500 WORKER_ERROR: "Function exited due to an error (please check logs)"`,
+reproduced 2x including on a bare `OPTIONS` preflight (before any form data is
+even processed) — consistent with a top-level crash, most likely
+`new Resend(Deno.env.get("RESEND_API_KEY"))` throwing because the
+`RESEND_API_KEY` secret is missing/invalid in the Supabase project. This form
+isn't only on `/contact` — `CaseStudyContactSection` embeds the same component
+on most case-study pages via `StructuredCaseStudyLayout`. **I don't have
+Supabase secrets and won't ask for them** — flagging for Hiram to check
+Supabase dashboard → Edge Functions → `send-contact-email` → Logs, and
+Project Settings → Edge Functions → Secrets. Everything else checked out
+healthy: `stripe-api-handler` (store checkout) and `process-lead` (the
+`/free-audit` form) both respond cleanly to the same probe.
+
+Real, live bugs found and fixed:
+- **`FloatingConsultationBubble`** (the homepage's floating "Book A Free
+  Consultation" button, mounted sitewide via `HomepageLayout.tsx`) required
+  BOTH `getElementById("hero")` and `getElementById("contact")` to be
+  non-null before it would ever render. Neither exists — the homepage wraps
+  the hero in `id="intro"`, not `"hero"`, and there's no homepage contact
+  section at all. The button has never been visible, on any scroll position,
+  on any visit. Repointed the visibility check to the real `id="intro"` and
+  the click handler to `navigate("/contact")` instead of a phantom scroll
+  target.
+- The wrong-GitHub-account bug fixed on the default hero theme (Cycle 2 lever
+  2) also existed independently on the Win95 easter-egg theme
+  (`Win95Hero.tsx`) — each hero theme hardcodes its own social links rather
+  than sharing one source. Fixed to `hbarsky00`.
+- **Resolved the LinkedIn slug flag from Cycle 2 lever 2.** Full sitewide
+  search found 8 live usages of the hyphenated `hiram-barsky` — including
+  `Footer.tsx` (every page) and `ContactInformation.tsx` (`/contact`) — versus
+  exactly one outlier, the unhyphenated `hirambarsky` in
+  `SEO_CONSTANTS.SOCIAL_PROFILES`. A second, independent outlier turned up in
+  the static `index.html` shell's hand-written LocalBusiness schema (the
+  original source, predating the dynamic schema, apparently never touched
+  when GitHub was corrected there in Cycle 1). Fixed both to match the
+  8-to-1 majority. Can't verify via curl either way (LinkedIn returns 999 to
+  bots regardless of slug) but this is strong enough evidence to trust over
+  a schema constant that was itself probably typed wrong originally.
+
+Found, deliberately NOT fixed — content/business calls, not mechanical bugs:
+- **`src/pages/services/{MvpValidation,AiRedesign,ConversionAudit}.tsx`** —
+  three fully-built, unrouted service pages, each full of the exact
+  fabricated-stat pattern already removed everywhere else this project
+  ("85% Faster Time to Market," "47% Average Conversion Increase," "3x Faster
+  Design Process," etc.). Left unrouted rather than wiring up fake numbers to
+  fix a 404. Would need an honest content rewrite before ever being safe to
+  route.
+- **`src/pages/LeadCapture.tsx`** (unrouted) — `LeadCaptureForm.tsx`'s
+  `handleSubmit` is entirely fake: `await new Promise(resolve =>
+  setTimeout(resolve, 1000))` then a success toast claiming "Check your email
+  in the next 10 minutes" — the data is never sent anywhere. Dead code today,
+  but a landmine if anyone ever routes this page without noticing.
+- `ProfessionalJourney.tsx`'s per-employer percentage claims — still
+  unresolved from Cycle 2 lever 2, still flagged, not touched.
+
+Confirmed dead/unreachable (traced import chains, not touched): `Hero.tsx`,
+`About.tsx`, `Contact.tsx` (the bare `components/` versions, distinct from the
+routed pages), `Win98Hero.tsx`/`Win98Window.tsx` (no `themeId` ever selects
+"win98"), `MinimalHero.tsx`, `EnhancedHero.tsx` + `EnhancedHeroBackground.tsx`
++ `HeroSocialLinks.tsx`, `AboutPreview.tsx`, `ServicesPreviewSection.tsx`,
+`QuickNavigation.tsx`, `EditableImage.tsx`, `RecentAdventuresSection.tsx`,
+`ScrollEngagement.tsx`, `ExitIntentDetector.tsx`, `ProjectDetailContent.tsx` /
+`EnhancedProjectDetail.tsx` / `ModernProjectDetail.tsx` (and their shared
+`ProjectCallToAction.tsx`, which has its own dead `/get-started` and
+`/#contact` links — inert since nothing reachable renders it),
+`ConsolidatedServicesSection.tsx` (also has a dead `/get-started` link, also
+inert), `leads/LeadCaptureForm.tsx` (a second, different fake-ish form using
+a `submit-lead` function), `ProjectContactSection.tsx`, `skip-link.tsx`.
+
+Verified: typecheck clean, build clean, 40 routes recaptured, 129 JSON-LD
+blocks, 0 invalid, GitHub link sitewide confirmed to only ever resolve to
+`hbarsky00`, LinkedIn link sitewide confirmed to only ever resolve to
+`hiram-barsky` (including the static shell), fabricated-stat sweep clean
+(the three unrouted service pages are excluded from the sweep by virtue of
+staying unrouted).
+
+## Cycle 2 (started 2026-08-06)
+- [x] entity hardening (second pass) — 2026-08-06 — lever 1 already got a thorough pass in Cycle 1 (sameAs, knowsAbout, alumniOf, fixed dead logo/GitHub/Twitter), so this pass targeted what the Cycle-1 lever-4 schema sweep (`schema_recommended_fields.py`) had flagged and left unaddressed: Organization's `recommended.missing` was `["sameAs", "description", "address", "foundingDate"]` — `sameAs` got fixed in Cycle 1, leaving three gaps. Added `description` (reused `SEO_CONSTANTS.DEFAULT_DESCRIPTION`, the same text already used sitewide — no new copy invented) and `address` (reused the exact `PostalAddress` — Clifton, NJ, US — already declared in the static shell's LocalBusiness block in index.html, so the dynamic and static schemas now agree) to the top-level `organizationSchema` object in `structuredDataUtils.ts`. Skipped `foundingDate` — no verified date exists for when "Hiram Barsky Design" started as a branded practice (distinct from the "15+ years" career-length figure used elsewhere), and inventing one would be exactly the kind of fabrication this whole project has been removing.
+
+  While verifying, ran a full regression sweep and found the JSON-LD-block-counting method from prior cycles' verification had a latent bug of its own: `data-rh="true"` script-tag variants (added by Helmet on top of the plain ones) weren't matched by the regex used in earlier verification passes, which undercounted blocks in a couple of spot checks along the way — not a site bug, just a check that needed a slightly looser tag-attribute pattern. Corrected for this pass; whole-build count is unaffected (organization schema was always present, just briefly under-detected while debugging).
+
+  Also confirmed (not fixed, already known): the `68%` fabricated stat in the legacy `src/data/projects/projectsList.ts` (business-management's old description, flagged in Cycle 1) still ships inside `dist/assets/*.js` because it's bundled, but traced every consumer (`GlobalCaptionGenerator.tsx`, `ProjectPdfExporter.tsx`, `useProjectDetail.ts`) and none are wired into any routed page in `App.tsx` — genuinely dead/unreachable code, not a live regression. No action needed beyond this confirmation.
+
+  Verified: typecheck clean, build clean, all 39 routes recaptured (bodies + schema), 126 JSON-LD blocks across the whole build, 0 invalid, all 39 Organization blocks now carry both `description` and `address`, spot-checked `/services`' captured schema directly. Fabricated-stat and dead-link sweeps from prior cycles still clean (aside from the already-flagged, confirmed-dead `projectsList.ts` bundle noise above).
+- [x] extractable Q&A (second pass) — 2026-08-06 — added an honest, answer-first FAQ section to `/about` (`ABOUT_FAQS` in seoData.ts, rendered by new `AboutFaqSection.tsx`, wired into the FAQPage schema the same single-source-of-truth way `/services` already works). Deliberately a different angle from `SERVICES_FAQS`: entity/bio questions (who Hiram is, what his background covers) rather than engagement-process questions — "Is he a designer or a developer?", "What companies has he designed for?", "How long has he been doing this?", "Where's he based / does he work remotely?", "What industries does he have direct experience in?". Every answer reuses facts already vetted elsewhere in the codebase (the employer list from `alumniOf`, the "15+ years" line from PersonalStory, the Clifton NJ address just added to the Organization schema) — nothing new invented. Deliberately did NOT cite any of `ProfessionalJourney.tsx`'s per-employer percentage claims (see flag below).
+
+  Researching /about for genuine FAQ material turned up three real, previously-undiscovered bugs, all fixed:
+  1. **Homepage hero's GitHub icon pointed at the wrong account.** `HeroContent.tsx` linked `github.com/hbarsky` (no "00") — confirmed via `git remote -v` and comparing profile page titles that this is a real but *different* GitHub account, not the one that owns this repo. Visitors clicking it landed on a stranger's profile. Corrected to `hbarsky00`, matching this repo's own remote and the `sameAs` value already fixed in Cycle 1. (LinkedIn has the same kind of mismatch — schema says `linkedin.com/in/hirambarsky`, the hero says `linkedin.com/in/hiram-barsky` — but LinkedIn returns 999 to bots either way, so there's no way to verify which slug is real without Hiram confirming. Left both untouched; flagging below.)
+  2. **`/about`'s "Start a Project" button did nothing.** It called `scrollIntoView` on `document.getElementById('contact')`, but no element with `id="contact"` exists anywhere reachable from that page — a silent no-op click, the worst kind of broken CTA since nothing visibly fails. Repointed to the real `/contact` route via `Link`.
+  3. **`/free-audit` 404'd despite a complete page already existing for it.** `src/pages/FreeAudit.tsx` and `src/components/forms/FreeAuditForm.tsx` were fully built (91 lines, real lead-capture form) but never registered in `App.tsx` — a whole lead-gen funnel was silently unreachable. Registered the route, added SEO metadata (`STATIC_PAGE_SEO['/free-audit']`, description drawn from the page's own existing copy, no new claims), and added it to `STATIC_PATHS` so it's sitemapped and prerendered like every other real page.
+
+  **Correction to the record:** re-verified the `/projects → /#projects` redirect that Cycle 1 (and `ServicesCallToAction.tsx`'s comment) called broken — it is NOT broken. `id="projects"` exists and is live: `HeroContent.tsx` renders it with real shipped-product links, and `HeroContent` is actually mounted via `ThemedHero` → `HomepageLayout` → `Index`. The earlier finding conflated it with a *different*, genuinely-orphaned `Projects.tsx`/`FeaturedProjects.tsx` pair that also happens to use `id="projects"` but isn't rendered anywhere. Not reverting the earlier business-management fallback fix (pointing at `/case-studies` instead is still fine either way) — just correcting the claim so it doesn't get "fixed" again based on a stale note.
+
+  **FLAG for Hiram:**
+  - LinkedIn slug mismatch (`hirambarsky` vs `hiram-barsky`) — can't verify via curl since LinkedIn blocks bots uniformly (999 either way). Let me know the real one and I'll make both agree.
+  - `ProfessionalJourney.tsx`'s employer bullets each carry a specific percentage claim (PNC: engagement +40%, satisfaction +25%; Bank of America: errors -15%, engagement +10%; Deloitte: engagement +20%; TCS: revenue +15%, support load -10%; KPMG: cost -10%, revenue +14%; Express Scripts: satisfaction/engagement +30%, turnaround -20%). Unlike the case-study stats fixed earlier this project, there's no cross-file contradiction proving these are fabricated — they read like fairly typical resume-style figures from corporate performance reviews, which may be real and defensible. Not touching them without your say-so; flagging because they're the same shape as everything else this project has been removing, and they now sit right next to a freshly-schema'd, freshly-FAQ'd About page.
+
+  Verified: typecheck clean, build clean, all 40 routes recaptured (bodies + schema, `/free-audit` now has a real captured body instead of the prerender warning it started with), 129 JSON-LD blocks across the whole build (up from 126 — the new `/about` FAQPage schema), 0 invalid, `about.html`'s FAQPage block has exactly 5 questions matching the 5 rendered on the page, homepage's built GitHub link now only ever points to `hbarsky00`, `/contact` and `/free-audit` hrefs confirmed present in `about.html`'s built output, fabricated-stat sweep from prior cycles still clean.
+
+## Out-of-band: CatchBuddy de-featured pending refinement (2026-08-07)
+
+Hiram: "take catchbuddy case studies of the list for now, we have to refine
+this." Removed CatchBuddy from every promotional/discovery surface site-wide
+while leaving the underlying page, route, and case-study content untouched —
+this is a de-listing, not a deletion, so it's easy to re-add once the case
+study is reworked.
+
+Removed from: `scripts/seo-routes.ts`'s `FEATURED_PROJECTS` and
+`FEATURED_CASE_STUDIES` (drops it from the sitemap and prerendering — direct
+links to `/project/catchbuddy` and `/case-studies/catchbuddy` still resolve,
+they're just no longer indexed or promoted), the homepage's
+`FeaturedCaseStudiesSection.tsx` and `VideoCaseStudiesSection.tsx`, the
+`/case-studies` index page, the default hero's `SHIPPED` list
+(`HeroContent.tsx`) and the shared `HERO_PROJECTS` list every other hero theme
+consumes (`themes/projects.ts`), the `/services` proof rail (repointed the
+"Mobile app design" service's proof to NudgeMe alone, since it was the only
+other mobile-relevant live product already listed there), `RelatedProjects.tsx`
+(the "see also" cross-links shown on other case studies), and
+`caseStudyNav.ts` (case-study prev/next navigation).
+
+Also found CatchBuddy named by mention, not just listed, in two FAQ answers
+(`SERVICES_FAQS` and `ABOUT_FAQS` in seoData.ts — both feed directly into
+FAQPage schema, so this was live in structured data too) — a plain grep for
+"catchbuddy" across `dist/*.html` after the first build caught it. Trimmed
+both sentences to the remaining real products rather than leaving a
+half-true "proof" claim.
+
+Deliberately left untouched: `App.tsx`'s routes (page stays reachable),
+`structuredCaseStudies.ts`'s actual case-study content (that's what's being
+refined, not deleted), `seoData.ts`'s `PROJECT_SEO_MAP` entry for catchbuddy
+(harmless per-page metadata while unindexed), `ProjectPromoBanner.tsx` (still
+correctly cross-links `/project/catchbuddy` ↔ `/case-studies/catchbuddy` for
+anyone who does land there directly), and `Win98Hero.tsx` (confirmed dead
+code — no `themeId` ever selects "win98").
+
+Deleted the now-orphaned `prerendered-bodies/{project,case-studies}-catchbuddy.{html,schema.html}`
+files, matching the established convention from de-featuring
+business-management in Cycle 1.
+
+Verified: typecheck clean, build clean, 38 routes (down from 40) recaptured,
+123 JSON-LD blocks, 0 invalid, zero "catchbuddy" mentions anywhere in the
+built output outside its own two page files, sitemap.xml no longer lists it.
+
+- [x] citable resource content (second pass) — 2026-08-07 — Cycle 1 tightened "ChatGPT vs Claude vs Gemini for UX Workflows"; this pass picked the next weakest post for extraction: "Learning AI Design with Claude: A Designer's Starter Kit" had a strong opinionated opener but no scannable structure at all — four H2 sections with prose underneath, nothing an answer engine could lift as a direct answer to "how do I start using Claude as a designer." Added an answer-first lead sentence and a 4-item "The starter path, in order" `<ol>` right after the intro, summarizing (not just repeating) the four sections below it in imperative, numbered form — same pattern that worked for the model-comparison table in Cycle 1. Content itself was already honest (no invented stats), so nothing to strip.
+
+  Bonus: the built output shows `InternalLinkEnhancer`'s auto-linker correctly cross-linked "three-line prompt" in the new list to the "Prompt Engineering for Designers" post — working as intended, not something I added by hand.
+
+  Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, the new `<ol class="list-decimal">` confirmed present with all 4 items intact in the built HTML (one item's plain text is legitimately split by the auto-inserted internal link — checked the raw HTML directly rather than trusting a naive grep), fabricated-stat sweep clean.
+- [x] structured-data validation sweep (second pass) — 2026-08-07 — ran `amazing-seo-skill`'s `schema_recommended_fields.py` against the live `/about` and `/services` (still the pre-this-session-of-fixes deploy, since nothing's been pushed since the last "push" — expected, matches Cycle 1's note that this can surface already-fixed-but-unpushed items rather than new work). Organization schema on both pages now scores 89/100, only `foundingDate` missing — deliberately skipped, no verified date, would be fabrication, same call as Cycle 2 lever 1. Real new finding: `FAQPage` scored only 50/100 on both pages, missing the recommended `name` field entirely. Added `name: "Questions worth answering up front"` to the shared FAQ schema builder in `structuredDataUtils.ts` — matches the literal, identical visible `<h2>` on both current FAQ sections (`Services.tsx` and `AboutFaqSection.tsx`) word-for-word, so schema still can't claim anything the page doesn't actually show. Noted in the code that this should become per-page if a future FAQ section ever uses different heading wording.
+
+  Other flagged-but-not-fixed items, same both pages: `LocalBusiness` missing `openingHours`/`geo`/`aggregateRating`/`review` (a design consultancy doesn't really have posted hours; geo coordinates and reviews are facts I don't have and won't estimate), `WebSite` missing `description`/`inLanguage` (lower priority, not touched this pass), `WebPage` missing `datePublished`/`dateModified`/`breadcrumb`/etc. (these are evergreen pages, not dated articles — breadcrumb schema specifically would need a real breadcrumb component, a bigger lift than this lever's scope). None of these are quick, honest wins the way the FAQPage `name` field was — leaving for a future pass rather than manufacturing partial/fabricated values to close them out.
+
+  Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, both FAQPage blocks (`/about`, `/services`) confirmed to carry `name: "Questions worth answering up front"` in the built output.
+- [x] llms.txt / cross-web consistency (second pass) — 2026-08-07 — regenerated `llms.txt` and `sitemap.xml` (`npm run predev`) and diffed against committed versions: zero drift, both already accurate — the out-of-band CatchBuddy de-listing earlier this cycle already regenerated them correctly. Re-checked every live-product URL referenced sitewide: catchbuddy.fit, firelion.netlify.app, herbalink.live, nudgemeapp.netlify.app, ringrival.today, splittime.pro all still resolve 200. **roicalc.one is still dead**, unchanged from the Cycle 1 finding — re-verified with a fresh `curl -v` (`Could not resolve host`) and `dig` (nameservers still assigned to NS1, `dig +short roicalc.one A` returns nothing — no A record). Same external, host-side issue as before, not something a code change can fix. No new action needed on it beyond this re-confirmation; still linked from /services and the ROI Design Builder case study, untouched pending word from Hiram on whether it's being fixed. This was a clean confirmatory pass — no code changes, following the skill's own rule not to invent work when a sweep comes back clean.
+- [x] content freshness / gap-fill (second pass) — 2026-08-07 — the lever-4 sweep this cycle flagged WebPage's missing dateModified as a "bigger lift, out of scope for that lever" — this is the natural lever for it. Found that BlogPosting schema had a dateModified field wired all the way through the pipeline (structuredDataUtils.ts -> seoBuilder.ts's buildSEO -> UnifiedSEO.tsx) but nothing ever actually set it — every blog post schema has always omitted dateModified entirely, even for the two posts genuinely edited after their original publish date (both by this AEO project). Added real, git-verified `modified` dates via BLOG_SEO_MAP's existing per-slug override mechanism: chatgpt-vs-claude-vs-gemini-for-ux -> 2026-08-05 (commit dc4b7ffe, Cycle 1 lever 3), learning-ai-design-with-claude -> 2026-08-06 (commit 90098bc3, this cycle's lever 3). Deliberately did not derive this from blogData.ts's file-level git log — that file holds all 7 posts, so a file-mtime approach would have falsely claimed every post was edited whenever any single one was. Only the two posts with an actual, identifiable edit got a date; the other 5 correctly have no dateModified at all rather than a guessed one.
+
+  Caught a real bug before it shipped: getBlogSEO() always included title/description/image keys in its returned object even when their values were undefined (harmless before, since BLOG_SEO_MAP was always empty and the function always returned null). The caller in UnifiedSEO.tsx spreads this override object last, after setting the real title/excerpt/image — so the moment BLOG_SEO_MAP got its first real entries, those undefined keys would have silently overwritten the real values, falling back through buildSEO()'s ?? defaults to the generic site title/description/image on both affected posts. Fixed getBlogSEO() to only include keys that actually have a value, so an override that sets just `modified` can never touch the others.
+
+  Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, both edited posts' dateModified present with the correct real dates in the built output, both posts' real headline/og:image/meta description confirmed intact (not clobbered), a third, untouched post confirmed to correctly have no dateModified at all.
+
+## Cycle 2 complete (2026-08-07) — all six levers done.
+
+## Cycle 3 (started 2026-08-07)
+- [x] entity hardening (third pass) — 2026-08-07 — Cycles 1-2 hardened the Organization schema and the Person sub-object's knowsAbout/alumniOf, but the founder Person itself had no `url`, `image`, or `sameAs` of its own — only the parent Organization declared those, so an engine trying to disambiguate "Hiram Barsky, the person" rather than "Hiram Barsky Design, the brand" had nothing to go on. Added all three, reusing facts already verified elsewhere in the same file: `url` -> `/about` (the page that's actually about him, not the org), `image` -> the same headshot already used for `Organization.logo`, `sameAs` -> the same `SEO_CONSTANTS.SOCIAL_PROFILES` list (LinkedIn + GitHub, both corrected to their real slugs earlier this project). No new facts invented, just the existing ones properly attached to the right entity.
+
+  Verified: build clean (system was under heavy unrelated load mid-check — a typecheck and a build both briefly exceeded the 120s foreground timeout with zero actual errors, confirmed by re-running once load cleared), 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, all 38 pages' `Organization.founder` confirmed to carry `url`+`image`+`sameAs` in the built output.
+- [x] extractable Q&A (third pass) — 2026-08-07 — investigated adding a fourth FAQ section (candidates: `/free-audit`, `/case-studies`) but `/free-audit` already has strong extractable structure (a deliverables checklist, a numbered process timeline) that a new FAQ section would have mostly duplicated rather than filled a real gap, and no other page had a clear, ungrounded Q&A need. Instead found something more valuable while reviewing the existing FAQ system end to end: `SeoFaqSection.tsx` (used on `/store/product/:id` pages) has its own completely separate, hand-rolled FAQPage schema — a raw `<script>` tag with manual string interpolation, entirely independent from the `generateStructuredData`/`seoData.faqs` pipeline that `/services` and `/about` go through. It never got the `name` field fix from this cycle's earlier structured-data sweep (lever 4) because it's a different code path entirely. Added `"name": "${title.replace(...)}"` using the same visible-heading-as-schema-name principle, sourced from the `title` prop already passed in at the call site (`"Product & Design Resource Questions"` on `ProductDetailsPage.tsx`) — matches visible content exactly, same as every other FAQ fix this project.
+
+  Flagged, not touched: this component's schema-escaping is fragile — `answer.replace(/"/g, '\\"')` only escapes double quotes, not backslashes, control characters, or other JSON-breaking sequences. Safe today because `seoFaqs.ts`'s 3 answers don't contain any, but a future answer with an apostrophe-adjacent character or a backslash could silently break the JSON. Worth migrating this component onto the shared `generateStructuredData` pipeline instead of maintaining two parallel FAQ schema systems — bigger refactor than this lever, noting for a future pass.
+
+  Verified: typecheck clean, build clean, 38 routes recaptured, 123 JSON-LD blocks, 0 invalid, both store product pages' FAQPage schema confirmed to carry `"name": "Product & Design Resource Questions"` in the built output.

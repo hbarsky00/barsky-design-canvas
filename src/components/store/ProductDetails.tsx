@@ -1,21 +1,20 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ShoppingCart, Award, CreditCard } from "lucide-react";
 import BackButton from "@/components/ui/BackButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Product } from "@/types/product";
-import { supabase } from "@/integrations/supabase/client";
 
 interface ProductDetailsProps {
   product: Product;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Check for query parameters in the URL
   useEffect(() => {
@@ -32,30 +31,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     toast.success(`Added ${product.name} to your cart!`);
   };
 
-  const handleCheckout = async () => {
-    try {
-      setIsLoading(true);
-      toast.info("Initializing checkout...");
-      
-      // Call our Supabase Edge Function to create a Stripe checkout session
-      const { data, error } = await supabase.functions.invoke('stripe-api-handler', {
-        body: { product }
-      });
-      
-      if (error) throw new Error(error.message);
-      if (!data?.url) throw new Error("No checkout URL returned");
-      
-      toast.success("Redirecting to secure checkout...");
-      
-      // Redirect to Stripe Checkout
-      window.location.href = data.url;
-      
-    } catch (error) {
-      console.error("Checkout error:", error);
-      toast.error("Failed to initiate checkout. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+  /**
+   * Checkout used to call a Supabase edge function named `stripe-api-handler`.
+   * That function is not deployed on the project, so the button failed for
+   * everyone who pressed it. Until there is a real payment path, send the
+   * buyer somewhere a person actually answers rather than to an error toast.
+   */
+  const handleCheckout = () => {
+    navigate(`/contact?product=${encodeURIComponent(product.id)}`);
   };
 
   return (
@@ -121,11 +104,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             <div className="flex flex-col space-y-4">
               <Button 
                 className="w-full py-6 text-lg" 
-                onClick={handleCheckout} 
-                disabled={isLoading}
+                onClick={handleCheckout}
               >
                 <CreditCard className="h-5 w-5 mr-2" /> 
-                {isLoading ? "Processing..." : `Checkout ($${product.price})`}
+                {`Buy — $${product.price}`}
               </Button>
               
               <Button variant="outline" className="w-full py-6 text-lg" onClick={handleAddToCart}>

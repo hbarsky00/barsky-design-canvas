@@ -97,7 +97,7 @@ const MiniProductSite: React.FC<{ config: MiniSiteConfig }> = ({ config }) => {
 
   return (
     <div style={{ background: c.bg, color: c.text, minHeight: "100vh", fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{config.seo.title}</title>
         <meta name="description" content={config.seo.description} />
         <meta property="og:title" content={config.seo.title} />

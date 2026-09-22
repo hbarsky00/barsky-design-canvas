@@ -145,7 +145,7 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error in process-lead function:', error);
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),

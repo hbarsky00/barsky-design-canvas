@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 
 interface PageMetadata {
   title: string;
@@ -16,39 +15,11 @@ interface BlogPostMetadata {
   tags: string[];
 }
 
-export const usePageMetadata = (path: string) => {
-  const [metadata, setMetadata] = useState<PageMetadata | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('page_metadata')
-          .select('*')
-          .eq('path', path)
-          .single();
-
-        if (error && error.code !== 'PGRST116') {
-          console.error('Error fetching page metadata:', error);
-        } else if (data) {
-          setMetadata({
-            title: data.seo_title || '',
-            description: data.seo_description || '',
-            image: data.featured_image || undefined
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching page metadata:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMetadata();
-  }, [path]);
-
-  return { metadata, loading };
+export const usePageMetadata = (_path: string) => {
+  // The Supabase page_metadata table went with the Lovable backend. Nothing on
+  // the site reads this hook any more; it stays as a null source so the few
+  // legacy imports keep type-checking.
+  return { metadata: null as PageMetadata | null, loading: false };
 };
 
 export const useBlogPostMetadata = (_slug: string) => {

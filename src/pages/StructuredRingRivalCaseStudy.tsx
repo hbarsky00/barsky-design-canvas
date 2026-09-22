@@ -12,9 +12,9 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
       liveUrl="https://ringrival.today"
       overviewUrl="/project/ring-rival"
       heroImage={{
-        src: "/images/ringrival-hero-title.webp",
+        src: "/uploads/ringrival/01-title.png",
         alt: "Ring-Rival title screen — Mobile Boxing by Barsky Design",
-        hoverVideo: "/lovable-uploads/ring-rival-hero.mp4",
+        hoverVideo: "/uploads/ringrival-hero.mp4",
       }}
       blocks={[
         {
@@ -32,11 +32,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
           ],
           images: [
             {
-              src: "/images/ringrival-glassjoe-idle.webp",
+              src: "/uploads/ringrival/02-career-glass-joe.png",
               alt: "Minor Circuit career screen showing Glass Joe with power, speed, and HP stats",
             },
             {
-              src: "/images/ringrival-vonkaiser.webp",
+              src: "/uploads/ringrival/03-von-kaiser.png",
               alt: "Von Kaiser opponent in the ring with first-person red glove POV",
             },
           ],
@@ -49,11 +49,11 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
           ],
           images: [
             {
-              src: "/images/ringrival-now/disco-flurry.jpg",
+              src: "/uploads/ringrival/04-disco-dan-stars.png",
               alt: "Disco Dan stunned with a starfield background and green stun meter",
             },
             {
-              src: "/images/ringrival-knockdown.webp",
+              src: "/uploads/ringrival/05-disco-dan-stunned.png",
               alt: "Disco Dan recoiling with stun stars above his head during a combo opening",
             },
           ],
@@ -75,7 +75,7 @@ const StructuredRingRivalCaseStudy: React.FC = () => {
         {
           heading: "Where It Stands",
           paragraphs: [
-            "Ring-Rival is live at rival.li as a mobile web game. The current version proves the zero-install fight loop, career progression, and AI opponent concept; the next step is deeper progression and stronger replay incentives.",
+            "Ring-Rival is live at ringrival.today as a mobile web game. The current version proves the zero-install fight loop, career progression, and AI opponent concept; the next step is deeper progression and stronger replay incentives.",
           ],
         },
       ]}

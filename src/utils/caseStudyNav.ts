@@ -8,6 +8,8 @@ import { structuredCaseStudies } from "@/data/structuredCaseStudies";
 import { caseStudiesData, homepageCaseStudyPreviews } from "@/data/caseStudies";
 import valoraImg from "@/assets/projects/valorabet.png";
 
+// "catchbuddy" pulled 2026-08-07 — case study being refined, see
+// scripts/seo-routes.ts's note on FEATURED_PROJECTS.
 const ALLOWED_CASE_STUDY_IDS = [
   "herbalink",
   "roi-design-builder",
@@ -15,7 +17,6 @@ const ALLOWED_CASE_STUDY_IDS = [
   "valora-bet",
   "fire-lion",
   "ring-rival",
-  "catchbuddy",
   "dae-search",
 ];
 

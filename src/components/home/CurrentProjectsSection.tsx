@@ -20,7 +20,15 @@ const currentProjects: CurrentProject[] = [
     description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
-    thumbnailSrc: "/images/working-on/qr-code-creator.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/Screenshot%202025-09-26%20at%206.57.52%20PM.png"
+  },
+  {
+    id: "inclusive-shopping-experience",
+    title: "Creating an Inclusive Online Shopping Experience",
+    description: "Developing an accessible e-commerce platform that promotes community engagement and showcases inclusive design principles through user-friendly checkout processes and community reviews.",
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/eb6c7f4ec3984230ab016b61f78e432a?sid=9ba91da6-be61-4fbf-b733-80ff2e826caa",
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/inclusive/goodvibesshallym.jpg"
   },
   {
     id: "roi-calculator",
@@ -28,7 +36,15 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "/images/working-on/roi-calculator.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/roi%20design%20calculator%20profile%20image.png"
+  },
+  {
+    id: "nail-salon-platform",
+    title: "Multi-Business Nail Salon Platform",
+    description: "A booking and payment system that lets clients pay after appointments while giving salon owners a clear, centralized schedule view.",
+    status: "Work in Progress",
+    videoUrl: "https://www.loom.com/share/3d1713a2a54846cbaa63f40e5fcabac8",
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/nail-salon-demo.png"
   },
   {
     id: "faces-of-hunger",
@@ -36,7 +52,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "/images/working-on/faces-of-hunger.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/faces-of-hunger.png"
   },
   {
     id: "crypto-app-learning",
@@ -44,7 +60,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "/images/working-on/crypto-app-learning.png"
+    thumbnailSrc: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/what-im-working-on/crypto-learning.jpg"
   }
 ];
 

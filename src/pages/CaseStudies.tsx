@@ -10,7 +10,6 @@ import roiImg from "@/assets/projects/roidesigncalc.png";
 import herbalinkImg from "@/assets/projects/herbalink.png";
 import firelionImg from "@/assets/projects/firelion.png";
 import valoraImg from "@/assets/projects/valorabet.png";
-import catchbuddyImg from "@/assets/projects/catchbuddy.png";
 import ringrivalImg from "@/assets/projects/ringrival.png";
 
 
@@ -70,7 +69,7 @@ const groups: Group[] = [
         subtitle: "Enterprise search redesigned around trust, not relevance",
         description:
           "Semantic match with data lineage and permissions inline. From 40 results to narrow down to 4 you can act on — reframed the product from search tool to data discovery tool.",
-        image: "/images/dae-search/the-problem.webp",
+        image: "/uploads/dae/dashboard-search.png",
         url: "/case-studies/dae-search",
         category: "Enterprise",
         tags: ["Data Discovery", "Search UX"],
@@ -124,17 +123,6 @@ const groups: Group[] = [
         url: "/case-studies/ring-rival",
         category: "Game Design",
         tags: ["Mobile Web", "AI Opponents", "Shipped"],
-      },
-      {
-        id: "catchbuddy",
-        title: "CatchBuddy",
-        subtitle: "Same-day pickup sports, safety first",
-        description:
-          "Pickup sports designed around the real barrier — safety anxiety, not scheduling. Curated parks over user-chosen spots, parent gate for minors, panic button on every screen.",
-        image: catchbuddyImg,
-        url: "/case-studies/catchbuddy",
-        category: "Consumer",
-        tags: ["Trust & Safety", "Solo Build", "Shipped"],
       },
     ],
   },

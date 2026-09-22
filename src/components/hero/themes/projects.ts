@@ -5,10 +5,11 @@ export type HeroProject = {
   to: string;
 };
 
-// Canonical order — first 4 are SHIPPED PRODUCTS, last 2 are CONCEPT GAMES.
+// Canonical order — first 2 are SHIPPED PRODUCTS, last 2 are CONCEPT GAMES.
 // All theme heroes (Terminal, LLMChat, Win95, EightBit, MD, etc.) consume this list.
+// "catchbuddy" pulled 2026-08-07 — case study being refined, see
+// scripts/seo-routes.ts's note on FEATURED_PROJECTS.
 export const HERO_PROJECTS: HeroProject[] = [
-  { id: "catchbuddy", label: "CatchBuddy", desc: "same-day pickup sports", to: "/project/catchbuddy" },
   { id: "herbalink", label: "HerbaLink", desc: "verified herbalist platform", to: "/project/herbalink" },
   { id: "valora-bet", label: "Valora Bet", desc: "social prediction markets platform", to: "/project/valora-bet" },
   { id: "ring-rival", label: "Ring-Rival", desc: "mobile web boxing", to: "/project/ring-rival" },

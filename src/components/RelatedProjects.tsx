@@ -23,7 +23,7 @@ const allCaseStudies: CaseStudy[] = [
     id: "fire-lion",
     title: "Fire Lion",
     description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    image: "/images/firelion-hero-title.webp",
+    image: "/images/firelion-hero-title.png",
     url: "/project/fire-lion",
     category: "Game Design",
     tags: ["AI-Assisted Product", "Game Design", "Solo Build"]
@@ -32,25 +32,16 @@ const allCaseStudies: CaseStudy[] = [
     id: "ring-rival",
     title: "Ring-Rival",
     description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode.",
-    image: "/images/ringrival-hero-title.webp",
+    image: "/images/ringrival-hero-title.png",
     url: "/project/ring-rival",
     category: "Game Design",
     tags: ["AI-Assisted Product", "Mobile Web", "Solo Build"]
   },
   {
-    id: "catchbuddy",
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    image: "/images/catchbuddy-hero-landing.webp",
-    url: "/project/catchbuddy",
-    category: "Trust & Safety",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"]
-  },
-  {
     id: "herbalink",
     title: "HerbaLink - Herbal Medicine Platform",
     description: "AI-powered platform connecting patients with certified herbalists for personalized wellness solutions.",
-    image: "/images/herbalink/home-hero.webp",
+    image: "/uploads/21ed3f67-cf04-4117-b956-425f6a473789.png",
     url: "/project/herbalink",
     category: "Healthcare",
     tags: ["AI", "Healthcare", "Mobile App", "UX/UI Design"]

@@ -36,13 +36,13 @@ const caseStudies: CaseStudy[] = [
     description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
     impact: "",
     url: "/project/fire-lion",
-    liveUrl: "https://firelion.me",
+    liveUrl: "https://firelion.netlify.app",
     images: {
-      primary: "/images/firelion-hero-title.webp",
+      primary: "/images/firelion-hero-title.png",
       alt: "Fire Lion gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/fire-lion-hero.mp4"
+    video: "/uploads/fire-lion-hero.mp4"
   },
   {
     id: "ring-rival",
@@ -53,26 +53,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/ring-rival",
     liveUrl: "https://ringrival.today",
     images: {
-      primary: "/images/ringrival-hero-title.webp",
+      primary: "/images/ringrival-hero-title.png",
       alt: "Ring-Rival mobile boxing gameplay"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/ring-rival-hero.mp4"
-  },
-  {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.fit",
-    images: {
-      primary: "/images/catchbuddy-hero-landing.webp",
-      alt: "CatchBuddy pickup sports app"
-    },
-    layout: "side-by-side",
-    video: "/lovable-uploads/catchbuddy-hero.mp4"
+    video: "/uploads/ring-rival-hero.mp4"
   },
   {
     id: "herbalink",
@@ -83,11 +68,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink/card-poster-home.jpg",
+      primary: "/uploads/archive/Bookanherbalistpromomobile.png",
       alt: "HerbaLink practitioner booking interface"
     },
     layout: "side-by-side",
-    video: "/herbalink-card.mp4"
+    video: "/uploads/archive/herbalink-book-a-herbalist.mp4"
   },
   {
     id: "email-creation-ai",
@@ -97,11 +82,11 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/email-creation-ai",
     images: {
-      primary: "/images/email-ai-promo.webp",
+      primary: "/images/email-ai-promo.png",
       alt: "Email Creation AI workflow"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/email-creation-ai-hero.mp4"
+    video: "/uploads/email-creation-ai-hero.mp4"
   },
   {
     id: "dae-search",
@@ -111,11 +96,11 @@ const caseStudies: CaseStudy[] = [
     impact: "",
     url: "/project/dae-search",
     images: {
-      primary: "/images/dae-search/hero.webp",
+      primary: "https://ctqttomppgkjbjkckise.supabase.co/storage/v1/object/public/published-images/dae-search/DAE-Project-1.jpg",
       alt: "DAE Search platform interface"
     },
     layout: "side-by-side",
-    video: "/lovable-uploads/dae-search-hero.mp4"
+    video: "/uploads/dae-search-hero.mp4"
   }
 ];
 

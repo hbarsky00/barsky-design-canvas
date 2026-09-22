@@ -21,7 +21,6 @@ import Index from "@/pages/Index";
 // Lazy load non-critical pages to reduce initial bundle size
 
 const About = React.lazy(() => import("@/pages/About"));
-const Services = React.lazy(() => import("@/pages/Services"));
 const Contact = React.lazy(() => import("@/pages/Contact"));
 const Blog = React.lazy(() => import("@/pages/Blog"));
 const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
@@ -29,6 +28,9 @@ const Store = React.lazy(() => import("@/pages/Store"));
 const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
 const ProductDetailsPage = React.lazy(() => import("@/pages/ProductDetailsPage"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
+const NotFound = React.lazy(() => import("@/pages/NotFound"));
+const Services = React.lazy(() => import("@/pages/Services"));
+const FreeAudit = React.lazy(() => import("@/pages/FreeAudit"));
 
 // Service page imports - lazy loaded
 const UxUiDesign = React.lazy(() => import("@/pages/design-services/UxUiDesign"));
@@ -37,6 +39,7 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
+const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
 
 const ManuscriptRxCaseStudy = React.lazy(() => import("@/pages/ManuscriptRxCaseStudy"));
 const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
@@ -88,7 +91,6 @@ function AppContent() {
               {/* Home route */}
               <Route path="/" element={<Index />} />
               <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/case-studies/herbalink" element={<StructuredHerbalinkCaseStudy />} />
               <Route path="/case-studies/nudgeme" element={<NudgeMeCaseStudy />} />
               <Route path="/case-studies/roi-design-builder" element={<RoiDesignBuilderCaseStudy />} />
@@ -106,7 +108,7 @@ function AppContent() {
               <Route path="/project/fire-lion" element={<FireLionPromo />} />
               
               {/* Structured case studies still available under /case-studies/:projectId */}
-              <Route path="/project/business-management" element={<Navigate to="/" replace />} />
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
               <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
               <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
               <Route path="/project/ring-rival" element={<RingRivalPromo />} />
@@ -125,12 +127,18 @@ function AppContent() {
               <Route path="/project/fire-lion/overview" element={<Navigate to="/project/fire-lion" replace />} />
 
 
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/" replace />} />
+              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               
               {/* Service pages */}
+              <Route path="/services" element={<Services />} />
+              {/* Page + form (FreeAudit.tsx, FreeAuditForm.tsx) already existed
+                  but were never routed — the About page's "Get Free Audit"
+                  button opened this exact path and 404'd. Found while adding
+                  the /about FAQ (AEO lever 2, Cycle 2). */}
+              <Route path="/free-audit" element={<FreeAudit />} />
               <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
               <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
               <Route path="/design-services/web-development" element={<WebDevelopment />} />
@@ -152,7 +160,7 @@ function AppContent() {
               <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
               {/* Catch all - redirect to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>

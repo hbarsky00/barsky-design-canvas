@@ -29,32 +29,34 @@ const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
     tags: ["Health", "Marketplace", "Gen AI"],
-    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
-    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
-    impact: "+3x Booking Rate Increase",
+    title: "HerbaLink: Verified Herbalists, Designed Around Trust",
+    description: "A booking platform where no practitioner is visible until their credentials are verified against an external registry. A guided intake replaces filter panels, and the safe path is the easy path — in a category where bad advice has medical consequences.",
+    impact: "Credential-Gated Catalog",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink-promo.png",
-      secondary: "/images/herbalink-promo.png",
+      primary: "/uploads/archive/herbalinkpromonew.png",
+      secondary: "/uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
     layout: "side-by-side",
+    video: "/uploads/archive/herbalink-promo.mp4"
   },
   {
     id: "splittime",
     tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    impact: "-40% Conflict Reduction",
+    title: "SplitTime: Co-Parenting Where Every Message Is Potential Evidence",
+    description: "Clear ask → approve / decline / counter-propose → immutable timestamp. Templates strip the emotional charge out of the 80% of co-parenting messages that repeat every week, and the change history is court-ready by design.",
+    impact: "Structured Requests, Not Open Chat",
     url: "/project/splittime",
     liveUrl: "https://splittime.pro",
     images: {
-      primary: "/images/splittime/app-screens.webp",
-      secondary: "/images/desktop-signup-1.webp",
+      primary: "/uploads/archive/mobilepromo.png",
+      secondary: "images/desktop-signup-1.png",
       alt: "SplitTime web and mobile views showing scheduling features"
     },
     layout: "web-mobile",
+    video: "/uploads/archive/splittime-promo.mp4"
   },
   // business-management entry removed
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts

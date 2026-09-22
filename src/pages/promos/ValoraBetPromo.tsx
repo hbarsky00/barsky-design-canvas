@@ -39,7 +39,7 @@ const ValoraBetPromo: React.FC = () => (
         { label: "Home", href: "#hero" },
         { label: "Features", href: "#features" },
       ]}
-      cta={{ label: "Play Now →", href: "https://stips.bet" }}
+      cta={{ label: "Play Now →", href: "http://valora.bet" }}
       bg="rgba(13,15,30,0.92)"
       textColor={INK}
       backColor="rgba(255,255,255,0.4)"
@@ -60,7 +60,7 @@ const ValoraBetPromo: React.FC = () => (
         Create and bet on real-world outcomes with play money. Honest CPMM pricing and a betting UI a casual user can play in 10 seconds.
       </p>
       <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
-        <a href="https://stips.bet" target="_blank" rel="noopener noreferrer"
+        <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
           style={{ background: ORANGE, color: "#fff", padding: "14px 26px", borderRadius: 12, fontWeight: 700, textDecoration: "none", minHeight: 52, display: "inline-flex", alignItems: "center" }}>
           Explore Markets →
         </a>
@@ -107,7 +107,7 @@ const ValoraBetPromo: React.FC = () => (
     <section style={{ background: ORANGE, padding: "80px 24px", textAlign: "center" }}>
       <h2 style={{ color: "#fff", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, margin: 0 }}>Try the beta at valora.bet →</h2>
       <p style={{ color: "rgba(255,255,255,0.9)", marginTop: 12 }}>Free to play. No install. Feedback wanted.</p>
-      <a href="https://stips.bet" target="_blank" rel="noopener noreferrer"
+      <a href="http://valora.bet" target="_blank" rel="noopener noreferrer"
         style={{ display: "inline-block", marginTop: 24, background: "#fff", color: ORANGE, padding: "16px 32px", borderRadius: 6, fontWeight: 800, textDecoration: "none" }}>
         Open Valora →
       </a>

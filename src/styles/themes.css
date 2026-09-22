@@ -141,6 +141,18 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-hero.is-day .parallax-sky-day { opacity: 1; }
 
+/* Golden-hour wash — flashes over the sky during every day/night flip so the
+   transition reads as dawn/dusk instead of a flat crossfade. Driven by the
+   .is-twilight class ParallaxHero holds for ~3.4s around each flip. */
+.parallax-sky-twilight {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, #3b2a5e 0%, #a34a6e 40%, #ff8e5a 72%, #ffd9a0 100%);
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+  pointer-events: none;
+}
+.parallax-hero.is-twilight .parallax-sky-twilight { opacity: 0.85; }
+
 /* Sun rises into the top-right during the day (premium AI PNG) */
 .parallax-sun {
   position: absolute; z-index: 1;
@@ -152,7 +164,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
     drop-shadow(0 0 14px rgba(255, 198, 92, 0.4))
     drop-shadow(0 0 30px rgba(255, 182, 58, 0.22));
   opacity: 0;
-  transition: opacity 2.5s ease-in-out;
+  transform: translate3d(-30px, 90px, 0) scale(0.9);
+  transition: opacity 2.5s ease-in-out, transform 2.8s cubic-bezier(0.22, 0.8, 0.35, 1);
 }
 .parallax-sun::before {
   content: "";
@@ -166,6 +179,7 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-hero.is-day .parallax-sun {
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 /* Moon glows in the upper-left at night (premium AI PNG) */
@@ -181,7 +195,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 .parallax-hero.is-day .parallax-moon {
   opacity: 0;
-  transform: translateY(-30px) scale(0.85);
+  /* Moon sets: sinks toward the horizon rather than floating up */
+  transform: translate3d(-24px, 70px, 0) scale(0.88);
 }
 
 
@@ -597,7 +612,8 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .parallax-hero, .parallax-sky-day, .parallax-sun, .parallax-stars,
+  .parallax-hero, .parallax-sky-day, .parallax-sky-twilight,
+  .parallax-sun, .parallax-moon, .parallax-stars,
   .parallax-mountains, .parallax-content .hero-name,
   .parallax-content .hero-eyebrow, .parallax-content .hero-role,
   .parallax-content .hero-tagline, .parallax-content .section-label,
@@ -1104,14 +1120,94 @@ body[data-daytime] { transition: background-color 2.5s ease-in-out, color 2.5s e
   animation: skyBlink 1.2s step-end infinite;
 }
 
-/* UFO with aliens */
+/* Fighter jets — fast crossings with afterburner and twin contrails.
+   .sky-jet-flight is the animated wrapper; each .sky-jet inside is one
+   aircraft (a second one becomes the offset wingman in a formation). */
+.sky-jet-flight {
+  position: absolute;
+  will-change: transform;
+  animation: jetCross 4.5s linear forwards;
+  pointer-events: none;
+}
+@keyframes jetCross {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(var(--jet-distance, 100vw), var(--jet-climb, 0px), 0); }
+}
+.sky-jet { position: absolute; display: inline-flex; }
+.sky-jet--wingman { transform: translate(-46px, 20px); }
+.sky-jet-flight.is-rtl .sky-jet--wingman { transform: translate(46px, 20px); }
+.sky-jet-body {
+  display: inline-flex; line-height: 0;
+  color: #dbe4ee;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.25));
+}
+.parallax-hero.is-day .sky-jet-body {
+  color: #2f3d4d;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.3));
+}
+.sky-jet-flight.is-rtl .sky-jet-body { transform: scaleX(-1); }
+/* Twin contrails streaming behind the jet (jet faces right by default) */
+.sky-jet-contrail {
+  position: absolute;
+  right: calc(100% - 4px); top: 4px;
+  width: 150px; height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 100%);
+  border-radius: 2px;
+}
+.sky-jet-contrail--lower { top: 9px; width: 120px; }
+.sky-jet-flight.is-rtl .sky-jet-contrail {
+  right: auto; left: calc(100% - 4px);
+  background: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 100%);
+}
+.parallax-hero.is-day .sky-jet-contrail {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 100%);
+}
+.parallax-hero.is-day .sky-jet-flight.is-rtl .sky-jet-contrail {
+  background: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.85) 100%);
+}
+/* Afterburner — flickers fast; hotter at night */
+.sky-jet-flame {
+  position: absolute;
+  right: calc(100% - 6px); top: 3.5px;
+  width: 12px; height: 5px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at right, rgba(255,180,80,0.95) 0%, rgba(255,120,40,0.6) 45%, rgba(255,80,0,0) 100%);
+  animation: jetFlame 90ms linear infinite alternate;
+}
+.sky-jet-flight.is-rtl .sky-jet-flame {
+  right: auto; left: calc(100% - 6px);
+  background: radial-gradient(ellipse at left, rgba(255,180,80,0.95) 0%, rgba(255,120,40,0.6) 45%, rgba(255,80,0,0) 100%);
+}
+.parallax-hero:not(.is-day) .sky-jet-flame {
+  box-shadow: 0 0 10px rgba(255, 140, 50, 0.8), 0 0 22px rgba(255, 100, 20, 0.4);
+}
+@keyframes jetFlame {
+  from { opacity: 0.55; transform: scaleX(0.8); }
+  to   { opacity: 1; transform: scaleX(1.25); }
+}
+
+/* UFO — the alien-ship PNG on a wobbly crossing; rare mothership variant */
 .sky-ufo {
   position: absolute;
-  font-size: 26px;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 8px rgba(120,255,180,0.55));
+  opacity: 0.92;
   will-change: transform;
   animation: ufoFloat 18s ease-in-out forwards;
+  pointer-events: none;
+}
+.sky-ufo-img {
+  display: block;
+  width: 58px; height: auto;
+  filter: drop-shadow(0 0 8px rgba(120, 220, 255, 0.45)) drop-shadow(0 0 14px rgba(255, 80, 220, 0.25));
+}
+.sky-ufo-img.is-mirrored { transform: scaleX(-1); }
+.sky-ufo--mothership .sky-ufo-img {
+  width: 150px;
+  filter: drop-shadow(0 0 14px rgba(120, 220, 255, 0.6)) drop-shadow(0 0 30px rgba(255, 80, 220, 0.35));
+}
+.sky-ufo--mothership .sky-ufo-beam {
+  border-left-width: 34px;
+  border-right-width: 34px;
+  border-top-width: 60px;
 }
 @keyframes ufoFloat {
   0%   { transform: translate(0, 0) rotate(0deg); }

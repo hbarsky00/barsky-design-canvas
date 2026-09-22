@@ -1,12 +1,21 @@
 
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Fixed 2026-08-06 (full CTA audit) — this checked for getElementById("hero")
+// and getElementById("contact"), requiring BOTH to be non-null before it
+// would ever become visible. Neither element exists: HomepageLayout.tsx
+// wraps the hero in id="intro" (not "hero"), and there's no homepage contact
+// section at all — /contact is a separate routed page. The visibility
+// condition was therefore always false: this floating "Book A Free
+// Consultation" button has never appeared, on any scroll position, on any
+// homepage visit, since whenever this logic was written.
 const FloatingConsultationBubble: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,44 +29,26 @@ const FloatingConsultationBubble: React.FC = () => {
 
     const handleScroll = () => {
       if (typeof window === 'undefined' || typeof document === 'undefined') return;
-      
-      const heroSection = document.getElementById("hero");
-      const contactSection = document.getElementById("contact");
-      
-      if (heroSection && contactSection) {
-        const heroRect = heroSection.getBoundingClientRect();
-        const contactRect = contactSection.getBoundingClientRect();
-        
-        // Check if user has scrolled past the hero section
-        const hasScrolledPastHero = heroRect.bottom <= 0;
-        
-        // Check if user is in the contact section
-        const isInContactSection = contactRect.top <= window.innerHeight && contactRect.bottom >= 0;
-        
-        // Show button if scrolled past hero but not in contact section
-        setIsVisible(hasScrolledPastHero && !isInContactSection);
+
+      const introSection = document.getElementById("intro");
+
+      if (introSection) {
+        const introRect = introSection.getBoundingClientRect();
+        setIsVisible(introRect.bottom <= 0);
       }
     };
 
     // Initial check
     handleScroll();
-    
+
     if (typeof window !== 'undefined') {
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [location.pathname]);
 
-  const scrollToContact = () => {
-    if (typeof document !== 'undefined') {
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    }
+  const goToContact = () => {
+    navigate("/contact");
   };
 
   if (location.pathname !== "/") {
@@ -83,7 +74,7 @@ const FloatingConsultationBubble: React.FC = () => {
           }}
         >
           <Button
-            onClick={scrollToContact}
+            onClick={goToContact}
             variant="brand"
             size="default"
             className="shadow-lg

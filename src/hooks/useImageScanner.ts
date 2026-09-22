@@ -38,7 +38,7 @@ export const useImageScanner = () => {
     const issues: CaptionIssue[] = [];
     
     // Get all image elements from the current page
-    const imageElements = document.querySelectorAll('img[src*="/lovable-uploads/"]');
+    const imageElements = document.querySelectorAll('img[src*="/uploads/"]');
     console.log(`🔍 Found ${imageElements.length} images on current page to scan`);
     
     imageElements.forEach((img, index) => {
