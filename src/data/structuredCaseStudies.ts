@@ -773,10 +773,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "/images/herbalink/herbalist-directory.webp",
           alt: "AHG directory — grid of herbal schools (scroll demo)",
         },
-        {
-          src: "/zocdoc-signup.png",
-          alt: "Zocdoc signup screen interface",
-        },
       ],
     },
     problemCallout: {

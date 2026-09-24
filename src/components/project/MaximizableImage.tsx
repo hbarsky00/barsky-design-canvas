@@ -63,7 +63,21 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   }, [src]);
 
   const handleMaximize = () => {
-    if (!imageError) {
+    if (imageError) return;
+    // Every section used to pass only its own images, so prev/next was trapped
+    // inside whichever section you happened to click in — you could not walk a
+    // case study end to end. Each MaximizableImage already stamps the element
+    // with data-image-src, so reading them back in DOM order gives the whole
+    // case study in the order it appears on the page, with no prop drilling and
+    // nothing for a new section to remember to wire up.
+    const onPage = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-image-src]")
+    ).map((el) => el.getAttribute("data-image-src") || "");
+    const pageList = onPage.filter(Boolean);
+    const indexOnPage = pageList.indexOf(currentSrc);
+    if (pageList.length > 1 && indexOnPage !== -1) {
+      maximizeImage(currentSrc, caption || alt, pageList, indexOnPage);
+    } else {
       maximizeImage(currentSrc, caption || alt, imageList, currentIndex);
     }
   };

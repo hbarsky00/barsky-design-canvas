@@ -56,11 +56,18 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   console.log('🔍 ResearchSectionTwoCol - hasMedia:', hasMedia, 'isSingleMedia:', isSingleMedia);
   
   // Grid column classes
-  const gridCols = !hasMedia ? 'grid-cols-1' : 
+  // The media column was 4/10 or 5/12 — 40-42% of the row. That is fine for a
+  // single tall phone shot, but the 4-across-by-2-down composites are close to
+  // square (2408x2506), so squeezing one into a side column rendered it at
+  // ~420px and the screens inside became unreadable. Anything roughly square or
+  // wider gets its own full-width row under the text instead of a narrow column.
+  const wideMedia = allMedia.some((m) => /mobile-grid-8up|-grid-|four-panel/.test(m.src));
+  const gridCols = !hasMedia || wideMedia ? 'grid-cols-1' :
                    isSingleMedia ? 'lg:grid-cols-10' : 'lg:grid-cols-12';
-  const textCols = !hasMedia ? 'lg:col-span-full' :
+  const textCols = !hasMedia || wideMedia ? 'lg:col-span-full' :
                    isSingleMedia ? 'lg:col-span-6' : 'lg:col-span-7';
-  const mediaCols = isSingleMedia ? 'lg:col-span-4' : 'lg:col-span-5';
+  const mediaCols = wideMedia ? 'lg:col-span-full mx-auto w-full lg:w-4/5' :
+                    isSingleMedia ? 'lg:col-span-4' : 'lg:col-span-5';
 
   return (
     <motion.section

@@ -107,11 +107,21 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     setScale(1);
   };
   
+  // Walking the lightbox should move the page behind it, so closing leaves you
+  // at the section the image belongs to rather than back where you started.
+  const revealOnPage = (imageSrc: string) => {
+    const el = document.querySelector<HTMLElement>(
+      `[data-image-src="${CSS.escape(imageSrc)}"]`
+    );
+    const section = el?.closest("section[id]") as HTMLElement | null;
+    (section || el)?.scrollIntoView({ block: "center", behavior: "auto" });
+  };
+
   const handleNextImage = () => {
     console.log("Next image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const nextIndex = (currentIndex + 1) % imageList.length;
-      console.log("Moving to next image:", nextIndex, imageList[nextIndex]);
+      revealOnPage(imageList[nextIndex]);
       maximizeImage(imageList[nextIndex], title, imageList, nextIndex);
     }
   };
@@ -120,7 +130,7 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     console.log("Previous image clicked, hasMultipleImages:", hasMultipleImages, "imageList:", imageList);
     if (hasMultipleImages && imageList) {
       const prevIndex = (currentIndex - 1 + imageList.length) % imageList.length;
-      console.log("Moving to previous image:", prevIndex, imageList[prevIndex]);
+      revealOnPage(imageList[prevIndex]);
       maximizeImage(imageList[prevIndex], title, imageList, prevIndex);
     }
   };
