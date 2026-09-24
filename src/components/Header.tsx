@@ -50,6 +50,17 @@ const Header: React.FC = () => {
 
   return (
     <>
+      {/* Skip link — WCAG 2.4.1 Bypass Blocks (Level A). Every page opened with
+          ~7 nav links before any content, with no way past them by keyboard.
+          Visually hidden until it takes focus, which is the first Tab stop. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100]
+                   focus:rounded focus:bg-background focus:px-4 focus:py-2
+                   focus:text-sm focus:font-medium focus:text-foreground focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <header ref={headerRef} className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         "pointer-events-auto",

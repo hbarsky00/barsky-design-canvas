@@ -35,7 +35,7 @@ const HomepageLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden relative">
       <Header />
       
-      <main className="space-y-0 md:space-y-2 relative z-10">
+      <main id="main-content" className="space-y-0 md:space-y-2 relative z-10">
         {/* Keep intro section outside 3D container to prevent displacement */}
         <SectionTransition variant="fade" intensity={0.3}>
           <section id="intro" tabIndex={-1} className="scroll-offset">

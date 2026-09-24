@@ -19,7 +19,7 @@ const StoreSuccess: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Header />
       
-      <main className="flex-grow pt-24">
+      <main id="main-content" className="flex-grow pt-24">
         <section className="py-16">
           <div className="section-container">
             <motion.div

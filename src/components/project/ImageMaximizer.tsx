@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import NavigationButtons from "./image-maximizer/NavigationButtons";
 import ImageControls from "./image-maximizer/ImageControls";
@@ -79,6 +80,9 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
   const [scale, setScale] = useState(1);
   const { maximizeImage } = useImageMaximizer();
   const hasMultipleImages = imageList && imageList.length > 1;
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const restoreFocusTo = useRef<HTMLElement | null>(null);
   
   // Debug logging
   useEffect(() => {
@@ -142,6 +146,38 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     document.addEventListener('keydown', handleKeyboard);
     return () => document.removeEventListener('keydown', handleKeyboard);
   }, [isOpen, hasMultipleImages]);
+
+  // Focus management. Opening used to leave focus on <body>: a screen reader
+  // announced nothing, and Tab kept walking the page behind the overlay. Move
+  // focus in on open, keep it inside while open, and hand it back on close.
+  useEffect(() => {
+    if (!isOpen) return;
+    restoreFocusTo.current = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+
+    const trap = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', trap);
+    return () => {
+      document.removeEventListener('keydown', trap);
+      restoreFocusTo.current?.focus();
+    };
+  }, [isOpen]);
   
   // Reset scale when dialog closes
   useEffect(() => {
@@ -154,6 +190,9 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${title} — full screen image`}
           className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -164,9 +203,23 @@ const ImageMaximizer: React.FC<ImageMaximizerProps> = ({
           }}
         >
           <div
+            ref={dialogRef}
             className="relative flex flex-col items-center"
             style={{ perspective: "1000px" }}
           >
+            {/* ImageControls renders null, so until now the only ways out were
+                Escape or a backdrop click — nothing visible, nothing named. */}
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={onClose}
+              aria-label="Close full screen image"
+              className="absolute -top-12 right-0 z-20 rounded-full bg-white/10 p-2
+                         text-white transition-colors hover:bg-white/20"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+
             <ImageControls
               scale={scale}
               onZoomIn={handleZoomIn}

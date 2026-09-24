@@ -8,7 +8,7 @@ const UxUiDesign = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-24">
+      <main id="main-content" className="flex-grow pt-24">
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold text-center mb-8">Product Design Services</h1>
           <p className="text-center text-gray-600 mb-12">Professional user-centered design services for web and mobile applications by Barsky Design.</p>

@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-muted/30">
       <Header />
-      <main className="flex-grow pt-[calc(var(--header-height,64px)+24px)] pb-12">
+      <main id="main-content" className="flex-grow pt-[calc(var(--header-height,64px)+24px)] pb-12">
         <section className="px-4 md:px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">

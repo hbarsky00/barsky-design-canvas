@@ -348,19 +348,28 @@
   touch-action: manipulation;
 }
 
-/* Global focus style removal - Remove all focus indicators */
-*, *:before, *:after {
-  outline: none !important;
+/* Focus indicators.
+   This used to be a "Global focus style removal" block: `* { outline: none
+   !important }` plus a second rule stripping outline AND box-shadow off every
+   :focus and :focus-visible state, also !important. The result was that 35 of
+   36 tab stops across the site rendered no focus indicator at all — a keyboard
+   user could not see where they were on any page, including the contact form.
+   That is WCAG 2.4.7 Focus Visible (AA), failing site-wide.
+
+   :focus-visible is the right tool: the browser shows it for keyboard and
+   assistive-tech users and withholds it from mouse clicks, which is what the
+   original removal was presumably reaching for. !important stays because 19
+   components carry Tailwind's `focus:outline-none`, which would otherwise win
+   on specificity and re-hide the ring. */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring)) !important;
+  outline-offset: 2px !important;
+  border-radius: 2px;
 }
 
-button:focus, input:focus, textarea:focus, select:focus, a:focus,
-button:focus-visible, input:focus-visible, textarea:focus-visible, 
-select:focus-visible, a:focus-visible,
-[tabindex]:focus, [tabindex]:focus-visible,
-[role="button"]:focus, [role="button"]:focus-visible {
-  outline: none !important;
-  box-shadow: none !important;
-  ring: none !important;
+/* Never show the ring for a plain mouse press. */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Mobile-specific utilities */

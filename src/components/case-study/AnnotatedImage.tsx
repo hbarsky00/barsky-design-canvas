@@ -97,13 +97,16 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
             <div className={`px-3 py-2 text-xs sm:text-sm text-white rounded-lg shadow-2xl drop-shadow-xl backdrop-blur-sm ring-1 ring-black/10 w-48 max-w-[192px] sm:w-52 sm:max-w-[208px] lg:w-64 lg:max-w-[256px] whitespace-normal ${
               annotation.type === 'issue' ? 'bg-red-600' :
               annotation.type === 'improvement' ? 'bg-blue-600' :
-              'bg-green-600'
+              // green-600 put white text at 3.30:1 — under the 4.5:1 AA floor
+              // for this 12-14px chip. green-700 measures 5.02:1. red-600 (4.83)
+              // and blue-600 (5.17) already passed.
+              'bg-green-700'
             }`}>
               {getTruncatedText(annotation.text)}
               <div className={`absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-transparent ${
                 annotation.type === 'issue' ? 'border-t-red-600' :
                 annotation.type === 'improvement' ? 'border-t-blue-600' :
-                'border-t-green-600'
+                'border-t-green-700'
               }`} />
             </div>
           </div>
