@@ -55,7 +55,10 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
     <section 
       id="hero"
       data-section="hero"
-      className="section-snap w-full md:py-6 lg:py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
+      /* Padding started at md, so phones and small tablets got none at all —
+         the title ran straight into the header above and the next section
+         below. Scales from 32px now instead of starting at 0. */
+      className="section-snap w-full py-8 md:py-10 lg:py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)] bg-white" 
       style={{ perspective: "1000px" }}
     >
       {/* Mobile Layout: Full Hero Container */}

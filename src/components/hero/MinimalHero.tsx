@@ -72,7 +72,15 @@ const MinimalHero: React.FC = () => {
 
   return (
     <section 
-      className="py-16 sm:min-h-screen pb-6 sm:pb-10 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
+      /* min-h was sm:-only, so mobile had none: the hero ran to its content
+         height (668px of an 844px viewport) and 176px of the next section
+         bled into the first screen, which read as a mistake rather than a
+         scroll cue. 100svh applies at every width now — svh, not vh, so iOS
+         browser chrome doesn't push it over. Padding is symmetric again
+         (py-16 with pb-6 sat the content a third of the way high), and the
+         gaps below open up on larger screens so the block fills the space
+         instead of floating in 628px of tablet whitespace. */
+      className="min-h-[100svh] py-12 sm:py-16 flex items-center justify-center px-4 sm:px-6 relative overflow-hidden
                  bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20"
       style={{
         background: `
@@ -90,7 +98,7 @@ const MinimalHero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="hero-loading flex flex-col items-center text-center gap-3 sm:gap-4 lg:gap-5 xl:gap-6 2xl:gap-7"
+          className="hero-loading flex flex-col items-center text-center gap-4 sm:gap-7 lg:gap-9 xl:gap-10 2xl:gap-12"
         >
           {/* Ultra-Modern Avatar with Premium Effects */}
           <motion.div 
@@ -188,8 +196,12 @@ const MinimalHero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h1 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
-                           xl:text-4xl 2xl:text-5xl
+              {/* H1 was two type steps SMALLER than the name below it, so the
+                  eye landed on "Hiram Barsky" and the actual claim receded.
+                  On tablet it measured 24px against every case study's 40px —
+                  the homepage headline was the smallest H1 on the site. */}
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl 
+                           xl:text-5xl 2xl:text-6xl
                            font-display font-medium bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 
                            bg-clip-text text-transparent mb-1 sm:mb-1 lg:mb-1 xl:mb-1 2xl:mb-1 leading-[1.706]">
                 UX Designer Portfolio — Lead Product & AI Design
@@ -209,8 +221,8 @@ const MinimalHero: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-            <p className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl 
-                         xl:text-7xl 2xl:text-8xl font-display font-bold 
+            <p className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl 
+                         xl:text-4xl 2xl:text-5xl font-display font-bold 
                          bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 
                          bg-clip-text text-transparent leading-tight tracking-tight 
                          whitespace-nowrap mb-1 sm:mb-2 lg:mb-2 xl:mb-3 2xl:mb-3">
