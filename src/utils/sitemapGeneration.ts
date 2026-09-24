@@ -77,31 +77,13 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
       changefreq: 'monthly',
       priority: 0.8
     },
-    {
-      url: `${BASE_URL}/project/medication-app`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    {
-      url: `${BASE_URL}/project/gold2crypto`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    {
+            {
       url: `${BASE_URL}/project/dae-search`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.7
     },
-    {
-      url: `${BASE_URL}/project/barskyjoint`,
-      lastmod: currentDate,
-      changefreq: 'monthly',
-      priority: 0.7
-    },
-    
+        
     // Other pages
     {
       url: `${BASE_URL}/about`,

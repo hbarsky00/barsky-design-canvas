@@ -83,7 +83,7 @@ function getProjectIds(): string[] {
   const found = new Set<string>();
   for (const line of src.split("\n")) {
     const m = /<Route\s+path="\/project\/([a-z0-9-]+)"/i.exec(line);
-    if (m && !line.includes("Navigate")) found.add(m[1]);
+    if (m && !line.includes("Navigate") && !/^\s*(\{\/\*|\/\/|\/\*|\*)/.test(line)) found.add(m[1]);
   }
   return Array.from(found);
 }
@@ -112,38 +112,59 @@ const caseStudyLines = projectIds
   })
   .sort();
 
+// Per-post fields straight out of blogData.ts. Parsed rather than imported:
+// blogData.ts imports its cover images as modules, which Node can't load outside
+// Vite. Split into one chunk per array entry first — the previous one-shot
+// /slug:…[\s\S]*?excerpt:/ regex ran past the end of each object and paired every
+// slug with the NEXT post's excerpt, so all 32 blog blurbs in llms.txt described
+// the wrong article.
+const BLOG_SRC = readFileSync(resolve("src/data/blogData.ts"), "utf8");
+const lit = (chunk: string, key: string): string | undefined => {
+  const m = new RegExp(`\\n\\s*${key}:\\s*(["'\`])((?:\\\\.|(?!\\1)[\\s\\S])*?)\\1`).exec(chunk);
+  // \uXXXX first — a bare /\\(.)/ pass turns "67\\u00a2" into "67u00a2".
+  return m?.[2]
+    .replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/\\(.)/g, "$1");
+};
+const POST_META = new Map<string, { title: string; excerpt?: string; date?: string }>();
+for (const chunk of BLOG_SRC.split(/\n\s{2}\{\n/)) {
+  const slug = lit(chunk, "slug");
+  const title = lit(chunk, "title");
+  if (slug && title) POST_META.set(slug, { title, excerpt: lit(chunk, "excerpt"), date: lit(chunk, "date") });
+}
+
 // Newest first — the publication date is the most useful ordering signal for an
-// agent deciding which post answers a question about current practice.
+// agent deciding which post answers a question about current practice. Posts
+// with no BLOG_SEO_MAP entry used to be dropped from llms.txt entirely; they
+// fall back to their blogData title and date instead.
+const publishedOf = (slug: string): string => {
+  const override = BLOG_SEO_MAP[slug]?.published;
+  if (override) return override;
+  const d = POST_META.get(slug)?.date;
+  return d && !Number.isNaN(Date.parse(d)) ? new Date(d).toISOString() : "";
+};
 const blogSlugs = getBlogSlugs()
-  .filter((slug) => BLOG_SEO_MAP[slug])
-  .sort((a, b) => {
-    const da = BLOG_SEO_MAP[a].published || "";
-    const db = BLOG_SEO_MAP[b].published || "";
-    return db.localeCompare(da);
-  });
+  .filter((slug) => BLOG_SEO_MAP[slug] || POST_META.has(slug))
+  .sort((a, b) => publishedOf(b).localeCompare(publishedOf(a)));
 
 // Prefer the post's excerpt over its meta description. BLOG_SEO_MAP
 // descriptions are written for SERP snippets and capped at 155 chars — 8 of 22
 // end mid-sentence on an ellipsis. That is fine in a search result, where the
 // page is one click away, and bad here: an answer engine quoting llms.txt would
 // cite a fragment. Excerpts in blogData are complete sentences.
-// Parsed from the file rather than imported: blogData.ts imports its cover
-// images as modules, which Node cannot load outside Vite.
-const excerptBySlug = new Map<string, string>(
-  Array.from(readFileSync(resolve("src/data/blogData.ts"), "utf8").matchAll(/slug:\s*["'`]([a-z0-9-]+)["'`][\s\S]*?excerpt:\s*["'`]([^"'`]+)["'`]/g)).map((m) => [m[1], m[2]]),
-);
-
 const blogLines = blogSlugs.map((slug) => {
-  const { title, description } = BLOG_SEO_MAP[slug];
-  const excerpt = excerptBySlug.get(slug);
-  const blurb = (excerpt || description || "").trim();
+  const meta = POST_META.get(slug);
+  // The post's own title, not the SEO one — BLOG_SEO_MAP titles carry a
+  // "| Keyword — Barsky Design" SERP suffix that reads as noise in a link list.
+  const title = meta?.title || BLOG_SEO_MAP[slug].title;
+  const blurb = (meta?.excerpt || BLOG_SEO_MAP[slug]?.description || "").trim();
   return `- [${title}](/blog/${slug})${blurb ? `: ${blurb}` : ""}`;
 });
 
-const skipped = getBlogSlugs().filter((s) => !BLOG_SEO_MAP[s]);
+const skipped = getBlogSlugs().filter((s) => !BLOG_SEO_MAP[s] && !POST_META.has(s));
 if (skipped.length) {
   console.warn(
-    `llms.txt: ${skipped.length} blog slug(s) have no BLOG_SEO_MAP entry and were omitted: ${skipped.join(", ")}`,
+    `llms.txt: ${skipped.length} blog slug(s) have no title anywhere and were omitted: ${skipped.join(", ")}`,
   );
 }
 

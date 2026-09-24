@@ -37,11 +37,17 @@ const CHROME =
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 /** Route list — mirrors scripts/inject-seo-html.ts exactly. */
+// A commented-out <Route> is not a route. Without this, the `{/* ... HIDDEN */}`
+// line above /project/investor-loan-app's <Navigate> got scraped as a live route
+// and prerendered — shipping the homepage body under a case-study title/canonical.
+const COMMENTED = /^\s*(\{\/\*|\/\/|\/\*|\*)/;
+
 function getRoutes(): string[] {
   const staticPaths = [
     "/",
     "/services",
-    "/design-services/ux-ui-design",
+    "/project/dae-search",
+        "/design-services/ux-ui-design",
     "/design-services/mobile-app-design",
     "/design-services/web-development",
     "/about",
@@ -57,7 +63,7 @@ function getRoutes(): string[] {
   const projects = new Set<string>();
   for (const line of appSrc.split("\n")) {
     const m = /<Route\s+path="(\/(?:project|case-studies)\/[a-z0-9-]+)"/i.exec(line);
-    if (m && !line.includes("Navigate")) projects.add(m[1]);
+    if (m && !line.includes("Navigate") && !COMMENTED.test(line)) projects.add(m[1]);
   }
 
   const blogSrc = readFileSync(resolve("src/data/blogData.ts"), "utf8");

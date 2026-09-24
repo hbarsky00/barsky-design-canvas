@@ -1,1 +1,0 @@
-DELETE FROM dev_mode_changes WHERE id = '78e9ec8f-7448-4b04-8d48-5851d184754a';

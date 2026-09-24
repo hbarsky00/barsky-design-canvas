@@ -136,6 +136,12 @@ const config: Config = {
         // Legacy support
         DEFAULT: "var(--radius)",
       },
+      // src/index.css declares --gradient-primary, and Store.tsx uses
+      // `bg-gradient-primary`, but nothing ever mapped the two — so the CTA
+      // card painted no background and its white text sat on the white page.
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+      },
       boxShadow: {
         // Material Design 3.0 Elevation System
         "elevation-0": "var(--md-sys-elevation-level0)",

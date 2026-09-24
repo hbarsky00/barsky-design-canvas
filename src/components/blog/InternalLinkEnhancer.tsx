@@ -191,7 +191,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
               className="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200"
               title={`Read more about ${post.title}`}
             >
-              Read More →
+              Read More<span className="sr-only">: {post.title}</span> →
             </Link>
           </article>
         ))}

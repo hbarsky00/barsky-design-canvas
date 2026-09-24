@@ -61,7 +61,10 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
                 </div>
                 
                 <Link to={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors text-sm md:text-base">
-                  Read More
+                  {/* "Read More" x3 was the only generic anchor text left on the
+                      site. The sr-only half gives crawlers and screen readers the
+                      real destination without changing the visual link. */}
+                  Read More<span className="sr-only">: {post.title}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

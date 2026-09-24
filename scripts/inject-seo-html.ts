@@ -25,6 +25,7 @@ const DIST = resolve("dist");
 const STATIC_PATHS = [
   "/",
   "/services",
+  "/project/dae-search",
   "/design-services/ux-ui-design",
   "/design-services/mobile-app-design",
   "/design-services/web-development",
@@ -41,13 +42,19 @@ const STATIC_PATHS = [
 // duplicated rather than imported so this script has no side effects beyond writing
 // SEO'd HTML (generate-sitemap.ts's top-level code writes sitemap.xml as a side effect
 // of being loaded).
+// A commented-out <Route> is not a route. Without this, the `{/* ... HIDDEN */}`
+// line above /project/investor-loan-app's <Navigate> got scraped as a live route
+// and prerendered — shipping the homepage body under a case-study title/canonical.
+const BRAND = "Barsky Design";
+const COMMENTED = /^\s*(\{\/\*|\/\/|\/\*|\*)/;
+
 function getProjectPaths(): string[] {
   const appPath = resolve("src/App.tsx");
   const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
   const found = new Set<string>();
   for (const line of src.split("\n")) {
     const m = /<Route\s+path="(\/(?:project|case-studies)\/[a-z0-9-]+)"/i.exec(line);
-    if (m && !line.includes("Navigate")) {
+    if (m && !line.includes("Navigate") && !COMMENTED.test(line)) {
       found.add(m[1]);
     }
   }
@@ -68,17 +75,62 @@ function getBlogSlugs(): string[] {
   return Array.from(new Set(slugs)).sort();
 }
 
+// Posts with no BLOG_SEO_MAP entry used to ship `Blog Post: <slug>` as their
+// <title> and the site-wide default as their description. blogData.ts can't be
+// imported here (it imports .jpg assets tsx won't resolve), so read the fields
+// out of the source. Regex, not a parser — the file is a flat literal array.
+type BlogMeta = { title: string; excerpt?: string; date?: string; cover?: string };
+/**
+ * Reads `key: "value"` out of a source chunk. Quote-aware via a backreference —
+ * a lazy `[^"'`]+` class stopped at the apostrophe in "…and What It Didn't" and
+ * shipped a title truncated to "What It Didn".
+ */
+function literal(chunk: string, key: string): string | undefined {
+  const m = new RegExp(`\\n\\s*${key}:\\s*(["'\`])((?:\\\\.|(?!\\1)[\\s\\S])*?)\\1`).exec(chunk);
+  // \uXXXX first — a bare /\\(.)/ pass turns "67\\u00a2" into "67u00a2".
+  return m?.[2]
+    .replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/\\(.)/g, "$1");
+}
+function parseBlogMeta(): Record<string, BlogMeta> {
+  const p = resolve("src/data/blogData.ts");
+  if (!existsSync(p)) return {};
+  const out: Record<string, BlogMeta> = {};
+  for (const chunk of readFileSync(p, "utf8").split(/\n\s{2}\{\n/)) {
+    const slug = literal(chunk, "slug");
+    const title = literal(chunk, "title");
+    if (!slug || !title) continue;
+    out[slug] = {
+      title,
+      excerpt: literal(chunk, "excerpt"),
+      date: literal(chunk, "date"),
+      // Undefined for imported-asset covers (`coverImage: someImport`).
+      cover: literal(chunk, "coverImage"),
+    };
+  }
+  return out;
+}
+const BLOG_META = parseBlogMeta();
+
 function seoInputFor(pathname: string): SEOInput {
   if (pathname.startsWith("/blog/")) {
     const slug = pathname.replace("/blog/", "");
     const override = getBlogSEO(slug) || {};
+    const meta = BLOG_META[slug];
+    const published =
+      override.published ??
+      (meta?.date && !Number.isNaN(Date.parse(meta.date))
+        ? new Date(meta.date).toISOString()
+        : undefined);
     return {
       path: pathname,
       kind: "post",
-      title: override.title ?? `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
-      description: override.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
-      image: override.image,
-      published: override.published,
+      // SITE_NAME is 57 chars — appending it puts every title past the ~60 char
+      // SERP cut. BRAND is the short form the BLOG_SEO_MAP titles already use.
+      title: override.title ?? (meta ? `${meta.title} — ${BRAND}` : `Blog Post: ${slug} — ${BRAND}`),
+      description: override.description ?? meta?.excerpt ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
+      image: override.image ?? meta?.cover,
+      published,
       modified: override.modified,
     };
   }
@@ -152,13 +204,19 @@ function renderHead(seo: BuiltSEO): string {
     seo.modifiedTime
       ? `<meta property="article:modified_time" content="${seo.modifiedTime}" />`
       : "",
-    // data-seo-route lets UnifiedSEO see that this route's schema is already
-    // in the document and skip re-emitting an identical block at runtime.
-    // Two identical JSON-LD blocks is what js_rendering_diff flagged as
-    // "schema only present in rendered HTML".
+    // data-seo-route is for debugging only — UnifiedSEO never read it, which is
+    // why two identical JSON-LD blocks shipped on every rendered page until the
+    // data-rh fix below.
     `<script type="application/ld+json" data-seo-route="${new URL(seo.canonical).pathname}">${JSON.stringify(structuredData)}</script>`,
   ];
-  return lines.filter(Boolean).join("\n    ");
+  // Every tag above is also rendered by <UnifiedSEO> at runtime. data-rh is
+  // react-helmet-async's own marker: tagging these hands ownership to Helmet on
+  // mount, so it replaces them instead of appending a second description,
+  // canonical and JSON-LD block to the head of every JS-rendered page.
+  return lines
+    .filter(Boolean)
+    .map((tag) => tag.replace(/^<(\w+)/, '<$1 data-rh="true"'))
+    .join("\n    ");
 }
 
 const BODIES = resolve("prerendered-bodies");

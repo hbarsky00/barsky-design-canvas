@@ -168,7 +168,7 @@
   --chart-5: 346 100% 68%;
 
   /* Award-Winning Gradient System */
-  --gradient-primary: linear-gradient(135deg, hsl(231 92% 58%), hsl(263 85% 67%));
+  --gradient-primary: linear-gradient(135deg, hsl(231 92% 58%), hsl(263 85% 57%));
   --gradient-secondary: linear-gradient(135deg, hsl(220 14% 32%), hsl(220 20% 95%));
   --gradient-accent: linear-gradient(135deg, hsl(263 85% 67%), hsl(284 100% 75%));
   --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 20% 97%));
@@ -419,15 +419,9 @@ select:focus-visible, a:focus-visible,
   margin-right: auto;
   position: relative;
   overflow: hidden;
-  border-radius: 1rem; /* rounded-2xl */
+  border-radius: 4px;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
   background: var(--md-sys-color-surface-container);
-}
-
-@media (min-width: 768px) {
-  .case-study-image-container {
-    border-radius: 1.5rem; /* rounded-3xl on larger screens */
-  }
 }
 
 /* Full-width hero images - maximum impact */
@@ -1033,6 +1027,18 @@ body {
 }
 
 /* Layout Normalization - Section Shell & Content Rails */
+/* ---- Image radius cap: 4px, no exceptions ----
+   The radius was never on the <img> — it came from the overflow-hidden wrapper,
+   where Tailwind's rounded-lg resolves to the Material corner-large token (16px)
+   and rounded-xl to 28px. Capping here instead of retuning the tokens, which
+   buttons and cards also use. rounded-full is exempt so avatars stay circular. */
+img:not([class~="rounded-full"]),
+video:not([class~="rounded-full"]),
+:where(div, figure, a, span, picture):has(> img):not([class~="rounded-full"]),
+:where(div, figure, a, span):has(> video):not([class~="rounded-full"]) {
+  border-radius: 4px;
+}
+
 .section-container {
   @apply max-w-[1280px] mx-auto px-6 md:px-10;
 }
@@ -1195,28 +1201,16 @@ body {
 /* PROJECT PAGE SPECIFIC STYLES */
 /* ---- Container gutters for /projects/ ---- */
 .projects-page .projects-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left));   /* Minimum 16px mobile */
-  padding-right: max(16px, env(safe-area-inset-right));
+  /* No max-width and no horizontal padding here on purpose. This used to cap at
+     1200px and pad 16-24px, while the .section-container inside caps at 1280px
+     and pads 24-40px — so the two stacked and case-study content rendered at
+     1072px on a 1440px screen, visibly narrower than the header's max-w-7xl
+     (1280px) sitting right above it. .section-container is the single owner of
+     page width now; this element only clears the fixed header. */
   padding-top: calc(var(--header-height, 64px) + 12px);
 }
 
 /* Hero sections are handled by their breakout wrapper in the layout */
-
-@media (min-width: 640px) {   /* tablet */
-  .projects-page .projects-wrap { 
-    padding-left: 1rem; 
-    padding-right: 1rem; 
-  }   /* 16px */
-}
-
-@media (min-width: 1024px) {  /* desktop */
-  .projects-page .projects-wrap { 
-    padding-left: 1.5rem; 
-    padding-right: 1.5rem; 
-  } /* 24px */
-}
 
 /* ---- Hero sections remain untouched ---- */
 .projects-page .hero,

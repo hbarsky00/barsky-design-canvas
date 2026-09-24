@@ -36,10 +36,11 @@ const caseStudies: CaseStudy[] = [
     liveUrl: "https://herbalink.live",
     images: {
       primary: "/images/herbalink-promo.png",
-      secondary: "/images/herbalink-promo.png",
+      secondary: "/uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
       alt: "HerbaLink app showing symptom tracker and herbalist finder"
     },
     layout: "side-by-side",
+    video: "/videos/herbalink-card.mp4"
   },
   {
     id: "splittime",
@@ -56,7 +57,20 @@ const caseStudies: CaseStudy[] = [
     },
     layout: "web-mobile",
   },
-  // business-management entry removed
+  {
+    id: "business-management",
+    tags: ["Enterprise", "Analytics", "Dashboard"],
+    title: "68% Fewer Errors: Streamlining Enterprise Operations",
+    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
+    impact: "-68% Manual Entry Errors",
+    url: "/project/business-management",
+    images: {
+      primary: "/images/business-management/hero-three-laptops.jpg",
+      secondary: "/uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
+      alt: "Business management warehouse operations and inventory tracking system"
+    },
+    layout: "side-by-side",
+  },
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
 ];
 

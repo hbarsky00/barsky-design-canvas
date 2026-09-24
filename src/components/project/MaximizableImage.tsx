@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
-import UploadOverlay from "./image/UploadOverlay";
 import ImageErrorFallback from "./image/ImageErrorFallback";
 import EditableCaption from "../caption/EditableCaption";
-import { useImageUploadHandler } from "./image/useImageUploadHandler";
 import AnnotatedImage from "../case-study/AnnotatedImage";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
 
@@ -50,53 +48,11 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
 }) => {
   const { maximizeImage } = useImageMaximizer();
   const [isHovered, setIsHovered] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [imageError, setImageError] = useState(false);
   const showEditingControls = shouldShowEditingControls();
   
-  console.log('🖼️ MaximizableImage: Show editing controls:', showEditingControls);
   
-  const { handleImageReplace } = useImageUploadHandler({
-    projectId,
-    currentSrc,
-    onImageReplace: newSrc => {
-      console.log('✅ MaximizableImage: Image replaced successfully:', newSrc);
-      setCurrentSrc(newSrc);
-      setImageError(false);
-      setIsUploading(false);
-      if (onImageReplace) {
-        onImageReplace(newSrc);
-      }
-    },
-    setCurrentSrc,
-    setImageError,
-    setForceRefresh: () => {}
-  });
-
-  // Handle upload start and completion
-  const handleUploadStart = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!showEditingControls) {
-      event.target.value = '';
-      return;
-    }
-    const file = event.target.files?.[0];
-    if (!file || !projectId) {
-      event.target.value = '';
-      return;
-    }
-    console.log('📤 Starting image upload...');
-    setIsUploading(true);
-    try {
-      await handleImageReplace(event);
-    } catch (error) {
-      console.error('❌ Upload error:', error);
-      setIsUploading(false);
-      setImageError(true);
-    }
-    event.target.value = '';
-  };
-
   // Only update source if prop actually changes
   useEffect(() => {
     if (src !== currentSrc && src) {
@@ -119,23 +75,16 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
     }
   };
 
-  const handleImageRemove = () => {
-    if (onImageRemove && showEditingControls) {
-      console.log('🗑️ Removing image:', currentSrc);
-      onImageRemove();
-    }
-  };
+
 
   const handleImageError = () => {
     console.error('❌ Image failed to load:', currentSrc);
     setImageError(true);
-    setIsUploading(false);
   };
 
   const handleImageLoad = () => {
     console.log('✅ Image loaded successfully:', currentSrc.substring(0, 50) + '...');
     setImageError(false);
-    setIsUploading(false);
   };
 
   const imageTitle = alt || 'Image';
@@ -153,9 +102,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   if (currentSrc === "placeholder") {
     return (
       <figure 
-        className={`relative group overflow-hidden w-full max-w-full ${className}`} 
-        data-lovable-element="image-container" 
-        data-lovable-editable="image-wrapper"
+        className={`relative group overflow-hidden w-full max-w-full ${className}`}
+
         style={aspectRatio ? { aspectRatio } : undefined}
       >
         <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
@@ -188,8 +136,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   //   return (
   //     <figure 
   //       className={`relative group overflow-hidden w-full max-w-full ${className}`}
-  //       data-lovable-element="image-container" 
-  //       data-lovable-editable="image-wrapper"
+  //
+  //
   //       style={aspectRatio ? { aspectRatio } : undefined}
   //     >
   //       <AnnotatedImage
@@ -210,15 +158,27 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   //   );
   // }
 
+  // We only know an image's shape if the caller told us. The old default was a
+  // hard 16/9 box plus object-fit:cover, so anything that wasn't 16:9 got
+  // silently cropped to fit: device mockups lost their edges, 1.60-ratio
+  // screenshots lost ~10% top and bottom, and a 0.46-ratio phone screenshot
+  // (zocdoc-signup.png) was shaved down to a horizontal sliver. When the shape
+  // is unknown, let the image set its own height instead of cutting it to a
+  // guess. Callers that declare aspectRatio or width+height still get a
+  // reserved box, and cover can't crop there because the box matches.
+  const knownAspectRatio =
+    aspectRatio ?? (width && height ? `${width} / ${height}` : undefined);
+  const resolvedFit = knownAspectRatio ? fit : 'contain';
+
   return (
     <figure 
       className={`relative group overflow-hidden cursor-pointer w-full max-w-full ${className}`} 
       onMouseEnter={() => setIsHovered(true)} 
-      onMouseLeave={() => setIsHovered(false)} 
-      data-lovable-element="image-container" 
-      data-lovable-editable="image-wrapper"
-      style={aspectRatio ? { aspectRatio } : undefined}
+      onMouseLeave={() => setIsHovered(false)}
+
+      style={knownAspectRatio ? { aspectRatio: knownAspectRatio } : undefined}
     >
+
       {imageError ? (
         <ImageErrorFallback showEditingControls={showEditingControls} originalSrc={currentSrc} />
       ) : isLoomVideo ? (
@@ -230,7 +190,6 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           allowFullScreen 
           onLoad={handleImageLoad}
           style={{
-            opacity: isUploading ? 0.7 : 1,
             transition: 'opacity 0.3s ease',
             display: 'block',
             maxWidth: '100%',
@@ -249,43 +208,33 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           onClick={handleMaximize} 
           onKeyDown={handleImageKeypress} 
           onError={handleImageError} 
-          onLoad={handleImageLoad} 
-          data-lovable-editable="image" 
+          onLoad={handleImageLoad}
           data-image-src={currentSrc} 
           data-project-id={projectId} 
           tabIndex={0} 
           role="button" 
           aria-label={`Click to view ${alt} in full screen`}
           style={{
-            opacity: isUploading ? 0.7 : 1,
             transition: 'opacity 0.3s ease',
             display: 'block',
             width: '100%',
-            height: fit === 'contain' ? 'auto' : '100%',
+            height: resolvedFit === 'contain' ? 'auto' : '100%',
             maxWidth: '100%',
             imageRendering: 'crisp-edges',
             filter: 'contrast(1.03) saturate(1.02) brightness(1.01)',
             maxHeight: '70vh',
-            objectFit: fit
+            objectFit: resolvedFit
           }} 
-          className={`w-full max-w-full image-high-quality image-drop-shadow ${fit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
+          className={`w-full max-w-full image-high-quality image-drop-shadow ${resolvedFit === 'contain' ? 'h-auto object-contain' : 'h-full object-cover'} transition-transform duration-300 group-hover:scale-105`} 
         />
       )}
       
-      <UploadOverlay isUploading={isUploading} />
-      
-      <ImageOverlay 
-        isHovered={isHovered} 
-        isUploading={isUploading} 
-        imageError={imageError} 
-        showEditingControls={showEditingControls} 
-        hideEditButton={hideEditButton} 
-        allowRemove={allowRemove} 
-        onMaximize={handleMaximize} 
-        onImageReplace={handleUploadStart} 
-        onImageRemove={handleImageRemove} 
+      <ImageOverlay
+        isHovered={isHovered}
+        imageError={imageError}
+        onMaximize={handleMaximize}
       />
-      
+
       <EditableCaption 
         imageSrc={currentSrc} 
         initialCaption={caption || ''} 

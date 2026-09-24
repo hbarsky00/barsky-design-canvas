@@ -34,15 +34,10 @@ const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevel
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
-const StructuredBarskyJointCaseStudy = React.lazy(() => import("@/pages/StructuredBarskyJointCaseStudy"));
-const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy"));
-const StructuredFireLionCaseStudy = React.lazy(() => import("@/pages/StructuredFireLionCaseStudy"));
-const StructuredRingRivalCaseStudy = React.lazy(() => import("@/pages/StructuredRingRivalCaseStudy"));
-const StructuredCatchBuddyCaseStudy = React.lazy(() => import("@/pages/StructuredCatchBuddyCaseStudy"));
+const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/StructuredBusinessManagementCaseStudy"));
+// const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy")); // HIDDEN
 // const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
-
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
-const SeoCheckRunner = React.lazy(() => import("@/pages/SeoCheckRunner"));
 
 
 const queryClient = new QueryClient();
@@ -68,17 +63,12 @@ function AppContent() {
               
               
               {/* Structured case studies - these override the generic ProjectDetail routing */}
-              {/* crypto, dae-search, smarterhealth handled by dynamic route below */}
+              {/* crypto and dae-search are handled by the dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<Navigate to="/" replace />} />
-              <Route path="/project/barskyjoint" element={<Navigate to="/" replace />} />
-              <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} />
-              <Route path="/project/fire-lion" element={<StructuredFireLionCaseStudy />} />
-              <Route path="/project/ring-rival" element={<StructuredRingRivalCaseStudy />} />
-              <Route path="/project/catchbuddy" element={<StructuredCatchBuddyCaseStudy />} />
-              <Route path="/project/dae-search" element={<ProjectDetail />} />
-
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/" replace />} />
+              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              {/* <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} /> HIDDEN */}
+              <Route path="/project/investor-loan-app" element={<Navigate to="/" replace />} />
+              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />
@@ -100,9 +90,6 @@ function AppContent() {
               
               {/* Hidden content export route */}
               <Route path="/admin/content-export-2024" element={<ContentExport />} />
-
-              {/* SEO verification route */}
-              <Route path="/__seo-check" element={<SeoCheckRunner />} />
               
               {/* Catch all - redirect to home */}
               <Route path="*" element={<Navigate to="/" replace />} />

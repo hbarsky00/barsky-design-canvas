@@ -45,7 +45,6 @@ export default tseslint.config(
   {
     files: [
       "src/utils/seo/**/*",
-      "supabase/functions/seo-handler/**/*",
       "src/components/seo/UnifiedSEO.tsx",
     ],
     rules: {

@@ -30,75 +30,56 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
-    id: "fire-lion",
-    tags: ["AI-Assisted Product", "Game Design", "Solo Build"],
-    title: "Fire Lion",
-    description: "A one-tap arcade runner where you spell words mid-flight to cast spells. Built solo with AI as co-builder.",
-    impact: "",
-    url: "/project/fire-lion",
-    liveUrl: "https://firelion.me",
+    id: "dae-search",
+    tags: ["Enterprise", "Search", "Data Discovery"],
+    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
+    description: "Redesigned an enterprise search platform that transformed how teams discover and access critical business data. Through semantic search and visual data lineage, we reduced information retrieval time by 65% and delivered measurable ROI.",
+    impact: "20% ROI from Better Data Discovery",
+    url: "/project/dae-search",
     images: {
-      primary: "/images/firelion-hero-title.webp",
-      alt: "Fire Lion gameplay"
+      primary: "/images/dae-search/hero.webp",
+      alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/fire-lion-hero.mp4"
+    layout: "side-by-side"
   },
   {
-    id: "ring-rival",
-    tags: ["AI-Assisted Product", "Mobile Web", "Game Design"],
-    title: "Ring-Rival",
-    description: "Console boxing feel on the mobile web — distinct AI opponents, AI-generated trash talk, career mode. Built solo with AI as a co-builder.",
-    impact: "",
-    url: "/project/ring-rival",
-    liveUrl: "https://rival.li",
+    id: "business-management",
+    tags: ["Enterprise", "Small Business", "Automation"],
+    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
+    impact: "68% Fewer Operation Errors",
+    url: "/project/business-management",
     images: {
-      primary: "/images/ringrival-hero-title.webp",
-      alt: "Ring-Rival mobile boxing gameplay"
+      primary: "/images/business-management/hero-three-laptops.jpg",
+      alt: "Business management warehouse operations and inventory tracking system"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/ring-rival-hero.mp4"
+    layout: "side-by-side"
   },
   {
-    id: "catchbuddy",
-    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First"],
-    title: "CatchBuddy",
-    description: "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps.",
-    impact: "",
-    url: "/project/catchbuddy",
-    liveUrl: "https://catchbuddy.me",
+    id: "email-creation-ai",
+    tags: ["Pharma", "Gen AI", "Workflow Design"],
+    title: "40% Faster Pharma Campaigns With AI-Powered Email Creation",
+    description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
+    impact: "40% Faster Campaign Production",
+    url: "/project/email-creation-ai",
     images: {
-      primary: "/images/catchbuddy-hero-landing.webp",
-      alt: "CatchBuddy pickup sports app"
+      primary: "/images/email-ai-promo.webp",
+      alt: "AI-powered pharma email creation workflow interface"
     },
-    layout: "side-by-side",
-    video: "/lovable-uploads/catchbuddy-hero.mp4"
+    layout: "side-by-side"
   },
+  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
     id: "herbalink",
-    tags: ["Health", "Marketplace", "Trust & Safety"],
-    title: "HerbaLink",
-    description: "A booking platform for herbalists, built around the realization that the actual product is trust, not search.",
-    impact: "",
+    tags: ["Blue Sky", "Design Thinking", "GenAI"],
+    title: "HerbaLink: 3× More Bookings for Certified Herbalists",
+    description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
+    impact: "3× Practitioner Bookings",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
       primary: "/images/herbalink/card-poster-home.jpg",
       alt: "HerbaLink practitioner booking interface"
-    },
-    layout: "side-by-side",
-    video: "/herbalink-card.mp4"
-  },
-  {
-    id: "dae-search",
-    tags: ["Enterprise", "Data Discovery", "Search UX"],
-    title: "DAE Search",
-    description: "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
-    impact: "",
-    url: "/project/dae-search",
-    images: {
-      primary: "/images/dae-search/hero.webp",
-      alt: "DAE Search platform interface"
     },
     layout: "side-by-side"
   }
@@ -120,16 +101,6 @@ const CaseStudyCard: React.FC<{
   const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
 
   // Debug logging
-  if (study.id === 'smarterhealth') {
-    console.log('🔍 Smarter Health Debug:', {
-      studyId: study.id,
-      video: study.video,
-      primaryImage: study.images.primary,
-      showPlaceholder,
-      needsVideoPlaceholder: needsPlaceholder(study.video),
-      needsImagePlaceholder: needsPlaceholder(study.images.primary)
-    });
-  }
 
   const renderMedia = () => {
     if (showPlaceholder) {

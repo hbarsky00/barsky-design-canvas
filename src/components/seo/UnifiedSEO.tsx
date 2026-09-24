@@ -40,7 +40,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `${blogPost.title} — ${SEO_CONSTANTS.SITE_NAME}`,
+          title: `${blogPost.title} — ${SEO_CONSTANTS.BRAND}`,
           description: blogPost.excerpt,
           image: blogPost.coverImage,
           published: new Date(blogPost.date).toISOString(),
@@ -53,7 +53,7 @@ const UnifiedSEO: React.FC = () => {
         seoInput = {
           path: pathname,
           kind: 'post',
-          title: `Blog Post: ${slug} — ${SEO_CONSTANTS.SITE_NAME}`,
+          title: `Blog Post: ${slug} — ${SEO_CONSTANTS.BRAND}`,
           description: SEO_CONSTANTS.DEFAULT_DESCRIPTION
         };
       }
@@ -134,7 +134,9 @@ const UnifiedSEO: React.FC = () => {
       <title>{seoData.title}</title>
       <meta name="description" content={seoData.description} />
       <link rel="canonical" href={seoData.canonical} />
-      <meta name="robots" content="index, follow" />
+      {/* No robots meta here — index.html already ships a richer one
+          (max-image-preview:large, max-snippet:-1). Rendering a second, weaker
+          "index, follow" left two robots tags in the head of every page. */}
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />

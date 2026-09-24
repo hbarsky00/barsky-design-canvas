@@ -1,1 +1,0 @@
-UPDATE public.seo_meta SET og_image = REPLACE(og_image, '/images/hiram-barsky-headshot.jpg', '/images/hiram-barsky-profile.png') WHERE og_image ILIKE '%hiram-barsky-headshot%';

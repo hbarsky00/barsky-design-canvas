@@ -67,11 +67,6 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
 
 // Project-specific SEO mappings
 export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
-  "smarterhealth": {
-    title: "Smarter Health | Healthcare App UX Case Study — Barsky Design",
-    description: "Healthcare app that made medication tracking 45% faster and appointment adherence 60% higher for diabetic patients through empathy-driven design.",
-    image: "https://barskydesign.pro/images/smarterhealth-desktop-1.webp"
-  },
   "crypto": {
     title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
@@ -97,26 +92,11 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.",
     image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
   },
-  "medication-app": {
-    title: "Healthcare Medication App | Patient Safety UX Case Study — Barsky Design",
-    description: "Mobile-first medication management improving adherence 35% with smart reminders, barcode scanning, and caregiver visibility across iOS and Android.",
-    image: "https://barskydesign.pro/images/medication-app-desktop-1.webp"
-  },
-  "gold2crypto": {
-    title: "Crypto Exchange Onboarding | Fintech UX Case Study — Barsky Design",
-    description: "Reduced crypto exchange drop-off 50% with simplified KYC, progressive disclosure, and clear risk communication for gold-to-cryptocurrency conversion.",
-    image: "https://barskydesign.pro/images/gold2crypto-desktop-1.webp"
-  },
   "dae-search": {
     title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design",
     description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",
     image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
   },
-  "barskyjoint": {
-    title: "Restaurant Ordering System | Food Tech UX Case Study — Barsky Design",
-    description: "End-to-end restaurant ordering experience that increased average ticket size 25% through menu clarity, guided customization, and seamless web/kiosk checkout.",
-    image: "https://barskydesign.pro/images/barskyjoint-desktop-1.webp"
-  }
 };
 
 // Blog post image mappings with enhanced SEO-optimized data

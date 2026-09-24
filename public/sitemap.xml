@@ -51,32 +51,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/catchbuddy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://barskydesign.pro/project/dae-search</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://barskydesign.pro/project/fire-lion</loc>
+    <loc>https://barskydesign.pro/project/business-management</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://barskydesign.pro/project/herbalink</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/project/investor-loan-app</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://barskydesign.pro/project/ring-rival</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -92,6 +77,11 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/ai-enhanced-ux-designer-future</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/ai-powered-prototype-weekend</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -121,6 +111,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/chatgpt-vs-claude-vs-gemini-for-ux</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/demo-works-shipping-is-different</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -141,12 +136,27 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/designing-ai-native-interfaces</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/designing-for-trust-when-the-product-is-the-risk</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/designing-trust-into-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/everyones-portfolio-looks-good-now</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/figma-to-production-with-ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -172,6 +182,16 @@
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/if-you-make-people-do-math</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/learning-ai-design-with-claude</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/prompt-engineering-for-designers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

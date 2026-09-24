@@ -21,46 +21,10 @@ export const useOpenAiCaptions = () => {
     
     console.log('🤖 OpenAI Caption: Analyzing image:', imageSrc.substring(0, 50) + '...', 'Project:', projectContext);
     
-    try {
-      const functionUrl = `https://ctqttomppgkjbjkckise.supabase.co/functions/v1/generate-image-caption`;
-      
-      const response = await fetch(functionUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0cXR0b21wcGdramJqa2NraXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Mjg1MzMsImV4cCI6MjA2MDAwNDUzM30.q15G4xYUtQqi7kdlha0C31LaIlYWBqPbIit-e9wq48Q`,
-          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0cXR0b21wcGdramJqa2NraXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ0Mjg1MzMsImV4cCI6MjA2MDAwNDUzM30.q15G4xYUtQqi7kdlha0C31LaIlYWBqPbIit-e9wq48Q',
-        },
-        body: JSON.stringify({ 
-          imageSrc,
-          contextType: 'project',
-          projectContext
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to generate caption: ${response.status}`);
-      }
-
-      const result = await response.json();
-      
-      if (result.error || !result.caption) {
-        throw new Error(result.error || 'No caption received');
-      }
-      
-      let caption = result.caption.trim();
-      
-      console.log('✅ AI Caption received:', caption);
-      return { caption };
-      
-    } catch (error) {
-      console.warn('⚠️ Caption generation failed, using fallback:', error instanceof Error ? error.message : 'Unknown error');
-      
-      return { 
-        caption: getProjectSpecificFallback(imageIndex || 0, projectContext || ''),
-        error: error instanceof Error ? error.message : 'Unknown error'
-      };
-    }
+    // The generate-image-caption edge function lived on the Lovable Supabase
+    // project, which no longer resolves. Captions come from the static
+    // fallbacks; nothing calls out.
+    return { caption: getProjectSpecificFallback(imageIndex || 0, projectContext || '') };
   };
 
   const getProjectSpecificFallback = (index: number, projectContext: string) => {
@@ -133,8 +97,6 @@ export const useOpenAiCaptions = () => {
     let projectContext = `${projectId} application interface`;
     if (projectId === 'splittime') {
       projectContext = 'splittime co-parenting family coordination app';
-    } else if (projectId === 'barskyjoint') {
-      projectContext = 'barskyjoint food truck restaurant ordering platform';
     } else if (projectId === 'herbalink') {
       projectContext = 'herbalink herbal medicine wellness platform';
     }

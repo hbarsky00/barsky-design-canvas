@@ -34,7 +34,7 @@
       ]
     },
     {
-      "source": "/lovable-uploads/(.*)",
+      "source": "/uploads/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

@@ -1,0 +1,3 @@
+import { createServer } from 'http'; import { readFileSync, existsSync, statSync } from 'fs';
+const T={js:'text/javascript',css:'text/css',html:'text/html',webp:'image/webp',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',gif:'image/gif',svg:'image/svg+xml',mp4:'video/mp4',json:'application/json',xml:'text/xml',txt:'text/plain',woff2:'font/woff2'};
+createServer((q,r)=>{let f='dist'+decodeURIComponent(q.url.split('?')[0]); if(existsSync(f)&&statSync(f).isDirectory())f=f.replace(/\/?$/,'/index.html'); if(!existsSync(f)){r.statusCode=404;f='dist/spa-shell.html';} r.setHeader('content-type',T[f.split('.').pop()]||'application/octet-stream'); r.end(readFileSync(f));}).listen(4197);

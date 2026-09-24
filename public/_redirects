@@ -1,22 +1,49 @@
-# Regenerated 2026-09-21 for the May 18 restore.
-# One 200 per prerendered route so Netlify serves the baked HTML; the SPA
-# shell for the client-only routes; everything else is a 404 via the shell.
+# Regenerated 2026-09-22 for the May 15 restore (596cda0e, 2:38 PM).
 
 # Legacy URLs still in Google's index
 /get-started           /contact                            301
-/$1                    /                                   301
-/projects              /#projects                          301!
 /web-development       /design-services/web-development    301
 /ux-ui-design          /design-services/ux-ui-design       301
 /mobile-app-design     /design-services/mobile-app-design  301
 /case-studies/*        /project/:splat                     301
-/project/barskyjoint   /                                   301
-/project/wholesale-distribution   /                                   301
-/project/business-management      /                                   301
+/case-studies          /                                   301
+
+# Case studies that are in Google's index from the Aug 7 build but don't exist at
+# May 15. Without these they fall through to the /* 404 rule. The seven AI/tooling
+# blog posts used to be 301'd here too — they were carried forward into
+# blogData.ts instead (2026-09-24), so they're real pages again.
+/project/nudgeme            /                                   301
+/project/crypto             /                                   301
+/project/qr-code-builder    /                                   301
+/project/roi-design-builder /                                   301
+/project/splittime          /                                   301
+/project/valora-bet         /                                   301
 /project/farmflow      /                                   301
 /project/bz-essentials /                                   301
 /project/recast        /                                   301
 /project/stips         /                                   301
+/project/catchbuddy    /                                   301
+/project/fire-lion     /                                   301
+/project/ring-rival    /                                   301
+
+/project/barskyjoint   /                                   301
+
+# Hidden in src/App.tsx (the case-study route is commented out and <Navigate>s to
+# /). It used to be prerendered anyway — the SEO scripts scraped the commented-out
+# <Route> line — and shipped the homepage body under a fintech title + its own
+# canonical. Server-side 301 now, no prerendered file to shadow it.
+/project/investor-loan-app  /                                   301
+
+# ManuscriptRx pulled 2026-09-24 at Hiram's call. The case-study data stays in
+# structuredCaseStudies.ts — only the routing is gone, so it's one list entry to
+# bring back. No prerendered file, so this 301 isn't shadowed.
+/project/email-creation-ai  /                                   301
+
+/project/gold2crypto        /                                   301
+
+/project/medication-app     /                                   301
+
+/project/smarterhealth      /                                   301
 
 # Prerendered routes
 /                                                    /index.html                                          200
@@ -38,14 +65,8 @@
 /blog/                                               /blog/index.html                                     200
 /project/herbalink                                   /project/herbalink/index.html                        200
 /project/herbalink/                                  /project/herbalink/index.html                        200
-/project/investor-loan-app                           /project/investor-loan-app/index.html                200
-/project/investor-loan-app/                          /project/investor-loan-app/index.html                200
-/project/fire-lion                                   /project/fire-lion/index.html                        200
-/project/fire-lion/                                  /project/fire-lion/index.html                        200
-/project/ring-rival                                  /project/ring-rival/index.html                       200
-/project/ring-rival/                                 /project/ring-rival/index.html                       200
-/project/catchbuddy                                  /project/catchbuddy/index.html                       200
-/project/catchbuddy/                                 /project/catchbuddy/index.html                       200
+/project/business-management                         /project/business-management/index.html              200
+/project/business-management/                        /project/business-management/index.html              200
 /project/dae-search                                  /project/dae-search/index.html                       200
 /project/dae-search/                                 /project/dae-search/index.html                       200
 /blog/a-filter-nobody-opens                          /blog/a-filter-nobody-opens/index.html               200
@@ -118,8 +139,8 @@
 # SPA shell for the client-only routes
 /store/product/*                 /spa-shell.html   200
 /store/success                   /spa-shell.html   200
-/__seo-check                     /spa-shell.html   200
 /admin/content-export-2024       /spa-shell.html   200
+/projects                        /spa-shell.html   200
 
 # Anything else is a 404, served by the shell so the SPA can show its own page
 /*                               /spa-shell.html   404

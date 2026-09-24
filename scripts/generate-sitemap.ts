@@ -36,6 +36,10 @@ const staticEntries: Entry[] = [
   { path: "/contact", changefreq: "monthly", priority: "0.7" },
   { path: "/store", changefreq: "weekly", priority: "0.7" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  // Served by the /project/:projectId catch-all, so getProjectPaths() below can't
+  // see them — but both are prerendered by inject-seo-html.ts and indexable, and
+  // both were missing from the sitemap entirely.
+  { path: "/project/dae-search", changefreq: "monthly", priority: "0.8" },
   // "/projects" is gone from here on purpose: it 301s to /#case-studies.
   // A sitemap must only list canonical 200s, and this one answered 200 with an
   // empty body at priority 0.9 — the strongest crawl signal on the site pointed
@@ -48,13 +52,18 @@ const staticEntries: Entry[] = [
 // unrelated route sitting a line or two below it — this previously dropped
 // /project/herbalink from the sitemap because /project/barskyjoint's Navigate fell
 // inside the old 400-char window.
+// A commented-out <Route> is not a route. Without this, the `{/* ... HIDDEN */}`
+// line above /project/investor-loan-app's <Navigate> got scraped as a live route
+// and prerendered — shipping the homepage body under a case-study title/canonical.
+const COMMENTED = /^\s*(\{\/\*|\/\/|\/\*|\*)/;
+
 function getProjectPaths(): string[] {
   const appPath = resolve("src/App.tsx");
   const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
   const found = new Set<string>();
   for (const line of src.split("\n")) {
     const m = /<Route\s+path="(\/(?:project|case-studies)\/[a-z0-9-]+)"/i.exec(line);
-    if (m && !line.includes("Navigate")) {
+    if (m && !line.includes("Navigate") && !COMMENTED.test(line)) {
       found.add(m[1]);
     }
   }
