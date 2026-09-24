@@ -212,6 +212,19 @@ const MinimalHero: React.FC = () => {
                            bg-clip-text text-transparent mb-2 sm:mb-3 lg:mb-3 xl:mb-4 2xl:mb-4 leading-[1.706]">
                 Passion for High Craft, Gen AI, Cyber & Fintech
               </div>
+
+              {/* Nothing above the fold said what Hiram does that the
+                  alternatives — an agency, a designer plus a separate dev, or
+                  just prompting an AI tool — can't. This line is his settled
+                  positioning, lifted verbatim from the llms.txt preamble where
+                  it was only ever visible to AI crawlers. Not paraphrased:
+                  that file marks it as settled copy. */}
+              <p className="mx-auto max-w-2xl lg:max-w-3xl text-base sm:text-lg lg:text-xl
+                           text-gray-700 leading-relaxed">
+                I design and develop SaaS, web apps, mobile apps and internal tools — one
+                person, from product design through React front end, database and launch.
+                15+ years across fintech, healthcare and pharma.
+              </p>
             </motion.div>
             
             {/* Combined Hiram Barsky on one line */}

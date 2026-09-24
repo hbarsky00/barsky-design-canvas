@@ -74,7 +74,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "herbalink": {
     title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
-    description: "HIPAA-compliant herbalist marketplace design that increased certified provider bookings 45% and patient retention 30% through trustworthy UX and streamlined scheduling.",
+    description: "Herbalist marketplace design built around credential verification, herb safety information and guided matching — so people can tell who is qualified before they book.",
     image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
   },
   "splittime": {

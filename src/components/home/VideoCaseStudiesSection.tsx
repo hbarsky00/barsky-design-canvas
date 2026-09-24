@@ -72,7 +72,7 @@ const caseStudies: CaseStudy[] = [
   {
     id: "herbalink",
     tags: ["Blue Sky", "Design Thinking", "GenAI"],
-    title: "HerbaLink: 3× More Bookings for Certified Herbalists",
+    title: "HerbaLink: Credential Trust for Certified Herbalists",
     description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
     impact: "3× Practitioner Bookings",
     url: "/project/herbalink",

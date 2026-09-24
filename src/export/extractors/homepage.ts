@@ -44,7 +44,7 @@ export function extractHomepageContent(): SectionExport[] {
             h3: "",
             body: "Recent work in healthcare, fintech, co-parenting, and AI platforms.",
             bullets: [
-              "HerbaLink – 3× More Bookings for Certified Herbalists",
+              "HerbaLink – Credential Trust for Certified Herbalists",
               "SplitTime – Simplifying Co-Parenting with Better Planning",
               "Business Management – Streamlined Operations Platform",
               "Investor Loan App – Faster Fintech Underwriting"

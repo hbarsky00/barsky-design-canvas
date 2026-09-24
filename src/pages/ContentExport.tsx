@@ -124,7 +124,7 @@ const ContentExport: React.FC = () => {
                 h3: '',
                 body: '',
                 bullets: [
-                  'HerbaLink – 3× More Bookings for Certified Herbalists',
+                  'HerbaLink – Credential Trust for Certified Herbalists',
                   'SplitTime – Simplifying Co-Parenting with Better Planning',
                   'Business Management – Streamlined Operations Platform',
                   'Investor Loan App – Faster Fintech Underwriting'

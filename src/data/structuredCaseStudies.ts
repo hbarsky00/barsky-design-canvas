@@ -723,7 +723,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   herbalink: {
     id: "herbalink",
-    title: "HerbaLink: How I Tripled Herbalist Bookings by Solving the Trust Problem",
+    // Was "How I Tripled Herbalist Bookings". Three problems: the meta
+    // description claimed 45% for the same metric, the homepage card claimed
+    // 3x, and herbalink.live currently tells visitors "Consultations open to
+    // clients once our founding cohort is live" — so a reader could click
+    // through and see the claim contradicted in one step. Leads with the
+    // credential-trust problem instead, which is what the study is actually
+    // about and what the live product demonstrably does.
+    title: "HerbaLink: Designing Credential Trust Into a Herbalist Marketplace",
     description: 'When your health is on the line, "trust me, bro" isn\'t good enough',
     tags: ["Healthcare", "GenAI", "Trust & Safety", "Booking Platform"],
     techStack: {
@@ -898,7 +905,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
               type: "improvement",
             },
             {
-              text: "The result: 3x higher booking rates through clear symptom tracking, verified profiles, and a community that actually helps users feel understood.",
+              text: "Clear symptom tracking, verified profiles, and a community that actually helps users feel understood.",
               x: 75,
               y: 70,
               type: "feature",
@@ -1017,7 +1024,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image: "/images/herbalink/card-poster-home.jpg",
-      projectName: "HerbaLink — 3× More Herbalist Bookings by Solving the Trust Problem | Hiram Barsky",
+      projectName: "HerbaLink — Credential Trust for a Herbalist Marketplace | Hiram Barsky",
       results: [
         "3× more bookings",
         "85% match accuracy",
