@@ -118,6 +118,14 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 
 // Enhanced blog post SEO data
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published?: string; modified?: string; }> = {
+  // SERP title only — the post keeps its full headline on the page. With the
+  // brand suffix dropped it still ran 64 chars; this is the same title minus
+  // the trailing "and Uncertainty".
+  "designing-trust-into-ai": {
+    title: "Designing Trust into AI: Handling Hallucinations",
+    description:
+      "What to show a user when the model is not sure, and how to design the moment an AI gets something wrong.",
+  },
   "a-filter-nobody-opens": {
     title: "A Filter Nobody Opens Isn't a Feature",
     description: "Some content is global, some regional. Put that in a filter menu and the person who most needs it never sees it, because they arrived from a link.",
@@ -255,7 +263,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years in the field."
   },
   "design-systems-that-get-used": {
-    title: "Building Design Systems That Work | Practical Implementation Guide — Barsky Design",
+    title: "Building Design Systems That Work | Implementation Guide",
     description: "Stop building design systems that get ignored. Learn how to create systems teams actually use with practical governance, documentation, and adoption strategies."
   },
   "portfolio-red-flags-no-interviews": {

@@ -40,6 +40,24 @@ export function toAbs(url?: string): string {
     : `${SEO_CONSTANTS.BASE_URL}${url.startsWith("/") ? url : `/${url}`}`;
 }
 
+/**
+ * Google truncates titles around 60-62 characters. 20 of the 52 pages ran over,
+ * and every single one was pushed over by the " — Barsky Design" suffix alone —
+ * the headline itself always fit. So drop the suffix rather than reword: the
+ * headline is the part that earns the click, and Google appends the site name
+ * itself anyway.
+ *
+ * Lives in buildSEO because both the static injector (inject-seo-html.ts) and
+ * the runtime component (UnifiedSEO) call it — putting the rule anywhere else
+ * would let the prerendered title and the hydrated one drift apart.
+ */
+const TITLE_BUDGET = 62;
+const fitTitle = (title: string): string => {
+  if (title.length <= TITLE_BUDGET) return title;
+  const suffix = ` — ${SEO_CONSTANTS.BRAND}`;
+  return title.endsWith(suffix) ? title.slice(0, -suffix.length) : title;
+};
+
 export function buildSEO(input: SEOInput): BuiltSEO {
   // Normalize canonical URL - ensure homepage gets trailing slash, others don't
   let canonicalPath = input.path.replace(/[?#].*$/, "");
@@ -58,7 +76,7 @@ export function buildSEO(input: SEOInput): BuiltSEO {
   const imageAbs = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
 
   return {
-    title: input.title ?? SEO_CONSTANTS.SITE_NAME,
+    title: fitTitle(input.title ?? SEO_CONSTANTS.SITE_NAME),
     description: input.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
     canonical,
     type: isArticle ? 'article' : 'website',

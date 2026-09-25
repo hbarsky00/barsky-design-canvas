@@ -5,8 +5,12 @@
 /web-development       /design-services/web-development    301
 /ux-ui-design          /design-services/ux-ui-design       301
 /mobile-app-design     /design-services/mobile-app-design  301
-/case-studies/*        /project/:splat                     301
+# Order matters: /case-studies/* also matches the bare /case-studies with an
+# empty splat, sending it to /project/ — which 404s. The exact rule has to come
+# first. /case-studies was in the pre-restore sitemap, so it is likely indexed.
 /case-studies          /                                   301
+/case-studies/         /                                   301
+/case-studies/*        /project/:splat                     301
 
 # Case studies that are in Google's index from the Aug 7 build but don't exist at
 # May 15. Without these they fall through to the /* 404 rule. The seven AI/tooling
