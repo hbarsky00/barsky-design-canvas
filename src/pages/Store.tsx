@@ -128,15 +128,15 @@ const Store: React.FC = () => {
                 </div>
                 <ul className="mt-6 space-y-3">
                   <li className="leading-relaxed">
-                    <a href="/blog/case-study-writing" className="text-primary font-semibold underline underline-offset-2">How to write a case study</a>
+                    <Link to="/blog/case-study-writing" className="text-primary font-semibold underline underline-offset-2">How to write a case study</Link>
                     <span className="text-muted-foreground"> — the structure these templates follow.</span>
                   </li>
                   <li className="leading-relaxed">
-                    <a href="/blog/everyones-portfolio-looks-good-now" className="text-primary font-semibold underline underline-offset-2">Everyone's portfolio looks good now</a>
+                    <Link to="/blog/everyones-portfolio-looks-good-now" className="text-primary font-semibold underline underline-offset-2">Everyone's portfolio looks good now</Link>
                     <span className="text-muted-foreground"> — why visual polish stopped being a differentiator.</span>
                   </li>
                   <li className="leading-relaxed">
-                    <a href="/blog/a-to-do-app-doesnt-prove-anything" className="text-primary font-semibold underline underline-offset-2">A to-do app doesn't prove anything</a>
+                    <Link to="/blog/a-to-do-app-doesnt-prove-anything" className="text-primary font-semibold underline underline-offset-2">A to-do app doesn't prove anything</Link>
                     <span className="text-muted-foreground"> — picking work that is worth writing up.</span>
                   </li>
                 </ul>

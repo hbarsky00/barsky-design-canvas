@@ -3,6 +3,7 @@ import React from "react";
 import { imgDims } from "@/utils/imageDims";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/shared/SectionHeader";
@@ -104,9 +105,9 @@ const MediaLink: React.FC<{
   study.hasDetail === false ? (
     <div className={className}>{children}</div>
   ) : (
-    <a href={study.url} className={className} aria-label={`Read the ${study.title} case study`}>
+    <Link to={study.url} className={className} aria-label={`Read the ${study.title} case study`}>
       {children}
-    </a>
+    </Link>
   );
 
 const CaseStudyCard: React.FC<{ 
@@ -241,7 +242,7 @@ const CaseStudyCard: React.FC<{
           <div className="flex flex-row gap-3 pt-2">
             {study.hasDetail !== false && (
               <Button asChild variant="case-study" className="flex-1">
-                <a href={study.url}>View Case Study</a>
+                <Link to={study.url}>View Case Study</Link>
               </Button>
             )}
             {study.liveUrl && (
@@ -333,7 +334,7 @@ const CaseStudyCard: React.FC<{
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     {study.hasDetail !== false && (
                       <Button asChild variant="case-study" className="flex-1 sm:flex-none">
-                        <a href={study.url}>View Case Study</a>
+                        <Link to={study.url}>View Case Study</Link>
                       </Button>
                     )}
                     {study.liveUrl && (
