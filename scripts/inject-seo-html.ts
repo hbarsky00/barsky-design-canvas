@@ -297,7 +297,20 @@ function main() {
   // fall back to dist/index.html — which now carries the homepage's prerendered
   // body — so every unmatched URL would serve homepage content, turning 404s
   // into soft 200s just after we finished redirecting the last batch away.
-  writeFileSync(resolve(DIST, "spa-shell.html"), template);
+  // The shell had no <title> at all, so every 404 was a titleless document. A 404
+  // status already keeps it out of the index; the noindex is belt-and-braces for
+  // the two client-only routes that legitimately serve the shell at 200.
+  // Replace any existing robots meta rather than appending: the template carries
+  // an index,follow directive, and two robots metas let the permissive one win.
+  const shell = template
+    .replace(/\s*<meta\s+name="robots"[^>]*>/gi, "")
+    .replace(
+      "</head>",
+      '    <title>Page not found — Barsky Design</title>\n' +
+        '    <meta name="robots" content="noindex, follow" />\n' +
+        "  </head>"
+    );
+  writeFileSync(resolve(DIST, "spa-shell.html"), shell);
 
   console.log(
     `SEO HTML written for ${routes.length} routes ` +

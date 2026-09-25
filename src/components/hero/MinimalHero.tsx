@@ -298,7 +298,7 @@ const MinimalHero: React.FC = () => {
           </motion.a>
 
           <motion.a
-            href="https://www.linkedin.com/in/hiram-barsky/"
+            href="https://www.linkedin.com/in/hiram-barsky"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit LinkedIn"

@@ -14,130 +14,137 @@ interface SEOData {
   tags?: string[];
 }
 
+// Stable @id anchors. Without these every node was an island: Organization,
+// WebSite, WebPage and the article entity had no way to reference each other, so
+// they read as unrelated fragments instead of one graph.
+const SITE = "https://barskydesign.pro";
+export const ORG_ID = `${SITE}/#organization`;
+export const PERSON_ID = `${SITE}/#hiram-barsky`;
+export const WEBSITE_ID = `${SITE}/#website`;
+
+// Only profiles that are linked from the site itself. The old SOCIAL_PROFILES
+// list pointed at /in/hirambarsky and github.com/hirambarsky, neither of which
+// matches the links in the footer, contact page or hero.
+const SAME_AS = [
+  "https://www.linkedin.com/in/hiram-barsky",
+  "https://github.com/hbarsky00",
+];
+
 export const generateStructuredData = (seoData: SEOData) => {
   const canonicalUrl = seoData.canonicalUrl || seoData.canonical;
-  
+
+  // The page-level entity is ALWAYS WebPage. It used to be retyped as "Article"
+  // whenever type === 'article', and carried `name` instead of `headline` — so 43
+  // pages shipped an Article missing the one property Google requires, sitting
+  // next to a perfectly good BlogPosting. The article entity is emitted below.
   const baseStructuredData: any = {
     "@context": "https://schema.org",
-    "@type": seoData.type === 'article' ? "Article" : "WebPage",
+    "@type": "WebPage",
+    "@id": canonicalUrl ? `${canonicalUrl}#webpage` : undefined,
     name: seoData.title,
     description: seoData.description,
     url: canonicalUrl,
+    inLanguage: "en-US",
+    isPartOf: { "@id": WEBSITE_ID },
+    ...(seoData.image && { primaryImageOfPage: seoData.image }),
     ...(seoData.image && { image: seoData.image })
   };
 
-  // Add Organization schema for all pages
+  // The canonical Person node. Hiram previously existed only nested inside
+  // Organization.founder and inside each author — never as an addressable entity,
+  // on a site whose entire ranking thesis is his name.
+  const personSchema: any = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: "Hiram Barsky",
+    url: `${SITE}/about`,
+    jobTitle: "Product Designer & Front-End Developer",
+    description:
+      "Designs and develops SaaS, web apps, mobile apps and internal tools — one person, from product design through React front end, database and launch. 15+ years across fintech, healthcare and pharma.",
+    knowsAbout: [
+      "Product design",
+      "UX research",
+      "Design systems",
+      "React",
+      "Front-end development",
+      "Accessibility",
+      "Fintech",
+      "Healthcare software",
+      "Pharma workflows"
+    ],
+    sameAs: SAME_AS,
+    worksFor: { "@id": ORG_ID }
+  };
+
   const organizationSchema: any = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Hiram Barsky Design",
-    url: "https://barskydesign.pro",
-    logo: "https://barskydesign.pro/logo.png",
+    "@id": ORG_ID,
+    // Was "Hiram Barsky Design" here and "Barsky Design" in index.html — two
+    // names for one entity.
+    name: "Barsky Design",
+    url: SITE,
+    logo: `${SITE}/logo.png`,
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
       email: "hbarsky01@gmail.com"
     },
-    founder: {
-      "@type": "Person",
-      name: "Hiram Barsky",
-      jobTitle: "UX/UI Designer & AI Developer",
-      description: "Product Designer & Gen AI Developer with 15+ years experience in fintech, healthcare, and SaaS"
-    },
-    serviceArea: "United States",
-    priceRange: "$$$"
+    founder: { "@id": PERSON_ID },
+    sameAs: SAME_AS,
+    areaServed: "US"
   };
 
-  const schemas: any[] = [baseStructuredData, organizationSchema];
+  const schemas: any[] = [baseStructuredData, personSchema, organizationSchema];
 
-  // Add specific schemas based on content type
-  if (seoData.type === 'article' || seoData.kind === 'post') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
-    const blogPostSchema: any = {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: seoData.title,
-      description: seoData.description,
-      url: canonicalUrl,
-      datePublished,
-      ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: {
-        "@type": "Person",
-        name: seoData.author || "Hiram Barsky"
-      },
-      ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
-      ...(seoData.image && { image: seoData.image })
-    };
-    schemas.push(blogPostSchema);
-  }
+  // A case study is not a blog post. Both branches used to fire for projects,
+  // which is how /project/* ended up with Article AND BlogPosting.
+  const isProject = seoData.kind === 'project';
+  const isPost = !isProject && (seoData.type === 'article' || seoData.kind === 'post');
 
-  // Add Article schema for projects/case studies (editorial content, not products)
-  if (seoData.kind === 'project') {
-    const datePublished =
-      seoData.publishedTime || seoData.published || '2024-01-01T00:00:00Z';
+  if (isProject || isPost) {
+    // No date fallback. This used to default to '2024-01-01T00:00:00Z' — a
+    // fabricated publication date in structured data. Omit it instead.
+    const datePublished = seoData.publishedTime || seoData.published;
     const articleSchema: any = {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": isProject ? "Article" : "BlogPosting",
+      "@id": canonicalUrl ? `${canonicalUrl}#article` : undefined,
       headline: seoData.title,
       description: seoData.description,
       url: canonicalUrl,
-      datePublished,
-      ...(seoData.modifiedTime && { dateModified: seoData.modifiedTime }),
-      author: {
-        "@type": "Person",
-        name: seoData.author || "Hiram Barsky"
-      },
-      publisher: {
-        "@type": "Organization",
-        name: "Hiram Barsky Design",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://barskydesign.pro/logo.png"
-        }
-      },
+      ...(datePublished && { datePublished }),
+      // dateModified was absent on every article on the site.
+      ...((seoData.modifiedTime || datePublished) && {
+        dateModified: seoData.modifiedTime || datePublished
+      }),
+      author: { "@id": PERSON_ID },
+      publisher: { "@id": ORG_ID },
+      mainEntityOfPage: { "@id": canonicalUrl ? `${canonicalUrl}#webpage` : undefined },
+      inLanguage: "en-US",
+      ...(seoData.tags && { keywords: seoData.tags.join(', ') }),
       ...(seoData.image && { image: seoData.image })
     };
     schemas.push(articleSchema);
   }
 
-  // Add FAQ schema for homepage
-  if (canonicalUrl?.includes('barskydesign.pro') && 
-      !canonicalUrl?.includes('/blog/') && 
-      !canonicalUrl?.includes('/project/') &&
-      (canonicalUrl?.endsWith('/') || canonicalUrl?.endsWith('barskydesign.pro'))) {
-    const faqSchema: any = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "What makes your UX design approach different?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "I combine traditional UX research with AI-powered analytics to create data-driven designs that boost conversion by 40%+. Unlike designers who rely on assumptions, I use AI to understand user behavior patterns and optimize accordingly."
-          }
-        },
-        {
-          "@type": "Question", 
-          name: "How quickly can you deliver results?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Most clients see measurable improvements within 2-4 weeks of implementation. My AI-enhanced design process allows for rapid iteration and testing, significantly reducing time-to-market compared to traditional design approaches."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "Do you work with fintech and healthcare companies?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Yes, I specialize in fintech, healthcare, and SaaS applications. I have 15+ years of experience designing compliant, user-friendly interfaces for regulated industries while maintaining high conversion rates."
-          }
-        }
-      ]
-    };
-    schemas.push(faqSchema);
-  }
+  // The homepage FAQPage block was removed. Google restricted FAQ rich results to
+  // government and health sites in August 2023, so it rendered no SERP feature —
+  // and its first answer asserted "boost conversion by 40%+", an unverifiable
+  // number sitting in machine-readable markup.
 
-  return schemas.length === 1 ? schemas[0] : schemas;
+  // Strip undefined @id values rather than emitting `"@id": undefined`.
+  const clean = (o: any): any => {
+    if (Array.isArray(o)) return o.map(clean);
+    if (o && typeof o === 'object') {
+      return Object.fromEntries(
+        Object.entries(o).filter(([, v]) => v !== undefined).map(([k, v]) => [k, clean(v)])
+      );
+    }
+    return o;
+  };
+
+  const out = schemas.map(clean);
+  return out.length === 1 ? out[0] : out;
 };

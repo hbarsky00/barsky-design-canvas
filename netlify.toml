@@ -64,3 +64,16 @@
   for = "/index.html"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Client-only routes with no prerendered body. They have to stay 200 because the
+# SPA renders them, but a 200 with an empty shell is a soft 404 if it ever gets
+# discovered, so tell crawlers not to index them.
+[[headers]]
+  for = "/store/success"
+  [headers.values]
+    X-Robots-Tag = "noindex, follow"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

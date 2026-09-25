@@ -2,6 +2,7 @@
 
 # Legacy URLs still in Google's index
 /get-started           /contact                            301
+/blog/portfolio-red-flags-no-interviews  /blog/everyones-portfolio-looks-good-now  301
 /web-development       /design-services/web-development    301
 /ux-ui-design          /design-services/ux-ui-design       301
 /mobile-app-design     /design-services/mobile-app-design  301
@@ -140,11 +141,18 @@
 /blog/you-dont-replace-excel-by-being-better         /blog/you-dont-replace-excel-by-being-better/index.html 200
 /blog/you-dont-replace-excel-by-being-better/        /blog/you-dont-replace-excel-by-being-better/index.html 200
 
-# SPA shell for the client-only routes
-/store/product/*                 /spa-shell.html   200
+# /projects and /store/product/* used to be served here as a 200 shell. That is a
+# soft 404: a crawler got HTTP 200 and a body byte-identical to the 404 shell, no
+# title, no canonical. /projects is in the nav on all 52 pages, so it was the most
+# linked internal URL on the site. Neither has a real route in App.tsx, so both
+# now redirect server-side instead of pretending to be a page.
+/projects                        /#case-studies    301
+/store/product/*                 /store            301
+
+# These two are real client-rendered routes with no SEO value. They keep the
+# shell, but X-Robots-Tag in public/_headers keeps them out of the index.
 /store/success                   /spa-shell.html   200
 /admin/content-export-2024       /spa-shell.html   200
-/projects                        /spa-shell.html   200
 
 # Anything else is a 404, served by the shell so the SPA can show its own page
 /*                               /spa-shell.html   404

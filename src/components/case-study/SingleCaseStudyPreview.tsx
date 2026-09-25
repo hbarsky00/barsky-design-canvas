@@ -1,4 +1,5 @@
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +49,8 @@ const caseStudies: CaseStudy[] = [
     title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
     description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
     impact: "-40% Conflict Reduction",
-    url: "/project/splittime",
+    // /project/splittime 301s to the homepage; linking at it sent readers nowhere.
+    url: "https://splittime.pro",
     liveUrl: "https://splittime.pro",
     images: {
       primary: "/images/splittime/app-screens.webp",
@@ -128,7 +130,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
     return (
       <Link to={relatedStudy.url} className="block h-full group">
         <div className="flex justify-center h-full cursor-pointer">
-          <img 
+          <img {...imgDims(relatedStudy.images.primary)} 
             src={relatedStudy.images.primary} 
             alt={relatedStudy.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"

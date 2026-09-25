@@ -129,32 +129,36 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
           </div>
         </div>
 
-        {/* Right Column - 40% */}
-        <div className="lg:col-span-2 space-y-6">
+        {/* Right Column - 40%.
+            These four were <h4> directly under the section's <h2>, skipping h3 and
+            putting field labels into the document outline. They are label/value
+            pairs, so a <dl> is both the correct markup and out of the heading
+            hierarchy entirely. */}
+        <dl className="lg:col-span-2 space-y-6">
           {/* Role */}
           <div>
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Role</h4>
-            <p className="text-foreground font-medium font-body">{content.role}</p>
+            <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Role</dt>
+            <dd className="text-foreground font-medium font-body">{content.role}</dd>
           </div>
 
           {/* Responsibilities */}
           <div>
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Responsibilities</h4>
-            <p className="text-muted-foreground leading-relaxed font-body">{content.responsibilities}</p>
+            <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Responsibilities</dt>
+            <dd className="text-muted-foreground leading-relaxed font-body">{content.responsibilities}</dd>
           </div>
 
           {/* Collaborators */}
           <div>
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Collaborators</h4>
-            <p className="text-muted-foreground leading-relaxed font-body">{content.collaborators}</p>
+            <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Collaborators</dt>
+            <dd className="text-muted-foreground leading-relaxed font-body">{content.collaborators}</dd>
           </div>
 
           {/* Duration */}
           <div>
-            <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Duration</h4>
-            <p className="text-foreground font-medium font-body">{content.duration}</p>
+            <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Duration</dt>
+            <dd className="text-foreground font-medium font-body">{content.duration}</dd>
           </div>
-        </div>
+        </dl>
       </div>
       </div>
     </motion.section>

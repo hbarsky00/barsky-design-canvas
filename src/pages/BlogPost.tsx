@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { imgDims } from "@/utils/imageDims";
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
@@ -82,7 +83,7 @@ const BlogPostPage: React.FC = () => {
               {/* Featured Image */}
               {(metadata?.featuredImage || staticPost?.coverImage) && (
                 <div className="w-full h-96 overflow-hidden">
-                  <img
+                  <img {...imgDims(metadata?.featuredImage || staticPost?.coverImage)}
                     src={metadata?.featuredImage || staticPost?.coverImage}
                     alt={post.title}
                     className="w-full h-full object-cover"

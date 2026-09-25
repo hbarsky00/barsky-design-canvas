@@ -37,13 +37,20 @@
 
     <!-- SEO meta tags dynamically rendered by React Helmet in UnifiedSEO.tsx -->
 
-    <!-- LocalBusiness JSON-LD -->
+    <!-- LocalBusiness JSON-LD.
+         @id matches ORG_ID in src/utils/seo/structuredDataUtils.ts so this node and
+         the runtime Organization merge into one entity instead of floating apart.
+         name was "Barsky Design" here and "Hiram Barsky Design" in the runtime
+         schema — two names for one business. openingHours is deliberately absent:
+         inventing hours for a remote practice is worse than omitting the field. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://barskydesign.pro/#organization",
       "name": "Barsky Design",
       "image": "https://barskydesign.pro/images/hiram-barsky-headshot.webp",
+      "logo": "https://barskydesign.pro/logo.png",
       "url": "https://barskydesign.pro/",
       "telephone": "+1-201-668-3324",
       "email": "hbarsky01@gmail.com",
@@ -54,32 +61,37 @@
         "addressRegion": "NJ",
         "addressCountry": "US"
       },
-      "founder": {
-        "@type": "Person",
-        "name": "Hiram Barsky"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.8584,
+        "longitude": -74.1638
       },
+      "founder": { "@id": "https://barskydesign.pro/#hiram-barsky" },
       "areaServed": "US",
       "sameAs": [
-        "https://www.linkedin.com/in/hirambarsky/"
+        "https://www.linkedin.com/in/hiram-barsky",
+        "https://github.com/hbarsky00"
       ]
     }
     </script>
 
-    <!-- WebSite JSON-LD with SearchAction -->
+    <!-- WebSite JSON-LD. The SearchAction was removed: it advertised
+         /?s={search_term_string} and this site has no search, so it described a
+         feature that does not exist. Google also retired the sitelinks searchbox
+         in November 2023. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": "https://barskydesign.pro/#website",
       "name": "Barsky Design",
+      "description": "Product design and front-end development for SaaS, web and mobile products.",
       "url": "https://barskydesign.pro/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://barskydesign.pro/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://barskydesign.pro/#organization" }
     }
     </script>
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYKW0Y9K0T"></script>
     <script>

@@ -6,9 +6,9 @@
   "scripts": {
     "predev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "dev": "vite",
-    "prebuild": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
+    "prebuild": "node scripts/generate-image-dimensions.mjs && npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "build": "vite build",
-    "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs",
+    "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs && node scripts/check-internal-links.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
     "check:captions": "node scripts/check-image-captions.mjs",
     "check:contrast": "node scripts/contrast-walk.mjs",

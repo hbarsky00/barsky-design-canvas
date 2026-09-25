@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle, Sparkles, Cpu, Palette, Users } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SERVICES_DATA, SERVICES_CTA, SERVICES_HERO } from "@/data/services";
+import { SERVICES_OVERVIEW } from "@/data/serviceContent";
 import { Link } from "react-router-dom";
 import SectionTransition from "@/components/transitions/SectionTransition";
 const serviceIcons = [<Palette className="h-8 w-8" />, <Cpu className="h-8 w-8" />];
@@ -61,6 +62,16 @@ const ServicePageLayout: React.FC = () => {
               </Button>
             </motion.div>
           </motion.div>
+        </div>
+      </SectionTransition>
+
+      {/* The citable answer passage. /services had none — nothing on the page was a
+          self-contained block an answer engine could quote. */}
+      <SectionTransition variant="fade" delay={0.05} className="px-4 pb-8">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-body-large md:text-title-medium leading-relaxed text-foreground border-l-4 border-md-sys-primary pl-6 py-2">
+            {SERVICES_OVERVIEW.answer}
+          </p>
         </div>
       </SectionTransition>
 
@@ -128,6 +139,63 @@ const ServicePageLayout: React.FC = () => {
         </div>
       </SectionTransition>
 
+      {/* Long-form sections. This page was 195 words with "design" at 10.31%
+          density — the thinnest commercial page on the site. */}
+      <SectionTransition variant="fade" delay={0.15} className="py-16 md:py-20 px-4">
+        <div className="max-w-3xl mx-auto space-y-14">
+          {SERVICES_OVERVIEW.sections.map(section => <section key={section.id} id={section.id}>
+              <h2 className="text-headline-small md:text-headline-medium font-bold text-foreground mb-5">
+                {section.heading}
+              </h2>
+              <div className="space-y-4">
+                {section.body.map((para, i) => <p key={i} className="text-body-large text-muted-foreground leading-relaxed">
+                    {para}
+                  </p>)}
+              </div>
+            </section>)}
+
+          <section id="service-detail-pages">
+            <h2 className="text-headline-small md:text-headline-medium font-bold text-foreground mb-5">
+              The detail
+            </h2>
+            <ul className="space-y-3">
+              <li className="leading-relaxed">
+                <Link to="/design-services/ux-ui-design" className="text-md-sys-primary font-semibold underline underline-offset-2">Product design</Link>
+                <span className="text-muted-foreground"> — research, interface design, design systems, and the front end that ships them.</span>
+              </li>
+              <li className="leading-relaxed">
+                <Link to="/design-services/mobile-app-design" className="text-md-sys-primary font-semibold underline underline-offset-2">Mobile app design</Link>
+                <span className="text-muted-foreground"> — phone-first products, and the states that make one feel finished.</span>
+              </li>
+              <li className="leading-relaxed">
+                <Link to="/design-services/web-development" className="text-md-sys-primary font-semibold underline underline-offset-2">Web development</Link>
+                <span className="text-muted-foreground"> — React front ends, the database behind them, and the deploy.</span>
+              </li>
+            </ul>
+          </section>
+
+          <section id="selected-work">
+            <h2 className="text-headline-small md:text-headline-medium font-bold text-foreground mb-5">
+              Selected work
+            </h2>
+            <ul className="space-y-3">
+              <li className="leading-relaxed">
+                <Link to="/project/herbalink" className="text-md-sys-primary font-semibold underline underline-offset-2">HerbaLink</Link>
+                <span className="text-muted-foreground"> — designing credential trust into a practitioner marketplace.</span>
+              </li>
+              <li className="leading-relaxed">
+                <Link to="/project/dae-search" className="text-md-sys-primary font-semibold underline underline-offset-2">DAE Search</Link>
+                <span className="text-muted-foreground"> — enterprise data discovery, where research reframed the problem.</span>
+              </li>
+              <li className="leading-relaxed">
+                <Link to="/project/business-management" className="text-md-sys-primary font-semibold underline underline-offset-2">Blue Sky</Link>
+                <span className="text-muted-foreground"> — one system replacing a stack of disconnected tools.</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </SectionTransition>
+
       {/* Process Section */}
       <SectionTransition variant="fade" delay={0.2} className="py-16 md:py-20 px-4">
         <div className="max-w-5xl mx-auto">
@@ -144,7 +212,7 @@ const ServicePageLayout: React.FC = () => {
               My Process
             </h2>
             <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-              A proven approach that delivers results
+              Four phases, each ending in something you can open
             </p>
           </motion.div>
           
@@ -266,7 +334,7 @@ const ServicePageLayout: React.FC = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link to="/projects">
+                <Link to="/#case-studies">
                   View My Work
                 </Link>
               </Button>

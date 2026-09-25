@@ -94,7 +94,7 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
               
               return (
                 <div key={index}>
-                  <h4 className="font-bold text-foreground mb-3">{header}</h4>
+                  <h3 className="font-bold text-foreground mb-3">{header}</h3>
                   <p className="leading-relaxed">{content}</p>
                 </div>
               );

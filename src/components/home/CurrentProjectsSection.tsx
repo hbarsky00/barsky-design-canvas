@@ -1,4 +1,5 @@
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +21,7 @@ const currentProjects: CurrentProject[] = [
     description: "📱 Mobile-first design (but works everywhere) 🎨 Three simple sections: Content → Style → Export ⚡ No expiration headaches 🔄 Easy customization on the fl",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/d355adb5e73c47de8c56544b963b55c8?sid=2ea042b3-5698-432a-a1d6-7ebd72fc3631",
-    thumbnailSrc: "/images/working-on/qr-code-creator.png"
+    thumbnailSrc: "/images/working-on/qr-code-creator.webp"
   },
   {
     id: "roi-calculator",
@@ -28,7 +29,7 @@ const currentProjects: CurrentProject[] = [
     description: "A tool to measure the business value of design in minutes instead of hours of spreadsheet work.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/f30542a71d55409a99c00e069b26c14b",
-    thumbnailSrc: "/images/working-on/roi-calculator.png"
+    thumbnailSrc: "/images/working-on/roi-calculator.webp"
   },
   {
     id: "faces-of-hunger",
@@ -36,7 +37,7 @@ const currentProjects: CurrentProject[] = [
     description: "An awareness platform using design and AI to humanize food insecurity and spark community action.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/1ad2ef7140384312b9777dc3f557f7ff",
-    thumbnailSrc: "/images/working-on/faces-of-hunger.png"
+    thumbnailSrc: "/images/working-on/faces-of-hunger.webp"
   },
   {
     id: "crypto-app-learning",
@@ -44,7 +45,7 @@ const currentProjects: CurrentProject[] = [
     description: "Designing an intuitive learning section for a crypto app that makes complex blockchain concepts accessible to beginners through interactive education.",
     status: "Work in Progress",
     videoUrl: "https://www.loom.com/share/80a0a13cdf11424bb69be709d8c6aa2d",
-    thumbnailSrc: "/images/working-on/crypto-app-learning.png"
+    thumbnailSrc: "/images/working-on/crypto-app-learning.webp"
   }
 ];
 
@@ -111,7 +112,7 @@ const CurrentProjectsSection: React.FC = () => {
                       />
                     ) : (
                       <>
-                        <img
+                        <img {...imgDims(project.thumbnailSrc)}
                           src={project.thumbnailSrc}
                           alt={`${project.title} video thumbnail`}
                           className="w-full h-full object-cover"

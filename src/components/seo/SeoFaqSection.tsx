@@ -72,26 +72,14 @@ const SeoFaqSection: React.FC<SeoFaqSectionProps> = ({
         </div>
       </div>
 
-      {/* Structured Data for FAQ */}
-      <script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              ${faqs.map(faq => `
-              {
-                "@type": "Question",
-                "name": "${faq.question}",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "${faq.answer.replace(/"/g, '\\"')}"
-                }
-              }`).join(',')}
-            ]
-          }
-        `}
-      </script>
+      {/* FAQPage JSON-LD removed. Two reasons:
+          1. Google restricted FAQ rich results to government and health sites in
+             August 2023, so it rendered no SERP feature.
+          2. It was invalid anyway — answers in seoFaqs.ts contain literal
+             newlines, and this template interpolated them straight into a JSON
+             string. It only escaped notice because the section sits inside a
+             LazySection that never hydrated during prerender.
+          The visible accordion below is the part that has value; it stays. */}
     </section>
   );
 };

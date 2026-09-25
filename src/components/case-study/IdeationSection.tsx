@@ -1,4 +1,5 @@
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { IdeationSection as IdeationSectionType } from "@/data/structuredCaseStudies";
 import { Badge } from "@/components/ui/badge";
 
@@ -55,7 +56,7 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
           <div className="mt-12">
             <figure className="rounded-xl overflow-hidden shadow-lg group cursor-pointer">
               <div className="overflow-hidden">
-                <img
+                <img {...imgDims(ideationData.wireframeImage.src)}
                   src={ideationData.wireframeImage.src}
                   alt={ideationData.wireframeImage.alt}
                   className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-105"

@@ -35,13 +35,15 @@ export const SERVICES_DATA: ServiceData[] = [
 ];
 
 export const SERVICES_CTA = {
-  title: "Ready to Transform Your Product?",
-  description: "Let's discuss your project and create something amazing together",
-  buttonText: "Schedule Consultation"
+  title: "Start with a call",
+  description:
+    "Tell me what you are building and what is in the way. If it is not a fit I will say so.",
+  buttonText: "Get in touch"
 };
 
 export const SERVICES_HERO = {
   title: "Product Design & Gen AI Development",
-  description: "Transform your digital products with user-centered design and cutting-edge AI integration",
-  buttonText: "Get Started"
+  description:
+    "One person taking a product from research through interface design to a shipped React front end, database and deploy.",
+  buttonText: "Start with a call"
 };

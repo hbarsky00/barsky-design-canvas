@@ -20,12 +20,14 @@ interface LinkRule {
  * Each rule defines keywords to match and the target post to link to
  */
 const getLinkingRules = (): LinkRule[] => [
-  // Link to portfolio red flags article
+  // Was targeting 'portfolio-red-flags-no-interviews', a post that does not
+  // exist — so this rule injected a 404 link into all 18 blog bodies mentioning
+  // "portfolio" or "case study". Repointed at the live post on the same subject.
   {
     keywords: ['portfolio', 'case study', 'case studies'],
-    targetSlug: 'portfolio-red-flags-no-interviews',
-    anchorText: 'portfolio optimization',
-    title: 'Portfolio Red Flags: Why Your UX Portfolio Isn\'t Getting You Interviews'
+    targetSlug: 'everyones-portfolio-looks-good-now',
+    anchorText: 'what a portfolio proves now',
+    title: "Everyone's Portfolio Looks Good Now"
   },
   
   // Link to finding first UX job

@@ -1,12 +1,12 @@
 
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { ShoppingCart, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Product } from "@/types/product";
-import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
@@ -19,9 +19,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Card className="overflow-hidden flex flex-col h-full">
-      <Link to={`/store/product/${product.id}`} className="overflow-hidden block">
+      {/* No /store/product/:id route exists — this used to link to the SPA
+          catch-all, which bounced to the homepage and served crawlers a 200
+          empty shell. The card is the product surface; the buy action is below. */}
+      <div className="overflow-hidden block">
         <div className="aspect-video overflow-hidden relative">
-          <img 
+          <img {...imgDims(product.image)} 
             src={product.image} 
             alt={product.name}
             className="w-full h-full object-cover transition-transform hover:scale-105"
@@ -35,12 +38,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           )}
         </div>
-      </Link>
+      </div>
       <CardContent className="pt-6 flex-grow">
         <div className="flex justify-between items-start mb-2">
-          <Link to={`/store/product/${product.id}`} className="hover:text-barsky-blue transition-colors">
-            <h3 className="font-semibold text-lg">{product.name}</h3>
-          </Link>
+          <h2 className="font-semibold text-lg">{product.name}</h2>
           <Badge>${product.price}</Badge>
         </div>
         <p className="text-slate-600 dark:text-slate-300 text-sm">{product.description}</p>

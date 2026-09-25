@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { imgDims } from "@/utils/imageDims";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
 import { getResponsiveTruncatedText } from "@/utils/captionStyles";
 
@@ -64,7 +65,7 @@ const AnnotatedImage: React.FC<AnnotatedImageProps> = ({
   return (
     <div className={`relative inline-block group cursor-pointer ${className}`}>
       <div className="overflow-hidden rounded-lg">
-        <img
+        <img {...imgDims(src)}
           src={src}
           alt={alt}
           className="w-full h-auto shadow-sm transition-transform duration-500 ease-out group-hover:scale-105"

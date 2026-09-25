@@ -1,4 +1,5 @@
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { ClientTestimonial } from "@/data/structuredCaseStudies";
@@ -28,7 +29,7 @@ const ClientTestimonialSection: React.FC<ClientTestimonialSectionProps> = ({ tes
           
           <div className="flex items-center justify-center space-x-4">
             {testimonial.avatar && (
-              <img
+              <img {...imgDims(testimonial.avatar)}
                 src={testimonial.avatar}
                 alt={`${testimonial.author} profile`}
                 className="w-12 h-12 rounded-full object-cover"

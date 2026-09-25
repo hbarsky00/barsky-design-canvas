@@ -636,7 +636,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
         images: [
           {
-            src: "/images/dae-search/style-guide.png",
+            src: "/images/dae-search/style-guide.webp",
             alt: "DAE project style guide showing design system, colors, typography, and component specifications",
             caption: "Design system and style guide for the DAE search platform",
           },
@@ -709,7 +709,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/images/dae-search/outcome-dashboard.png",
+      image: "/images/dae-search/outcome-dashboard.webp",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",
@@ -921,7 +921,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/images/herbalink/booking-intake.png",
+          src: "/images/herbalink/booking-intake.webp",
           alt: "User testing session showing booking flow validation",
           caption:
             "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials.",

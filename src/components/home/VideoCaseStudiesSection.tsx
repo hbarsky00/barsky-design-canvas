@@ -1,10 +1,10 @@
 
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import SectionHeader from "@/components/shared/SectionHeader";
 import AnimatedText from "@/components/AnimatedText";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -18,6 +18,9 @@ interface CaseStudy {
   description: string;
   impact: string;
   url: string;
+  // false when the detail route is retired (301s away). The card still shows the
+  // work; it just does not link at a redirect.
+  hasDetail?: boolean;
   liveUrl?: string;
   images: {
     primary: string;
@@ -62,6 +65,7 @@ const caseStudies: CaseStudy[] = [
     description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
     impact: "40% Faster Campaign Production",
     url: "/project/email-creation-ai",
+    hasDetail: false,
     images: {
       primary: "/images/email-ai-promo.webp",
       alt: "AI-powered pharma email creation workflow interface"
@@ -85,12 +89,31 @@ const caseStudies: CaseStudy[] = [
   }
 ];
 
+/**
+ * Wraps card media in a real <a> when the study has a detail page.
+ *
+ * These were divs with onClick={() => navigate(url)}, so the prerendered
+ * homepage carried no href to any case study — the only anchor on the whole
+ * section was the outbound herbalink.live link, which sent authority off-site.
+ */
+const MediaLink: React.FC<{
+  study: CaseStudy;
+  className?: string;
+  children: React.ReactNode;
+}> = ({ study, className, children }) =>
+  study.hasDetail === false ? (
+    <div className={className}>{children}</div>
+  ) : (
+    <a href={study.url} className={className} aria-label={`Read the ${study.title} case study`}>
+      {children}
+    </a>
+  );
+
 const CaseStudyCard: React.FC<{ 
   study: CaseStudy; 
   index: number;
 }> = React.memo(({ study, index }) => {
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
   const showImpact = shouldShowPromoImpact(study.title, study.description, study.impact);
 
   // Check if we need a placeholder for Smarter Health assets
@@ -106,21 +129,15 @@ const CaseStudyCard: React.FC<{
     if (showPlaceholder) {
       console.log('📦 Rendering PlaceholderImage for:', study.title);
       return (
-        <div 
-          onClick={() => navigate(study.url)}
-          className="block h-full cursor-pointer"
-        >
+        <MediaLink study={study} className="block h-full cursor-pointer">
           <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
-        </div>
+        </MediaLink>
       );
     }
 
     if (study.video) {
       return (
-        <div 
-          onClick={() => navigate(study.url)}
-          className="block h-full group cursor-pointer"
-        >
+        <MediaLink study={study} className="block h-full group cursor-pointer">
           <div className="flex justify-center h-full">
             <video 
               src={study.video}
@@ -138,17 +155,14 @@ const CaseStudyCard: React.FC<{
               }}
             />
           </div>
-        </div>
+        </MediaLink>
       );
     }
     
     return (
-      <div 
-        onClick={() => navigate(study.url)}
-        className="block h-full group cursor-pointer"
-      >
+      <MediaLink study={study} className="block h-full group cursor-pointer">
         <div className="flex justify-center h-full">
-          <img 
+          <img {...imgDims(study.images.primary)} 
             src={study.images.primary} 
             alt={study.images.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
@@ -157,7 +171,7 @@ const CaseStudyCard: React.FC<{
             style={{ maxWidth: '625px', height: 'auto' }}
           />
         </div>
-      </div>
+      </MediaLink>
     );
   };
 
@@ -225,13 +239,11 @@ const CaseStudyCard: React.FC<{
 
           {/* CTA Buttons */}
           <div className="flex flex-row gap-3 pt-2">
-            <Button 
-              variant="case-study" 
-              className="flex-1"
-              onClick={() => navigate(study.url)}
-            >
-              View Case Study
-            </Button>
+            {study.hasDetail !== false && (
+              <Button asChild variant="case-study" className="flex-1">
+                <a href={study.url}>View Case Study</a>
+              </Button>
+            )}
             {study.liveUrl && (
               <Button asChild variant="outline" className="flex-1">
                 <a 
@@ -319,13 +331,11 @@ const CaseStudyCard: React.FC<{
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button 
-                      variant="case-study" 
-                      className="flex-1 sm:flex-none"
-                      onClick={() => navigate(study.url)}
-                    >
-                      View Case Study
-                    </Button>
+                    {study.hasDetail !== false && (
+                      <Button asChild variant="case-study" className="flex-1 sm:flex-none">
+                        <a href={study.url}>View Case Study</a>
+                      </Button>
+                    )}
                     {study.liveUrl && (
                       <Button asChild variant="outline" className="flex-1 sm:flex-none">
                         <a 

@@ -30,9 +30,12 @@ export const SEO_CONSTANTS = {
   LANGUAGE: 'English',
   
   // Social profiles
+  // These are the machine-readable identity for the site, so they have to match
+  // the links a human actually gets. The footer, contact page and hero all point
+  // at /in/hiram-barsky and github.com/hbarsky00; this list pointed at
+  // /in/hirambarsky and github.com/hirambarsky, neither of which is his.
   SOCIAL_PROFILES: [
-    'https://www.linkedin.com/in/hirambarsky',
-    'https://twitter.com/hirambarsky',
-    'https://github.com/hirambarsky'
+    'https://www.linkedin.com/in/hiram-barsky',
+    'https://github.com/hbarsky00'
   ]
 };

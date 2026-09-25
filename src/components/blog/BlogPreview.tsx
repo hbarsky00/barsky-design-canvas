@@ -1,5 +1,6 @@
 
 import React from "react";
+import { imgDims } from "@/utils/imageDims";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,7 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {recentPosts.map(post => <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <Link to={`/blog/${post.slug}`} className="block aspect-video w-full overflow-hidden bg-gray-100">
-                <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" />
+                <img {...imgDims(post.coverImage)} src={post.coverImage} alt={post.title} className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300" />
               </Link>
               
               <div className="p-4 md:p-6">

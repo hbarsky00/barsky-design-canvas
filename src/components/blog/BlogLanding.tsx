@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { imgDims } from "@/utils/imageDims";
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blogData';
@@ -39,7 +40,7 @@ const BlogLanding: React.FC = () => {
                 {/* Featured Image */}
                 {post.coverImage && (
                   <div className="w-full h-48 overflow-hidden">
-                    <img
+                    <img {...imgDims(post.coverImage)}
                       src={post.coverImage}
                       alt={post.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
@@ -61,14 +62,14 @@ const BlogLanding: React.FC = () => {
                     ))}
                   </div>
                   
-                  <h3 className="heading-card text-gray-900 mb-3 line-clamp-2">
+                  <h2 className="heading-card text-gray-900 mb-3 line-clamp-2">
                     <Link 
                       to={`/blog/${post.slug}`}
                       className="hover:text-blue-600 transition-colors"
                     >
                       {post.title}
                     </Link>
-                  </h3>
+                  </h2>
                   
                   <p className="text-gray-700 mb-4 line-clamp-3">
                     {post.excerpt}

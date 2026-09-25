@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { imgDims } from "@/utils/imageDims";
 import { useImageMaximizer } from "@/context/ImageMaximizerContext";
 import { shouldShowEditingControls } from "@/utils/devModeDetection";
 import ImageOverlay from "./image/ImageOverlay";
@@ -177,11 +178,17 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
   // silently cropped to fit: device mockups lost their edges, 1.60-ratio
   // screenshots lost ~10% top and bottom, and a 0.46-ratio phone screenshot
   // (zocdoc-signup.png) was shaved down to a horizontal sliver. When the shape
+  // Callers almost never pass width/height, which is why 14 of 15 images on a
+  // case study shipped without them. Fall back to the measured intrinsic size.
+  const measured = imgDims(currentSrc);
+  const resolvedWidth = width ?? measured.width;
+  const resolvedHeight = height ?? measured.height;
+
   // is unknown, let the image set its own height instead of cutting it to a
   // guess. Callers that declare aspectRatio or width+height still get a
   // reserved box, and cover can't crop there because the box matches.
   const knownAspectRatio =
-    aspectRatio ?? (width && height ? `${width} / ${height}` : undefined);
+    aspectRatio ?? (resolvedWidth && resolvedHeight ? `${resolvedWidth} / ${resolvedHeight}` : undefined);
   const resolvedFit = knownAspectRatio ? fit : 'contain';
 
   return (
@@ -215,8 +222,8 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
           src={currentSrc} 
           alt={alt} 
           title={imageTitle} 
-          width={width}
-          height={height}
+          width={resolvedWidth}
+          height={resolvedHeight}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
           loading={priority ? "eager" : "lazy"} 
           onClick={handleMaximize} 

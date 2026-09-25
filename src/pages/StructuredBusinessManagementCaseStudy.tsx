@@ -8,7 +8,7 @@ const StructuredBusinessManagementCaseStudy: React.FC = () => {
   const caseStudyData = getStructuredCaseStudy("business-management");
   
   if (!caseStudyData) {
-    return <Navigate to="/projects" replace />;
+    return <Navigate to="/#case-studies" replace />;
   }
 
   return (

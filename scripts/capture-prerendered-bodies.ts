@@ -125,10 +125,41 @@ async function dumpDom(url: string, timeoutMs = 120000): Promise<string> {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto(url, { waitUntil: "networkidle", timeout: timeoutMs }).catch(() => {});
     await page.waitForTimeout(1500);
+    await revealLazySections(page);
     return await page.content();
   } finally {
     await browser.close();
   }
+}
+
+/**
+ * Scroll the whole page so every LazySection hydrates before we capture.
+ *
+ * LazySection renders `<div class="h-32 animate-pulse">` until an
+ * IntersectionObserver fires. Capturing without scrolling froze that placeholder
+ * into the shipped HTML: the homepage's blog preview, adventures and contact
+ * sections were all voids, and the homepage served zero links to any post —
+ * which is what crawlers and AI agents read. Scrolling to the bottom and back
+ * trips every observer, so the prerendered body carries the real content.
+ */
+async function revealLazySections(page: import("playwright").Page) {
+  // scrollHeight has to be re-read each step. Measuring it once was wrong: the
+  // placeholders are 128px tall and the real sections are far taller, so the page
+  // grows as it hydrates. A single up-front measurement stopped scrolling at the
+  // bio section and left the blog preview, contact and FAQ as voids — the exact
+  // bug this function exists to fix.
+  let y = 0;
+  for (let step = 0; step < 200; step++) {
+    const height = await page.evaluate(() => document.body.scrollHeight);
+    if (y > height) break;
+    await page.evaluate((top) => window.scrollTo({ top, behavior: "auto" }), y);
+    await page.waitForTimeout(140);
+    y += 500;
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "auto" }));
+  // Let the last batch of sections finish mounting and their images resolve.
+  await page.waitForTimeout(1500);
+  await page.waitForLoadState("networkidle").catch(() => {});
 }
 
 /** Pull the inner HTML of <div id="root"> out of a full DOM dump. */

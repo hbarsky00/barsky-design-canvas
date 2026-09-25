@@ -32,13 +32,16 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
     {
       title: "Case Studies",
       description: "Real projects with measurable results",
-      href: "#projects",
+      href: "#case-studies",
       internal: true
     },
     {
-      title: "AI-Enhanced Design Process",
-      description: "How I leverage AI to deliver better results faster",
-      href: "/blog/ai-enhanced-design-process",
+      // Was /blog/ai-enhanced-design-process, which 404s. It went unnoticed for as
+      // long as it did because this whole section was behind a lazy gate that never
+      // fired during prerender, so the link never appeared in the served HTML.
+      title: "What AI Changed, and What It Didn't",
+      description: "Where AI actually helps in design work, and where it doesn't",
+      href: "/blog/what-ai-changed-and-what-it-didnt",
       internal: true
     }
   ];

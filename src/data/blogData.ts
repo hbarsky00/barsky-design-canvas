@@ -339,7 +339,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>Any time you're about to put a scoping control in a filter menu (region, permission, team, environment, tenant), ask who gets hurt when it's wrong, and then ask whether that person ever opens filters. If the answer is no, a filter isn't the feature. It's a place to put the feature so it looks handled.</p>
 
-<p>The full build, including the information architecture and the design system it runs on, is written up in the <a href="/project/bz-essentials" class="text-primary underline">BZ Essentials case study</a>.</p>
+<p>The full build, including the information architecture and the design system it runs on, is written up in the BZ Essentials case study.</p>
     `,
   },
   {
@@ -388,7 +388,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>So the discipline I've ended up with is the opposite of what the tools encourage. Generate freely, because it costs nothing. Then be ruthless, because the thing that costs is the shipped surface area, and that hasn't got cheaper at all.</p>
 
-<p>The full build, sprite pipeline and opponent behaviour and the parts AI genuinely couldn't do, is in the <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival case study</a>.</p>
+<p>The full build, sprite pipeline and opponent behaviour and the parts AI genuinely couldn't do, is in the Ring-Rival case study.</p>
 `
   },
   {
@@ -444,7 +444,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>If trust is the product, the honest version of your roadmap has safety at the top and the clever features underneath. Most roadmaps have it the other way round.</p>
 
-<p>The specifics, the age gate and what I cut and what testers skipped every time, are in the <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy case study</a>.</p>
+<p>The specifics, the age gate and what I cut and what testers skipped every time, are in the CatchBuddy case study.</p>
 `
   },
   {
@@ -491,7 +491,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>The unit price is for comparing. The total is for deciding. Most screens show the first and make you derive the second.</p>
 
-<p>How the board, the market page and the ticket fit together, plus two things I got wrong, is in the <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips case study</a>.</p>
+<p>How the board, the market page and the ticket fit together, plus two things I got wrong, is in the Stips case study.</p>
 `
   },
   {
@@ -690,7 +690,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>Worth knowing, because it means the constraint is commercial and can be argued with, instead of being a law of design that cannot.</p>
 
-<p>The flows and the system that came out of it are in the <a href="/project/crypto" class="text-primary underline underline-offset-2 hover:text-primary/80">Gold2Crypto case study</a>.</p>
+<p>The flows and the system that came out of it are in the Gold2Crypto case study.</p>
 `
   },
   {
@@ -737,7 +737,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>That gap, between working and being good, is where the design job now lives, and it's exactly what a safe portfolio project is built to avoid.</p>
 
-<p>What shipped, and what I cut to get there, is in the <a href="/project/fire-lion" class="text-primary underline underline-offset-2 hover:text-primary/80">Fire Lion case study</a>.</p>
+<p>What shipped, and what I cut to get there, is in the Fire Lion case study.</p>
 `
   },
   {
@@ -786,7 +786,7 @@ export const blogPosts: BlogPost[] = [
 
 <p>Ask which steps exist because somebody must be accountable, and leave those alone. Everything else is fair game.</p>
 
-<p>The six-step flow and what I haven't solved are in the <a href="/project/email-creation-ai" class="text-primary underline underline-offset-2 hover:text-primary/80">ManuscriptRx case study</a>.</p>
+<p>The six-step flow and what I haven't solved are in the ManuscriptRx case study.</p>
 `
   },
   {
@@ -822,7 +822,7 @@ export const blogPosts: BlogPost[] = [
 
 <h2 class="text-2xl font-bold mt-8 mb-4">So I Built the Version I Wanted</h2>
 
-      <p>I made <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> because I wanted the convenience without the tax. It records on your Mac or your Android phone, uploads while you are still talking, and hands you a link. Whoever you send it to presses play. No account, no app, no meeting.</p>
+      <p>I made Recast because I wanted the convenience without the tax. It records on your Mac or your Android phone, uploads while you are still talking, and hands you a link. Whoever you send it to presses play. No account, no app, no meeting.</p>
 
       <p>The pricing follows from that one idea: <strong>recording, sharing and downloads are identical on every plan, and nothing is watermarked.</strong> The only thing that changes is how much you can keep. Free gives you a gigabyte, which is about half an hour of video. Above that it is $9 a month for 50 GB, or $20 for 250 GB.</p>
 
@@ -860,7 +860,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>If it is for storage, bandwidth, or somebody's time, that is a real cost and a fair ask.</p>
 
-      <p>I built <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> on the second version of that. You can <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">try it free</a> and never pay me anything, and that is fine. A gigabyte covers a lot of thirty-second explanations.</p>
+      <p>I built Recast on the second version of that. You can <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">try it free</a> and never pay me anything, and that is fine. A gigabyte covers a lot of thirty-second explanations.</p>
     `
   },
   {
@@ -881,7 +881,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Model Has No Clock</h2>
 
-      <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> generates prediction markets from the news on a schedule, which means an AI is writing the close date for every market. That worked perfectly in testing. Then the first real batches came out already expired.</p>
+      <p>Stips generates prediction markets from the news on a schedule, which means an AI is writing the close date for every market. That worked perfectly in testing. Then the first real batches came out already expired.</p>
 
       <p>Models do not have a clock. Asked for a date a week out, they produce something that looks like a date a week out, anchored to whenever their training data thinks "now" is. In a demo you never notice, because you write one market, look at it, and move on. On a schedule, running unattended, it quietly fills the board with markets nobody can bet on.</p>
 
@@ -912,7 +912,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>The thing that separates a live product from a good prototype is usually not the interface. It is the scheduled job that keeps the content fresh, the auth that has to hold up, the database rules that decide who sees what, and the error path for when an external service is down.</p>
 
-      <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean: design, front end, database, auth, and the cron that keeps the board from going stale. <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
+      <p>None of that shows up in a screenshot. All of it is what makes the screenshot still be true tomorrow. When I say Stips runs end to end, that is what I mean: design, front end, database, auth, and the cron that keeps the board from going stale. Ring-Rival is the same claim in a different shape: it is a URL you can open on your phone right now, which is a much harder standard than a video of it working.</p>
 
       <figure class="my-8">
         <img src="/images/stips/market-detail.jpg" alt="A market page with its resolution rules on it — the part a demo never has to answer for" class="w-full rounded-xs" width="1600" height="900" loading="lazy" />
@@ -950,9 +950,9 @@ export const blogPosts: BlogPost[] = [
         <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">The team a solo builder doesn't have. What changed is how much of that work now fits into one person's day. <span class="text-xs">Photo by <a href="https://unsplash.com/@bruskrd?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Brusk Dede</a> on <a href="https://unsplash.com/?utm_source=barskydesign&utm_medium=referral" target="_blank" rel="noopener noreferrer nofollow" class="underline">Unsplash</a></span></figcaption>
       </figure>
 
-      <p><a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a> is a play-money prediction market with accounts, a database enforcing row-level security, market resolution, and a scheduled job that reads the news and writes new markets without me touching it. That is not a landing page with a waitlist attached. It is a running system with state, permissions, and a job that keeps going while I sleep.</p>
+      <p>Stips is a play-money prediction market with accounts, a database enforcing row-level security, market resolution, and a scheduled job that reads the news and writes new markets without me touching it. That is not a landing page with a waitlist attached. It is a running system with state, permissions, and a job that keeps going while I sleep.</p>
 
-      <p><a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is a browser boxing game whose fighters are rigged from separate body, arm, and leg pieces so a punch can be tuned by hand instead of played back. <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">CatchBuddy</a> organizes same-day pickup sports between strangers, with the safety architecture designed before the matching was. <a href="/project/recast" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> is a screen recorder that ships as a Mac app, an Android app and a website, so a recording made on one becomes a link the other two can serve.</p>
+      <p>Ring-Rival is a browser boxing game whose fighters are rigged from separate body, arm, and leg pieces so a punch can be tuned by hand instead of played back. CatchBuddy organizes same-day pickup sports between strangers, with the safety architecture designed before the matching was. Recast is a screen recorder that ships as a Mac app, an Android app and a website, so a recording made on one becomes a link the other two can serve.</p>
 
       <p>Four different shapes of product. Different data models, different users, different ways of failing. All built by one person around a full workload. Not long ago each of those is a team and a quarter.</p>
 
@@ -1075,7 +1075,7 @@ export const blogPosts: BlogPost[] = [
       <p>The assumption I see people make is that because generation got cheap, checking got cheap with it. It didn't. Writing the market generator took an afternoon. Trusting the market generator took another week, and that week was almost entirely me building the checks that would tell me when it was wrong.</p>
 
       <p>That ratio is the actual shape of the work now. Less typing. The same amount of judgment, concentrated into fewer decisions that matter more.</p>
-    <p>Both of these came out of building <a href="/project/stips" class="text-primary underline">the Stips case study</a>.</p>
+    <p>Both of these came out of building the Stips case study.</p>
     `
   },
   {
@@ -1092,7 +1092,7 @@ export const blogPosts: BlogPost[] = [
     content: `
       <p>Most software fails softly. A confusing checkout costs somebody four minutes and some patience. A cluttered dashboard produces a slightly worse decision on a Tuesday. Real costs, all recoverable.</p>
 
-      <p>Some products are not like that. If <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">a booking platform for herbalists</a> puts someone in front of a practitioner who is not what they claim to be, that is a health outcome. If <a href="/project/catchbuddy" class="text-primary underline underline-offset-2 hover:text-primary/80">an app that arranges pickup games between strangers</a> is casual about who shows up, that is somebody's physical safety. If a financial tool makes a position look certain when it isn't, that is somebody's money.</p>
+      <p>Some products are not like that. If <a href="/project/herbalink" class="text-primary underline underline-offset-2 hover:text-primary/80">a booking platform for herbalists</a> puts someone in front of a practitioner who is not what they claim to be, that is a health outcome. If an app that arranges pickup games between strangers is casual about who shows up, that is somebody's physical safety. If a financial tool makes a position look certain when it isn't, that is somebody's money.</p>
 
       <p>In those products, trust is not a layer you apply at the end. It is the thing you are actually shipping. Everything else is delivery.</p>
 
@@ -1118,7 +1118,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Trust Is Mostly What You Refuse to Hide</h2>
 
-      <p>On <a href="/project/stips" class="text-primary underline underline-offset-2 hover:text-primary/80">Stips</a>, my play-money prediction market, the number on a card is a probability wearing a dollar sign. Sixty-seven cents means the crowd thinks it is sixty-seven percent likely. The temptation in that kind of interface is to make the number feel authoritative when it isn't, because confident numbers look better. The design goes the other way: show what the payout would be before anyone commits, and let the price read as an estimate that can be wrong rather than a verdict.</p>
+      <p>On Stips, my play-money prediction market, the number on a card is a probability wearing a dollar sign. Sixty-seven cents means the crowd thinks it is sixty-seven percent likely. The temptation in that kind of interface is to make the number feel authoritative when it isn't, because confident numbers look better. The design goes the other way: show what the payout would be before anyone commits, and let the price read as an estimate that can be wrong rather than a verdict.</p>
 
       <p>Stips also generates its markets from the news with a model, which is a trust liability sitting inside the product. <a href="/blog/two-bugs-ai-wrote-that-i-had-to-find" class="text-primary underline underline-offset-2 hover:text-primary/80">One of the first bugs I hit</a> was generated markets closing on dates already in the past, because a language model has no clock. A user who sees an expired market on a fresh board does not think the date logic is off. They think the whole thing is fake. Nothing about that failure is technically severe and it costs you the entire relationship.</p>
 
@@ -1284,7 +1284,7 @@ export const blogPosts: BlogPost[] = [
       <p>Ship something. Watch a real person use it. Cut what they ignored. Repeat until your instinct about what to cut starts being right before you test it.</p>
 
       <p>There's no faster path. AI compressed the build step so hard that this loop is now cheap to run, which is genuinely the best thing about the current moment. You can be wrong on Tuesday and fixed by Wednesday. What you can't do is skip being wrong.</p>
-    <p>The deletions this is drawn from are written up in <a href="/project/ring-rival" class="text-primary underline">the Ring-Rival case study</a>.</p>
+    <p>The deletions this is drawn from are written up in the Ring-Rival case study.</p>
     `
   },
   {
@@ -1317,9 +1317,9 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The Deletion List Should Be Longer</h2>
 
-      <p>On <a href="/project/fire-lion" class="text-primary underline underline-offset-2 hover:text-primary/80">Fire Lion</a>, the game I shipped solo, the list of things I cut ended up longer than the list of things I kept. That is not a confession. That is the correct ratio, and I would be suspicious of any product where it goes the other way now.</p>
+      <p>On Fire Lion, the game I shipped solo, the list of things I cut ended up longer than the list of things I kept. That is not a confession. That is the correct ratio, and I would be suspicious of any product where it goes the other way now.</p>
 
-      <p><a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> is the sharper example because I can put a number on it. Time from tapping the link to throwing your first punch was twenty-two seconds. It is six now. I did not optimize anything. I deleted the splash screen, the mode select, the fighter select, and the tutorial.</p>
+      <p>Ring-Rival is the sharper example because I can put a number on it. Time from tapping the link to throwing your first punch was twenty-two seconds. It is six now. I did not optimize anything. I deleted the splash screen, the mode select, the fighter select, and the tutorial.</p>
 
       <p>Every one of those was a correct answer to a reasonable request. Mode select is standard. Onboarding is standard. What made them wrong was this specific product: a browser game somebody opens from a link with about fifteen seconds of curiosity attached. Every screen before the punch spends that budget on something that is not the punch.</p>
 
@@ -1393,7 +1393,7 @@ export const blogPosts: BlogPost[] = [
 
       <p>Every portfolio now has percentages in it. Most of them cannot survive one follow-up question, which makes the follow-up question extremely efficient.</p>
 
-      <p>I can say that audio failed in about forty percent of <a href="/project/ring-rival" class="text-primary underline underline-offset-2 hover:text-primary/80">Ring-Rival</a> sessions and is under two percent now. If you ask how I know, there is an answer: browsers block audio until the user interacts, the game was starting its audio context on load, and moving that behind the first tap fixed it. Nothing errored the entire time, which is why nobody would have reported it.</p>
+      <p>I can say that audio failed in about forty percent of Ring-Rival sessions and is under two percent now. If you ask how I know, there is an answer: browsers block audio until the user interacts, the game was starting its audio context on load, and moving that behind the first tap fixed it. Nothing errored the entire time, which is why nobody would have reported it.</p>
 
       <p>Ask how it was measured, what it was before, and how they found out it was a problem at all. A real number has a story about detection attached to it. An invented one has a story about success.</p>
 
@@ -1501,7 +1501,7 @@ export const blogPosts: BlogPost[] = [
       <p>What replaces it is more interesting work and more responsibility for the result. When you own it end to end, you can't say the engineers ruined it. It shipped the way you built it.</p>
 
       <p>That's a better trade than it sounds like. It's also not optional much longer.</p>
-    <p>What that looks like end to end is in <a href="/project/recast" class="text-primary underline">the Recast case study</a>.</p>
+    <p>What that looks like end to end is in the Recast case study.</p>
     `
   },
   {
@@ -1656,7 +1656,7 @@ export const blogPosts: BlogPost[] = [
       <p>Every claim on your site is now a question in an interview. If AI wrote a section you can't defend line by line, cut it. Getting caught not knowing your own case study is worse than having a shorter one.</p>
 
       <p>Three projects you can defend completely beats eight that look impressive from a distance. That was always true. It's just enforceable now.</p>
-    <p>The decisions behind one of these, documented from the code, are in <a href="/project/bz-essentials" class="text-primary underline">the BZ Essentials case study</a>.</p>
+    <p>The decisions behind one of these, documented from the code, are in the BZ Essentials case study.</p>
     `
   },
   {
@@ -1728,7 +1728,7 @@ export const blogPosts: BlogPost[] = [
       <p>They don't fail because the build was bad. They fail because the problem wasn't real, or was real but shaped differently than anyone assumed. AI does nothing about that. It just gets you to the point of discovering it sooner and with less money spent, which is a genuine improvement and not a solution.</p>
 
       <p>The work is what it always was: figure out what's actually worth building, then build only that. The second half got dramatically easier. The first half didn't move.</p>
-    <p>The clearest example of the split is in <a href="/project/ring-rival" class="text-primary underline">the Ring-Rival case study</a>.</p>
+    <p>The clearest example of the split is in the Ring-Rival case study.</p>
     `
   },
 
@@ -2145,7 +2145,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>That was me. And if you're reading this, it might be you too.</p>
       
-      <img src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto my-6" />
       
       <p>Here's the good news: even without marketing experience or live data, you can share your work in a way that gets attention, starts conversations, and builds momentum.</p>
       
@@ -2155,7 +2155,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>People connect with people. You're not a faceless brand—you're a designer who built something from scratch. That's a story in itself.</p>
       
-      <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto my-6" />
       
       <p><strong>What to do:</strong></p>
       
@@ -2172,7 +2172,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>If there's no real data or users, make your marketing about the experience—not the stats.</p>
       
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto my-6" />
       
       <p><strong>What to do:</strong></p>
       
@@ -2188,7 +2188,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Think of it as a product design portfolio piece—not a product you're "selling."</p>
       
-      <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto my-6" />
       
       <p><strong>What to include:</strong></p>
       
@@ -2213,7 +2213,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>There's no need to blast ads or beg for signups. Instead, share your work where product designers hang out:</p>
       
-      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto my-6" />
       
       <ul class="list-disc pl-6 mb-4">
         <li>Reddit: r/userexperience, r/web_design, r/design_critiques</li>
@@ -2241,7 +2241,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Instead of one big post, break your experience into smaller bits of content over a few weeks:</p>
       
-      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto my-6" />
       
       <ul class="list-disc pl-6 mb-4">
         <li>"Why I built this"</li>
@@ -2280,7 +2280,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But here's the thing—building products nobody asked for taught me more about design than any course, certification, or "best practices" guide ever could.</p>
       
-      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop" alt="Matrix code visualization" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop" alt="Matrix code visualization" class="w-full h-auto rounded-lg my-6" />
       
       <p>If you're a designer who builds things, this post is for you.</p>
       
@@ -2290,7 +2290,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Then I'd build it, launch it, and... nothing.</p>
       
-      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop" alt="Laptop computer on surface" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop" alt="Laptop computer on surface" class="w-full h-auto rounded-lg my-6" />
       
       <p>The problem wasn't execution—it was assumption. I was solving problems that existed only in my head.</p>
       
@@ -2302,7 +2302,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>So I'd add feature after feature, making my apps more "powerful" but infinitely more complex.</p>
       
-      <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop" alt="Colorful code on computer monitor" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop" alt="Colorful code on computer monitor" class="w-full h-auto rounded-lg my-6" />
       
       <p>Users didn't care about my 47 customization options. They cared about completing their task quickly and moving on with their day.</p>
       
@@ -2314,7 +2314,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Wrong.</p>
       
-      <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop" alt="People around video displays" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop" alt="People around video displays" class="w-full h-auto rounded-lg my-6" />
       
       <p>Marketing starts the moment you decide what problem to solve. Every design decision is a marketing decision. Every user interaction is a marketing moment.</p>
       
@@ -2326,7 +2326,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>All of them are worth exactly $0 because none of them ever saw a real user.</p>
       
-      <img src="https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=800&h=400&fit=crop" alt="Stylus pen and tablet computer" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=800&h=400&fit=crop" alt="Stylus pen and tablet computer" class="w-full h-auto rounded-lg my-6" />
       
       <p>Meanwhile, my most successful projects were the ones I was slightly embarrassed to share. They were rough around the edges but solved a real problem for real people.</p>
       
@@ -2338,7 +2338,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But users don't care about your system. They care about their goals.</p>
       
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop" alt="People with laptops at table" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop" alt="People with laptops at table" class="w-full h-auto rounded-lg my-6" />
       
       <p>If your beautifully consistent interface makes their task harder, they'll abandon it for something that "just works"—even if it's uglier.</p>
       
@@ -2384,7 +2384,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>The conversion rate dropped by 23%.</p>
       
-      <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=400&fit=crop" alt="Orange flowers in bloom" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=400&fit=crop" alt="Orange flowers in bloom" class="w-full h-auto rounded-lg my-6" />
       
       <p>That's when I learned the hard truth: beautiful and effective are not the same thing.</p>
       
@@ -2396,7 +2396,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>I used to think conversion optimization was about making things "look more trustworthy" or "feel more premium." So I'd add more white space, choose more sophisticated colors, create more elegant layouts.</p>
       
-      <img src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&h=400&fit=crop" alt="River between mountains under clouds" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&h=400&fit=crop" alt="River between mountains under clouds" class="w-full h-auto rounded-lg my-6" />
       
       <p>But conversion isn't about aesthetic appeal—it's about removing friction and reducing anxiety.</p>
       
@@ -2408,7 +2408,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But users in conversion flows aren't tourists admiring your craft—they're people trying to complete a task as quickly and painlessly as possible.</p>
       
-      <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=400&fit=crop" alt="Pine trees in nature" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=400&fit=crop" alt="Pine trees in nature" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>What I learned:</strong> Every moment of confusion is a moment where users might abandon your flow. Obvious is better than clever. Clear is better than cool.</p>
       
@@ -2433,7 +2433,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Mistakes:</strong> "What if I mess this up?"</li>
       </ul>
       
-      <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=400&fit=crop" alt="Low angle view of trees" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=400&fit=crop" alt="Low angle view of trees" class="w-full h-auto rounded-lg my-6" />
       
       <p>Your beautiful design means nothing if users are paralyzed by these concerns.</p>
       
@@ -2453,7 +2453,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But the real insights came when I started testing different approaches to user psychology:</p>
       
-      <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&h=400&fit=crop" alt="Sunlight through green trees" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&h=400&fit=crop" alt="Sunlight through green trees" class="w-full h-auto rounded-lg my-6" />
       
       <ul class="list-disc pl-6 mb-4">
         <li><strong>Social proof vs. logical benefits</strong></li>
@@ -2479,7 +2479,7 @@ export const blogPosts: BlogPost[] = [
         <li>"Is this secure?"</li>
       </ul>
       
-      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop" alt="Mountain landscape with sun rays" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop" alt="Mountain landscape with sun rays" class="w-full h-auto rounded-lg my-6" />
       
       <p>If your visual design makes it harder to find these answers, your conversion rate will suffer—no matter how beautiful the interface looks.</p>
       
@@ -2506,7 +2506,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>More error-prone</strong> (smaller touch targets, autocorrect issues)</li>
       </ul>
       
-      <img src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&h=400&fit=crop" alt="Blue starry night sky" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&h=400&fit=crop" alt="Blue starry night sky" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>Mobile conversion design principles:</strong></p>
       
@@ -2536,7 +2536,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Awards and design blog features don't pay the bills—conversions do.</p>
       
-      <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=400&fit=crop" alt="Foggy mountain summit" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=400&fit=crop" alt="Foggy mountain summit" class="w-full h-auto rounded-lg my-6" />
       
       <p>Track these metrics relentlessly:</p>
       
@@ -2578,7 +2578,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>This chicken-and-egg problem stops a lot of great ideas before they start. How do you research something that doesn't exist for people who don't exist yet?</p>
       
-      <img src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&h=400&fit=crop" alt="River surrounded by rock formation" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&h=400&fit=crop" alt="River surrounded by rock formation" class="w-full h-auto rounded-lg my-6" />
       
       <p>Here's how I've learned to do meaningful user research in the earliest stages of product development.</p>
       
@@ -2588,7 +2588,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>But solutions are hypothetical. Problems are real.</p>
       
-      <img src="https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=800&h=400&fit=crop" alt="Desert sand landscape" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=800&h=400&fit=crop" alt="Desert sand landscape" class="w-full h-auto rounded-lg my-6" />
       
       <p>Instead of asking people to imagine using your non-existent product, ask them about their existing struggle with the problem you're trying to solve.</p>
       
@@ -2614,7 +2614,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>I call these "proto-users"—people who represent your eventual user base, even though they've never heard of your product.</p>
       
-      <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=400&fit=crop" alt="Trees near rocky mountain under blue sky" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=400&fit=crop" alt="Trees near rocky mountain under blue sky" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>Where to find proto-users:</strong></p>
       
@@ -2635,7 +2635,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>Every product replaces or improves an existing workflow. Understanding that current workflow is your roadmap to a better solution.</p>
       
-      <img src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&h=400&fit=crop" alt="Forest illuminated by sunbeam" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&h=400&fit=crop" alt="Forest illuminated by sunbeam" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>What to document:</strong></p>
       
@@ -2656,7 +2656,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>This isn't just for marketing copy—it's for understanding how they think about the problem space.</p>
       
-      <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=400&fit=crop" alt="Yellow lights between trees" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=400&fit=crop" alt="Yellow lights between trees" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>What to capture:</strong></p>
       
@@ -2673,7 +2673,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>You don't need a working product to test core concepts. Paper prototypes and wireframes can validate your biggest assumptions.</p>
       
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop" alt="Body of water surrounded by trees" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop" alt="Body of water surrounded by trees" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>What you can test with low-fidelity prototypes:</strong></p>
       
@@ -2700,7 +2700,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>What do they wish existed?</strong> (These are potential features)</li>
       </ul>
       
-      <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=400&fit=crop" alt="Bird's eye view of green mountains" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=400&fit=crop" alt="Bird's eye view of green mountains" class="w-full h-auto rounded-lg my-6" />
       
       <p>Read reviews on App Store, Google Play, G2, Capterra, Amazon—anywhere your target users might leave feedback about existing solutions.</p>
       
@@ -2723,7 +2723,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>You don't need a PhD in user research to ask good questions. You just need a plan.</p>
       
-      <img src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&h=400&fit=crop" alt="Green grass and rocky mountain" class="w-full h-auto rounded-lg my-6" />
+      <img width="800" height="400" src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&h=400&fit=crop" alt="Green grass and rocky mountain" class="w-full h-auto rounded-lg my-6" />
       
       <p><strong>My simple research session structure:</strong></p>
       

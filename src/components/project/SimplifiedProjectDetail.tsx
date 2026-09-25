@@ -15,13 +15,13 @@ const SimplifiedProjectDetail: React.FC = () => {
   const projectId = useParams<{ projectId: string }>().projectId ?? pathname.split("/").filter(Boolean).pop();
   
   if (!projectId) {
-    return <Navigate to="/projects" replace />;
+    return <Navigate to="/#case-studies" replace />;
   }
 
   const caseStudyData = getStructuredCaseStudy(projectId);
   
   if (!caseStudyData) {
-    return <Navigate to="/projects" replace />;
+    return <Navigate to="/#case-studies" replace />;
   }
 
   return (

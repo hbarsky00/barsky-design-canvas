@@ -10,8 +10,6 @@ const BASE_URL = "https://barskydesign.pro";
 
 interface Entry {
   path: string;
-  changefreq?: "weekly" | "monthly" | "yearly";
-  priority?: string;
   // Only set from a real date (seoData.ts `modified` / `published`). Entries
   // without one omit <lastmod> entirely — see urlBlock.
   lastmod?: string;
@@ -21,25 +19,23 @@ interface Entry {
 const staticEntries: Entry[] = [
   {
     path: "/",
-    changefreq: "weekly",
-    priority: "1.0",
     image: {
       loc: `${BASE_URL}/images/hiram-barsky-headshot.webp`,
       title: "Hiram Barsky — designer and developer",
     },
   },
-  { path: "/services", changefreq: "monthly", priority: "0.9" },
-  { path: "/design-services/ux-ui-design", changefreq: "monthly", priority: "0.8" },
-  { path: "/design-services/mobile-app-design", changefreq: "monthly", priority: "0.8" },
-  { path: "/design-services/web-development", changefreq: "monthly", priority: "0.8" },
-  { path: "/about", changefreq: "monthly", priority: "0.7" },
-  { path: "/contact", changefreq: "monthly", priority: "0.7" },
-  { path: "/store", changefreq: "weekly", priority: "0.7" },
-  { path: "/blog", changefreq: "weekly", priority: "0.8" },
+  { path: "/services" },
+  { path: "/design-services/ux-ui-design" },
+  { path: "/design-services/mobile-app-design" },
+  { path: "/design-services/web-development" },
+  { path: "/about" },
+  { path: "/contact" },
+  { path: "/store" },
+  { path: "/blog" },
   // Served by the /project/:projectId catch-all, so getProjectPaths() below can't
   // see them — but both are prerendered by inject-seo-html.ts and indexable, and
   // both were missing from the sitemap entirely.
-  { path: "/project/dae-search", changefreq: "monthly", priority: "0.8" },
+  { path: "/project/dae-search" },
   // "/projects" is gone from here on purpose: it 301s to /#case-studies.
   // A sitemap must only list canonical 200s, and this one answered 200 with an
   // empty body at priority 0.9 — the strongest crawl signal on the site pointed
@@ -82,6 +78,32 @@ function getProjectPaths(): string[] {
 // included 2 slugs with no actual post behind them (ai-in-design,
 // portfolio-red-flags-no-interviews) and generated real sitemap/SEO entries for
 // pages that 404.
+/**
+ * slug -> ISO date, from the `date:` field next to each post in blogData.ts.
+ *
+ * BLOG_SEO_MAP carries only title and description, so `getBlogSEO(slug)?.published`
+ * was always undefined and every one of the 52 URLs shipped without <lastmod> —
+ * the one field Google actually uses for crawl scheduling. The dates were sitting
+ * in blogData.ts the whole time as "June 10, 2026".
+ */
+function getBlogDates(): Record<string, string> {
+  const p = resolve("src/data/blogData.ts");
+  if (!existsSync(p)) return {};
+  const txt = readFileSync(p, "utf8");
+  const out: Record<string, string> = {};
+  // Each post object carries slug and date; pair them per chunk rather than with
+  // one greedy regex across the file.
+  for (const chunk of txt.split(/\n  \{/)) {
+    const slug = /slug:\s*["'`]([a-z0-9-]+)["'`]/i.exec(chunk)?.[1];
+    const date = /\bdate:\s*["'`]([^"'`]+)["'`]/i.exec(chunk)?.[1];
+    if (!slug || !date) continue;
+    const t = Date.parse(date);
+    if (Number.isNaN(t)) continue;
+    out[slug] = new Date(t).toISOString().slice(0, 10);
+  }
+  return out;
+}
+
 function getBlogSlugs(): string[] {
   const p = resolve("src/data/blogData.ts");
   if (!existsSync(p)) return [];
@@ -90,26 +112,22 @@ function getBlogSlugs(): string[] {
   return Array.from(new Set(slugs)).sort();
 }
 
+const blogDates = getBlogDates();
+
 const entries: Entry[] = [
   ...staticEntries,
   ...getProjectPaths().map<Entry>((path) => {
     const seo = getProjectSEO(path.replace("/project/", ""));
-    return {
-      path,
-      changefreq: "monthly",
-      priority: "0.7",
-      lastmod: seo?.modified || seo?.published,
-    };
+    return { path, lastmod: seo?.modified || seo?.published };
   }),
   ...getBlogSlugs().map<Entry>((slug) => ({
     path: `/blog/${slug}`,
-    changefreq: "monthly",
-    priority: "0.6",
     // A post's real dates, so lastmod carries a signal. Stamping every URL
     // with today's date is worse than omitting it: it claims 32 pages all
     // changed on the same day, every deploy, which trains crawlers to
     // ignore the field.
-    lastmod: getBlogSEO(slug)?.modified || getBlogSEO(slug)?.published,
+    lastmod:
+      getBlogSEO(slug)?.modified || getBlogSEO(slug)?.published || blogDates[slug],
   })),
 ];
 
@@ -125,8 +143,8 @@ function urlBlock(e: Entry): string {
     // reason to ignore the field sitemap-wide, taking the blog's real dates
     // down with it. An absent lastmod is neutral; a false one is not.
     e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
-    e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
-    e.priority ? `    <priority>${e.priority}</priority>` : null,
+    // <changefreq> and <priority> are gone. Google has ignored both since 2023;
+    // all 52 URLs carried them while none carried the lastmod Google does read.
   ];
   if (e.image) {
     lines.push(

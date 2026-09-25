@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { imgDims } from "@/utils/imageDims";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,6 +9,7 @@ import CaseStudyNavigation from "../CaseStudyNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData, ImageAnnotation } from "@/data/structuredCaseStudies";
 import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
+import CaseStudyBreadcrumbs from "@/components/seo/CaseStudyBreadcrumbs";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
 import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
@@ -90,6 +92,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         <main id="main-content" className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
           <div className="section-container bg-white">
           {/* Unified Hero Section */}
+          <div className="content-rail-left px-4 sm:px-6">
+            <CaseStudyBreadcrumbs title={caseStudyData.title} slug={caseStudyData.id} />
+          </div>
+
           <UnifiedCaseStudyHero 
             caseStudyData={caseStudyData}
             heroAsImage={heroAsImage}
@@ -380,7 +386,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         ) : (
                           <div className="group cursor-pointer">
                             <div className="overflow-hidden">
-                              <img
+                              <img {...imgDims(image.src)}
                                 src={image.src}
                                 alt={image.alt}
                                 className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
