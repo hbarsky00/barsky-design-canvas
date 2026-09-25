@@ -835,11 +835,16 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Match criteria", description: "intake questionnaire → condition-specific scoring → instant booking" },
         { title: "Booking flow", description: "fewer steps, clearer expectations, immediate confirmation" },
       ],
+      // Was four "iterations", but only two distinct screens. Iteration 3 was the
+      // same directory screenshot as Iteration 1 (2.78% of pixels differed) and
+      // Iteration 4 was byte-for-byte the same screen as the user-testing image
+      // below (0.00%). Both removed rather than presenting one screenshot as
+      // three separate rounds of design work.
       iterations: [
         {
           label: "Iteration 1",
           imageSrc: "/images/herbalink/herbalist-profile.webp",
-          alt: "First iteration of HerbaLink profile design",
+          alt: "First iteration of the herbalist directory listing",
           blurb:
             "Navigation unclear — users don't understand the tab structure\nProfile information scattered — needs better organization\nCTA button placement needs improvement",
           annotations: [
@@ -858,27 +863,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
             { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
             { text: "Better visual hierarchy", x: 50, y: 70, type: "improvement" },
-          ],
-        },
-        {
-          label: "Iteration 3",
-          imageSrc: "/images/herbalink/match-criteria-filters.webp",
-          alt: "Third iteration with match criteria refinements",
-          blurb: "Streamlined profile sections\nMatch criteria made more prominent\nEnhanced booking flow entry point",
-          annotations: [
-            { text: "Match criteria made more prominent", x: 30, y: 25, type: "feature" },
-            { text: "Streamlined profile sections", x: 70, y: 45, type: "improvement" },
-            { text: "Enhanced booking flow entry point", x: 85, y: 80, type: "feature" },
-          ],
-        },
-        {
-          label: "Iteration 4",
-          imageSrc: "/images/herbalink/booking-details.webp",
-          alt: "Fourth iteration streamlining booking flow",
-          annotations: [
-            { text: "Final booking flow - simplified and intuitive", x: 40, y: 30, type: "feature" },
-            { text: "Clear progression indicators", x: 60, y: 50, type: "improvement" },
-            { text: "Accessibility improvements implemented", x: 50, y: 75, type: "feature" },
           ],
         },
       ],
@@ -1742,15 +1726,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint:
         "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
       images: [
-        {
-          src: "/images/business-management/sitemap-draft.jpg",
-          alt: "Initial Concepts & Sketches",
-          caption: "Initial concept sitemap mapping core modules and navigation.",
-        },
+        // sitemap-draft.jpg removed: it was the same diagram as sitemap-refined,
+        // differing only in three misspellings baked into the image ("Derivvry",
+        // "Invegtory", "MoA/tor Interfacce"). 0.44% of pixels differed. The
+        // refined one also claimed to be a "user flow exploration" — it is a
+        // sitemap, so the caption now says what the image actually shows.
         {
           src: "/images/business-management/sitemap-refined.jpg",
-          alt: "User Flow Explorations",
-          caption: "User flow exploration detailing end-to-end operations from intake to invoicing.",
+          alt: "Concept sitemap for the unified operations platform",
+          caption: "Concept sitemap mapping the core modules and navigation.",
         },
       ],
     },
