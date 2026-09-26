@@ -178,6 +178,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               <HeadingHierarchy level="h2" id="my-thought-process-heading" className="sr-only">My Thought Process Section</HeadingHierarchy>
               <MyThoughtProcessSection 
                 content={caseStudyData.myThoughtProcessSection.content}
+                eyebrow={caseStudyData.myThoughtProcessSection.eyebrow}
+                title={caseStudyData.myThoughtProcessSection.title}
                 video={caseStudyData.myThoughtProcessSection.video}
                 images={caseStudyData.myThoughtProcessSection.images || []}
               />

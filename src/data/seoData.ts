@@ -92,6 +92,12 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.",
     image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
   },
+  catchbuddy: {
+    title: "CatchBuddy: Trust in a Pickup Sports App | Case Study",
+    description:
+      "The easy part is getting two strangers to meet in a park; the hard part is getting them to feel safe. How the safety layer shipped in v1 shaped every screen of a pickup-sports app.",
+    image: "https://barskydesign.pro/images/og/catchbuddy.png"
+  },
   "dae-search": {
     title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design",
     description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",

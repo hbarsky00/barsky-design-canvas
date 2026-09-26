@@ -14,6 +14,13 @@ interface ImageItem {
 
 interface MyThoughtProcessSectionProps {
   content: string;
+  // The data model has carried eyebrow/title since this section existed, but the
+  // component hardcoded both, so a case study could not name this section. The
+  // CatchBuddy study calls it "What AI Did, and What It Couldn't", which is the
+  // point of the section; "My Thought Process" says nothing. Defaults preserve
+  // every existing study exactly as it was.
+  eyebrow?: string;
+  title?: string;
   video?: {
     src: string;
     title: string;
@@ -89,6 +96,8 @@ const renderBlock = (block: string, key: string) => {
 
 const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
   content,
+  eyebrow,
+  title,
   video,
   images = [],
 }) => {
@@ -163,10 +172,10 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
         >
           <div className="space-y-4 text-center">
             <div className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-eyebrow text-neutral-700 header-spacing">
-              APPROACH & DECISION MAKING
+              {eyebrow ?? "APPROACH & DECISION MAKING"}
             </div>
             <h2 className="text-section-title font-display content-rail-center">
-              My Thought Process
+              {title ?? "My Thought Process"}
             </h2>
           </div>
 

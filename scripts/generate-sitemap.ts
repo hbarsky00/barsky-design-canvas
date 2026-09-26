@@ -36,6 +36,7 @@ const staticEntries: Entry[] = [
   // see them — but both are prerendered by inject-seo-html.ts and indexable, and
   // both were missing from the sitemap entirely.
   { path: "/project/dae-search" },
+  { path: "/project/catchbuddy" },
   // "/projects" is gone from here on purpose: it 301s to /#case-studies.
   // A sitemap must only list canonical 200s, and this one answered 200 with an
   // empty body at priority 0.9 — the strongest crawl signal on the site pointed

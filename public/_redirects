@@ -27,7 +27,6 @@
 /project/bz-essentials /                                   301
 /project/recast        /                                   301
 /project/stips         /                                   301
-/project/catchbuddy    /                                   301
 /project/fire-lion     /                                   301
 /project/ring-rival    /                                   301
 
@@ -73,6 +72,8 @@
 /project/business-management                         /project/business-management/index.html              200
 /project/business-management/                        /project/business-management/index.html              200
 /project/dae-search                                  /project/dae-search/index.html                       200
+/project/catchbuddy                                  /project/catchbuddy/index.html                       200
+/project/catchbuddy/                                 /project/catchbuddy/index.html                       200
 /project/dae-search/                                 /project/dae-search/index.html                       200
 /blog/a-filter-nobody-opens                          /blog/a-filter-nobody-opens/index.html               200
 /blog/a-filter-nobody-opens/                         /blog/a-filter-nobody-opens/index.html               200

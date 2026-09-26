@@ -75,6 +75,21 @@ const caseStudies: CaseStudy[] = [
   },
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
+    id: "catchbuddy",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Solo Build"],
+    title: "CatchBuddy: Trust Is the Product, Not a Settings Page",
+    description:
+      "The easy part is getting two strangers to agree to meet in a park; the difficult part is getting them to feel safe while doing so. Pickup apps assume you want a season. Most people just want a game on Saturday.",
+    impact: "Safety layer shipped in v1",
+    url: "/project/catchbuddy",
+    liveUrl: "https://catchbuddy.fit",
+    images: {
+      primary: "/images/catchbuddy-hero-landing-card.webp",
+      alt: "CatchBuddy landing page for finding a pickup game nearby",
+    },
+    layout: "side-by-side",
+  },
+  {
     id: "herbalink",
     tags: ["Blue Sky", "Design Thinking", "GenAI"],
     title: "HerbaLink: Credential Trust for Certified Herbalists",

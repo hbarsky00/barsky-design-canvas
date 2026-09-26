@@ -435,8 +435,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       },
     ],
     myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "Approach & Decision Making",
+      eyebrow: "Approach & Decision Making",
+      title: "My Thought Process",
       content:
         "I designed for the uncomfortable truth: crypto platforms are hostile to their users' success. My approach: Progressive disclosure → show complexity when needed, hide it when not. Honest language → plain English instead of manipulative jargon. Unified experience → beginners and pros deserve the same platform.",
       images: [
@@ -657,8 +657,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     ],
     // ideationSection removed to hide images
     myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "",
+      eyebrow: "Approach & Decision Making",
+      title: "My Thought Process",
       content:
         "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
       video: {
@@ -868,8 +868,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "Approach & Decision Making",
+      eyebrow: "Approach & Decision Making",
+      title: "My Thought Process",
       content:
         "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
       images: [
@@ -1667,6 +1667,196 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       path: "/project/investor-loan-app",
     },
   },
+  catchbuddy: {
+    id: "catchbuddy",
+    title: "CatchBuddy: Trust Is the Product, Not a Settings Page",
+    description:
+      "The easy part is getting two strangers to agree to meet in a park; the difficult part is getting them to feel safe while doing so.",
+    tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"],
+    techStack: {
+      devStack: ["React", "TypeScript", "Vite", "Supabase", "Stripe", "Tailwind"],
+      designTools: ["Figma"],
+    },
+    gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
+    projectLink: "https://catchbuddy.fit",
+    heroVideo: {
+      src: "/catchbuddy-card.mp4",
+      poster: "/images/catchbuddy-hero-landing.webp",
+      alt: "CatchBuddy pickup sports landing hero",
+    },
+    researchSection: {
+      subhead:
+        "Most People Just Want a Game on Saturday\n\nPickup sports are declining in urban areas, and the apps designed to address this problem all assume that you want to take part in a full season, with all the commitment and the fixed schedule and the regular team that such a season entails. What most people actually want is a game on Saturday.",
+      blurb:
+        "It wasn't the scheduling that was the issue; the problem was getting two complete strangers to agree to meet at a park and both of them feeling comfortable about it, and that's a matter of trust rather than one of the calendar.",
+      emergingThemes: [
+        {
+          eyebrow: "THE WRONG FRAME",
+          insight: "Existing apps assume a season, a fixed schedule and a regular team.",
+          drove: "A front door built around one game on Saturday.",
+        },
+        {
+          eyebrow: "TRUST, NOT CALENDAR",
+          insight: "The blocker is two strangers agreeing to meet and both feeling comfortable.",
+          drove: "The safety layer shipped in v1 instead of being added later.",
+        },
+        {
+          eyebrow: "THE DATING-APP READ",
+          insight: 'Testers always read "Matches" as referring to a dating app.',
+          drove: 'Renamed to "Browse" and "Players". The match scores stayed.',
+        },
+      ],
+      researchImages: [
+        {
+          src: "/images/catchbuddy/flow-how-i-worked.svg",
+          alt:
+            "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decisions stay manual",
+          caption:
+            "A step-by-step explanation of how I approached it. The choice of Terracotta was the one that the others relied on. The more subdued steps were mine to build and then eliminate.",
+        },
+        {
+          src: "/images/catchbuddy-post-game.webp",
+          alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee",
+          caption:
+            "To start posting a game you first need to choose the sport and that's all — there's no need to include a team, a schedule, or a season.",
+        },
+      ],
+    },
+    problemCallout: {
+      eyebrow: "Problem to Solve",
+      statement:
+        "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it is the entire product.",
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "A parent verifies before a kid can post",
+        description:
+          "A child won't be allowed to post a game until their parent has been verified. The panic button can be reached from any screen while playing.",
+      },
+      {
+        number: 2,
+        title: "The restriction is the feature",
+        description:
+          "Meeting points come from a list I curated, so no one can drop a pin on an address of their own choosing. That one is often the subject of debate; it would be more flexible to let people add their own locations, and I still won't do it.",
+      },
+      {
+        number: 3,
+        title: "Safety first, or it becomes a settings screen",
+        description:
+          "In version 1 the safety layer was the first thing included, because every product I've seen that added it later ended up with a settings screen no one opened.",
+      },
+    ],
+    ideationSection: {
+      subhead: "A Parent Verifies Before a Kid Can Post",
+      bubbles: [
+        { title: "Sign up", description: "13+ age gate as the first checkpoint" },
+        { title: "Under 18", description: "asks a parent to verify before posting" },
+        { title: "Every game", description: "a curated meeting place and a panic button" },
+        { title: "Any screen", description: "panic button reachable while playing" },
+      ],
+      wireframeImage: {
+        src: "/images/catchbuddy/flow-minor-gate.svg",
+        alt:
+          "Minor gate. Sign up, and under 18 asks a parent to verify. Once verified they can post, and until then they cannot.",
+        caption:
+          "The gate that a minor passes through, together with the two things which every game has no matter what: a curated meeting place and a panic button.",
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: "AI-ASSISTED BUILD",
+      title: "What AI Did, and What It Couldn't",
+      content:
+        "The AI carried out the preparation of the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow, which represents a major part of the project, and it did so quickly. It wasn't clear who was allowed in, who was gatekept, and what a stranger would see about another stranger before agreeing to meet; those cases were the ones I handled manually. Although, one thing an AI security review did pick up on that I otherwise would have missed was a recursive RLS policy which would have led to data being leaked in production.",
+      images: [
+        {
+          src: "/images/catchbuddy-equipment-prefs.webp",
+          alt: 'Equipment and preferences: "I\'ll bring a football," no-contact toggle',
+          caption:
+            "The minor details which the two strangers exchange before meeting, namely who is bringing the ball and how physical the game is going to be.",
+        },
+        {
+          src: "/images/catchbuddy-choose-park.webp",
+          alt: "Choose a Park: searchable list with distance and amenities",
+          caption:
+            "A selected list of places where meetings can be held, including the distance and facilities available. It is not possible for anyone to place their own pin, and that limitation is what's intended.",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What I Cut",
+      title: "What I Cut",
+      content:
+        'People always read "Matches" as referring to a dating service; it\'s now called "Browse" and "Players". I created a Quick Start wizard which was not wanted, saw testers skip it every time, and eventually removed it. Support for Apple, Outlook and ICS calendars was developed and then removed, since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.',
+      images: [
+        {
+          src: "/images/catchbuddy-find-players.webp",
+          alt: "Find Players list with 92% and 81% match scores",
+          caption:
+            "The player cards show the match scores; the screen is now called Players, since testers always read \"Matches\" as referring to a dating app.",
+        },
+        {
+          src: "/images/catchbuddy-game-live.webp",
+          alt: 'Confirmation: "Your Game is Live!" with nearby player count, not a vanity counter',
+          caption:
+            "The caption indicates the number of other players around you. It is a real figure and it determines whether you are able to play the game.",
+        },
+        {
+          src: "/images/catchbuddy-signup-minor-gate.webp",
+          alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow",
+          caption:
+            "In version 1, the 13+ age restriction at sign-up was included as the first step in the minor-protection process rather than being added later.",
+        },
+      ],
+    },
+    finalProductSection: {
+      eyebrow: "The Design System",
+      title: "The Design System",
+      description:
+        "I warmed up the palette, since a trustworthy product that looks like a fintech dashboard comes across as a company, and this one needed to look like a neighbour. The safety states have been part of the same system since v1, rather than appearing later as status chips bolted on the side.",
+      images: [
+        {
+          src: "/images/catchbuddy-ds/design-system.webp",
+          alt:
+            "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states",
+          caption:
+            "The paper is warm and there is one green, at three different depths. Green is kept for use in action and is therefore not used for decoration.",
+        },
+      ],
+      video: {
+        src: "/catchbuddy-walkthrough.mp4",
+        title: "CatchBuddy walkthrough",
+        caption:
+          "The complete walkthrough, narrated: posting the game, selecting a park, choosing equipment and preferences, then the safety features — emergency contacts, phone verification, and the minor gate.",
+      },
+    },
+    outcomeSection: {
+      eyebrow: "Where It Landed",
+      title: "Where It Landed",
+      description:
+        "Shipped, including auth, RLS, Stripe, Google OAuth, real-time updates, the minor-approval process and the curated meeting spots — all of which I designed and built. In version 1 the safety layer was the first thing to be included, since all the products I've seen which added it later ended up with a settings screen that no one opened.",
+    },
+    clientTestimonial: {
+      quote:
+        "Unmatched in his ability to translate the often vague ideas from clients into beautiful, simple-to-use products.",
+      author: "Daanish",
+      role: "Business Delivery Partner",
+      company: "Tata Consultancy Services",
+    },
+    sections: [],
+    seoData: {
+      image: "/images/og/catchbuddy.png",
+      projectName: "CatchBuddy — Trust Is the Product, Not a Settings Page | Hiram Barsky",
+      results: [
+        "Safety layer shipped in v1: 13+ gate, parent verification before a minor can post, panic button on every screen",
+        "Curated meeting spots — no user-dropped pins",
+        "Auth, RLS, Stripe, Google OAuth and real-time updates, designed and built solo",
+      ],
+      technologies: ["React", "TypeScript", "Vite", "Supabase", "Stripe", "Tailwind"],
+      path: "/project/catchbuddy",
+    },
+  },
+
   "business-management": {
     id: "business-management",
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
@@ -1835,8 +2025,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
     },
     myThoughtProcessSection: {
-      eyebrow: "My Thought Process",
-      title: "Approach & Decision Making",
+      eyebrow: "Approach & Decision Making",
+      title: "My Thought Process",
       content:
         "I designed around how small businesses actually operate—not how we think they should. Watching Sarah's workflow made it clear: reduce cognitive load, not add features. Result: unified platform with smart defaults and connected workflows.",
       video: {
