@@ -188,8 +188,8 @@ const ServicePageLayout: React.FC = () => {
                 <span className="text-muted-foreground"> — enterprise data discovery, where research reframed the problem.</span>
               </li>
               <li className="leading-relaxed">
-                <Link to="/project/catchbuddy" className="text-md-sys-primary font-semibold underline underline-offset-2">CatchBuddy</Link>
-                <span className="text-muted-foreground"> — research that turned a scheduling problem into a trust problem.</span>
+                <Link to="/project/business-management" className="text-md-sys-primary font-semibold underline underline-offset-2">Blue Sky</Link>
+                <span className="text-muted-foreground"> — one system replacing a stack of disconnected tools.</span>
               </li>
             </ul>
           </section>

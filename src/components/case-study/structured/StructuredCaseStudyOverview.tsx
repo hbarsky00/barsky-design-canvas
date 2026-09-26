@@ -28,11 +28,11 @@ const overviewContent: Record<string, OverviewContent> = {
     duration: "1 year"
   },
   "herbalink": {
-    overview: "HerbaLink connects people with herbalists whose credentials have been verified against an external registry. Discovery in this category is a misinformation field, so the design job was to make the safe path the easy path rather than to build a bigger directory. Verified works as a gate here, not a badge: no practitioner is visible until the check passes.",
+    overview: "HerbaLink connects people with vetted herbalists and reliable resources. Many users relied on unverified sources, creating risks. The vision: build a discovery and booking platform with credibility at its core. The outcome: safe, trustworthy access to natural health practitioners and remedies.",
     goals: [
-      "Gate the catalog on external credential verification, not self-listing.",
-      "Replace the filter panel with a guided intake.",
-      "Keep the catalog honest even when that makes it smaller."
+      "Enable search, filter, and booking for herbalists.",
+      "Give users safe, reliable access to natural health care.",
+      "Create new revenue channels for practitioners and the platform."
     ],
     role: "Lead Product Designer",
     responsibilities: "Product design, booking flows, trust & safety UX",
