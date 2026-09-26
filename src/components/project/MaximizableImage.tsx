@@ -197,7 +197,15 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
       onMouseEnter={() => setIsHovered(true)} 
       onMouseLeave={() => setIsHovered(false)}
 
-      style={knownAspectRatio ? { aspectRatio: knownAspectRatio } : undefined}
+      /* The 70vh cap has to sit on the box as well as on the <img>, or the two
+         disagree and the difference ships as dead space. A 2197x4008 sheet at
+         1120px wide reserves 2043px of aspect-ratio box while the image inside
+         stops at 70vh (630px), leaving 1413px of blank page under it on
+         /project/dae-search — plus six more across catchbuddy,
+         business-management and herbalink. Capping the figure changes nothing
+         about what gets painted; it just stops reserving room for pixels the
+         image was never going to draw. */
+      style={knownAspectRatio ? { aspectRatio: knownAspectRatio, maxHeight: '70vh' } : undefined}
     >
 
       {imageError ? (
