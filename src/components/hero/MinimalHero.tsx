@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Linkedin, Github, Calendar } from "lucide-react";
 import ParticleNetwork from "./ParticleNetwork";
@@ -21,7 +21,11 @@ const MinimalHero: React.FC = () => {
   const { addTimestampTrigger } = useVideoTiming(videoRef, 3.5);
 
   const imageUrl = '/images/hiram-barsky-profile.webp';
-  const videoUrl: string | undefined = undefined; // the barskyux.com clip is gone; the still stands in
+  // Same clip as the header avatar. The <video> and its hover handlers below
+  // were never removed — only the src was blanked when the barskyux.com copy
+  // stopped resolving.
+  const prefersReducedMotion = useReducedMotion();
+  const videoUrl: string | undefined = prefersReducedMotion ? undefined : '/hiram-barsky-wave.mp4';
 
   // Track scroll position to show/hide continue button
   useEffect(() => {
@@ -136,9 +140,16 @@ const MinimalHero: React.FC = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
               
-              <div className="h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40 
-                             xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden 
+              {/* `group` + hover handlers live on the container, not on the
+                  <video>. The shimmer div below is a later sibling with
+                  absolute inset-0, so it stacks above the video and swallowed
+                  every pointer event — the video's own onMouseEnter and its
+                  hover:opacity-100 could never fire. */}
+              <div className="group h-24 w-24 xs:h-28 xs:w-28 sm:h-32 sm:w-32 lg:h-40 lg:w-40
+                             xl:h-48 xl:w-48 2xl:h-60 2xl:w-60 rounded-full overflow-hidden
                              relative ring-4 ring-white/40 backdrop-blur-sm border-2 border-white/60"
+                   onMouseEnter={() => videoRef.current?.play()}
+                   onMouseLeave={() => { const v = videoRef.current; if (v) { v.pause(); v.currentTime = 0; } }}
                    style={{
                      boxShadow: `
                        0 16px 64px rgba(59, 130, 246, 0.15),
@@ -151,7 +162,7 @@ const MinimalHero: React.FC = () => {
                   alt="Hiram Barsky profile"
                   width={384}
                   height={384}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
@@ -159,13 +170,11 @@ const MinimalHero: React.FC = () => {
                 <video
                   ref={videoRef}
                   src={videoUrl}
-                  className="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   muted
                   playsInline
                   preload="none"
                   loop
-                  onMouseEnter={() => videoRef.current?.play()}
-                  onMouseLeave={() => videoRef.current?.pause()}
                   onClick={() => setShowCrackEffect(!showCrackEffect)} // Click to trigger crack effect
                 />
                 
@@ -179,7 +188,7 @@ const MinimalHero: React.FC = () => {
                 
                 {/* CSS-based shimmer effect - no JS animation */}
                 <div 
-                  className="absolute inset-0 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-500"
+                  className="pointer-events-none absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     background: `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`,
                   }}

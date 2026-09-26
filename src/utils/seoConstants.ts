@@ -15,7 +15,11 @@ export const SEO_CONSTANTS = {
   get BASE_URL() {
     return getDynamicBaseUrl();
   },
-  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/hiram-barsky-headshot.webp',
+  // Only ever used as the og:image / twitter:image fallback (seoBuilder.ts).
+  // It was a 896x1195 portrait shipped under og:image:width 1200 /
+  // og:image:height 630, so every share rendered a portrait in a landscape
+  // card. This is the real 1200x630 card, which was sitting unused.
+  DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/og/site.png',
   SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
   // Short form for <title> suffixes. SITE_NAME is 57 chars, so appending it to a
   // post title lands past the ~60 char SERP cut (one post shipped at 113).
