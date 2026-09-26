@@ -7,74 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { shouldShowPromoImpact } from "@/utils/promoCopy";
-
-interface CaseStudy {
-  id: string;
-  tags: string[];
-  title: string;
-  description: string;
-  impact: string;
-  url: string;
-  liveUrl?: string;
-  images: {
-    primary: string;
-    secondary?: string;
-    alt: string;
-  };
-  layout: "side-by-side" | "single-centered" | "web-mobile";
-  video?: string;
-}
-
-// Homepage case studies data with actual image URLs
-const caseStudies: CaseStudy[] = [
-  {
-    id: "herbalink",
-    tags: ["Health", "Marketplace", "Gen AI"],
-    title: "3x More Bookings: How I Connected Users to Certified Herbalists",
-    description: "Launched an AI-powered symptom tracker integrated with a nationwide herbalist marketplace. The platform delivers personalized matches, instant availability checks, and a seamless booking process that removes friction for both patients and practitioners.",
-    impact: "+3x Booking Rate Increase",
-    url: "/project/herbalink",
-    liveUrl: "https://herbalink.live",
-    images: {
-      primary: "/images/herbalink-promo.png",
-      secondary: "/uploads/5474d2fe-6139-4e5b-8e46-ccc6e40b7417.png",
-      alt: "HerbaLink app showing symptom tracker and herbalist finder"
-    },
-    layout: "side-by-side",
-    video: "/videos/herbalink-card.mp4"
-  },
-  {
-    id: "splittime",
-    tags: ["Family Tech", "iOS→Android", "Legal UX"],
-    title: "40% Less Conflict: Designing Neutral Co-Parenting Tools",
-    description: "Introduced shared calendars, neutral chat channels, and automated reminders to keep co-parents aligned. By making scheduling transparent and removing emotionally charged communication points, the app helps parents focus on their kids—not disputes.",
-    impact: "-40% Conflict Reduction",
-    // /project/splittime 301s to the homepage; linking at it sent readers nowhere.
-    url: "https://splittime.pro",
-    liveUrl: "https://splittime.pro",
-    images: {
-      primary: "/images/splittime/app-screens.webp",
-      secondary: "images/desktop-signup-1.png",
-      alt: "SplitTime web and mobile views showing scheduling features"
-    },
-    layout: "web-mobile",
-  },
-  {
-    id: "business-management",
-    tags: ["Enterprise", "Analytics", "Dashboard"],
-    title: "68% Fewer Errors: Streamlining Enterprise Operations",
-    description: "Developed a single dashboard for managing dispatch, inventory, and analytics. This consolidation cut redundant data entry, improved visibility into operations, and sped up decision-making for managers.",
-    impact: "-68% Manual Entry Errors",
-    url: "/project/business-management",
-    images: {
-      primary: "/images/business-management/hero-three-laptops.jpg",
-      secondary: "/uploads/eef241e8-8c9a-46bd-a698-6d4cca9880a5.png",
-      alt: "Business management warehouse operations and inventory tracking system"
-    },
-    layout: "side-by-side",
-  },
-  // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
-];
+import { caseStudyCards as caseStudies, type CaseStudy } from "@/data/caseStudyCards";
 
 interface SingleCaseStudyPreviewProps {
   currentProjectId: string;

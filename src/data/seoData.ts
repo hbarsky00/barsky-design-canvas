@@ -73,9 +73,10 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     image: "https://barskydesign.pro/images/crypto-desktop-1.webp"
   },
   "herbalink": {
-    title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
-    description: "Herbalist marketplace design built around credential verification, herb safety information and guided matching — so people can tell who is qualified before they book.",
-    image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
+    title: "HerbaLink: Verified Herbalists by Design | Case Study",
+    description:
+      "A booking platform where no practitioner is visible until their credentials are verified against an external registry. Verified as a gate, not a badge.",
+    image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
     title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design",
@@ -95,13 +96,26 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   catchbuddy: {
     title: "CatchBuddy: Trust in a Pickup Sports App | Case Study",
     description:
-      "The easy part is getting two strangers to meet in a park; the hard part is getting them to feel safe. How the safety layer shipped in v1 shaped every screen of a pickup-sports app.",
+      "Same-day pickup sports, designed for trust. Minor approval, a panic button and curated meeting spots shipped in v1 — not bolted on later. Built solo with AI.",
     image: "https://barskydesign.pro/images/og/catchbuddy.png"
   },
   "dae-search": {
-    title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design",
-    description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",
-    image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
+    title: "DAE Search: Enterprise Data You Can Trust | Case Study",
+    description:
+      "Finding the data is only half the job; knowing whether to trust it is the rest. Semantic search with lineage and permission state inline, not a click away.",
+    image: "https://barskydesign.pro/images/og/dae-search.png"
+  },
+  "fire-lion": {
+    title: "Fire Lion: Shipping a Game Solo With AI | Case Study",
+    description:
+      "A one-tap arcade runner where you spell words mid-flight to cast spells. AI scaffolded it in a week; deciding which 80% to delete was the design work.",
+    image: "https://barskydesign.pro/images/og/fire-lion.png"
+  },
+  "ring-rival": {
+    title: "Ring-Rival: Console Boxing Feel on Mobile Web",
+    description:
+      "Distinct AI opponents, generated trash talk and a career mode in a browser. Time to first punch went 22s to 6s; audio failures ~40% to under 2%.",
+    image: "https://barskydesign.pro/images/og/ring-rival.png"
   },
 };
 

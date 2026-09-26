@@ -555,463 +555,230 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   "dae-search": {
     id: "dae-search",
-    title: "DAE Search Platform: Making Enterprise Data Actually Findable",
+    title: "DAE Search",
     description:
-      "Redesigned an enterprise search platform that transformed how teams discover and access critical business data, reducing information retrieval time by 65% and delivering 20% ROI through improved productivity.",
-    tags: ["Enterprise", "Search", "Data Discovery", "B2B", "Productivity"],
-    techStack: {
-      aiTools: ["GPT-4", "Semantic Search AI"],
-      devStack: ["React", "ElasticSearch", "Python"],
-      designTools: ["Figma", "Auto-Layout"],
-    },
+      "Enterprise search redesigned around the inconvenient truth that finding the data is only half the job — knowing whether to trust it is the rest.",
+    tags: ["Enterprise", "Data Discovery", "Search UX"],
     gradientClasses: "from-blue-50 via-cyan-50 to-indigo-50",
-    heroImage: {
-      src: "/images/dae-search/hero.webp",
-      alt: "DAE Search Platform interface overview",
+    // No heroImage here on purpose: UnifiedCaseStudyHero only ever renders
+    // heroVideo.poster or seoData.image, so a heroImage field is dead config.
+    problemCallout: {
+      eyebrow: "THE PROBLEM",
+      statement:
+        "Analysts search 'revenue,' get 40 results, then spend 20 minutes figuring out which table is the right one. Which is current. Which is the team-of-record's. Which was deprecated three quarters ago but never cleaned up. The job isn't returning results — it's returning the result you can act on.",
     },
-    heroMetrics: [
-      { value: "20%", label: "ROI from Better Discovery" },
-      { value: "–65%", label: "Information Retrieval Time" },
-      { value: "+85%", label: "Search Accuracy" },
-      { value: "–40%", label: "Support Tickets" },
-    ],
-    researchSection: {
-      subhead: "Employee interviews revealed critical gaps in enterprise data discovery and access patterns.",
-      blurb: "Data silos were costing productivity.",
-      emergingThemes: [
-        {
-          eyebrow: "DISCOVERY BARRIERS",
-          insight: "Teams spend 3+ hours daily searching for existing data across disconnected systems.",
-          drove: "Unified search interface with intelligent content tagging and federated results.",
-        },
-        {
-          eyebrow: "PERMISSION COMPLEXITY",
-          insight: "Access control confusion leads to either data hoarding or security breaches.",
-          drove: "Visual permission indicators and smart access request workflows.",
-        },
-        {
-          eyebrow: "CONTEXT LOSS",
-          insight: "Found data lacks business context, making it unusable without tribal knowledge.",
-          drove: "Rich metadata display with usage patterns and related content suggestions.",
-        },
-      ],
-      researchImages: [
+    finalProductSection: {
+      eyebrow: "WHAT I DID",
+      title: "What I Did",
+      description:
+        "Semantic search over metadata, not keyword match. Tables called `arr_monthly` show up for 'revenue.' Cut results from 40-to-narrow-down to 4-to-pick-from. Data lineage on the result itself, not a click-through — where the data came from, when it last refreshed, what depends on it. The decision is 'can I trust this in front of leadership?' — that needs to be one glance away. Permission state as a first-class signal: restricted results stay visible with a lock and a one-click access request. Hiding them entirely just makes people think the data doesn't exist. Permission-aware auto-complete — built the obvious version first and security flagged it; the suggestion box was leaking the existence of restricted datasets through pattern-matching.",
+      images: [
         {
           src: "/images/dae-search/what-i-built.webp",
-          alt: "Information architecture analysis of existing data systems",
+          alt: "DAE Search process flow — sign in, visible data assets, search, results",
         },
-      ],
-    },
-    problemCallout: {
-      eyebrow: "Problem",
-      statement:
-        "Enterprise teams lose 40% of their productive time hunting for data that already exists. Critical decisions get delayed, projects stall, and knowledge workers become frustrated with disconnected systems that hide rather than reveal insights.",
-    },
-    sprintZeroSection: {
-      eyebrow: "Sprint Zero",
-      title: "Foundation & Principles",
-      workshopKickoff:
-        "1. Search is discovery → results must teach. 2. Context drives confidence → show data lineage and usage. 3. Access is workflow → permissions become pathways, not barriers.",
-      explorations:
-        "I designed three search paradigms: Google-like simplicity, database-style filtering, and AI-powered semantic search. User testing revealed the need for a hybrid approach that combines familiar search patterns with enterprise-specific context and intelligence.",
-      decisionPoint: "Focus on semantic search with visual data lineage and intelligent permission handling.",
-      images: [
         {
           src: "/images/dae-search/decisions-1.webp",
           alt: "Initial concepts for enterprise search interface design",
-          caption: "Foundation principles guiding the enterprise data discovery platform",
         },
         {
           src: "/images/dae-search/decisions-2.webp",
-          alt: "Search paradigm exploration and decision framework",
-          caption: "Comparative analysis of search approaches for enterprise data discovery",
+          alt: "Search results — a filter rail beside a table of data assets, each row carrying status and availability",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "HICCUP",
+      title: "Hiccup",
+      content:
+        "Started by treating this as consumer search with enterprise wrapper — clean ranked list, minimal chrome. Wrong audience. Enterprise users want context, signals, density. Redesign added the kind of density I'd normally argue against. Also assumed natural-language queries would dominate. They didn't. Analysts type fragments and abbreviations. The 'I know what I want, find it fast' use case mattered more than the conversational one.",
+      images: [
+        {
+          src: "/images/dae-search/the-problem.webp",
+          alt: "The advanced-search empty state — a keyword box and one saved filter, before a single result is shown",
+        },
+      ],
+    },
+    outcomeSection: {
+      eyebrow: "OUTCOME",
+      title: "Outcome",
+      description:
+        "The shift from 'keyword match over names' to 'semantic match with lineage and permissions inline' reframed the product from a search tool into a data discovery tool. Different category, different success metric. The principle worth taking away: in enterprise contexts, trustworthiness of the result matters more than relevance. Most search UX optimizes for the second.",
+    },
+    sections: [],
+    seoData: {
+      image: "/images/dae-search/hero.webp",
+      projectName: "DAE Search",
+      results: [],
+      technologies: [],
+      path: "/project/dae-search",
+    },
+  },
+  herbalink: {
+    id: "herbalink",
+    title: "HerbaLink",
+    description:
+      "Verified herbalists, designed around trust. A booking platform shipped solo with AI as a co-builder.",
+    tags: ["AI-Assisted Product", "Healthcare", "Trust & Safety", "Solo Build"],
+    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
+    heroVideo: {
+      src: "/herbalink-card.mp4",
+      poster: "/images/herbalink/card-poster-home.jpg",
+      alt: "HerbaLink booking platform overview",
+    },
+    projectLink: "https://herbalink.live",
+    heroMetrics: [
+      { value: "Solo Build", label: "Designer + AI, end-to-end" },
+      { value: "Credentials as a Gate", label: "Verified against an external registry, not a badge" },
+      { value: "Smaller Catalog by Design", label: "Honest beats exhaustive" },
+    ],
+    researchSection: {
+      subhead: "Talking to users turning to herbalism revealed three problems:",
+      emergingThemes: [
+        {
+          eyebrow: "DISCOVERY IS A MISINFORMATION FIELD",
+          insight:
+            "Instagram practitioners with no credentials, Google results that mix certified herbalists with weekend-workshop graduates, supplement interactions nobody warns about.",
+          drove: "a credentialed directory gated by external verification.",
+        },
+        {
+          eyebrow: "TRUST IS THE PRODUCT, NOT SEARCH",
+          insight:
+            "One user: \"I found an herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick.\"",
+          drove: "making the safe path the easy path, not warning labels on the unsafe one.",
+        },
+        {
+          eyebrow: "FILTER-HEAVY UX FEELS LIKE WEBMD",
+          insight:
+            "A user testing the early filter panel: \"This feels like trying to diagnose myself on WebMD.\"",
+          drove: "replaced filters with a guided triage intake.",
+        },
+      ],
+      researchImage: "/images/herbalink/herbalist-directory.webp",
+      researchImageAlt:
+        "HerbaLink's Find Herbalists page — every practitioner shown carries a Verified badge, because the unverified ones are never listed",
+    },
+    problemCallout: {
+      eyebrow: "THE REAL PROBLEM",
+      statement:
+        "People turn to herbalism for anxiety, fatigue, and conditions conventional medicine isn't addressing for them — and the discovery experience is a misinformation field. The design job wasn't to build a bigger directory. It was to make the safe path the easy path, in a category where being wrong has real medical consequences.",
+    },
+    sprintZeroSection: {
+      eyebrow: "SPRINT ZERO",
+      title: "Sprint Zero",
+      workshopKickoff: "",
+      explorations:
+        "Early sketches and flow exploration focused on the credential gate — sitting before any browsing — rather than the directory layout.",
+      decisionPoint:
+        "Build the catalog around external verification first. No practitioner is visible until their credentials are checked against the American Herbalists Guild or equivalent. Smaller catalog, honest one — discovery comes second.",
+      images: [
+        {
+          src: "/images/herbalink/find-herbalist-sketch.webp",
+          alt: "Initial concepts and sketches focused on the credential gate, not the directory layout",
+        },
+        {
+          src: "/images/herbalink/thought-process.webp",
+          alt: "The process I ran — interview users and herbalists, identify trust barriers, prioritise outcomes over UI, design for retention, validate simplicity",
         },
       ],
     },
     keyInsights: [
       {
         number: 1,
-        title: "Semantic search changed everything",
+        title: "\"Verified\" as a gate is a different product than \"verified\" as a badge.",
         description:
-          "Moving beyond keyword matching to intent understanding increased relevant results by 85% and reduced refinement queries by 70%.",
-        images: [
-          {
-            src: "/images/dae-search/style-guide.webp",
-            alt: "DAE project style guide showing design system, colors, typography, and component specifications",
-            caption: "Design system and style guide for the DAE search platform",
-          },
-        ],
+          "Most directories let anyone list themselves and slap a badge on profiles that pass a basic check. Inverting that — no practitioner is visible until verified — produces a smaller, more honest catalog. That distinction is the product.",
       },
       {
         number: 2,
-        title: "Visual data lineage built trust",
+        title: "Users say \"more options,\" they mean \"more confidence in the option I pick.\"",
         description:
-          "Showing data sources, freshness, and transformation history gave users confidence to act on search results immediately.",
+          "Adding 200 practitioners to the early catalog made the experience worse, not better. The win came from removing anyone whose credentials couldn't be verified — even when the catalog visibly shrank.",
       },
       {
         number: 3,
-        title: "Smart permissions reduced friction",
+        title:
+          "AI can build the directory in a weekend. Deciding who doesn't appear in it is the actual product.",
         description:
-          "Proactive access suggestions and one-click request workflows turned permission barriers into guided pathways.",
+          "AI handled scaffolding, Supabase schemas, RLS policies, edge functions, the symptom intake structure, and copy variants. The credential model — which certifications matter for which conditions, when to refuse a listing — was every call I made by hand.",
       },
-    ],
-    // ideationSection removed to hide images
-    myThoughtProcessSection: {
-      eyebrow: "Approach & Decision Making",
-      title: "My Thought Process",
-      content:
-        "Enterprise search isn't just finding files—it's understanding business context. I designed for the moment when someone needs to make a decision with incomplete information. The interface needed to bridge the gap between data discovery and business insight, making every search result a learning opportunity.",
-      video: {
-        src: "https://www.loom.com/share/d11e52c85a1c48b181a5b23290321195?sid=1b805134-722d-4f63-a94b-42409f866a38",
-        title: "DAE Search Platform Demo",
-        caption:
-          "Live demonstration of the enterprise search platform showing semantic search and data lineage features",
-      },
-    },
-    whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "",
-      content:
-        "Early versions tried to replicate consumer search patterns, but enterprise users needed more structure and context. A flat results list confused users who needed to understand data quality and permissions upfront. We also learned that auto-complete suggestions backfired when they exposed restricted content, creating security concerns.",
-      images: [
-        {
-          src: "/images/dae-search/the-problem.webp",
-          alt: "Learning from design iterations that didn't meet enterprise needs",
-          caption: "Learning from design iterations that didn't meet enterprise user requirements",
-        },
-      ],
-    },
-    userTestingSection: {
-      title: "Validation & Testing",
-      eyebrow: "Testing",
-      video: {
-        src: "/images/dae-search/advanced-search.mp4",
-        title: "Advanced Search Validation Testing",
-        caption: "Demonstration of the advanced search functionality during user testing",
-      },
-      description:
-        "Prototype sessions with enterprise teams showed: Information retrieval time ↓ to 5 minutes (vs 15+ previously). Search accuracy ↑ 85%. 90% of users found the data lineage visualization valuable for decision-making.",
-      metrics: [
-        { value: "5 min", label: "Avg. retrieval time" },
-        { value: "↑85%", label: "Search accuracy" },
-        { value: "90%", label: "Found lineage valuable" },
-      ],
-    },
-    outcomeSection: {
-      title: "Outcome & Impact",
-      eyebrow: "Results",
-      description:
-        "The platform transformed enterprise data discovery from a daily frustration into a competitive advantage, delivering measurable ROI through improved productivity and decision-making speed.",
-      metrics: [
-        { value: "20%", label: "ROI from better discovery" },
-        { value: "↓65%", label: "Information retrieval time" },
-      ],
-    },
-    sections: [],
-    seoData: {
-      image: "/images/dae-search/outcome-dashboard.webp",
-      projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
-      results: [
-        "20% ROI from better data discovery",
-        "65% reduction in information retrieval time",
-        "85% increase in search accuracy",
-        "40% reduction in support tickets",
-      ],
-      technologies: ["React", "TypeScript", "Elasticsearch", "Node.js", "GraphQL"],
-      path: "/project/dae-search",
-    },
-  },
-  herbalink: {
-    id: "herbalink",
-    // Was "How I Tripled Herbalist Bookings". Three problems: the meta
-    // description claimed 45% for the same metric, the homepage card claimed
-    // 3x, and herbalink.live currently tells visitors "Consultations open to
-    // clients once our founding cohort is live" — so a reader could click
-    // through and see the claim contradicted in one step. Leads with the
-    // credential-trust problem instead, which is what the study is actually
-    // about and what the live product demonstrably does.
-    title: "HerbaLink: Designing Credential Trust Into a Herbalist Marketplace",
-    description: 'When your health is on the line, "trust me, bro" isn\'t good enough',
-    tags: ["Healthcare", "GenAI", "Trust & Safety", "Booking Platform"],
-    techStack: {
-      aiTools: ["ChatGPT", "AI Matching"],
-      devStack: ["React Native", "Node.js"],
-      designTools: ["Figma", "Protopie"],
-    },
-    gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    projectLink: "http://herbalink.live",
-    heroVideo: {
-      src: "/herbalink-card.mp4",
-      poster: "/images/herbalink/card-poster-home.jpg",
-      alt: "HerbaLink feature overview",
-    },
-    researchSection: {
-      subhead: "Gathering insights from users and practitioners",
-      blurb: "Critical patterns emerged.",
-      emergingThemes: [
-        {
-          eyebrow: "THE TRUST CRISIS",
-          insight:
-            '"I found this herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick." – Jessica, marketing manager',
-          drove: "Problem: no credential verification, real safety risks.",
-        },
-        {
-          eyebrow: "INFORMATION OVERLOAD",
-          insight:
-            '"Every herbalist website has different information. I just want to know: Is this safe for me? Will it interact with my medications? How much should I take?" – David, retiree',
-          drove: "Problem: conflicting information, no standardized guidance.",
-        },
-        {
-          eyebrow: "EMERGING THEMES",
-          insight:
-            "Essentials to Know → Safety info (contraindications, interactions, dosage) must be immediate. Personalization Matters → Matching by conditions, modalities, and availability. Trust & Transparency → Verified credentials and visible sources build confidence.",
-          drove: "Solution framework for trust-first herbalist discovery platform.",
-        },
-      ],
-      researchImages: [
-        {
-          src: "/images/herbalink/herbalist-directory.webp",
-          alt: "AHG directory — grid of herbal schools (scroll demo)",
-        },
-      ],
-    },
-    problemCallout: {
-      eyebrow: "Problem",
-      statement:
-        "People seeking herbal care couldn't confidently find qualified practitioners or reliable guidance, leading to dangerous misinformation, safety risks, and abandoned treatment plans.",
-    },
-    sprintZeroSection: {
-      eyebrow: "Problem",
-      title: "Problem to Solve",
-      workshopKickoff:
-        "People seeking herbal care couldn't confidently find qualified practitioners or reliable guidance, leading to dangerous misinformation, safety risks, and abandoned treatment plans.",
-      explorations:
-        "Sprint Zero / Exploration: Explored AI-powered symptom analysis, community reviews, marketplace browsing.",
-      decisionPoint:
-        "Decision Point: Trust was the core problem. Solution: verified practitioners with transparent credentials, not a self-serve database of unvetted options.",
-      images: [
-        {
-          src: "/images/herbalink/find-herbalist-sketch.webp",
-          alt: "Initial Concepts & Sketches",
-          caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts",
-          annotations: [
-            {
-              x: 35,
-              y: 40,
-              type: "improvement",
-              text: "Early sketches prioritized practitioner credibility over features - this foundation guided all future design decisions",
-            },
-          ],
-        },
-        {
-          src: "/images/herbalink/thought-process.webp",
-          alt: "User Flow Explorations",
-          caption: "Blue-sky user journey mapping from symptom input to practitioner booking",
-          annotations: [
-            {
-              x: 65,
-              y: 30,
-              type: "feature",
-              text: "Blue-sky thinking revealed users needed guided discovery rather than overwhelming choice - leading to simplified booking flow",
-            },
-          ],
-        },
-      ],
-    },
-    keyInsights: [
-      { number: 1, title: "Trust signals first", description: "credentials and safety info drive bookings" },
-      {
-        number: 2,
-        title: "Personalization wins",
-        description: "condition-specific matching is more effective than search",
-      },
-      { number: 3, title: "Continuity matters", description: "booking + notes + follow-ups keep users engaged" },
     ],
     ideationSection: {
-      subhead: "Multiple iterations on trust and discovery",
+      subhead: "Multiple iterations on discovery and intake — each cut backed by observed user behavior.",
       bubbles: [
-        { title: "Profile essentials", description: "what users need immediately to trust a practitioner" },
-        { title: "Safety information", description: "contraindications and interactions upfront" },
-        { title: "Match criteria", description: "intake questionnaire → condition-specific scoring → instant booking" },
-        { title: "Booking flow", description: "fewer steps, clearer expectations, immediate confirmation" },
-      ],
-      // Was four "iterations", but only two distinct screens. Iteration 3 was the
-      // same directory screenshot as Iteration 1 (2.78% of pixels differed) and
-      // Iteration 4 was byte-for-byte the same screen as the user-testing image
-      // below (0.00%). Both removed rather than presenting one screenshot as
-      // three separate rounds of design work.
-      iterations: [
         {
-          label: "Iteration 1",
-          imageSrc: "/images/herbalink/herbalist-profile.webp",
-          alt: "First iteration of the herbalist directory listing",
-          blurb:
-            "Navigation unclear — users don't understand the tab structure\nProfile information scattered — needs better organization\nCTA button placement needs improvement",
-          annotations: [
-            { text: "Navigation unclear - users don't understand the tab structure", x: 20, y: 15, type: "issue" },
-            { text: "Profile information scattered - needs better organization", x: 50, y: 35, type: "issue" },
-            { text: "CTA button placement needs improvement", x: 80, y: 75, type: "issue" },
-          ],
+          title: "Heavy filter panel",
+          description:
+            "Modality, condition, price, location, availability tested as \"WebMD.\" Replaced with guided intake.",
         },
         {
-          label: "Iteration 2",
-          imageSrc: "/images/herbalink/herb-safety-detail.webp",
-          alt: "Second iteration focusing on safety information",
-          blurb:
-            "Improved navigation with clearer labels\nBetter visual hierarchy\nSafety information now prominently displayed",
-          annotations: [
-            { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
-            { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
-            { text: "Better visual hierarchy", x: 50, y: 70, type: "improvement" },
-          ],
+          title: "Comprehensive symptom diary",
+          description:
+            "Mood, sleep, supplements, side effects, energy was opened twice per user and abandoned. Cut to one question: what changed since last visit?",
+        },
+        {
+          title: "Yelp-style \"Verified\" badge",
+          description: "Scrapped in favor of a gate that controls visibility entirely.",
         },
       ],
+      wireframeImage: {
+        src: "/images/herbalink/sitemap.png",
+        alt: "HerbaLink site structure — verification sits on the practitioner path, before any listing can appear",
+        caption: "Site structure — onboarding feeds a guided intake, not a search bar",
+      },
     },
     myThoughtProcessSection: {
-      eyebrow: "Approach & Decision Making",
+      eyebrow: "APPROACH & DECISION MAKING",
       title: "My Thought Process",
       content:
-        "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
-      images: [
-        {
-          src: "/images/herbalink/mobile-grid-8up.webp",
-          alt: "Eight HerbaLink mobile screens: home, herb library, herb detail, practitioner signup, consultations, herbalist resources, application form and about",
-          caption: "User flow from onboarding to booking and tracking.",
-          annotations: [
-            {
-              text: "I prioritized trust-building over flashy features, designing each interaction to reduce user anxiety and build confidence in healthcare decisions.",
-              x: 25,
-              y: 30,
-              type: "improvement",
-            },
-            {
-              text: "Clear symptom tracking, verified profiles, and a community that actually helps users feel understood.",
-              x: 75,
-              y: 70,
-              type: "feature",
-            },
-          ],
-        },
-      ],
+        "In a category dominated by misinformation, the design job is to make the safe path the easy path. Not to add warning labels to the unsafe path. Every decision was checked against: would this protect a user from the same $200-tincture mistake? That filter killed open-ended search, killed crowdsourced practitioner listings, and inverted \"verified\" from a badge into a gate.",
     },
     userTestingSection: {
-      title: "User Testing & Validation",
-      description: "Results:\n• 92% task completion\n• 4.8/5 trust score\n• 30s average booking time",
-      eyebrow: "Validation & Testing",
-      metrics: [
-        { value: "92%", label: "task completion" },
-        { value: "4.8/5", label: "trust score" },
-        { value: "30s", label: "average booking time" },
-      ],
+      eyebrow: "USER TESTING",
+      title: "User Testing",
+      description:
+        "Tested with users actively searching for herbalists, plus a smaller group reviewing the safety and intake flows on real iOS and Android phones. Changes from observation: \"This feels like WebMD\" → filter panel replaced with guided triage intake. \"I want to know what changed since last time\" → symptom tracker cut from health diary to a single follow-up question. \"Are these people actually qualified?\" → credential gate made visible on the profile, not buried in an FAQ.",
       images: [
         {
           src: "/images/herbalink/booking-intake.webp",
-          alt: "User testing session showing booking flow validation",
-          caption:
-            "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials.",
+          alt: "Booking intake — one question, \"What would you like to focus on?\", beside the consultation summary that replaced the symptom diary",
         },
       ],
     },
-    finalProductSection: {
-      title: "The Final Product",
-      description:
-        "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Book faster: 3× higher conversion rate",
-      eyebrow: "The Result",
+    whatDidntWorkSection: {
+      eyebrow: "WHAT DIDN'T WORK",
+      title: "What Didn't Work",
+      content:
+        "The original architecture was a giant filterable database of every herbalist I could find. Wrong product — users didn't want options, they wanted confidence. Reset. The comprehensive symptom diary tried to be a health journal. Users opened it twice and abandoned it. Cut back to one question that they actually use. The \"Verified\" badge approach was abandoned entirely in favor of the gate model.",
       images: [
         {
-          src: "/images/herbalink/home-hero.webp",
-          alt: "HerbaLink final product desktop interface",
-          caption: "Complete HerbaLink desktop experience showing the comprehensive interface design",
-          annotations: [
-            {
-              x: 25,
-              y: 20,
-              type: "feature",
-              text: "Streamlined booking flow increased conversions by 3x",
-            },
-            {
-              x: 70,
-              y: 35,
-              type: "feature",
-              text: "Trust indicators build user confidence",
-            },
-            {
-              x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Simplified interface reduced cognitive load",
-            },
-            {
-              x: 80,
-              y: 80,
-              type: "feature",
-              text: "Symptom tracking provides personalized insights",
-            },
-          ],
-        },
-        {
-          src: "/images/herbalink/mobile-booking-guided.webp",
-          alt: "HerbaLink final product mobile interface",
-          caption: "HerbaLink mobile experience featuring the book an herbalist functionality",
+          src: "/images/herbalink/before-poster.jpg",
+          alt: "The original filter-heavy directory — herbal traditions, specialties and certifications as a filter rail. This is the version a tester called WebMD",
         },
       ],
     },
     outcomeSection: {
+      eyebrow: "OUTCOME",
       title: "Outcome",
       description:
-        'Maria\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
-      eyebrow: "Outcomes & Impact",
-      metrics: [
-        { value: "3×", label: "booking increase" },
-        { value: "85%", label: "match accuracy" },
-        { value: "24hr", label: "average response time" },
-      ],
-    },
-    whatDidntWorkSection: {
-      eyebrow: "What Didn't Work",
-      title: "Lessons Learned",
-      content:
-        'My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me." – Maria\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.',
+        "A shipped booking platform where every listed practitioner has externally verified credentials, where intake replaces search, and where the safer path is also the easier one. Credential gate verified against an external registry, not a badge. Guided intake replaces filter panels and reduces WebMD-style anxiety. Honest catalog — smaller by design, with no unverified tier. AI as scaffolder: schema, RLS, intake structure, copy variants; judgment stayed human.",
       images: [
         {
-          src: "/images/herbalink/before-poster.jpg",
-          alt: "HerbaLink early 'Book an Herbalist' concept",
-          caption:
-            "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach.",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "issue",
-              text: "Complex navigation overwhelmed users",
-            },
-            {
-              x: 65,
-              y: 40,
-              type: "issue",
-              text: "Too many filter options created decision paralysis",
-            },
-            {
-              x: 50,
-              y: 70,
-              type: "improvement",
-              text: "Simplified to guided discovery flow",
-            },
-          ],
+          src: "/images/herbalink/herb-safety-detail.webp",
+          alt: "Herb detail with benefits, preparation and precautions — safety information sits with the recommendation instead of behind a disclaimer",
+        },
+        {
+          src: "/images/herbalink/mobile-booking-guided.webp",
+          alt: "HerbaLink final mobile — same hierarchy, same trust signals, optimized for thumb",
         },
       ],
     },
     sections: [],
     seoData: {
-      image: "/images/herbalink/card-poster-home.jpg",
-      projectName: "HerbaLink — Credential Trust for a Herbalist Marketplace | Hiram Barsky",
-      results: [
-        "3× more bookings",
-        "85% match accuracy",
-        "92% completion rate",
-        "safer natural healthcare with trust built in",
-      ],
-      technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],
+      image: "/images/og/herbalink.png",
+      projectName: "HerbaLink",
+      results: [],
+      technologies: [],
       path: "/project/herbalink",
     },
   },
@@ -1669,194 +1436,486 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
   },
   catchbuddy: {
     id: "catchbuddy",
-    title: "CatchBuddy: Trust Is the Product, Not a Settings Page",
+    title: "CatchBuddy",
     description:
-      "The easy part is getting two strangers to agree to meet in a park; the difficult part is getting them to feel safe while doing so.",
+      "Same-day pickup sports, designed for trust. Post a game, see open games, confirm in a few taps. Built solo with AI as a co-builder.",
     tags: ["AI-Assisted Product", "Trust & Safety", "Mobile-First", "Solo Build"],
-    techStack: {
-      devStack: ["React", "TypeScript", "Vite", "Supabase", "Stripe", "Tailwind"],
-      designTools: ["Figma"],
-    },
     gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
-    projectLink: "https://catchbuddy.fit",
     heroVideo: {
       src: "/catchbuddy-card.mp4",
       poster: "/images/catchbuddy-hero-landing.webp",
-      alt: "CatchBuddy pickup sports landing hero",
+      alt: "CatchBuddy pickup sports app overview",
     },
+    projectLink: "https://catchbuddy.fit",
+    heroMetrics: [
+      { value: "Solo Build", label: "Designer + AI, end-to-end" },
+      { value: "Safety-First Architecture", label: "Minor approval, panic button, curated meeting spots" },
+      { value: "Real Stack Shipped", label: "Auth, RLS, OAuth, Stripe, Realtime" },
+    ],
     researchSection: {
-      subhead:
-        "Most People Just Want a Game on Saturday\n\nPickup sports are declining in urban areas, and the apps designed to address this problem all assume that you want to take part in a full season, with all the commitment and the fixed schedule and the regular team that such a season entails. What most people actually want is a game on Saturday.",
-      blurb:
-        "It wasn't the scheduling that was the issue; the problem was getting two complete strangers to agree to meet at a park and both of them feeling comfortable about it, and that's a matter of trust rather than one of the calendar.",
+      subhead: "Observing pickup-sports culture and existing apps surfaced three friction points:",
       emergingThemes: [
         {
-          eyebrow: "THE WRONG FRAME",
-          insight: "Existing apps assume a season, a fixed schedule and a regular team.",
-          drove: "A front door built around one game on Saturday.",
+          eyebrow: "LEAGUE-FOCUSED APPS DON'T SERVE CASUAL PLAY",
+          insight:
+            "Existing platforms assume commitment, schedules, recurring teams. Most people want one game this weekend, not a season.",
+          drove: "a single-action \"post a catch request\" as the entire product.",
         },
         {
-          eyebrow: "TRUST, NOT CALENDAR",
-          insight: "The blocker is two strangers agreeing to meet and both feeling comfortable.",
-          drove: "The safety layer shipped in v1 instead of being added later.",
+          eyebrow: "TRUST IS THE REAL UNLOCK, NOT MATCHING",
+          insight:
+            "Two strangers meeting at a park requires a different safety model than dating apps or marketplaces.",
+          drove:
+            "phone verification, panic button, curated meeting spots, minor approval flow — built in from v1.",
         },
         {
-          eyebrow: "THE DATING-APP READ",
-          insight: 'Testers always read "Matches" as referring to a dating app.',
-          drove: 'Renamed to "Browse" and "Players". The match scores stayed.',
+          eyebrow: "\"MATCHES\" READS AS DATING",
+          insight: "Early testers consistently misread the nav.",
+          drove: "rewrote navigation as \"Browse\" and \"Players\" instead of \"Matches.\"",
         },
       ],
-      researchImages: [
-        {
-          src: "/images/catchbuddy/flow-how-i-worked.svg",
-          alt:
-            "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decisions stay manual",
-          caption:
-            "A step-by-step explanation of how I approached it. The choice of Terracotta was the one that the others relied on. The more subdued steps were mine to build and then eliminate.",
-        },
-        {
-          src: "/images/catchbuddy-post-game.webp",
-          alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee",
-          caption:
-            "To start posting a game you first need to choose the sport and that's all — there's no need to include a team, a schedule, or a season.",
-        },
-      ],
+      researchImage: "/images/catchbuddy-signin.webp",
+      researchImageAlt:
+        "Sign-in screen with the CatchBuddy brand — first trust signal before anything is asked",
     },
     problemCallout: {
-      eyebrow: "Problem to Solve",
+      eyebrow: "THE REAL PROBLEM",
       statement:
-        "Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it is the entire product.",
+        "Pickup sports are dying in cities. Existing apps are league-focused or chat-heavy. Nobody wants a Slack thread to throw a baseball after work. The real product wasn't another scheduling tool — it was a way to lower the friction and the safety risk of two strangers agreeing to meet at a park.",
+    },
+    sprintZeroSection: {
+      eyebrow: "SPRINT ZERO",
+      title: "Sprint Zero",
+      workshopKickoff: "",
+      explorations:
+        "Step 1 — pick a sport. Five options, no menu, no friction. Step 2 — pick a park: curated venues only; no arbitrary GPS pins. Step 3 — equipment + preferences: small signals that cut down on missed expectations.",
+      decisionPoint:
+        "Ship the minimum viable trust loop — post a game, see games, confirm a match — and only then layer in the safety scaffolding (phone verification, panic button, minor approval). No discovery without trust signals in place.",
+      images: [
+        {
+          src: "/images/catchbuddy-post-game.webp",
+          alt: "Post Your Game — sport picker with Football, Basketball, Baseball, Volleyball, Frisbee",
+        },
+        {
+          src: "/images/catchbuddy-choose-park.webp",
+          alt: "Choose a Park — searchable list with distance and amenities",
+        },
+      ],
     },
     keyInsights: [
       {
         number: 1,
-        title: "A parent verifies before a kid can post",
+        title: "Safety can't be a bolt-on. It's the product.",
         description:
-          "A child won't be allowed to post a game until their parent has been verified. The panic button can be reached from any screen while playing.",
+          "Minors require a verified parent on file before they can post. The panic button reaches every in-game screen. Public meeting spots are curated, not crowdsourced. None of that comes from a prompt — those are product calls about who's actually going to use this and what could go wrong.",
       },
       {
         number: 2,
-        title: "The restriction is the feature",
+        title: "AI scaffolds the schema. It doesn't decide who's allowed to post.",
         description:
-          "Meeting points come from a list I curated, so no one can drop a pin on an address of their own choosing. That one is often the subject of debate; it would be more flexible to let people add their own locations, and I still won't do it.",
+          "AI shipped the RLS policies, the profiles_public view, the Supabase migrations, the Stripe integration, the OAuth flow. The trust model — who gets in, who's gated, what's surfaced — was every decision I made by hand.",
       },
       {
         number: 3,
-        title: "Safety first, or it becomes a settings screen",
+        title: "Real reviews surface things AI misses.",
         description:
-          "In version 1 the safety layer was the first thing included, because every product I've seen that added it later ended up with a settings screen no one opened.",
+          "AI's own security code review caught a recursive RLS policy on the profiles table that would have leaked data in production. Used the AI as a second pair of eyes, not as the only set.",
       },
     ],
     ideationSection: {
-      subhead: "A Parent Verifies Before a Kid Can Post",
+      subhead: "Multiple iterations on onboarding and flow — every cut backed by observed friction.",
       bubbles: [
-        { title: "Sign up", description: "13+ age gate as the first checkpoint" },
-        { title: "Under 18", description: "asks a parent to verify before posting" },
-        { title: "Every game", description: "a curated meeting place and a panic button" },
-        { title: "Any screen", description: "panic button reachable while playing" },
+        { title: "\"Quick Start\" wizard", description: "Built, then cut — users skipped it every time." },
+        {
+          title: "Homepage MapSection",
+          description: "Looked great in screenshots and confused first-time visitors. Cut.",
+        },
+        {
+          title: "iOS geolocation flow",
+          description: "Rebuilt with a city-dropdown fallback after half of testers denied location.",
+        },
       ],
       wireframeImage: {
-        src: "/images/catchbuddy/flow-minor-gate.svg",
-        alt:
-          "Minor gate. Sign up, and under 18 asks a parent to verify. Once verified they can post, and until then they cannot.",
-        caption:
-          "The gate that a minor passes through, together with the two things which every game has no matter what: a curated meeting place and a panic button.",
+        src: "/images/catchbuddy-equipment-prefs.webp",
+        alt: "Equipment and preferences — \"I'll bring a football,\" no-contact toggle",
+        caption: "Step 3 — equipment + preferences. Small signals that cut down on missed expectations",
       },
     },
     myThoughtProcessSection: {
-      eyebrow: "AI-ASSISTED BUILD",
-      title: "What AI Did, and What It Couldn't",
+      eyebrow: "APPROACH & DECISION MAKING",
+      title: "My Thought Process",
       content:
-        "The AI carried out the preparation of the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow, which represents a major part of the project, and it did so quickly. It wasn't clear who was allowed in, who was gatekept, and what a stranger would see about another stranger before agreeing to meet; those cases were the ones I handled manually. Although, one thing an AI security review did pick up on that I otherwise would have missed was a recursive RLS policy which would have led to data being leaked in production.",
+        "The product had to be honest about who was using it. Two strangers, a park, a real game on a real day. Every design decision was checked against: would I let my 16-year-old cousin sign up for this? That filter killed open-ended chat, killed crowdsourced meeting spots, and gated everything for minors behind a verified parent.",
+    },
+    userTestingSection: {
+      eyebrow: "USER TESTING",
+      title: "User Testing",
+      description:
+        "Tested with friends, family, and parents reviewing the minor-approval flow on real iOS and Android phones. Changes from observation: \"Matches\" → \"Browse\" and \"Players\" — users read \"Matches\" as Tinder-like. Toast stacking — auto-dismiss after 3 seconds. Bottom nav layout shift — fixed to grid-cols-5 to prevent jumps when badges appear. Calendar OAuth state — rewrote with HMAC-SHA256 signing after CSRF vulnerability was caught. Demo data leakage — separated demo matches into their own query path with a Demo badge.",
       images: [
         {
-          src: "/images/catchbuddy-equipment-prefs.webp",
-          alt: 'Equipment and preferences: "I\'ll bring a football," no-contact toggle',
-          caption:
-            "The minor details which the two strangers exchange before meeting, namely who is bringing the ball and how physical the game is going to be.",
+          src: "/images/catchbuddy-find-players.webp",
+          alt: "The Matches screen testers kept reading as a dating app — a Find Players tab and percentage match scores from a proximity and time heuristic",
         },
         {
-          src: "/images/catchbuddy-choose-park.webp",
-          alt: "Choose a Park: searchable list with distance and amenities",
-          caption:
-            "A selected list of places where meetings can be held, including the distance and facilities available. It is not possible for anyone to place their own pin, and that limitation is what's intended.",
+          src: "/images/catchbuddy-signup-minor-gate.webp",
+          alt: "Sign-up form with the 13+ age gate — first checkpoint in the minor-protection flow",
         },
       ],
     },
     whatDidntWorkSection: {
-      eyebrow: "What I Cut",
-      title: "What I Cut",
+      eyebrow: "WHAT DIDN'T WORK",
+      title: "What Didn't Work",
       content:
-        'People always read "Matches" as referring to a dating service; it\'s now called "Browse" and "Players". I created a Quick Start wizard which was not wanted, saw testers skip it every time, and eventually removed it. Support for Apple, Outlook and ICS calendars was developed and then removed, since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.',
+        "The Quick Start wizard was over-engineered onboarding. Users wanted to skip it. Cut. The homepage MapSection promised value the first interaction couldn't deliver. Cut. Apple Calendar, Outlook, and ICS support were built. Three calendar providers turned out to be a maintenance tax for a feature users barely cared about. Google-only now.",
       images: [
-        {
-          src: "/images/catchbuddy-find-players.webp",
-          alt: "Find Players list with 92% and 81% match scores",
-          caption:
-            "The player cards show the match scores; the screen is now called Players, since testers always read \"Matches\" as referring to a dating app.",
-        },
         {
           src: "/images/catchbuddy-game-live.webp",
-          alt: 'Confirmation: "Your Game is Live!" with nearby player count, not a vanity counter',
-          caption:
-            "The caption indicates the number of other players around you. It is a real figure and it determines whether you are able to play the game.",
-        },
-        {
-          src: "/images/catchbuddy-signup-minor-gate.webp",
-          alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow",
-          caption:
-            "In version 1, the 13+ age restriction at sign-up was included as the first step in the minor-protection process rather than being added later.",
+          alt: "Confirmation — \"Your Game is Live!\" with nearby player count, not a vanity counter",
         },
       ],
-    },
-    finalProductSection: {
-      eyebrow: "The Design System",
-      title: "The Design System",
-      description:
-        "I warmed up the palette, since a trustworthy product that looks like a fintech dashboard comes across as a company, and this one needed to look like a neighbour. The safety states have been part of the same system since v1, rather than appearing later as status chips bolted on the side.",
-      images: [
-        {
-          src: "/images/catchbuddy-ds/design-system.webp",
-          alt:
-            "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states",
-          caption:
-            "The paper is warm and there is one green, at three different depths. Green is kept for use in action and is therefore not used for decoration.",
-        },
-      ],
-      video: {
-        src: "/catchbuddy-walkthrough.mp4",
-        title: "CatchBuddy walkthrough",
-        caption:
-          "The complete walkthrough, narrated: posting the game, selecting a park, choosing equipment and preferences, then the safety features — emergency contacts, phone verification, and the minor gate.",
-      },
     },
     outcomeSection: {
-      eyebrow: "Where It Landed",
-      title: "Where It Landed",
+      eyebrow: "OUTCOME",
+      title: "Outcome",
       description:
-        "Shipped, including auth, RLS, Stripe, Google OAuth, real-time updates, the minor-approval process and the curated meeting spots — all of which I designed and built. In version 1 the safety layer was the first thing to be included, since all the products I've seen which added it later ended up with a settings screen that no one opened.",
+        "A shipped pickup-sports platform with auth, RLS, Stripe payments, Google Calendar OAuth, realtime updates, a minor-approval flow, and curated meeting spots — designed and built solo with AI as a co-builder. Trust-first architecture: safety scaffolding built in from v1, not bolted on. Real stack: auth, RLS, OAuth, Stripe, Realtime, all shipped. User-driven cuts: every removed feature backed by observed friction. AI as collaborator: schema scaffolding, security review, copy drafts, edge functions.",
+      images: [
+        {
+          src: "/images/catchbuddy-pro-pricing.webp",
+          alt: "Pro pricing — $7.99/mo or $59.99/yr, added after the safety and matching loop was stable",
+        },
+      ],
     },
     clientTestimonial: {
       quote:
         "Unmatched in his ability to translate the often vague ideas from clients into beautiful, simple-to-use products.",
       author: "Daanish",
-      role: "Business Delivery Partner",
+      title: "Business Delivery Partner",
       company: "Tata Consultancy Services",
     },
     sections: [],
     seoData: {
       image: "/images/og/catchbuddy.png",
-      projectName: "CatchBuddy — Trust Is the Product, Not a Settings Page | Hiram Barsky",
-      results: [
-        "Safety layer shipped in v1: 13+ gate, parent verification before a minor can post, panic button on every screen",
-        "Curated meeting spots — no user-dropped pins",
-        "Auth, RLS, Stripe, Google OAuth and real-time updates, designed and built solo",
-      ],
-      technologies: ["React", "TypeScript", "Vite", "Supabase", "Stripe", "Tailwind"],
+      projectName: "CatchBuddy",
+      results: [],
+      technologies: [],
       path: "/project/catchbuddy",
     },
   },
 
+  "fire-lion": {
+    id: "fire-lion",
+    title: "Fire Lion",
+    description:
+      "A shipped game, built solo with AI. A one-tap arcade runner where you spell words mid-flight to cast spells.",
+    tags: ["AI-Assisted Product", "Game Design", "Mobile Web", "Solo Build"],
+    gradientClasses: "from-orange-50 via-amber-50 to-yellow-50",
+    heroVideo: {
+      // Re-encoded from the 11 MB original: 720 px wide, CRF 28, audio stripped.
+      // A 5-second hero has no business costing 11 MB of LCP budget.
+      src: "/fire-lion-card.mp4",
+      poster: "/images/firelion-hero-title.webp",
+      alt: "Fire Lion gameplay overview",
+    },
+    projectLink: "https://firelion.me",
+    heroMetrics: [
+      { value: "Solo Build", label: "One designer, AI as co-builder" },
+      { value: "Daily Playtests", label: "Self + friends, real phones" },
+      { value: "6 Systems Cut", label: "After watching real users" },
+    ],
+    researchSection: {
+      subhead: "Watching real players on real phones surfaced three patterns:",
+      emergingThemes: [
+        {
+          eyebrow: "FEATURE BLOAT KILLS FUN",
+          insight:
+            "Daily missions, streaks, daily-word challenges, social proof counters — all added, all ignored.",
+          drove: "a ruthless deletion list and a single-mode core loop.",
+        },
+        {
+          eyebrow: "GAME FEEL CAN'T BE PROMPTED",
+          insight:
+            "AI shipped collision math and particle systems in minutes. The lion still felt like a balloon for 30 iterations.",
+          drove: "hand-tuned gravity, tap impulse, and scroll curves over hundreds of test runs.",
+        },
+        {
+          eyebrow: "PLAYERS WANT SURPRISE, NOT SHOPPING",
+          insight: "Forge upgrade screens and pre-run skill trees tested badly. People wanted to play.",
+          drove: "removed every pre-run friction point. Tap FLY is the only path in.",
+        },
+      ],
+      researchImage: "/images/firelion-gameplay-lavagod.webp",
+      researchImageAlt: "Main runner gameplay — one tap to fly, score and best-run counters on screen, no pre-run menus",
+    },
+    problemCallout: {
+      eyebrow: "THE REAL PROBLEM",
+      statement:
+        "Most \"I built X with AI\" portfolios are a calculator, a dashboard, a productized audit. Safe. Forgettable. The harder question — can a designer ship a real product solo with AI? — needed a harder answer. A game. Game feel can't be faked with a prompt.",
+    },
+    sprintZeroSection: {
+      eyebrow: "SPRINT ZERO",
+      title: "Sprint Zero",
+      workshopKickoff: "",
+      explorations:
+        "The spelling mechanic — words cast spells — was only added after the tap-to-fly felt right. Every later system (combos, bosses, modes) was layered on top of a verified core loop.",
+      decisionPoint:
+        "Build the smallest possible playable loop first — one tap, one lion, no words, no worlds, no audio — and only add a mechanic after the core gesture feels good.",
+      images: [
+        {
+          src: "/images/firelion-spelling-lightning.webp",
+          alt: "Lightning Strike spell casting from spelling MN",
+        },
+        {
+          src: "/images/firelion-spelling-combo.webp",
+          alt: "Spelling CRAP over a lava forge anvil, 5× combo",
+        },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "Building features is easy with AI. Killing features is the actual design work.",
+        description:
+          "AI happily shipped daily missions, streaks, a forge upgrade screen, mod gating, and three premium fighter modes. Users used none of them. The deletion list ended up longer than the feature list — and the game got better with every removal.",
+      },
+      {
+        number: 2,
+        title: "AI handles the work between human decisions. It doesn't replace them.",
+        description:
+          "AI scaffolded Supabase schemas, Tailwind tokens, particle systems, and refactors across 30+ files at a time. Every gravity tweak, tap impulse, and difficulty threshold was still mine — hand-tuned by feel over hundreds of test runs.",
+      },
+      {
+        number: 3,
+        title: "Three modes serve three moods. Isolation is the design rule that makes it work.",
+        description:
+          "Fire Lion (tense, escalating), Lion Wars (strategic), Cub Mode (low-stakes recovery). Cub Mode lives in its own component with its own audio and state — enforced in the AI memory file so even at 2am, six prompts deep, the rule holds.",
+      },
+    ],
+    ideationSection: {
+      subhead: "Multiple iterations on the core loop — kept only what made players want one more run.",
+      bubbles: [
+        { title: "Tap-to-fly tuning", description: "Tuned across ~30 iterations before it stopped feeling floaty." },
+        {
+          title: "Slow-start ramp",
+          description: "Added to ease beginners — players thought the game was broken. Cut entirely.",
+        },
+        {
+          title: "Boss fights rebuilt",
+          description: "From damage-sponge to telegraphed attacks with 3-second cinematic intros.",
+        },
+      ],
+      wireframeImage: {
+        src: "/images/firelion-lionwars-combat.webp",
+        alt: "Lion Wars naval combat, wave 1 of 7, lava cavern backdrop",
+        caption: "Lion Wars — built as a between-worlds mode, then pulled because it broke flow",
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: "APPROACH & DECISION MAKING",
+      title: "My Thought Process",
+      content:
+        "The whole project was held together by one question, asked over every feature: does this make the player want one more run? If yes, keep. If no — even if AI built it in minutes, even if it tested fine in isolation — cut. That filter is what separates a tech demo from a game, and it's the part AI can't do.",
+    },
+    userTestingSection: {
+      eyebrow: "USER TESTING",
+      title: "User Testing",
+      description:
+        "Tested with friends and family on real iOS and Android phones, plus daily self-playtests (minimum 10 runs per day). Qualitative changes that shipped from feedback: \"Why is the first board always the same boss?\" → randomized world order per run. \"I can never revive.\" → full rewrite of revive UI and availability logic. \"The lion flies too slowly at the start.\" → killed the slow-start mechanic. \"It's stupid I can't move left and right in Cub Mode.\" → added horizontal movement.",
+      images: [
+        {
+          src: "/images/firelion-cubmode-sunset.webp",
+          alt: "Cub Mode sunset scene — kept isolated from the main game so refactors never break it",
+        },
+        {
+          src: "/images/firelion-cubmode-ocean.webp",
+          alt: "Cub Mode ocean scene — same isolation rule: separate component, separate audio, separate state",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "WHAT DIDN'T WORK",
+      title: "What Didn't Work",
+      content:
+        "The first version had daily missions, a streak system, a daily Wordle-style challenge, a legacy cumulative score, a social proof counter, a forge pre-run upgrade screen, and mod gating behind a \"Lava Rank\" tier. All shipped fast thanks to AI. All ignored by players. All removed. Lion Wars originally triggered between worlds in the runner. Players hated being yanked out of flow. The trigger was removed; the code stays in the codebase for a Phase 2 integration directly into the main runner.",
+    },
+    outcomeSection: {
+      eyebrow: "OUTCOME",
+      title: "Outcome",
+      description:
+        "A shipped game with three modes, real retention loops, a deletion list longer than its feature list, and a clear thesis: AI can scaffold a game in a week, but deciding which 80% to throw away is the year of design work that makes it playable. Three modes — Fire Lion, Lion Wars, Cub Mode. Solo design end-to-end — UI, mechanics, economy, audio, art direction. Ruthless deletion discipline — every cut backed by observed player behavior. Reusable AI memory file keeps the next session in perfect context.",
+    },
+    sections: [],
+    seoData: {
+      image: "/images/og/fire-lion.png",
+      projectName: "Fire Lion",
+      results: [],
+      technologies: [],
+      path: "/project/fire-lion",
+    },
+  },
+
+  "ring-rival": {
+    id: "ring-rival",
+    title: "Ring-Rival",
+    description:
+      "Console boxing feel on the mobile web. Distinct AI opponents, AI-generated trash talk, career mode — built solo with AI as a co-builder.",
+    tags: ["AI-Assisted Product", "Mobile Web", "Game Design", "Solo Build"],
+    gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
+    heroVideo: {
+      src: "/ring-rival-card.mp4",
+      poster: "/images/ringrival-hero-title.webp",
+      alt: "Ring-Rival mobile boxing gameplay",
+    },
+    projectLink: "https://rival.li",
+    heroMetrics: [
+      { value: "Solo Build", label: "Designer + AI, no team" },
+      { value: "22s → 6s", label: "Time to first punch after testing" },
+      { value: "~40% → <2%", label: "Audio failure rate after the first-tap gate" },
+    ],
+    researchSection: {
+      subhead: "Observing real players on real phones revealed three problems:",
+      emergingThemes: [
+        {
+          eyebrow: "STATIC TUTORIALS DON'T WORK",
+          insight:
+            "A 4-step calibration wizard, a daily challenges modal, and a how-to page all tested poorly. Six of six testers skipped the how-to before their first fight.",
+          drove: "if the first fight doesn't teach the controls in 10 seconds, no screen will.",
+        },
+        {
+          eyebrow: "MOBILE AUDIO IS UNRELIABLE BY DEFAULT",
+          insight:
+            "iOS Safari kills audio that isn't triggered by user gesture. ~40% of first sessions launched silent.",
+          drove: "AudioContext resume gated behind the first tap on the title screen.",
+        },
+        {
+          eyebrow: "AI OPPONENTS NEED RHYTHM, NOT TIMERS",
+          insight: "Early opponents threw punches at fixed intervals. Felt like fighting a metronome.",
+          drove:
+            "an EmotionEngine where opponents bait, hesitate, and tilt based on how the player is doing.",
+        },
+      ],
+      researchImage: "/images/ringrival-glassjoe-idle.webp",
+      researchImageAlt:
+        "Glass Joe idle stance — started with one opponent, two buttons, a health bar before adding anything else",
+    },
+    problemCallout: {
+      eyebrow: "THE REAL PROBLEM",
+      statement:
+        "Boxing games live on consoles for a reason — tight input latency, animation feel, and AI that reads like a real opponent. Doing all of that with a thumb on a phone, in a browser, no install, was the constraint that made the project worth building. The design question wasn't \"can we ship a boxer,\" it was \"can we ship one that feels right.\"",
+    },
+    sprintZeroSection: {
+      eyebrow: "SPRINT ZERO",
+      title: "Sprint Zero",
+      workshopKickoff: "",
+      explorations:
+        "Five-second control briefing before each fight — readable in 10 seconds, dismissible. Each fighter has a distinct silhouette and personality, generated via Gemini image preview — voice without writing a dialogue tree.",
+      decisionPoint:
+        "Verify game feel on a single archetype (Glass Joe) before generating any other fighters. If a punch doesn't feel good against the easiest opponent, no amount of AI sprite generation will save the project.",
+      images: [
+        {
+          src: "/images/ringrival-controls-modal.png",
+          alt: "VS Glass Joe controls modal with input scheme",
+        },
+        {
+          src: "/images/ringrival-vonkaiser.webp",
+          alt: "Von Kaiser — tall, broad, defensive guard",
+        },
+      ],
+    },
+    keyInsights: [
+      {
+        number: 1,
+        title: "AI generates fighters endlessly. Sequencing them is design.",
+        description:
+          "Sprite generation, trash talk, announcer intros, and crowd mood all came from AI prompts. Deciding the career order — Glass Joe → Von Kaiser → Bald Bull → … → the final boss — is a difficulty curve, hand-built across hundreds of test fights.",
+      },
+      {
+        number: 2,
+        title: "Game feel is the part you can't prompt.",
+        description:
+          "Hit-stop duration, screen shake amplitude, the 60ms haptic on connect, the curve of the health bar drain — all hand-tuned by feel. No model knows whether a punch feels like a punch.",
+      },
+      {
+        number: 3,
+        title: "Mobile ergonomics are decided by watching a real hand on a real phone.",
+        description:
+          "Where the punch button lives, how big the block zone is, whether the music toggle belongs top-right or in a menu — every one of these was settled by handing a phone to someone and watching them play.",
+      },
+    ],
+    ideationSection: {
+      subhead: "Multiple iterations on core systems — every cut backed by observation, not opinion.",
+      bubbles: [
+        {
+          title: "Sprite scaling",
+          description:
+            "Rebuilt three times before per-archetype mobileScaleBoost multipliers worked across body types.",
+        },
+        {
+          title: "Particle effects",
+          description:
+            "Throttled to 15% of frames after Bald Bull's signature charge created an unreadable dust cloud on mobile.",
+        },
+        {
+          title: "AI opponent rhythm",
+          description: "Rewritten from fixed-interval punches to the EmotionEngine — bait, hesitate, tilt.",
+        },
+      ],
+      wireframeImage: {
+        src: "/images/ringrival-knockdown.webp",
+        alt: "Knockdown — DOWN! 5 count with star burst over floored Glass Joe",
+        caption: "Hit-stop, star burst, count timing — all hand-tuned by feel",
+      },
+    },
+    myThoughtProcessSection: {
+      eyebrow: "APPROACH & DECISION MAKING",
+      title: "My Thought Process",
+      content:
+        "The whole game is a series of small calibration calls that AI can't make: is this punch satisfying, is this opponent fun to fight, is this control discoverable. AI's job was to generate raw material — sprites, voice lines, schemas, refactors — at a speed that made hundreds of micro-iterations possible. My job was to be the taste filter on every output.",
+    },
+    userTestingSection: {
+      eyebrow: "USER TESTING",
+      title: "User Testing",
+      description:
+        "Tested in person and remotely on iOS and Android phones, ages 14–47, with screen and face recording. Key changes from observation: time-to-first-punch dropped from 22s to 6s by cutting menus and tutorial screens. Audio failure rate dropped from ~40% to under 2% by gating AudioContext resume behind the first tap. Webcam hand-tracking and AR mode were cut — half the testers refused the camera prompt and bounced.",
+      images: [
+        {
+          src: "/images/ringrival-impact-particles.webp",
+          alt: "Glass Joe getting hit — red impact particles dialed back so fighter stays visible",
+        },
+        {
+          src: "/images/ringrival-pause-modal.webp",
+          alt: "Pause modal mid-fight vs. Disco Dan — Resume / Music Off / Forfeit reachable without breaking flow",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "WHAT DIDN'T WORK",
+      title: "What Didn't Work",
+      content:
+        "The original calibration wizard, daily challenges modal, and how-to page were all built and all ignored. Cut. Webcam-based hand-tracking was technically impressive and the wrong mechanic for the audience. Removed entirely, along with all AR-mode references in SEO and the menu. Multiplayer and leaderboards exist as components but are gated. Shipping them requires moderation I didn't want to own in v1.",
+      images: [
+        {
+          src: "/images/ringrival-now/disco-flurry.jpg",
+          alt: "Disco Dan — completely different silhouette and personality from Glass Joe",
+        },
+      ],
+    },
+    outcomeSection: {
+      eyebrow: "OUTCOME",
+      title: "Outcome",
+      description:
+        "A shipped boxing game with distinct AI opponents, generated trash talk, hand-tuned game feel, and a deployment cadence of 3–6 builds a day. Real users, real cuts, real opponents. Distinct opponents — each with their own silhouette, voice, and rhythm. AI as content engine — sprites, trash talk, intros, crowd reactions. Designer as taste filter — every output checked against \"does this feel good.\" Iteration cadence: ship → watch a session → fix the loudest thing → reship.",
+    },
+    sections: [],
+    seoData: {
+      image: "/images/og/ring-rival.png",
+      projectName: "Ring-Rival",
+      results: [],
+      technologies: [],
+      path: "/project/ring-rival",
+    },
+  },
   "business-management": {
     id: "business-management",
     title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",

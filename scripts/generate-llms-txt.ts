@@ -75,12 +75,18 @@ const CASE_STUDY_NAMES: Record<string, string> = {
   stips: "Stips",
 };
 
+// Studies served by the /project/:projectId catch-all, so the App.tsx scrape
+// below cannot see them. They are indexable and prerendered, and were silently
+// missing from llms.txt — the file AI crawlers read — the whole time.
+// Kept in step with scripts/inject-seo-html.ts's STATIC_PATHS.
+const CATCH_ALL_CASE_STUDIES = ["dae-search", "catchbuddy", "fire-lion", "ring-rival"];
+
 // Same per-line check as generate-sitemap.ts: a <Navigate> on one route's line
 // must not exclude an unrelated route a line or two below it.
 function getProjectIds(): string[] {
   const appPath = resolve("src/App.tsx");
   const src = existsSync(appPath) ? readFileSync(appPath, "utf8") : "";
-  const found = new Set<string>();
+  const found = new Set<string>(CATCH_ALL_CASE_STUDIES);
   for (const line of src.split("\n")) {
     const m = /<Route\s+path="\/project\/([a-z0-9-]+)"/i.exec(line);
     if (m && !line.includes("Navigate") && !/^\s*(\{\/\*|\/\/|\/\*|\*)/.test(line)) found.add(m[1]);

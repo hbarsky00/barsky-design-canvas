@@ -65,10 +65,14 @@ function AppContent() {
               {/* Structured case studies - these override the generic ProjectDetail routing */}
               {/* crypto and dae-search are handled by the dynamic route below */}
               <Route path="/project/herbalink" element={<StructuredHerbalinkCaseStudy />} />
-              <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} />
+              {/* Blue Sky pulled 2026-09-26 at Hiram's call — the site shows five
+                  studies now. The page component and its data are untouched; put the
+                  route back and drop the 301 in public/_redirects to restore it. */}
+              {/* <Route path="/project/business-management" element={<StructuredBusinessManagementCaseStudy />} /> HIDDEN */}
+              <Route path="/project/business-management" element={<Navigate to="/" replace />} />
               {/* <Route path="/project/investor-loan-app" element={<StructuredInvestorLoanCaseStudy />} /> HIDDEN */}
               <Route path="/project/investor-loan-app" element={<Navigate to="/" replace />} />
-              <Route path="/project/wholesale-distribution" element={<Navigate to="/project/business-management" replace />} />
+              <Route path="/project/wholesale-distribution" element={<Navigate to="/" replace />} />
               
               {/* Generic project detail for other projects */}
               <Route path="/project/:projectId" element={<ProjectDetail />} />
