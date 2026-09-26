@@ -12,6 +12,13 @@ export default defineConfig(({ mode }) => ({
       'Cache-Control': 'no-cache',
     }
   },
+  // `vite preview` hard-defaults to 4173 and ignores PORT, so when another
+  // session already holds 4173 the launcher's reassigned port had nowhere to
+  // land and the preview just failed to start. Read PORT here instead.
+  preview: {
+    host: "::",
+    port: Number(process.env.PORT) || 4173,
+  },
   plugins: [react()],
   resolve: {
     alias: {
