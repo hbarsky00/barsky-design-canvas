@@ -1840,7 +1840,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       quote:
         "Unmatched in his ability to translate the often vague ideas from clients into beautiful, simple-to-use products.",
       author: "Daanish",
-      role: "Business Delivery Partner",
+      // ClientTestimonial reads `title`, not `role`. As `role` it rendered as
+      // "Daanish" above a bare " at Tata Consultancy Services".
+      title: "Business Delivery Partner",
       company: "Tata Consultancy Services",
     },
     sections: [],
