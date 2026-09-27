@@ -70,27 +70,27 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "crypto": {
     title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
-    image: "https://barskydesign.pro/images/crypto-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/crypto.png"
   },
   "herbalink": {
     title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
     description: "Herbalist marketplace design built around credential verification, herb safety information and guided matching — so people can tell who is qualified before they book.",
-    image: "https://barskydesign.pro/images/herbalink-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
     title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design",
     description: "Designing a co-parenting platform that reduces family conflict through intuitive scheduling, transparent expense tracking, and secure messaging between divorced parents.",
-    image: "https://barskydesign.pro/images/splittime-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/splittime.png"
   },
   "business-management": {
     title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design",
     description: "Modular business management platform that reduced manual work 60% by centralizing inventory, workflows, and analytics with actionable insights across teams.",
-    image: "https://barskydesign.pro/images/business-management-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/business-management.png"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform | Investment App UX Case Study — Barsky Design",
     description: "Streamlined fintech underwriting that cut loan processing time 40% while improving compliance, decision clarity, and borrower experience through better UX.",
-    image: "https://barskydesign.pro/images/investor-loan-app-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/investor-loan-app.png"
   },
   catchbuddy: {
     title: "CatchBuddy: Trust in a Pickup Sports App | Case Study",
@@ -101,25 +101,26 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "dae-search": {
     title: "Enterprise Data Discovery | Search UX Case Study — Barsky Design",
     description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",
-    image: "https://barskydesign.pro/images/dae-search-desktop-1.webp"
+    image: "https://barskydesign.pro/images/og/dae-search.png"
   },
 };
 
 // Blog post image mappings with enhanced SEO-optimized data
 export const BLOG_IMAGE_MAP: Record<string, string> = {
-  "finding-first-ux-job-guide": "https://barskydesign.pro/images/blog-finding-ux-job.jpg",
-  "design-systems-that-get-used": "https://barskydesign.pro/images/blog-design-systems.jpg",
-  "portfolio-red-flags-no-interviews": "https://barskydesign.pro/images/blog-portfolio-red-flags.jpg",
-  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/images/blog-ai-enhanced-ux.jpg",
-  "user-research-shoestring-budget": "https://barskydesign.pro/images/blog-user-research-budget.jpg",
-  "built-product-without-real-data": "https://barskydesign.pro/images/blog-built-product-without-real-data.jpg",
-  "building-products-nobody-asked-for": "https://barskydesign.pro/images/blog-building-products-nobody-asked-for.jpg",
-  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/blog-wireframes-to-wow-visual-hierarchy.jpg",
-  "case-study-writing": "https://barskydesign.pro/images/blog-case-study-writing.jpg",
-  "ai-in-design": "https://barskydesign.pro/images/blog-ai-in-design.jpg",
-  
-  "beautiful-interface-doesnt-convert": "https://barskydesign.pro/images/blog-beautiful-interface.jpg",
-  "research-without-users": "https://barskydesign.pro/images/blog-research-without-users.jpg"
+// Every entry here used to point at /images/blog-*.jpg. None of those files
+// exist, so ten posts shipped an og:image that 404s. These are the generated
+// 1200x630 cards from scripts/generate-og-images.py, which is also what the
+// hardcoded og:image:width/height in inject-seo-html.ts actually describes.
+  "finding-first-ux-job-guide": "https://barskydesign.pro/images/og/blog-finding-first-ux-job-guide.png",
+  "design-systems-that-get-used": "https://barskydesign.pro/images/og/blog-design-systems-that-get-used.png",
+  "ai-enhanced-ux-designer-future": "https://barskydesign.pro/images/og/blog-ai-enhanced-ux-designer-future.png",
+  "user-research-shoestring-budget": "https://barskydesign.pro/images/og/blog-user-research-shoestring-budget.png",
+  "built-product-without-real-data": "https://barskydesign.pro/images/og/blog-built-product-without-real-data.png",
+  "building-products-nobody-asked-for": "https://barskydesign.pro/images/og/blog-building-products-nobody-asked-for.png",
+  "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/og/blog-wireframes-to-wow-visual-hierarchy.png",
+  "case-study-writing": "https://barskydesign.pro/images/og/blog-case-study-writing.png",
+  "beautiful-interface-doesnt-convert": "https://barskydesign.pro/images/og/blog-beautiful-interface-doesnt-convert.png",
+  "research-without-users": "https://barskydesign.pro/images/og/blog-research-without-users.png"
 };
 
 // Enhanced blog post SEO data

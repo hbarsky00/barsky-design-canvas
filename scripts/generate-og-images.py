@@ -97,7 +97,13 @@ def card(title, desc, tag, art_path, out_name):
 
     # ── product art, bleeding off the right edge ──────────────────────────
     art_w, art_h = 560, 470
+    # Most art lives in public/; the blog covers resolved from an import live
+    # in src/assets/, which is outside it.
     src = PUB / art_path.lstrip("/")
+    if not src.exists():
+        alt = ROOT / art_path.lstrip("/")
+        if alt.exists():
+            src = alt
     if src.exists():
         art = cover(Image.open(src), art_w, art_h)
         art = rounded(art, 18)
@@ -166,6 +172,9 @@ CASE_STUDIES = [
     ("stips", "Stips",
      "Prediction markets you can actually read, where the price is the probability.",
      "Fintech UX", "/images/stips/card-poster-home.jpg"),
+    ("business-management", "Blue Sky",
+     "Invoicing, scheduling and tasks in one system, instead of five browser tabs.",
+     "Enterprise \u00b7 Operations", "/images/business-management/hero-three-laptops.jpg"),
     ("dae-search", "DAE Search",
      "Enterprise search built around whether you can trust the data you found.",
      "Enterprise · Search", "/images/dae-search/hero.webp"),
@@ -243,13 +252,32 @@ def blog_posts():
             continue
         seen.add(slug)
         window = src[max(0, m.start() - 1600): m.start() + 1600]
-        title = re.search(r"title:\s*[`\"']([^`\"']+)", window)
-        excerpt = re.search(r"excerpt:\s*[`\"']([^`\"']+)", window)
+        # Quote-aware: the old [^`"']+ class stopped at the first apostrophe, so
+        # "How to Research When You Don't Have Users" rendered on the card as
+        # "How to Research When You Don". Match to the matching delimiter and
+        # allow the other quote characters inside.
+        def field(name):
+            m2 = re.search(r"%s:\s*([`\"'])((?:\\.|(?!\1).)*)\1" % name, window, re.S)
+            return None if not m2 else re.sub(r"\\(.)", r"\1", m2.group(2)).strip()
+        title = field("title")
+        excerpt = field("excerpt")
         art = re.search(r"coverImage:\s*[`\"']([^`\"']+)", window)
-        if not (title and art):
+        art_path = art.group(1) if art else None
+        if art_path is None:
+            # Six posts point coverImage at an imported identifier rather than a
+            # string path, so the regex above saw nothing and the post was
+            # skipped — which is why /blog/case-study-writing and five others
+            # shipped an og:image that 404s. Resolve the import to its file.
+            ident = re.search(r"coverImage:\s*([A-Za-z_$][\w$]*)", window)
+            if ident:
+                imp = re.search(
+                    r"import\s+%s\s+from\s+[`\"']([^`\"']+)[`\"']" % re.escape(ident.group(1)), src)
+                if imp:
+                    art_path = imp.group(1).replace("@/", "src/")
+        if not (title and art_path):
             print(f"   ! skipping {slug}: no title or cover in blogData.ts")
             continue
-        posts.append((slug, title.group(1), (excerpt.group(1) if excerpt else ""), art.group(1)))
+        posts.append((slug, title, excerpt or "", art_path))
     return posts
 
 
