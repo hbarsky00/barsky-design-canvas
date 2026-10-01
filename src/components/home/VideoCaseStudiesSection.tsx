@@ -67,17 +67,13 @@ const caseStudies: CaseStudy[] = [
     impact: "40% Faster Campaign Production",
     url: "/project/email-creation-ai",
     images: {
-      primary: "/images/email-ai-promo.webp",
-      alt: "AI-powered pharma email creation workflow interface"
+      primary: "/images/email-creation-ai/high-fidelity.webp",
+      alt: "High-fidelity mockups of the email creation workflow: the create-email screen with tone, length and audience controls, the template library and the generated email"
     },
     layout: "side-by-side",
-    variant: "workflow",
-    screens: [
-      { src: "/images/emailai-screen1-content-planning.webp", alt: "Step one: planning the campaign content" },
-      { src: "/images/emailai-screen2-assemble.webp", alt: "Step two: assembling the email from approved modules" },
-      { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step three: iterating with quality control" },
-      { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step six: the pre-MLR compliance check" },
-    ],
+    // One image, not four. The workflow composition put four screens across the
+    // band, which is a lot on a laptop and a stack of four on a phone.
+    variant: "editorialSplit",
   },
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {

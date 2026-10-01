@@ -47,11 +47,11 @@ const Responsive: React.FC<{ full: string; short?: string; className?: string }>
 }) =>
   short ? (
     <span className={className}>
-      <span className="sm:hidden" aria-hidden="true">
+      <span className="xl:hidden" aria-hidden="true">
         {short}
       </span>
-      <span className="hidden sm:inline">{full}</span>
-      <span className="sr-only sm:hidden">{full}</span>
+      <span className="hidden xl:inline">{full}</span>
+      <span className="sr-only xl:hidden">{full}</span>
     </span>
   ) : (
     <span className={className}>{full}</span>
@@ -79,7 +79,7 @@ const EditorialHero: React.FC = () => {
   });
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-14 pt-8 md:pt-10 lg:pt-12 pb-10 md:pb-12">
+    <div className="mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-14 pt-8 md:pt-10 lg:pt-10 pb-10 md:pb-12 lg:pb-8">
       {/* Eyebrow rule — the mirror of "SELECTED WORK ———— 01 — 05" below. */}
       <motion.div {...rise(0)} className="flex items-center gap-4 md:gap-6">
         <p className="text-eyebrow text-muted-foreground whitespace-nowrap">Product Designer</p>
@@ -90,13 +90,15 @@ const EditorialHero: React.FC = () => {
         </p>
       </motion.div>
 
-      <div className="mt-10 md:mt-12 grid items-center gap-10 xl:grid-cols-12 xl:gap-8">
+      <div className="mt-10 md:mt-12 lg:mt-8 grid items-center gap-10 lg:gap-8 xl:gap-10
+                      lg:grid-cols-[minmax(0,54fr)_minmax(0,46fr)]">
         {/* ---------------------------------------------------------- copy */}
-        <div className="order-1 xl:col-span-6">
+        <div className="order-1">
           <motion.h1
             {...rise(0.06)}
             className="font-display font-bold tracking-tight text-balance text-foreground
-                       text-[clamp(2.375rem,6.2vw,4.5rem)] leading-[1.02]"
+                       text-[clamp(2.375rem,1.6rem+3.1vw,4.5rem)] leading-[1.0]
+                       max-w-[17ch] lg:max-w-[16ch] xl:max-w-[18ch]"
           >
             Designing complex products into simpler experiences
             <span className="text-primary">.</span>
@@ -106,7 +108,9 @@ const EditorialHero: React.FC = () => {
               wording; this is the line the site already stands behind. */}
           <motion.p
             {...rise(0.12)}
-            className="mt-6 max-w-[42rem] text-base md:text-lg lg:text-xl leading-relaxed text-muted-foreground"
+            className="mt-5 lg:mt-6 max-w-[42rem] lg:max-w-[35rem] xl:max-w-[40.625rem]
+                       text-base md:text-lg lg:text-[1.1875rem] xl:text-[1.375rem]
+                       leading-relaxed text-muted-foreground"
           >
             I design and develop SaaS, web apps, mobile apps and internal tools — one person, from
             product design through React front end, database and launch. 15+ years across fintech,
@@ -146,7 +150,7 @@ const EditorialHero: React.FC = () => {
           initial={reduce ? false : { opacity: 0, scale: 0.98 }}
           animate={reduce ? undefined : { opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="order-2 xl:col-span-6 relative pt-20 sm:pt-24 xl:pt-0"
+          className="order-2 relative pt-20 sm:pt-24 lg:pt-0"
         >
           {/* Shapes are CSS, not pixels, so they scale with the column and stay
               crisp. Decorative — hidden from assistive tech. */}
@@ -166,7 +170,7 @@ const EditorialHero: React.FC = () => {
               sizes="(max-width: 639px) 126vw, (max-width: 1279px) 112vw, 610px"
               className="relative block h-auto w-[126%] max-w-[490px] -mr-6 ml-auto
                          sm:w-[112%] sm:max-w-[610px] sm:-mr-10
-                         xl:mx-auto xl:w-full xl:mr-0"
+                         lg:w-full lg:mr-0 lg:ml-auto"
               style={{
                 maskImage: "radial-gradient(58% 64% at 52% 42%, #000 48%, transparent 100%)",
                 WebkitMaskImage: "radial-gradient(58% 64% at 52% 42%, #000 48%, transparent 100%)",
@@ -176,9 +180,11 @@ const EditorialHero: React.FC = () => {
 
           {/* Editorial annotation, not a dashboard widget. */}
           <div
-            className="absolute right-0 top-2 w-[15rem] sm:w-[17rem] xl:top-6
+            className="absolute right-0 top-2 w-[15rem] sm:w-[17rem] lg:top-0 lg:w-[13.5rem]
+                       xl:top-6 xl:w-[16rem]
                        rounded-2xl border border-border/70 bg-white/85 backdrop-blur-sm
-                       px-4 py-3 sm:px-5 sm:py-4 shadow-lg shadow-slate-900/5"
+                       px-4 py-3 sm:px-5 sm:py-4 lg:px-4 lg:py-3 xl:px-5 xl:py-4
+                       shadow-lg shadow-slate-900/5"
           >
             <p className="text-eyebrow text-muted-foreground flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
@@ -198,7 +204,7 @@ const EditorialHero: React.FC = () => {
       {/* Capability row — dividers, not cards. Leads the eye into Selected Work. */}
       <motion.ul
         {...rise(0.3)}
-        className="mt-12 md:mt-14 grid grid-cols-2 border-t border-border
+        className="mt-10 md:mt-12 lg:mt-8 grid grid-cols-2 border-t border-border
                    lg:grid-cols-4 lg:divide-x lg:divide-border"
       >
         {CAPABILITIES.map((cap, i) => {

@@ -216,6 +216,7 @@ const Screen: React.FC<{
     alt={alt}
     loading={priority ? "eager" : "lazy"}
     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 720px"
+    style={imgDims(src).width ? { maxWidth: imgDims(src).width, marginInline: "auto" } : undefined}
     className={`w-full h-auto ${cover ? "object-cover object-top" : "object-contain"} ${className}`}
   />
 );

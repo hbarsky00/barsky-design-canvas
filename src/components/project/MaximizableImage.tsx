@@ -205,7 +205,13 @@ const MaximizableImage: React.FC<MaximizableImageProps> = ({
          business-management and herbalink. Capping the figure changes nothing
          about what gets painted; it just stops reserving room for pixels the
          image was never going to draw. */
-      style={knownAspectRatio ? { aspectRatio: knownAspectRatio, maxHeight: '70vh' } : undefined}
+      /* Also cap at the source's own width. Sections render at 1120-1200px, so a
+         small asset was being blown up to fill the slot — soft and giant, which
+         is the one thing Hiram has never wanted. */
+      style={{
+        ...(knownAspectRatio ? { aspectRatio: knownAspectRatio, maxHeight: '70vh' } : {}),
+        ...(resolvedWidth ? { maxWidth: resolvedWidth, marginInline: 'auto' } : {}),
+      }}
     >
 
       {imageError ? (

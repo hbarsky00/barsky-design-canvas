@@ -1885,18 +1885,73 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       designTools: ["Figma"],
     },
     gradientClasses: "from-sky-50 via-indigo-50 to-violet-50",
-    heroImage: {
-      // Was screen1-content-planning, which is also slide 1 of the walkthrough
-      // below — the same picture twice on one page. hero-pair was built for this
-      // slot (Steps 1 and 2 side by side) and was sitting unused.
-      src: "/images/emailai-hero-pair.webp",
-      alt: "ManuscriptRx workflow: Step 1 Content Planning beside Step 2 Assemble From Approved Content",
-    },
     heroMetrics: [
       { value: "6", label: "Workflow steps" },
       { value: "4", label: "Roles designed for" },
       { value: "1", label: "Honest open problem" },
     ],
+    // Every section's subhead below is the line printed on that board, used
+    // verbatim rather than written here.
+    researchSection: {
+      subhead:
+        "Understanding real user needs.\nWe explored how professionals currently create emails, where they get stuck, and what would make the process faster, easier, and more effective.",
+      emergingThemes: [],
+      researchImages: [
+        {
+          src: "/images/email-creation-ai/research.webp",
+          alt: "Research board: 8 user interviews, 12 key pain points, and the finding that 100% wanted faster, higher-quality emails with less effort, alongside the key insights and a quote from a product manager",
+        },
+      ],
+    },
+    ideationSection: {
+      subhead:
+        "Exploring ideas and possibilities. We brainstormed different ways AI could help users create better emails, from quick actions to full conversational experiences.",
+      bubbles: [],
+      wireframeImage: {
+        src: "/images/email-creation-ai/ideation.webp",
+        alt: "Ideation board: sticky notes for natural language input, turning meeting notes into email, tone options, template library, AI chat refinement and one-click customization, with the concept list and initial sketches",
+        caption: "Key concepts explored, and the first concept sketches they turned into.",
+      },
+      iterations: [
+        {
+          label: "Low-Fidelity Mockups",
+          imageSrc: "/images/email-creation-ai/low-fidelity.webp",
+          alt: "Low-fidelity wireframes of the six core screens: landing, the write prompt, results, template library, edit and refine, and export",
+          blurb: "Early wireframes to validate the flow — layout, content hierarchy and key interactions.",
+        },
+      ],
+    },
+    myThoughtProcessSection: {
+      eyebrow: "Process",
+      title: "From concept to a clear experience",
+      content:
+        "We defined the user flow, core features, and interaction model to create a simple, powerful experience that works for a wide range of users.",
+      images: [
+        {
+          src: "/images/email-creation-ai/process.webp",
+          alt: "Process board: enter prompt, refine with AI, review and edit, copy or send — mapped against the landing, create, refine and preview screens, with the core features listed",
+        },
+      ],
+    },
+    finalProductSection: {
+      eyebrow: "Final Mockups",
+      title: "A complete, polished experience",
+      description:
+        "The final design delivers a seamless, end-to-end experience for creating, refining, and sending high-quality emails with AI.",
+      images: [
+        {
+          src: "/images/email-creation-ai/final-mockups.webp",
+          alt: "Final mockups: the template library, the create-email panel, and the generated email ready to copy or open in a mail client",
+        },
+      ],
+    },
+    whatDidntWorkSection: {
+      eyebrow: "What I Haven't Solved",
+      title: "Step 6 — the MLR review experience",
+      content:
+        "I designed the AI outputs (RV PDF, annotations panel, based-on declaration) but not the review experience itself — how MLR reviewers annotate, reject, and approve claims with legal accountability. That's the hardest part of pharma email and would need direct research with MLR and legal.",
+      images: [],
+    },
     outcomeSection: {
       eyebrow: "The Core Design Problem",
       title: "Pharma email production fails at the handoffs, not the writing",
@@ -1910,40 +1965,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [],
     },
-    whatDidntWorkSection: {
-      eyebrow: "What I Haven't Solved",
-      title: "Step 6 — the MLR review experience",
-      content:
-        "I designed the AI outputs (RV PDF, annotations panel, based-on declaration) but not the review experience itself — how MLR reviewers annotate, reject, and approve claims with legal accountability. That's the hardest part of pharma email and would need direct research with MLR and legal.",
-      images: [],
-    },
-    myThoughtProcessSection: {
-      eyebrow: "The 6-Step Workflow",
-      title: "Walking through ManuscriptRx, screen by screen",
-      content:
-        "**Step 1 — Content Planning**\nThe workflow opens with a 6-step progress navigator so users always see where they are, what's next, and who owns what. The center panel is a plain-language prompt above filterable brief cards.\n*Design decision:* Brief Creation is locked on purpose — \"Outside pilot scope\" — because the brief already exists upstream. I also surfaced the PromoMats metadata warning rather than hide it, so a manager can see I understood the integration problems, not just the happy path.\n\n**Step 2 — Assemble From Approved Content**\nThe AI owns this step entirely. Left panel: the full manuscript. Right panel: what got pulled automatically — product name verified against brand guidelines, market-specific safety links, unsubscribe block, privacy notice. The human reviews and either approves or requests changes.\n*Design decision:* The two sticky notes about claims libraries and PromoMats image sourcing stay visible. In a real spec, unresolved decisions need to be in the open.\n\n**Step 3 — Iterate / Edit + Quality Checks**\nThe most complex screen, intentionally. Top half: AI Assistant chat on the left, live email preview on the right with modifiable sections in teal and locked compliance sections in grey. Role tabs gate what each person can touch. Bottom half: three QC cards — AI runs an automatic pass/fail (no new claims, language in bounds, accessibility, latest ISI, working unsubscribe), Content Ops reviews it, Med Writer signs off.\n*Design decision:* QC sits inline with editing so issues get caught while the writer is still in the content, not after it's \"done.\"\n\n**Step 5 — Test Email**\nHTML is generated via Knak. The left checklist validates character limits, mobile truncation, hero image size, link resolution, responsive formatting, alt text, tracking tags, and table structure. The right panel renders the email side-by-side in mobile and desktop.\n*Design decision:* The \"Send Preview to Brand Team\" button doesn't appear until the AI checklist passes. A deliberate guardrail, not a technical limitation.\n\n**Step 6 — Pre-MLR RV Package**\nSee \"What I Haven't Solved\" above — flagged here as the open problem rather than buried in the flow.\n\n**How I built the spec**\nI designed every screen in Figma, then used Claude to write a structured Markdown file per screen — purpose, component states, role permissions, AI behavior, edge cases. Those MD files went to the dev team as the build spec. Writing in plain language exposed assumptions wireframes hide.",
-      images: [
-        {
-          src: "/images/emailai-screen1-content-planning.webp",
-          alt: "Step 1 — Content Planning: 6-step navigator with Brief Creation locked and Initiate Email Creation active",
-        },
-        {
-          src: "/images/emailai-screen2-assemble.webp",
-          alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right",
-        },
-        {
-          src: "/images/emailai-screen3-iterate-qc.webp",
-          alt: "Step 3 — Iterate / Edit + Quality Checks: AI chat with live email preview on top, three role-owned QC cards on the bottom",
-        },
-        {
-          src: "/images/emailai-screen6-pre-mlr.webp",
-          alt: "Step 5 — Test Email: HTML generation and metadata checklist on the left, mobile and desktop email previews on the right",
-        },
-      ],
-    },
     sections: [],
     seoData: {
-      image: "/images/email-ai-promo.webp",
+      image: "/images/email-creation-ai/high-fidelity.webp",
       projectName: "ManuscriptRx — AI-Assisted Pharma Email Creation Workflow (Concept)",
       results: [
         "Self-initiated concept project",
