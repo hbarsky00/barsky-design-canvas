@@ -384,20 +384,19 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                             className="w-full h-auto rounded-lg"
                           />
                         ) : (
-                          <div className="group cursor-pointer">
-                            <div className="overflow-hidden">
-                              <img {...imgDims(image.src)}
-                                src={image.src}
-                                alt={image.alt}
-                                className="w-full h-auto object-contain image-high-quality transition-transform duration-500 ease-out group-hover:scale-105"
-                              />
-                            </div>
-                            {image.caption && (
-                              <div className="p-4 text-sm text-muted-foreground text-center border-t border-border/10">
-                                {image.caption}
-                              </div>
-                            )}
-                          </div>
+                          /* Was a bare <img> under a div that advertised
+                             cursor-pointer and did nothing when clicked, so the
+                             last image on a case study was the one you could not
+                             open. Same component every other section uses. */
+                          <MaximizableImage
+                            src={image.src}
+                            alt={image.alt}
+                            caption={image.caption}
+                            fit="contain"
+                            imageList={caseStudyData.finalProductSection?.images?.map((img) => img.src)}
+                            currentIndex={index}
+                            className="w-full rounded-lg"
+                          />
                         )}
                       </motion.div>
                     ))}

@@ -848,9 +848,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/images/herbalink/usability-test-flow.webp",
-          alt: "The six-screen booking flow put in front of users, with what was tested, the feedback that came back, and the changes made in response",
-          caption: "What went into testing, what came back, and what changed because of it.",
+          src: "/images/herbalink/end-to-end-journey.webp",
+          alt:
+            "The eight steps people were taken through in testing — onboarding, explore, search and filter, view profile, book a session, confirm, the session itself, then ongoing support — with the messaging, appointments, prescriptions, progress tracking, rebooking and review screens underneath",
+          caption:
+            "The whole journey people were asked to complete, from creating an account to leaving a review.",
         },
       ],
     },
@@ -1557,7 +1559,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://catchbuddy.fit",
     heroVideo: {
       src: "/catchbuddy-card.mp4",
-      poster: "/images/catchbuddy/hifi-phones-row.webp",
+      poster: "/images/catchbuddy/phones-three-up.webp",
       alt: "Three CatchBuddy phone screens: nearby games, the map view, and a game detail with who is going",
     },
     researchSection: {
@@ -1659,9 +1661,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "I warmed up the palette, since a trustworthy product that looks like a fintech dashboard comes across as a company, and this one needed to look like a neighbour. The safety states have been part of the same system since v1, rather than appearing later as status chips bolted on the side.",
       images: [
         {
-          src: "/images/catchbuddy/hifi-desktop.webp",
+          src: "/images/catchbuddy/desktop-case-study.webp",
           alt:
-            "The high-fidelity desktop prototype: find a game by city, park or sport, with the results list and the map side by side",
+            "Desktop case-study board: why people don't play, the ideation sketches, and the high-fidelity desktop prototype with the results list and map side by side",
           caption:
             "The warm ground and the single green, doing their job on the finished desktop screen.",
         },
@@ -1926,7 +1928,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Step 1 — Content Planning: 6-step navigator with Brief Creation locked and Initiate Email Creation active",
         },
         {
-          src: "/images/emailai-screen2-assemble.png",
+          src: "/images/emailai-screen2-assemble.webp",
           alt: "Step 2 — Assemble From Approved Content: AI-owned manuscript on the left, market-specific compliance content auto-pulled on the right",
         },
         {

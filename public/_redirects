@@ -38,10 +38,9 @@
 # canonical. Server-side 301 now, no prerendered file to shadow it.
 /project/investor-loan-app  /                                   301
 
-# ManuscriptRx pulled 2026-09-24 at Hiram's call. The case-study data stays in
-# structuredCaseStudies.ts — only the routing is gone, so it's one list entry to
-# bring back. No prerendered file, so this 301 isn't shadowed.
-/project/email-creation-ai  /                                   301
+# ManuscriptRx was pulled 2026-09-24 and brought back 2026-10-01 at Hiram's
+# call. It renders through the /project/:projectId catch-all from
+# structuredCaseStudies.ts, the same layout every other case study uses.
 
 /project/gold2crypto        /                                   301
 

@@ -27,6 +27,7 @@ const STATIC_PATHS = [
   "/services",
   "/project/dae-search",
   "/project/catchbuddy",
+  "/project/email-creation-ai",
   "/design-services/ux-ui-design",
   "/design-services/mobile-app-design",
   "/design-services/web-development",

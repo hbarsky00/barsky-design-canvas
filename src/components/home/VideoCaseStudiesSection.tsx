@@ -66,7 +66,6 @@ const caseStudies: CaseStudy[] = [
     description: "Designed a 6-step AI-assisted workflow for a global pharma team that reduced campaign production time by 40% while maintaining full MLR compliance and removing multiple manual handoffs.",
     impact: "40% Faster Campaign Production",
     url: "/project/email-creation-ai",
-    hasDetail: false,
     images: {
       primary: "/images/email-ai-promo.webp",
       alt: "AI-powered pharma email creation workflow interface"
@@ -91,7 +90,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/catchbuddy",
     liveUrl: "https://catchbuddy.fit",
     images: {
-      primary: "/images/catchbuddy/hifi-phones-row.webp",
+      primary: "/images/catchbuddy/phones-three-up.webp",
       alt: "Three CatchBuddy phone screens: nearby games, the map view, and a game detail with who is going",
     },
     layout: "side-by-side",
@@ -142,12 +141,19 @@ const SelectedWorkIntro: React.FC<{ count: number }> = ({ count }) => {
         </p>
       </motion.div>
 
-      {/* The headline that used to sit here is now the page H1 in the hero.
-          Printing it a second time, a screen apart, read as a mistake — so the
-          intro keeps the rule, the counter and the standfirst, and hands over. */}
-      <motion.p
+      {/* Deliberately not the hero's headline — that one is the page H1 a screen
+          above, and printing it twice read as a mistake. */}
+      <motion.h2
         {...rise(0.06)}
-        className="mt-5 md:mt-6 max-w-[640px] text-lg md:text-xl leading-relaxed text-muted-foreground"
+        className="mt-5 md:mt-6 font-display font-bold tracking-tight text-balance
+                   text-[2rem] md:text-[2.5rem] lg:text-[3rem] leading-[1.08] max-w-[20ch]"
+      >
+        Designing products that solve real problems.
+      </motion.h2>
+
+      <motion.p
+        {...rise(0.12)}
+        className="mt-3 md:mt-4 max-w-[640px] text-base md:text-lg leading-relaxed text-muted-foreground"
       >
         A selection of product design work spanning enterprise platforms, healthcare, fintech, and
         consumer products.

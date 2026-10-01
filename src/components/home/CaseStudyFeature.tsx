@@ -366,11 +366,12 @@ const CaseStudyFeature: React.FC<{
                   <Screen src={screens[0].src} alt={screens[0].alt} />
                 </div>
               )}
+              {/* No ring, no panel: the artwork here is a transparent PNG, so a
+                  border drew a rounded box around empty space on the navy. The
+                  drop shadow follows the subject instead of a rectangle. */}
               <div
-                className={`relative rounded-lg overflow-hidden ring-1 ring-white/10 ${
-                  screens[0] ? "md:mt-20" : ""
-                }
-                           shadow-[0_40px_90px_-25px_rgba(0,0,0,0.9)]
+                className={`relative ${screens[0] ? "md:mt-20" : ""}
+                           [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.55))]
                            transition-transform duration-500 motion-safe:group-hover/media:translate-y-1`}
               >
                 <Screen src={project.images.primary} alt={project.images.alt} priority={priority} />
