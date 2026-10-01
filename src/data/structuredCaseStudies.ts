@@ -597,8 +597,12 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/images/dae-search/what-i-built.webp",
-          alt: "Information architecture analysis of existing data systems",
+          src: "/images/dae-search/research-interviews.webp",
+          alt: "Research summary board: 12 user interviews with analysts, consultants and data stewards, 4 personas, 25+ real search scenarios, with verbatim quotes and five key insights",
+        },
+        {
+          src: "/images/dae-search/research-current-experience.webp",
+          alt: "Annotated walkthrough of the existing DAE search screen marking where users lost the thread, with four key findings and interview quotes",
         },
       ],
     },
@@ -618,13 +622,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/dae-search/decisions-1.webp",
-          alt: "Initial concepts for enterprise search interface design",
-          caption: "Foundation principles guiding the enterprise data discovery platform",
+          alt: "Hand sketches of the advanced search modal, entity selection, and filtered result tables",
+          caption: "First pass on paper: advanced search, entity selection, and how results get filtered",
         },
         {
-          src: "/images/dae-search/decisions-2.webp",
-          alt: "Search paradigm exploration and decision framework",
-          caption: "Comparative analysis of search approaches for enterprise data discovery",
+          src: "/images/dae-search/lofi-user-flow.webp",
+          alt: "Low-fidelity desktop wireframes for six core screens: landing and search, search results, dataset details, schema view, lineage view, and request access",
+          caption: "Low-fidelity wireframes for the six core screens, used to validate the flow before visual design",
         },
       ],
     },
@@ -752,13 +756,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           eyebrow: "THE TRUST CRISIS",
           insight:
-            '"I found this herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick." – Jessica, marketing manager',
+            '"I found this herbalist on Instagram who promised to cure my anxiety with a $200 tincture. Turns out she had zero credentials and the herbs made me violently sick." – Sarah, 32, anxiety and sleep support',
           drove: "Problem: no credential verification, real safety risks.",
         },
         {
           eyebrow: "INFORMATION OVERLOAD",
           insight:
-            '"Every herbalist website has different information. I just want to know: Is this safe for me? Will it interact with my medications? How much should I take?" – David, retiree',
+            '"Every herbalist website has different information. I just want to know: Is this safe for me? Will it interact with my medications? How much should I take?" – David, 41, digestive issues',
           drove: "Problem: conflicting information, no standardized guidance.",
         },
         {
@@ -770,8 +774,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/images/herbalink/herbalist-directory.webp",
-          alt: "AHG directory — grid of herbal schools (scroll demo)",
+          src: "/images/herbalink/research-interviews.webp",
+          alt: "User research board: 12 people seeking natural support and 8 practicing herbalists interviewed, with key insights, sample quotes, common goals and pain points",
         },
       ],
     },
@@ -791,30 +795,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "Decision Point: Trust was the core problem. Solution: verified practitioners with transparent credentials, not a self-serve database of unvetted options.",
       images: [
         {
-          src: "/images/herbalink/find-herbalist-sketch.webp",
-          alt: "Initial Concepts & Sketches",
-          caption: "Early ideation sketches exploring herbal practitioner discovery and matching concepts",
-          annotations: [
-            {
-              x: 35,
-              y: 40,
-              type: "improvement",
-              text: "Early sketches prioritized practitioner credibility over features - this foundation guided all future design decisions",
-            },
-          ],
+          src: "/images/herbalink/research-affinity-map.webp",
+          alt: "Affinity map grouping interview notes into trust and credibility, finding the right practitioner, symptoms and needs, education, and booking and access, ending on the synthesis: don't build another directory, build trust into discovery",
+          caption:
+            "Every interview note on one wall, grouped — and the line the whole project came out of.",
         },
         {
-          src: "/images/herbalink/thought-process.webp",
-          alt: "User Flow Explorations",
-          caption: "Blue-sky user journey mapping from symptom input to practitioner booking",
-          annotations: [
-            {
-              x: 65,
-              y: 30,
-              type: "feature",
-              text: "Blue-sky thinking revealed users needed guided discovery rather than overwhelming choice - leading to simplified booking flow",
-            },
-          ],
+          src: "/images/herbalink/lofi-core-flow.webp",
+          alt: "Low-fidelity wireframes of the core mobile flow — home, search and filter, profile, date and time, confirm details, payment, confirmation — plus the desktop landing, results and profile screens",
+          caption: "Low-fidelity core flow, mobile and desktop, used to test discovery and booking before any visual design",
         },
       ],
     },
@@ -840,59 +829,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       // Iteration 4 was byte-for-byte the same screen as the user-testing image
       // below (0.00%). Both removed rather than presenting one screenshot as
       // three separate rounds of design work.
-      iterations: [
-        {
-          label: "Iteration 1",
-          imageSrc: "/images/herbalink/herbalist-profile.webp",
-          alt: "First iteration of the herbalist directory listing",
-          blurb:
-            "Navigation unclear — users don't understand the tab structure\nProfile information scattered — needs better organization\nCTA button placement needs improvement",
-          annotations: [
-            { text: "Navigation unclear - users don't understand the tab structure", x: 20, y: 15, type: "issue" },
-            { text: "Profile information scattered - needs better organization", x: 50, y: 35, type: "issue" },
-            { text: "CTA button placement needs improvement", x: 80, y: 75, type: "issue" },
-          ],
-        },
-        {
-          label: "Iteration 2",
-          imageSrc: "/images/herbalink/herb-safety-detail.webp",
-          alt: "Second iteration focusing on safety information",
-          blurb:
-            "Improved navigation with clearer labels\nBetter visual hierarchy\nSafety information now prominently displayed",
-          annotations: [
-            { text: "Improved navigation with clearer labels", x: 20, y: 15, type: "improvement" },
-            { text: "Safety information now prominently displayed", x: 60, y: 40, type: "feature" },
-            { text: "Better visual hierarchy", x: 50, y: 70, type: "improvement" },
-          ],
-        },
-      ],
+      iterations: [],
     },
     myThoughtProcessSection: {
       eyebrow: "Approach & Decision Making",
       title: "My Thought Process",
       content:
         "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
-      images: [
-        {
-          src: "/images/herbalink/mobile-grid-8up.webp",
-          alt: "Eight HerbaLink mobile screens: home, herb library, herb detail, practitioner signup, consultations, herbalist resources, application form and about",
-          caption: "User flow from onboarding to booking and tracking.",
-          annotations: [
-            {
-              text: "I prioritized trust-building over flashy features, designing each interaction to reduce user anxiety and build confidence in healthcare decisions.",
-              x: 25,
-              y: 30,
-              type: "improvement",
-            },
-            {
-              text: "Clear symptom tracking, verified profiles, and a community that actually helps users feel understood.",
-              x: 75,
-              y: 70,
-              type: "feature",
-            },
-          ],
-        },
-      ],
     },
     userTestingSection: {
       title: "User Testing & Validation",
@@ -905,10 +848,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/images/herbalink/booking-intake.webp",
-          alt: "User testing session showing booking flow validation",
-          caption:
-            "Testing sessions showed users could easily complete bookings with high confidence in practitioner credentials.",
+          src: "/images/herbalink/usability-test-flow.webp",
+          alt: "The six-screen booking flow put in front of users, with what was tested, the feedback that came back, and the changes made in response",
+          caption: "What went into testing, what came back, and what changed because of it.",
         },
       ],
     },
@@ -917,49 +859,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description:
         "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Book faster: 3× higher conversion rate",
       eyebrow: "The Result",
-      images: [
-        {
-          src: "/images/herbalink/home-hero.webp",
-          alt: "HerbaLink final product desktop interface",
-          caption: "Complete HerbaLink desktop experience showing the comprehensive interface design",
-          annotations: [
-            {
-              x: 25,
-              y: 20,
-              type: "feature",
-              text: "Streamlined booking flow increased conversions by 3x",
-            },
-            {
-              x: 70,
-              y: 35,
-              type: "feature",
-              text: "Trust indicators build user confidence",
-            },
-            {
-              x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Simplified interface reduced cognitive load",
-            },
-            {
-              x: 80,
-              y: 80,
-              type: "feature",
-              text: "Symptom tracking provides personalized insights",
-            },
-          ],
-        },
-        {
-          src: "/images/herbalink/mobile-booking-guided.webp",
-          alt: "HerbaLink final product mobile interface",
-          caption: "HerbaLink mobile experience featuring the book an herbalist functionality",
-        },
-      ],
     },
     outcomeSection: {
       title: "Outcome",
       description:
-        'Maria\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
+        'Leah\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
       eyebrow: "Outcomes & Impact",
       metrics: [
         { value: "3×", label: "booking increase" },
@@ -971,39 +875,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
       content:
-        'My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me." – Maria\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.',
-      images: [
-        {
-          src: "/images/herbalink/before-poster.jpg",
-          alt: "HerbaLink early 'Book an Herbalist' concept",
-          caption:
-            "Early concept of the 'Book an Herbalist' feature. At this stage, the flow felt underdeveloped and lacked the clarity users needed — it was clear this part of the app needed a much more thoughtful design approach.",
-          annotations: [
-            {
-              x: 30,
-              y: 25,
-              type: "issue",
-              text: "Complex navigation overwhelmed users",
-            },
-            {
-              x: 65,
-              y: 40,
-              type: "issue",
-              text: "Too many filter options created decision paralysis",
-            },
-            {
-              x: 50,
-              y: 70,
-              type: "improvement",
-              text: "Simplified to guided discovery flow",
-            },
-          ],
-        },
-      ],
+        'My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me." – Leah, 28, general wellness\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.',
     },
     sections: [],
     seoData: {
-      image: "/images/herbalink/card-poster-home.jpg",
+      image: "/images/herbalink/high-fidelity-prototype.webp",
       projectName: "HerbaLink — Credential Trust for a Herbalist Marketplace | Hiram Barsky",
       results: [
         "3× more bookings",
@@ -1681,8 +1557,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     projectLink: "https://catchbuddy.fit",
     heroVideo: {
       src: "/catchbuddy-card.mp4",
-      poster: "/images/catchbuddy-hero-landing.webp",
-      alt: "CatchBuddy pickup sports landing hero",
+      poster: "/images/catchbuddy/hifi-phones-row.webp",
+      alt: "Three CatchBuddy phone screens: nearby games, the map view, and a game detail with who is going",
     },
     researchSection: {
       subhead:
@@ -1708,17 +1584,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/images/catchbuddy/flow-how-i-worked.svg",
+          src: "/images/catchbuddy/research-why-people-dont-play.webp",
           alt:
-            "How I worked on CatchBuddy: start from trust, safety layer first, AI writes the backend, gating decisions stay manual",
+            "Research board: who I talked to — casual players, parents, regular pickup players and people returning to sport — with interview highlights, common pain points, and the synthesis that moved the problem from scheduling to trust and safety",
           caption:
-            "A step-by-step explanation of how I approached it. The choice of Terracotta was the one that the others relied on. The more subdued steps were mine to build and then eliminate.",
-        },
-        {
-          src: "/images/catchbuddy-post-game.webp",
-          alt: "Post Your Game: sport picker with Football, Basketball, Baseball, Volleyball, Frisbee",
-          caption:
-            "To start posting a game you first need to choose the sport and that's all — there's no need to include a team, a schedule, or a season.",
+            "The hypothesis going in was scheduling. The interviews moved it to trust and safety.",
         },
       ],
     },
@@ -1756,11 +1626,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { title: "Any screen", description: "panic button reachable while playing" },
       ],
       wireframeImage: {
-        src: "/images/catchbuddy/flow-minor-gate.svg",
+        src: "/images/catchbuddy/ideation-to-prototype.webp",
         alt:
-          "Minor gate. Sign up, and under 18 asks a parent to verify. Once verified they can post, and until then they cannot.",
+          "Ideation through to prototype: sticky-note ideas grouped into features, safety and community, then five low-fidelity wireframes for discovering a game, creating one, viewing details, messaging and the player profile, then the same five screens as a high-fidelity prototype",
         caption:
-          "The gate that a minor passes through, together with the two things which every game has no matter what: a curated meeting place and a panic button.",
+          "Ideas grouped into features, safety and community, then the same five screens taken from wireframe to prototype.",
       },
     },
     myThoughtProcessSection: {
@@ -1770,16 +1640,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "The AI carried out the preparation of the RLS policies, the Supabase migrations, the Stripe integration and the OAuth flow, which represents a major part of the project, and it did so quickly. It wasn't clear who was allowed in, who was gatekept, and what a stranger would see about another stranger before agreeing to meet; those cases were the ones I handled manually. Although, one thing an AI security review did pick up on that I otherwise would have missed was a recursive RLS policy which would have led to data being leaked in production.",
       images: [
         {
-          src: "/images/catchbuddy-equipment-prefs.webp",
-          alt: 'Equipment and preferences: "I\'ll bring a football," no-contact toggle',
-          caption:
-            "The minor details which the two strangers exchange before meeting, namely who is bringing the ball and how physical the game is going to be.",
-        },
-        {
-          src: "/images/catchbuddy-choose-park.webp",
-          alt: "Choose a Park: searchable list with distance and amenities",
-          caption:
-            "A selected list of places where meetings can be held, including the distance and facilities available. It is not possible for anyone to place their own pin, and that limitation is what's intended.",
+          src: "/images/catchbuddy/hifi-create-and-community.webp",
+          alt: "Create a game, review the details and confirm it is live; then the player profile with its verification badge, in-app messaging, and the community feed",
+          caption: "Posting a game, and what one stranger can see about another before agreeing to meet.",
         },
       ],
     },
@@ -1788,27 +1651,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "What I Cut",
       content:
         'People always read "Matches" as referring to a dating service; it\'s now called "Browse" and "Players". I created a Quick Start wizard which was not wanted, saw testers skip it every time, and eventually removed it. Support for Apple, Outlook and ICS calendars was developed and then removed, since hardly anyone used them and I would have had to maintain three integrations indefinitely for those few who did.',
-      images: [
-        {
-          src: "/images/catchbuddy-find-players.webp",
-          alt: "Find Players list with 92% and 81% match scores",
-          caption:
-            "The player cards show the match scores; the screen is now called Players, since testers always read \"Matches\" as referring to a dating app.",
         },
-        {
-          src: "/images/catchbuddy-game-live.webp",
-          alt: 'Confirmation: "Your Game is Live!" with nearby player count, not a vanity counter',
-          caption:
-            "The caption indicates the number of other players around you. It is a real figure and it determines whether you are able to play the game.",
-        },
-        {
-          src: "/images/catchbuddy-signup-minor-gate.webp",
-          alt: "Sign-up form with the 13+ age gate: first checkpoint in the minor-protection flow",
-          caption:
-            "In version 1, the 13+ age restriction at sign-up was included as the first step in the minor-protection process rather than being added later.",
-        },
-      ],
-    },
     finalProductSection: {
       eyebrow: "The Design System",
       title: "The Design System",
@@ -1816,11 +1659,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "I warmed up the palette, since a trustworthy product that looks like a fintech dashboard comes across as a company, and this one needed to look like a neighbour. The safety states have been part of the same system since v1, rather than appearing later as status chips bolted on the side.",
       images: [
         {
-          src: "/images/catchbuddy-ds/design-system.webp",
+          src: "/images/catchbuddy/hifi-desktop.webp",
           alt:
-            "CatchBuddy design tokens: warm paper ground, one deep field green at three depths, and the safety states",
+            "The high-fidelity desktop prototype: find a game by city, park or sport, with the results list and the map side by side",
           caption:
-            "The paper is warm and there is one green, at three different depths. Green is kept for use in action and is therefore not used for decoration.",
+            "The warm ground and the single green, doing their job on the finished desktop screen.",
         },
       ],
       video: {
@@ -1861,7 +1704,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
 
   "business-management": {
     id: "business-management",
-    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    title: "One System Instead of Six: Cutting Operation Errors by 68%",
     description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
     tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
     techStack: {
@@ -1897,10 +1740,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       researchImages: [
         {
-          src: "/images/business-management/v2/mobile-grid-8up.webp",
-          alt: "Eight QuickFlow mobile screens: business overview, customers, orders, products, recipe calculator, recurring orders, delivery and drivers",
-          caption:
-            'PRIORITY BLINDNESS\n"I missed a $12K payment because the overdue notice got buried under 47 other notifications." – Lisa, web developer\nSolved with Today dashboard + priority scoring.',
+          src: "/images/business-management/v2/research-small-business-owners.webp",
+          alt: "Research board: interviews with owners of landscaping, cleaning and home-services businesses, four key insights about tool sprawl, disconnected scheduling and invoicing, the missing today view, and manual error, alongside the common pain points",
+          caption: "Interviews with owners, and the four things every one of them said.",
         },
       ],
     },
@@ -1918,15 +1760,19 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       decisionPoint:
         "I decided to build a unified operations platform after seeing that most problems came from switching between tools and re-entering data. I focused on bringing core functions together, automating repetitive work, and making daily priorities clear. This approach created efficiency by integrating features, not by adding more complexity.",
       images: [
-        // sitemap-draft.jpg removed: it was the same diagram as sitemap-refined,
-        // differing only in three misspellings baked into the image ("Derivvry",
-        // "Invegtory", "MoA/tor Interfacce"). 0.44% of pixels differed. The
-        // refined one also claimed to be a "user flow exploration" — it is a
-        // sitemap, so the caption now says what the image actually shows.
+        // Both sitemap diagrams are gone now — Hiram called the chart ugly and
+        // asked for the low-fidelity flow in its place.
         {
-          src: "/images/business-management/sitemap-refined.jpg",
-          alt: "Concept sitemap for the unified operations platform",
-          caption: "Concept sitemap mapping the core modules and navigation.",
+          src: "/images/business-management/v2/lofi-end-to-end-flow.webp",
+          alt:
+            "Low-fidelity wireframes of the end-to-end flow: sign in, today dashboard, create a job, schedule it, confirm, see it land on the calendar, open job details, create the invoice, and send it",
+          caption:
+            "The whole loop in wireframe — sign in to invoice sent — before any of it was styled.",
+        },
+        {
+          src: "/images/business-management/v2/exploration-board.webp",
+          alt: "Exploration board: interview themes on sticky notes, hand-drawn wireframes of the six core screens, the low-fidelity dashboard, schedule, client and invoice layouts, and the high-fidelity dashboard, scheduling and clients-and-invoices designs",
+          caption: "Sticky notes to sketches to screens — the whole arc the decision came out of.",
         },
       ],
     },
@@ -1968,13 +1814,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         { value: "68%", label: "fewer errors" },
         { value: "5 min", label: "daily setup time" },
       ],
-      images: [
-        {
-          src: "/images/business-management/v2/orders.webp",
-          alt: "QuickFlow order management: every delivery order and its status on one screen",
-          caption: "Testing sessions confirmed my unified approach significantly improved daily operations efficiency.",
-        },
-      ],
     },
     finalProductSection: {
       title: "The Final Product",
@@ -1983,35 +1822,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "The Result",
       images: [
         {
-          src: "/images/business-management/final-product-four-panel.jpg",
-          alt: "Business management system final interface",
-          caption: "Complete business management platform with unified operations and automated workflows",
-          annotations: [
-            {
-              x: 20,
-              y: 25,
-              type: "feature",
-              text: "Unified dashboard eliminated tool switching",
-            },
-            {
-              x: 70,
-              y: 20,
-              type: "feature",
-              text: "Automated invoicing reduced errors by 68%",
-            },
-            {
-              x: 50,
-              y: 60,
-              type: "improvement",
-              text: "Smart priority system surfaces urgent tasks",
-            },
-            {
-              x: 80,
-              y: 80,
-              type: "feature",
-              text: "Integrated scheduling prevents double-booking",
-            },
-          ],
+          src: "/images/business-management/v2/case-study-board.webp",
+          alt:
+            "Case study board: the research interviews and key insights, the ideation sketches, the low-fidelity wireframes, and the finished dashboard, scheduling and clients-and-invoices screens",
+          caption: "Research through to finished screens, on one board.",
         },
       ],
     },
@@ -2045,8 +1859,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     sections: [],
     seoData: {
       image:
-        "/images/business-management/hero-three-laptops.jpg",
-      projectName: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+        "/images/business-management/v2/hifi-end-to-end-flow.webp",
+      projectName: "One System Instead of Six: Cutting Operation Errors by 68%",
       results: [
         "68% Fewer Operation Errors",
         "35% faster processing",

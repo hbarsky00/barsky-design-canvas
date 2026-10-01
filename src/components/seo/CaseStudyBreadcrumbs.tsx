@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronRight, Home } from 'lucide-react';
 
 /**
- * Breadcrumbs + BreadcrumbList JSON-LD for a case study.
+ * BreadcrumbList JSON-LD for a case study.
  *
  * 40 blog pages carried a BreadcrumbList and the three case studies — the pages
  * that actually sell the work — carried none.
+ *
+ * The visible Home > Case studies > Title trail that used to sit above the hero
+ * is gone: Hiram never asked for it and didn't want it on his case studies. The
+ * structured data stays, because that is the half search engines read and it
+ * costs the page nothing.
  */
 const CaseStudyBreadcrumbs: React.FC<{ title: string; slug: string }> = ({ title, slug }) => {
   const url = `https://barskydesign.pro/project/${slug}`;
@@ -20,29 +23,7 @@ const CaseStudyBreadcrumbs: React.FC<{ title: string; slug: string }> = ({ title
     ],
   };
 
-  return (
-    <>
-      <nav aria-label="Breadcrumb" className="mb-6">
-        <ol className="flex items-center text-sm text-muted-foreground gap-2 flex-wrap">
-          <li>
-            <Link to="/" className="flex items-center hover:text-primary transition-colors duration-200">
-              <Home className="w-4 h-4 mr-1" aria-hidden="true" />
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true"><ChevronRight className="w-4 h-4" /></li>
-          <li>
-            <Link to="/#case-studies" className="hover:text-primary transition-colors duration-200">
-              Case studies
-            </Link>
-          </li>
-          <li aria-hidden="true"><ChevronRight className="w-4 h-4" /></li>
-          <li aria-current="page" className="text-foreground font-medium">{title}</li>
-        </ol>
-      </nav>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    </>
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
 };
 
 export default CaseStudyBreadcrumbs;

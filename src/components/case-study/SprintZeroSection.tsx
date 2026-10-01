@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import AnnotatedImage from "@/components/case-study/AnnotatedImage";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
+import { isWideBoard } from "@/utils/imageDims";
 
 interface SprintZeroSectionProps {
   eyebrow: string;
@@ -26,6 +27,12 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
   decisionPoint,
   images
 }) => {
+  // A full-bleed board (a research summary sheet, a six-up wireframe row) is
+  // illegible at the 50% width this section's split gives an image, so the row
+  // stacks instead: text across the rail, then the board across the rail.
+  const rowCols = (i: number) =>
+    isWideBoard(images?.[i]?.src) ? "md:col-span-full" : "md:col-span-6";
+
   return (
     <section 
       id="sprint-zero" 
@@ -53,7 +60,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
           {/* Row 1 - Initial Concepts & Sketches (50% image left, 50% text right) */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-6 md:mb-12">
             {/* Image - 50% on desktop */}
-            <div className="md:col-span-6">
+            <div className={rowCols(0)}>
               {images && images[0] && (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -73,6 +80,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
                       src={images[0].src}
                       alt={images[0].alt}
                       caption={images[0].caption}
+                      fit="contain"
                       className="w-full rounded-lg"
                     />
                   )}
@@ -81,7 +89,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             </div>
             
             {/* Text - 50% on desktop */}
-            <div className="md:col-span-6 flex flex-col justify-center">
+            <div className={`${rowCols(0)} flex flex-col justify-center`}>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -99,7 +107,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
           {/* Row 2 - Decision Point (50% text left, 50% image right) */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
             {/* Text - 50% on desktop */}
-            <div className="md:col-span-6 flex flex-col justify-center order-2 md:order-1">
+            <div className={`${rowCols(1)} flex flex-col justify-center order-2 md:order-1`}>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -114,7 +122,7 @@ const SprintZeroSection: React.FC<SprintZeroSectionProps> = ({
             </div>
             
             {/* Image - 50% on desktop */}
-            <div className="md:col-span-6 order-1 md:order-2">
+            <div className={`${rowCols(1)} order-1 md:order-2`}>
               {images && images[1] && (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}

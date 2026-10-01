@@ -49,3 +49,18 @@ export const imgDims = (src?: string): { width?: number; height?: number } => {
 
   return {};
 };
+
+/**
+ * True when an image is a full-bleed board rather than a column-sized figure:
+ * roughly square or wider, and with enough pixels to fill the whole content
+ * rail without being upscaled.
+ *
+ * Case-study sections default to a text/image split where the image lands in
+ * about 40-50% of the row. That works for a phone screenshot; it renders a
+ * 1536x1024 research board or a six-up wireframe sheet at ~450px, where the
+ * type inside it is gone. Sections ask this before they commit to the split.
+ */
+export const isWideBoard = (src?: string): boolean => {
+  const { width, height } = imgDims(src);
+  return !!width && !!height && width / height >= 0.9 && width >= 1400;
+};

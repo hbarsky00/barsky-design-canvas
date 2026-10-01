@@ -109,13 +109,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          {/* Client Testimonial Section */}
-          {caseStudyData.clientTestimonial && (
-            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-              <ClientTestimonialSection testimonial={caseStudyData.clientTestimonial} />
-            </div>
-          )}
-
           {/* Overview Section - Full width band */}
           <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
             <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
@@ -304,6 +297,7 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                         src={image.src}
                         alt={image.alt}
                         caption={image.caption}
+                        fit="contain"
                         className="w-full h-auto object-contain image-high-quality"
                         imageList={caseStudyData.userTestingSection?.images?.map(img => img.src)}
                         currentIndex={index}
@@ -345,8 +339,11 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                 </p>
               </div>
 
-              {/* Render video if present, otherwise render images */}
-              {caseStudyData.finalProductSection.video ? (
+              {/* Video and images, not one or the other. This was a ternary, so a
+                  section carrying both silently dropped every image — CatchBuddy's
+                  design-system sheet never rendered once, and nobody could tell
+                  from the data that it was being discarded. */}
+              {caseStudyData.finalProductSection.video && (
                 <ProjectVideo
                   src={caseStudyData.finalProductSection.video.src}
                   title={caseStudyData.finalProductSection.video.title}
@@ -354,7 +351,8 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
                   className="mb-8"
                   projectId={caseStudyData.id}
                 />
-              ) : caseStudyData.finalProductSection.images && (
+              )}
+              {caseStudyData.finalProductSection.images && (
                 caseStudyData.finalProductSection.images.length > 3 ? (
                   <ProjectImageCarousel
                     images={caseStudyData.finalProductSection.images.map(img => img.src)}
@@ -505,6 +503,16 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
               ))}
             </div>
           ) : null}
+
+          {/* Client Testimonial Section — after the work, not before it.
+              It used to sit directly under the hero, so the first thing on a
+              case study was a colleague's opinion rather than the case study.
+              It reads as a closing endorsement down here instead. */}
+          {caseStudyData.clientTestimonial && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+              <ClientTestimonialSection testimonial={caseStudyData.clientTestimonial} />
+            </div>
+          )}
 
           {/* Related Case Study Section */}
           <section id="more-work" data-section="more-work" aria-labelledby="more-work-heading" className="section-snap mb-12 py-8 scroll-mt-[calc(var(--header-height,64px)+1rem)]">

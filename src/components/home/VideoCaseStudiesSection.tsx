@@ -1,16 +1,7 @@
 
 import React from "react";
-import { imgDims } from "@/utils/imageDims";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import SectionHeader from "@/components/shared/SectionHeader";
-import AnimatedText from "@/components/AnimatedText";
-import { useIsMobile } from "@/hooks/use-mobile";
-import PlaceholderImage from "@/components/case-study/structured/PlaceholderImage";
-import { shouldShowPromoImpact } from "@/utils/promoCopy";
+import { motion, useReducedMotion } from "framer-motion";
+import CaseStudyFeature, { CaseStudyVariant } from "@/components/home/CaseStudyFeature";
 
 interface CaseStudy {
   id: string;
@@ -30,6 +21,12 @@ interface CaseStudy {
   };
   layout: "side-by-side" | "single-centered" | "web-mobile";
   video?: string;
+  /** Which of the five compositions presents this study. */
+  variant: CaseStudyVariant;
+  /** Extra product screens the layered and workflow compositions draw on. */
+  screens?: { src: string; alt: string }[];
+  /** Keeps the impact line off this band; the string itself is left intact. */
+  hideImpact?: boolean;
 }
 
 const caseStudies: CaseStudy[] = [
@@ -41,23 +38,26 @@ const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/dae-search",
     images: {
-      primary: "/images/dae-search/hero.webp",
+      primary: "/images/dae-search/outcome-dashboard.webp",
       alt: "DAE Search Platform showing enterprise data discovery interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    variant: "productHero",
+    hideImpact: true,
   },
   {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
-    title: "Blue Sky: Using Design Thinking to Reduce Enterprise Operation Errors by 68%",
+    title: "One System Instead of Six: Cutting Operation Errors by 68%",
     description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
     impact: "68% Fewer Operation Errors",
     url: "/project/business-management",
     images: {
-      primary: "/images/business-management/hero-three-laptops.jpg",
+      primary: "/images/business-management/v2/hifi-end-to-end-flow.webp",
       alt: "Business management warehouse operations and inventory tracking system"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    variant: "editorialSplit",
   },
   {
     id: "email-creation-ai",
@@ -71,7 +71,14 @@ const caseStudies: CaseStudy[] = [
       primary: "/images/email-ai-promo.webp",
       alt: "AI-powered pharma email creation workflow interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    variant: "workflow",
+    screens: [
+      { src: "/images/emailai-screen1-content-planning.webp", alt: "Step one: planning the campaign content" },
+      { src: "/images/emailai-screen2-assemble.webp", alt: "Step two: assembling the email from approved modules" },
+      { src: "/images/emailai-screen3-iterate-qc.webp", alt: "Step three: iterating with quality control" },
+      { src: "/images/emailai-screen6-pre-mlr.webp", alt: "Step six: the pre-MLR compliance check" },
+    ],
   },
   // investor-loan-app entry hidden - data preserved in structuredCaseStudies.ts
   {
@@ -84,10 +91,11 @@ const caseStudies: CaseStudy[] = [
     url: "/project/catchbuddy",
     liveUrl: "https://catchbuddy.fit",
     images: {
-      primary: "/images/catchbuddy-hero-landing-card.webp",
-      alt: "CatchBuddy landing page for finding a pickup game nearby",
+      primary: "/images/catchbuddy/hifi-phones-row.webp",
+      alt: "Three CatchBuddy phone screens: nearby games, the map view, and a game detail with who is going",
     },
     layout: "side-by-side",
+    variant: "cinematic",
   },
   {
     id: "herbalink",
@@ -98,345 +106,66 @@ const caseStudies: CaseStudy[] = [
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {
-      primary: "/images/herbalink/card-poster-home.jpg",
+      primary: "/images/herbalink/high-fidelity-prototype.webp",
       alt: "HerbaLink practitioner booking interface"
     },
-    layout: "side-by-side"
+    layout: "side-by-side",
+    variant: "productContext",
   }
 ];
 
 /**
- * Wraps card media in a real <a> when the study has a detail page.
+ * A chapter heading, not a second hero.
  *
- * These were divs with onClick={() => navigate(url)}, so the prerendered
- * homepage carried no href to any case study — the only anchor on the whole
- * section was the outbound herbalink.live link, which sent authority off-site.
+ * This was a centred SectionHeader — "Case Studies That Drive Results" over a
+ * marketing subtitle — in its own padded container, which read as a banner and
+ * pushed the first project off the screen. It is now a compact left-aligned
+ * rule on the same rail the case studies use, so the eye runs straight from the
+ * heading into the first piece of work.
  */
-const MediaLink: React.FC<{
-  study: CaseStudy;
-  className?: string;
-  children: React.ReactNode;
-}> = ({ study, className, children }) =>
-  study.hasDetail === false ? (
-    <div className={className}>{children}</div>
-  ) : (
-    <Link to={study.url} className={className} aria-label={`Read the ${study.title} case study`}>
-      {children}
-    </Link>
-  );
-
-const CaseStudyCard: React.FC<{ 
-  study: CaseStudy; 
-  index: number;
-}> = React.memo(({ study, index }) => {
-  const isMobile = useIsMobile();
-  const showImpact = shouldShowPromoImpact(study.title, study.description, study.impact);
-
-  // Check if we need a placeholder for Smarter Health assets
-  const needsPlaceholder = (src?: string) => {
-    return src && src.includes('/assets/case-studies/smarter-health/');
-  };
-
-  const showPlaceholder = needsPlaceholder(study.video) || needsPlaceholder(study.images.primary);
-
-  // Debug logging
-
-  const renderMedia = () => {
-    if (showPlaceholder) {
-      console.log('📦 Rendering PlaceholderImage for:', study.title);
-      return (
-        <MediaLink study={study} className="block h-full cursor-pointer">
-          <PlaceholderImage title={study.title} className="max-w-[625px] mx-auto" />
-        </MediaLink>
-      );
-    }
-
-    if (study.video) {
-      return (
-        <MediaLink study={study} className="block h-full group cursor-pointer">
-          <div className="flex justify-center h-full">
-            <video 
-              src={study.video}
-              poster={study.images.primary}
-              className="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-105"
-              muted
-              loop
-              playsInline
-              style={{ maxWidth: '625px', height: 'auto' }}
-              onMouseEnter={(e) => e.currentTarget.play()}
-              onMouseLeave={(e) => {
-                e.currentTarget.pause();
-                e.currentTarget.currentTime = 0;
-                e.currentTarget.load();
-              }}
-            />
-          </div>
-        </MediaLink>
-      );
-    }
-    
-    return (
-      <MediaLink study={study} className="block h-full group cursor-pointer">
-        <div className="flex justify-center h-full">
-          <img {...imgDims(study.images.primary)} 
-            src={study.images.primary} 
-            alt={study.images.alt}
-            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 625px, 625px"
-            style={{ maxWidth: '625px', height: 'auto' }}
-          />
-        </div>
-      </MediaLink>
-    );
-  };
+const SelectedWorkIntro: React.FC<{ count: number }> = ({ count }) => {
+  const reduce = useReducedMotion();
+  const rise = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 12 },
+    whileInView: reduce ? undefined : { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-40px" },
+    transition: { duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] as const },
+  });
 
   return (
-    <motion.div
-      id={`case-study-${index + 1}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "100px" }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="case-study-card overflow-hidden relative"
-      tabIndex={-1}
-    >
-      {/* Mobile Layout: Stacked with Premium Background */}
-      <div className="lg:hidden py-8 relative overflow-hidden"
-           style={{
-             background: `
-               linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
-               radial-gradient(circle at 50% 0%, hsl(231 92% 98% / 0.5) 0%, transparent 50%)
-             `,
-             border: "1px solid hsl(220 20% 92%)",
-             borderRadius: "24px",
-             backdropFilter: "blur(8px)"
-           }}>
-        {/* Image Section - Full Width on Mobile */}
-        <div className="relative py-4 min-h-[200px] flex items-center justify-center">
-          <div className="w-full max-w-[625px] flex justify-center">
-            {renderMedia()}
-          </div>
-        </div>
+    <div className="mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-14 pt-10 md:pt-12 pb-1">
+      <motion.div {...rise(0)} className="flex items-center gap-4 md:gap-6">
+        <p className="text-eyebrow text-muted-foreground whitespace-nowrap">Selected work</p>
+        <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        <p className="text-eyebrow text-muted-foreground tabular-nums whitespace-nowrap">
+          01 — {String(count).padStart(2, "0")}
+        </p>
+      </motion.div>
 
-        {/* Content Section */}
-        <div className="p-6 space-y-4">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {study.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                #{tag}
-              </Badge>
-            ))}
-          </div>
-
-          {/* Title */}
-          <AnimatedText
-            text={study.title}
-            tag="h3"
-            className="heading-subsection text-gray-900 leading-tight break-words"
-            type="word"
-            animation="slide"
-            delay={300}
-            staggerChildren={0.05}
-          />
-
-          {/* Description */}
-          <p className="text-gray-600 text-lg leading-relaxed break-words">
-            {study.description}
-          </p>
-
-          {/* Impact Metrics */}
-          {showImpact ? (
-            <div className="text-impact-metric-md">
-              {study.impact}
-            </div>
-          ) : null}
-
-          {/* CTA Buttons */}
-          <div className="flex flex-row gap-3 pt-2">
-            {study.hasDetail !== false && (
-              <Button asChild variant="case-study" className="flex-1">
-                <Link to={study.url}>View Case Study</Link>
-              </Button>
-            )}
-            {study.liveUrl && (
-              <Button asChild variant="outline" className="flex-1">
-                <a 
-                  href={study.liveUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  View Live
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Layout: Full-width background */}
-      <div className="hidden lg:block">
-        {/* Full-width Premium Background wrapper */}
-        <div className="w-screen relative left-1/2 -ml-[50vw] py-8 lg:py-10 overflow-hidden"
-             style={{
-               background: `
-                 linear-gradient(135deg, hsl(220 20% 97%) 0%, hsl(220 25% 95%) 100%),
-                 radial-gradient(circle at 20% 50%, hsl(231 92% 98% / 0.3) 0%, transparent 50%),
-                 radial-gradient(circle at 80% 50%, hsl(263 85% 98% / 0.2) 0%, transparent 50%)
-               `,
-               borderTop: "1px solid hsl(220 20% 92%)",
-               borderBottom: "1px solid hsl(220 20% 92%)",
-             }}>
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            {/* Desktop content grid */}
-            <div className="grid gap-4 xl:gap-5 2xl:gap-5 items-center
-                            [grid-template-columns:minmax(0,3fr)_minmax(36%,2fr)]
-                            2xl:[grid-template-columns:minmax(0,16fr)_minmax(36%,9fr)]">
-              
-              {/* Images Section */}
-              <div className="relative p-4 xl:p-5 2xl:p-6 flex items-center" 
-                   style={{ marginRight: '-24px' }}>
-                <div className="w-full min-h-[400px] xl:min-h-[440px] 2xl:min-h-[480px] flex items-center justify-center">
-                  {renderMedia()}
-                </div>
-              </div>
-
-              {/* Content Section */}
-              <div className="flex flex-col justify-center p-5 xl:p-6 min-w-0" 
-                   style={{ 
-                     paddingLeft: '24px',
-                     paddingRight: '24px',
-                     wordWrap: 'break-word',
-                     whiteSpace: 'normal'
-                   }}>
-                <div className="w-full max-w-[600px] space-y-3 break-words">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {study.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs font-medium rounded-full px-3 py-1">
-                        #{tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {/* Title */}
-                  <AnimatedText
-                    text={study.title}
-                    tag="h3"
-                    className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-4 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]"
-                    type="word"
-                    animation="slide"
-                    delay={300}
-                    staggerChildren={0.05}
-                  />
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-lg leading-relaxed mb-3 break-words whitespace-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none]">
-                    {study.description}
-                  </p>
-
-                  {/* Impact Metrics */}
-                  {showImpact ? (
-                    <div className="text-impact-metric-md mb-4">
-                      {study.impact}
-                    </div>
-                  ) : null}
-
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    {study.hasDetail !== false && (
-                      <Button asChild variant="case-study" className="flex-1 sm:flex-none">
-                        <Link to={study.url}>View Case Study</Link>
-                      </Button>
-                    )}
-                    {study.liveUrl && (
-                      <Button asChild variant="outline" className="flex-1 sm:flex-none">
-                        <a 
-                          href={study.liveUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2"
-                        >
-                          View Live
-                          <ArrowRight className="w-4 h-4" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
+      {/* The headline that used to sit here is now the page H1 in the hero.
+          Printing it a second time, a screen apart, read as a mistake — so the
+          intro keeps the rule, the counter and the standfirst, and hands over. */}
+      <motion.p
+        {...rise(0.06)}
+        className="mt-5 md:mt-6 max-w-[640px] text-lg md:text-xl leading-relaxed text-muted-foreground"
+      >
+        A selection of product design work spanning enterprise platforms, healthcare, fintech, and
+        consumer products.
+      </motion.p>
+    </div>
   );
-});
+};
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section 
-      className="py-12 md:py-16 relative overflow-hidden" 
-      tabIndex={-1}
-      style={{
-        background: `
-          radial-gradient(circle at 10% 20%, hsl(231 92% 98% / 0.4) 0%, transparent 50%),
-          radial-gradient(circle at 90% 80%, hsl(263 85% 98% / 0.3) 0%, transparent 50%),
-          linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 99%) 100%)
-        `
-      }}
-    >
-      {/* Premium Background Elements */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 30%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
-            "radial-gradient(circle at 80% 70%, hsl(263 85% 95% / 0.1) 0%, transparent 40%)",
-            "radial-gradient(circle at 60% 20%, hsl(231 92% 95% / 0.1) 0%, transparent 40%)",
-          ]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "50px" }}
-          transition={{ duration: 0.4 }}
-        >
-          <SectionHeader
-            as="h2"
-            title="Case Studies That Drive Results"
-            subtitle="Real projects. Measurable outcomes. See how I transform business challenges into digital solutions."
-            subtitleClassName="max-w-4xl mx-auto"
-            titleAnimation="elastic"
-            subtitleAnimation="fade"
-            titleDelay={0}
-            subtitleDelay={0.3}
-          />
-        </motion.div>
+    <section id="case-studies" className="relative overflow-hidden bg-background" tabIndex={-1}>
+      <SelectedWorkIntro count={caseStudies.length} />
 
-        {/* Case Studies Grid */}
-        <div className="space-y-8">
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard 
-              key={study.id} 
-              study={study} 
-              index={index}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Each study is its own full-bleed band, so the backgrounds carry the
+          scroll rhythm. They sit outside the intro rail on purpose. */}
+      {caseStudies.map((study, index) => (
+        <CaseStudyFeature key={study.id} project={study} variant={study.variant} index={index} />
+      ))}
     </section>
   );
 };

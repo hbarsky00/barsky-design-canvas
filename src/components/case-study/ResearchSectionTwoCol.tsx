@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import ProjectVideo from "../project/ProjectVideo";
 import MaximizableImage from "../project/MaximizableImage";
+import { imgDims, isWideBoard } from "@/utils/imageDims";
 import { getAnnotationBlurbClasses, getResponsiveTruncatedText } from "@/utils/captionStyles";
 
 interface EmergingTheme {
@@ -61,12 +62,19 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
   // square (2408x2506), so squeezing one into a side column rendered it at
   // ~420px and the screens inside became unreadable. Anything roughly square or
   // wider gets its own full-width row under the text instead of a narrow column.
-  const wideMedia = allMedia.some((m) => /mobile-grid-8up|-grid-|four-panel/.test(m.src));
+  // Was a hand-maintained filename regex, which only knew about the files
+  // someone had already been bitten by. The thing that actually makes an image
+  // unreadable in a 40%-wide column is its shape and size, and both are already
+  // measured in imageDimensions.json. Anything roughly square or wider that has
+  // the pixels to fill the full rail gets its own row; a tall phone shot, or a
+  // small image that would have to be upscaled to fill the rail, stays in the
+  // column where it renders at or under its native width.
+  const wideMedia = allMedia.some((m) => isWideBoard(m.src));
   const gridCols = !hasMedia || wideMedia ? 'grid-cols-1' :
                    isSingleMedia ? 'lg:grid-cols-10' : 'lg:grid-cols-12';
   const textCols = !hasMedia || wideMedia ? 'lg:col-span-full' :
                    isSingleMedia ? 'lg:col-span-6' : 'lg:col-span-7';
-  const mediaCols = wideMedia ? 'lg:col-span-full mx-auto w-full lg:w-4/5' :
+  const mediaCols = wideMedia ? 'lg:col-span-full w-full' :
                     isSingleMedia ? 'lg:col-span-4' : 'lg:col-span-5';
 
   return (
@@ -161,15 +169,27 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
                   /* Maximizable Images Display */
                   <div className="flex flex-col gap-4">
                     {allMedia.map((image, index) => (
-                      <MaximizableImage
+                      /* One wide board in the group sends the whole column
+                         full-rail, so a small sibling would ride along and get
+                         blown up past its own pixels — /project/crypto's 752px
+                         competitive sheet at 1120px. Each figure stops at its
+                         measured width instead, and centres in whatever room is
+                         left. */
+                      <div
                         key={index}
-                        src={image.src}
-                        alt={image.alt || `Research image ${index + 1}`}
-                        caption={researchSection.blurb && index === 0 ? researchSection.blurb : undefined}
-                        imageList={allMedia.map(img => img.src)}
-                        currentIndex={index}
-                        className="shadow-elevated w-full glass-card layered-depth"
-                      />
+                        className="w-full mx-auto"
+                        style={wideMedia ? { maxWidth: imgDims(image.src).width } : undefined}
+                      >
+                        <MaximizableImage
+                          src={image.src}
+                          alt={image.alt || `Research image ${index + 1}`}
+                          caption={researchSection.blurb && index === 0 ? researchSection.blurb : undefined}
+                          imageList={allMedia.map(img => img.src)}
+                          currentIndex={index}
+                          fit="contain"
+                          className="shadow-elevated w-full glass-card layered-depth"
+                        />
+                      </div>
                     ))}
                   </div>
                 )}

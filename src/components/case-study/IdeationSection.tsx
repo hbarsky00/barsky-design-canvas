@@ -1,5 +1,5 @@
 import React from "react";
-import { imgDims } from "@/utils/imageDims";
+import MaximizableImage from "@/components/project/MaximizableImage";
 import { IdeationSection as IdeationSectionType } from "@/data/structuredCaseStudies";
 import { Badge } from "@/components/ui/badge";
 
@@ -54,21 +54,18 @@ const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
         {/* Wireframe Image - appears after bubbles, before iterations */}
         {ideationData.wireframeImage && (
           <div className="mt-12">
-            <figure className="rounded-xl overflow-hidden shadow-lg group cursor-pointer">
-              <div className="overflow-hidden">
-                <img {...imgDims(ideationData.wireframeImage.src)}
-                  src={ideationData.wireframeImage.src}
-                  alt={ideationData.wireframeImage.alt}
-                  className="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              {ideationData.wireframeImage.caption && (
-                <figcaption className="text-sm text-muted-foreground text-center py-4 px-6 bg-muted/30">
-                  {ideationData.wireframeImage.caption}
-                </figcaption>
-              )}
-            </figure>
+            {/* Was a bare <img> under a figure that advertised cursor-pointer and
+                did nothing when clicked. Every other section reaches this image
+                through MaximizableImage, so a dense board can be opened full
+                screen; this one could not, which is the difference between a
+                readable wireframe sheet and a wall of 40px type. */}
+            <MaximizableImage
+              src={ideationData.wireframeImage.src}
+              alt={ideationData.wireframeImage.alt}
+              caption={ideationData.wireframeImage.caption}
+              fit="contain"
+              className="rounded-xl shadow-lg"
+            />
           </div>
         )}
 

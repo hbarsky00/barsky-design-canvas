@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import { isWideBoard } from "@/utils/imageDims";
 import AnnotatedImage from "./AnnotatedImage";
 import ProjectVideo from "@/components/project/ProjectVideo";
 import { ImageAnnotation } from "@/data/structuredCaseStudies";
@@ -117,48 +118,42 @@ const MyThoughtProcessSection: React.FC<MyThoughtProcessSectionProps> = ({
     }
   });
 
-  const renderImage = (img: ImageItem, key: string) => (
+  const renderImage = (img: ImageItem, key: string) => {
     // The images sit inside content-rail-left, which is max-w-[72ch] — a prose
     // measure, about 700px. Fine for a screenshot beside a paragraph, far too
-    // narrow for the 4-across-by-2-down composites (2408x2506): the phone
-    // screens inside become unreadable. Those break out of the reading rail to
-    // 80% of the section, centred, and stay in the rail otherwise.
-    <div
-      key={key}
-      className={
-        /mobile-grid-8up|-grid-|four-panel/.test(img.src)
-          ? "my-6 w-screen relative left-1/2 -ml-[50vw] px-4 sm:px-6"
-          : "my-6"
-      }
-    >
-      {img.annotations && img.annotations.length > 0 ? (
-        <AnnotatedImage
-          src={img.src}
-          alt={img.alt}
-          annotations={img.annotations}
-          // The composites carry annotations, so they take this branch, not the
-          // MaximizableImage one below — without the same cap the breakout runs
-          // edge to edge instead of the 80% it is meant to be.
-          className={
-            /mobile-grid-8up|-grid-|four-panel/.test(img.src)
-              ? "mx-auto w-full lg:w-4/5 rounded-lg"
-              : "w-full rounded-lg"
-          }
-        />
-      ) : (
-        <MaximizableImage
-          src={img.src}
-          alt={img.alt}
-          caption={img.caption}
-          className={
-            /mobile-grid-8up|-grid-|four-panel/.test(img.src)
-              ? "mx-auto w-full lg:w-4/5 rounded-lg"
-              : "w-full rounded-lg"
-          }
-        />
-      )}
-    </div>
-  );
+    // narrow for a full board: the phone screens inside become unreadable.
+    // Those break out of the reading rail to 80% of the section, centred, and
+    // stay in the rail otherwise. The test used to be a hand-kept list of
+    // filenames; it now asks the measured dimensions, so a board added later
+    // gets the same treatment without anyone remembering to add it.
+    const wide = isWideBoard(img.src);
+    return (
+      <div
+        key={key}
+        className={wide ? "my-6 w-screen relative left-1/2 -ml-[50vw] px-4 sm:px-6" : "my-6"}
+      >
+        {img.annotations && img.annotations.length > 0 ? (
+          <AnnotatedImage
+            src={img.src}
+            alt={img.alt}
+            annotations={img.annotations}
+            // A board that carries annotations takes this branch, not the
+            // MaximizableImage one below — without the same cap the breakout
+            // runs edge to edge instead of the 80% it is meant to be.
+            className={wide ? "mx-auto w-full lg:w-4/5 rounded-lg" : "w-full rounded-lg"}
+          />
+        ) : (
+          <MaximizableImage
+            src={img.src}
+            alt={img.alt}
+            caption={img.caption}
+            fit="contain"
+            className={wide ? "mx-auto w-full lg:w-4/5 rounded-lg" : "w-full rounded-lg"}
+          />
+        )}
+      </div>
+    );
+  };
 
   return (
     <section className="section-snap py-12 md:py-16">

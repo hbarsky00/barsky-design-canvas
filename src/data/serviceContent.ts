@@ -113,7 +113,7 @@ export const UX_UI_DESIGN: ServicePageContent = {
   work: [
     { href: "/project/dae-search", label: "DAE Search", note: "enterprise data discovery — where research reframed the problem." },
     { href: "/project/herbalink", label: "HerbaLink", note: "designing credential trust into a practitioner marketplace." },
-    { href: "/project/business-management", label: "Blue Sky", note: "consolidating small-business operations into one system." },
+    { href: "/project/business-management", label: "One System Instead of Six", note: "consolidating small-business operations into one system." },
   ],
   reading: [
     { href: "/blog/research-without-users", label: "User research without users", note: "validating a direction before anyone has signed up." },
@@ -186,7 +186,7 @@ export const MOBILE_APP_DESIGN: ServicePageContent = {
   ],
   work: [
     { href: "/project/herbalink", label: "HerbaLink", note: "phone-first booking for a marketplace where credentials decide trust." },
-    { href: "/project/business-management", label: "Blue Sky", note: "operations work that had to survive being done on a phone." },
+    { href: "/project/business-management", label: "One System Instead of Six", note: "operations work that had to survive being done on a phone." },
     { href: "/project/dae-search", label: "DAE Search", note: "enterprise search made usable away from a desk." },
   ],
   reading: [
@@ -263,7 +263,7 @@ export const WEB_DEVELOPMENT: ServicePageContent = {
   work: [
     { href: "/project/herbalink", label: "HerbaLink", note: "designed and built end to end, live in production." },
     { href: "/project/dae-search", label: "DAE Search", note: "enterprise search interface and data lineage views." },
-    { href: "/project/business-management", label: "Blue Sky", note: "one system replacing a stack of disconnected tools." },
+    { href: "/project/business-management", label: "One System Instead of Six", note: "one system replacing a stack of disconnected tools." },
   ],
   reading: [
     { href: "/blog/designer-who-codes-argument-is-over", label: "The designer-who-codes argument is over", note: "why the handoff was the expensive part." },

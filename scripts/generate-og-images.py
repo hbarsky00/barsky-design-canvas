@@ -172,7 +172,7 @@ CASE_STUDIES = [
     ("stips", "Stips",
      "Prediction markets you can actually read, where the price is the probability.",
      "Fintech UX", "/images/stips/card-poster-home.jpg"),
-    ("business-management", "Blue Sky",
+    ("business-management", "One System Instead of Six",
      "Invoicing, scheduling and tasks in one system, instead of five browser tabs.",
      "Enterprise \u00b7 Operations", "/images/business-management/hero-three-laptops.jpg"),
     ("dae-search", "DAE Search",
