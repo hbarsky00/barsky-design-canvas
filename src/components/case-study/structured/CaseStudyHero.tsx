@@ -204,7 +204,7 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
         mobileMedia={mobileMedia}
         theme={config.theme}
         priority
-        wideScroll={stacked && !mobileMedia}
+        wideScroll={(stacked || !!primary.scrollOnMobile) && !mobileMedia}
       />
 
       {/* The inset only appears from md, where the desktop artwork is also in

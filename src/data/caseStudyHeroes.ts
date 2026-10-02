@@ -36,6 +36,13 @@ export interface HeroMedia {
    */
   alt: string;
   /**
+   * Forces the phone swipe rail for an asset the aspect-ratio heuristic can't
+   * see is dense. HerbaLink's boards are all 3:2 but carry a dozen annotated
+   * screens each, so at 350px they are unreadable even though they are not
+   * ultrawide.
+   */
+  scrollOnMobile?: boolean;
+  /**
    * True for assets with a transparent background — devices and screen rows
    * that are already cut out. Those get a drop shadow instead of a card, since
    * a rounded bordered panel around a cut-out reads as a box floating in space.
@@ -92,14 +99,10 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
     ],
     media: [
       {
-        src: "/images/herbalink/hero-desktop.webp",
-        alt: "HerbaLink on desktop: the screen for finding a certified herbalist, with the herb field guide alongside",
+        src: "/images/herbalink/high-fidelity-prototype.webp",
+        alt: "HerbaLink high-fidelity prototype: the mobile flow for finding, booking and getting support, beside the desktop discovery, booking, messaging and symptom-tracking screens",
         role: "primary",
-      },
-      {
-        src: "/images/herbalink/mobile-booking-guided.webp",
-        alt: "HerbaLink: finding a certified herbalist and booking a consultation",
-        role: "inset",
+        scrollOnMobile: true,
       },
     ],
     theme: "light",

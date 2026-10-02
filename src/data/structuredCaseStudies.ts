@@ -777,6 +777,10 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "/images/herbalink/research-interviews.webp",
           alt: "User research board: 12 people seeking natural support and 8 herbalists interviewed, with insights, quotes and pain points",
         },
+        {
+          src: "/images/herbalink/research-process.webp",
+          alt: "The nine-step research process: opportunity, competitive analysis of BetterHelp, Zocdoc, Mindbody and Fullscript, interviews, personas, journey map, ideation, card sorting, concept sketches and prioritisation",
+        },
       ],
     },
     problemCallout: {
@@ -848,11 +852,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       ],
       images: [
         {
-          src: "/images/herbalink/end-to-end-journey.webp",
+          src: "/images/herbalink/lofi-flow-tested.webp",
           alt:
-            "The eight-step journey tested, from onboarding and booking to messaging, progress tracking and leaving a review",
+            "The six-screen low-fidelity flow put in front of users, with what was tested, the feedback it drew, and the four changes that came out of it",
           caption:
-            "The whole journey people were asked to complete, from creating an account to leaving a review.",
+            "What was tested, what people said, and what changed because of it \u2014 filters and session type moved into search, verification badges got louder, pricing moved earlier, and messaging was added before booking.",
         },
       ],
     },
@@ -861,6 +865,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description:
         "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Book faster: 3× higher conversion rate",
       eyebrow: "The Result",
+      images: [
+        {
+          src: "/images/herbalink/end-to-end-journey.webp",
+          alt:
+            "The shipped eight-step journey: onboarding, explore, search and filter, view profile, book, confirm, the session itself, then messaging, rebooking and reviews",
+          caption:
+            "The whole thing end to end, from creating an account to leaving a review.",
+        },
+      ],
     },
     outcomeSection: {
       title: "Outcome",
@@ -878,6 +891,15 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       title: "Lessons Learned",
       content:
         'My first approach was building a giant herbalist database with every possible filter. Users hated it.\n\n"This feels like trying to diagnose myself on WebMD. I just want someone qualified to help me." – Leah, 28, general wellness\n\nFix: Guided discovery with expert-matched options instead of overwhelming filters.',
+      images: [
+        {
+          src: "/images/herbalink/interviews-and-early-concepts.webp",
+          alt:
+            "Interview notes, the affinity groups they produced, and the four early concept sketches \u2014 home and discovery, practitioner profile, symptoms to education, and the booking flow",
+          caption:
+            "The sketched directions, annotated. Quick search and browse-by-specialty survived; the filter-everything directory did not.",
+        },
+      ],
     },
     sections: [],
     seoData: {
