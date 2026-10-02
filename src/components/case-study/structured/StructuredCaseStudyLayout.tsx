@@ -7,7 +7,7 @@ import CaseStudyContactSection from "../CaseStudyContactSection";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData, ImageAnnotation } from "@/data/structuredCaseStudies";
-import UnifiedCaseStudyHero from "./UnifiedCaseStudyHero";
+import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyBreadcrumbs from "@/components/seo/CaseStudyBreadcrumbs";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
@@ -85,16 +85,18 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
         
         <main id="main-content" className={`${isProjectPage ? "projects-wrap" : ""} pt-[calc(var(--header-height,64px)+16px)]`}>
           <div className="section-container bg-white">
-          {/* Unified Hero Section */}
           <div className="content-rail-left px-4 sm:px-6">
             <CaseStudyBreadcrumbs title={caseStudyData.title} slug={caseStudyData.id} />
           </div>
+          </div>
 
-          <UnifiedCaseStudyHero 
+          {/* The hero sits outside .section-container so its surface can run
+              edge to edge. Every other section still goes through the
+              container, which stays the single owner of page width. */}
+          <CaseStudyHero
             caseStudyData={caseStudyData}
             heroAsImage={heroAsImage}
           />
-          </div>
 
           {/* Project Context Section */}
           {caseStudyData.projectContext && (
