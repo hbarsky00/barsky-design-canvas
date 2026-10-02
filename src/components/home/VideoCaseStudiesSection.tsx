@@ -137,14 +137,15 @@ const SelectedWorkIntro: React.FC<{ count: number }> = ({ count }) => {
         </p>
       </motion.div>
 
-      {/* Deliberately not the hero's headline — that one is the page H1 a screen
-          above, and printing it twice read as a mistake. */}
+      {/* Deliberately not the hero's headline. The two lines swapped when the
+          hero took "solve real problems" — both are Hiram's, and printing either
+          one twice a screen apart read as a mistake. */}
       <motion.h2
         {...rise(0.06)}
         className="mt-5 md:mt-6 font-display font-bold tracking-tight text-balance
                    text-[2rem] md:text-[2.5rem] lg:text-[3rem] leading-[1.08] max-w-[20ch]"
       >
-        Designing products that solve real problems.
+        Designing complex products into simpler experiences.
       </motion.h2>
 
       <motion.p
@@ -160,7 +161,7 @@ const SelectedWorkIntro: React.FC<{ count: number }> = ({ count }) => {
 
 const VideoCaseStudiesSection: React.FC = () => {
   return (
-    <section id="case-studies" className="relative overflow-hidden bg-background" tabIndex={-1}>
+    <section className="relative overflow-hidden bg-background" tabIndex={-1}>
       <SelectedWorkIntro count={caseStudies.length} />
 
       {/* Each study is its own full-bleed band, so the backgrounds carry the

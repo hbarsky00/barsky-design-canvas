@@ -927,9 +927,13 @@ body {
   padding-bottom: max(0px, env(safe-area-inset-bottom));
 }
 
-/* Anchor offset for fixed header */
+/* Breathing room under the header, not a second header's worth.
+   html already carries scroll-padding-top: var(--header-height), so adding the
+   same value again here offset every in-page anchor by twice the header — "See
+   My Work" landed 193px down with a 97px header, which reads as scrolling to the
+   wrong place. */
 .scroll-offset {
-  scroll-margin-top: var(--header-height, 72px);
+  scroll-margin-top: 1rem;
 }
 
 /* Hero container with safe area support */
@@ -1202,9 +1206,13 @@ video:not([class~="rounded-full"]),
   @apply font-sans;
 }
 
-/* Section scroll margin for header offset */
+/* A third place the header offset was being applied. html already carries
+   scroll-padding-top: var(--header-height), so this hard-coded 96px stacked on
+   top of it and sent every in-page anchor roughly one header too far — the
+   section landed 193px down instead of just under the 97px header. Small
+   breathing room only, and no hard-coded header height to drift. */
 #intro, #bio, #case-studies, #contact, #blog, #faq {
-  scroll-margin-top: 96px;
+  scroll-margin-top: 1rem;
 }
 
 /* PROJECT PAGE SPECIFIC STYLES */

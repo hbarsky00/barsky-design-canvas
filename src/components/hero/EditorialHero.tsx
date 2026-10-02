@@ -1,23 +1,24 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Layers, Monitor, Sparkles, Users } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Layers, Monitor, Sparkles, Users } from "lucide-react";
 import { imgDims } from "@/utils/imageDims";
 
 /**
  * The homepage opening spread.
  *
- * What this replaces: a centred stack of H1, a second headline, the name, the
- * site's own URL set as hero content, the city, and a row of social icons — a
- * résumé header. It shares its rail (max-w-[1440px], px-6/10/14), its eyebrow
- * token and its motion timing with the Selected Work section directly below, so
- * the two read as one page rather than two sites.
+ * The visual focus is the product work rather than a portrait: HerbaLink's real
+ * desktop home screen and a real CatchBuddy phone screen, both shipped assets
+ * lifted from those case studies, not mockups drawn for this page.
+ *
+ * This is a dark SECTION, not a dark theme — no toggle, no tokens redefined for
+ * dark, and every other surface on the site stays light.
  */
 
 /**
- * Two labels each: the full one, and a shorter one for phones. At 390 the long
+ * Two labels each: the full one, and a shorter one below 1280. At 390 the long
  * versions wrapped "Full-Stack Development" onto two lines and "React,
- * Databases, Launch" onto three, which turned a four-item strip into a wall.
+ * Databases, Launch" onto three; at 1024 the four-across strip does the same.
  * Only one of the pair is ever exposed to assistive tech.
  */
 const CAPABILITIES = [
@@ -39,7 +40,9 @@ const CAPABILITIES = [
   },
 ] as const;
 
-/** Renders the short string on phones and the full one from sm up. */
+const HERBALINK = "/images/herbalink/hero-desktop.webp";
+const CATCHBUDDY = "/images/catchbuddy/hero-phone.webp";
+
 const Responsive: React.FC<{ full: string; short?: string; className?: string }> = ({
   full,
   short,
@@ -57,18 +60,20 @@ const Responsive: React.FC<{ full: string; short?: string; className?: string }>
     <span className={className}>{full}</span>
   );
 
-const EXPLORING = [
-  "AI in Product Design",
-  "Automation & Internal Tools",
-  "Better Healthcare Experiences",
-] as const;
-
-const PHOTO = "/images/hiram-barsky-hero.webp";
-/* Art direction, not just a smaller file: on a phone the wide crop only reached
-   34% of the hero's height because its width is capped at the source's 610px.
-   The phone crop is tighter on him, so the same rendered width buys more
-   height. */
-const PHOTO_MOBILE = "/images/hiram-barsky-hero-mobile.webp";
+/** A product annotation — a caption, deliberately not an advert. */
+const ProductTag: React.FC<{ name: string; kind: string; className?: string }> = ({
+  name,
+  kind,
+  className = "",
+}) => (
+  <span
+    className={`inline-flex flex-col rounded-xl border border-white/10 bg-slate-900/85 px-3 py-2
+                backdrop-blur-sm shadow-lg shadow-black/40 ${className}`}
+  >
+    <span className="text-sm font-semibold leading-tight text-white">{name}</span>
+    <span className="text-xs leading-tight text-white/60">{kind}</span>
+  </span>
+);
 
 const EditorialHero: React.FC = () => {
   const reduce = useReducedMotion();
@@ -79,164 +84,204 @@ const EditorialHero: React.FC = () => {
   });
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-6 md:px-10 lg:px-14 pt-8 md:pt-10 lg:pt-10 pb-10 md:pb-12 lg:pb-8">
-      {/* Eyebrow rule — the mirror of "SELECTED WORK ———— 01 — 05" below. */}
-      <motion.div {...rise(0)} className="flex items-center gap-4 md:gap-6">
-        <p className="text-eyebrow text-muted-foreground whitespace-nowrap">Product Designer</p>
-        <span className="h-px flex-1 bg-border" aria-hidden="true" />
-        <p className="text-eyebrow text-muted-foreground whitespace-nowrap flex items-center gap-2">
-          Based in Clifton, NJ
-          <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-        </p>
-      </motion.div>
+    <div className="relative overflow-hidden bg-slate-950 lg:flex lg:min-h-svh lg:items-center">
+      {/* Atmosphere, kept away from the type so contrast never drops. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0
+                   [background:radial-gradient(60%_55%_at_72%_38%,rgba(59,130,246,0.22),transparent_70%),radial-gradient(45%_45%_at_96%_88%,rgba(139,92,246,0.16),transparent_70%)]"
+      />
 
-      <div className="mt-10 md:mt-12 lg:mt-8 grid items-center gap-10 lg:gap-8 xl:gap-10
-                      lg:grid-cols-[minmax(0,54fr)_minmax(0,46fr)]">
-        {/* ---------------------------------------------------------- copy */}
-        <div className="order-1">
-          <motion.h1
-            {...rise(0.06)}
-            className="font-display font-bold tracking-tight text-balance text-foreground
-                       text-[clamp(2.375rem,1.6rem+3.1vw,4.5rem)] leading-[1.0]
-                       max-w-[17ch] lg:max-w-[16ch] xl:max-w-[18ch]"
-          >
-            Designing complex products into simpler experiences
-            <span className="text-primary">.</span>
-          </motion.h1>
+      <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-6 md:px-10 lg:px-14 pt-10 md:pt-12 pb-10 lg:pb-12">
+        <div className="grid items-center gap-12 lg:gap-10 lg:grid-cols-[minmax(0,42fr)_minmax(0,58fr)]">
+          {/* ------------------------------------------------------- copy */}
+          <div className="order-1">
+            <motion.div {...rise(0)} className="flex items-center gap-4">
+              <p className="text-eyebrow text-white/50 whitespace-nowrap">Lead Product Designer</p>
+              <span className="h-px w-16 shrink-0 bg-white/20 lg:w-24" aria-hidden="true" />
+            </motion.div>
 
-          {/* His settled positioning, verbatim. The reference mockup had its own
-              wording; this is the line the site already stands behind. */}
-          <motion.p
-            {...rise(0.12)}
-            className="mt-5 lg:mt-6 max-w-[42rem] lg:max-w-[35rem] xl:max-w-[40.625rem]
-                       text-base md:text-lg lg:text-[1.1875rem] xl:text-[1.375rem]
-                       leading-relaxed text-muted-foreground"
-          >
-            I design and develop SaaS, web apps, mobile apps and internal tools — one person, from
-            product design through React front end, database and launch. 15+ years across fintech,
-            healthcare and pharma.
-          </motion.p>
-
-          <motion.div {...rise(0.18)} className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-            <a
-              href="#case-studies"
-              className="group/cta inline-flex min-h-[48px] items-center gap-2 rounded-xl px-6
-                         bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold
-                         shadow-md shadow-blue-600/20 transition-all duration-200
-                         hover:shadow-lg hover:shadow-blue-600/25 motion-safe:hover:-translate-y-0.5
-                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary
-                         focus-visible:ring-offset-2"
+            <motion.h1
+              {...rise(0.06)}
+              className="mt-5 font-display font-bold tracking-tight text-balance text-white
+                         text-[clamp(2.625rem,1.1rem+7.5vw,3.125rem)] md:text-[clamp(2.5rem,1.3rem+3vw,4rem)]
+                         leading-[1.02] max-w-[15ch]"
             >
-              See My Work
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/cta:translate-x-1"
-                aria-hidden="true"
-              />
-            </a>
-            <Link
-              to="/contact"
-              className="inline-flex min-h-[48px] items-center rounded-xl border border-border
-                         bg-background px-6 font-semibold text-foreground transition-colors
-                         hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2
-                         focus-visible:ring-primary focus-visible:ring-offset-2"
+              Designing products that solve{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+                real problems.
+              </span>
+            </motion.h1>
+
+            {/* The site's settled positioning, unchanged. */}
+            <motion.p
+              {...rise(0.12)}
+              className="mt-6 max-w-[34rem] text-base md:text-lg leading-relaxed text-white/70"
             >
-              Book a Call
-            </Link>
+              I design and develop SaaS, web apps, mobile apps and internal tools — one person, from
+              product design through React front end, database and launch. 15+ years across fintech,
+              healthcare and pharma.
+            </motion.p>
+
+            <motion.div {...rise(0.18)} className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <a
+                href="#case-studies"
+                className="group/cta inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl px-6
+                           bg-gradient-to-r from-blue-600 to-violet-600 text-white font-semibold
+                           shadow-lg shadow-blue-900/40 transition-all duration-200
+                           hover:shadow-xl hover:shadow-blue-900/50 motion-safe:hover:-translate-y-0.5
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
+                           focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                See My Work
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/cta:translate-x-1"
+                  aria-hidden="true"
+                />
+              </a>
+              <Link
+                to="/contact"
+                className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-white/25
+                           px-6 font-semibold text-white transition-colors hover:bg-white/10
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
+                           focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                Book a Call
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* --------------------------------------------- product showcase */}
+          <motion.div
+            initial={reduce ? false : { opacity: 0, scale: 0.98 }}
+            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="order-2 relative"
+          >
+            {/* Phone in front on the left, web behind on the right. The phone
+                sits in normal flow so it sets the height of the box; an
+                aspect-ratio wrapper with overflow-hidden cropped the top of the
+                phone and the left of the web screen. Nothing here is clipped. */}
+            <div className="relative w-full">
+              {/* HerbaLink — the web product, behind and to the right */}
+              <figure className="absolute right-0 top-[10%] w-[64%] sm:w-[62%] lg:w-[70%]">
+                <img
+                  {...imgDims(HERBALINK)}
+                  src={HERBALINK}
+                  alt="HerbaLink web app: the home screen for finding a certified herbalist, with the herb field guide alongside"
+                  fetchPriority="high"
+                  decoding="async"
+                  sizes="(max-width: 767px) 62vw, (max-width: 1023px) 58vw, 40vw"
+                  className="w-full rounded-lg ring-1 ring-white/10 shadow-2xl shadow-black/60 lg:rounded-xl"
+                />
+                <ProductTag
+                  name="HerbaLink"
+                  kind="Healthcare Marketplace"
+                  className="absolute -top-3 right-0 scale-90 origin-top-right sm:scale-100 lg:-top-4"
+                />
+                {/* HerbaLink's own figure from its case study, not a new claim. */}
+                <span
+                  className="absolute -bottom-3 right-1 inline-flex items-baseline gap-1.5 rounded-xl
+                             border border-emerald-400/25 bg-emerald-950/85 px-2.5 py-1.5 sm:px-3 sm:py-2
+                             backdrop-blur-sm shadow-lg shadow-black/40"
+                >
+                  <span className="text-sm font-bold text-emerald-300">3×</span>
+                  <span className="text-xs text-white/70">more bookings</span>
+                </span>
+              </figure>
+
+              {/* CatchBuddy — the phone, in front on the left, and the element
+                  that gives this box its height. */}
+              <figure className="relative z-10 w-[46%] sm:w-[42%] lg:w-[36%]">
+                <img
+                  {...imgDims(CATCHBUDDY)}
+                  src={CATCHBUDDY}
+                  alt="CatchBuddy phone app: nearby pickup games at Riverside Park, Maplewood Courts and Lincoln Park, each showing how many players are going"
+                  decoding="async"
+                  sizes="(max-width: 767px) 46vw, (max-width: 1023px) 38vw, 20vw"
+                  className="w-full drop-shadow-[0_25px_50px_rgba(0,0,0,0.65)]"
+                />
+                <ProductTag
+                  name="CatchBuddy"
+                  kind="Sports Meetup App"
+                  className="absolute -top-3 left-0 scale-90 origin-top-left whitespace-nowrap sm:scale-100 lg:-top-4"
+                />
+              </figure>
+            </div>
           </motion.div>
         </div>
 
-        {/* --------------------------------------------------------- visual */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0, scale: 0.98 }}
-          animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="order-2 relative pt-20 sm:pt-24 lg:pt-0"
+        {/* Capabilities: a vertical list on phones, where four columns would be
+            four cramped slivers, and the four-across strip from sm up. */}
+        <motion.ul
+          {...rise(0.3)}
+          className="mt-12 lg:mt-10 border-t border-white/10
+                     sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/10"
         >
-          {/* Shapes are CSS, not pixels, so they scale with the column and stay
-              crisp. Decorative — hidden from assistive tech. */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute right-[-12%] top-[-18%] h-[118%] w-[108%] rounded-[46%_54%_42%_58%/52%_44%_56%_48%] bg-gradient-to-br from-sky-100 via-blue-100 to-indigo-100" />
-            <div className="absolute left-[-6%] top-[24%] h-[52%] w-[48%] rounded-full bg-blue-200/50 blur-[2px]" />
-          </div>
-
-          <picture>
-            <source media="(max-width: 639px)" srcSet={PHOTO_MOBILE} width={490} height={624} />
-            <img
-              {...imgDims(PHOTO)}
-              src={PHOTO}
-              alt="Hiram Barsky waving at his desk beside a laptop"
-              fetchPriority="high"
-              decoding="async"
-              sizes="(max-width: 639px) 126vw, (max-width: 1279px) 112vw, 610px"
-              className="relative block h-auto w-[126%] max-w-[490px] -mr-6 ml-auto
-                         sm:w-[112%] sm:max-w-[610px] sm:-mr-10
-                         lg:w-full lg:mr-0 lg:ml-auto"
-              style={{
-                maskImage: "radial-gradient(58% 64% at 52% 42%, #000 48%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(58% 64% at 52% 42%, #000 48%, transparent 100%)",
-              }}
-            />
-          </picture>
-
-          {/* Editorial annotation, not a dashboard widget. */}
-          <div
-            className="absolute right-0 top-2 w-[15rem] sm:w-[17rem] lg:top-0 lg:w-[13.5rem]
-                       xl:top-6 xl:w-[16rem]
-                       rounded-2xl border border-border/70 bg-white/85 backdrop-blur-sm
-                       px-4 py-3 sm:px-5 sm:py-4 lg:px-4 lg:py-3 xl:px-5 xl:py-4
-                       shadow-lg shadow-slate-900/5"
-          >
-            <p className="text-eyebrow text-muted-foreground flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-              Currently exploring
-            </p>
-            <ul className="mt-3 space-y-2">
-              {EXPLORING.map((item) => (
-                <li key={item} className="text-sm text-foreground leading-snug">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
+          {CAPABILITIES.map((cap, i) => {
+            const { Icon, label, detail } = cap;
+            const short = "short" in cap ? cap.short : undefined;
+            const shortDetail = "shortDetail" in cap ? cap.shortDetail : undefined;
+            return (
+              <li
+                key={label}
+                className={`flex items-center gap-4 border-b border-white/10 py-4
+                            sm:items-start sm:gap-3 sm:border-b-0 sm:py-5 sm:pr-6 lg:py-6
+                            ${i % 2 === 1 ? "sm:border-l sm:border-white/10 sm:pl-6 lg:border-l-0 lg:pl-8" : ""}
+                            ${i >= 2 ? "sm:border-t sm:border-white/10 lg:border-t-0" : ""}
+                            ${i === 2 || i === 3 ? "lg:pl-8" : ""}`}
+              >
+                <Icon
+                  className="h-6 w-6 shrink-0 text-white/70 sm:mt-0.5"
+                  aria-hidden="true"
+                />
+                <span className="min-w-0 flex-1">
+                  <Responsive
+                    full={label}
+                    short={short}
+                    className="block font-semibold leading-snug text-white"
+                  />
+                  <Responsive
+                    full={detail}
+                    short={shortDetail}
+                    className="block text-sm leading-snug text-white/55"
+                  />
+                </span>
+                <ChevronRight
+                  className="h-5 w-5 shrink-0 text-white/30 sm:hidden"
+                  aria-hidden="true"
+                />
+              </li>
+            );
+          })}
+        </motion.ul>
       </div>
 
-      {/* Capability row — dividers, not cards. Leads the eye into Selected Work. */}
-      <motion.ul
-        {...rise(0.3)}
-        className="mt-10 md:mt-12 lg:mt-8 grid grid-cols-2 border-t border-border
-                   lg:grid-cols-4 lg:divide-x lg:divide-border"
-      >
-        {CAPABILITIES.map((cap, i) => {
-          const { Icon, label, detail } = cap;
-          const short = "short" in cap ? cap.short : undefined;
-          const shortDetail = "shortDetail" in cap ? cap.shortDetail : undefined;
-          return (
-          <li
-            key={label}
-            className={`flex items-start gap-3 py-5 pr-4 sm:pr-6 lg:py-8
-                        ${i % 2 === 1 ? "border-l border-border pl-5 sm:pl-6 lg:border-l-0 lg:pl-8" : ""}
-                        ${i >= 2 ? "border-t border-border lg:border-t-0" : ""}
-                        ${i === 2 ? "lg:pl-8" : ""}
-                        ${i === 3 ? "lg:pl-8" : ""}`}
-          >
-            <Icon className="mt-0.5 h-5 w-5 sm:h-6 sm:w-6 shrink-0 text-foreground" aria-hidden="true" />
-            <span className="min-w-0">
-              <Responsive
-                full={label}
-                short={short}
-                className="block font-semibold text-foreground leading-snug"
-              />
-              <Responsive
-                full={detail}
-                short={shortDetail}
-                className="block text-sm text-muted-foreground leading-snug"
-              />
-            </span>
-          </li>
-          );
-        })}
-      </motion.ul>
+      {/* The scroll cue that used to live on the old hero (fabe213a), back in
+          place: absolutely positioned so it adds nothing to the layout, centred
+          on the page axis, and only on the sizes where the hero fills the
+          viewport — on a phone the hero scrolls anyway and a cue pinned to its
+          foot would sit a screen and a half down.
+          It is an anchor, not a scroll handler, so it inherits the same
+          scroll-padding the nav uses and works without JS. */}
+      {/* The centring lives on the wrapper and the bounce on the anchor: both on
+          one element and animate-bounce's keyframes overwrite transform, which
+          cancels -translate-x-1/2 and leaves the cue half its own width (22px)
+          right of centre. */}
+      <div className="pointer-events-none absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 lg:block">
+        <a
+          href="#case-studies"
+          aria-label="Scroll to selected work"
+          className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full
+                     border border-white/15 text-white/60 transition-colors
+                     hover:border-white/40 hover:bg-white/10 hover:text-white
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white
+                     focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
+                     motion-safe:animate-bounce"
+        >
+          <ChevronDown className="h-5 w-5" aria-hidden="true" />
+        </a>
+      </div>
     </div>
   );
 };
