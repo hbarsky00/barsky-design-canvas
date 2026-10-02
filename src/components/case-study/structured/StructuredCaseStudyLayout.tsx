@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseStudyContactSection from "../CaseStudyContactSection";
-import CaseStudyShareToolbar from "../CaseStudyShareToolbar";
 import CaseStudyNavigation from "../CaseStudyNavigation";
 import { useProjectPageDetection } from "@/hooks/useProjectPageDetection";
 import { StructuredCaseStudyData, ImageAnnotation } from "@/data/structuredCaseStudies";
@@ -50,11 +49,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
     return section?.images || [];
   };
   
-  // Get current URL for sharing with safety check
-  const currentUrl = typeof window !== 'undefined' && window.location 
-    ? window.location.href 
-    : `https://barskydesign.pro${caseStudyData.seoData?.path || ''}`;
-
   // Create navigation items from sections in correct order
   const navigationItems = [
     { label: "Hero", anchor: "#hero" },
@@ -524,15 +518,6 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             <h2 id="contact-heading" className="sr-only">Contact Section</h2>
             <CaseStudyContactSection />
           </section>
-          
-          {/* Share Toolbar */}
-          <div className="py-6 border-t border-border/20">
-            <CaseStudyShareToolbar 
-              url={currentUrl}
-              title={caseStudyData.title}
-              className="flex-wrap justify-center"
-            />
-          </div>
           </div>
         </main>
       </div>

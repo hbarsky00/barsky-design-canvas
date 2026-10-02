@@ -67,8 +67,8 @@ const caseStudies: CaseStudy[] = [
     impact: "40% Faster Campaign Production",
     url: "/project/email-creation-ai",
     images: {
-      primary: "/images/email-creation-ai/high-fidelity.webp",
-      alt: "High-fidelity mockups of the email creation workflow: the create-email screen with tone, length and audience controls, the template library and the generated email"
+      primary: "/images/email-creation-ai/hifi-flow.webp",
+      alt: "The EmailAI desktop interface: the create-email screen with tone, length and audience controls, above the template library, generated email, recent emails, settings, preview and integrations screens"
     },
     layout: "side-by-side",
     // One image, not four. The workflow composition put four screens across the

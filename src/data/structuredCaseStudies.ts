@@ -1898,8 +1898,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       emergingThemes: [],
       researchImages: [
         {
-          src: "/images/email-creation-ai/research.webp",
-          alt: "Research board: 8 user interviews, 12 key pain points, and the finding that 100% wanted faster, higher-quality emails with less effort, alongside the key insights and a quote from a product manager",
+          src: "/images/email-creation-ai/research-wide.webp",
+          alt: "Research board: 8 user interviews, 12 key pain points and the finding that 100% wanted faster, higher-quality emails with less effort, alongside the key insights, quotes from a product manager, a sales professional and an operations lead, the common use cases, and the industries interviewed",
         },
       ],
     },
@@ -1915,8 +1915,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       iterations: [
         {
           label: "Low-Fidelity Mockups",
-          imageSrc: "/images/email-creation-ai/low-fidelity.webp",
-          alt: "Low-fidelity wireframes of the six core screens: landing, the write prompt, results, template library, edit and refine, and export",
+          imageSrc: "/images/email-creation-ai/lofi-flow.webp",
+          alt: "Low-fidelity wireframes of the full eight-step flow: landing, the brief, template choice, the editor, refine, review options, finalize, and the ready-to-send confirmation",
           blurb: "Early wireframes to validate the flow — layout, content hierarchy and key interactions.",
         },
       ],
@@ -1928,8 +1928,20 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "We defined the user flow, core features, and interaction model to create a simple, powerful experience that works for a wide range of users.",
       images: [
         {
-          src: "/images/email-creation-ai/process.webp",
-          alt: "Process board: enter prompt, refine with AI, review and edit, copy or send — mapped against the landing, create, refine and preview screens, with the core features listed",
+          src: "/images/email-creation-ai/process-wide.webp",
+          alt: "Process board: enter prompt, refine with AI, review and edit, copy or send — each step shown as a phone and a tablet screen side by side, with the core features listed underneath",
+        },
+      ],
+    },
+    userTestingSection: {
+      title: "A clean, modern and intuitive interface",
+      eyebrow: "High-Fidelity Mockups",
+      description:
+        "The final design delivers a seamless, end-to-end experience for creating, refining, and sending high-quality emails with AI. The interface is clean, focused, and easy to use, with helpful templates, tone options, and real-time preview.",
+      images: [
+        {
+          src: "/images/email-creation-ai/hifi-screens-row.webp",
+          alt: "The five high-fidelity screens in sequence: write the brief with tone, length and audience, pick a template, compose and send, adjust the refinement controls, then connect Gmail, Outlook, Slack and Notion",
         },
       ],
     },
@@ -1940,8 +1952,8 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         "The final design delivers a seamless, end-to-end experience for creating, refining, and sending high-quality emails with AI.",
       images: [
         {
-          src: "/images/email-creation-ai/final-mockups.webp",
-          alt: "Final mockups: the template library, the create-email panel, and the generated email ready to copy or open in a mail client",
+          src: "/images/email-creation-ai/responsive-flows.webp",
+          alt: "The finished flow on mobile and tablet: enter prompt, refine with AI, review and edit, copy or send — four phone screens above four tablet screens, with the core features listed underneath",
         },
       ],
     },
@@ -1967,7 +1979,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/images/email-creation-ai/high-fidelity.webp",
+      image: "/images/email-creation-ai/hifi-flow.webp",
       projectName: "ManuscriptRx — AI-Assisted Pharma Email Creation Workflow (Concept)",
       results: [
         "Self-initiated concept project",

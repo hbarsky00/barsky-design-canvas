@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import VideoPlayer from "../VideoPlayer";
 import ProjectActionsCompact from "@/components/project/ProjectActionsCompact";
 import MaximizableImage from "@/components/project/MaximizableImage";
+import { imgDims } from "@/utils/imageDims";
 import { useScroll3DTilt } from "@/hooks/useScroll3DTilt";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { StructuredCaseStudyData } from "@/data/structuredCaseStudies";
@@ -50,6 +51,9 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
 
   const shouldShowVideo = !heroAsImage && caseStudyData.heroVideo?.src;
   const shouldShowImage = heroAsImage || (!caseStudyData.heroVideo?.src && caseStudyData.seoData?.image);
+  const heroArt = imgDims(caseStudyData.seoData?.image);
+  const heroArtIsWide =
+    !!shouldShowImage && !!heroArt.width && !!heroArt.height && heroArt.width / heroArt.height >= 2;
 
   return (
     <section 
@@ -194,9 +198,17 @@ const UnifiedCaseStudyHero: React.FC<UnifiedCaseStudyHeroProps> = ({
           </div>
         </div>
       ) : (
-        /* Desktop Layout: Two Columns */
+        /* Desktop Layout: Two Columns — unless the hero art is a wide board.
+           The media column is half the rail, so a 1882x836 flow rendered at
+           543px and its eight screens became unreadable. A board at 2:1 or wider
+           drops under the copy and takes the whole rail instead; everything
+           else keeps the side column it already had. */
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
+          <div
+            className={`grid gap-6 lg:gap-8 xl:gap-12 items-center ${
+              heroArtIsWide ? "grid-cols-1" : "lg:grid-cols-2"
+            }`}
+          >
             {/* Left Column: Text Content */}
             <motion.div
               ref={textRef}

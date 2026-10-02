@@ -59,8 +59,13 @@ export const imgDims = (src?: string): { width?: number; height?: number } => {
  * about 40-50% of the row. That works for a phone screenshot; it renders a
  * 1536x1024 research board or a six-up wireframe sheet at ~450px, where the
  * type inside it is gone. Sections ask this before they commit to the split.
+ *
+ * Small boards get the full row too, so that every board on a page centres on
+ * the same axis instead of each section parking it wherever its own container
+ * happens to sit. They cannot overflow it: MaximizableImage caps every figure
+ * at the source's own width.
  */
 export const isWideBoard = (src?: string): boolean => {
   const { width, height } = imgDims(src);
-  return !!width && !!height && width / height >= 0.9 && width >= 1400;
+  return !!width && !!height && width / height >= 0.9;
 };

@@ -21,7 +21,11 @@ const IterationsSection: React.FC<IterationsSectionProps> = ({ iterations }) => 
       </h2>
       
       <div className="w-full px-4 md:px-8">
-        <div className="case-study-image-grid">
+        {/* The grid is built for a pair of iterations. With one, it parked the
+            image in the left column while every other board on the page centred
+            on the rail — on /project/email-creation-ai that put the
+            low-fidelity board 292px left of the rest. */}
+        <div className={iterations.length === 1 ? "flex justify-center" : "case-study-image-grid"}>
           {iterations.slice(0, 4).map((iteration, index) => (
             <div 
               key={index}
