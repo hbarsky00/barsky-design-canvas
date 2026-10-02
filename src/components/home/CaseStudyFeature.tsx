@@ -285,20 +285,16 @@ const CaseStudyFeature: React.FC<{
           </Reveal>
           <Reveal delay={0.12} className="order-1 lg:order-2 lg:col-span-7">
             <MediaLink project={project} className="group/media relative block">
-              {/* A device shot on a white page is white on white — the DAE
-                  laptop-and-monitor render disappeared completely against the
-                  band. The tinted surface gives it something to sit on without
-                  putting it back inside a card. */}
-              <div
-                className="rounded-[2rem] bg-gradient-to-br from-sky-50 via-slate-50 to-white
-                           p-6 md:p-10 ring-1 ring-black/5
-                           transition-transform duration-500 motion-safe:group-hover/media:scale-[1.015]"
-              >
+              {/* No surface panel: the tint existed because the old DAE artwork
+                  was a transparent device render that vanished on white. The
+                  board that replaced it carries its own ground, so the panel was
+                  drawing a box around it. */}
+              <div className="transition-transform duration-500 motion-safe:group-hover/media:scale-[1.015]">
                 <Screen
                   src={project.images.primary}
                   alt={project.images.alt}
                   priority={priority}
-                  className="drop-shadow-xl"
+                  className="rounded-xl drop-shadow-xl"
                 />
               </div>
               {screens[0] && (

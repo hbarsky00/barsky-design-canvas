@@ -598,11 +598,11 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImages: [
         {
           src: "/images/dae-search/research-interviews.webp",
-          alt: "Research summary board: 12 user interviews with analysts, consultants and data stewards, 4 personas, 25+ real search scenarios, with verbatim quotes and five key insights",
+          alt: "Research board: 12 interviews with analysts, consultants and data stewards, 4 personas, 25+ search scenarios",
         },
         {
           src: "/images/dae-search/research-current-experience.webp",
-          alt: "Annotated walkthrough of the existing DAE search screen marking where users lost the thread, with four key findings and interview quotes",
+          alt: "Annotated walkthrough of the existing DAE search screen, marking where users lost the thread",
         },
       ],
     },
@@ -627,7 +627,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         },
         {
           src: "/images/dae-search/lofi-user-flow.webp",
-          alt: "Low-fidelity desktop wireframes for six core screens: landing and search, search results, dataset details, schema view, lineage view, and request access",
+          alt: "Low-fidelity desktop wireframes for the six core screens, from search through to requesting access",
           caption: "Low-fidelity wireframes for the six core screens, used to validate the flow before visual design",
         },
       ],
@@ -713,7 +713,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/images/dae-search/outcome-dashboard.webp",
+      image: "/images/dae-search/hero-explorer.webp",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",
@@ -775,7 +775,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImages: [
         {
           src: "/images/herbalink/research-interviews.webp",
-          alt: "User research board: 12 people seeking natural support and 8 practicing herbalists interviewed, with key insights, sample quotes, common goals and pain points",
+          alt: "User research board: 12 people seeking natural support and 8 herbalists interviewed, with insights, quotes and pain points",
         },
       ],
     },
@@ -796,13 +796,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/herbalink/research-affinity-map.webp",
-          alt: "Affinity map grouping interview notes into trust and credibility, finding the right practitioner, symptoms and needs, education, and booking and access, ending on the synthesis: don't build another directory, build trust into discovery",
+          alt: "Affinity map of interview notes, ending on the synthesis: build trust into discovery, not another directory",
           caption:
             "Every interview note on one wall, grouped — and the line the whole project came out of.",
         },
         {
           src: "/images/herbalink/lofi-core-flow.webp",
-          alt: "Low-fidelity wireframes of the core mobile flow — home, search and filter, profile, date and time, confirm details, payment, confirmation — plus the desktop landing, results and profile screens",
+          alt: "Low-fidelity wireframes of the core booking flow on mobile, plus the desktop landing and results screens",
           caption: "Low-fidelity core flow, mobile and desktop, used to test discovery and booking before any visual design",
         },
       ],
@@ -850,7 +850,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/images/herbalink/end-to-end-journey.webp",
           alt:
-            "The eight steps people were taken through in testing — onboarding, explore, search and filter, view profile, book a session, confirm, the session itself, then ongoing support — with the messaging, appointments, prescriptions, progress tracking, rebooking and review screens underneath",
+            "The eight-step journey tested, from onboarding and booking to messaging, progress tracking and leaving a review",
           caption:
             "The whole journey people were asked to complete, from creating an account to leaving a review.",
         },
@@ -1588,7 +1588,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/images/catchbuddy/research-why-people-dont-play.webp",
           alt:
-            "Research board: who I talked to — casual players, parents, regular pickup players and people returning to sport — with interview highlights, common pain points, and the synthesis that moved the problem from scheduling to trust and safety",
+            "Research board: players and parents interviewed, with the synthesis moving the problem to trust and safety",
           caption:
             "The hypothesis going in was scheduling. The interviews moved it to trust and safety.",
         },
@@ -1630,7 +1630,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       wireframeImage: {
         src: "/images/catchbuddy/ideation-to-prototype.webp",
         alt:
-          "Ideation through to prototype: sticky-note ideas grouped into features, safety and community, then five low-fidelity wireframes for discovering a game, creating one, viewing details, messaging and the player profile, then the same five screens as a high-fidelity prototype",
+          "Ideation to prototype: sticky notes grouped into themes, then five screens from wireframe to prototype",
         caption:
           "Ideas grouped into features, safety and community, then the same five screens taken from wireframe to prototype.",
       },
@@ -1643,7 +1643,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/catchbuddy/hifi-create-and-community.webp",
-          alt: "Create a game, review the details and confirm it is live; then the player profile with its verification badge, in-app messaging, and the community feed",
+          alt: "Creating a game and confirming it is live, then the player profile, messaging and the community feed",
           caption: "Posting a game, and what one stranger can see about another before agreeing to meet.",
         },
       ],
@@ -1663,7 +1663,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/images/catchbuddy/desktop-case-study.webp",
           alt:
-            "Desktop case-study board: why people don't play, the ideation sketches, and the high-fidelity desktop prototype with the results list and map side by side",
+            "Desktop case-study board: why people don't play, the ideation sketches, and the finished desktop prototype",
           caption:
             "The warm ground and the single green, doing their job on the finished desktop screen.",
         },
@@ -1743,7 +1743,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImages: [
         {
           src: "/images/business-management/v2/research-small-business-owners.webp",
-          alt: "Research board: interviews with owners of landscaping, cleaning and home-services businesses, four key insights about tool sprawl, disconnected scheduling and invoicing, the missing today view, and manual error, alongside the common pain points",
+          alt: "Research board: interviews with landscaping, cleaning and home-services owners, on tool sprawl and manual error",
           caption: "Interviews with owners, and the four things every one of them said.",
         },
       ],
@@ -1767,13 +1767,13 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/images/business-management/v2/lofi-end-to-end-flow.webp",
           alt:
-            "Low-fidelity wireframes of the end-to-end flow: sign in, today dashboard, create a job, schedule it, confirm, see it land on the calendar, open job details, create the invoice, and send it",
+            "Low-fidelity wireframes of the end-to-end flow, from signing in and creating a job to sending the invoice",
           caption:
             "The whole loop in wireframe — sign in to invoice sent — before any of it was styled.",
         },
         {
           src: "/images/business-management/v2/exploration-board.webp",
-          alt: "Exploration board: interview themes on sticky notes, hand-drawn wireframes of the six core screens, the low-fidelity dashboard, schedule, client and invoice layouts, and the high-fidelity dashboard, scheduling and clients-and-invoices designs",
+          alt: "Exploration board: interview themes on sticky notes, hand-drawn wireframes, then low- and high-fidelity screens",
           caption: "Sticky notes to sketches to screens — the whole arc the decision came out of.",
         },
       ],
@@ -1826,7 +1826,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
         {
           src: "/images/business-management/v2/case-study-board.webp",
           alt:
-            "Case study board: the research interviews and key insights, the ideation sketches, the low-fidelity wireframes, and the finished dashboard, scheduling and clients-and-invoices screens",
+            "Case study board: research interviews, ideation sketches, wireframes and the finished operations screens",
           caption: "Research through to finished screens, on one board.",
         },
       ],
@@ -1899,7 +1899,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       researchImages: [
         {
           src: "/images/email-creation-ai/research-wide.webp",
-          alt: "Research board: 8 user interviews, 12 key pain points and the finding that 100% wanted faster, higher-quality emails with less effort, alongside the key insights, quotes from a product manager, a sales professional and an operations lead, the common use cases, and the industries interviewed",
+          alt: "Research board: 8 user interviews and 12 pain points, with key insights, user quotes and the industries covered",
         },
       ],
     },
@@ -1909,14 +1909,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       bubbles: [],
       wireframeImage: {
         src: "/images/email-creation-ai/ideation.webp",
-        alt: "Ideation board: sticky notes for natural language input, turning meeting notes into email, tone options, template library, AI chat refinement and one-click customization, with the concept list and initial sketches",
+        alt: "Ideation board: sticky notes for natural-language input, tone options and templates, with the first sketches",
         caption: "Key concepts explored, and the first concept sketches they turned into.",
       },
       iterations: [
         {
           label: "Low-Fidelity Mockups",
           imageSrc: "/images/email-creation-ai/lofi-flow.webp",
-          alt: "Low-fidelity wireframes of the full eight-step flow: landing, the brief, template choice, the editor, refine, review options, finalize, and the ready-to-send confirmation",
+          alt: "Low-fidelity wireframes of the eight-step flow, from landing and brief to the ready-to-send confirmation",
           blurb: "Early wireframes to validate the flow — layout, content hierarchy and key interactions.",
         },
       ],
@@ -1929,7 +1929,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/email-creation-ai/process-wide.webp",
-          alt: "Process board: enter prompt, refine with AI, review and edit, copy or send — each step shown as a phone and a tablet screen side by side, with the core features listed underneath",
+          alt: "Process board: enter prompt, refine with AI, review and edit, copy or send — each step on phone and tablet",
         },
       ],
     },
@@ -1941,7 +1941,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/email-creation-ai/hifi-screens-row.webp",
-          alt: "The five high-fidelity screens in sequence: write the brief with tone, length and audience, pick a template, compose and send, adjust the refinement controls, then connect Gmail, Outlook, Slack and Notion",
+          alt: "Five high-fidelity screens in sequence: write the brief, pick a template, compose, refine, then connect a mail client",
         },
       ],
     },
@@ -1953,7 +1953,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       images: [
         {
           src: "/images/email-creation-ai/responsive-flows.webp",
-          alt: "The finished flow on mobile and tablet: enter prompt, refine with AI, review and edit, copy or send — four phone screens above four tablet screens, with the core features listed underneath",
+          alt: "The finished flow on mobile and tablet: enter prompt, refine with AI, review and edit, then copy or send",
         },
       ],
     },

@@ -38,8 +38,8 @@ const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/dae-search",
     images: {
-      primary: "/images/dae-search/outcome-dashboard.webp",
-      alt: "DAE Search Platform showing enterprise data discovery interface"
+      primary: "/images/dae-search/hero-explorer.webp",
+      alt: "DAE Digital Asset Explorer: the landing screen beside the dashboard mid-search, showing recommended results"
     },
     layout: "side-by-side",
     variant: "productHero",
@@ -68,7 +68,7 @@ const caseStudies: CaseStudy[] = [
     url: "/project/email-creation-ai",
     images: {
       primary: "/images/email-creation-ai/hifi-flow.webp",
-      alt: "The EmailAI desktop interface: the create-email screen with tone, length and audience controls, above the template library, generated email, recent emails, settings, preview and integrations screens"
+      alt: "The EmailAI desktop interface: the create-email screen with tone, length and audience controls, above the supporting screens"
     },
     layout: "side-by-side",
     // One image, not four. The workflow composition put four screens across the

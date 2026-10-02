@@ -44,6 +44,10 @@
 
 /project/gold2crypto        /                                   301
 
+# App.tsx redirects this client-side, but there was no server rule, so a crawler
+# asking for it got a 404 instead of being sent to the study it was merged into.
+/project/wholesale-distribution  /project/business-management       301
+
 /project/medication-app     /                                   301
 
 /project/smarterhealth      /                                   301

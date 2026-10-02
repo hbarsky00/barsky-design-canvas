@@ -93,7 +93,10 @@
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VYKW0Y9K0T"></script>
-    <script src="/js/gtag-init.js"></script>
+    <!-- defer: this was the only genuinely render-blocking script on the site —
+         no async, no defer, not a module — so it delayed first paint on all 54
+         pages. gtag queues into dataLayer, so deferring the config costs nothing. -->
+    <script defer src="/js/gtag-init.js"></script>
     
     
     <!-- Google Fonts removed. It requested Space Grotesk, Outfit and Inter — none

@@ -32,8 +32,7 @@ const ClientTestimonialSection: React.FC<ClientTestimonialSectionProps> = ({ tes
               <img {...imgDims(testimonial.avatar)}
                 src={testimonial.avatar}
                 alt={`${testimonial.author} profile`}
-                className="w-12 h-12 rounded-full object-cover"
-              />
+                className="w-12 h-12 rounded-full object-cover" loading="lazy" />
             )}
             <div className="text-left">
               <div className="font-semibold text-foreground">{testimonial.author}</div>

@@ -32,7 +32,8 @@ export default defineConfig(({ mode }) => ({
           vendor: ['react', 'react-dom'],
           motion: ['framer-motion'],
           icons: ['lucide-react'],
-          charts: ['recharts'],
+          // charts: recharts is in package.json but nothing in src/ imports it,
+          // so this produced a 0 KB chunk that every page still requested.
           radix: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-toast'],
         }
       }

@@ -522,7 +522,7 @@ export const blogPosts: BlogPost[] = [
 </figure>
 
 <figure class="my-8">
-  <img src="/images/dae-search/what-i-built.webp" alt="The DAE Search process flow — nine steps from login through dashboard, data assets, advanced search and entity selection to the related content for one asset" class="w-full rounded-xs" width="1024" height="576" loading="lazy" />
+  <img src="/images/dae-search/what-i-built.webp" alt="The DAE Search process flow — nine steps from login through advanced search to the related content for one asset" class="w-full rounded-xs" width="1024" height="576" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Nine steps from login to knowing anything real about one asset. Everything after “Results” is the analyst deciding what to trust.</figcaption>
 </figure>
 
@@ -535,7 +535,7 @@ export const blogPosts: BlogPost[] = [
 <p>None of that's new information. It exists in the metadata already. It was just kept somewhere the person deciding never looked.</p>
 
 <figure class="my-8">
-  <img src="/images/dae-search/decisions-1.webp" alt="Hand sketches of advanced search — a multi-term search modal, a data-asset selection page, selected entities and meta tags, and the results table they feed" class="w-full rounded-xs" width="1733" height="1274" loading="lazy" />
+  <img src="/images/dae-search/decisions-1.webp" alt="Hand sketches of advanced search — the multi-term modal, data-asset selection, and the results table they feed" class="w-full rounded-xs" width="1733" height="1274" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">Sketching how much could sit in the list before it stopped being a list: multiple terms, selected entities, meta tags carried onto the result.</figcaption>
 </figure>
 
@@ -776,7 +776,7 @@ export const blogPosts: BlogPost[] = [
 <p>Every one of those gives time back without moving a single decision away from the person responsible for it.</p>
 
 <figure class="my-8">
-  <img src="/images/emailai-screen3-iterate-qc.webp" alt="QC sitting inline with editing — AI auto-pass, Content Ops and Med Writer signing off while the writer is still in the content" class="w-full rounded-xs" width="1440" height="1547" loading="lazy" />
+  <img src="/images/emailai-screen3-iterate-qc.webp" alt="QC inline with editing — AI auto-pass, then Content Ops and Med Writer sign off while the writer is still in the content" class="w-full rounded-xs" width="1440" height="1547" loading="lazy" />
   <figcaption class="mt-3 text-sm leading-relaxed text-muted-foreground">QC inline with editing rather than after it, so a rejection arrives while there's still context to act on.</figcaption>
 </figure>
 
@@ -2135,7 +2135,7 @@ export const blogPosts: BlogPost[] = [
     author: "Hiram Barsky",
     date: "May 16, 2025",
     readTime: "8 min read",
-    coverImage: "https://barskydesign.pro/uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
+    coverImage: "/uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
     tags: ["Product Design", "Marketing", "Solo Designer", "UX Design"],
     slug: "built-product-without-real-data",
     content: `

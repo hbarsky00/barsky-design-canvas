@@ -44,7 +44,8 @@ const BlogLanding: React.FC = () => {
                       src={post.coverImage}
                       alt={post.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : undefined} />
                   </div>
                 )}
                 

@@ -1,4 +1,5 @@
 
+import { imgDims } from "@/utils/imageDims";
 import React from "react";
 
 interface VideoPlayerProps {
@@ -59,7 +60,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoSrc, thumbnailSrc, title
 
   return (
     <div className="relative bg-white rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
+      {/* Without intrinsic dimensions this reserved no space, so the hero on
+          /project/catchbuddy shifted as the poster decoded. */}
       <img
+        {...imgDims(thumbnailSrc)}
         src={thumbnailSrc}
         alt={`${title} promotional image`}
         className="w-full h-full object-contain image-high-quality"

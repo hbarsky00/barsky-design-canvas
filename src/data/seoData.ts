@@ -103,6 +103,12 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
     description: "Advanced search platform with faceted filters and relevance tuning that helps data analysts find trustworthy assets 3x faster across enterprise sources.",
     image: "https://barskydesign.pro/images/og/dae-search.png"
   },
+  "email-creation-ai": {
+    title: "AI Email Workflow for Pharma | MLR Review UX Case Study",
+    description:
+      "A six-step AI-assisted workflow for pharma HCP email, designed around Medical Writer, Content Ops, Brand and MLR approval gates rather than the writing itself.",
+    image: "https://barskydesign.pro/images/og/email-creation-ai.png"
+  },
 };
 
 // Blog post image mappings with enhanced SEO-optimized data
@@ -290,7 +296,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     description: "Why assumptions kill products and how to validate ideas with real user data. Learn from common research pitfalls and solutions."
   },
   "building-products-nobody-asked-for": {
-    title: "Building Products Nobody Asked For | Product Strategy Lessons — Barsky Design",
+    title: "Building Products Nobody Asked For | Product Strategy",
     description: "How to avoid building features users don't want. Product strategy insights on user validation, market research, and customer discovery."
   },
   "wireframes-to-wow-visual-hierarchy": {

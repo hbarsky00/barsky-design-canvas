@@ -133,8 +133,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
           <img {...imgDims(relatedStudy.images.primary)} 
             src={relatedStudy.images.primary} 
             alt={relatedStudy.images.alt}
-            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
+            className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105" loading="lazy" />
         </div>
       </Link>
     );
