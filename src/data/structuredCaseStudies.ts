@@ -777,10 +777,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           src: "/images/herbalink/research-interviews.webp",
           alt: "User research board: 12 people seeking natural support and 8 herbalists interviewed, with insights, quotes and pain points",
         },
-        {
-          src: "/images/herbalink/research-process.webp",
-          alt: "The nine-step research process: opportunity, competitive analysis of BetterHelp, Zocdoc, Mindbody and Fullscript, interviews, personas, journey map, ideation, card sorting, concept sketches and prioritisation",
-        },
       ],
     },
     problemCallout: {
@@ -803,11 +799,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           alt: "Affinity map of interview notes, ending on the synthesis: build trust into discovery, not another directory",
           caption:
             "Every interview note on one wall, grouped — and the line the whole project came out of.",
-        },
-        {
-          src: "/images/herbalink/lofi-core-flow.webp",
-          alt: "Low-fidelity wireframes of the core booking flow on mobile, plus the desktop landing and results screens",
-          caption: "Low-fidelity core flow, mobile and desktop, used to test discovery and booking before any visual design",
         },
       ],
     },
@@ -833,13 +824,30 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       // Iteration 4 was byte-for-byte the same screen as the user-testing image
       // below (0.00%). Both removed rather than presenting one screenshot as
       // three separate rounds of design work.
-      iterations: [],
+      iterations: [
+        {
+          label: "Core flow, low fidelity",
+          imageSrc: "/images/herbalink/lofi-core-flow.webp",
+          alt: "Low-fidelity wireframes of the seven-step booking flow on mobile, with the desktop landing, search results and profile screens below",
+          blurb:
+            "Discovery through booking in grey boxes first, mobile and desktop, so the structure could be tested before any visual design existed.",
+        },
+      ],
     },
     myThoughtProcessSection: {
       eyebrow: "Approach & Decision Making",
       title: "My Thought Process",
       content:
         "I prioritized trust-building over flashy features. When health is at stake, credibility trumps convenience. The breakthrough was reframing herbalist selection as choosing a doctor, not shopping for supplements. Credentials, safety info, and guided matching came first, always.",
+      images: [
+        {
+          src: "/images/herbalink/research-process.webp",
+          alt:
+            "The nine stages of the work: the opportunity, a competitive read of BetterHelp, Zocdoc, Mindbody and Fullscript, interviews, personas, the journey map, ideation, card sorting, concept sketches and prioritisation",
+          caption:
+            "The whole route from question to prioritised feature set.",
+        },
+      ],
     },
     userTestingSection: {
       title: "User Testing & Validation",
