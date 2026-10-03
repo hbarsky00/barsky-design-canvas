@@ -209,8 +209,6 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
   },
 
   splittime: {
-    // The record still tags this one "Blue Sky", which is the old name for a
-    // different project; it must not resurface in the eyebrow.
     eyebrow: "Family · Scheduling · iOS → Android",
     accentPhrase: "Better Planning",
     // The record carries no heroMetrics, so there is no row.

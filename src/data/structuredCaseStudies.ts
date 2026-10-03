@@ -928,7 +928,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     title: "SplitTime – Simplifying Co-Parenting with Better Planning",
     description:
       "Built a co-parenting app to reduce scheduling conflicts. Early tests showed a 40% decrease in communication breakdowns.",
-    tags: ["Blue Sky", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
+    tags: ["Family Tech", "Design Thinking", "iOS→Android", "Legal UX", "WebApp"],
     techStack: {
       aiTools: ["ChatGPT", "Midjourney"],
       devStack: ["React", "Firebase"],
