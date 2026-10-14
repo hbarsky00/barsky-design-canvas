@@ -233,7 +233,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Users do not lose trust when AI is wrong. They lose trust when it is wrong and pretends to be sure.",
     author: "Hiram Barsky",
     date: "May 4, 2026",
-    readTime: "8 min read",
+    readTime: "5 min read",
     coverImage: trustCover,
     tags: ["AI Trust", "UX Patterns", "Hallucinations"],
     slug: "designing-trust-into-ai",
@@ -242,17 +242,40 @@ export const blogPosts: BlogPost[] = [
       trustInline,
       "AI response UI showing citations, confidence indicator, and regenerate button",
       `
+      <h2 class="text-2xl font-bold mt-8 mb-4">What users actually punish</h2>
+      <p>I have watched people shrug off an AI getting something badly wrong, and watched the same people abandon a product over a smaller mistake a week later. The difference was never the size of the error. It was whether the interface had given them any reason to doubt the answer before they acted on it.</p>
+      <p>A wrong answer that arrived with a hedge is a draft. The same wrong answer set in the same confident type as every correct one is a broken promise, because the product spent credibility on something it had no business being sure about. That credibility is a budget, and every confident-looking response spends a little of it.</p>
+
       <h2 class="text-2xl font-bold mt-8 mb-4">Show your sources</h2>
       <p>Linked citations cut perceived hallucination rates dramatically — not because the answers are better, but because users can verify them in one click.</p>
+      <p>The word doing the work there is perceived. The model is exactly as wrong as it was before. What changed is that a user can settle their own doubt in two seconds instead of carrying it around for the rest of the session.</p>
+      <p>Most people never click. That is fine, and it is not the point. The link is a standing offer, and the offer is what makes the answer feel checkable at all. <a href="/blog/verification-is-a-door-not-a-sticker" class="text-primary underline underline-offset-2 hover:text-primary/80">A citation nobody opens still does its job</a>, as long as it would have held up if they had.</p>
+      <p>Make them real links to real sources. A fabricated citation is worse than no citation, because now you have been caught twice.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Make uncertainty visible</h2>
       <p>A small "draft" label, a softer color, or a "double-check this" tag costs you nothing and buys users a mental model that matches reality.</p>
+      <p>The common mistake is treating confidence as one number to display across the whole response. Users do not want a percentage. They want to know which sentence to re-read. Mark the specific claim, not the message.</p>
+      <p>Be honest about the limit of this. On a side project of mine the model had to generate events with dates attached. It never once signalled uncertainty. It simply did not know what day it was, and produced things that had already expired, written with total composure. No confidence indicator would have caught that, because the model was not uncertain. It was wrong and calm.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Check the output against something that is not the model</h2>
+      <p>Uncertainty UI tells a user to be careful. It does not make the output correct, and the two get confused constantly. Anything with a verifiable shape — a date, a price, a name, a reference, a dosage — should be checked by your code before it reaches the screen.</p>
+      <p>The fix on that dates project was about three lines. Put today's date in the prompt, then discard any generated date that is already in the past. The model never improved. The product stopped shipping expired work. <a href="/blog/two-bugs-ai-wrote-that-i-had-to-find" class="text-primary underline underline-offset-2 hover:text-primary/80">Most of the AI bugs I have had to find</a> were this kind: not a reasoning failure, just nobody checking a value that was trivially checkable.</p>
+      <p>This is the least interesting part of designing an AI product and the part that moves the number.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Put a gate where the error is expensive</h2>
+      <p>Not every wrong answer costs the same. A clumsy sentence in a draft email costs nothing. The same system writing to physicians in a regulated market costs a great deal, and the design question stops being how to signal doubt. It becomes who signs this before it leaves the building.</p>
+      <p>I designed an AI-assisted email workflow for pharma where medical and regulatory review was not a feature bolted on at the end. It was the spine of the thing. The roles already existed and the approval gates already existed; the work was making the AI fit inside them instead of routing around them. <a href="/blog/design-for-the-approval-gates" class="text-primary underline underline-offset-2 hover:text-primary/80">Designing for the approval gates</a> is unglamorous and it is what makes an AI feature shippable in a serious industry.</p>
+      <p>Work out what one wrong answer actually costs in your product. If it is small, hedge. If it is large, gate.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Always offer an exit</h2>
       <p>Regenerate, edit, escalate to a human — pick at least one. Trapped users churn.</p>
+      <p>Trapped means the user can see the answer is wrong and has no move available. No way to correct it, no way to ask differently, no way to reach a person. That is the moment they decide the product is not for them, and it is a harder moment to recover from than the error that caused it.</p>
+      <p>Editing is the exit people reach for most and the one most often missing. Treat the output as a first draft in a field the user owns, rather than a verdict in a box they can only accept or throw away.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The tradeoff</h2>
       <p>Confidence UI makes the product feel less magical. That is fine. Magic that backfires is worse than honesty that holds up.</p>
+      <p>You will be asked to take the hedges out. Certainty demos better, and next to a competitor who shows none of their doubt your product can look like the weaker one. That competitor is making a promise on behalf of a model that cannot keep it.</p>
+      <p>Pick the version you can still defend after it has been wrong in front of a customer. It will be.</p>
       `
     )
   },
