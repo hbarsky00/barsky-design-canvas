@@ -12,6 +12,18 @@
     <loc>https://barskydesign.pro/services</loc>
   </url>
   <url>
+    <loc>https://barskydesign.pro/services/ai-product-design</loc>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/services/design-systems</loc>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/services/ux-strategy-research</loc>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/services/prototype-to-ship</loc>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/design-services/ux-ui-design</loc>
   </url>
   <url>
@@ -54,6 +66,10 @@
   <url>
     <loc>https://barskydesign.pro/blog/a-to-do-app-doesnt-prove-anything</loc>
     <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/ai-ate-the-junior-job</loc>
+    <lastmod>2026-08-07</lastmod>
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/ai-enhanced-ux-designer-future</loc>
@@ -104,6 +120,14 @@
     <lastmod>2026-07-09</lastmod>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/designers-shipping-ai-code</loc>
+    <lastmod>2026-07-08</lastmod>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/designing-ai-first-products-that-ship</loc>
+    <lastmod>2026-06-18</lastmod>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/designing-ai-native-interfaces</loc>
     <lastmod>2026-05-28</lastmod>
   </url>
@@ -148,6 +172,10 @@
     <lastmod>2026-06-10</lastmod>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/portfolio-proof-not-pictures</loc>
+    <lastmod>2026-07-11</lastmod>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/prompt-engineering-for-designers</loc>
     <lastmod>2026-06-05</lastmod>
   </url>
@@ -164,12 +192,24 @@
     <lastmod>2026-06-26</lastmod>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/solo-building-with-ai</loc>
+    <lastmod>2026-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/taste-is-the-whole-job</loc>
     <lastmod>2026-07-22</lastmod>
   </url>
   <url>
+    <loc>https://barskydesign.pro/blog/the-business-case-for-design</loc>
+    <lastmod>2026-01-27</lastmod>
+  </url>
+  <url>
     <loc>https://barskydesign.pro/blog/the-work-is-deleting-not-generating</loc>
     <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/trust-is-a-design-material</loc>
+    <lastmod>2026-05-02</lastmod>
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/two-bugs-ai-wrote-that-i-had-to-find</loc>
@@ -186,6 +226,10 @@
   <url>
     <loc>https://barskydesign.pro/blog/what-ai-changed-and-what-it-didnt</loc>
     <lastmod>2026-06-04</lastmod>
+  </url>
+  <url>
+    <loc>https://barskydesign.pro/blog/what-is-an-ai-first-product-designer</loc>
+    <lastmod>2026-07-18</lastmod>
   </url>
   <url>
     <loc>https://barskydesign.pro/blog/what-one-person-can-ship-now</loc>

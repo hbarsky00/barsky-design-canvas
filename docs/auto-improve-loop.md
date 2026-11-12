@@ -11,9 +11,10 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
 
 1. **Read `docs/aeo-log.md`.** It carries the lever rotation and the
    flagged-facts list. Read `docs/design-log.md` too (create if missing).
-2. **Pick this run's emphasis.** Look at the last entry in each log and choose
-   whichever half is more stale — SEO/AEO or design. Over any four runs it
-   should come out about even.
+2. **Pick this run's lens.** Three lenses rotate — FINDABILITY, CRAFT and
+   FLOW. Read the logs and run whichever has gone longest without a turn.
+   See "The three lenses" below. Over any six runs that keeps Hiram's 50/50
+   split roughly honest: one findability lens against two craft lenses.
 3. **Diagnose before touching anything.** Deterministic checks beat opinions:
    - `python3 scripts/seo_audit_all_routes.py` (in this repo) for
      title/description/OG across every built route
@@ -32,8 +33,10 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
      It carries its own Chromium, so it can measure Core Web Vitals for real
      rather than inferring them. Use it and `amazing-seo-skill` together and
      reconcile where they disagree; neither is automatically right
-   - for design: build, open the preview, and actually look — desktop AND
-     mobile (375px), light AND dark
+   - for CRAFT and FLOW: build, open the preview, and actually look — at
+     375px, 768px and 1440px. **This site has no dark theme and never will.**
+     Do not add a toggle, do not "solve" a token for dark, and watch for any
+     library that defaults to `theme="system"`.
 4. **Do ONE substantial thing.** Not ten small ones. A run that ships one real
    improvement with proof beats a scattershot diff nobody can review.
 5. **Verify it.** `npx tsc --noEmit` clean, `npm run build` clean, and the
@@ -72,8 +75,54 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
   only in `netlify.toml` will never fire for a path `_redirects` does not name.
 - **Measure redirects without `curl -L`.** `-L` follows the hop and reports the
   destination's status, which will tell you a working 301 is a 200.
+- **Log every run, including a run that changes nothing.** Append a dated line
+  to the lens's log even when the honest answer is "measured, found nothing
+  worth shipping". Four routine runs in Sept/Oct 2026 were recorded as
+  "succeeded" after three seconds and left no trace anywhere, so seven weeks
+  passed with nobody able to tell the loop had stopped working. A silent run
+  and a dead run have to look different.
+- **barsky.design is retired.** Since 2026-11-12 it 301s wholesale to this
+  site and all 12 of its unique pages were ported here. Never add content
+  there, never link to it, never "fix" it. One entity, one domain.
 - **Do not touch** `~/Documents/barskydesign` (different site, different skill)
   or reconnect the Stips repo to bolt.new.
+
+## The three lenses
+
+One per run. FINDABILITY logs to `docs/aeo-log.md`; CRAFT and FLOW both log to
+`docs/design-log.md`, each line prefixed `CRAFT —` or `FLOW —` so the rotation
+can be read off it. No third log file.
+
+The point of separating the lenses is that they fail differently: a page
+can be perfectly findable and still feel cheap, and it can look expensive and
+still give a founder nowhere to click.
+
+### FINDABILITY — can he be found and cited?
+The SEO/AEO half. Deterministic checkers first, opinions never. Schema, titles
+and descriptions, internal links, image dimensions, headers, sitemap lastmod,
+Core Web Vitals, llms.txt. Tools listed in step 3 above.
+
+### CRAFT — does it look like a studio shipped it?
+Invoke the **`bencium-innovative-ux-designer`** skill, reframed as
+CRITIQUE-THEN-FIX. This is a live portfolio that works, not a greenfield
+redesign: sharpen within the established language, never restyle. Everything in
+"Design half" below governs this lens.
+
+### FLOW — can a founder actually get from landing to contacting?
+Invoke the **`ux-review`** skill (usability heuristics + WCAG + interaction
+states). Pick one real journey and walk it: homepage to a case study to
+contact; a service page to contact; a blog post to anything at all. Check the
+states, not just the happy path — loading, empty, error, success, and whether
+every overlay has an escape hatch. Findings must name the step that loses the
+visitor, not list heuristic scores.
+
+For the credibility question specifically — does trust build across a visit, or
+does every page restart from zero — the **`relationship-design`** skill
+(Agentic UX Design, relationship-centric interfaces) is the right lens. Use its
+trust-evolution thinking on the *existing* site: what a first-time visitor knows
+after one page versus three, what proof arrives in what order, what the site
+remembers. It is **not** a mandate to add an AI assistant, a chatbot or a
+memory feature to a portfolio. Judgement, not features.
 
 ## Design half — what "better" means here
 
