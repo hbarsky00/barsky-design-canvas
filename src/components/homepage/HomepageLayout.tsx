@@ -20,7 +20,7 @@ import {
   LazyExitIntentDetector,
   LazyScrollEngagement
 } from "@/components/lazy/LazyComponents";
-import CurrentProjectsSection from "@/components/home/CurrentProjectsSection";
+import ShippedProductsSection from "@/components/home/ShippedProductsSection";
 
 const HomepageLayout: React.FC = () => {
   
@@ -57,7 +57,7 @@ const HomepageLayout: React.FC = () => {
         {/* Keep current projects section outside 3D container to prevent cutting off */}
         <SectionTransition variant="fade" delay={0.1} intensity={0.3}>
           <section id="current-projects" tabIndex={-1} className="scroll-offset">
-            <CurrentProjectsSection />
+            <ShippedProductsSection />
           </section>
         </SectionTransition>
         

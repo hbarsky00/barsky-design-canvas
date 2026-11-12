@@ -10,11 +10,13 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
 ## Each run, in order
 
 1. **Read `docs/aeo-log.md`.** It carries the lever rotation and the
-   flagged-facts list. Read `docs/design-log.md` too (create if missing).
-2. **Pick this run's lens.** Three lenses rotate — FINDABILITY, CRAFT and
-   FLOW. Read the logs and run whichever has gone longest without a turn.
-   See "The three lenses" below. Over any six runs that keeps Hiram's 50/50
-   split roughly honest: one findability lens against two craft lenses.
+   flagged-facts list. Read `docs/design-log.md` and `docs/research-log.md`
+   too (create if missing).
+2. **Pick this run's lens.** Four lenses rotate — FINDABILITY, CRAFT, FLOW
+   and RESEARCH. Read the logs and run whichever has gone longest without a
+   turn. See "The four lenses" below. Over any eight runs that keeps Hiram's
+   50/50 split roughly honest: two findability-ish lenses (FINDABILITY,
+   RESEARCH) against two craft-ish ones (CRAFT, FLOW).
 3. **Diagnose before touching anything.** Deterministic checks beat opinions:
    - `python3 scripts/seo_audit_all_routes.py` (in this repo) for
      title/description/OG across every built route
@@ -87,15 +89,16 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
 - **Do not touch** `~/Documents/barskydesign` (different site, different skill)
   or reconnect the Stips repo to bolt.new.
 
-## The three lenses
+## The four lenses
 
 One per run. FINDABILITY logs to `docs/aeo-log.md`; CRAFT and FLOW both log to
 `docs/design-log.md`, each line prefixed `CRAFT —` or `FLOW —` so the rotation
-can be read off it. No third log file.
+can be read off it; RESEARCH logs to `docs/research-log.md`. No fifth log file.
 
 The point of separating the lenses is that they fail differently: a page
-can be perfectly findable and still feel cheap, and it can look expensive and
-still give a founder nowhere to click.
+can be perfectly findable and still feel cheap, it can look expensive and
+still give a founder nowhere to click, and it can do all three well while
+answering a question nobody outside this repo is asking.
 
 ### FINDABILITY — can he be found and cited?
 The SEO/AEO half. Deterministic checkers first, opinions never. Schema, titles
@@ -123,6 +126,31 @@ trust-evolution thinking on the *existing* site: what a first-time visitor knows
 after one page versus three, what proof arrives in what order, what the site
 remembers. It is **not** a mandate to add an AI assistant, a chatbot or a
 memory feature to a portfolio. Judgement, not features.
+
+### RESEARCH — is the site answering the question buyers actually ask?
+The outside-evidence lens, and the only one that looks past our own HTML.
+Invoke **`competitor-analyst`** and **`ux-researcher`**, and **`ux-review`**
+where a finding needs a heuristic read of a specific screen.
+
+Where the other three lenses measure the site against itself, this one asks
+what a founder compares it against before booking a call, and what they filter
+on first. Desk research only — nobody is recruiting participants for a
+portfolio — so the inputs are live job postings and hiring guidance in this
+market, what competing independent designers put above the fold, review-site
+and forum language about hiring designers, and deterministic checks of our own
+claims (does that link still 200? is that date still true?).
+
+Hard requirements, because this is the lens most able to invent things:
+- **Every external claim carries a URL.** Label findings `Confirmed`,
+  `Likely` or `Hypothesis`, and never promote one tier without new evidence.
+- **Check our own claims against reality, not against the repo.** The
+  2026-11-12 run found a homepage section stamped "Last Updated Friday
+  September 19th, 2025" promising "I keep this section updated" — fourteen
+  months stale, sitting between the work and the CTA. Nothing in the repo was
+  broken; the page was simply lying about the date. Dates, counts, "now" and
+  "currently" are where this rots, so grep for them.
+- **A run ends in a shipped change or an explicit "no change, here is why".**
+  Research that never reaches the site is a blog post for an audience of one.
 
 ## Design half — what "better" means here
 
