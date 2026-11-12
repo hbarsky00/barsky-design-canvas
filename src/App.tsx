@@ -38,6 +38,7 @@ const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/S
 // const StructuredInvestorLoanCaseStudy = React.lazy(() => import("@/pages/StructuredInvestorLoanCaseStudy")); // HIDDEN
 // const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
+import ServiceLongformPage from "@/pages/ServiceLongformPage";
 
 
 const queryClient = new QueryClient();
@@ -81,6 +82,7 @@ function AppContent() {
               {/* Other routes */}
               <Route path="/projects" element={<Navigate to="/#projects" replace />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/:slug" element={<ServiceLongformPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/store" element={<Store />} />

@@ -48,6 +48,380 @@ const wrap = (intro: string, inline: string, alt: string, body: string) => `
 `;
 
 export const blogPosts: BlogPost[] = [
+  // --- Carried over from barsky.design when the two sites were consolidated.
+  // These eight posts existed only on the domain that now 301s here. Text,
+  // headlines and images are unchanged; only the block format was converted.
+  {
+    id: "bd-1",
+    title: "AI ate the entry-level job. Nobody trained the juniors yet.",
+    excerpt: "AI didn\u2019t kill junior designers and developers. It killed the boring tasks that used to teach them the job. That gap doesn\u2019t show up this year \u2014 it shows up when there\u2019s no one left to promote.",
+    author: "Hiram Barsky",
+    date: "August 7, 2026",
+    readTime: "4 min read",
+    coverImage: "/blog/ai-ate-the-junior-job.jpg",
+    tags: ["Training"],
+    slug: "ai-ate-the-junior-job",
+    content: `
+      <p>Let me just say it: AI didn’t kill the entry-level job. It killed the boring tasks that used to teach entry-level people the job. Those are not the same thing, and mixing them up is how you end up with a team full of seniors and nobody coming up behind them.</p>
+
+      <figure class="my-8">
+        <img src="/blog/ai-ate-the-junior-job-body.jpg" alt="An empty open-plan office — rows of desks with monitors and vacant ergonomic chairs, nobody at them" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The busywork was the curriculum</h2>
+
+      <p>Redlining a spec. Wiring up a CRUD endpoint nobody’s proud of. Cropping fifty assets to spec. Running the same QA pass for the third time this sprint. Every senior designer or engineer I know did years of this and complained about every minute of it. But that grind was never just labor — it was how you learned the codebase, the design system, the client’s actual taste versus their stated taste, the fifty small judgment calls nobody writes down. Now a model does that work in ten seconds. Great for velocity. Terrible for anyone who was supposed to be learning from doing it.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Nobody notices the pipeline breaking until it’s empty</h2>
+
+      <p>Here’s what makes this dangerous: it doesn’t show up on anyone’s dashboard this quarter. A junior who gets skipped straight to ambiguous, senior-shaped work without the reps to handle it either fakes it, burns out, or quietly leaves the field. A junior who gets nothing to do because a senior just prompts the AI directly learns nothing at all. Either way, the damage is invisible for a couple years. Then it’s 2030, every team wants to hire a senior, and there’s no mid-level bench because nobody spent two years doing the unglamorous work that actually builds instinct. You can’t prompt your way into judgment. It has to be earned slowly, on real stakes, over real time.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Every senior you’ll want to hire in five years is a junior somebody has to actually train today.</blockquote>
+
+      <figure class="my-8"><img src="/blog/ai-ate-the-junior-job-body.jpg" alt="Two colleagues looking at a computer screen together" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">If you’re the junior: stop waiting to be handed reps</h2>
+
+      <p>You can’t out-argue the market. The entry-level tasks that used to teach you the job are gone and they are not coming back. So stop waiting for them and go steal the judgment instead. Ask to sit in on the ambiguous stuff, not just to clean up after the AI’s output. Volunteer for the messy client call, the underspecified ticket, the code review nobody wants to own. That’s exactly the kind of unglamorous, embarrassing-to-ask-about work that taught me how to actually ship a product instead of just describing one — the same instinct that eventually let me take [a reminder app](/case-studies/nudgeme) from a rough idea all the way to something real people used. Nobody’s going to schedule that growth for you anymore. You have to go find it and ask for it directly.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What the boring work was actually teaching</h2>
+
+      <p>Nobody defends busywork, so let me be precise about what got deleted. Resizing forty screens taught you which decisions repeat and which ones are special. Writing the same spec for the fifth time taught you which parts people actually read. Cleaning up someone else’s file taught you what makes a file survivable six months later. None of that was the stated purpose of the task — it was the residue, and the residue was the training. A model does those jobs in seconds now and leaves no residue behind. That’s the actual loss. Not the hours, the pattern recognition that used to come attached to them.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The gap doesn’t show up on this year’s budget</h2>
+
+      <p>This is why it keeps not getting fixed. Cutting junior hiring looks free right now — output holds, senior people move faster with AI, the numbers look fine. The bill lands in about five years, when the people you would have promoted don’t exist, and the market rate for the seniors you do have goes up because everyone else made the same call at the same time. It’s a slow, collective, entirely predictable mistake, and the teams that skip it will have an unfair advantage they didn’t have to be clever to get. They just had to keep training people while it was unfashionable.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">If you’re the team: build the reps on purpose</h2>
+
+      <p>If you manage people, the old model — throw a junior into the deep end of unstructured grunt work and let osmosis do the rest — doesn’t work anymore, because the grunt work is gone. That means the judgment-building has to become deliberate instead of accidental. Have juniors review the AI’s output before a senior does, and make them defend the call. Put them in design critique arguing for a decision, not just executing one that already got made. Give them real ambiguity early, with an actual human backstop instead of a vibe check. It costs more senior time up front than just letting the model handle it. It is also the only thing that guarantees there’s someone worth promoting in three years.</p>
+
+      <p>AI didn’t lower the ceiling on this industry. It just quietly kicked out the bottom rung of the ladder and nobody replaced it yet. Whoever notices first — and builds a new rung on purpose — is the one who still has a team worth leading when everyone else is wondering where all the good seniors went.</p>
+    `
+  },
+  {
+    id: "bd-2",
+    title: "What is an AI-first product designer?",
+    excerpt: "An AI-first product designer designs the whole experience of a product whose core value comes from AI \u2014 including how the model behaves when it\u2019s confident, uncertain, or wrong \u2014 not just the screens around it. Here\u2019s what the role actually means, and how it differs from traditional UX design.",
+    author: "Hiram Barsky",
+    date: "July 18, 2026",
+    readTime: "4 min read",
+    coverImage: "/blog/what-is-an-ai-first-product-designer-hero.jpg",
+    tags: ["Craft"],
+    slug: "what-is-an-ai-first-product-designer",
+    content: `
+      <p>Everyone slapped "AI" on their title this year, so let me cut through it. An AI-first product designer designs a product where the AI is the thing — the chatbot, the recommender, the generator, the agent. And I own how the model behaves. Not the engineers. Me. What does it do when it’s confident? When it’s guessing? When it’s confidently, gloriously wrong? That’s the job. Everything else is just screens. Regular UX assumes the thing behind the button is predictable: push it, get the same answer, every time. AI-first throws that out. The system’s a guess machine, and you either design for that or you ship something that falls apart the second it meets a real person.</p>
+
+      <figure class="my-8">
+        <img src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="A glowing AI chip on a green circuit board" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">AI-first vs. regular UX, the real difference</h2>
+
+      <p>A traditional UX designer maps flows for a system that behaves: same input, same output, clean. I map a system that misbehaves — hands you a plausible answer, sometimes a wrong one, wearing a confidence it never earned. The screens can look identical. The hard part is the stuff the mockup never shows you: the empty state before the model knows anything, the graceful faceplant when it fails, the little signals that tell someone "trust this" or "maybe double-check that one yourself."</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What you actually do all day</h2>
+
+      <p>Four jobs, at the same time. You design the back-and-forth between a person and a model — how they take turns and build up context. You design for failure, because 90% right means one in ten is wrong, and that tenth time is where you keep someone or lose them for good. You design the trust surface — the cues and sources that tell people when to lean in and when to slow down. And you design the loop that makes the whole thing smarter the more it gets used. None of that is decoration. That is the product.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">A demo shows what the AI can do. A product decides what happens when it doesn’t.</blockquote>
+
+      <figure class="my-8"><img src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="A hand sketching interface wireframes on paper" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why it’s suddenly its own job</h2>
+
+      <p>For years "AI" in a product was a feature bolted onto a stable core — a smart filter, a suggestion, whatever. Now the model is the core, and the interface is the thin, high-stakes layer between a probability engine and a human who has to trust it. That’s why the designers who are actually good at this sit close to the build. Once you see how the model really behaves — how slow it is, how it fails, what it costs — it changes your design in ways you can’t fake from a pretty static file. And if you can prototype it in real code, you close the gap between what you drew and what actually ships.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">How to tell a real AI-first job from a fake one</h2>
+
+      <p>Half the postings with “AI” in the title are ordinary UX with a model somewhere in the building. One question sorts them: who decides what the product does when the model isn’t sure? If the answer is “the engineers, based on whatever was easy,” it isn’t an AI-first design role. It’s screen design with better branding. Two more that work: who wrote the copy for the failure state, and has anyone on the team looked at real model output at volume — hundreds of rows, not the six that made it into the demo? In a real AI-first role you spend more time reading model output than pushing pixels, because you cannot design for behavior you haven’t watched. If nobody can show you that pile of output, nobody is designing the AI. They’re decorating it.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What “design the failure” actually means</h2>
+
+      <p>That phrase gets repeated a lot and changes nothing, so here it is concretely. Take a summarizer. The happy path is a good summary. Now design the other four. The summary that’s subtly wrong in a way the reader can’t catch without the source — so the source goes inline, not behind a click. The input it genuinely can’t handle, where the honest move is refusing out loud instead of guessing quietly. The slow response, which needs to show progress or people assume it broke and hit reload, doubling your bill. And the one where the person simply disagrees, which needs an edit path that doesn’t throw away their work and start over. Four states. None of them are in the pitch deck. All four decide whether someone opens the thing again tomorrow.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Do you actually need one?</h2>
+
+      <p>Quick gut check: if the honest answer to "why is this thing worth using?" is "the AI part," then you need someone who designs the AI part — not a prettier marketing site bolted onto a model. If your demo dazzles and then people bail the first time it whiffs, congratulations, you just found the exact gap [this job exists to close](/services). It was never about nicer buttons. It’s about a product people still trust after the shiny wears off.</p>
+    `
+  },
+  {
+    id: "bd-3",
+    title: "Your portfolio gets read by a robot before a human. Build for both.",
+    excerpt: "By 2026, most portfolios are parsed by an AI screener before a person ever opens them \u2014 and the human bar moved from pretty mockups to proof you can ship. Here\u2019s how to build for both readers.",
+    author: "Hiram Barsky",
+    date: "July 11, 2026",
+    readTime: "4 min read",
+    coverImage: "/blog/portfolio-proof-not-pictures-hero.jpg",
+    tags: ["Strategy"],
+    slug: "portfolio-proof-not-pictures",
+    content: `
+      <p>In 2026, the first thing to open your portfolio probably isn’t a person. It’s a bot deciding whether a person ever sees it. Some of this year’s design-hiring writeups put it near 80% — portfolios parsed by an AI screener before a human touches the file. Your hero animation, your grid, the typeface you agonized over for a week? The algorithm doesn’t care. It reads structure, keywords, and evidence. That’s it.</p>
+
+      <figure class="my-8">
+        <img src="/blog/portfolio-proof-not-pictures-body.jpg" alt="A laptop open on a desk in a dim, focused room" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Two readers, two jobs</h2>
+
+      <p>So your portfolio has two jobs now, at the same time. The machine reads for signal: what you did, what shipped, what moved. The human, if you clear the filter, reads for judgment — can this person actually think, build, and survive in the real world? Optimize for one and you lose both. A gorgeous case study the parser can’t read never reaches a person. A keyword-stuffed résumé with no proof bores the person it does reach.</p>
+
+      <p>The move isn’t to game the robot. It’s to make one honest thing legible to both: real work, clearly labeled, with evidence attached.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">A portfolio used to be your best screens. Now it’s proof you can turn an idea into something that runs.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Proof means it runs, not that it’s pretty</h2>
+
+      <p>The word running 2026 hiring is proof. Not 'here’s how I’d approach a flow.' Not a screenshot of a screen that never existed. Something a stranger can open and use, right now. The portfolio guides this year all keep landing on the same thing: clickable prototypes, video walkthroughs, and links to stuff that actually works aren’t nice-to-haves anymore. They’re the difference between telling someone how your work behaves and just showing them.</p>
+
+      <figure class="my-8"><img src="/blog/portfolio-proof-not-pictures-body.jpg" alt="A person working on a laptop by a window with a coffee" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <p>This is the part AI made non-negotiable. When anyone can generate a gorgeous static mockup in a minute, a gorgeous static mockup proves nothing. What a model can’t fake is a working product with your judgment baked into the hard parts — the empty states, the error states, the moment the AI has no idea what the user meant. I learned how much of the job lives in those edges [building a natural-language reminder app](/case-studies/nudgeme): the clean-input demo hid everything that actually mattered.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The parser and the human want opposite things</h2>
+
+      <p>This is the part that trips people up. The screener wants plain text, real headings, and words that match the role — structure it can read without guessing. The human, four seconds later, wants one look that tells them you can finish something. Optimize hard for either one alone and you lose the other. The usual failure is a gorgeous portfolio where the entire story is baked into image files: the parser sees an empty page, and never passes it to the person who’d have liked it. The reverse failure is a wall of keyword-stuffed text that clears the filter and bores the human into closing the tab. You need both, and they’re not actually in conflict — text for the machine, a live link for the person.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">One live link beats ten case studies</h2>
+
+      <p>Case studies describe. A URL proves. Anyone can render a beautiful app that has never existed and never will, and now everyone can, which is exactly why the beautiful render stopped being evidence. A link either loads or it doesn’t. It either works on a phone or it doesn’t. It survives a stranger clicking things in the wrong order or it doesn’t. That’s an unfakeable signal, and it takes about four seconds to check — which happens to be all the attention your portfolio gets on the first pass. If you build one thing this month, build the thing you can hand someone as a link.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What to do about it this month</h2>
+
+      <p>You don’t have to rebuild everything. You have to change what your portfolio is made of. Three moves.</p>
+
+      <p>One: turn at least one case study into a link, not a picture. Take something you’ve made — even something tiny — and get it live at a URL a stranger can open. A working link beats ten polished mockups, because it can’t be faked. The smallest thing I’ve shipped is [a browser game](/case-studies/fire-lion), and it still opens more doors than any pretty screenshot I’ve ever posted.</p>
+
+      <p>Two: label the work for the machine. Say it plainly, in real text and not buried inside an image: what the problem was, what you did, what shipped. The parser can’t read your captions if they live inside a JPG. Write the sentence a screener needs, and a human will respect it too.</p>
+
+      <p>Three: show the AI in your process, honestly. Not 'AI-powered' slapped on as a badge — the actual workflow. Which tools made you faster, where you started owning the frontend, where your judgment overruled the model. That fluency is what teams are hiring for right now, and it’s the one thing a generic template portfolio can’t manufacture for you.</p>
+
+      <p>The whole field is making the same turn at once: from describing work to proving it. Generation got cheap. Proof got valuable. The designers and developers who feel that early — and rebuild their portfolio around things you can open and use — are the ones who stop getting filtered out before a human ever weighs in.</p>
+
+      <p>Your next portfolio review has two readers: a parser looking for evidence, and a person looking for judgment. Give them the same answer. Show them something that runs.</p>
+    `
+  },
+  {
+    id: "bd-4",
+    title: "Half of designers now ship AI-written code. Good.",
+    excerpt: "The State of AI in Design 2026 report says the designer-who-ships is now the norm. What separates shipped from slop is the taste layer.",
+    author: "Hiram Barsky",
+    date: "July 8, 2026",
+    readTime: "3 min read",
+    coverImage: "/blog/designers-shipping-ai-code-hero.jpg",
+    tags: ["Training"],
+    slug: "designers-shipping-ai-code",
+    content: `
+      <p>The State of AI in Design 2026 report dropped, and two numbers should stop you cold: 91% of designers now use AI for design work at least weekly — up from 54% a year ago — and half have shipped AI-generated code to production. Not prototypes. Production.</p>
+
+      <p>For years, "should designers code?" was a debate you could safely ignore. It’s over. Not because designers won the argument — because the cost of shipping fell so far the question stopped mattering. I’ve shipped many products this way, from [a reminder app](/case-studies/nudgeme) to [a boxing game](/case-studies/ring-rival). The gap between designing a thing and shipping the thing isn’t a career change anymore. It’s a Tuesday.</p>
+
+      <figure class="my-8">
+        <img src="/blog/designers-shipping-ai-code-body.jpg" alt="Lines of code on a dark screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What changes when generation is free</h2>
+
+      <p>Here’s the uncomfortable half of the good news. When copying is effortless, everyone’s first draft looks like everyone else’s first draft — and the same report shows the best design pulling hard away from that AI sameness. The work that stands out is the work carrying decisions only a human would make. So the value of a designer just moved. Generation is a commodity now. Judgment is the premium.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">AI didn’t lower the bar for shipping. It raised the bar for everything that ships.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The taste layer</h2>
+
+      <p>Ship AI-written code with no quality gate and you get slop with a deploy timestamp. Across everything I have shipped, my gate settled into four checks, and none are optional. One: does it hold to the system? AI will cheerfully invent a fourth shade of blue and a brand-new button on every screen — audit every output against your tokens or entropy wins. Two: does it feel right? Working code and good-feeling interaction are two different wins, and the gap is usually milliseconds of timing and a pixel of spacing. No model feels that for you. Three: what happens when it breaks? AI writes happy paths. Empty states, error states, ambiguous input — that’s your job, and it’s exactly where trust is won or lost. Four: can everyone actually use it? Generated markup passes a glance and fails a screen reader. Accessibility is an audit, not a vibe.</p>
+
+      <figure class="my-8"><img src="/blog/designers-shipping-ai-code-body.jpg" alt="Source code on a computer monitor, close up" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Shipping code changes what you design, not just how fast</h2>
+
+      <p>The part people miss is that this isn’t only about speed. When the person drawing the interface is the person who has to build it, the design changes. You stop specifying things that are cheap to draw and brutal to implement without noticing. You find out that the elegant transition costs a re-render on every keystroke. You feel the loading state instead of leaving a note about it. That feedback loop doesn’t exist across a handoff, no matter how good the documentation is — and it’s worth more than the hours you save. Designers who build produce different designs, not merely the same designs sooner.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where it goes wrong</h2>
+
+      <p>Two failure modes, both common. The first is shipping generated code you don’t understand, which is fine until it breaks and you can’t fix it — you’ve borrowed velocity against a debt that comes due at the worst moment. The second is quieter and worse: accepting the first thing that works. The model will happily hand you a solution that runs and solves a slightly different problem than the one you had. Nothing crashes, no test fails, and you don’t notice for two weeks. The guard against both is the same and it isn’t glamorous — read what you shipped, and be able to explain why it’s right, not just that it runs.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">How to start this week</h2>
+
+      <p>Haven’t shipped anything yet? Don’t buy a course. Build a thing. Pick something small enough to actually finish and real enough to matter — a calculator for your own workflow, a one-loop game, the tool your team keeps wishing existed. Generate aggressively, then run the gate: system, feel, failure, access. Push it to the web, where a link is your entire distribution plan. The first thing you ship changes how you’re seen in every meeting after it — you stop being the person who describes products and start being the person who makes them exist.</p>
+
+      <p>91% of designers are already using these tools every week. The dividing line isn’t access — everyone’s got the same models. It’s whether there’s a taste layer between the generation and the deploy button. That layer is the job now. Might be the most defensible version of the job design has ever had.</p>
+    `
+  },
+  {
+    id: "bd-5",
+    title: "Designing AI-first products that actually ship",
+    excerpt: "Most AI features stall in the demo phase. Here\u2019s the design discipline that gets them into people\u2019s hands.",
+    author: "Hiram Barsky",
+    date: "June 18, 2026",
+    readTime: "3 min read",
+    coverImage: "/blog/designing-ai-first-products-that-ship-hero.jpg",
+    tags: ["AI Design"],
+    slug: "designing-ai-first-products-that-ship",
+    content: `
+      <p>Every company I talk to has an AI demo. Almost none of them have an AI product. And the gap between those two isn’t technology — the models are ridiculous now. It’s design. And it shows up in the same three places every single time.</p>
+
+      <figure class="my-8">
+        <img src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="Colorful sticky notes pinned to a board" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Design the failure, not just the magic</h2>
+
+      <p>A demo has to work once, in front of a friendly crowd. A product has to survive someone typing something half-baked at 11pm. So every AI feature needs an answer to one question before anyone writes a line of prompt: what happens when the model isn’t sure? The pattern that works is confidence tiers — high-confidence input just works, medium confidence asks exactly one follow-up, and genuinely unclear input gets told to rephrase instead of quietly doing the wrong thing. Simple contract. And it’s the whole difference between a feature people lean on and one they quietly stop trusting after a week. I learned that one the hard way [building a natural-language reminder app](/case-studies/nudgeme) — the clean-input demo hid everything that actually mattered.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">An AI feature earns trust not by being right, but by being predictable about how it handles being wrong.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Ship the layered version, not the perfect one</h2>
+
+      <p>Teams stall when they treat an AI feature as one giant bet that has to be right on day one. Don’t. Design it in layers: a version that works with zero intelligence, then a smarter layer on top, then another. Each layer stands on its own and degrades on its own — so you’ve got something shippable at every stage instead of a two-year roadmap with nothing usable in the middle. And this is a design call, not an engineering one. Figuring out the dumbest useful version of a feature takes more product judgment than dreaming up the smartest one.</p>
+
+      <figure class="my-8"><img src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="A hand holding a phone showing an app dashboard, a desktop behind" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why the demo lied to you</h2>
+
+      <p>Demos work because somebody chose the input. That’s the whole trick, and it isn’t dishonest — it’s just not evidence. Real users paste something half-finished, in the wrong format, at the wrong moment, then walk away mid-task and come back an hour later. The gap between those two worlds is where most AI features quietly die. The fix isn’t more model quality. It’s picking your ugliest realistic input early and designing from that instead of from the clean one. If the experience holds up on the messy input, the clean one takes care of itself. Do it the other way round and you spend the last month of the project discovering that the demo was the only case that ever worked.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ship the boring eighty percent first</h2>
+
+      <p>The impressive twenty percent is what gets you funding. The boring eighty is what gets you used. Loading states, error copy, an empty state that tells someone what to do next, a way to undo, something sensible on a phone held in one hand. None of that demos well and all of it decides retention. I’d rather launch with a narrower feature that handles its edges than a broad one that falls over the first time somebody holds it wrong. You can always add capability. It’s much harder to win back a person who tried your product, hit a dead end with no explanation, and quietly decided it wasn’t serious.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Make the AI invisible</h2>
+
+      <p>The best AI-first products don’t feel like AI products. Nobody using a great natural-language feature is thinking about parsing models — they type 'call mom tomorrow at 5pm' and it’s done. Nobody using great matching is thinking about embeddings — they describe what they want and get it. The second your interface makes someone think about the model, you’ve lost. Sparkle emojis, 'AI-powered' badges, confidence scores bolted onto the UI — that’s the design equivalent of showing users your database schema. The model is plumbing. The promise is the product.</p>
+
+      <p>That’s the whole discipline: design for failure, ship in layers, hide the machinery. None of it needs a research lab. It needs you to treat AI as a material with specific properties — powerful, probabilistic, occasionally dead wrong — and design honestly for all three.</p>
+    `
+  },
+  {
+    id: "bd-6",
+    title: "Trust is a design material",
+    excerpt: "Products don\u2019t fail because they\u2019re wrong. They fail because nobody can defend acting on them. Trust isn\u2019t a feeling you hope for \u2014 it\u2019s a material you design with.",
+    author: "Hiram Barsky",
+    date: "May 2, 2026",
+    readTime: "3 min read",
+    coverImage: "/blog/trust-is-a-design-material-hero.jpg",
+    tags: ["Craft"],
+    slug: "trust-is-a-design-material",
+    content: `
+      <p>The product had the right answer. She still didn’t use it. Nothing errored, nothing crashed — she just paused, second-guessed it, and went and did the work the old way. I’ve watched that exact moment quietly kill more products than any bug: enterprise analysts, people booking a service, developers sizing up a library. Same failure every time. And almost nobody’s looking for it, which is exactly why learning to spot it is one of the highest-leverage skills you can build.</p>
+
+      <figure class="my-8">
+        <img src="/blog/trust-is-a-design-material-body.jpg" alt="An angular gray architectural structure seen from below" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Correctness isn’t the problem</h2>
+
+      <p>Search results people scroll right past because they can’t tell where the data came from. Marketplaces where the qualified provider goes unbooked because a first-timer can’t tell an expert from a confident hobbyist. AI answers that are correct and ignored anyway. Same missing ingredient every time: the interface hands over information without handing over any reason to believe it. Where’d it come from? Who’s behind it? How fresh is it? What happens if it’s wrong? People are silently asking that at every decision point, and most interfaces answer exactly none of it.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Users don’t act on information. They act on information they can defend — to their boss, or to themselves.</blockquote>
+
+      <figure class="my-8"><img src="/blog/trust-is-a-design-material-body.jpg" alt="A person concentrating at a laptop in cool blue light" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">You design trust in, you don’t bolt it on</h2>
+
+      <p>The fix is never a little "trust" badge slapped on at the end. It’s making the trust signals first-class parts of the core interaction: provenance as a column, not a tooltip; verification as layered, inspectable proof instead of a lonely checkmark; ranking that weighs where information came from, not just how well it matches. When I rebuilt [an enterprise search experience](/case-studies/dae-search) around exactly this, the win wasn’t prettier results — it was analysts going from forty candidates they couldn’t vouch for to four they could defend in a meeting. That’s the bar: not "can they find it," but "can they defend it."</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Trust is a budget, and every wrong answer spends it</h2>
+
+      <p>People don’t hold a fixed opinion about your product. They hold a balance, and it moves. A useful answer adds a little. A confidently wrong one costs several times what a correct one earned, because now they have to check everything — and checking everything is slower than not using your product at all. That asymmetry is the thing to design around. It means the expensive failure isn’t being wrong; it’s being wrong in a tone that gave no warning. A hedge before a shaky answer costs you almost nothing. A confident sentence that turns out to be false can cost you the account. Spend the hedge.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The cheapest trust signal is showing your work</h2>
+
+      <p>You don’t need a confidence percentage that nobody understands. You need to show where the answer came from, close enough to the answer that a person can check it in one glance and without leaving the page. Sources inline, not behind a click. The actual quoted sentence, not a link to the document it lives in. It sounds almost too plain to matter, and it’s the single change I’ve seen move people from “this is a neat demo” to “I used it to make a decision.” Verifiable beats authoritative, every time — because the person who can check you is the person who can defend using you to their boss.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why this hits your bottom line</h2>
+
+      <p>Trust is where products quietly bleed value — and where careers quietly stall. The analyst who can’t vouch for the data re-runs the analysis. The customer who can’t verify the provider closes the tab. None of it shows up in an error log, so nobody gets assigned to fix it. Which means whoever learns to treat trust as a material — audited, designed, and tested like any other part of the UI — is delivering value most teams don’t even have a name for. And in a world where AI can spit out a competent interface in minutes, that’s exactly the kind of judgment that doesn’t commoditize.</p>
+    `
+  },
+  {
+    id: "bd-7",
+    title: "Ship something small: the fastest way to grow in the AI era",
+    excerpt: "Not a course. Not a certification. The fastest way to grow as a designer or developer right now is to ship one small thing end to end \u2014 and AI just removed every excuse.",
+    author: "Hiram Barsky",
+    date: "March 11, 2026",
+    readTime: "3 min read",
+    coverImage: "/blog/solo-building-with-ai-hero.jpg",
+    tags: ["Workflow"],
+    slug: "solo-building-with-ai",
+    content: `
+      <p>Every designer I talk to is asking the same question, just in different words: how do I stay valuable while AI eats the routine parts of my job? Everyone’s answer is a course, a certificate, a prompt-engineering listicle. Skip all of it. The highest-return move on the table costs nothing and takes a couple weekends: pick something embarrassingly small and ship it — end to end, all the way to a URL a stranger can actually open.</p>
+
+      <figure class="my-8">
+        <img src="/blog/solo-building-with-ai-body.jpg" alt="A person working alone on a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why shipping beats studying</h2>
+
+      <p>A course teaches you a tool. Shipping teaches you judgment — and judgment is the part AI can’t commoditize. Take even a tiny product from idea to live and you’re forced through every decision a real product demands: what to cut, what 'done' means, how it should feel, what happens when it breaks, what to call it, how anyone finds it. No tutorial simulates that, because the whole point is living with your own tradeoffs. And AI makes it newly doable solo — it generates the scaffolding, drafts the copy, writes the code you couldn’t, while every decision that makes the thing good stays yours. That split is exactly the skill the next decade pays for.</p>
+
+      <figure class="my-8"><img src="/blog/solo-building-with-ai-body.jpg" alt="Hands typing on a laptop at a wooden desk" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Keep the scope embarrassingly small</h2>
+
+      <p>The projects that die don’t die from missing talent. They die of fog. If the core of your idea doesn’t fit in one sentence, it’s not scoped yet. A calculator for a workflow you already know. A one-loop game. A tool your team keeps wishing existed. Small isn’t a compromise — it’s the strategy. AI’s speed compounds when the vision is sharp and evaporates when you spend it wandering around in a haze. My own proof run was [a pair of tiny browser games](/case-studies/fire-lion). Nothing ambitious. Everything instructive.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">AI doesn’t remove the gap between concept and shipped. It removes the excuse for not crossing it.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ship to the web, share the link</h2>
+
+      <p>Where you ship is a design decision, and for a solo builder there’s one right answer: the open web. A link is the whole onboarding — no install, no app-store review, no update cycle. It collapses the distance between 'I made a thing' and 'a stranger is using it,' and that second state is where all the learning lives. Real people typing nonsense into your product at 11pm will teach you more in a week than a year of polishing shots nobody uses.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Pick something small enough to actually finish</h2>
+
+      <p>The mistake isn’t picking something too hard. It’s picking something too big, stalling at sixty percent, and quietly concluding you’re not the kind of person who ships. Small means one screen doing one job, with real data, deployed at a URL a stranger can open. That’s it. Small enough that the interesting problems are in the last ten percent instead of the first eighty. A reminder that actually fires. A calculator that does one calculation properly. Not a platform. Definitely not a marketplace. If you can’t describe it in one sentence without using the word “and,” it’s too big for a first one.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The ugly last ten percent is the entire lesson</h2>
+
+      <p>The tutorial ends when the happy path works. Your education starts right after that. What shows when there’s no data yet. What it says when the request fails. What it does on a phone in one hand. What happens when someone taps twice, or does the steps out of order, or leaves and comes back an hour later. Every one of those is a decision nobody can make for you, and none of them appear in the course you were thinking of buying. Ship one small thing end to end and you’ll have made those decisions for real — which is the difference between having an opinion about product work and having done it.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What it does for your career</h2>
+
+      <p>The first thing you ship changes how every room sees you. You stop being the person who describes products and become the person who makes them exist — in interviews, in client calls, in the meeting where someone asks 'could we even build that?' and you’re the one who already knows. Your portfolio stops being pictures of intentions and starts being links that work. In a market where everyone’s résumé says 'AI,' a URL that actually does something is the one credential nobody can fake.</p>
+    `
+  },
+  {
+    id: "bd-8",
+    title: "Making the business case for design",
+    excerpt: "Leaders approve what they can measure. How to put a defensible number on design work.",
+    author: "Hiram Barsky",
+    date: "January 27, 2026",
+    readTime: "3 min read",
+    coverImage: "/blog/the-business-case-for-design-hero.jpg",
+    tags: ["Strategy"],
+    slug: "the-business-case-for-design",
+    content: `
+      <p>Fifteen years inside PNC, Bank of America, Deloitte, and KPMG taught me something uncomfortable about design: being right isn’t enough, and being loved isn’t either. Budget goes to what gets measured. And design teams — mine included, early on — keep walking into budget meetings armed with adjectives.</p>
+
+      <figure class="my-8">
+        <img src="/blog/the-business-case-for-design-body.jpg" alt="People meeting in a glass-walled conference room" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+      </figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The numbers exist. Designers just don’t claim them.</h2>
+
+      <p>Design work moves real metrics — I’ve spent a career watching it happen. A 40% engagement boost and 25% satisfaction lift on a banking platform. A 15% error reduction. A 30% satisfaction jump in healthcare. Not one of those numbers announced itself as 'design impact.' Somebody had to draw the line from the design decision to the metric — and if designers don’t draw it, nobody does. The work gets filed as a cost line, and next year’s budget gets smaller.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Good work loses budget fights to weaker work with better spreadsheets.</blockquote>
+
+      <figure class="my-8"><img src="/blog/the-business-case-for-design-body.jpg" alt="A hand reviewing printed charts beside a calculator and a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Model the levers, not the pixels</h2>
+
+      <p>Design’s business case lives in a handful of levers — conversion, retention, support load — and you can model them honestly with an editable projection instead of a promise. Two rules, straight from watching real budget meetings. One: a credible first estimate has to take 30 seconds, because anything that needs an afternoon never gets opened. Two: the output has to be board-ready, because a number only matters if it can travel without you in the room. This annoyed me enough that I eventually built [a little calculator for it](/services#roi-calculator) — but honestly, a napkin works. The discipline is the point, not the tool.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Build the number from what the problem already costs</h2>
+
+      <p>Most design business cases fail because they start from the upside, which nobody believes. Start from the cost that already exists, which nobody disputes. Support tickets about one confusing screen — someone can pull that count. Hours a team spends re-keying data because two systems don’t talk. The percentage of people who start a flow and never finish it. Those numbers are usually sitting in a tool your company already pays for, and nobody has bothered to put them in the same sentence as a design proposal. Once you have the cost of the status quo, your ask stops being “design is valuable” and becomes “this is what it costs to keep the current version.” One of those is an opinion. The other is arithmetic.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Give a range, and show the assumptions</h2>
+
+      <p>A single confident number invites an argument about the number. A range with visible assumptions invites a conversation about the assumptions, which is the conversation you want. Say plainly: if we cut this flow from six steps to three, and completion improves somewhere between two and eight percent, here’s what that’s worth at current volume — and here’s the volume figure I used. Now a finance person can push on your inputs instead of dismissing your conclusion. In fifteen years inside banks I never once saw a CFO reject an estimate for being uncertain. I saw plenty rejected for having no visible math behind them. Uncertainty is normal. Unshowable reasoning isn’t.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What to do in your next budget cycle</h2>
+
+      <p>Before the work: write down which lever the design is supposed to move, and what it’s worth if it moves. After the work: measure it, and say the number out loud, in the room where budgets actually get decided. That’s the whole discipline. Design didn’t earn its seat by being craft. It earns it by being the highest-leverage line item nobody was bothering to measure.</p>
+    `
+  },
+
   {
     id: "ai-1",
     title: "Learning AI Design with Claude: A Designer's Starter Kit",

@@ -15,6 +15,28 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Explore UX case studies in healthcare, fintech, co-parenting, and AI platforms — measurable impact, user outcomes, and strategic design thinking.',
     image: 'https://barskydesign.pro/images/og/page-projects.png'
   },
+  // The four long-form service pages carried over from barsky.design. Titles
+  // and descriptions are each service's own metaTitle/metaDescription.
+  '/services/ai-product-design': {
+    kind: 'page',
+    title: 'AI Product Design | Barsky Design',
+    description: 'End-to-end design for AI-first products: the interaction model, the interface, and how the AI behaves when it’s confident, uncertain, or wrong.'
+  },
+  '/services/design-systems': {
+    kind: 'page',
+    title: 'Design Systems | Barsky Design',
+    description: 'Design systems that survive contact with a real codebase: token architecture, component libraries built in React and TypeScript, and governance that holds.'
+  },
+  '/services/ux-strategy-research': {
+    kind: 'page',
+    title: 'UX Strategy & Research | Barsky Design',
+    description: 'Research and strategy that ends in a decision, not a deck: user research, journey mapping, and a roadmap tied to numbers a finance team will accept.'
+  },
+  '/services/prototype-to-ship': {
+    kind: 'page',
+    title: 'Prototype to Ship | Barsky Design',
+    description: 'Design that ends in deployed software. We build the real product in React and TypeScript, so an engagement finishes with working code instead of a handoff file.'
+  },
   '/services': {
     kind: 'page',
     title: 'UX/UI Design Services | Barsky Design',
@@ -131,6 +153,50 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 
 // Enhanced blog post SEO data
 export const BLOG_SEO_MAP: Record<string, { title: string; description: string; published?: string; modified?: string; }> = {
+  // Carried over from barsky.design. Each post shipped its own short SERP
+  // title/description there because the excerpts run long (one is 294
+  // characters); without these the excerpt gets cut mid-sentence.
+  "ai-ate-the-junior-job": {
+    title: "AI ate the entry-level job",
+    description: "AI didn\u2019t kill junior designers and developers. It killed the boring tasks that used to teach them the job \u2014 and that gap shows up years later.",
+    published: "2026-08-07"
+  },
+  "what-is-an-ai-first-product-designer": {
+    title: "What is an AI-first product designer?",
+    description: "An AI-first product designer owns the whole experience of a product whose core value comes from AI \u2014 including how the model behaves when it\u2019s wrong.",
+    published: "2026-07-18"
+  },
+  "portfolio-proof-not-pictures": {
+    title: "Build a portfolio for robots and humans",
+    description: "By 2026 most portfolios are parsed by an AI screener before a person opens them, and the human bar moved from pretty mockups to proof you can ship.",
+    published: "2026-07-11"
+  },
+  "designers-shipping-ai-code": {
+    title: "Half of designers now ship AI code. Good.",
+    description: "The State of AI in Design 2026 report says the designer-who-ships is now the norm. What separates shipped from slop is the taste layer.",
+    published: "2026-07-08"
+  },
+  "designing-ai-first-products-that-ship": {
+    title: "Designing AI-first products that ship",
+    description: "Most AI features stall in the demo phase. Here\u2019s the design discipline that gets them into people\u2019s hands.",
+    published: "2026-06-18"
+  },
+  "trust-is-a-design-material": {
+    title: "Trust is a design material",
+    description: "Products don\u2019t fail because they\u2019re wrong. They fail because nobody can defend acting on them. Trust is a material you design with, not a feeling.",
+    published: "2026-05-02"
+  },
+  "solo-building-with-ai": {
+    title: "Ship something small: the fastest way to grow",
+    description: "The fastest way to grow as a designer or developer right now is to ship one small thing end to end \u2014 and AI just removed every excuse.",
+    published: "2026-03-11"
+  },
+  "the-business-case-for-design": {
+    title: "Making the business case for design",
+    description: "Leaders approve what they can measure. How to put a defensible number on design work.",
+    published: "2026-01-27"
+  },
+
   // SERP title only — the post keeps its full headline on the page. With the
   // brand suffix dropped it still ran 64 chars; this is the same title minus
   // the trailing "and Uncertainty".
