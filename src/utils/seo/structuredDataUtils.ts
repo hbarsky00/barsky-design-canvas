@@ -73,6 +73,20 @@ export const generateStructuredData = (seoData: SEOData) => {
       "Healthcare software",
       "Pharma workflows"
     ],
+    // hasOccupation with the O*NET code is what lets Google file him as a
+    // specific occupation rather than a name with a job title string attached.
+    // Carried over from barsky.design, which had it and this site did not.
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "AI Product Designer",
+      occupationalCategory: "15-1255.00",
+      skills:
+        "AI product design, UX strategy, user research, design systems, prototyping, React, TypeScript",
+      occupationLocation: [
+        { "@type": "City", name: "New York" },
+        { "@type": "City", name: "Clifton" }
+      ]
+    },
     sameAs: SAME_AS,
     worksFor: { "@id": ORG_ID }
   };
@@ -93,7 +107,19 @@ export const generateStructuredData = (seoData: SEOData) => {
     },
     founder: { "@id": PERSON_ID },
     sameAs: SAME_AS,
-    areaServed: "US"
+    // "US" told Google nothing a local searcher could match on.
+    areaServed: [
+      { "@type": "City", name: "New York" },
+      { "@type": "City", name: "Brooklyn" },
+      { "@type": "City", name: "Jersey City" },
+      { "@type": "City", name: "Newark" },
+      { "@type": "City", name: "Hoboken" },
+      { "@type": "City", name: "Clifton" },
+      { "@type": "City", name: "Montclair" },
+      { "@type": "AdministrativeArea", name: "New Jersey" },
+      { "@type": "AdministrativeArea", name: "New York City Metropolitan Area" },
+      "Remote (United States)"
+    ]
   };
 
   const schemas: any[] = [baseStructuredData, personSchema, organizationSchema];
