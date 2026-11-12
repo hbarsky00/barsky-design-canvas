@@ -74,7 +74,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "herbalink": {
     title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
-    description: "Herbalist marketplace design built around credential verification, herb safety information and guided matching — so people can tell who is qualified before they book.",
+    description: "Herbalist marketplace built around credential verification, safety information and guided matching, so people can tell who is qualified before they book.",
     image: "https://barskydesign.pro/images/og/herbalink.png"
   },
   "splittime": {
@@ -95,7 +95,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   catchbuddy: {
     title: "CatchBuddy: Trust in a Pickup Sports App | Case Study",
     description:
-      "The easy part is getting two strangers to meet in a park; the hard part is getting them to feel safe. How the safety layer shipped in v1 shaped every screen of a pickup-sports app.",
+      "The easy part is getting two strangers to meet in a park; the hard part is getting them to feel safe. How that shaped every screen of a pickup-sports app.",
     image: "https://barskydesign.pro/images/og/catchbuddy.png"
   },
   "dae-search": {
