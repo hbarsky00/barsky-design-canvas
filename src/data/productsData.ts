@@ -1,27 +1,41 @@
-
 import { Product, Category } from "@/types/product";
 
+/**
+ * Two templates, sold by request.
+ *
+ * Three things were removed here on 2026-11-12, all for the same reason —
+ * nothing in this repo backed them up:
+ *
+ *  - a "Best Seller" badge on a product with no sales record anywhere
+ *  - "helped me land high-paying clients", a claim with no traceable outcome
+ *  - cover art containing a fake preview: grey skeleton bars arranged to look
+ *    like template content a buyer could inspect. There is no preview until
+ *    there is a real file to preview.
+ *
+ * FLAGGED for Hiram: the actual template files, and a payment link. Until both
+ * exist the buy action routes to contact, which is true, rather than a cart,
+ * which was not.
+ */
 export const products: Product[] = [
   {
     id: "case-study-templates",
-    name: "5 Case Studies That Changed My Portfolio Game",
-    description: "Professional case study templates that helped me land high-paying clients and transform my portfolio from average to outstanding.",
+    name: "Case study templates",
+    description:
+      "Five structures for writing up work you have already done — each one a sequence of prompts that forces the specifics a hiring manager reads for: what was at stake, what the constraint was, and what you decided when two good options conflicted.",
     price: 10,
-    image: "/images/store/case-study-templates.jpg",
     category: "templates",
-    badge: "Best Seller"
   },
   {
     id: "content-templates",
-    name: "Professional Content Templates That Work Across All Platforms",
-    description: "Ready-to-use content templates for LinkedIn, Twitter, Instagram, Facebook, and Email that drive engagement and grow your personal brand.",
+    name: "Content templates",
+    description:
+      "Post structures for LinkedIn, email and short-form social, built around pointing people at work rather than at opinions. The same skeletons I use to make a case study travel further than its own page.",
     price: 10,
-    image: "/images/store/content-templates.jpg",
-    category: "templates"
-  }
+    category: "templates",
+  },
 ];
 
 export const categories: Category[] = [
   { id: "all", name: "All Products" },
-  { id: "templates", name: "Templates" }
+  { id: "templates", name: "Templates" },
 ];

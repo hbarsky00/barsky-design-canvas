@@ -4,9 +4,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  image: string;
   category: string;
-  badge?: string;
 }
 
 export interface Category {

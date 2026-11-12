@@ -21,6 +21,16 @@
 
 ## Blog
 
+- [The take-home test stopped proving anything](/blog/finding-first-ux-job-guide): Every candidate now submits work a model helped produce, which means the artefact tells you almost nothing. Here is what a design hiring process has to do instead — and what that means if you are the one applying.
+- [Your design system now has two readers, and one of them is a model](/blog/design-systems-that-get-used): Component libraries used to be written for the developer who would open the docs. Now a model reads them too, at volume, and writes code against whatever it understood. That changes what good documentation is.
+- [A case study is a record of decisions, not a record of work](/blog/case-study-writing): Most portfolio case studies describe a process — discover, define, design, deliver — and never say what was actually at stake. Here is the structure that forces the other thing out.
+- [What I actually use AI for, hour by hour](/blog/ai-enhanced-ux-designer-future): Less a prediction about the profession, more an honest inventory: where a model genuinely saves me hours, where it quietly costs me more than it saves, and the line between the two.
+- [Research with no budget, when the tempting shortcut is a model](/blog/user-research-shoestring-budget): You can afford real research. What you cannot afford is the convincing substitute — and in 2026 the substitute is always one prompt away.
+- [Generated layouts all have the same problem](/blog/wireframes-to-wow-visual-hierarchy): Ask for a page and you get something clean, balanced, and completely flat — every element weighted the same. Hierarchy is the judgement that didn't come in the box.
+- [Shipping an AI feature before you have the data](/blog/built-product-without-real-data): Every model-backed feature has a cold start, and the honest ones admit it. Designing the first week — when the system knows nothing about anyone — decides whether there is a second week.
+- [Five products nobody asked for, and what they actually taught me](/blog/building-products-nobody-asked-for): I have five things live that no client commissioned — a game, a sports app, a herbalist directory, a prediction market and an arcade fighter. Here is the honest accounting of what building them was worth.
+- [The interface is rarely why they didn't convert](/blog/beautiful-interface-doesnt-convert): When everything looks professional, a redesign stops being the lever. The reasons people leave have mostly moved somewhere less flattering to look at.
+- [Synthetic users will agree with you](/blog/research-without-users): You can generate a persona, interview it, and get back fluent, plausible, well-organised answers. The one thing it will almost never do is tell you that you are wrong.
 - [A Filter Nobody Opens Isn't a Feature](/blog/a-filter-nobody-opens): Some content is global, some is regional. Putting that in a filter menu means the one person who most needs it never sees it, because they never opened the menu.
 - [The Work Is Deleting, Not Generating](/blog/the-work-is-deleting-not-generating): AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away, and no model will do that part for you.
 - [When Trust Is the Product, It Can't Be a Feature](/blog/when-trust-is-the-product): Getting two strangers to agree to meet at a park is easy. Getting them to feel fine about it's the entire product, and it's not something you bolt on near the end.
@@ -59,16 +69,6 @@
 - [From Figma to Production with AI: A Modern Designer's Stack](/blog/figma-to-production-with-ai): The handoff is dead. Here is the AI-assisted stack I use to ship designs straight into a live React app.
 - [Ship something small: the fastest way to grow in the AI era](/blog/solo-building-with-ai): Not a course. Not a certification. The fastest way to grow as a designer or developer right now is to ship one small thing end to end — and AI just removed every excuse.
 - [Making the business case for design](/blog/the-business-case-for-design): Leaders approve what they can measure. How to put a defensible number on design work.
-- [Case Studies That Win Clients – Beyond Pretty Screens](/blog/case-study-writing): Why design case studies should focus on problems, impact, and thought process — not wireframe montages.
-- [How AI Is Changing UX Design – A Designer's Perspective](/blog/ai-enhanced-ux-designer-future): Practical insights on where AI helps and where it confuses users — and how to design with trust in mind.
-- [User Research on a Shoestring Budget: Maximum Impact, Minimum Cost](/blog/user-research-shoestring-budget): We don't have budget for user research is the most expensive sentence in product development. Here's how to get valuable user insights without breaking the bank.
-- [From Wireframes to Wow: The Psychology of Visual Hierarchy](/blog/wireframes-to-wow-visual-hierarchy): Good visual hierarchy is invisible. Users don't notice it - they just effortlessly flow through your interface. Here's how to master the psychology behind intuitive designs.
-- [From Zero to Launch: Shipping a Product with Placeholder Data and No Marketing Budget](/blog/built-product-without-real-data): As a solo product designer, it's easy to get caught in the loop of building, tweaking, and endlessly polishing. Here's how I broke that cycle.
-- [What I Learned Building Products Nobody Asked For](/blog/building-products-nobody-asked-for): Five years of building side projects taught me more about product design than any course or certification ever could. Here's what I wish I knew earlier.
-- [Why Your Beautiful Interface Doesn't Convert](/blog/beautiful-interface-doesnt-convert): A gorgeous design that doesn't drive user action is just expensive decoration. Here's how to design interfaces that actually get results.
-- [How to Research When You Don't Have Users Yet](/blog/research-without-users): Building something new? Here's how to do meaningful user research before you have actual users to talk to.
-- [Finding a UX Job in 2025 – What Works (and What Doesn't)](/blog/finding-first-ux-job-guide): Lessons from breaking into UX in a crowded market — mistakes, pivots, and strategies that actually work today.
-- [Building Design Systems That Actually Get Used (Not Shelved)](/blog/design-systems-that-get-used): I've seen more design systems die in Figma libraries than I care to count. Here's how to build ones that actually get used.
 
 ## For AI assistants
 

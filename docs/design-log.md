@@ -856,3 +856,96 @@ broken. Do not redesign what works.
     separator at 1.37:1, comments still off, `<meta name="theme-color">`
     still `#3B82F6`.
   - AEO's next lever is still **2 extractable Q&A** (cycle 2).
+
+---
+
+## 2026-11-12 — CRAFT + FLOW — three pages rebuilt, not audited
+
+**Asked for, directly:** `/services` looks bad, `/store` images aren't real,
+`/blog` is full of posts dated 2025. Rebuild, don't audit.
+
+### /services — the chrome contradicted the copy
+
+The long-form copy on this page is genuinely good — "One person, end to end",
+"What it costs, and how scoping works", "What I don't do". It was wrapped in a
+brochure that said the opposite kind of thing: a "Gen-AI First Approach" pill,
+a heading reading "What I Offer" over "Comprehensive design and development
+services powered by AI-enhanced workflows", two cards whose feature lists were
+"UI/UX Design" and "Machine Learning Models", and a four-step process ending in
+"Creating intuitive experiences". Every competitor's page says those words.
+
+Meanwhile the four real service pages ported from barsky.design on 11-11 —
+`ai-product-design`, `design-systems`, `ux-strategy-research`,
+`prototype-to-ship`, each carrying a definition, an engagement shape and an
+honest "not for" — were reachable only by typing the URL. **The index now
+indexes them.** Grid is the four engagements in their own words. Removed the
+filler process, both AI-slop subheads and the duplicate "Explore specialized
+services" pill row. Kept every word of `SERVICES_OVERVIEW` and the citable
+answer passage.
+
+### /store — the images were the least of it
+
+Named problem: the two covers were marketing banners containing grey skeleton
+bars arranged to look like template content. They previewed a file that does
+not exist in this repo.
+
+Found while fixing it, and worse: **the buy button was fake.** `Add to Cart`
+fired a toast reading "Added to your cart!" — there is no cart in this
+codebase, no checkout, no Stripe, no Gumroad, no payment provider of any kind
+(`grep -rliE 'stripe|checkout|gumroad|lemonsqueezy|paypal' src netlify` → two
+unrelated prose hits). `/store/success` is a live route promising "you should
+receive an email with your download links shortly" for a purchase that cannot
+happen. Also removed: a `Best Seller` badge on a product with no sales record,
+and "helped me land high-paying clients" in the product copy.
+
+The buy action now routes to `/contact` and says so plainly: "Sold by request
+— tell me which one and I will send a payment link and the files." That is
+true today. The cart was not.
+
+**FLAGGED for Hiram — only you can close these:**
+1. The actual template files. There is no deliverable in this repo.
+2. A payment link. Until there is one, "request" is the honest verb.
+
+### /blog — ten posts rewritten in place
+
+Ten posts carried 2025 dates. **Rewritten on their existing slugs rather than
+deleted** — every one was already indexed and internally linked, so deleting
+them would have 404'd ten live pages in order to publish ten new ones. Same
+writing, no redirect debt, no lost link equity. `check-internal-links` reports
+66 pages, no dead links.
+
+New posts are AI / jobs / tech, each checked against the existing 38 so none
+cannibalises one already live:
+take-home tests · design systems as model-readable context · case studies as a
+record of decisions · an hour-by-hour inventory of what AI is actually used for
+· no-budget research · why generated layouts are flat · AI cold-start ·
+five products nobody asked for · why the interface isn't the conversion
+problem · synthetic users agree with you.
+
+Four of the ten were hotlinking **images.unsplash.com** for their covers — a
+forest, a night sky, unrelated to any of it — and one pointed at a
+`/uploads/<uuid>.png` Lovable relic. Replaced with four local typographic
+covers rendered at 1400×788 via Playwright through system Chrome, in Fraunces
+and IBM Plex to match the site. No external image dependencies remain in
+`blogData.ts`.
+
+`BLOG_SEO_MAP` updated for all ten with new titles, descriptions and
+published/modified dates. Removed "from reviewing hundreds of UX portfolios"
+from the case-study description — an invented number.
+
+**Verified:** `tsc --noEmit` clean · build clean · 66/66 routes recaptured ·
+"Gen-AI First Approach" 0 occurrences in `dist/services/index.html` · "Add to
+Cart" and "Best Seller" 0 in `dist/store/index.html` · `/blog` renders 48 cards
+with zero occurrences of "2025" in the rendered text.
+
+**Left open:**
+- `/store/success` still promises download links. It is unreachable in
+  practice, but it is a live route making a false promise — worth deleting or
+  rewriting once the payment question is settled.
+- Two service taxonomies still coexist: `/services/*` (four, long-form) and
+  `/design-services/*` (three). Both are linked from the index now, under
+  different headings, which is honest but not ideal. Consolidating is a
+  routing decision, not a design one.
+- `src/assets/blog/` holds a full set of iCloud conflict copies ("name 2.jpg").
+  None are imported. They bloat the repo and are a `git add -A` accident
+  waiting to happen.

@@ -338,52 +338,72 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     modified: "2026-09-13"
   },
   "finding-first-ux-job-guide": {
-    title: "Finding a UX Job in 2025 | Job Search Guide for UX Designers — Barsky Design",
-    description: "Practical strategies for landing your first UX job in 2025. Portfolio tips, networking tactics, and insider advice from 15+ years in the field."
+    title: "The Take-Home Test Stopped Proving Anything | Design Hiring in 2026 — Barsky Design",
+    description: "Every candidate now submits work a model helped produce, so the artefact tells you almost nothing. What a design hiring process has to measure instead, and what that means if you are applying.",
+    published: "2026-11-10",
+    modified: "2026-11-10"
   },
   "design-systems-that-get-used": {
-    title: "Building Design Systems That Work | Implementation Guide",
-    description: "Stop building design systems that get ignored. Learn how to create systems teams actually use with practical governance, documentation, and adoption strategies."
+    title: "Design Systems Now Have Two Readers, One Is a Model — Barsky Design",
+    description: "Component libraries used to be written for the developer who opened the docs. Now a model reads them at volume and generates code against whatever it inferred. What that changes about good documentation.",
+    published: "2026-11-03",
+    modified: "2026-11-03"
   },
   "portfolio-red-flags-no-interviews": {
     title: "UX Portfolio Red Flags | Why You're Not Getting Interviews — Barsky Design",
     description: "Common UX portfolio mistakes that kill your chances. Learn what hiring managers look for and how to showcase your UX process effectively."
   },
   "ai-enhanced-ux-designer-future": {
-    title: "AI in UX Design | How Designers Can Leverage AI Tools — Barsky Design",
-    description: "Practical guide to using AI in UX design. From research synthesis to prototyping, learn how AI enhances (not replaces) design work."
+    title: "What I Actually Use AI For, Hour by Hour | Designer's Inventory — Barsky Design",
+    description: "An honest inventory rather than a prediction: where a model genuinely saves hours in design and front-end work, where it quietly costs more than it saves, and the line between the two.",
+    published: "2026-10-20",
+    modified: "2026-10-20"
   },
   "user-research-shoestring-budget": {
-    title: "Low-Budget User Research | Maximum Impact Methods — Barsky Design",
-    description: "Get valuable user insights without big budgets. Guerrilla research tactics, free tools, and lean methods that actually work."
+    title: "User Research With No Budget | And the Shortcut to Avoid — Barsky Design",
+    description: "You can afford real research. What you cannot afford is the convincing substitute. How to run five useful conversations for nothing, and where a model legitimately helps.",
+    published: "2026-10-13",
+    modified: "2026-10-13"
   },
   "built-product-without-real-data": {
-    title: "Building Products Without Real Data | UX Research Mistakes — Barsky Design",
-    description: "Why assumptions kill products and how to validate ideas with real user data. Learn from common research pitfalls and solutions."
+    title: "Shipping an AI Feature Before You Have the Data | Cold Start — Barsky Design",
+    description: "Every model-backed feature has a cold start. Designing the first week — when the system knows nothing about anyone — decides whether there is a second week.",
+    published: "2026-09-29",
+    modified: "2026-09-29"
   },
   "building-products-nobody-asked-for": {
-    title: "Building Products Nobody Asked For | Product Strategy",
-    description: "How to avoid building features users don't want. Product strategy insights on user validation, market research, and customer discovery."
+    title: "Five Products Nobody Asked For | What Side Projects Teach — Barsky Design",
+    description: "Five live products no client commissioned, and the honest accounting: what building them taught about shipping and finishing, and what it taught about demand (nothing).",
+    published: "2026-09-22",
+    modified: "2026-09-22"
   },
   "wireframes-to-wow-visual-hierarchy": {
-    title: "Visual Hierarchy in UX Design | From Wireframes to Wow — Barsky Design",
-    description: "Master visual hierarchy to guide user attention. Practical tips for typography, spacing, and layout that improve user experience."
+    title: "Generated Layouts All Have the Same Problem | Visual Hierarchy — Barsky Design",
+    description: "Ask for a page and you get something clean, balanced and completely flat. Why hierarchy is the judgement that does not come in the box, and the edit that fixes most of it.",
+    published: "2026-10-06",
+    modified: "2026-10-06"
   },
   "case-study-writing": {
-    title: "UX Case Study Writing | Portfolio That Gets Results — Barsky Design",
-    description: "Write case studies that win clients and jobs. Structure, storytelling, and presentation tips from reviewing hundreds of UX portfolios."
+    title: "A Case Study Is a Record of Decisions | How to Write One — Barsky Design",
+    description: "Most portfolio case studies describe a process and never say what was at stake. The structure that forces out the decisions, the constraint and the trade — the parts a reader is actually testing for.",
+    published: "2026-10-27",
+    modified: "2026-10-27"
   },
   "ai-in-design": {
     title: "Future of AI in Design | Designer's Perspective 2025 — Barsky Design",
     description: "How AI is transforming design work. Practical insights on tools, ethics, and career implications for UX and product designers."
   },
   "beautiful-interface-doesnt-convert": {
-    title: "Why Beautiful Interfaces Don't Convert | UX Psychology — Barsky Design",
-    description: "Pretty designs don't guarantee conversions. Learn the UX psychology behind why aesthetics alone fail and what actually drives user action."
+    title: "The Interface Is Rarely Why They Didn't Convert — Barsky Design",
+    description: "When everything looks professional, a redesign stops being the lever. The reasons people leave have mostly moved to the copy, the pricing and the next step.",
+    published: "2026-09-15",
+    modified: "2026-09-15"
   },
   "research-without-users": {
-    title: "User Research Without Users | Validation Strategies — Barsky Design",
-    description: "How to validate product ideas before you have users. Practical research methods for early-stage products and startups."
+    title: "Synthetic Users Will Agree With You | AI and Research — Barsky Design",
+    description: "You can generate a persona and interview it. The one thing it will almost never do is tell you that you are wrong. Where synthetic research legitimately helps, and where it is a trap.",
+    published: "2026-09-08",
+    modified: "2026-09-08"
   }
 };
 

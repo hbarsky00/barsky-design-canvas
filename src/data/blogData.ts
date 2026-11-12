@@ -2129,1034 +2129,455 @@ export const blogPosts: BlogPost[] = [
     `
   },
 
+  // --- Replaced 2026-11-12 -------------------------------------------------
+  // Ten posts dated 2025 were rewritten in place rather than deleted. Every
+  // slug below was already indexed and linked internally, so the URL, the
+  // cover and the internal links survive; only the post on the other end is
+  // new. Deleting them would have 404'd ten live pages to publish ten new
+  // ones, which is a bad trade for the same amount of writing.
   {
     id: "4",
-    title: "Finding a UX Job in 2025 – What Works (and What Doesn't)",
-    excerpt: "Lessons from breaking into UX in a crowded market — mistakes, pivots, and strategies that actually work today.",
+    title: "The take-home test stopped proving anything",
+    excerpt: "Every candidate now submits work a model helped produce, which means the artefact tells you almost nothing. Here is what a design hiring process has to do instead — and what that means if you are the one applying.",
     author: "Hiram Barsky",
-    date: "January 15, 2025",
-    readTime: "7 min read",
+    date: "November 10, 2026",
+    readTime: "6 min read",
     coverImage: blogFindingUxJob,
-    tags: ["UX Design", "Career", "Job Search", "Portfolio", "Networking"],
+    tags: ["Career", "Job Search", "Hiring", "AI"],
     slug: "finding-first-ux-job-guide",
     content: `
-      <p>Breaking into UX can feel like trying to solve a puzzle with missing pieces. After 15+ years in the field, I've seen countless talented designers struggle not because they lack skills, but because they're approaching the job hunt all wrong.</p>
-      
-      <h2 class="text-section-title mt-8 mb-4">The Reality Check Nobody Talks About</h2>
-      
-      <p>The UX job market isn't what it was five years ago. Companies are more selective, and "entry-level" positions often require 2-3 years of experience. But here's the thing - this creates opportunity for those who know how to stand out.</p>
-      
-      <h2 class="text-section-title mt-8 mb-4">Your Portfolio is Your Product</h2>
-      
-      <p>Treat your portfolio like you would any UX project. Start with user research - who are the hiring managers? What problems are they trying to solve? Most portfolios fail because they showcase pretty designs instead of problem-solving processes.</p>
-      
-      <h2 class="text-section-title mt-8 mb-4">The Three-Story Rule</h2>
-      
-      <p>Include exactly three case studies:</p>
-      <ol class="list-decimal pl-6 mb-4">
-        <li>A complex problem with messy constraints</li>
-        <li>A mobile-first responsive design challenge</li>
-        <li>A project showing business impact with metrics</li>
-      </ol>
-      
-      <p>Each story should follow the same structure: Problem → Process → Solution → Impact.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Network Like a Designer</h2>
-      
-      <p>Don't just attend meetups - contribute to them. Share insights, ask thoughtful questions, and follow up with genuine connections. The best UX jobs are never posted publicly.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The AI Advantage</h2>
-      
-      <p>In 2025, UX designers who understand AI integration have a massive advantage. Learn how to prototype with AI tools, understand conversational interfaces, and position yourself as someone who can bridge design and emerging technology.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Your Next Steps:</h2>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Audit your portfolio using the three-story rule</li>
-        <li>Identify 5 companies where you'd love to work and research their design challenges</li>
-        <li>Start a side project that demonstrates AI-enhanced UX thinking</li>
-      </ul>
-      
-      <p>Remember: You're not just looking for any job - you're looking for the right opportunity to grow your career.</p>
+      <p>The design take-home had one job: show us you can think. It worked because producing a decent artefact took real hours and real skill, so the artefact was a proxy for both. That proxy is gone. Any candidate with an afternoon and a model can submit something clean, well-structured and plausible. The output no longer separates anyone from anyone.</p>
+
+      <p>Hiring teams mostly haven't noticed yet. They are still reading submissions the old way — scanning for polish, for structure, for the right vocabulary — and every submission has all three now. So they fall back to the things that were never meant to carry the weight: which school, which logo, who referred you.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What the artefact used to encode</h2>
+
+      <p>When someone handed you a flow and three screens, you weren't really grading the screens. You were reading the residue of a hundred small decisions: what they chose to leave out, where they spent their time, which edge case they bothered to draw. The artefact was evidence of a process you couldn't observe directly.</p>
+
+      <p>A generated artefact has no residue. It is the average of everything the model has seen, shaped by a prompt. It looks like the output of a process, and there was no process. That is not a moral complaint — it is a measurement problem. You are reading a signal that has been disconnected from the thing it was measuring.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">You were never grading the deliverable. You were grading the decisions it was made of, and those have stopped shipping with it.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ask about the thing that can't be generated</h2>
+
+      <p>The part of a project a model cannot produce is the part where somebody chose. Not "what did you build" — what did you decide not to build, and what did it cost you to decide that. What did research change about your plan? What did you ship that you knew was wrong, and why was that the right call that week?</p>
+
+      <p>Those questions have a useful property: a candidate who actually did the work answers them immediately and specifically, with the irritation of someone remembering a real argument. A candidate who didn't gets vague in a very particular way. They describe the method rather than the moment. You can hear it inside a minute, and no amount of preparation fakes it well, because the detail you need is boring and nobody invents boring detail.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">If you are the one applying</h2>
+
+      <p>Stop optimising the artefact. It is table stakes and it is free, which means it can only lose you the round, never win it. Spend the time on being able to narrate the decisions behind it.</p>
+
+      <p>Concretely: before you send anything, write down three choices you made and the option you rejected for each. If you can't fill that in, you haven't got a project yet — you have an output. Go back and make a real decision about it, even a small one, even now. Then when someone asks, you have something to say that nobody else in the pile can say, because it happened to you.</p>
+
+      <p>And when you get asked a question you don't have an answer for, say so and say what you'd do to find out. Teams hiring in a market full of fluent, confident, interchangeable submissions are starving for a candidate who can distinguish between what they know and what they are guessing. That skill has never been more legible, because almost nothing else is.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The process that still works</h2>
+
+      <p>A paid short engagement on something real. A working session where you solve a problem together and the interviewer watches you handle being wrong. A conversation about a project you genuinely did, interrogated two layers deeper than feels polite. All three are more expensive than emailing a brief and waiting. All three measure something that still exists.</p>
+
+      <p>The take-home was never cheap, incidentally. It was just cheap for the company — it moved the cost onto the candidate, unpaid, where it stayed invisible. Now it costs everyone a week and measures nothing. That is a worse deal than the one it replaced.</p>
     `
   },
+
   {
     id: "5",
-    title: "Building Design Systems That Actually Get Used (Not Shelved)",
-    excerpt: "I've seen more design systems die in Figma libraries than I care to count. Here's how to build ones that actually get used.",
+    title: "Your design system now has two readers, and one of them is a model",
+    excerpt: "Component libraries used to be written for the developer who would open the docs. Now a model reads them too, at volume, and writes code against whatever it understood. That changes what good documentation is.",
     author: "Hiram Barsky",
-    date: "January 8, 2025",
-    readTime: "8 min read",
+    date: "November 3, 2026",
+    readTime: "7 min read",
     coverImage: blogDesignSystems,
-    tags: ["Design Systems", "Team Collaboration", "Process", "Documentation"],
+    tags: ["Design Systems", "AI", "Documentation", "Front End"],
     slug: "design-systems-that-get-used",
     content: `
-      <p>I've seen more design systems die in Figma libraries than I care to count. Beautiful, comprehensive, and completely ignored by the teams they were meant to help. Here's how to build one that actually survives in the wild.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Start Small, Think Big</h2>
-      
-      <p>The biggest mistake? Trying to boil the ocean. Start with your most-used components - buttons, form fields, typography. Get these right and adopted before expanding. A design system that solves real problems today beats a perfect system that launches next year.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Solve Real Problems, Not Theoretical Ones</h2>
-      
-      <p>Before building anything, audit your existing designs. What inconsistencies are actually causing problems? Where are developers asking questions? Where are designs breaking down in handoff? Your design system should address these specific pain points.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Developer Litmus Test</h2>
-      
-      <p>If your developers aren't excited about your design system, it's probably not going to work. Include them in the process from day one. Better yet, have them help build the coded components alongside your design tokens.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Documentation That Doesn't Suck</h2>
-      
-      <p>Your documentation should answer three questions:</p>
-      <ol class="list-decimal pl-6 mb-4">
-        <li>When do I use this component?</li>
-        <li>How do I implement it correctly?</li>
-        <li>What are the edge cases I need to consider?</li>
-      </ol>
-      
-      <p>Skip the philosophy. Focus on practical guidance with real examples.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Governance Without Bureaucracy</h2>
-      
-      <p>Create simple contribution guidelines. Make it easy for team members to suggest improvements or new components. The best design systems evolve with their teams, not despite them.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Measure What Matters</h2>
-      
-      <p>Track adoption rates, not just component coverage. Are teams actually using your system? Are design-to-development handoffs smoother? Is visual consistency improving across products?</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Maintenance Reality</h2>
-      
-      <p>Plan for maintenance from day one. Design systems aren't "set it and forget it" projects. They require ongoing care, updates, and evangelism. Budget for this or watch your system slowly die.</p>
-      
-      <p>A successful design system isn't just a collection of components - it's a shared language that makes your team more efficient and your products more consistent.</p>
+      <p>A design system used to fail in one well-understood way: nobody opened it. The components were fine, the docs were fine, and people shipped one-off buttons anyway because finding the right one took longer than writing a new one. Adoption was a human problem, and the fixes were human — evangelise, pair, make the right thing the easy thing.</p>
+
+      <p>That failure mode still exists. But there is a second one now, and it is quieter. A model reads your system — the token names, the prop signatures, the examples — and generates code against what it inferred. It does this constantly, in every editor on the team, and it never asks a clarifying question.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ambiguity used to be survivable</h2>
+
+      <p>If your spacing scale has both <code>space-md</code> and <code>spacing-3</code> left over from a migration, a human notices the smell and asks someone. A model picks one, confidently, and seeds it through forty files before anyone reads a diff carefully. Inconsistency that used to be caught at the asking stage now ships at the generating stage.</p>
+
+      <p>Same with a component that takes <code>variant="primary"</code> in one place and <code>type="primary"</code> in another. A person files that under "ugly, will fix". A model files it under "both are correct" and uses them interchangeably forever.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Every inconsistency you left in because a human would work it out is now an instruction.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Write the docs as context, not as a reference</h2>
+
+      <p>Reference docs assume a reader who arrives with a question and leaves with an answer. Context docs assume a reader who ingests everything and has to infer the rules. Those want different things.</p>
+
+      <p>The highest-value thing you can add is not another prop table. It is the sentence that says when <em>not</em> to use the component, and what to reach for instead. A model will happily use your modal for a confirmation that should have been inline, because nothing told it otherwise and the modal's example looked relevant. One line — "for destructive confirmations use <code>ConfirmInline</code>; this modal is for flows longer than one decision" — removes a whole category of generated mistake.</p>
+
+      <p>The second highest-value thing is deleting the deprecated stuff rather than labelling it. A deprecation notice is a social signal; it works on humans who read the surrounding paragraph. In a context window it is one sentence next to a complete working example, and the example wins.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Name things so the wrong guess is impossible</h2>
+
+      <p>This is the unglamorous one and it pays the most. <code>rounded-sm</code> meaning eight pixels instead of the framework default of two is a small, defensible local decision — right up until something generates code based on the default and nobody notices the corners are wrong. Any name you have redefined away from what an outside reader would assume is now a trap, and the thing walking into it does not pause.</p>
+
+      <p>You have two options and both are fine: use the conventional meaning, or use a name that has no convention to collide with. What you cannot do any more is keep a familiar name with an unfamiliar value and rely on people reading the config.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The upside nobody mentions</h2>
+
+      <p>All of this is just the old advice with the consequences made immediate. Systems that were already unambiguous, already pruned, already explicit about the negative cases — those now get adopted at a rate the evangelism years never achieved, because the thing writing most of the code reads the docs every single time and never gets bored.</p>
+
+      <p>That is the actual shift. For a decade the hard part of a design system was getting humans to read it. Now the hard part is being worth reading, and you find out which one you built within about a week.</p>
     `
   },
+
   {
     id: "6",
-    title: "Case Studies That Win Clients – Beyond Pretty Screens",
-    excerpt: "Why design case studies should focus on problems, impact, and thought process — not wireframe montages.",
+    title: "A case study is a record of decisions, not a record of work",
+    excerpt: "Most portfolio case studies describe a process — discover, define, design, deliver — and never say what was actually at stake. Here is the structure that forces the other thing out.",
     author: "Hiram Barsky",
-    date: "December 28, 2025",
+    date: "October 27, 2026",
     readTime: "6 min read",
     coverImage: blogCaseStudyWriting,
-    tags: ["Portfolio", "UX Design", "Career", "Job Search", "Interview"],
+    tags: ["Portfolio", "Career", "Writing", "Case Studies"],
     slug: "case-study-writing",
     content: `
-      <p>Your portfolio is getting views but no interviews. Sound familiar? After reviewing hundreds of UX portfolios, I've identified the red flags that make hiring managers hit the back button.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #1: The Case Study Novel</h2>
-      
-      <p>Nobody has time to read your 47-slide case study. If you can't explain your process in 8-10 slides, you don't understand it well enough. Focus on the most critical decisions and their impact.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #2: All Process, No Outcome</h2>
-      
-      <p>"I conducted user interviews, created personas, mapped user journeys..." Great, but what happened? Did conversions improve? Did user satisfaction increase? Did the business metrics move? Show the impact, not just the activity.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #3: The Dribbble Syndrome</h2>
-      
-      <p>Pretty pixels don't prove UX skills. If your portfolio looks like a collection of beautiful screens with no context, you're showcasing visual design, not user experience design.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #4: Fake Projects Only</h2>
-      
-      <p>Redesigning Instagram for your portfolio is fine for learning, but it shouldn't be your only work. Real projects with real constraints show how you handle the messiness of actual product development.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #5: No Problem Definition</h2>
-      
-      <p>Starting with "The client wanted a mobile app" isn't a problem statement. What user need were you solving? What business goal were you supporting? Why was this project worth doing?</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #6: Missing Your Role</h2>
-      
-      <p>"We did user research, we created wireframes..." Who is "we"? What specifically did YOU do? Hiring managers need to understand your individual contributions.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #7: The Perfect Process Myth</h2>
-      
-      <p>Real UX work is messy. Budgets get cut, timelines compress, stakeholders change their minds. Show how you adapted when things didn't go according to plan.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Red Flag #8: No Failure Stories</h2>
-      
-      <p>If everything in your portfolio was a massive success, you're either lying or not taking enough risks. Include a project that didn't go perfectly and what you learned.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Fix: The STAR Method</h2>
-      
-      <p>Structure each case study using:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Situation:</strong> What was the context and constraints?</li>
-        <li><strong>Task:</strong> What specific problem were you solving?</li>
-        <li><strong>Action:</strong> What did you do (specifically you, not your team)?</li>
-        <li><strong>Result:</strong> What was the measurable impact?</li>
-      </ul>
-      
-      <p>Your portfolio should tell the story of how you think, not just what you can make pretty.</p>
+      <p>Here is the case study almost everyone writes. The client had a problem. I did discovery. I made personas and a journey map. I wireframed, then I designed, then I tested. Here are twelve screens. The client was happy.</p>
+
+      <p>Everything in it is true and none of it is information. A reader finishes knowing your method and nothing about your judgement, and method is the part that is now freely available to anyone who asks for it.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The question every reader is actually asking</h2>
+
+      <p>Whoever is reading — a hiring manager, a founder deciding whether to call you — is running one test: <em>when this person hit something genuinely unclear, what did they do?</em> That's it. Everything else is context for that question.</p>
+
+      <p>Which means the load-bearing part of a case study is the moment two reasonable options conflicted and you had to pick. Not the research that confirmed what you expected. The research that contradicted it, and what you did about that on a Tuesday with a deadline on Friday.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">If nothing in your case study surprised you at the time, you have written a summary of a plan, not an account of a project.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">A structure that makes the specifics unavoidable</h2>
+
+      <p><strong>What was actually at stake.</strong> Not "improve the user experience". Who was losing what, measured how, and what happened to the business if it stayed broken. If you cannot say this, you were not close enough to the project to write it up — which is worth knowing before you spend a weekend on the screens.</p>
+
+      <p><strong>The constraint.</strong> Every real project has one that shaped everything: a legacy system, a regulator, a two-person team, a date that could not move. A case study with no constraint reads as fiction, because readers who have shipped anything know the constraint is where the design actually happened.</p>
+
+      <p><strong>The decision.</strong> One specific fork. Both options, honestly described, including why the one you rejected was tempting. Then the call and the reasoning. This is the section nobody writes and the only one anybody remembers.</p>
+
+      <p><strong>What it cost.</strong> What got worse because of your choice. Every real decision trades something away. Naming the trade is the single strongest credibility signal available to you, and it is free.</p>
+
+      <p><strong>What you would do differently.</strong> Specific, not performed humility. "I'd run the research two weeks earlier" is useful. "I learned so much from this project" is not.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">On the writing itself</h2>
+
+      <p>Write it the way you would explain it to a peer over coffee who keeps asking "wait, why?" That voice is impatient, concrete and allergic to process vocabulary, which is exactly right. Then cut every sentence that would be true of any project. "We aligned on goals" is true of every project. Delete it.</p>
+
+      <p>And if you can generate a draft in a minute — you can, and so can everyone — notice what that means. Fluent prose has stopped being evidence of anything. The only part of your case study that is scarce is the part only you were in the room for. Spend your effort there and let the rest be plain.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The test before you publish</h2>
+
+      <p>Read it back and ask: could a competent stranger have written this from the brief alone, without having done the project? If yes, you have written a plan. The fix is never more polish. It is one honest paragraph about something that went sideways.</p>
     `
   },
+
   {
     id: "7",
-    title: "How AI Is Changing UX Design – A Designer's Perspective",
-    excerpt: "Practical insights on where AI helps and where it confuses users — and how to design with trust in mind.",
+    title: "What I actually use AI for, hour by hour",
+    excerpt: "Less a prediction about the profession, more an honest inventory: where a model genuinely saves me hours, where it quietly costs me more than it saves, and the line between the two.",
     author: "Hiram Barsky",
-    date: "December 15, 2025",
-    readTime: "9 min read",
+    date: "October 20, 2026",
+    readTime: "7 min read",
     coverImage: blogAiInDesign,
-    tags: ["AI", "UX Design", "Future", "Career", "Technology"],
+    tags: ["AI", "Tooling", "Workflow", "Craft"],
     slug: "ai-enhanced-ux-designer-future",
     content: `
-      <p>AI isn't going to replace UX designers, but UX designers who understand AI will replace those who don't. Here's how to position yourself for the future of design.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The AI-UX Intersection</h2>
-      
-      <p>AI is changing how we research, prototype, and validate designs. Smart designers are learning to leverage these tools to work faster and make better decisions, not to replace human insight but to amplify it.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Essential AI Skills for UX Designers</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">1. Prompt Engineering for Research</h3>
-      <p>Learn to craft effective prompts for user research synthesis, persona development, and competitive analysis. AI can process vast amounts of user feedback in minutes, but only if you know how to ask the right questions.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">2. Rapid Prototyping with AI</h3>
-      <p>Tools like ChatGPT, Claude, and specialized design AI can help you generate multiple design variations quickly. Use this for ideation, not final solutions.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">3. Conversational Interface Design</h3>
-      <p>As more products integrate chatbots and voice interfaces, understanding how to design conversations becomes crucial. Learn the principles of conversational UX.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">4. AI-Assisted User Testing</h3>
-      <p>AI can help analyze user testing sessions, identify patterns in feedback, and suggest areas for deeper investigation. It's not replacing human observation, but making it more efficient.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Human-AI Collaboration Model</h2>
-      
-      <p>The future isn't AI doing design work - it's AI helping designers do better work:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>AI handles data processing and pattern recognition</li>
-        <li>Humans provide context, empathy, and strategic thinking</li>
-        <li>Together, they create solutions neither could achieve alone</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Building AI-Enhanced Portfolios</h2>
-      
-      <p>Include projects that show:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>How you used AI tools to accelerate research or ideation</li>
-        <li>Designs for AI-powered products or features</li>
-        <li>Understanding of AI limitations and ethical considerations</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Ethical Dimension</h2>
-      
-      <p>Understanding AI bias, privacy implications, and accessibility challenges in AI-powered interfaces isn't optional - it's essential. Show that you can design responsibly with AI.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Learning Path for 2025</h2>
-      
-      <ol class="list-decimal pl-6 mb-4">
-        <li>Start with AI writing tools for research synthesis</li>
-        <li>Experiment with AI-powered design tools</li>
-        <li>Design a conversational interface</li>
-        <li>Study AI ethics and bias in design</li>
-        <li>Build something that combines traditional UX with AI capabilities</li>
-      </ol>
-      
-      <p>The designers who thrive in the AI era will be those who see it as a powerful tool for better human-centered design, not a replacement for human insight.</p>
+      <p>Most writing about AI and design is about what it means. This is about what I did last week. I design and build products end to end — research through React front end, database and deploy — so the inventory covers more surface than a pure design role would, which makes the boundary easier to see.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where it is unambiguously worth it</h2>
+
+      <p><strong>Reading an unfamiliar codebase.</strong> This is the biggest single win and nobody talks about it. Dropping into a repo I have never seen and asking what calls what used to be a half-day of grep. It is now about twenty minutes, and I am more confident at the end than I used to be at the end of the half-day.</p>
+
+      <p><strong>The fiftieth variation.</strong> Once a direction is chosen, producing the next twelve states of it is a volume problem, not a judgement problem. Volume problems are exactly what to hand over.</p>
+
+      <p><strong>Boilerplate with a known shape.</strong> Types from a schema, a migration from a diff, the fourth form that works like the other three. The correct answer already exists and is tedious to type.</p>
+
+      <p><strong>Arguing with a draft.</strong> Not writing it — arguing with it. Pasting my own reasoning in and asking what is weakest about it finds the soft spot surprisingly often, because it has no investment in my being right.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where it costs more than it saves</h2>
+
+      <p><strong>Deciding which four of fifty screens to delete.</strong> It will give you an answer. The answer is the average of what a reasonable person would say, which is precisely not what you need, because the right cut depends on the one thing about this product that is unlike other products.</p>
+
+      <p><strong>Anything that requires having been in the room.</strong> Why the client flinched at that word. Which stakeholder actually decides. Why the obvious flow is wrong for this business. There is no amount of context you can paste that substitutes for having been there.</p>
+
+      <p><strong>Debugging its own code two files away.</strong> This one is a genuine trap. Generated code fails in ways that look like other code's failures, and you can lose an afternoon in a confident wrong direction. I now read generated code before running it, every time, which eats some of the speed-up and is still worth it.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">It is very good at the work you could describe precisely. The job was never mostly that work.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The line, as best I can draw it</h2>
+
+      <p>Hand over anything where you already know what correct looks like and the cost is typing. Keep anything where the work is deciding what correct is.</p>
+
+      <p>That sounds tidy and it is genuinely hard to apply, because a lot of tasks disguise themselves. "Write the empty state copy" looks like typing. It is actually a decision about what the product thinks the user is doing there, and a generated version will be competent and slightly wrong in a way you won't notice until someone is confused.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What changed about the output</h2>
+
+      <p>More options explored, faster, and the same amount of care spent deciding between them. The throughput went up. The judgement did not get cheaper, it got more concentrated — a larger share of my week is now spent on the part that was always the actual job, because the surrounding work shrank.</p>
+
+      <p>That is a good trade and it is also more tiring, which is the part nobody warns you about. Deciding is the expensive cognitive work. Removing the breaks between decisions does not make deciding easier.</p>
     `
   },
+
   {
     id: "8",
-    title: "User Research on a Shoestring Budget: Maximum Impact, Minimum Cost",
-    excerpt: "We don't have budget for user research is the most expensive sentence in product development. Here's how to get valuable user insights without breaking the bank.",
+    title: "Research with no budget, when the tempting shortcut is a model",
+    excerpt: "You can afford real research. What you cannot afford is the convincing substitute — and in 2026 the substitute is always one prompt away.",
     author: "Hiram Barsky",
-    date: "December 1, 2025",
-    readTime: "7 min read",
+    date: "October 13, 2026",
+    readTime: "6 min read",
     coverImage: blogUserResearchBudget,
-    tags: ["User Research", "Budget", "Methods", "Strategy", "Process"],
+    tags: ["User Research", "Methods", "AI", "Process"],
     slug: "user-research-shoestring-budget",
     content: `
-      <p>"We don't have budget for user research" is the most expensive sentence in product development. Here's how to get valuable user insights without breaking the bank.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Guerrilla Research Toolkit</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">1. The 5-User Rule</h3>
-      <p>Jakob Nielsen was right - you'll find 85% of usability problems with just 5 users. Don't let perfect be the enemy of good. Five thoughtful interviews beat zero comprehensive studies.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">2. Existing Customer Goldmine</h3>
-      <p>Your current users are your best research participants. They're already invested in your product and often happy to share feedback. A simple email asking for 15 minutes of their time often yields surprising response rates.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">3. Quick Public Feedback</h3>
-      <p>Need quick usability feedback? Approach people in public spaces like libraries or coworking areas with your prototype. A friendly introduction and 10 minutes of their time yields diverse perspectives and real-world context.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Free and Low-Cost Tools</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">Remote Testing:</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Zoom for moderated sessions</li>
-        <li>Loom for unmoderated task recording</li>
-        <li>Google Forms for surveys and screeners</li>
-      </ul>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">Analytics as Research:</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Google Analytics for behavior patterns</li>
-        <li>Microsoft Clarity for heatmaps and session recordings</li>
-        <li>Social media comments for sentiment analysis</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Lean Research Process</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">Week 1: Define and Recruit</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Write 3 key research questions</li>
-        <li>Create a simple screener survey</li>
-        <li>Post in relevant online communities or social media</li>
-      </ul>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">Week 2: Conduct Sessions</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>30-minute sessions maximum</li>
-        <li>Focus on observing, not explaining</li>
-        <li>Record everything (with permission)</li>
-      </ul>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">Week 3: Synthesize and Share</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Look for patterns across sessions</li>
-        <li>Create simple insights document</li>
-        <li>Share findings with stakeholders immediately</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Creative Recruitment Strategies</h2>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Partner with local universities for student participants</li>
-        <li>Use your personal network for initial feedback</li>
-        <li>Offer product credits instead of cash incentives</li>
-        <li>Participate in research exchange programs with other companies</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Minimum Viable Research Plan</h2>
-      
-      <p>For any project, you need:</p>
-      <ol class="list-decimal pl-6 mb-4">
-        <li>One method to understand user needs (interviews or surveys)</li>
-        <li>One method to test your solution (prototype testing or A/B testing)</li>
-        <li>One method to measure success (analytics or follow-up interviews)</li>
-      </ol>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Making Research Stick</h2>
-      
-      <p>The best research is useless if it doesn't influence decisions. Make your findings:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Visual</strong> (use quotes, photos, videos)</li>
-        <li><strong>Actionable</strong> (specific recommendations, not just observations)</li>
-        <li><strong>Accessible</strong> (one-page summaries, not 50-slide presentations)</li>
-      </ul>
-      
-      <p>Remember: Imperfect research that influences decisions is infinitely more valuable than perfect research that sits in a drawer.</p>
+      <p>Research has never been cheaper to fake and it has never been much cheaper to do. That gap is the whole problem. If you have no budget, the honest version is five conversations and some uncomfortable listening. The dishonest version takes four minutes, reads better, and will agree with whatever you already planned.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Five people is genuinely enough to start</h2>
+
+      <p>Not enough to measure anything, but you are not measuring — you are trying to find out whether the problem you have imagined is the problem anyone has. Five conversations will tell you that, and the first two usually tell you most of it.</p>
+
+      <p>Recruiting is the part people think is expensive and it mostly isn't. The people who already email your support address. The ones who abandoned halfway through signup last week. A relevant subreddit, approached honestly as someone who wants to understand rather than someone running a study. One genuinely good contact who knows five more.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ask about last time, not about generally</h2>
+
+      <p>The single highest-leverage habit in cheap research: never ask what someone usually does or would do. Ask about the most recent specific instance. "Walk me through the last time you had to do this." Generalities are reconstructed and flattering. Last Tuesday is remembered and full of the annoying details that are the actual finding.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">"What would you want?" produces a feature request. "What did you do last time?" produces the problem.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where a model earns its place</h2>
+
+      <p>Synthesis. You have five transcripts and a tired brain, and finding the pattern across them is real work that a model is genuinely good at — because the raw material is real. Ask it what contradicts your summary. Ask it which quote is doing the most work and whether it's representative. That is a second reader, and second readers are expensive and useful.</p>
+
+      <p>Also: interview prep. Drafting the guide, pressure-testing whether your questions are leading, generating the follow-ups you'd forget in the moment. Cheap and clearly positive.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where it does not</h2>
+
+      <p>Standing in for the five people. A model asked to roleplay your user will produce something articulate, internally consistent and derived from how people in general talk about products in general. It cannot surprise you with a constraint specific to your actual users, and surprise is the entire reason to do research. If it never contradicts you, it never informed you.</p>
+
+      <p>The tell is simple and worth remembering: real research is annoying. It arrives at a bad time with an inconvenient finding that makes your roadmap worse. Research that confirms the plan and arrives on schedule is almost always something else wearing research's clothes.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The cheapest study that works</h2>
+
+      <p>Pick one decision you are about to make. Write down what you currently believe and what would change your mind. Talk to five people about the last time they did the relevant thing. Write up what you got wrong. The whole thing costs a week of evenings and it is the difference between building something and guessing in a nicer font.</p>
     `
   },
+
   {
     id: "9",
-    title: "From Wireframes to Wow: The Psychology of Visual Hierarchy",
-    excerpt: "Good visual hierarchy is invisible. Users don't notice it - they just effortlessly flow through your interface. Here's how to master the psychology behind intuitive designs.",
+    title: "Generated layouts all have the same problem",
+    excerpt: "Ask for a page and you get something clean, balanced, and completely flat — every element weighted the same. Hierarchy is the judgement that didn't come in the box.",
     author: "Hiram Barsky",
-    date: "October 18, 2025",
-    readTime: "8 min read",
+    date: "October 6, 2026",
+    readTime: "6 min read",
     coverImage: blogVisualHierarchy,
-    tags: ["Visual Design", "Psychology", "Hierarchy", "UX Design", "Interface"],
+    tags: ["Visual Design", "AI", "Interface Design", "Craft"],
     slug: "wireframes-to-wow-visual-hierarchy",
     content: `
-      <p>Good visual hierarchy is invisible. Users don't notice it - they just effortlessly flow through your interface. Bad visual hierarchy screams from every pixel. Here's how to master the psychology behind what makes designs feel intuitive.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Neuroscience of First Impressions</h2>
-      
-      <p>Users form opinions about your interface in 50 milliseconds. That's faster than conscious thought. Visual hierarchy isn't just about aesthetics - it's about leveraging how human brains process information.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The F-Pattern Reality</h2>
-      
-      <p>Eye-tracking studies consistently show users scan in an F-pattern:</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Horizontal movement across the top</li>
-        <li>Second horizontal movement partway down</li>
-        <li>Vertical movement down the left side</li>
-      </ul>
-      
-      <p>Design with this pattern, not against it. Place your most important elements where eyes naturally go.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Size Isn't Everything (But It Helps)</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">The Hierarchy Toolkit:</h3>
-      
-      <h4 class="text-lg font-medium mt-4 mb-2">1. Size and Scale</h4>
-      <p>Bigger draws attention, but use it sparingly. If everything is big, nothing is big.</p>
-      
-      <h4 class="text-lg font-medium mt-4 mb-2">2. Color and Contrast</h4>
-      <p>High contrast elements pop forward. Use color strategically to guide attention, not decorate.</p>
-      
-      <h4 class="text-lg font-medium mt-4 mb-2">3. Whitespace as a Tool</h4>
-      <p>Whitespace isn't empty space - it's breathing room that makes important elements stand out.</p>
-      
-      <h4 class="text-lg font-medium mt-4 mb-2">4. Typography Hierarchy</h4>
-      <p>Establish clear relationships: H1 for primary headlines, H2 for sections, body text for details. Consistency creates predictability.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Squint Test</h2>
-      
-      <p>Squint at your design. What stands out? What disappears? The elements that remain visible when squinting are your primary hierarchy. If the wrong things stand out, adjust.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Common Hierarchy Mistakes</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">1. The Everything-is-Important Trap</h3>
-      <p>When everything competes for attention, nothing gets it. Prioritize ruthlessly.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">2. Inconsistent Patterns</h3>
-      <p>If your primary buttons are blue on one page and green on another, users have to relearn your interface.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">3. Ignoring Content Hierarchy</h3>
-      <p>Your visual hierarchy should match your content hierarchy. The most important information should be the most visually prominent.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Mobile-First Hierarchy</h2>
-      
-      <p>Small screens force prioritization. Design for mobile first, then expand. If your hierarchy works on mobile, it'll work everywhere.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Testing Your Hierarchy</h2>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">The 5-Second Test:</h3>
-      <p>Show your design for 5 seconds. What do users remember? What they recall should align with what you want them to focus on.</p>
-      
-      <h3 class="text-xl font-semibold mt-6 mb-3">The Task Success Test:</h3>
-      <p>Can users complete key tasks without hunting for interface elements? If they're struggling to find the "Buy Now" button, your hierarchy needs work.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Psychology in Practice</h2>
-      
-      <p>Great visual hierarchy feels effortless because it works with human psychology, not against it. When users can scan your interface and immediately understand what's important, what's secondary, and what actions they can take, you've created something more valuable than pretty pixels - you've created clarity.</p>
-      
-      <p>And in a world of infinite digital noise, clarity is the ultimate competitive advantage.</p>
+      <p>Generate a landing page and look at what comes back. The type scale is sensible, the spacing is consistent, the colours don't fight. And every section is shouting at exactly the same volume, so your eye lands nowhere in particular and slides off.</p>
+
+      <p>This is the consistent failure mode, and it is structural rather than a quality problem. Hierarchy is a statement about what matters most, and nothing in the request said what mattered most. So you get the average: everything slightly emphasised, which is identical to nothing emphasised.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Hierarchy is a decision about the business</h2>
+
+      <p>Deciding the primary action on a page means deciding what this page is for, which means deciding what the product is trying to get someone to do, which is a product question wearing a visual costume. That is why it can't be inferred from "make a pricing page". The designer who knows that most visitors arrive confused about which plan they need will build a completely different page from the one who knows most arrive ready to buy the middle tier.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Three emphasised things on a page is zero emphasised things with extra steps.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The edit that fixes most of it</h2>
+
+      <p>Take the generated page and pick one element — exactly one — that a visitor must see. Then systematically weaken everything else. Not strengthen the one; weaken the rest. Drop the secondary button to a text link. Take the third heading down two steps. Remove the icon that was decorating rather than clarifying.</p>
+
+      <p>This is almost always subtraction, which is why it rarely survives a generated draft: the draft is additive by construction, and every element in it looks deliberate because it is rendered as carefully as every other element.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where it gets expensive</h2>
+
+      <p>Dashboards and data-dense screens, because the flattening is harder to see. Twelve equally-weighted metric tiles look organised. They are organised the way a filing cabinet is organised — technically correct, and no help at all to someone who needs to know whether today is going badly. The design work is deciding which two numbers get to be large, and that requires knowing what the person opening it is afraid of.</p>
+
+      <p>Same in long forms. A generated form treats every field as equally important because the schema did. The human version knows that two of those fields cause most of the abandonment and everything else is noise around them.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why this is good news</h2>
+
+      <p>For years, a lot of visual design labour went into producing the competent baseline — the consistent spacing, the sane type scale, the colours that work. That is now free and it is genuinely better than what most teams were shipping.</p>
+
+      <p>What remains is the part that was always the interesting half: knowing what this particular screen is for, and being willing to make everything else on it quieter. That has not got easier, it has just stopped being hidden underneath the production work.</p>
     `
   },
+
   {
-    id: "1",
-    title: "From Zero to Launch: Shipping a Product with Placeholder Data and No Marketing Budget",
-    excerpt: "As a solo product designer, it's easy to get caught in the loop of building, tweaking, and endlessly polishing. Here's how I broke that cycle.",
+    id: "10",
+    title: "Shipping an AI feature before you have the data",
+    excerpt: "Every model-backed feature has a cold start, and the honest ones admit it. Designing the first week — when the system knows nothing about anyone — decides whether there is a second week.",
     author: "Hiram Barsky",
-    date: "May 16, 2025",
-    readTime: "8 min read",
-    coverImage: "/uploads/b05265c4-6699-47ae-9319-0fdea04fd57f.png",
-    tags: ["Product Design", "Marketing", "Solo Designer", "UX Design"],
+    date: "September 29, 2026",
+    readTime: "7 min read",
+    coverImage: "/blog/built-product-without-real-data-cover.jpg",
+    tags: ["AI", "Product Design", "Cold Start", "Shipping"],
     slug: "built-product-without-real-data",
     content: `
-      <p>As a solo product designer, it's easy to get caught in the loop of building, tweaking, and endlessly polishing. You finish something—maybe on a platform like lovable.dev—but then… crickets.</p>
-      
-      <p>No real users. No real data. No clue how to market.</p>
-      
-      <p>That was me. And if you're reading this, it might be you too.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop" alt="Solo designer working on laptop" class="w-full h-auto my-6" />
-      
-      <p>Here's the good news: even without marketing experience or live data, you can share your work in a way that gets attention, starts conversations, and builds momentum.</p>
-      
-      <p>This post is for solo designers who want to take that next step—without pretending to be a marketing guru.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">1. Own the "Solo Designer" Story</h2>
-      
-      <p>People connect with people. You're not a faceless brand—you're a designer who built something from scratch. That's a story in itself.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=400&fit=crop" alt="Laptop with design work" class="w-full h-auto my-6" />
-      
-      <p><strong>What to do:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Write 2-3 sentences about why you built it.</li>
-        <li>Be honest about the current state (e.g., "It's functional but uses placeholder data").</li>
-        <li>Frame it as a work-in-progress, not a final product.</li>
-      </ul>
-      
-      <p><strong>Example intro you could use on Twitter or LinkedIn:</strong><br>
-      "Built this solo in nights and weekends—wanted to solve a real problem I kept seeing. It's not live yet (mock data only), but I'd love your feedback."</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">2. Create a "Tour" Instead of a Launch</h2>
-      
-      <p>If there's no real data or users, make your marketing about the experience—not the stats.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop" alt="Circuit board technology" class="w-full h-auto my-6" />
-      
-      <p><strong>What to do:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Record a quick walkthrough (Loom, ScreenStudio, or Figma prototype video).</li>
-        <li>Narrate your thinking: why each screen exists, how you simplified flows, what tradeoffs you made.</li>
-        <li>Post the tour on your site or share the video on social.</li>
-      </ul>
-      
-      <p><strong>Pro tip:</strong> Designers LOVE seeing other designers' behind-the-scenes thinking. That's the real value.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">3. Package Your Work as a Case Study</h2>
-      
-      <p>Think of it as a product design portfolio piece—not a product you're "selling."</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop" alt="Code on monitor screen" class="w-full h-auto my-6" />
-      
-      <p><strong>What to include:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Problem you tried to solve</li>
-        <li>User type and use case (even if fictional)</li>
-        <li>Screens or flows with commentary</li>
-        <li>Key design decisions</li>
-        <li>What you'd do next if it were a real product</li>
-      </ul>
-      
-      <p><strong>Post it on:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Your personal site or blog</li>
-        <li>Medium / UX Collective</li>
-        <li>Notion (people love public Notion docs)</li>
-        <li>LinkedIn articles</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">4. Find the "Designer Corners" of the Internet</h2>
-      
-      <p>There's no need to blast ads or beg for signups. Instead, share your work where product designers hang out:</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop" alt="Person using MacBook Pro" class="w-full h-auto my-6" />
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Reddit: r/userexperience, r/web_design, r/design_critiques</li>
-        <li>Twitter/X: Share a thread that breaks down the build</li>
-        <li>LinkedIn: Post your walkthrough + invite design feedback</li>
-        <li>Figma Community: Publish reusable components or templates if relevant</li>
-        <li>UX Discords / Slack groups: Ask if anyone's solving a similar problem</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">5. Ask for Feedback, Not Fame</h2>
-      
-      <p>Instead of aiming for 100 likes, aim for 5 conversations with other designers.</p>
-      
-      <p><strong>What to ask:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>"Would you approach this problem differently?"</li>
-        <li>"Is there a smoother way to solve this use case?"</li>
-        <li>"Do you think this has potential in the real world?"</li>
-      </ul>
-      
-      <p>This is still design work. Sharing and improving is part of the job—not just shipping.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">6. Turn It Into a Series</h2>
-      
-      <p>Instead of one big post, break your experience into smaller bits of content over a few weeks:</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=400&fit=crop" alt="Woman using laptop computer" class="w-full h-auto my-6" />
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>"Why I built this"</li>
-        <li>"Sketching out the core flow"</li>
-        <li>"Simplifying the onboarding experience"</li>
-        <li>"What I learned launching a fake product"</li>
-      </ul>
-      
-      <p>You'll stay top of mind, build credibility, and show growth over time.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Final Thoughts</h2>
-      
-      <p>You don't need real users to be a real designer.<br>
-      You don't need metrics to talk about your process.<br>
-      And you don't need a marketing degree to start showing up.</p>
-      
-      <p>If you've built something—especially alone—you already did the hard part.</p>
-      
-      <p>Now, just let people in on the journey.</p>
-      
-      <p><strong>P.S.</strong> If you've got a project you want feedback on, feel free to DM me or drop a link in the comments. Happy to nerd out with you.</p>
+      <p>The demo is always built on a dataset somebody curated. The product launches to a person the system has never seen, with no history, no signal and nothing to personalise against. That gap between the demo and the first real session is where most AI features quietly die.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The cold start is a design problem, not a data problem</h2>
+
+      <p>Teams treat it as something that resolves itself once usage arrives. It doesn't, because the usage never arrives if the first session is bad. The recommendation engine with nothing to recommend from shows generic results, the user concludes the product doesn't understand them, and they leave before generating the data that would have made it work.</p>
+
+      <p>So the first week has to be designed on purpose, as its own experience, rather than treated as a degraded version of the eventual one.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Three things that actually help</h2>
+
+      <p><strong>Ask for less than you need and be explicit about why.</strong> A short, obviously-purposeful setup beats a long one and beats silent inference. People will give you three answers if they can see the shape of what those answers buy them. They will not fill in twelve fields on faith.</p>
+
+      <p><strong>Make the empty state useful on its own terms.</strong> Not "no results yet" with a spinner. The best version of a cold screen is a genuinely good default — an editorially chosen starting point that would be worth looking at even if the system never learned anything. If that sounds like a lot of work for a temporary state, consider that it is the only state some users will ever see.</p>
+
+      <p><strong>Say what it knows.</strong> "Based on the one thing you told me" is a much stronger position than silently pretending to personalise. Honesty about thin signal buys enormous patience; discovering that confident output was built on nothing buys none.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">A system that admits it is guessing gets a second chance. One that is confidently wrong does not.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Placeholder data lies to you specifically</h2>
+
+      <p>Building against seeded data is necessary and it produces a very particular blindness. Your fixtures are tidy, evenly distributed and the right length. Real data is lumpy — one user with four hundred entries and nine hundred with two, names that break the layout, a text field somebody used as a diary.</p>
+
+      <p>The cheap mitigation: make your seed data deliberately ugly. One record with an absurdly long title, one with every optional field empty, one with characters you did not plan for. It costs ten minutes and catches a category of bug that otherwise ships.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Ship narrow instead of waiting</h2>
+
+      <p>The alternative to launching cold is launching later with more data, and later usually means never because the data was going to come from the launch. The way out is narrowing: pick the one case where you genuinely do have enough signal on day one, make that excellent, and say plainly that the rest is coming.</p>
+
+      <p>A product that does one thing well with no history is credible. A product that does ten things vaguely because none of them have data yet is just a demo that got deployed.</p>
     `
   },
+
   {
-    id: "2",
-    title: "What I Learned Building Products Nobody Asked For",
-    excerpt: "Five years of building side projects taught me more about product design than any course or certification ever could. Here's what I wish I knew earlier.",
+    id: "11",
+    title: "Five products nobody asked for, and what they actually taught me",
+    excerpt: "I have five things live that no client commissioned — a game, a sports app, a herbalist directory, a prediction market and an arcade fighter. Here is the honest accounting of what building them was worth.",
     author: "Hiram Barsky",
-    date: "April 28, 2025",
-    readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop",
-    tags: ["Product Development", "Lessons Learned", "Side Projects", "Design Process"],
+    date: "September 22, 2026",
+    readTime: "7 min read",
+    coverImage: "/blog/building-products-nobody-asked-for-cover.jpg",
+    tags: ["Side Projects", "Product Development", "Lessons Learned", "Shipping"],
     slug: "building-products-nobody-asked-for",
     content: `
-      <p>Over the past five years, I've built more side projects than I care to count. Most of them were complete failures. A few got some traction. None made me rich.</p>
-      
-      <p>But here's the thing—building products nobody asked for taught me more about design than any course, certification, or "best practices" guide ever could.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop" alt="Matrix code visualization" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>If you're a designer who builds things, this post is for you.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">1. Your First Idea Will Always Be Wrong</h2>
-      
-      <p>I used to spend weeks perfecting the "perfect" concept before building anything. Sketching wireframes, researching competitors, writing detailed PRDs.</p>
-      
-      <p>Then I'd build it, launch it, and... nothing.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop" alt="Laptop computer on surface" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>The problem wasn't execution—it was assumption. I was solving problems that existed only in my head.</p>
-      
-      <p><strong>What I learned:</strong> Start building sooner. Your first idea is a hypothesis, not a solution. The faster you can test it with real users (even if it's just 3 people), the faster you can iterate toward something that actually matters.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">2. Features Don't Create Value—Workflows Do</h2>
-      
-      <p>I used to think users wanted more features. More customization. More options. More power.</p>
-      
-      <p>So I'd add feature after feature, making my apps more "powerful" but infinitely more complex.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&h=400&fit=crop" alt="Colorful code on computer monitor" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Users didn't care about my 47 customization options. They cared about completing their task quickly and moving on with their day.</p>
-      
-      <p><strong>What I learned:</strong> Design workflows, not features. Ask "How does this help someone get from point A to point B faster?" If you can't answer that clearly, you're probably building the wrong thing.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">3. Marketing Starts at the First Pixel</h2>
-      
-      <p>I used to think marketing was something you do after you build the product. Write some copy, make some ads, post on social media.</p>
-      
-      <p>Wrong.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=400&fit=crop" alt="People around video displays" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Marketing starts the moment you decide what problem to solve. Every design decision is a marketing decision. Every user interaction is a marketing moment.</p>
-      
-      <p><strong>What I learned:</strong> If you can't explain your product in one sentence, you haven't designed it clearly enough. If users need a tutorial to understand your main value proposition, you've over-designed it.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">4. Perfect Is the Enemy of Launched</h2>
-      
-      <p>I have a folder full of "almost ready" projects. Beautiful designs. Polished interactions. Comprehensive feature sets.</p>
-      
-      <p>All of them are worth exactly $0 because none of them ever saw a real user.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=800&h=400&fit=crop" alt="Stylus pen and tablet computer" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Meanwhile, my most successful projects were the ones I was slightly embarrassed to share. They were rough around the edges but solved a real problem for real people.</p>
-      
-      <p><strong>What I learned:</strong> Ship the minimum viable version of your idea. Real user feedback on an imperfect product is infinitely more valuable than imaginary feedback on a perfect one.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">5. Users Don't Want to Learn Your System</h2>
-      
-      <p>As designers, we love elegant, consistent systems. We create style guides, interaction patterns, and interface languages.</p>
-      
-      <p>But users don't care about your system. They care about their goals.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop" alt="People with laptops at table" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>If your beautifully consistent interface makes their task harder, they'll abandon it for something that "just works"—even if it's uglier.</p>
-      
-      <p><strong>What I learned:</strong> Optimize for user success, not design consistency. Sometimes the right answer is the "wrong" answer according to your style guide.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">6. The Best Ideas Come from Personal Frustration</h2>
-      
-      <p>My most successful projects all started the same way: I was annoyed by something in my own life and built a solution for myself.</p>
-      
-      <p>The projects that failed? Those were "market opportunities" I identified through research and analysis.</p>
-      
-      <p>When you're solving your own problem, you have perfect user empathy. You know exactly how the current solutions fail. You know what "good enough" looks like. You know when you've actually solved the problem.</p>
-      
-      <p><strong>What I learned:</strong> Start with problems you personally experience. You'll build better solutions and spot bad ideas faster.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Meta-Lesson</h2>
-      
-      <p>The biggest thing I learned from building products nobody asked for? How to ask better questions.</p>
-      
-      <p>Instead of "What features should I build?" I now ask "What job is this user trying to get done?"</p>
-      
-      <p>Instead of "How can I make this more powerful?" I ask "How can I make this simpler?"</p>
-      
-      <p>Instead of "What do users want?" I ask "What are users struggling with?"</p>
-      
-      <p>Building side projects is the best design education you can get—not because you'll build the next unicorn, but because you'll learn to see product development through users' eyes instead of your own.</p>
-      
-      <p>And that perspective is worth more than any certification you can hang on your wall.</p>
+      <p>There are five products I built because I wanted to, not because anyone paid me: a canvas arcade game, a pickup-sports app, a herbalist directory, a prediction-market app and an arcade fighter. All five are live. None of them were requested by a client, a manager or a market.</p>
+
+      <p>The standard advice about side projects is either "build in public, it compounds" or "it's a distraction, go get customers". Both are too clean. Here is the actual ledger.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What building them genuinely taught</h2>
+
+      <p><strong>The last ten percent is ninety percent of the learning.</strong> Anyone can get a thing working on localhost. The education is in the deploy that fails for an environment reason, the auth flow that leaks data across users because you trusted the client, the mobile layout that was fine until a real device, the empty state you never drew because your test account always had data. You only meet those by finishing.</p>
+
+      <p><strong>Shipping end to end changes what you design.</strong> When the person who chose the interaction also writes the component, the empty state nobody drew becomes impossible to ignore, because it's you who finds out it never renders. Every handoff boundary in a normal team is a place that lesson gets lost.</p>
+
+      <p><strong>You find out what you actually believe.</strong> It is easy to hold design opinions when a stakeholder decides. It's different when there is nobody to blame and the thing is just worse than you wanted.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Building it teaches you to build. It teaches you nothing whatsoever about whether it was worth building.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What they did not teach</h2>
+
+      <p>Anything about demand. Every one of these started from "this would be interesting to make", which is an excellent reason to make something and a terrible reason to expect anyone to use it. I learned a great deal about building and nothing about distribution, because I never had to do the second part.</p>
+
+      <p>That is the honest limit on the whole exercise, and it is worth saying plainly rather than retrofitting a market story onto it afterwards. The thing I got good at is shipping. Shipping is not the same skill as finding out what to ship.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why it matters more now, not less</h2>
+
+      <p>Building got dramatically cheaper. That ought to make side projects less valuable as a signal — anyone can generate an app — and in one sense it does. A screenshot proves nothing.</p>
+
+      <p>But a thing that is live, that handles real input from people you did not choose, that has survived a month of your own neglect, proves something a generated repository cannot: that you took something all the way through the unglamorous part where most projects stop. That gap got wider, not narrower, when the first eighty percent became free.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">If you are going to build one</h2>
+
+      <p>Pick something you will actually use, so you are your own first honest user. Put it somewhere real with a domain, because the deploy is the part that teaches. Then leave it alone for a month and come back, because the bugs that matter show up in neglect, not in the first week's enthusiasm.</p>
+
+      <p>And be clear with yourself about which thing you are buying. You are buying craft and finishing, not validation. The second one still costs talking to people.</p>
     `
   },
+
   {
-    id: "4",
-    title: "Why Your Beautiful Interface Doesn't Convert",
-    excerpt: "A gorgeous design that doesn't drive user action is just expensive decoration. Here's how to design interfaces that actually get results.",
+    id: "12",
+    title: "The interface is rarely why they didn't convert",
+    excerpt: "When everything looks professional, a redesign stops being the lever. The reasons people leave have mostly moved somewhere less flattering to look at.",
     author: "Hiram Barsky",
-    date: "March 30, 2025",
-    readTime: "9 min read",
-    coverImage: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=800&h=400&fit=crop",
-    tags: ["Conversion Optimization", "UX Design", "User Psychology", "Interface Design"],
+    date: "September 15, 2026",
+    readTime: "7 min read",
+    coverImage: "/blog/beautiful-interface-doesnt-convert-cover.jpg",
+    tags: ["Conversion", "Product Design", "Trust", "UX"],
     slug: "beautiful-interface-doesnt-convert",
     content: `
-      <p>I once spent three months designing the most beautiful checkout flow I'd ever created. Clean typography, perfect spacing, subtle animations, gorgeous illustrations.</p>
-      
-      <p>The conversion rate dropped by 23%.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&h=400&fit=crop" alt="Orange flowers in bloom" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>That's when I learned the hard truth: beautiful and effective are not the same thing.</p>
-      
-      <p>If you're designing interfaces that need to drive action—signups, purchases, downloads, anything—this post will save you from my expensive mistakes.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Pretty Doesn't Mean Persuasive</h2>
-      
-      <p>The most beautiful interface in the world is worthless if users don't take the action you need them to take.</p>
-      
-      <p>I used to think conversion optimization was about making things "look more trustworthy" or "feel more premium." So I'd add more white space, choose more sophisticated colors, create more elegant layouts.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=800&h=400&fit=crop" alt="River between mountains under clouds" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>But conversion isn't about aesthetic appeal—it's about removing friction and reducing anxiety.</p>
-      
-      <p><strong>The shift in thinking:</strong> Instead of asking "Does this look good?" start asking "Does this help users move forward confidently?"</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Users Don't Want to Think</h2>
-      
-      <p>As designers, we love subtle interfaces that require users to discover functionality. Hidden navigation that appears on hover. Minimalist buttons that blend seamlessly into the design. Clever interactions that surprise and delight.</p>
-      
-      <p>But users in conversion flows aren't tourists admiring your craft—they're people trying to complete a task as quickly and painlessly as possible.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&h=400&fit=crop" alt="Pine trees in nature" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>What I learned:</strong> Every moment of confusion is a moment where users might abandon your flow. Obvious is better than clever. Clear is better than cool.</p>
-      
-      <p><strong>Examples that work:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>Big, obvious buttons that scream "click here"</li>
-        <li>Form labels that clearly explain what information you need</li>
-        <li>Progress indicators that show exactly how much more work is required</li>
-        <li>Error messages that tell users exactly how to fix problems</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Anxiety Kills Conversion</h2>
-      
-      <p>The biggest conversion killer isn't bad design—it's user anxiety. People abandon flows because they're worried about:</p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Security:</strong> "Is this site going to steal my credit card?"</li>
-        <li><strong>Commitment:</strong> "What am I actually signing up for?"</li>
-        <li><strong>Complexity:</strong> "How long is this going to take?"</li>
-        <li><strong>Value:</strong> "Is this worth it?"</li>
-        <li><strong>Mistakes:</strong> "What if I mess this up?"</li>
-      </ul>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&h=400&fit=crop" alt="Low angle view of trees" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Your beautiful design means nothing if users are paralyzed by these concerns.</p>
-      
-      <p><strong>How to reduce anxiety:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Show security badges and guarantees prominently</strong></li>
-        <li><strong>Be explicit about what users are committing to</strong></li>
-        <li><strong>Tell users exactly how long the process will take</strong></li>
-        <li><strong>Communicate value clearly at every step</strong></li>
-        <li><strong>Make it easy to correct mistakes without starting over</strong></li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Test Your Assumptions, Not Your Taste</h2>
-      
-      <p>I used to A/B test different color schemes and layout options—essentially testing my design preferences against each other.</p>
-      
-      <p>But the real insights came when I started testing different approaches to user psychology:</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&h=400&fit=crop" alt="Sunlight through green trees" class="w-full h-auto rounded-lg my-6" />
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Social proof vs. logical benefits</strong></li>
-        <li><strong>Single-step vs. multi-step forms</strong></li>
-        <li><strong>Feature lists vs. outcome descriptions</strong></li>
-        <li><strong>Urgency messaging vs. comfort messaging</strong></li>
-        <li><strong>Detailed explanations vs. simple instructions</strong></li>
-      </ul>
-      
-      <p>The winners weren't always the ones I thought looked better—they were the ones that better matched how users actually think and behave.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Words Matter More Than Visuals</h2>
-      
-      <p>This one hurt my designer ego, but it's true: In conversion flows, copy is often more important than visual design.</p>
-      
-      <p>Users scan interfaces looking for specific information:</p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li>"What does this cost?"</li>
-        <li>"What am I getting?"</li>
-        <li>"How long does this take?"</li>
-        <li>"Can I cancel?"</li>
-        <li>"Is this secure?"</li>
-      </ul>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop" alt="Mountain landscape with sun rays" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>If your visual design makes it harder to find these answers, your conversion rate will suffer—no matter how beautiful the interface looks.</p>
-      
-      <p><strong>What works:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Scannable headlines that answer key questions</strong></li>
-        <li><strong>Bullet points instead of paragraphs</strong></li>
-        <li><strong>Specific details instead of vague promises</strong></li>
-        <li><strong>Action-oriented button text ("Start My Free Trial" vs. "Submit")</strong></li>
-        <li><strong>Clear value propositions at every step</strong></li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Mobile Changes Everything</h2>
-      
-      <p>Conversion flows that work perfectly on desktop often fall apart on mobile—not because of responsive design issues, but because of context differences.</p>
-      
-      <p>Mobile users are:</p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>More distracted</strong> (multitasking, on the go)</li>
-        <li><strong>More impatient</strong> (expect instant gratification)</li>
-        <li><strong>More cautious</strong> (harder to see security indicators)</li>
-        <li><strong>More error-prone</strong> (smaller touch targets, autocorrect issues)</li>
-      </ul>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&h=400&fit=crop" alt="Blue starry night sky" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>Mobile conversion design principles:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Larger touch targets</strong> (especially for primary actions)</li>
-        <li><strong>Fewer form fields per screen</strong></li>
-        <li><strong>More prominent security indicators</strong></li>
-        <li><strong>Clearer error prevention and correction</strong></li>
-        <li><strong>Faster loading times</strong> (every second costs conversions)</li>
-      </ul>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Conversion Design Framework</h2>
-      
-      <p>Instead of starting with visual concepts, I now start every conversion-focused design with these questions:</p>
-      
-      <ol class="list-decimal pl-6 mb-4">
-        <li><strong>What's the primary action I need users to take?</strong></li>
-        <li><strong>What might prevent them from taking that action?</strong></li>
-        <li><strong>What information do they need to feel confident?</strong></li>
-        <li><strong>How can I make the next step as obvious as possible?</strong></li>
-        <li><strong>What's the simplest way to communicate value?</strong></li>
-      </ol>
-      
-      <p>Only after answering these questions do I start thinking about visual design.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Measure What Matters</h2>
-      
-      <p>Awards and design blog features don't pay the bills—conversions do.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=400&fit=crop" alt="Foggy mountain summit" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Track these metrics relentlessly:</p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Conversion rate</strong> (obviously)</li>
-        <li><strong>Drop-off points</strong> (where do users abandon the flow?)</li>
-        <li><strong>Time to convert</strong> (longer usually means more friction)</li>
-        <li><strong>Error rates</strong> (especially on forms)</li>
-        <li><strong>Support tickets</strong> (confusion creates support burden)</li>
-      </ul>
-      
-      <p>If your beautiful design doesn't move these numbers in the right direction, it's not doing its job.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Ugly Truth</h2>
-      
-      <p>Some of the highest-converting interfaces I've built were also some of the ugliest. Big orange buttons. Aggressive headlines. Obvious social proof. Repetitive value propositions.</p>
-      
-      <p>They worked because they prioritized user success over designer taste.</p>
-      
-      <p>That doesn't mean abandoning good design—it means remembering that good design serves a purpose beyond looking pretty.</p>
-      
-      <p>The most beautiful interface in the world is worthless if it doesn't help your business and your users achieve their goals.</p>
-      
-      <p>Design for results, not recognition.</p>
+      <p>A client shows you the funnel, points at the drop-off and asks for a redesign. Sometimes that's right. Increasingly it isn't, because the page already looks fine — competent type, sane spacing, a clear button — and the people leaving are not leaving because it was ugly.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Visual quality stopped being a differentiator</h2>
+
+      <p>For a long time, looking professional was itself a signal: it took money and skill, so it correlated with being a real company. That correlation has broken. A weekend project and a funded startup now render identically, which means the visitor has stopped reading polish as evidence of anything and started looking for other signals.</p>
+
+      <p>So the question moved. It used to be "does this look legitimate". It is now "is this specific claim true, and what happens to me if it isn't".</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The reasons people actually leave</h2>
+
+      <p><strong>They cannot tell what it does.</strong> Not the design — the sentence. A startling number of products explain their category rather than their function, and a visitor who has to infer what happens after they sign up mostly just doesn't.</p>
+
+      <p><strong>The price is hidden.</strong> Hiding it filters out everyone who needed to know before investing a call, which is most people, and keeps the ones who were going to buy anyway. It feels like capturing leads. It is mostly losing the undecided.</p>
+
+      <p><strong>Nothing on the page is checkable.</strong> Claims with no name, number or artefact behind them read as noise now, because generating confident claims costs nothing. One specific, verifiable thing outperforms five polished unverifiable ones.</p>
+
+      <p><strong>The next step is ambiguous or expensive.</strong> "Book a demo" asks for a calendar commitment from someone still deciding whether to care. The gap between "interested" and the smallest available action is where a lot of intent evaporates.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">When everything is well-designed, design stops being information. People start reading for specifics instead.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What to do before redesigning</h2>
+
+      <p>Read your own page as a stranger with a problem and a budget. Can you tell what it does in one sentence, what it costs within an order of magnitude, who else uses it, and what the smallest next step is? Most pages fail at least two of those, and none of the four are visual problems.</p>
+
+      <p>Then watch five people try. Not analytics — five recordings or five sessions. Every time I have done this, the reason for abandonment was something nobody on the team had considered, and it was never the colour of the button.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">When it really is the interface</h2>
+
+      <p>It does happen: forms that lose input on error, flows with no way back, a mobile layout that clips the action, anything requiring an account before showing value. These are mechanical failures rather than aesthetic ones, and they are worth fixing immediately — but they are also not what people mean when they ask for a redesign.</p>
+
+      <p>The uncomfortable version of this advice is that the fix is usually in the copy, the pricing or the product rather than in the design file. That is a harder conversation and it is more often the true one.</p>
     `
   },
+
   {
-    id: "5",
-    title: "How to Research When You Don't Have Users Yet",
-    excerpt: "Building something new? Here's how to do meaningful user research before you have actual users to talk to.",
+    id: "13",
+    title: "Synthetic users will agree with you",
+    excerpt: "You can generate a persona, interview it, and get back fluent, plausible, well-organised answers. The one thing it will almost never do is tell you that you are wrong.",
     author: "Hiram Barsky",
-    date: "March 18, 2025",
-    readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=800&h=400&fit=crop",
-    tags: ["User Research", "Product Development", "Validation", "Design Process"],
+    date: "September 8, 2026",
+    readTime: "6 min read",
+    coverImage: "/blog/research-without-users-cover.jpg",
+    tags: ["User Research", "AI", "Validation", "Process"],
     slug: "research-without-users",
     content: `
-      <p>You have an idea for a product. You know you should talk to users before building it. But you don't have users yet—because the product doesn't exist.</p>
-      
-      <p>This chicken-and-egg problem stops a lot of great ideas before they start. How do you research something that doesn't exist for people who don't exist yet?</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1504893524553-b855bce32c67?w=800&h=400&fit=crop" alt="River surrounded by rock formation" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Here's how I've learned to do meaningful user research in the earliest stages of product development.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Start with the Problem, Not the Solution</h2>
-      
-      <p>Most people research their solution: "Would you use an app that does X?" or "What do you think of this feature?"</p>
-      
-      <p>But solutions are hypothetical. Problems are real.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=800&h=400&fit=crop" alt="Desert sand landscape" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Instead of asking people to imagine using your non-existent product, ask them about their existing struggle with the problem you're trying to solve.</p>
-      
-      <p><strong>Bad questions:</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>"Would you use a meal planning app with AI recommendations?"</li>
-        <li>"How much would you pay for automated expense tracking?"</li>
-        <li>"What features would you want in a project management tool?"</li>
-      </ul>
-      
-      <p><strong>Good questions:</strong></p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>"How do you currently decide what to cook for dinner?"</li>
-        <li>"Walk me through how you track business expenses now."</li>
-        <li>"What's the most frustrating part of managing projects at your company?"</li>
-      </ul>
-      
-      <p>People can tell you exactly how they currently struggle. They can't tell you how they'd use a solution they've never tried.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Find Your Proto-Users</h2>
-      
-      <p>You might not have users of your product, but you can find people who experience the problem you're trying to solve.</p>
-      
-      <p>I call these "proto-users"—people who represent your eventual user base, even though they've never heard of your product.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&h=400&fit=crop" alt="Trees near rocky mountain under blue sky" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>Where to find proto-users:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Reddit communities</strong> where people discuss the problem</li>
-        <li><strong>LinkedIn groups</strong> related to your target industry</li>
-        <li><strong>Facebook groups</strong> for people in your target demographic</li>
-        <li><strong>Twitter hashtags</strong> where people complain about the problem</li>
-        <li><strong>Your personal network</strong> (ask friends to introduce you to relevant people)</li>
-        <li><strong>Existing product reviews</strong> where people describe current solutions' shortcomings</li>
-      </ul>
-      
-      <p>The key is finding places where your target users are already talking about the problem you want to solve.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Study Their Current Workflow</h2>
-      
-      <p>Instead of asking people what they want, observe what they currently do.</p>
-      
-      <p>Every product replaces or improves an existing workflow. Understanding that current workflow is your roadmap to a better solution.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?w=800&h=400&fit=crop" alt="Forest illuminated by sunbeam" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>What to document:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>What triggers them to start the task?</strong></li>
-        <li><strong>What tools do they currently use?</strong></li>
-        <li><strong>Where do they get stuck or frustrated?</strong></li>
-        <li><strong>What workarounds have they created?</strong></li>
-        <li><strong>How do they know when they're done?</strong></li>
-        <li><strong>What happens if they make a mistake?</strong></li>
-      </ul>
-      
-      <p>The gaps and friction points in their current process are your product opportunities.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Listen to Their Language</h2>
-      
-      <p>Pay attention to the exact words people use to describe their problems and current solutions.</p>
-      
-      <p>This isn't just for marketing copy—it's for understanding how they think about the problem space.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1500673922987-e212871fec22?w=800&h=400&fit=crop" alt="Yellow lights between trees" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>What to capture:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>What do they call the problem?</strong> ("managing projects" vs. "keeping track of tasks")</li>
-        <li><strong>How do they describe pain points?</strong> ("it's a nightmare" vs. "it's inefficient")</li>
-        <li><strong>What words do they use for current solutions?</strong> ("tool" vs. "platform" vs. "system")</li>
-        <li><strong>How do they talk about ideal outcomes?</strong> ("faster" vs. "easier" vs. "more reliable")</li>
-      </ul>
-      
-      <p>When you use their language in your product, it feels familiar instead of foreign.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Validate with Paper Prototypes</h2>
-      
-      <p>You don't need a working product to test core concepts. Paper prototypes and wireframes can validate your biggest assumptions.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&h=400&fit=crop" alt="Body of water surrounded by trees" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>What you can test with low-fidelity prototypes:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>Does your mental model match theirs?</strong> (Do they understand your information architecture?)</li>
-        <li><strong>Are you solving the right problem?</strong> (Do they care about the outcomes your product promises?)</li>
-        <li><strong>Is your solution approach viable?</strong> (Can they complete key tasks with your proposed workflow?)</li>
-        <li><strong>What are you missing?</strong> (What questions do they ask that your design doesn't answer?)</li>
-      </ul>
-      
-      <p>I've killed bad ideas and improved good ones using nothing but sketches and conversations.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Analyze Competitor Reviews</h2>
-      
-      <p>Your competitors' users are your potential users. Their reviews are a goldmine of research data.</p>
-      
-      <p><strong>What to look for in reviews:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>What do people love?</strong> (These are table stakes for your product)</li>
-        <li><strong>What do they consistently complain about?</strong> (These are your opportunities)</li>
-        <li><strong>What workarounds do they mention?</strong> (These reveal unmet needs)</li>
-        <li><strong>Why do they switch to other products?</strong> (These are critical failure points to avoid)</li>
-        <li><strong>What do they wish existed?</strong> (These are potential features)</li>
-      </ul>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&h=400&fit=crop" alt="Bird's eye view of green mountains" class="w-full h-auto rounded-lg my-6" />
-      
-      <p>Read reviews on App Store, Google Play, G2, Capterra, Amazon—anywhere your target users might leave feedback about existing solutions.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Run Assumption Mapping Workshops</h2>
-      
-      <p>List out every assumption you're making about users, their problems, and your solution. Then prioritize which assumptions are riskiest to be wrong about.</p>
-      
-      <p><strong>Categories of assumptions:</strong></p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>User assumptions:</strong> Who they are, what they do, how they behave</li>
-        <li><strong>Problem assumptions:</strong> What problems they have, how painful those problems are</li>
-        <li><strong>Solution assumptions:</strong> What kind of solution they want, how they'd use it</li>
-        <li><strong>Business assumptions:</strong> What they'd pay, how they'd discover your product</li>
-      </ul>
-      
-      <p>Test your riskiest assumptions first. If you're wrong about who your users are, nothing else matters.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Create Lean Research Plans</h2>
-      
-      <p>You don't need a PhD in user research to ask good questions. You just need a plan.</p>
-      
-      <img width="800" height="400" src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?w=800&h=400&fit=crop" alt="Green grass and rocky mountain" class="w-full h-auto rounded-lg my-6" />
-      
-      <p><strong>My simple research session structure:</strong></p>
-      
-      <ol class="list-decimal pl-6 mb-4">
-        <li><strong>Background (5 minutes):</strong> Who are they and what's their context?</li>
-        <li><strong>Current state (15 minutes):</strong> How do they currently handle the problem?</li>
-        <li><strong>Pain points (10 minutes):</strong> What's frustrating about their current approach?</li>
-        <li><strong>Ideal state (10 minutes):</strong> If they could wave a magic wand, what would be different?</li>
-        <li><strong>Concept reaction (15 minutes):</strong> Show them your prototype and listen to their response</li>
-        <li><strong>Wrap-up (5 minutes):</strong> Any questions they have for you</li>
-      </ol>
-      
-      <p>Keep sessions conversational, not interrogational. You're trying to understand their world, not validate your ideas.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">Start Small, Iterate Fast</h2>
-      
-      <p>You don't need to talk to 100 people. Start with 5-8 conversations. Look for patterns in their responses:</p>
-      
-      <ul class="list-disc pl-6 mb-4">
-        <li><strong>What problems do they all mention?</strong></li>
-        <li><strong>What solutions do they all currently use?</strong></li>
-        <li><strong>What outcomes do they all want?</strong></li>
-        <li><strong>What concerns do they all express?</strong></li>
-      </ul>
-      
-      <p>Use those patterns to refine your concept, then test with another small group. Iterate your way to clarity.</p>
-      
-      <h2 class="text-2xl font-bold mt-8 mb-4">The Real Goal</h2>
-      
-      <p>The goal of early-stage user research isn't to validate that people will love your product. It's to understand the problem space well enough to build something people actually need.</p>
-      
-      <p>Most products fail not because they're poorly built, but because they solve problems that don't exist or solve real problems in ways that don't fit how people actually work.</p>
-      
-      <p>You can't research your way to a guaranteed hit. But you can research your way out of building something nobody wants.</p>
-      
-      <p>And that's a pretty good starting point.</p>
+      <p>The pitch is good enough that I understand why teams take it. Recruiting is slow, scheduling is worse, and you can have twenty articulate interviews before lunch with no incentives to pay. The transcripts read well. They are organised, on-topic and free of the rambling that makes real interviews hard work.</p>
+
+      <p>That last part should worry you more than it does.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Real interviews are a mess, and the mess is the data</h2>
+
+      <p>An actual user goes off on a tangent about a spreadsheet they maintain by hand. They contradict themselves between minute four and minute eleven. They describe a workaround so strange you make them repeat it. They mention, as an aside, the constraint that invalidates your entire plan.</p>
+
+      <p>None of that is noise. The tangent is the finding. A generated interview has no tangents because it has no life outside the conversation — nothing to be distracted by, no weird workaround, no Tuesday.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Research you cannot fail is not research. It is a well-formatted version of your own assumptions.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where the bias comes from</h2>
+
+      <p>It is not that the model is trying to please you, exactly. It is that it produces the most plausible continuation of your prompt, and your prompt contains your framing. Describe your product and ask a persona what it thinks, and you have described the answer. The model has no access to the one thing you needed: a person whose circumstances you did not already imagine.</p>
+
+      <p>This is why synthetic findings so often arrive agreeable and on schedule. Both are symptoms.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What it is legitimately good for</h2>
+
+      <p>Rehearsal. Run your interview guide past it and see which questions lead the witness — that works, because you are testing your instrument rather than learning about users.</p>
+
+      <p>Coverage. Ask what kind of person your plan assumes and who that excludes. It is decent at surfacing the obvious gap you've stopped seeing, which is a prompt for real research rather than a substitute.</p>
+
+      <p>Synthesis of real transcripts. When the raw material actually came from people, having a tireless second reader find the contradiction across five interviews is genuinely valuable.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">The test</h2>
+
+      <p>Before you accept any finding, ask what it would have taken for this research to tell you your plan was wrong. If there is no mechanism — if no possible answer would have stopped you — then nothing was validated, regardless of how many interviews there were or how good the summary looks.</p>
+
+      <p>Five real conversations that ruin your week are worth more than fifty that confirm it. That was true before any of this and the tooling has only made it easier to avoid.</p>
     `
   }
 ];
