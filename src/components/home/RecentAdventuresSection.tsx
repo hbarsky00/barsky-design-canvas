@@ -72,9 +72,6 @@ const RecentAdventuresSection: React.FC = () => {
             title="Recent adventures"
             subtitle="A journey through innovative product design and user experience at leading tech companies"
           />
-          <div className="flex justify-center mb-8">
-            <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-primary" />
-          </div>
         </motion.div>
 
         {/* Timeline */}
@@ -135,7 +132,7 @@ const RecentAdventuresSection: React.FC = () => {
             className="inline-flex items-center gap-2 text-primary hover:text-primary-glow transition-colors duration-300 font-medium"
           >
             Read my full story
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </a>
         </motion.div>
       </div>
