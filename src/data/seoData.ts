@@ -148,7 +148,38 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
   "wireframes-to-wow-visual-hierarchy": "https://barskydesign.pro/images/og/blog-wireframes-to-wow-visual-hierarchy.png",
   "case-study-writing": "https://barskydesign.pro/images/og/blog-case-study-writing.png",
   "beautiful-interface-doesnt-convert": "https://barskydesign.pro/images/og/blog-beautiful-interface-doesnt-convert.png",
-  "research-without-users": "https://barskydesign.pro/images/og/blog-research-without-users.png"
+  "research-without-users": "https://barskydesign.pro/images/og/blog-research-without-users.png",
+
+  // Added 2026-11-12. These posts already had a correct 1200x630 card sitting
+  // unused in public/images/og/ — nothing pointed at it, so og:image fell back
+  // to the raw cover art. Those covers are 3:2 or 16:9 (one is 1400x1008), and
+  // social platforms crop to roughly 1.91:1, so a LinkedIn share centre-cropped
+  // the artwork into whatever happened to be in the middle. No new art needed;
+  // this is only the mapping that was missing.
+  "demo-works-shipping-is-different": "https://barskydesign.pro/images/og/blog-demo-works-shipping-is-different.png",
+  "designer-who-codes-argument-is-over": "https://barskydesign.pro/images/og/blog-designer-who-codes-argument-is-over.png",
+  "designing-for-trust-when-the-product-is-the-risk": "https://barskydesign.pro/images/og/blog-designing-for-trust-when-the-product-is-the-risk.png",
+  "everyones-portfolio-looks-good-now": "https://barskydesign.pro/images/og/blog-everyones-portfolio-looks-good-now.png",
+  "how-to-interview-a-designer-now": "https://barskydesign.pro/images/og/blog-how-to-interview-a-designer-now.png",
+  "i-just-wanted-to-send-someone-a-video": "https://barskydesign.pro/images/og/blog-i-just-wanted-to-send-someone-a-video.png",
+  "scope-discipline-when-building-is-cheap": "https://barskydesign.pro/images/og/blog-scope-discipline-when-building-is-cheap.png",
+  "shipping-got-cheap-hiring-got-harder": "https://barskydesign.pro/images/og/blog-shipping-got-cheap-hiring-got-harder.png",
+  "taste-is-the-whole-job": "https://barskydesign.pro/images/og/blog-taste-is-the-whole-job.png",
+  "two-bugs-ai-wrote-that-i-had-to-find": "https://barskydesign.pro/images/og/blog-two-bugs-ai-wrote-that-i-had-to-find.png",
+  "what-ai-changed-and-what-it-didnt": "https://barskydesign.pro/images/og/blog-what-ai-changed-and-what-it-didnt.png",
+  "what-one-person-can-ship-now": "https://barskydesign.pro/images/og/blog-what-one-person-can-ship-now.png",
+  "why-enterprise-tools-lose-to-excel": "https://barskydesign.pro/images/og/blog-why-enterprise-tools-lose-to-excel.png",
+
+  // These eight had no card at all, so og:image fell back to a 3:2 hero.
+  // Generated 2026-11-12 by scripts/generate-og-images.py.
+  "ai-ate-the-junior-job": "https://barskydesign.pro/images/og/blog-ai-ate-the-junior-job.png",
+  "designers-shipping-ai-code": "https://barskydesign.pro/images/og/blog-designers-shipping-ai-code.png",
+  "designing-ai-first-products-that-ship": "https://barskydesign.pro/images/og/blog-designing-ai-first-products-that-ship.png",
+  "portfolio-proof-not-pictures": "https://barskydesign.pro/images/og/blog-portfolio-proof-not-pictures.png",
+  "solo-building-with-ai": "https://barskydesign.pro/images/og/blog-solo-building-with-ai.png",
+  "the-business-case-for-design": "https://barskydesign.pro/images/og/blog-the-business-case-for-design.png",
+  "trust-is-a-design-material": "https://barskydesign.pro/images/og/blog-trust-is-a-design-material.png",
+  "what-is-an-ai-first-product-designer": "https://barskydesign.pro/images/og/blog-what-is-an-ai-first-product-designer.png"
 };
 
 // Enhanced blog post SEO data

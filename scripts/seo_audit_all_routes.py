@@ -46,7 +46,11 @@ for f in sorted(DIST.rglob("index.html")):
     route = "/" + str(f.parent.relative_to(DIST)).replace(".", "").strip("/")
     if route == "/": route = "/"
     h = f.read_text(errors="ignore")
-    t  = re.search(r"<title>(.*?)</title>", h, re.S)
+    # `<title[^>]*>`, not `<title>`: react-helmet-async emits
+    # `<title data-rh="true">`, so the bare-tag pattern matched nothing and this
+    # script reported MISS for the title on all 66 routes — a wall of false
+    # positives that made the whole report easy to ignore. Fixed 2026-11-12.
+    t  = re.search(r"<title[^>]*>(.*?)</title>", h, re.S)
     title = (t.group(1).strip() if t else None)
     desc  = meta(h, name="description")
     ogi   = meta(h, property="og:image")

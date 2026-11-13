@@ -258,7 +258,17 @@ def blog_posts():
         # allow the other quote characters inside.
         def field(name):
             m2 = re.search(r"%s:\s*([`\"'])((?:\\.|(?!\1).)*)\1" % name, window, re.S)
-            return None if not m2 else re.sub(r"\\(.)", r"\1", m2.group(2)).strip()
+            if not m2:
+                return None
+            raw = m2.group(2)
+            # \uXXXX must be decoded BEFORE the generic backslash strip below,
+            # or `\u2019` loses its backslash and survives as the literal text
+            # "u2019" — which is exactly what shipped onto the first run of
+            # these cards: "Products donu2019t fail because theyu2019re wrong."
+            # blogData.ts stores curly apostrophes as \u2019 escapes, so this
+            # hit every title and excerpt containing an apostrophe.
+            raw = re.sub(r"\\u([0-9a-fA-F]{4})", lambda u: chr(int(u.group(1), 16)), raw)
+            return re.sub(r"\\(.)", r"\1", raw).strip()
         title = field("title")
         excerpt = field("excerpt")
         art = re.search(r"coverImage:\s*[`\"']([^`\"']+)", window)
