@@ -1,60 +1,15 @@
-
-export interface PageIndexingConfig {
-  path: string;
-  priority: 'high' | 'medium' | 'low';
-  changeFreq: 'daily' | 'weekly' | 'monthly' | 'yearly';
-  lastModified?: string;
-}
-
-export const pageIndexingConfigs: PageIndexingConfig[] = [
-  // High priority pages - note the trailing slash for homepage
-  { path: '/', priority: 'high', changeFreq: 'weekly' },
-  { path: '/projects', priority: 'high', changeFreq: 'weekly' },
-  { path: '/services', priority: 'high', changeFreq: 'monthly' },
-  
-  // Case study pages - high priority for SEO
-  { path: '/case-studies/herbalink-mobile-herbalist-ux-design', priority: 'high', changeFreq: 'monthly' },
-  { path: '/case-studies/splittime-coparenting-app-design', priority: 'high', changeFreq: 'monthly' },
-  { path: '/case-studies/investor-loan-portfolio-management', priority: 'high', changeFreq: 'monthly' },
-  
-  
-  { path: '/case-studies/business-management-solution', priority: 'high', changeFreq: 'monthly' },
-  { path: '/case-studies/dae-search', priority: 'medium', changeFreq: 'monthly' },
-  
-  // Service pages - medium priority
-  { path: '/design-services/ux-ui-design', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/design-services/web-development', priority: 'medium', changeFreq: 'monthly' },
-  { path: '/design-services/mobile-app-design', priority: 'medium', changeFreq: 'monthly' },
-  
-  // Blog - low priority for now
-  { path: '/blog', priority: 'low', changeFreq: 'weekly' },
-  { path: '/contact', priority: 'medium', changeFreq: 'monthly' }
-];
-
-export const getPageConfig = (pathname: string): PageIndexingConfig => {
-  const config = pageIndexingConfigs.find(config => config.path === pathname);
-  return config || { path: pathname, priority: 'low', changeFreq: 'monthly' };
-};
-
-export const generateSitemapEntries = (): string => {
-  const baseUrl = 'https://barskydesign.pro';
-  const currentDate = new Date().toISOString().split('T')[0];
-  
-  return pageIndexingConfigs.map(config => `
-  <url>
-    <loc>${baseUrl}${config.path === '/' ? '/' : config.path}</loc>
-    <lastmod>${config.lastModified || currentDate}</lastmod>
-    <changefreq>${config.changeFreq}</changefreq>
-    <priority>${config.priority === 'high' ? '1.0' : config.priority === 'medium' ? '0.8' : '0.6'}</priority>
-  </url>`).join('');
-};
-
-export const submitUrlForIndexing = async (url: string): Promise<boolean> => {
-  // Sitemap/URL submission is handled server-side via the seo-handler edge function.
-  // Client-side pings to google.com/ping fail due to CORS.
-  console.log('SEO: URL indexing handled server-side for:', url);
-  return true;
-};
+/**
+ * Removed 2026-11-12: `pageIndexingConfigs`, `getPageConfig`,
+ * `generateSitemapEntries` and `submitUrlForIndexing`.
+ *
+ * Nothing imported them except `usePageIndexing`, which was itself doing
+ * nothing real. The config list named seven `/case-studies/*` paths that have
+ * never been routes on this site — including the deliberately retired Investor
+ * Loan study — and the local `generateSitemapEntries` would have emitted
+ * sitemap entries for all of them. The real sitemap is built by
+ * `src/utils/sitemapGeneration.ts` and `scripts/generate-sitemap`, which read
+ * actual routes. `submitUrlForIndexing` only console.logged and returned true.
+ */
 
 /**
  * SEO Implementation Overview

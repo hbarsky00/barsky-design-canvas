@@ -29,39 +29,52 @@ const BioSection: React.FC = () => {
                 className="text-center"
               />
 
-              {/* Bio content */}
+              {/* Bio content.
+                  Rewritten 2026-11-12. The previous version opened with "I help
+                  early-stage startups transform complex problems into intuitive
+                  user experiences that drive real business results" and closed
+                  "What I Bring" with "build prototypes that validate concepts" —
+                  which told a founder, directly underneath five products they can
+                  open and use, that the work stops at a prototype. It also carried
+                  an undated "Currently specializing in…", the same kind of
+                  time-stamped claim that left the section above this one fourteen
+                  months stale. Every sentence here is checkable against the rest
+                  of the page. */}
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
                 <p className="text-xl text-center font-medium text-gray-800">
-                  I help early-stage startups transform complex problems into intuitive user experiences 
-                  that drive real business results.
+                  One person does all of it. The research, the interface, the React
+                  front end, the database and the launch — so there is no handoff
+                  for the idea to get lost in.
                 </p>
-                
+
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
                   <div className="text-center">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-3">My Approach</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-3">How a project starts</h3>
                     <p className="text-center">
-                      I believe great design happens at the intersection of user needs and business goals. 
-                      Every project starts with understanding your users and ends with measurable improvements 
-                      to your product's performance.
+                      With the thing that is actually costing you something — a
+                      flow people abandon, a feature nobody found, an internal tool
+                      your team works around. Not a redesign looking for a reason.
                     </p>
                   </div>
-                  
+
                   <div className="text-center">
-                    <h3 className="font-semibold text-lg text-gray-900 mb-3">What I Bring</h3>
+                    <h3 className="font-semibold text-lg text-gray-900 mb-3">How it ends</h3>
                     <p className="text-center">
-                      15+ years of experience in UX/UI design, combined with modern AI development skills. 
-                      I create design systems that scale, conduct user research that informs decisions, 
-                      and build prototypes that validate concepts.
+                      With software your users can open. 15+ years across fintech,
+                      healthcare and pharma, and the production React and database
+                      work to get it live — not a file for someone else to build.
                     </p>
                   </div>
                 </div>
 
                 <div className="bg-blue-50/50 rounded-lg p-6 mt-8 text-center">
-                  <h3 className="font-semibold text-lg text-gray-900 mb-3">Recent Focus</h3>
+                  <h3 className="font-semibold text-lg text-gray-900 mb-3">Where AI fits</h3>
                   <p className="text-center">
-                    Currently specializing in AI-enhanced user experiences and helping businesses 
-                    integrate intelligent features that genuinely improve user workflows without 
-                    adding complexity.
+                    It is how I build fast enough for one person to ship a whole
+                    product. When the AI <em>is</em> the product, how it behaves
+                    when it is guessing — and when it is confidently wrong — is a
+                    design decision, and I own it rather than leaving it to the
+                    model.
                   </p>
                 </div>
               </div>

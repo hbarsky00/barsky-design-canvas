@@ -23,6 +23,101 @@ Rules for this lens:
 
 ---
 
+## 2026-11-12 (second pass) — RESEARCH — four claims the site was making that were not true
+
+Same day, same lens, continued on Hiram's instruction to keep going. Where the
+first pass fixed what the site *failed* to say, this one fixed what it was
+saying that was false.
+
+### F5 — Every animated heading on the site serialised as one run-on word. `Confirmed`.
+
+`CharacterAnimation` rendered `type="word"` as a list of spans with
+`className="inline-block mr-[0.25em]"` and **no space character between them**.
+It looked correct, because a quarter-em margin looks like a space. It was not
+one.
+
+What a screen reader announced, and what a non-JS crawler read out of the
+prerendered HTML:
+
+    Fiveproductsyoucanopenrightnow
+    Recentadventures
+    GetinTouch
+    FrequentlyAskedQuestions
+
+Measured against the live HTML before the fix: `grep -c "Recent adventures"`
+returned **0** and `grep -c "Frequently Asked Questions"` returned **0**, on a
+page that visibly contains both. Every animated `h1`/`h2` on every page was
+affected.
+
+Fixed by emitting a real space between words. Whitespace between inline-block
+elements still renders as a word space, so nothing moved visually — and it
+removed the trailing margin the last word carried, which had been pushing every
+centred heading a quarter-em off centre.
+
+### F6 — The LazySection "known-open item" was wrong and had been misdirecting runs. `Confirmed`.
+
+`auto-improve-loop.md` has carried a note since August that lazy-wrapped
+sections (adventures, contact, blog) are absent from the prerendered HTML.
+Retested directly: `capture-bodies` drives a real browser that scrolls, so
+IntersectionObserver fires and the children **are** captured. "Senior Lead
+Product Designer" and "Send message" are both in the live HTML while still
+wrapped.
+
+The note existed because someone grepped for the heading text and got zero
+hits — which was F5, not LazySection. One bug generated a fake second bug and a
+standing instruction to go do unnecessary work. Corrected in the playbook.
+
+### F7 — `/store/success` congratulated visitors on a purchase that cannot happen. `Confirmed`.
+
+A live, reachable route reading "Purchase Successful!", "You should receive an
+email with your download links shortly", and "Access to templates is immediate
+and lifetime". There is no checkout on this site, no payment provider anywhere
+in the repo, and no email delivery. Every sentence was false. Deleted; the URL
+now 301s to `/store`.
+
+### F8 — `usePageIndexing` injected two meta tags no engine reads, and logged on every navigation. `Confirmed`.
+
+The hook ran on `/` and `/services`. It called `submitUrlForIndexing`, which
+only `console.log`s and returns true; injected `<meta name="crawl-priority">`
+and `<meta name="fetch-priority">`, neither of which is a real meta tag; and
+printed a debug object to the production console on every route change.
+
+Deleted, along with the `pageIndexingConfigs` list it read — which named seven
+`/case-studies/*` paths that have never been routes on this site, including the
+deliberately retired Investor Loan study — and the unused local
+`generateSitemapEntries` that would have emitted sitemap entries for all of
+them. The real sitemap comes from `sitemapGeneration.ts`.
+
+### F9 — The About section told founders the work stops at a prototype. `Confirmed`.
+
+"What I Bring" ended: *"…and build prototypes that validate concepts."* That
+sentence sat directly beneath five products a founder can open and use, and it
+is the precise claim F1 says buyers filter on. The same block opened with "I
+help early-stage startups transform complex problems into intuitive user
+experiences that drive real business results" — a sentence with no checkable
+content — and closed with an undated "Currently specializing in…", the same
+class of time-stamped claim that produced the fourteen-month-stale section.
+
+Rewritten so every sentence is checkable against the rest of the page: one
+person through launch, what a project starts from, what it ends as, and where
+AI actually fits. Positioning unchanged — AI stays a capability, not the
+pitch.
+
+### Left open
+
+- **The homepage FAQ is `hidden md:block`** — absent from the mobile layout
+  entirely. Still in the DOM and still indexable, but Google indexes
+  mobile-first and extractable Q&A is this site's whole AEO play. A collapsed
+  accordion on mobile is the obvious answer; it changes mobile page length
+  materially, so it wants its own FINDABILITY run.
+- **Four orphaned thumbnails** at `public/images/working-on/` and **14 iCloud
+  conflict copies** in `src/assets/blog/` (1.8 MB directory, none imported).
+  Both are deletions, which are Hiram's call.
+- **Still no analytics.** Unchanged from the first pass, and still the biggest
+  unlock for this lens.
+
+---
+
 ## 2026-11-12 — RESEARCH — the homepage's "Now" section was fourteen months stale
 
 **Research question.** A founder lands on barskydesign.pro with a product that

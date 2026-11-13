@@ -191,11 +191,26 @@ on the task itself and reused by every future run.
 
 ## Known-open items
 
-- `LazySection` gates children behind an IntersectionObserver, so anything
-  inside it is absent from the prerendered HTML that non-JS crawlers read. FAQ
-  and internal-linking were unwrapped 2026-08-22. **adventures, contact and
-  blog are still wrapped and still invisible** — unwrapping them is a real
-  performance trade (form libraries, media), so weigh it, do not just do it.
+- ~~`LazySection` gates children behind an IntersectionObserver, so anything
+  inside it is absent from the prerendered HTML.~~ **Wrong — retested
+  2026-11-12.** `capture-bodies` drives a real browser that scrolls the page,
+  so IntersectionObserver fires and lazy children DO land in the prerendered
+  body. Verified against the live HTML: "Senior Lead Product Designer"
+  (adventures) and "Send message" (contact) are both present while still
+  wrapped. Do not "fix" this; there is nothing to fix.
+  What actually made those sections look missing was the run-on heading bug
+  below — a grep for "Recent adventures" returned 0 because the markup said
+  `Recentadventures`.
+- **The homepage FAQ is `hidden md:block`** — entirely absent from the mobile
+  layout. It is still in the DOM, so it is still indexable, but Google indexes
+  mobile-first and this site's whole AEO play is extractable Q&A. Rendering it
+  on mobile as a collapsed accordion is the obvious move; it changes mobile
+  page length materially, so it needs its own verified FINDABILITY run rather
+  than being slipped into someone else's change.
+- **iCloud conflict copies in `src/assets/blog/`** — 14 `name 2.jpg` duplicates,
+  none imported, inside a 1.8 MB directory. Dead weight and exactly the kind of
+  thing a catch-all `git add` sweeps into a commit. Deleting them is Hiram's
+  call; see [[reference_icloud_conflict_copies]].
 - ~~`/projects` has no prerendered body — it fails capture every run.~~
   **Resolved 2026-08-23.** It was never a page: a client-side `<Navigate>` that
   served 200 with an empty body while carrying index/follow, a self-canonical,

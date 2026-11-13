@@ -40,9 +40,23 @@ export const CharacterAnimation: React.FC<CharacterAnimatedTextProps> = ({
         </motion.span>);
     } else {
       // type === "word"
-      return text.split(" ").map((word, index) => <motion.span key={`word-${index}`} custom={index} variants={characterAnimation[animation]} className="inline-block mr-[0.25em]">
-          {word}
-        </motion.span>);
+      //
+      // The space between words is a real space character, not a margin.
+      // This used to be `className="inline-block mr-[0.25em]"` with the space
+      // dropped, which meant every animated heading on the site serialised as
+      // one run-on word: a screen reader announced "Fiveproductsyoucanopen
+      // rightnow", and the same string is what a non-JS crawler reads out of
+      // the prerendered HTML. It looked right and read as gibberish.
+      //
+      // Whitespace between inline-block elements still renders as a word space,
+      // so this also drops the trailing margin the last word used to carry,
+      // which was pushing centred headings a quarter-em off centre.
+      return text.split(" ").map((word, index) => <React.Fragment key={`word-${index}`}>
+          {index > 0 ? " " : null}
+          <motion.span custom={index} variants={characterAnimation[animation]} className="inline-block">
+            {word}
+          </motion.span>
+        </React.Fragment>);
     }
   };
   return <Tag ref={elementRef} className={cn("block", className)}>

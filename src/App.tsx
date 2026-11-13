@@ -24,7 +24,6 @@ const Contact = React.lazy(() => import("@/pages/Contact"));
 const Blog = React.lazy(() => import("@/pages/Blog"));
 const BlogPost = React.lazy(() => import("@/pages/BlogPost"));
 const Store = React.lazy(() => import("@/pages/Store"));
-const StoreSuccess = React.lazy(() => import("@/pages/StoreSuccess"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
 
 // Service page imports - lazy loaded
@@ -86,7 +85,6 @@ function AppContent() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/store" element={<Store />} />
-              <Route path="/store/success" element={<StoreSuccess />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               

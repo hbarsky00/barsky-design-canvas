@@ -20,6 +20,20 @@ export default defineConfig(({ mode }) => ({
     port: Number(process.env.PORT) || 4173,
   },
   plugins: [react()],
+  // This used to live under `build.esbuild`, which is not a Vite option, so it
+  // was parsed and silently ignored — 13 `console.log` calls were measured in
+  // the shipped bundle on 2026-11-12, including seven that fire on every
+  // case-study page and three on every image open. Vite reads `esbuild` at the
+  // top level.
+  //
+  // `pure` rather than `drop: ['console']`: it marks these calls side-effect
+  // free so the minifier removes them, while leaving console.error and
+  // console.warn alone. Dropping those too would silence real failures in the
+  // one place anyone would look for them.
+  esbuild: {
+    pure: mode === 'production' ? ['console.log', 'console.debug', 'console.info'] : [],
+    drop: mode === 'production' ? ['debugger'] : [],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -43,10 +57,6 @@ export default defineConfig(({ mode }) => ({
     minify: 'esbuild',
     target: 'esnext',
     emptyOutDir: true,
-    esbuild: {
-      drop: mode === 'production' ? ['console', 'debugger'] : [],
-      treeShaking: true,
-    },
     reportCompressedSize: false,
     chunkSizeWarningLimit: 400,
   },

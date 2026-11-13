@@ -153,9 +153,15 @@
 /projects                        /#case-studies    301
 /store/product/*                 /store            301
 
-# These two are real client-rendered routes with no SEO value. They keep the
-# shell, but X-Robots-Tag in public/_headers keeps them out of the index.
-/store/success                   /spa-shell.html   200
+# /store/success was a page congratulating a visitor on a purchase and promising
+# "an email with your download links shortly" plus "immediate and lifetime"
+# access. There is no checkout on this site, no payment provider anywhere in the
+# repo and no email delivery, so every sentence on it was false. Deleted
+# 2026-11-12; anyone who reaches the URL goes to the store itself.
+/store/success                   /store            301
+
+# A real client-rendered route with no SEO value. It keeps the shell, but
+# X-Robots-Tag in public/_headers keeps it out of the index.
 /admin/content-export-2024       /spa-shell.html   200
 
 # Anything else is a 404, served by the shell so the SPA can show its own page
