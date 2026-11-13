@@ -13,6 +13,12 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
+    role: "Lead Product Designer",
+    company: "Verisk",
+    description: "Lead UX for enterprise commercial property underwriting, from definition through production-ready React and TypeScript prototypes, and govern the design system multiple product lines inherit",
+    duration: "Jan 2026 - Present"
+  },
+  {
     role: "Senior Lead Product Designer",
     company: "PNC",
     description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%",

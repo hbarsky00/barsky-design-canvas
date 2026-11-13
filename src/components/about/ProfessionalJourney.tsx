@@ -6,6 +6,11 @@ import { CheckCircle } from 'lucide-react';
 const ProfessionalJourney: React.FC = () => {
   const milestones = [
     {
+      year: "Jan 2026 - Present",
+      title: "Lead Product Designer - Verisk",
+      description: "Lead end-to-end UX for enterprise commercial property underwriting — concept through production-ready React and TypeScript prototypes engineers build from — and govern the design system those product lines inherit. Introduced agentic AI workflows into the design practice, building Claude Code systems and custom skills that shorten design-to-development handoff."
+    },
+    {
       year: "2024 - July 2025",
       title: "Senior Lead Product Designer - PNC",
       description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%"
