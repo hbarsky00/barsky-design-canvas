@@ -1,6 +1,21 @@
 
 // Analytics utility to work with Google Analytics
 
+// gtag is injected by the GA snippet in index.html, so TypeScript has no idea
+// it exists. Every call below was an error the moment the typecheck started
+// actually running — `npx tsc --noEmit` had been a silent no-op because the
+// root tsconfig is a solution file with "files": [], which compiles nothing
+// unless you point at a project. Declared here rather than cast at each call.
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'config' | 'event' | 'js' | 'set',
+      targetIdOrDate: string | Date,
+      params?: Record<string, unknown>
+    ) => void;
+  }
+}
+
 /**
  * Tracks a page view in Google Analytics
  * @param path - The path to track (e.g., '/home')

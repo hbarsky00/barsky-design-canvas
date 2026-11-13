@@ -1,6 +1,10 @@
 import DIMS from "@/data/imageDimensions.json";
 
-const TABLE = DIMS as Record<string, [number, number]>;
+// TypeScript infers `number[]` from the JSON, not the `[number, number]` tuple
+// the generator actually writes, so the direct cast is one it refuses. Going
+// through `unknown` is the honest form: the pair shape is guaranteed by
+// scripts/generate-image-dimensions.mjs, not by the type system.
+const TABLE = DIMS as unknown as Record<string, [number, number]>;
 const ORIGIN = "https://barskydesign.pro";
 
 /**

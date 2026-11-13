@@ -142,6 +142,70 @@ apostrophe — so it had been shipping to LinkedIn for as long as those cards
 existed. All regenerated; the other 62 came out byte-identical, which is the
 confirmation that the generator is deterministic and nothing else moved.
 
+### F13 — `npx tsc --noEmit` has been a no-op. The ship gate was checking nothing. `Confirmed`.
+
+The worst finding of the day, and found only because an earlier fix *should*
+have failed to compile and didn't.
+
+The root `tsconfig.json` is a solution-style config: `"files": []` plus two
+project references. A bare `tsc --noEmit` against it compiles **zero files** and
+exits 0 regardless of what is broken — references are only built when you point
+at a project or pass `-b`.
+
+Proved by appending `const __canary: number = "nope";` to `seoData.ts` and
+running the gate:
+
+    npx tsc --noEmit            → exit 0, no output
+    tsc -p tsconfig.app.json    → src/data/seoData.ts(535,7): error TS2322
+
+Every "tsc --noEmit clean" recorded in this repo — including three earlier in
+this same session — meant nothing.
+
+Turning it on surfaced 12 real errors that had been invisible: `vite/client`
+was missing from `types` in `tsconfig.app.json` (the explicit array overrides
+the default, so `import.meta.env` and `*.jpg` modules were untyped), eleven
+`window.gtag` calls with no declaration, and a JSON import cast to a tuple type
+TypeScript refuses directly. All fixed; both projects now check clean.
+
+Added `npm run typecheck`, which runs both projects properly, and changed the
+ship gate in `auto-improve-loop.md` and in the scheduled task to call it.
+
+### F14 — The hand-maintained content dates fed nothing. `Confirmed`.
+
+`check-content-dates.mjs` audits `modified` in `BLOG_SEO_MAP` and
+`PROJECT_SEO_MAP`. It reported **47 of 51 routes stale**.
+
+Two of those were a classification problem: commits `c15f7d2f` and `850d2417`
+only unwrapped and rewrapped internal `<a>` tags — every word identical — which
+is the same shape as the commit already in the script's `STYLE_ONLY` set. Added
+them: 47 → 31.
+
+The script was also reading a **commented-out** route (`{/* ... HIDDEN */}`),
+which is how the deliberately retired Investor Loan study kept reappearing in
+the report. A report that lists a pulled case study is how a pulled case study
+gets put back. Now skips comment lines.
+
+The rest were real: 21 entries had a wrong or absent `modified`, and seven posts
+had no `BLOG_SEO_MAP` entry at all, so they could never declare one. Those seven
+were seeded from exactly what each page was already serving — no copy rewritten.
+
+Then the point of the whole exercise turned out to be missing. `getBlogSEO`
+and `getProjectSEO` return only `kind`, `title`, `description` and `image` —
+they **drop `published` and `modified` on the floor**. `seoBuilder` maps those
+two onto `publishedTime`/`modifiedTime`, `structuredDataUtils` reads
+`modifiedTime` for JSON-LD `dateModified`, and `generate-sitemap` reads
+`.modified` for `<lastmod>`. All three received `undefined` and silently fell
+back to the publish date.
+
+So the dates were hand-maintained, audited by a dedicated script, and consumed
+by nothing. That is why they drifted: there was no way to see the effect of
+keeping them right. Two fields added to two return objects; verified in the
+built output — `dateModified` and `<lastmod>` now read 2026-11-12 for a post
+edited today, and the sitemap's dates spread across six real dates rather than
+all being stamped with the build date.
+
+Checker now reports **0 stale of 50 routes**, down from 47 of 51.
+
 ### Left open
 
 - **The homepage FAQ is `hidden md:block`** — absent from the mobile layout

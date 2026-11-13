@@ -88,7 +88,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
 };
 
 // Project-specific SEO mappings
-export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; }> = {
+export const PROJECT_SEO_MAP: Record<string, { title: string; description: string; image: string; published?: string; modified?: string; }> = {
   "crypto": {
     title: "Crypto Trading Platform | Fintech UX Case Study — Barsky Design",
     description: "How I eliminated the fear that makes 60% of beginners quit before their first trade through trust-building UX design.",
@@ -97,7 +97,8 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "herbalink": {
     title: "HerbaLink Healthcare Marketplace | UX Case Study — Barsky Design",
     description: "Herbalist marketplace built around credential verification, safety information and guided matching, so people can tell who is qualified before they book.",
-    image: "https://barskydesign.pro/images/og/herbalink.png"
+    image: "https://barskydesign.pro/images/og/herbalink.png",
+    modified: "2026-09-21"
   },
   "splittime": {
     title: "SplitTime Co-Parenting App | Mobile UX Case Study — Barsky Design",
@@ -107,7 +108,8 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   "business-management": {
     title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design",
     description: "Modular business management platform that reduced manual work 60% by centralizing inventory, workflows, and analytics with actionable insights across teams.",
-    image: "https://barskydesign.pro/images/og/business-management.png"
+    image: "https://barskydesign.pro/images/og/business-management.png",
+    modified: "2026-09-21"
   },
   "investor-loan-app": {
     title: "Fintech Loan Platform | Investment App UX Case Study — Barsky Design",
@@ -190,42 +192,50 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   "ai-ate-the-junior-job": {
     title: "AI ate the entry-level job",
     description: "AI didn\u2019t kill junior designers and developers. It killed the boring tasks that used to teach them the job \u2014 and that gap shows up years later.",
-    published: "2026-08-07"
+    published: "2026-08-07",
+    modified: "2026-11-12"
   },
   "what-is-an-ai-first-product-designer": {
     title: "What is an AI-first product designer?",
     description: "An AI-first product designer owns the whole experience of a product whose core value comes from AI \u2014 including how the model behaves when it\u2019s wrong.",
-    published: "2026-07-18"
+    published: "2026-07-18",
+    modified: "2026-11-12"
   },
   "portfolio-proof-not-pictures": {
     title: "Build a portfolio for robots and humans",
     description: "By 2026 most portfolios are parsed by an AI screener before a person opens them, and the human bar moved from pretty mockups to proof you can ship.",
-    published: "2026-07-11"
+    published: "2026-07-11",
+    modified: "2026-11-12"
   },
   "designers-shipping-ai-code": {
     title: "Half of designers now ship AI code. Good.",
     description: "The State of AI in Design 2026 report says the designer-who-ships is now the norm. What separates shipped from slop is the taste layer.",
-    published: "2026-07-08"
+    published: "2026-07-08",
+    modified: "2026-11-12"
   },
   "designing-ai-first-products-that-ship": {
     title: "Designing AI-first products that ship",
     description: "Most AI features stall in the demo phase. Here\u2019s the design discipline that gets them into people\u2019s hands.",
-    published: "2026-06-18"
+    published: "2026-06-18",
+    modified: "2026-11-12"
   },
   "trust-is-a-design-material": {
     title: "Trust is a design material",
     description: "Products don\u2019t fail because they\u2019re wrong. They fail because nobody can defend acting on them. Trust is a material you design with, not a feeling.",
-    published: "2026-05-02"
+    published: "2026-05-02",
+    modified: "2026-11-12"
   },
   "solo-building-with-ai": {
     title: "Ship something small: the fastest way to grow",
     description: "The fastest way to grow as a designer or developer right now is to ship one small thing end to end \u2014 and AI just removed every excuse.",
-    published: "2026-03-11"
+    published: "2026-03-11",
+    modified: "2026-11-12"
   },
   "the-business-case-for-design": {
     title: "Making the business case for design",
     description: "Leaders approve what they can measure. How to put a defensible number on design work.",
-    published: "2026-01-27"
+    published: "2026-01-27",
+    modified: "2026-11-12"
   },
 
   // SERP title only — the post keeps its full headline on the page. With the
@@ -235,6 +245,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "Designing Trust into AI: Handling Hallucinations",
     description:
       "What to show a user when the model is not sure, and how to design the moment an AI gets something wrong.",
+    modified: "2026-10-13"
   },
   "a-filter-nobody-opens": {
     title: "A Filter Nobody Opens Isn't a Feature",
@@ -264,7 +275,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "Finding the Data Is Half the Job",
     description: "An analyst searches for revenue and gets forty results. The search worked. The next twenty minutes \u2014 deciding which table to trust \u2014 is the part nobody\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-10-02"
   },
   "verification-is-a-door-not-a-sticker": {
     title: "Verification Is a Door, Not a Sticker",
@@ -294,7 +305,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
     description: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-10-02"
   },
   "i-just-wanted-to-send-someone-a-video": {
     title: "I Just Wanted to Send Someone a Video",
@@ -372,13 +383,13 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "The Take-Home Test Stopped Proving Anything | Design Hiring in 2026 — Barsky Design",
     description: "Every candidate now submits work a model helped produce, so the artefact tells you almost nothing. What a design hiring process has to measure instead, and what that means if you are applying.",
     published: "2026-11-10",
-    modified: "2026-11-10"
+    modified: "2026-11-12"
   },
   "design-systems-that-get-used": {
     title: "Design Systems Now Have Two Readers, One Is a Model — Barsky Design",
     description: "Component libraries used to be written for the developer who opened the docs. Now a model reads them at volume and generates code against whatever it inferred. What that changes about good documentation.",
     published: "2026-11-03",
-    modified: "2026-11-03"
+    modified: "2026-11-12"
   },
   "portfolio-red-flags-no-interviews": {
     title: "UX Portfolio Red Flags | Why You're Not Getting Interviews — Barsky Design",
@@ -388,37 +399,37 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "What I Actually Use AI For, Hour by Hour | Designer's Inventory — Barsky Design",
     description: "An honest inventory rather than a prediction: where a model genuinely saves hours in design and front-end work, where it quietly costs more than it saves, and the line between the two.",
     published: "2026-10-20",
-    modified: "2026-10-20"
+    modified: "2026-11-12"
   },
   "user-research-shoestring-budget": {
     title: "User Research With No Budget | And the Shortcut to Avoid — Barsky Design",
     description: "You can afford real research. What you cannot afford is the convincing substitute. How to run five useful conversations for nothing, and where a model legitimately helps.",
     published: "2026-10-13",
-    modified: "2026-10-13"
+    modified: "2026-11-12"
   },
   "built-product-without-real-data": {
     title: "Shipping an AI Feature Before You Have the Data | Cold Start — Barsky Design",
     description: "Every model-backed feature has a cold start. Designing the first week — when the system knows nothing about anyone — decides whether there is a second week.",
     published: "2026-09-29",
-    modified: "2026-09-29"
+    modified: "2026-11-12"
   },
   "building-products-nobody-asked-for": {
     title: "Five Products Nobody Asked For | What Side Projects Teach — Barsky Design",
     description: "Five live products no client commissioned, and the honest accounting: what building them taught about shipping and finishing, and what it taught about demand (nothing).",
     published: "2026-09-22",
-    modified: "2026-09-22"
+    modified: "2026-11-12"
   },
   "wireframes-to-wow-visual-hierarchy": {
     title: "Generated Layouts All Have the Same Problem | Visual Hierarchy — Barsky Design",
     description: "Ask for a page and you get something clean, balanced and completely flat. Why hierarchy is the judgement that does not come in the box, and the edit that fixes most of it.",
     published: "2026-10-06",
-    modified: "2026-10-06"
+    modified: "2026-11-12"
   },
   "case-study-writing": {
     title: "A Case Study Is a Record of Decisions | How to Write One — Barsky Design",
     description: "Most portfolio case studies describe a process and never say what was at stake. The structure that forces out the decisions, the constraint and the trade — the parts a reader is actually testing for.",
     published: "2026-10-27",
-    modified: "2026-10-27"
+    modified: "2026-11-12"
   },
   "ai-in-design": {
     title: "Future of AI in Design | Designer's Perspective 2025 — Barsky Design",
@@ -428,13 +439,54 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "The Interface Is Rarely Why They Didn't Convert — Barsky Design",
     description: "When everything looks professional, a redesign stops being the lever. The reasons people leave have mostly moved to the copy, the pricing and the next step.",
     published: "2026-09-15",
-    modified: "2026-09-15"
+    modified: "2026-11-12"
   },
   "research-without-users": {
     title: "Synthetic Users Will Agree With You | AI and Research — Barsky Design",
     description: "You can generate a persona and interview it. The one thing it will almost never do is tell you that you are wrong. Where synthetic research legitimately helps, and where it is a trap.",
     published: "2026-09-08",
-    modified: "2026-09-08"
+    modified: "2026-11-12"
+  },
+
+  // These seven had no BLOG_SEO_MAP entry at all, so they fell through to the
+  // generic fallback and could never declare a modified date — which is why
+  // check-content-dates.mjs flagged them permanently. The title and description
+  // below are exactly what each page was already serving; nothing was rewritten.
+  // Added 2026-11-12 so the dates are declarable, not to change any copy.
+  "learning-ai-design-with-claude": {
+    title: "Learning AI Design with Claude: A Designer's Starter Kit",
+    description: "How to get from zero to shipping AI-assisted design work using Claude as your daily thinking partner.",
+    modified: "2026-09-24"
+  },
+  "prompt-engineering-for-designers": {
+    title: "Prompt Engineering for Designers: From Brief to Pixel",
+    description: "Prompts are the new design brief. Here is the structure that consistently turns a vague ask into usable output.",
+    modified: "2026-09-24"
+  },
+  "designing-ai-native-interfaces": {
+    title: "Designing AI-Native Interfaces: Patterns Beyond the Chatbox",
+    description: "The chat bubble is the iframe of the AI era — useful, lazy, and rarely the right answer.",
+    modified: "2026-09-24"
+  },
+  "chatgpt-vs-claude-vs-gemini-for-ux": {
+    title: "ChatGPT vs Claude vs Gemini for UX Workflows — Barsky Design",
+    description: "I ran the same week of design work through all three. Here is where each one actually pulled its weight.",
+    modified: "2026-09-24"
+  },
+  "ai-powered-prototype-weekend": {
+    title: "Building Your First AI-Powered Prototype in a Weekend",
+    description: "A two-day plan to go from idea to a working AI prototype your users can actually click through.",
+    modified: "2026-09-24"
+  },
+  "figma-to-production-with-ai": {
+    title: "From Figma to Production with AI: A Modern Designer's Stack",
+    description: "The handoff is dead. Here is the AI-assisted stack I use to ship designs straight into a live React app.",
+    modified: "2026-09-24"
+  },
+  "what-ai-changed-and-what-it-didnt": {
+    title: "What AI Changed About Design Work, and What It Didn't",
+    description: "Two years of building products solo with AI. The changes are real and specific, and so is the list of things that are exactly as hard as they always were.",
+    modified: "2026-09-21"
   }
 };
 
@@ -451,7 +503,10 @@ export function getProjectSEO(projectId: string): Partial<SEOInput> | null {
     kind: 'project',
     title: project.title,
     description: project.description,
-    image: project.image
+    image: project.image,
+    // Same omission as getBlogSEO below — see the note there.
+    published: project.published,
+    modified: project.modified
   };
 }
 
@@ -464,6 +519,16 @@ export function getBlogSEO(slug: string): Partial<SEOInput> | null {
     kind: 'post',
     title: seoData?.title,
     description: seoData?.description,
-    image
+    image,
+    // These two were missing, which made every hand-maintained date in
+    // BLOG_SEO_MAP dead weight: seoBuilder maps `published`/`modified` onto
+    // publishedTime/modifiedTime, structuredDataUtils reads modifiedTime for
+    // JSON-LD dateModified, and generate-sitemap reads `.modified` for
+    // <lastmod> — all three got undefined and silently fell back to the
+    // publish date. check-content-dates.mjs has been auditing a field that
+    // nothing consumed, which is why the dates drifted in the first place:
+    // nobody could see the effect of maintaining them. Found 2026-11-12.
+    published: seoData?.published,
+    modified: seoData?.modified
   };
 }

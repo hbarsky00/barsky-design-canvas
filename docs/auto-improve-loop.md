@@ -41,8 +41,13 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
      library that defaults to `theme="system"`.
 4. **Do ONE substantial thing.** Not ten small ones. A run that ships one real
    improvement with proof beats a scattershot diff nobody can review.
-5. **Verify it.** `npx tsc --noEmit` clean, `npm run build` clean, and the
+5. **Verify it.** `npm run typecheck` clean, `npm run build` clean, and the
    change confirmed in the built output — not just in the source.
+   **Use `npm run typecheck`, never a bare `npx tsc --noEmit`.** The root
+   `tsconfig.json` is a solution file with `"files": []`, so a bare `tsc`
+   compiles nothing and exits 0 no matter what is broken. That was the gate
+   for months. Proved 2026-11-12 by appending a deliberate type error and
+   watching `tsc --noEmit` pass.
 6. **Re-capture if visible copy changed.** `npm run capture-bodies`, then
    `npm run build` again. Skipping this means crawlers keep seeing the old
    snapshot. Check the route count in the output; investigate any new failures.

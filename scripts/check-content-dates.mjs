@@ -13,6 +13,8 @@ import { readFileSync } from "node:fs";
 const STYLE_ONLY = new Set([
   "c3937c91", // 2026-09-07 photo-credit span: opacity-70 → text-xs, on 12 posts
   "62ad56ba", // 2026-09-14 four inline Investor Loan links unlinked; the words stayed
+  "c15f7d2f", // 2026-09-25 dead /project/* links unwrapped across 7 posts; every word identical
+  "850d2417", // 2026-09-25 the CatchBuddy links put back; again only the <a>, not the copy
 ]);
 
 const seo = readFileSync("src/data/seoData.ts", "utf8");
@@ -35,7 +37,11 @@ const rows = [];
 // Case studies: <Route path="/project/x" element={<Comp />} /> → its import file.
 for (const line of app.split("\n")) {
   const m = /<Route\s+path="\/project\/([a-z0-9-]+)"\s+element=\{<(\w+)/.exec(line);
-  if (!m || line.includes("Navigate")) continue;
+  // `{/* ... HIDDEN */}` lines still match the regex, which is how the
+  // deliberately retired Investor Loan study kept appearing in this report —
+  // read off a commented-out route, not a live one. A report that lists a
+  // pulled case study is how a pulled case study gets put back.
+  if (!m || line.includes("Navigate") || /^\s*(\{\s*)?\/[/*]/.test(line)) continue;
   const file = new RegExp(`${m[2]} = React\\.lazy\\(\\(\\) => import\\("@/(.+?)"\\)`).exec(app)?.[1];
   if (!file) continue;
   rows.push([`/project/${m[1]}`, declared("PROJECT_SEO_MAP", m[1]), git(`-- src/${file}.tsx`)]);

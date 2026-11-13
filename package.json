@@ -10,6 +10,7 @@
     "build": "vite build",
     "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs && node scripts/check-internal-links.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "check:captions": "node scripts/check-image-captions.mjs",
     "check:contrast": "node scripts/contrast-walk.mjs",
     "lint": "eslint .",
