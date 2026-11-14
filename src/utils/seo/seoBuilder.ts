@@ -82,7 +82,7 @@ export function buildSEO(input: SEOInput): BuiltSEO {
     type: isArticle ? 'article' : 'website',
 
     // All fields from builder - no hardcoding elsewhere
-    siteName: SEO_CONSTANTS.SITE_NAME,
+    siteName: SEO_CONSTANTS.BRAND,
     robots: input.robots ?? 'index,follow',
     image: imageAbs,
     imageAlt: input.imageAlt ?? `${input.title ?? SEO_CONSTANTS.SITE_NAME} preview image`,

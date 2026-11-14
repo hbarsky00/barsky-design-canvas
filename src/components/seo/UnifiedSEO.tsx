@@ -140,7 +140,11 @@ const UnifiedSEO: React.FC = () => {
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={seoData.type} />
-      <meta property="og:site_name" content={SEO_CONSTANTS.SITE_NAME} />
+      {/* og:site_name is the site's NAME, which is what a social card and an
+          entity extractor label the source with. It was SITE_NAME — a 57-char
+          title string carrying retired positioning — making a third name for
+          an entity the Organization schema already calls "Barsky Design". */}
+      <meta property="og:site_name" content={seoData.siteName} />
       <meta property="og:title" content={seoData.title} />
       <meta property="og:description" content={seoData.description} />
       <meta property="og:url" content={seoData.canonical} />

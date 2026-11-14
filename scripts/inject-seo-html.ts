@@ -191,7 +191,7 @@ function renderHead(seo: BuiltSEO): string {
     `<meta name="description" content="${escapeHtml(seo.description)}" />`,
     `<link rel="canonical" href="${seo.canonical}" />`,
     `<meta property="og:type" content="${seo.type}" />`,
-    `<meta property="og:site_name" content="${escapeHtml(SEO_CONSTANTS.SITE_NAME)}" />`,
+    `<meta property="og:site_name" content="${escapeHtml(seo.siteName)}" />`,
     `<meta property="og:title" content="${escapeHtml(seo.title)}" />`,
     `<meta property="og:description" content="${escapeHtml(seo.description)}" />`,
     `<meta property="og:url" content="${seo.canonical}" />`,

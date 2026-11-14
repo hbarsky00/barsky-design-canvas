@@ -491,8 +491,16 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
 };
 
 // Helper functions for getting SEO data
+
+// Every key in STATIC_PAGE_SEO is slash-free, but Netlify serves both `/contact`
+// and `/contact/` with a 200 and Google has indexed the variants (see the
+// "Alternate page with proper canonical tag" note in docs/aeo-log.md). A lookup
+// on the trailing-slash form missed and dropped the page onto the SITE_NAME
+// fallback — wrong title, wrong description, right canonical. Observed on
+// /contact on 2026-11-14.
 export function getStaticPageSEO(path: string): Partial<SEOInput> | null {
-  return STATIC_PAGE_SEO[path] || null;
+  const key = path !== '/' && path.endsWith('/') ? path.slice(0, -1) : path;
+  return STATIC_PAGE_SEO[key] || null;
 }
 
 export function getProjectSEO(projectId: string): Partial<SEOInput> | null {

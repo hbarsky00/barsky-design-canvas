@@ -20,7 +20,16 @@ export const SEO_CONSTANTS = {
   // og:image:height 630, so every share rendered a portrait in a landscape
   // card. This is the real 1200x630 card, which was sitting unused.
   DEFAULT_PROFILE_IMAGE: 'https://barskydesign.pro/images/og/site.png',
-  SITE_NAME: 'Hiram Barsky | Lead UX Designer | Driving Design Strategy',
+  // The <title> fallback for a page with no entry in STATIC_PAGE_SEO. It is a
+  // title, not the site's name — og:site_name uses BRAND below, and the
+  // Organization schema's name is "Barsky Design".
+  //
+  // It used to read "Hiram Barsky | Lead UX Designer | Driving Design
+  // Strategy", which is the positioning this site retired: the Person schema
+  // on every page says jobTitle "Product Designer & Front-End Developer" while
+  // og:site_name said Lead UX Designer, on all 74 built pages. Composed here
+  // from AUTHOR and that same schema jobTitle so the two cannot drift again.
+  SITE_NAME: 'Hiram Barsky — Product Designer & Front-End Developer',
   // Short form for <title> suffixes. SITE_NAME is 57 chars, so appending it to a
   // post title lands past the ~60 char SERP cut (one post shipped at 113).
   BRAND: 'Barsky Design',
