@@ -703,3 +703,90 @@ NotFound page as before — only the status line changed.
 **Consequence for future runs:** stop adding one-off 301s for soft-404 reports.
 A URL that should not exist now returns 404 on its own. Add a rule only when the
 URL should genuinely go *somewhere*.
+
+## 2026-11-14 — FINDABILITY — the homepage served no section headings to a crawler
+
+Lens picked by rotation: RESEARCH and CRAFT/FLOW both last turned 2026-11-12,
+and the 11-14 run before this one was FLOW preparation that shipped no site
+change. FINDABILITY had not had a turn since the 2026-11-12 checker fixes.
+
+### What was wrong
+
+`SectionHeader` defaults to `titleAnimation="typewriter"` and
+`subtitleAnimation="typewriter"`, and that was the one variant in
+`CharacterAnimationVariants.ts` whose hidden state carried
+`display: "none"`. A word only leaves the hidden state when the heading's
+`IntersectionObserver` fires, so a section that mounts below the fold during
+prerender capture is frozen there and ships hidden.
+
+Measured on the live site before the change:
+
+| route | word spans serialised `display: none` |
+|---|---|
+| `/` | 72 |
+| `/contact` | 11 |
+| `/about`, `/services`, `/projects`, `/blog`, `/design-services/ux-ui-design`, `/project/herbalink` | 0 |
+
+The 72 were every section heading on the homepage and every subtitle under
+them: "Five products you can open right now", "Recent adventures", "Product
+Designer & AI Developer", "Get in Touch" + "Tell me what you're working on and
+where it's stuck", "Latest Insights" + its subtitle, "Frequently Asked
+Questions" + its subtitle, "Explore More Resources". A crawler that does not
+execute JS — which is most of the AI crawlers this site is trying to be cited
+by — read a homepage with no section structure: no contact heading, no FAQ
+heading, no blog heading, on the single most important page.
+
+Googlebot renders JS, so this was not costing classic rankings. It was costing
+the AEO half, which is the half this site has been working on since August.
+
+### Why `revealLazySections` did not already catch it
+
+`scripts/capture-prerendered-bodies.ts` scrolls the whole page specifically to
+trip observers like this one (added after LazySection placeholders shipped as
+voids). It works for the routes whose sections mount early. It loses the race
+on the homepage: those sections mount as the 500px/140ms scroll passes them,
+and the scroll has returned to the top before the heading's own observer gets a
+frame. The fix is at the variant, so mount timing stops mattering for every
+caller — `SectionHeader` site-wide and `CaseStudySectionHeader`.
+
+### The change
+
+`typewriter.hidden` is now `{ opacity: 0 }` and `typewriter.visible` drops its
+`display: "inline-block"`. The per-word `delay: i * 0.09` stagger is untouched
+— the stagger is what produces the typed feel; `display` only removed the words
+from the layout, which also meant each heading reflowed word by word as it
+animated.
+
+### Measured after
+
+- `dist/index.html` 72 → **0** `display: none`; `dist/contact/index.html` 11 → **0**;
+  **0** across all 66 built routes.
+- The headings now serialise at `opacity: 1` with real text, because once the
+  words occupy layout the capture's scroll pass does trip the observers.
+- `<h2>` text extracted from the live homepage: all eight headings present with
+  real word spaces. Subtitles present in extracted page text.
+- **Verified live 2026-11-14 after deploy** (`e72569a3`): `/` 0 hidden,
+  `/contact` 0 hidden.
+- `npm run typecheck` clean · `npm run build` EXIT:0 · 66/66 routes recaptured,
+  no new failures · checked in a browser at 1440px and 375px, animation and
+  centring unchanged.
+
+### Left open
+
+- **`/contact` rewrites its own `<title>` after hydration.** The served title is
+  "Contact Barsky Design — Product Design & UX Consulting"; a few seconds after
+  JS runs the tab reads "Hiram Barsky | Lead UX Designer | Driving Design
+  Strategy". That is the retired positioning the hard rules forbid, reappearing
+  client-side, and it disagrees with the static title Google indexed. Noticed
+  while verifying this change at 375px; not touched, because one change per run.
+  Strong candidate for the next FINDABILITY turn — and worth checking whether
+  other routes do the same.
+- **`opacity: 0` is still the hidden state.** It serialises as `opacity: 1` on
+  every route today, but that depends on the capture's scroll pass continuing to
+  win. If a future route ships headings at `opacity: 0`, the text is at least
+  still in the DOM and the accessibility tree, which `display: none` was not.
+- **A stale `vite preview --strictPort 4199` from 2026-11-12 was holding the
+  port** the capture script needs. Killed before capturing; had it not been, the
+  capture would have run against a two-day-old `dist`. Worth making the script
+  fail loudly on a port it did not start.
+- Still no analytics behind any of this. Unchanged from the 2026-11-12 note.
