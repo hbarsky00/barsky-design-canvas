@@ -55,11 +55,24 @@ export const characterAnimation: Record<AnimationType, any> = {
     })
   },
   // Typewriter effect
+  //
+  // The hidden state is opacity only. It used to be `display: "none"`, which
+  // meant the words were absent from the layout AND from the prerendered HTML
+  // as far as any reader that respects `display:none` is concerned. On
+  // 2026-11-14 the live homepage served 72 such spans — every section heading
+  // and subtitle on the page ("Five products you can open right now", "Get in
+  // Touch", "Frequently Asked Questions" and all their subtitles) — because
+  // `SectionHeader` defaults to this animation and the IntersectionObserver
+  // never fires for a section that mounts below the fold during capture. A
+  // crawler that does not run JS read a homepage with no section structure.
+  //
+  // Opacity leaves the text in the DOM, in the layout and in the accessibility
+  // tree, and removes the per-word reflow that `display` toggling caused. The
+  // stagger below is what produces the typed feel; `display` never was.
   typewriter: {
-    hidden: { opacity: 0, display: "none" },
+    hidden: { opacity: 0 },
     visible: (i: number) => ({
       opacity: 1,
-      display: "inline-block",
       transition: {
         delay: i * 0.09 // Use triple default staggering for typewriter
       }
