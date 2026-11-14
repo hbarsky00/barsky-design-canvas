@@ -132,6 +132,14 @@ after one page versus three, what proof arrives in what order, what the site
 remembers. It is **not** a mandate to add an AI assistant, a chatbot or a
 memory feature to a portfolio. Judgement, not features.
 
+**That lens is now worked out in full in `docs/relationship-design-playbook.md`
+(2026-11-14) — read it before every FLOW run.** It carries the prioritised
+candidate list, the anti-patterns, and the three facts a run must flag rather
+than invent (pricing shape, availability shape, the "what I don't do" list).
+Top of that list is a cold-landing audit of a single case study: most visitors
+arrive from search on a `/project/*` route, never the homepage, so every case
+study is a front door and may be restarting the relationship from zero.
+
 ### RESEARCH — is the site answering the question buyers actually ask?
 The outside-evidence lens, and the only one that looks past our own HTML.
 Invoke **`competitor-analyst`** and **`ux-researcher`**, and **`ux-review`**
