@@ -790,3 +790,105 @@ animated.
   capture would have run against a two-day-old `dist`. Worth making the script
   fail loudly on a port it did not start.
 - Still no analytics behind any of this. Unchanged from the 2026-11-12 note.
+
+## 2026-11-14 (second pass) — FINDABILITY — three names for one entity, one of them retired
+
+Ran on from the flag at the end of the entry above. Hiram asked for the run to
+continue rather than stop at one change, so this is a second shipped change in
+the same session, not a new rotation turn.
+
+### What the flag turned out to be
+
+The flagged symptom was `/contact` showing "Hiram Barsky | Lead UX Designer |
+Driving Design Strategy" in the tab after hydration. Chasing it found the
+constant behind it doing something worse and entirely deterministic:
+
+```
+og:site_name = "Hiram Barsky | Lead UX Designer | Driving Design Strategy"
+```
+
+on **all 66 built pages**, from `scripts/inject-seo-html.ts`. Verified live
+before the change on `/`, `/about`, `/contact`, `/blog`, `/services`,
+`/project/herbalink`. 74 files in `dist` contained the string.
+
+So the same page was publishing three different names for one entity:
+
+| signal | value before |
+|---|---|
+| Person schema `jobTitle` | Product Designer & Front-End Developer |
+| Organization schema `name` | Barsky Design |
+| `og:site_name` | Hiram Barsky \| Lead UX Designer \| Driving Design Strategy |
+
+The 2026-11-11 entity pass fixed "Hiram Barsky Design" vs "Barsky Design" and
+left a comment saying so two lines above the Organization name. It did not look
+at `og:site_name`, which is the one a social card and an entity extractor
+actually label the publisher with. "Lead UX Designer" is also the positioning
+the hard rules in `docs/auto-improve-loop.md` explicitly forbid.
+
+### The change
+
+- `og:site_name` → `seo.siteName` → `BRAND` → **"Barsky Design"**, matching the
+  Organization schema. Changed in **both** emitters: `inject-seo-html.ts` (what
+  a crawler reads) and `UnifiedSEO.tsx` (what the hydrated page sets). Fixing
+  only one would have left the served HTML wrong — the first build after
+  changing the constant alone proved it, og:site_name was still the old shape.
+- `BuiltSEO.siteName` was a dead field nothing read. Both emitters now read it,
+  so there is one source of truth instead of a constant quoted in two files.
+- `SEO_CONSTANTS.SITE_NAME` is only a `<title>` fallback for a page with no
+  `STATIC_PAGE_SEO` entry. Composed now from `AUTHOR` plus the Person schema's
+  own `jobTitle`: "Hiram Barsky — Product Designer & Front-End Developer".
+  Nothing invented — both halves already existed in the repo.
+- `public/manifest.json` carried the same retired string as the PWA `name`;
+  `short_name` was "Hiram Barsky | UX Designer". Now the same composed title and
+  plain "Hiram Barsky".
+
+### The trailing-slash miss that surfaced it
+
+Netlify serves `/contact` **and** `/contact/` with a 200 — confirmed without
+`curl -L` — and GSC has both indexed (the "Alternate page with proper canonical
+tag (18)" row in the 2026-09-06 notes above is exactly these pairs). Every key
+in `STATIC_PAGE_SEO` is slash-free and `getStaticPageSEO` did an exact lookup,
+so the trailing-slash form missed and fell through to the `SITE_NAME` fallback:
+retired title, retired `og:title`, generic description. The canonical stayed
+correct, because `normalizeCanonicalUrl` strips the slash and this lookup did
+not — the same normalisation, present in one place and missing in the other.
+
+Fixed in `getStaticPageSEO`, so every caller gets it including `ContentExport`.
+Checked: `/contact/ → /contact`, `/contact → /contact`, `/ → /`,
+`/services/ai-product-design/ → /services/ai-product-design`.
+
+**Honest about the evidence.** The live symptom was seen twice — once on a
+local `dist` server, once on production `/contact/` — and then would not
+reproduce on demand: later loads of `/contact/`, `/about/`, `/store/`,
+`/services/` and `/blog/` all kept their correct titles, and a MutationObserver
+on `<head>` recorded no title change at all over 10s. So the *timing* of when
+the fallback wins is not understood. The lookup miss itself is not in doubt —
+it is an exact-key lookup against slash-free keys — and it is now impossible.
+No internal link on the site emits a trailing slash (checked all 16 on the
+homepage), so the exposure is external links, search results and typed URLs.
+
+### Measured after
+
+- "Lead UX Designer" in `dist`: **74 files → 0**.
+- `og:site_name` across all 66 built pages: one value, **"Barsky Design"**.
+- Page `<title>`s unchanged — every static page has its own entry and never
+  touched the fallback.
+- **Verified live after deploy** (`c588be42`): `/`, `/about`, `/contact`,
+  `/blog`, `/services`, `/store`, `/project/herbalink` and one blog post all
+  serve `og:site_name="Barsky Design"`; 0 occurrences of the retired string;
+  `/manifest.json` serves the new name.
+- `/contact/` in a browser after hydration: title, `og:title`, description,
+  `og:site_name` and canonical all correct.
+- `npm run typecheck` clean · `npm run build` EXIT:0. **No recapture** — nothing
+  inside `<div id="root">` changed, only `<head>` and the manifest.
+
+### Left open
+
+- **The hydration timing is still unexplained.** Something made the fallback win
+  twice and then stop. If a stale title is ever seen again, instrument
+  `UnifiedSEO`'s `useMemo` rather than guessing; the lookup is no longer a
+  candidate.
+- **`og:image:alt` still falls back to `` `${title} preview image` ``** in
+  `seoBuilder.ts`, which is a description of a file, not of an image. Small, but
+  it is alt text shipped on every page.
+- `SkillsShowcase.tsx` is still bot-generated — unchanged from the note above.
