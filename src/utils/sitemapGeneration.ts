@@ -16,7 +16,7 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Only include canonical, non-redirecting URLs
-  // Note: /projects redirects to /#projects, so excluded
+  // Note: /projects redirects to /#case-studies, so excluded
   const staticPages: SitemapEntry[] = [
     // High priority pages
     {

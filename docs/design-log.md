@@ -949,3 +949,106 @@ with zero occurrences of "2025" in the rendered text.
 - `src/assets/blog/` holds a full set of iCloud conflict copies ("name 2.jpg").
   None are imported. They bloat the repo and are a `git add -A` accident
   waiting to happen.
+
+## 2026-11-16 — FLOW — every `/#section` link landed at the top of the page
+
+Lens rotation: FINDABILITY ran twice on 2026-11-14, so FLOW, CRAFT and RESEARCH
+were tied at 2026-11-12. Took FLOW.
+
+This did not come off the `relationship-design-playbook.md` candidate list. The
+playbook's priority 1 is R1, a cold-landing audit of one case study — and that
+audit is where this was found, so the run started where the playbook said and
+then stopped to fix what the audit turned up. **R1 itself is still unfinished**:
+this is one defect found on the way in, not the audit.
+
+### What was broken
+
+`<Link to="/#case-studies">` did nothing but change the URL. React Router does
+not act on a URL fragment, and `ScrollToTop` only ever looked at `pathname` and
+`state` — never `hash` — so a fragment navigation fell through to
+`window.scrollTo(0, 0)`.
+
+Measured on the built site in a real browser (Chromium, `vite preview`), landing
+cold on `/project/herbalink` and clicking the footer's "Projects" link:
+
+| | scrollY | `#case-studies` top, relative to viewport | in viewport |
+|---|---|---|---|
+| 1440×900 before | 0 | **+908px** | no |
+| 1440×900 after | 795 | +113px | yes |
+| 375×812 before | 0 | **+1321px** | no |
+| 375×812 after | 1216 | +105px | yes |
+
+So a founder who finished a case study and clicked through to see the rest of
+the work got the top of the homepage — hero, no case studies — and had to find
+them again by scrolling. On a phone the section they asked for sat 1321px below
+the fold. That is the end of a case study, which the playbook calls "the
+highest-trust moment on the whole site", handing off to a dead click.
+
+Affected every fragment link on the site: `Footer.tsx` (site-wide),
+`ServicesCallToAction.tsx`, `ServicePageLayout.tsx`,
+`StructuredBusinessManagementCaseStudy.tsx`, and the two `<Navigate
+to="/#case-studies">` fallbacks in `SimplifiedProjectDetail.tsx`.
+
+**Not broken, and worth recording so a later run does not "fix" it:** a direct
+full-page load of `/#case-studies` always worked (scrollY 795 / 1216, before and
+after, identical). The browser's native fragment scroll handles that case. Only
+client-side navigation was affected.
+
+Second, smaller defect: `App.tsx` routed `/projects` to `/#projects`, and
+**there is no `id="projects"` anywhere in `src/`** — a dead anchor. `id="case-studies"`
+exists exactly once, in `HomepageLayout.tsx`. `public/_redirects:153` already
+sent `/projects` → `/#case-studies`, so the server and client redirects
+disagreed and the client one pointed at nothing.
+
+### What changed
+
+Three files.
+
+- `src/components/ScrollToTop.tsx` — reads `hash` and scrolls to it. Priority
+  order is explicit now: `state.scrollTo` (the header nav's own smooth scroll)
+  wins and returns early, then a fragment, then a plain page change scrolls to
+  top. Uses `element.scrollIntoView()` rather than re-deriving header offsets,
+  because `html` already carries `scroll-padding-top: var(--header-height)` and
+  the target carries `.scroll-offset` (`scroll-margin-top: 1rem`) — the exact
+  pair that `src/index.css:928` records as having been tuned once already after
+  a double-header offset put "See My Work" 193px off. Honouring that CSS instead
+  of duplicating the maths is why the two paths now agree: the header nav lands
+  at 791, this lands at 795.
+- Retries up to 10×100ms if the target has not mounted yet, matching what
+  `useHeaderNavigation`'s `attemptScroll` already does for lazy sections.
+- `prefers-reduced-motion: reduce` gets `behavior: 'auto'`. A first render also
+  gets `'auto'` — smooth-scrolling a page the visitor has not seen yet reads as
+  a glitch, not as motion.
+- `src/App.tsx` — `/projects` → `/#case-studies`, agreeing with `_redirects`.
+- `src/utils/sitemapGeneration.ts` — the comment on the same redirect, which
+  named the dead anchor.
+
+### Verified
+
+`npm run typecheck` clean (the real gate, not bare `tsc`) · `npm run build`
+EXIT:0, 66/66 routes prerendered, no dead internal links. **No recapture** —
+`ScrollToTop` renders `null` and nothing inside `<div id="root">` changed.
+
+In Chromium against the built output, at 1440×900 and 375×812:
+
+- case study → footer "Projects" → section in viewport ✓
+- `/services` → `/#case-studies` (a different call site) → in viewport ✓
+- client-side `/projects` → in viewport ✓
+- direct load of `/#case-studies` → unchanged, in viewport ✓
+- header nav from `/about` (the `state.scrollTo` path) → still works, 791 ✓
+- `prefers-reduced-motion: reduce` → lands correctly, no animation ✓
+- unknown fragment `/#no-such-section` → no page errors, stays at top ✓
+- **regression:** plain `/` → `/about` still lands at scrollY 0 ✓
+
+### Left open
+
+- **R1, the actual priority-1 item, is still not done.** The cold-landing audit
+  of `/project/herbalink` — who is this, what does he do, what do I do next —
+  stopped as soon as the broken link turned up. It is still the top of the FLOW
+  queue and should be the next FLOW run.
+- **No analytics, so the impact is a hypothesis.** The 908px and 1321px are
+  measured; "this cost bookings" is not. `docs/research-log.md` has named
+  GA4/Search Console exports as this lens's highest-value unlock for two runs
+  now. Contact-form referrer would have told us how many people hit this.
+- `ScrollEngagement`'s permanent `engagement-shown` flag (playbook M4) is
+  untouched and still the smallest real item on the list.
