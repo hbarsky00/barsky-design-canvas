@@ -1052,3 +1052,28 @@ In Chromium against the built output, at 1440×900 and 375×812:
   now. Contact-form referrer would have told us how many people hit this.
 - `ScrollEngagement`'s permanent `engagement-shown` flag (playbook M4) is
   untouched and still the smallest real item on the list.
+
+### Verified live (`46f8a4e7`)
+
+Re-ran the same browser checks against `https://barskydesign.pro` after the
+Netlify build published. Numbers identical to the local build, which is the
+point — the deployed bundle behaves as measured:
+
+- 1440×900: case study → footer "Projects" → scrollY 795, section at +113px, in
+  viewport ✓ · `/projects` → same ✓ · `/` → `/about` still scrollY 0 ✓
+- 375×812: scrollY 1216, section at +105px, in viewport ✓ · `/projects` → same ✓
+  · regression ✓
+
+### Note for future cloud runs
+
+This run executed in a cloud session, not on Hiram's machine, so
+`~/Documents/barsky-design-canvas` and the skill paths the playbook names were
+not present — the repo was cloned fresh and the lens rotation read off the logs
+instead. Two things that cost time and will cost it again:
+
+- `barskydesign.pro` was not in the session environment's network allowlist, so
+  step 7's live verification failed with a proxy 403 until the host was added.
+  It is on the Default environment's allowlist now.
+- The repo has to be attached to the session with push access before
+  `git push origin main` works; a plain clone of a public repo gets a read-only
+  credential and the push 403s after the work is already committed.
