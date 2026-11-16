@@ -14,6 +14,91 @@ broken. Do not redesign what works.
 
 ## Runs
 
+### 2026-11-16 — CRAFT — the FAQ was hidden on mobile to hide a layout problem
+
+Invoked `bencium-innovative-ux-designer` as critique-then-fix, inside the
+established language. No palette or type changes: Fraunces / IBM Plex Sans and
+the `md-sys-*` tokens are settled, and the brief is explicitly not a redesign.
+
+**Measured first, before touching anything.** Alpha-composited every text layer
+in the hero over its real background and ran WCAG 2.1 on the result, per
+`feedback_verify_contrast_by_measuring` — hand-picked accents have failed here
+before while looking fine:
+
+| layer | ratio | needs | verdict |
+|---|---|---|---|
+| eyebrow, `text-white/50` on `slate-950` | 5.33 | 4.5 | pass |
+| subhead, `text-white/70` | 9.75 | 4.5 | pass |
+| availability line, `text-white/60` | 7.29 | 4.5 | pass |
+| product tag caption, `text-white/60` on `slate-900/85` | 6.99 | 4.5 | pass |
+| availability dot, `emerald-400` (non-text) | 10.49 | 3.0 | pass |
+| HerbaLink badge, `emerald-300` on `emerald-950/85` | 9.94 | 4.5 | pass |
+
+Nothing failing. Worth recording as a pass rather than silence, and worth noting
+the scale: `text-white/40` on this background would land near 4.2 and fail, so
+50% is close to the floor — do not dim hero type any further.
+
+**The actual defect: the homepage FAQ was wrapped in `hidden md:block`**, so it
+did not exist on the mobile page, which is the version Google indexes first.
+That had been logged as open for a while and read like a content decision. It
+was not — it was hiding a layout problem.
+
+`SeoFaqSection` rendered **every answer expanded at once**: eight cards, each a
+full multi-paragraph answer, each trailed by a row of blue keyword chips. On a
+phone that is several screens of unbroken text. Hiding it was treating the
+symptom.
+
+Fixed the cause with **native `<details>`/`<summary>`** rather than a JS
+accordion, which matters for more than bundle size: a Radix-style accordion
+unmounts its collapsed panel, so the answers would have left the DOM and stopped
+being readable by crawlers and answer engines. `<details>` keeps all eight
+answers in the markup whether open or closed, is keyboard-correct and
+screen-reader-correct with no ARIA wiring, and needs no JavaScript. Closed by
+default it is a scannable list of eight questions — so `hidden md:block` could
+come off, and the FAQ now exists on mobile for the first time.
+
+Three pieces of cruft went with it:
+
+- **Keyword chips removed from display.** SEO residue with nothing in them for a
+  reader, and eight cards of blue pills competed with the questions they sat
+  under. The `keywords` field stays on the data.
+- **`min-h-screen flex flex-col justify-center` removed.** With eight expanded
+  answers the section was always far past one viewport, so the constraint only
+  ever applied to a collapsed state the component was never written for.
+- **Stagger capped at six steps.** At `index * 0.1` the eighth question began
+  fading in 0.8s after the first, which reads as lag, not sequence. Now
+  `Math.min(index, 6) * 0.05`. Chevron rotation is `motion-reduce:transition-none`.
+
+### Positioning strings the first sweep missed, because that grep was case-sensitive
+
+The honesty sweep earlier the same day searched for `AI-enhanced` and so walked
+straight past `AI-Enhanced`. Re-run case-insensitively, five **identity**
+statements were still live. Fixed:
+
+| where | was |
+|---|---|
+| `Footer.tsx` — every one of 66 pages | "Product Designer & Gen AI Developer creating intelligent, user-centered digital experiences." |
+| `PersonalStory.tsx` — the About intro | "Product Designer & Gen AI Developer focused on building AI-powered digital experiences" |
+| `WorkingWithMe.tsx` | a card titled "AI-Enhanced Solutions" / "Leverage cutting-edge AI…" |
+| `ScrollEngagement.tsx` | "Interested in boosting your conversions?" / "Let's discuss how AI-powered UX can transform your business." |
+| `SeoFaqSection.tsx` | "Common questions about AI-Enhanced UX Design and Frontend Gen AI Development" |
+
+The "AI-Enhanced Solutions" card was replaced with the thing that is actually
+differentiating and actually true: *"Design and build, one person — the person
+who decides how it should work is the person who writes the code, so nothing is
+lost in handoff."*
+
+**Deliberately left alone:** service pages that describe AI product design as one
+of several offerings, and `seoData` entries for blog posts whose titles really
+are about AI-first design. The settled-positioning rule governs how the site
+describes *him*, not whether the word AI may appear. Also left: the DAE Search
+case study's "Create AI-powered search with natural language processing" — that
+is case-study content and a project goal, flagged rather than rewritten.
+
+**Lesson worth keeping: a case-sensitive grep is not a sweep.** The first pass
+reported clean and was not.
+
+
 - **2026-08-22 — mobile tap targets, sitewide.** First design run of the loop
   (the AEO half had two runs, this had none, so design was the stale half).
 

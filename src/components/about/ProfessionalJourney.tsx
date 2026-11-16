@@ -2,45 +2,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
+import { workHistory } from '@/data/workHistory';
 
 const ProfessionalJourney: React.FC = () => {
-  const milestones = [
-    {
-      year: "Jan 2026 - Present",
-      title: "Lead Product Designer - Verisk",
-      description: "Lead end-to-end UX for enterprise commercial property underwriting — concept through production-ready React and TypeScript prototypes engineers build from — and govern the design system those product lines inherit. Introduced agentic AI workflows into the design practice, building Claude Code systems and custom skills that shorten design-to-development handoff."
-    },
-    {
-      year: "2024 - July 2025",
-      title: "Senior Lead Product Designer - PNC",
-      description: "Redesigned mobile banking interface, boosting engagement by 40% and raising satisfaction scores by 25%"
-    },
-    {
-      year: "2023 - 2024", 
-      title: "Senior UX/UI Designer - Bank of America",
-      description: "Led UX for Loan Central and ServiceNow IRM, cutting errors by 15% and lifting engagement by 10%"
-    },
-    {
-      year: "2021 - 2023",
-      title: "Senior User Experience Designer - Deloitte", 
-      description: "Elevated platform engagement by 20% through user-centered prototypes and innovative design solutions"
-    },
-    {
-      year: "2019 - 2021",
-      title: "UX Strategist & Design Lead - Tata Consultancy Services",
-      description: "Designed fintech apps that drove a 15% revenue lift; built a document manager app reducing support workload by 10%"
-    },
-    {
-      year: "2014 - 2019",
-      title: "Senior UX Designer - KPMG",
-      description: "Created dashboards and data visualizations that reduced client costs by 10% and increased platform revenue by 14%"
-    },
-    {
-      year: "2013 - 2014",
-      title: "Senior UX Designer - Express Scripts",
-      description: "Led design initiatives that improved satisfaction and engagement by 30%, while cutting project turnaround by 20%"
-    }
-  ];
+  // Derived from src/data/workHistory.ts rather than a third hand-kept copy.
+  // `detail` is the long form where a role has one; otherwise the same one-liner
+  // the homepage timeline shows.
+  const milestones = workHistory.map(r => ({
+    year: r.duration,
+    title: `${r.role} - ${r.company}`,
+    description: r.detail ?? r.blurb
+  }));
 
   return (
     <motion.section

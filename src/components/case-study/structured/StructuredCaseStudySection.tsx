@@ -167,7 +167,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
           )}
 
           {/* Main content - moved after media */}
-          <div className="prose prose-lg max-w-none text-gray-600 dark:text-gray-300">
+          <div className="prose prose-lg max-w-none text-gray-600">
             {content.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4 last:mb-0">
                 {paragraph.split('\n').map((line, lineIndex) => (
@@ -200,7 +200,7 @@ const StructuredCaseStudySection: React.FC<StructuredCaseStudySectionProps> = ({
                   <div className="text-2xl font-bold text-foreground mb-2">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300">
+                  <div className="text-sm text-gray-600">
                     {metric.label}
                   </div>
                 </div>

@@ -92,7 +92,13 @@ const HomepageLayout: React.FC = () => {
         </LazySection>
         
         <LazySection>
-          <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="hidden md:block bg-muted/30 py-8 md:py-12">
+          {/* `hidden md:block` removed 2026-11-16. The FAQ was absent from the
+              mobile page — the version Google indexes first — because the
+              section rendered all eight answers expanded and was a wall of text
+              on a phone. SeoFaqSection now uses native <details>, so it is a
+              scannable list closed and the answers stay in the DOM for
+              crawlers. The reason to hide it is gone. */}
+          <SectionTransition variant="fade" delay={0.35} intensity={0.3} className="bg-muted/30 py-8 md:py-12">
             <section id="faq" tabIndex={-1} className="scroll-offset">
               <LazySeoFaqSection 
                 title="Frequently Asked Questions"

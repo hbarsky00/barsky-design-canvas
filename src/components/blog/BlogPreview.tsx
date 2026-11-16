@@ -10,13 +10,52 @@ import SectionHeader from "@/components/shared/SectionHeader";
 interface BlogPreviewProps {
   maxPosts?: number;
   showTitle?: boolean;
+  /** Override the curated picks — pass nothing on the homepage. */
+  slugs?: string[];
 }
+
+/**
+ * The three posts the homepage leads with, chosen rather than dated.
+ *
+ * Measured 2026-11-16: of 48 posts, 13 name a design practitioner as the reader
+ * in the title itself ("Prompt Engineering for Designers", "How to Interview a
+ * Designer Now", "Your portfolio gets read by a robot before a human"), and a
+ * title-by-title read puts roughly 28 of 48 as writing for the design
+ * profession against 11 for someone who owns a product. Five of the six newest
+ * are for the profession. That is a corpus that selects designers as its
+ * audience — which is why the inbound is designers offering to redesign the
+ * site, and why a founder with a broken internal tool never enters it.
+ *
+ * Sorting the strip by date (earlier the same day) made its "Latest" claim
+ * true, and put three pieces of career advice for designers on the page whose
+ * job is to convert a founder. Date was the wrong selector for this slot.
+ *
+ * These three are Hiram's own writing, picked to match the site's settled
+ * positioning — SaaS, web apps, mobile apps and internal tools, across fintech,
+ * healthcare and pharma. Nothing here is a new claim; it is an edit.
+ */
+const HOMEPAGE_PICKS = [
+  "why-enterprise-tools-lose-to-excel",
+  "demo-works-shipping-is-different",
+  "design-for-the-approval-gates",
+] as const;
 
 const BlogPreview: React.FC<BlogPreviewProps> = ({
   maxPosts = 3,
-  showTitle = true
+  showTitle = true,
+  slugs
 }) => {
-  const recentPosts = blogPosts.slice(0, maxPosts);
+  // Resolve the picks against the real corpus, drop any that no longer exist,
+  // and top up from newest-first so a renamed slug degrades to a stale-free
+  // strip instead of blanking the section.
+  const wanted = slugs ?? HOMEPAGE_PICKS;
+  const picked = wanted
+    .map(slug => blogPosts.find(post => post.slug === slug))
+    .filter((post): post is (typeof blogPosts)[number] => Boolean(post));
+  const recentPosts = [
+    ...picked,
+    ...blogPosts.filter(post => !picked.some(p => p.id === post.id))
+  ].slice(0, maxPosts);
 
   return (
     <section className="py-8 md:py-12 bg-white">
@@ -24,8 +63,8 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
         {showTitle && (
           <SectionHeader
             as="h2"
-            title="Latest Insights"
-            subtitle="Expert perspectives on AI-enhanced design, accessibility, and conversion optimization"
+            title="If you're building something"
+            subtitle="Three on what actually sinks a build. The rest of the writing is in the archive."
           />
         )}
         

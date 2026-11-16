@@ -6,33 +6,33 @@ import { ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 
 const ServicesCallToAction = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section className="py-16 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100">
       <div className="container px-4 mx-auto max-w-4xl text-center">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Sparkles className="h-6 w-6 text-blue-600" />
           <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">Ready to Transform Your Business?</span>
         </div>
         
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
-          Start Your AI-Enhanced Project Today
+        <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900">
+          Tell me what you're building
         </h2>
         
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-          Get a personalized project plan with AI-powered analysis, competitive insights, and a clear roadmap to 40%+ improvement.
+        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+          One call to work out what you actually need, which parts are risky, and whether I'm the right person to build it.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <CheckCircle className="h-4 w-4 text-green-600" />
-            <span>24-hour response time</span>
+            <span>Scope in writing before anything starts</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <CheckCircle className="h-4 w-4 text-green-600" />
             <span>Custom project roadmap</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <CheckCircle className="h-4 w-4 text-green-600" />
-            <span>AI integration analysis</span>
+            <span>A straight answer if I'm not the right fit</span>
           </div>
         </div>
         

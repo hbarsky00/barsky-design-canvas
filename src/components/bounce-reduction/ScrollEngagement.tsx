@@ -89,10 +89,10 @@ const ScrollEngagement: React.FC = () => {
               <MessageCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900 mb-1">
-                  Interested in boosting your conversions?
+                  Building something?
                 </h4>
                 <p className="text-sm text-gray-600 mb-3">
-                  Let's discuss how AI-powered UX can transform your business.
+                  Tell me what it is and I'll tell you if I'm the right person to build it.
                 </p>
                 <div className="flex space-x-2">
                   <Button onClick={scrollToContact} size="sm">

@@ -7,8 +7,8 @@ const WorkingWithMe: React.FC = () => {
   const benefits = [
     {
       icon: Zap,
-      title: "AI-Enhanced Solutions",
-      description: "Leverage cutting-edge AI to create smarter, more efficient user experiences"
+      title: "Design and build, one person",
+      description: "The person who decides how it should work is the person who writes the code, so nothing is lost in handoff"
     },
     {
       icon: Clock,

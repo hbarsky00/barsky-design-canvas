@@ -1,6 +1,7 @@
 import { getTemplateForPageType } from "../templateRegistry";
 import { SectionExport } from "./global";
 import { blogPosts } from "@/data/blogData";
+import { workHistory } from "@/data/workHistory";
 
 export function extractHomepageContent(): SectionExport[] {
   const template = getTemplateForPageType("homepage");
@@ -72,10 +73,13 @@ export function extractHomepageContent(): SectionExport[] {
             h2: "Recent Adventures",
             h3: "",
             body: "A look at some of the teams and projects I've been part of recently.",
-            bullets: [
-              "Lead Product Designer • Barsky Design • 2020-Present • Building user-centered digital products for healthcare, fintech, and AI platforms",
-              "Senior UX Designer • Various Startups • 2018-2020 • Designing mobile-first experiences for emerging technologies"
-            ],
+            // Was two hardcoded roles — "Barsky Design • 2020-Present" and
+            // "Various Startups • 2018-2020" — neither of which exists in the
+            // real history. This export is what LLM consumers read, so it was
+            // the one copy nobody saw and the only one that was wrong.
+            bullets: workHistory.map(
+              r => `${r.role} • ${r.company} • ${r.duration} • ${r.blurb}`
+            ),
             captions: [],
             formLabels: [],
             tooltips: [],

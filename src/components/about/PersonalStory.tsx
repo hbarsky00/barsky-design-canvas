@@ -15,8 +15,9 @@ const PersonalStory: React.FC = () => {
           About Hiram Barsky - UX/UI Designer & AI Developer
         </h1>
         <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-          Product Designer & Gen AI Developer focused on building AI-powered digital experiences 
-          that solve real business problems and deliver results.
+          Independent product designer and developer. I design and build SaaS, web apps,
+          mobile apps and internal tools end to end — 15+ years across fintech, healthcare
+          and pharma.
         </p>
       </div>
       

@@ -22,8 +22,8 @@ const BlogLanding: React.FC = () => {
               UX Design & AI Insights
             </h1>
             <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              Expert insights on AI-enhanced UX design, accessibility compliance, 
-              and conversion optimization from the field.
+              Notes on designing and building products — what the work actually
+              taught me, written as decisions rather than method.
             </p>
           </motion.div>
 

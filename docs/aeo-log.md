@@ -7,6 +7,91 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
 4 structured-data validation sweep · 5 llms.txt / cross-web consistency ·
 6 content freshness / gap-fill
 
+## 2026-11-16 — UNSCHEDULED, SEVERITY-DRIVEN — the FAQ was still publishing all three FLAGGED facts, live
+
+Not a lever turn. Found while sweeping for retired-positioning strings after
+Hiram pointed out that his only inbound is designers offering to redesign the
+site. Logged here because `aeo-log.md` is where the flagged-facts list lives and
+because the FAQ is the FAQPage source, which is what answer engines quote.
+
+**`src/data/seoFaqs.ts` was shipping every single one of the three facts this
+playbook says must NEVER be filled in.** Confirmed live on
+`https://barskydesign.pro/` by `curl` on 2026-11-16, not inferred from source:
+
+| claim | grep count on the live homepage |
+|---|---|
+| `Hourly Rate: $150-250/hour` | 1 |
+| `47+ successful projects` | 1 |
+| `40%+` conversion improvement | 2 |
+
+Plus two more inventions in the same file — "60% faster design cycles" and
+"accelerate the traditional design process by 60%" — an unverifiable
+"24-hour response times" promise, "Most clients find significant ROI", and
+**"I'm WCAG 2.1 AA certified"**, which is the flagged credential claim stated as
+fact rather than the approved "I build to WCAG 2.1 AA" practice wording.
+
+**This was supposedly fixed three months ago.** The 2026-07-15 honesty pass
+cleaned the case studies and the FAQ *schema* and never touched this file; the
+miss was noticed again on 2026-08-22 and written into project memory. It was
+still live today. A known bug with a memory note is not a fixed bug.
+
+Rewritten end to end. Every invented number removed; the rate removed and
+**deliberately not replaced with another number**; the WCAG line changed to the
+practice wording. Answers rewritten for someone who owns a product rather than
+for another designer, per the audience finding in `research-log.md`. What is
+left is checkable: 15+ years, the industries, the real stack, and the five
+products that are actually live and nameable.
+
+`projectFaqs` and `servicesFaqs` deleted from the same file. Checked first:
+**zero importers anywhere in `src/`**, so they rendered nowhere and emitted no
+schema — but they carried the same invented material and were one wiring-up away
+from being live. Recoverable from git.
+
+### Three more live fabrications found in the same sweep
+
+- `ExitIntentDetector.tsx` — the exit popup read "See how I've helped clients
+  boost conversions by **40%+** with AI-powered UX design." Now points at the
+  five live products instead.
+- `ServicesCallToAction.tsx` — "a clear roadmap to **40%+** improvement" and a
+  "**24-hour response time**" guarantee. Both replaced with things that are
+  true: scope in writing before work starts, and a straight answer if he is not
+  the right fit.
+- `structuredDataUtils.ts` — `hasOccupation.name` was **"AI Product Designer"**
+  while `jobTitle` on the same entity said "Product Designer & Front-End
+  Developer". One entity, two occupations, in machine-readable form. Aligned,
+  and the `skills` string no longer leads with "AI product design".
+
+### Entity work shipped alongside
+
+- **Hero eyebrow** was "Lead Product Designer" — an employee job title at the
+  top of a site selling an independent practice that designs *and* builds. Now
+  "Independent Product Designer & Developer" (short form below `xl`), which
+  matches the subhead and the schema `jobTitle`, so the entity says one thing in
+  three places. Peer precedent: `ishadeed.com` leads with the service, and
+  `olivierlarose.com` with "Independent Design Engineer".
+- **`address` added** to both Person and Organization — `addressRegion: "NJ"`,
+  `addressCountry: "US"`. `areaServed` already said where he *works*; nothing
+  said where he *is*, and `address` is the field engines read for place. City
+  deliberately omitted rather than guessed from `occupationLocation`. With GBP
+  and the `sameAs` set still pending this is the cheapest entity signal left.
+- Three remaining "AI-enhanced" positioning strings replaced in
+  `CallToAction.tsx`, `BlogLanding.tsx` and `InternalLinkEnhancer.tsx`.
+
+### FLAGGED, not touched
+
+- **`StructuredCaseStudyOverview.tsx`** — DAE Search lists "Reduce search time
+  by 60%" in its `goals` array. That is a stated project objective, not a
+  claimed result, and case-study text is flagged rather than rewritten. Hiram's
+  call whether the target was real.
+- **`ServicesCallToAction.tsx` carries `dark:` variants** (`dark:text-white`,
+  `dark:text-gray-300`) on a site that has no dark theme and never will.
+- **`src/docs/seo-implementation-summary.md`** still documents a long-dead H1,
+  "I Design AI-Powered UX That Boosts Conversion by 40%+". Not shipped — the
+  file is never imported — but it is a stale instruction sitting where a future
+  run might read it as current.
+- **Availability.** Still nothing on the site. Every peer states theirs. Needs
+  one sentence from Hiram; a run may not invent it.
+
 ## Cycle 1 — started 2026-08-22
 
 - [x] **1 entity hardening** — 2026-08-22 — Organization schema `jobTitle`,

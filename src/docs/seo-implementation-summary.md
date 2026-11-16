@@ -1,3 +1,19 @@
+> **SUPERSEDED — HISTORICAL RECORD ONLY. Do not act on anything below.**
+>
+> Marked 2026-11-16. This file describes a state of the site from an earlier
+> era and is no longer accurate. It is kept because it records what was done
+> and when, not because it is a specification.
+>
+> **The H1 it recommends — "I Design AI-Powered UX That Boosts Conversion by
+> 40%+" — must never be restored.** The 40%+ figure is invented, and it is one
+> of the claims the 2026-11-16 honesty sweep removed from the live site. The
+> "AI-Powered UX" framing is also the retired positioning. The settled
+> positioning is: *I design and develop SaaS, web apps, mobile apps and
+> internal tools.*
+>
+> For current SEO/AEO state and the live flagged-facts list, read
+> `docs/aeo-log.md`. For the playbook, `docs/auto-improve-loop.md`.
+
 # SEO Implementation Summary
 
 ## ✅ COMPLETED: Critical Heading Hierarchy Fixes

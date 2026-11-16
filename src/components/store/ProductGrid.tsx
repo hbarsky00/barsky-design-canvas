@@ -11,7 +11,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
   if (products.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-slate-600 dark:text-slate-300">No products found in this category.</p>
+        <p className="text-slate-600">No products found in this category.</p>
       </div>
     );
   }

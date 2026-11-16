@@ -40,6 +40,22 @@ const CAPABILITIES = [
   },
 ] as const;
 
+/**
+ * The one line on this site that answers "can I actually hire him right now".
+ *
+ * Added 2026-11-16. Until then the site said nothing about availability
+ * anywhere — grepped, and there was no availability language in `src/` at all —
+ * while every independent peer states theirs plainly (emilkowal.ski even when
+ * the answer is no: "Currently taking a break from work"). For a founder
+ * deciding whether to bother writing, it is the cheapest question to answer.
+ *
+ * Deliberately carries NO date, NO capacity number and NO rate, because none of
+ * those are known here and inventing them is exactly what the honesty rules
+ * forbid. It is Hiram's sentence: change this one string, or set it to null to
+ * remove the line entirely.
+ */
+const AVAILABILITY: string | null = "Available for new projects";
+
 const HERBALINK = "/images/herbalink/hero-desktop.webp";
 const CATCHBUDDY = "/images/catchbuddy/hero-phone.webp";
 
@@ -97,7 +113,23 @@ const EditorialHero: React.FC = () => {
           {/* ------------------------------------------------------- copy */}
           <div className="order-1">
             <motion.div {...rise(0)} className="flex items-center gap-4">
-              <p className="text-eyebrow text-white/50 whitespace-nowrap">Lead Product Designer</p>
+              {/* Was "Lead Product Designer" — an employee job title, at the top
+                  of a site selling an independent practice that designs AND
+                  builds. Every peer in this lane names the work instead:
+                  ishadeed.com leads with "UX Design, Web Design Engineering,
+                  and UX Audits", olivierlarose.com with "Independent Design
+                  Engineer / Based in Montreal". This matches the settled
+                  positioning in the subhead below and the `jobTitle` in
+                  structured data, so the entity now says one thing in three
+                  places. Place is NOT crammed in here — the original had
+                  `whitespace-nowrap` beside a 96px rule in a 42fr column, and a
+                  longer string overflows at the xl breakpoint; it goes in
+                  `address` in structured data instead. */}
+              <Responsive
+                full="Independent Product Designer & Developer"
+                short="Product Designer & Developer"
+                className="text-eyebrow text-white/50 whitespace-nowrap"
+              />
               <span className="h-px w-16 shrink-0 bg-white/20 lg:w-24" aria-hidden="true" />
             </motion.div>
 
@@ -149,6 +181,24 @@ const EditorialHero: React.FC = () => {
                 Book a Call
               </Link>
             </motion.div>
+
+            {AVAILABILITY && (
+              <motion.p
+                {...rise(0.24)}
+                className="mt-5 flex items-center gap-2.5 text-sm text-white/60"
+              >
+                {/* The dot is decoration; the sentence carries the meaning, so
+                    it is hidden from assistive tech rather than announced. No
+                    pulse animation — it would read as a live status feed the
+                    site cannot actually back. */}
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-2 w-2 shrink-0 rounded-full bg-emerald-400
+                             ring-2 ring-emerald-400/25"
+                />
+                {AVAILABILITY}
+              </motion.p>
+            )}
           </div>
 
           {/* --------------------------------------------- product showcase */}

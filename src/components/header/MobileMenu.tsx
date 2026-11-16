@@ -44,7 +44,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div className="relative">
       <button 
-        className="text-barsky-dark dark:text-white p-1 transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none" 
+        className="text-barsky-dark p-1 transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none" 
         onClick={toggleMobileMenu}
         aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isMobileMenuOpen}
@@ -58,7 +58,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             id="mobile-navigation"
             role="menu"
             aria-label="Mobile navigation menu"
-            className="fixed inset-x-0 top-[var(--header-height,64px)] w-screen max-w-none rounded-none border-t border-gray-200/60 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg z-40 p-2"
+            className="fixed inset-x-0 top-[var(--header-height,64px)] w-screen max-w-none rounded-none border-t border-gray-200/60 bg-white shadow-lg z-40 p-2"
           >
             <nav className="flex flex-col space-y-1">
               {menuLinks.map((link) => {
@@ -70,7 +70,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={toggleMobileMenu}
-                      className="nav-link w-full text-base flex items-center justify-start px-3 py-2 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                      className="nav-link w-full text-base flex items-center justify-start px-3 py-2 rounded-md hover:bg-blue-50 transition-colors"
                     >
                       {getIcon(link.name)}
                       {link.name}
@@ -95,8 +95,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     className={cn(
                       "nav-link w-full text-base flex items-center justify-start px-3 py-2 rounded-md transition-colors",
                       isLinkActive(link.href)
-                        ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
-                        : "hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                        ? "bg-blue-100 text-blue-700"
+                        : "hover:bg-blue-50"
                     )}
                   >
                     {getIcon(link.name)}

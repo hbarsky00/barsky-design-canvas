@@ -50,7 +50,7 @@ const getLinkingRules = (): LinkRule[] => [
   {
     keywords: ['AI', 'artificial intelligence', 'future', 'technology', 'automation'],
     targetSlug: 'ai-enhanced-ux-designer-future',
-    anchorText: 'AI-enhanced UX design',
+    anchorText: 'designing and building products',
     title: 'The AI-Enhanced UX Designer: Future-Proofing Your Career'
   },
   

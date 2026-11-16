@@ -80,7 +80,7 @@ const overviewContent: Record<string, OverviewContent> = {
     goals: [
       "Create AI-powered search with natural language processing.",
       "Implement predictive suggestions that anticipate user intent.",
-      "Reduce search time by 60% through smarter result ranking.",
+      "Cut the time it takes to reach the right result through smarter ranking.",
       "Build trust through transparent, explainable search results."
     ],
     role: "Lead Product Designer",

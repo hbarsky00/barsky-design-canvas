@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
               Hiram <span className="text-blue-vibrant">Barsky</span>
             </h3>
             <p className="mb-6 leading-relaxed text-slate-50">
-              Product Designer & Gen AI Developer creating intelligent, user-centered digital experiences.
+              I design and develop SaaS, web apps, mobile apps and internal tools — one person, from product design through React front end, database and launch.
             </p>
             <p className="nuclear-white text-sm text-slate-50">
               &copy; {currentYear} Hiram Barsky. All rights reserved.

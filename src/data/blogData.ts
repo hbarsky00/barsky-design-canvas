@@ -47,7 +47,12 @@ const wrap = (intro: string, inline: string, alt: string, body: string) => `
   ${body}
 `;
 
-export const blogPosts: BlogPost[] = [
+/**
+ * The posts in the order they were written into this file, which is NOT
+ * chronological — new posts were appended, so the newest sat at index 38 of 48.
+ * Nothing reads this directly. Consume `blogPosts` below, which is sorted.
+ */
+const postsInFileOrder: BlogPost[] = [
   // --- Carried over from barsky.design when the two sites were consolidated.
   // These eight posts existed only on the domain that now 301s here. Text,
   // headlines and images are unchanged; only the block format was converted.
@@ -2581,3 +2586,30 @@ export const blogPosts: BlogPost[] = [
     `
   }
 ];
+
+/**
+ * Every post, newest first.
+ *
+ * Sorting happens HERE rather than at each call site because three separate
+ * surfaces were publishing file order and calling it recency:
+ *   - the homepage "Latest Insights" strip (`BlogPreview`), which took
+ *     `slice(0, 3)` and so advertised August 7, July 18 and July 11 while the
+ *     newest posts were November 10, November 3 and October 27;
+ *   - the `/blog` index (`BlogLanding`), which rendered the newest post 39th
+ *     down a 48-post page;
+ *   - the LLM content export (`export/extractors/homepage.ts`), same
+ *     `slice(0, 3)`.
+ *
+ * `new Date("August 7, 2026")` parses in every engine this ships to, and all 48
+ * dates are in that one format; a post with an unparseable date would sort to
+ * the end rather than scrambling the list, which is why the guard is a filter
+ * on the comparison and not a throw.
+ */
+const published = (post: BlogPost): number => {
+  const t = new Date(post.date).getTime();
+  return Number.isNaN(t) ? -Infinity : t;
+};
+
+export const blogPosts: BlogPost[] = [...postsInFileOrder].sort(
+  (a, b) => published(b) - published(a)
+);

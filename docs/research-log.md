@@ -23,6 +23,193 @@ Rules for this lens:
 
 ---
 
+## 2026-11-16 — RESEARCH — what the peers who outrank and outconvert this site actually do
+
+Hiram's ask, verbatim: *"i want to scan others who are doing it way better than
+me and do the things other sites are doing."* So this run went outside the repo
+first and only came back to change something the evidence supported.
+
+### Who actually owns the queries a founder types — `Confirmed`
+
+Three searches for the buying language (`freelance product designer who also
+codes hire for SaaS app`, `hire freelance UX designer for startup MVP web app
+internal tools`, and an "available for projects" variant) returned **almost no
+individual portfolios**. Page one is Upwork, Contra, Toptal, Fiverr, Codementor,
+Guru, Freelancer, Arc. The only individual humans surfaced were *inside* those
+marketplaces as profiles.
+
+This is the second independent confirmation of what `project_barskydesign_findability`
+already concluded: **head terms are unwinnable.** Not "hard" — structurally
+unwinnable, because the SERP is a marketplace SERP. No amount of on-page work on
+a one-person site displaces Upwork for "hire freelance SaaS designer". Any plan
+that routes through ranking for those phrases is a plan to lose.
+
+What that leaves: long-tail problem-shaped queries, AI-engine citation, and
+direct/referral. All three are won by having a lot of specific, opinionated
+writing — which is the next finding.
+
+### What the peers in this exact lane are built on — `Confirmed`
+
+Three independent design-engineer sites, fetched and read:
+
+| | Above the fold | Proof | Availability | Primary CTA |
+|---|---|---|---|---|
+| **ishadeed.com** (Ahmad Shadeed) | H1 is the *service*: "UX Design, Web Design Engineering, and UX Audits", then "I bridge the gap between design and development" | Book, paid course, conference talk, a coined term (Defensive CSS), **"3400+ subscribers"**, 2 projects, 6 recent articles | implied by the CTA | **"Book a call"** button |
+| **olivierlarose.com** | "Independent Design☼Engineer" + **"Based in Montreal"** | ~30 projects as a scannable table: Project / Category / Client / Year. No metrics, no testimonials | none | a `Contact` mailto in the nav |
+| **emilkowal.ski** | His name, then "Design Engineer" | Shipped products people use (Sonner, Vaul), 7 articles, **"previously Linear and Vercel"** | **stated outright: "Currently taking a break from work"** | course enrollment |
+
+Three things all of them do that this site does not:
+
+1. **An explicit availability signal.** Emil states his plainly. This site has
+   **none** — grepped `src/` for availability language and found nothing but an
+   image-error string. For a founder deciding whether to bother writing, "can I
+   even hire this person right now" is the cheapest question to answer and we
+   answer it nowhere. `Confirmed` absent. **FLAGGED, not fixed:** the content is
+   a fact only Hiram knows, and `auto-improve-loop.md` forbids a run inventing
+   availability. The slot is his to fill.
+2. **Place, stated where it is read.** Olivier puts "Based in Montreal" in the
+   hero. This site mentions New Jersey **once**, on the contact page, at
+   `text-xs text-muted-foreground`, and has no `addressRegion`/`addressLocality`
+   in schema at all. With GBP and `sameAs` still pending, that is a free entity
+   signal going unused. `Confirmed` absent. Not fixed this run — one change per
+   run; logged as the next candidate.
+3. **Writing as the funnel, surfaced early.** Ahmad's homepage puts recent
+   articles up front with "View all articles". His ranking comes from the
+   article corpus, not from a portfolio page.
+
+### The finding that got fixed — `Confirmed`, deterministic
+
+Point 3 turned out to be where this site was actively broken, not merely behind.
+
+**49 of this site's 66 URLs are blog posts — 74%.** The corpus is already the
+biggest findability asset here, and it is the one thing the marketplace SERPs
+cannot take. And **nothing on the site sorted it by date.**
+
+`blogPosts` was exported in the order posts were written into the file, with new
+posts appended. The newest post sat at **index 38 of 48**. Three surfaces
+published that order as recency:
+
+- the homepage **"Latest Insights"** strip — `blogPosts.slice(0, 3)`, so it
+  advertised **August 7, July 18 and July 11** while **November 10, November 3
+  and October 27** sat unlinked. Three months of the newest writing invisible on
+  the page most likely to be a founder's first stop.
+- the `/blog` index — rendered the newest post **39th down a 48-post page**.
+- the LLM content export (`export/extractors/homepage.ts`) — same `slice(0, 3)`,
+  so the stale three were also what fed AI consumers.
+
+Worse than stale: one of the three being advertised was
+`what-is-an-ai-first-product-designer` — **the retired positioning**, which the
+2026-11-14 run had just finished stripping out of `og:site_name` across all 66
+pages. It was still the site's own headline recommendation of what to read.
+
+**Fixed at the source**, not at the three call sites: `blogData.ts` now keeps the
+file-order array private and exports `blogPosts` sorted newest-first. All three
+surfaces corrected by one change; `.find()` and `.map()` consumers are
+order-independent and unaffected.
+
+The homepage subtitle was corrected in the same pass. It promised "Expert
+perspectives on AI-enhanced design, accessibility, and conversion optimization"
+— a topic list that **none of the six newest posts** match. The strip now reads
+"Notes from designing and shipping products — written as decisions, not method."
+
+Top six after the fix, all current and all founder-relevant:
+
+- Nov 10 — The take-home test stopped proving anything
+- Nov 3 — Your design system now has two readers, and one of them is a model
+- Oct 27 — A case study is a record of decisions, not a record of work
+- Oct 20 — What I actually use AI for, hour by hour
+- Oct 13 — Research with no budget, when the tempting shortcut is a model
+- Oct 6 — Generated layouts all have the same problem
+
+**Verified both ways** before shipping, per
+`feedback_verify_the_checker_not_just_the_code`: the assertion that the order is
+chronological **fails against file order** and **passes against the exported
+array**. A check that could not fail would have proved nothing.
+
+### The real finding, which came from Hiram, not from the research — `Confirmed`
+
+Mid-run he asked: *"the only emails i get is designers telling me they can make
+my site better , i wonder why that is ?"*
+
+That is a measurement, not a complaint, and it points at something none of the
+four lenses had ever looked for. **The corpus selects its own audience, and this
+one selects designers.**
+
+Measured over all 48 posts:
+
+- **13 titles name a design practitioner as the reader, in the title itself** —
+  "Prompt Engineering for Designers", "How to Interview a Designer Now", "Your
+  portfolio gets read by a robot before a human", "ChatGPT vs Claude vs Gemini
+  for UX Workflows", "From Figma to Production with AI: A Modern Designer's…",
+  "Half of designers now ship AI-written code", "AI ate the entry-level job.
+  Nobody trained the juniors yet.", "Making the business case for design", "The
+  Designer Who Codes Argument Is Over", "What is an AI-first product designer?",
+  "A case study is a record of decisions", "Your design system now has two
+  readers", "Learning AI Design with Claude: A Designer's…". No judgement call
+  is involved in that count; the reader is named on the page.
+- A title-by-title read of the rest puts roughly **28 of 48 writing to the
+  design profession against 11 writing to someone who owns a product**, with 9
+  genuinely ambiguous.
+- **Five of the six newest posts are for the profession.** The corpus has been
+  drifting further that way, not less.
+
+A blind keyword classifier run as a cross-check split 19/19, but it is a weak
+instrument and should not be quoted as agreement: it scores
+`trust-is-a-design-material` and `solo-building-with-ai` as buyer content when
+the reader of both is plainly a designer. The title-name count above is the
+number that holds.
+
+**So the inbound is correct.** 49 of 66 URLs are posts; those posts rank for
+designer queries; Google and the answer engines classify the entity from what it
+writes about; the people who arrive are designers, and the ones with something
+to sell send email. A founder with a broken internal tool never enters this
+corpus at all. The site is not failing to convert founders — **it is not
+reaching them**, and the thing doing the reaching is pointed elsewhere.
+
+This also indicts the fix made earlier in this same run. Sorting the strip by
+date made its "Latest" claim true, and in doing so put **three pieces of career
+advice for designers** on the page whose only job is to convert a founder. Date
+was the wrong selector for that slot. The sort stays — `/blog` and the LLM
+export should be chronological — but the homepage now **picks** instead:
+
+| | |
+|---|---|
+| `why-enterprise-tools-lose-to-excel` | internal tools, directly on positioning |
+| `demo-works-shipping-is-different` | the thing a founder is actually afraid of |
+| `design-for-the-approval-gates` | regulated work — fintech, healthcare, pharma |
+
+Heading changed with it, from "Latest Insights" to **"If you're building
+something"**, subtitle "Three on what actually sinks a build. The rest of the
+writing is in the archive." All three picks verified to resolve against the real
+corpus before shipping; a renamed slug degrades to newest-first rather than
+blanking the section.
+
+**What this run deliberately did NOT do:** decide the corpus strategy. Eleven
+good buyer-facing posts already exist and are now reachable from the homepage.
+Whether the next 48 posts keep addressing the profession — which builds
+reputation among peers — or turn toward the people who hire, is a positioning
+decision and Hiram's alone. **FLAGGED.** Worth noting the two are not exclusive:
+Ahmad Shadeed writes for practitioners *and* sells audits, but his H1 names the
+service, not the craft.
+
+### Still open, in priority order
+
+1. **Availability line** — needs one sentence from Hiram. Highest-value gap
+   found this run; every peer has it, we have nothing.
+2. **Place in the hero and in schema** — `addressRegion` / `addressLocality`,
+   plus a visible location line. Free entity signal, no new facts required.
+3. **The homepage FAQ is `hidden md:block`** — absent on mobile, which is what
+   Google indexes. Previously logged, still open.
+4. Olivier's **dense project table** (Project / Category / Client / Year) is far
+   more scannable than large cards. Worth testing against the five-product grid.
+
+Not touched, deliberately: the hero eyebrow reads "Lead Product Designer", an
+employee title on a site selling an independent practice that designs *and*
+builds — all three peers put the independent, dual-discipline identity there.
+Positioning is settled and not a run's to rewrite. **FLAGGED for Hiram.**
+
+---
+
 ## 2026-11-12 (second pass) — RESEARCH — four claims the site was making that were not true
 
 Same day, same lens, continued on Hiram's instruction to keep going. Where the

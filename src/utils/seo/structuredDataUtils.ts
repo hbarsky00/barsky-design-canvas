@@ -78,14 +78,28 @@ export const generateStructuredData = (seoData: SEOData) => {
     // Carried over from barsky.design, which had it and this site did not.
     hasOccupation: {
       "@type": "Occupation",
-      name: "AI Product Designer",
+      // Was "AI Product Designer", which contradicted `jobTitle` above on the
+      // same entity and re-stated the retired AI-first positioning that the
+      // 2026-11-14 run stripped out of og:site_name across all 66 pages. One
+      // entity may not claim two occupations.
+      name: "Product Designer & Front-End Developer",
       occupationalCategory: "15-1255.00",
       skills:
-        "AI product design, UX strategy, user research, design systems, prototyping, React, TypeScript",
+        "Product design, UX strategy, user research, design systems, prototyping, React, TypeScript",
       occupationLocation: [
         { "@type": "City", name: "New York" },
         { "@type": "City", name: "Clifton" }
       ]
+    },
+    // `areaServed` on the Organization says where he WORKS; nothing said where
+    // he IS. `address` is the field search engines read for place, and with GBP
+    // and the sameAs set still pending it is the cheapest entity signal left.
+    // Region and country only — the city is deliberately omitted rather than
+    // guessed from `occupationLocation`.
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "NJ",
+      addressCountry: "US"
     },
     sameAs: SAME_AS,
     worksFor: { "@id": ORG_ID }
@@ -106,6 +120,11 @@ export const generateStructuredData = (seoData: SEOData) => {
       email: "hbarsky01@gmail.com"
     },
     founder: { "@id": PERSON_ID },
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "NJ",
+      addressCountry: "US"
+    },
     sameAs: SAME_AS,
     // "US" told Google nothing a local searcher could match on.
     areaServed: [

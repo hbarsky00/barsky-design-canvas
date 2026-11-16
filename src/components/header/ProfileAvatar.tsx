@@ -32,7 +32,11 @@ const ProfileAvatar: React.FC = () => {
         imageSrc={imageUrl}
         videoSrc={videoUrl}
         name="Hiram Barsky"
-        subtitle="Product Designer + AI"
+        /* Was "Product Designer + AI" — the retired positioning, sitting in the
+           header of all 66 pages. No sweep caught it: it matches none of the
+           "AI-first / AI-powered / AI-enhanced / Gen AI" patterns. A screenshot
+           found it, not a grep. */
+        subtitle="Designer & Developer"
         size="md"
         subtitleStyle="pill"
         /* Hover-triggered, not autoplaying. A looping face in the header is a
