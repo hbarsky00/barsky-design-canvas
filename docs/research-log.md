@@ -494,3 +494,82 @@ row.
   a deterministic check. GA4 and Search Console exports would turn "a founder
   probably bounces here" into a number. Still the single highest-value unlock
   for this lens, and still not done.
+
+---
+
+## 2026-11-17 — FLOW: the site was addressed to the wrong reader
+
+Hiram asked, on 2026-11-16: *"the only emails i get is designers telling me
+they can make my site better, i wonder why that is?"* The 11-16 pass answered
+the honesty half of that — every invented metric is gone. This run answers the
+other half, which is the one that actually changes the inbound.
+
+### The finding
+
+Of 48 posts, **17 are addressed to someone who owns a product and 31 to the
+design profession.** The buyer-facing writing was already on the site. Nothing
+was missing. It was sorted by date into a list headed "UX Design & AI
+Insights", so "Why Enterprise Tools Lose to Excel" sat between "The take-home
+test stopped proving anything" and "Your design system now has two readers".
+
+A corpus selects its own readers. This one had been selecting peers.
+
+### What the search result said
+
+The homepage title and description are the headline and snippet Google shows,
+and both named the wrong audience:
+
+```
+UX Designer Portfolio — Hiram Barsky, Product Designer
+Senior UX designer portfolio with case studies in AI, fintech, healthcare,
+and cyber — showing measurable user outcomes and product design impact.
+```
+
+"Portfolio" is a word designers and recruiters search. "Senior UX designer" is
+a job-seeker's self-description, not a vendor's. And the second half is true of
+every design site ever built, so it distinguishes nothing. That pair is the
+single highest-leverage string on the site for this problem and it had survived
+three positioning passes untouched.
+
+### What changed
+
+| Surface | Was | Now |
+|---|---|---|
+| Homepage `<title>` | UX Designer Portfolio — Hiram Barsky, Product Designer | Hiram Barsky — Product Designer & Front-End Developer |
+| Homepage description | Senior UX designer portfolio… | One person who designs and builds SaaS, web apps and internal tools… |
+| `/blog` `<title>` | UX Design Blog — Product Design Insights | Notes on Building and Shipping Products |
+| `/blog` `<h1>` | UX Design & AI Insights | Notes from building and shipping products |
+| `/services` `<title>` | UX/UI Design Services | Design & Build Services — SaaS, Web and Internal Tools |
+| `/services` `<h1>` | Product Design & Gen AI Development | SaaS, web apps and internal tools — designed and built by one person |
+
+`/blog` is now two tracks. **"If you're building something"** leads with the 17
+buyer-facing posts as cards; **"If you do this work"** follows with the other 31
+as a dense list. Nothing was unpublished — every post keeps its URL. The split
+lives in one place, `BUILDER_SLUGS` in `blogData.ts`, and `BlogPreview` tops up
+the homepage strip from the same track instead of from whatever is newest.
+
+### Two things found while looking, not looked for
+
+- **`SERVICES_DATA` advertised "Machine Learning Models".** That export is not
+  rendered anywhere — `ContentExport.tsx` is its only consumer, so its entire
+  job is telling answer engines what Hiram sells. He does not train models.
+  Same class of problem as the invented numbers in `seoFaqs.ts`: an unearned
+  capability claim, machine-readable, where no human reading the site would
+  ever see it to object. Replaced with the four engagements that exist as real
+  pages.
+- **`/blog` staggered 48 cards at `index * 0.1`,** so the last card began
+  animating 4.8 seconds after the first. Everything below the fold arrived
+  after the reader did. Capped at 5 steps.
+
+### Still open, in priority order
+
+1. **Write for the buyer.** Everything above makes 17 existing posts findable.
+   It does not add one. The next posts decide whether this holds.
+2. **Animated headings serialize without spaces** (carried from the previous
+   run, still unfixed): `AnimatedText` spaces words with `mr-[0.25em]`, so the
+   prerendered `textContent` of homepage h2s reads "Fiveproductsyoucanopenrightnow".
+   That is what a crawler reads and a screen reader announces.
+3. **The hero capability pill still says "AI & Emerging Tech / Gen AI,
+   Automation"** — the last visible survivor of the retired positioning.
+4. **Still no analytics.** Every finding here is desk research. GA4 and Search
+   Console would turn "a founder bounces here" into a number.

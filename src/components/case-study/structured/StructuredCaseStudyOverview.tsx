@@ -24,7 +24,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Sole Product Designer",
     responsibilities: "End-to-end UX & UI design, research to validation",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
   "herbalink": {
@@ -36,7 +36,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Product design, booking flows, trust & safety UX",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
   "investor-loan-app": {
@@ -48,7 +48,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "UX strategy, workflow redesign, compliance UX",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
   "business-management": {
@@ -60,7 +60,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Information architecture, workflow design, UI patterns",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
   "crypto": {
@@ -72,7 +72,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Trading UX, data visualization, security workflows",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
   "daesearchproject": {
@@ -85,7 +85,7 @@ const overviewContent: Record<string, OverviewContent> = {
     ],
     role: "Lead Product Designer",
     responsibilities: "Search UX, AI interaction design, information architecture",
-    collaborators: "Me (Conversational Design Engineer + AI)",
+    collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
 };

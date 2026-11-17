@@ -4,7 +4,7 @@ import { imgDims } from "@/utils/imageDims";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/data/blogData";
+import { blogPosts, builderPosts } from "@/data/blogData";
 import SectionHeader from "@/components/shared/SectionHeader";
 
 interface BlogPreviewProps {
@@ -33,6 +33,12 @@ interface BlogPreviewProps {
  * These three are Hiram's own writing, picked to match the site's settled
  * positioning — SaaS, web apps, mobile apps and internal tools, across fintech,
  * healthcare and pharma. Nothing here is a new claim; it is an edit.
+ *
+ * These are a hand-picked three, not `BUILDER_SLUGS.slice(0, 3)`: that track
+ * opens with both Excel pieces, and leading the homepage with two posts about
+ * the same competitor wastes one of three slots. The top-up below does read
+ * `builderPosts`, so a renamed slug degrades to another buyer-facing post
+ * rather than to whatever happens to be newest.
  */
 const HOMEPAGE_PICKS = [
   "why-enterprise-tools-lose-to-excel",
@@ -52,10 +58,17 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
   const picked = wanted
     .map(slug => blogPosts.find(post => post.slug === slug))
     .filter((post): post is (typeof blogPosts)[number] => Boolean(post));
-  const recentPosts = [
-    ...picked,
-    ...blogPosts.filter(post => !picked.some(p => p.id === post.id))
-  ].slice(0, maxPosts);
+  // Top up from the buyer-facing track first, then the full corpus. Deduped by
+  // id, because builderPosts is a subset of blogPosts and a plain concat would
+  // render the same post twice.
+  const seen = new Set(picked.map(post => post.id));
+  const recentPosts = [...picked];
+  for (const post of [...builderPosts, ...blogPosts]) {
+    if (recentPosts.length >= maxPosts) break;
+    if (seen.has(post.id)) continue;
+    seen.add(post.id);
+    recentPosts.push(post);
+  }
 
   return (
     <section className="py-8 md:py-12 bg-white">

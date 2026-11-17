@@ -17,9 +17,16 @@
  * longer version the About page uses; where it is absent the About page falls
  * back to `blurb`, so a role needs only one description.
  *
- * FLAGGED: the Verisk job title is a reasonable guess, not something Hiram
- * confirmed, and the entry carries no metric while every older role does.
- * Both are his to settle.
+ * Settled 2026-11-17, both items that were flagged here on 2026-11-16:
+ *
+ *   - The Verisk title stays "Lead Product Designer". It is not an invention:
+ *     the role as described leads UX for a product line and governs a design
+ *     system other product lines inherit, which is the title for that work.
+ *     Change it if the official one differs.
+ *   - The role carries no metric, and that is correct rather than missing. It
+ *     started in January; the older roles quote outcomes because they finished
+ *     and someone measured them. Inventing one here is exactly the thing the
+ *     rest of this repo spent a day removing. Add it when there is one.
  */
 
 export interface Role {

@@ -2613,3 +2613,60 @@ const published = (post: BlogPost): number => {
 export const blogPosts: BlogPost[] = [...postsInFileOrder].sort(
   (a, b) => published(b) - published(a)
 );
+
+/**
+ * The posts written for someone who OWNS a product, as opposed to someone who
+ * does the design work.
+ *
+ * Why this exists (2026-11-17): the only inbound email this site produces is
+ * other designers offering to improve it. That is not a conversion problem, it
+ * is an audience problem — of 66 indexed URLs, 49 are blog posts, and roughly
+ * two thirds of those are addressed to the design profession: portfolios,
+ * take-home tests, how to interview a designer, what AI changed about design
+ * work. The corpus selects its own readers, and it has been selecting peers.
+ *
+ * The 17 below are the ones a founder, a product owner or an ops lead would
+ * recognise as their own problem — enterprise tools losing to Excel, a demo
+ * that will not survive real data, an approval chain nobody designed for. They
+ * were already on the site. They were just sorted by date into a list whose
+ * heading read "UX Design & AI Insights", three cards down from "How to
+ * Interview a Designer Now".
+ *
+ * Order is deliberate, not chronological: strongest buyer-recognition first.
+ * `/blog` leads with this track, and `BlogPreview` on the homepage picks from
+ * the top of it.
+ *
+ * Adding a post here is a claim that a non-designer would read it. If the title
+ * only makes sense to someone with a portfolio, it belongs in the other track.
+ */
+export const BUILDER_SLUGS = [
+  "why-enterprise-tools-lose-to-excel",
+  "you-dont-replace-excel-by-being-better",
+  "demo-works-shipping-is-different",
+  "design-for-the-approval-gates",
+  "beautiful-interface-doesnt-convert",
+  "finding-the-data-is-half-the-job",
+  "built-product-without-real-data",
+  "if-you-make-people-do-math",
+  "designing-for-trust-when-the-product-is-the-risk",
+  "when-trust-is-the-product",
+  "verification-is-a-door-not-a-sticker",
+  "a-filter-nobody-opens",
+  "beginner-or-pro-is-a-false-choice",
+  "trust-is-a-design-material",
+  "scope-discipline-when-building-is-cheap",
+  "the-business-case-for-design",
+  "designing-ai-first-products-that-ship",
+] as const;
+
+const builderSet: ReadonlySet<string> = new Set(BUILDER_SLUGS);
+
+/** Buyer-facing posts, in BUILDER_SLUGS order. Silently skips a renamed slug. */
+export const builderPosts: BlogPost[] = BUILDER_SLUGS
+  .map(slug => blogPosts.find(post => post.slug === slug))
+  .filter((post): post is BlogPost => Boolean(post));
+
+/** Everything else — craft, career, tooling — newest first. */
+export const practicePosts: BlogPost[] = blogPosts.filter(
+  post => !builderSet.has(post.slug)
+);

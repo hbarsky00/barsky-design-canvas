@@ -3,10 +3,29 @@ import { SEOInput } from "@/utils/seo/seoBuilder";
 
 // Static page SEO data
 export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
+  // 2026-11-17. The old pair was 'UX Designer Portfolio — Hiram Barsky, Product
+  // Designer' over 'Senior UX designer portfolio with case studies in AI,
+  // fintech, healthcare, and cyber — showing measurable user outcomes and
+  // product design impact.'
+  //
+  // That is the headline and the snippet Google shows for the homepage, and it
+  // was selecting the wrong reader twice. "Portfolio" is a word designers and
+  // recruiters search; a founder with a product does not look for one. "Senior
+  // UX designer" is a job-seeker's self-description, not a vendor's. And
+  // "measurable user outcomes and product design impact" says nothing anyone
+  // can act on — it is the kind of line that is true of every design site.
+  //
+  // Which is the answer to the question Hiram asked on 2026-11-16: why the only
+  // inbound is other designers. The corpus is addressed to the profession and
+  // so was the one line in search results.
+  //
+  // The replacement is the settled positioning verbatim, names the artefacts a
+  // buyer would recognise, and matches `jobTitle` and `hasOccupation.name` in
+  // the Person schema so the entity says one thing everywhere.
   '/': {
     kind: 'home',
-    title: 'UX Designer Portfolio — Hiram Barsky, Product Designer',
-    description: 'Senior UX designer portfolio with case studies in AI, fintech, healthcare, and cyber — showing measurable user outcomes and product design impact.',
+    title: 'Hiram Barsky — Product Designer & Front-End Developer',
+    description: 'One person who designs and builds SaaS, web apps and internal tools — from product design through the React front end, database and launch. 15+ years.',
     image: SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE
   },
   '/projects': {
@@ -39,7 +58,10 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   },
   '/services': {
     kind: 'page',
-    title: 'UX/UI Design Services | Barsky Design',
+    // Was 'UX/UI Design Services'. A real commercial query, but it describes
+    // half the job — the half a buyer can get anywhere — and hides the part
+    // that is actually the offer: the same person ships the code.
+    title: 'Design & Build Services — SaaS, Web and Internal Tools',
     description: 'One person taking a product from research through interface design to a shipped React front end, database and deploy — not a chain of handoffs.',
     image: 'https://barskydesign.pro/images/og/page-services.png'
   },
@@ -49,10 +71,15 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Tell me what you’re working on and where it’s stuck — short messages are fine. Email, phone, or book a call. Remote worldwide, New Jersey, US Eastern.',
     image: 'https://barskydesign.pro/images/og/page-contact.png'
   },
+  // Was 'UX Design Blog — Product Design Insights'. Both halves address the
+  // profession, and "insights" is the filler word that survives every edit
+  // because it means nothing. The page itself now leads with a buyer-facing
+  // track ("If you're building something") ahead of the craft writing, so the
+  // title should say what the first thing on the page is.
   '/blog': {
     kind: 'page',
-    title: 'UX Design Blog — Product Design Insights | Barsky Design',
-    description: 'Notes on designing and building products — what the work actually taught me, written as decisions rather than method. 15+ years, fintech to pharma.',
+    title: 'Notes on Building and Shipping Products | Barsky Design',
+    description: 'What goes wrong once a product meets real data, real approval chains and people who already have a way of doing this. 15+ years, fintech to pharma.',
     image: 'https://barskydesign.pro/images/og/page-blog.png'
   },
   '/about': {
