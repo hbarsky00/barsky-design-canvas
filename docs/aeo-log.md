@@ -7,6 +7,116 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
 4 structured-data validation sweep · 5 llms.txt / cross-web consistency ·
 6 content freshness / gap-fill
 
+## 2026-11-17 — FINDABILITY (lever 1, entity hardening) — the search snippet was still written by an agency
+
+`PAGE_SEO_MAP` in `src/data/seoData.ts` was the last place the retired
+positioning and the old agency voice were still shipping live. The 2026-11-16
+sweep cleaned components, schema and the FAQ and never opened this file — the
+same class of miss as `seoFaqs.ts`: a file nobody re-reads because the pages it
+feeds all render correctly.
+
+This matters more than its size suggests. The meta description is the only
+sentence most people read before deciding whether to click, and on five of the
+site's eight hand-written page entries it was boilerplate that contradicted the
+page behind it.
+
+### Measured before — `curl` against production on 2026-11-17, not inferred from source
+
+| route | what the snippet said | why it was wrong |
+|---|---|---|
+| `/about` | "**Senior UX/Product Designer** with 15+ years creating data-driven, **AI-powered platforms**" | Both strings are explicitly retired positioning. The 2026-11-14 run removed "Lead UX Designer" from 74 files and the 2026-11-16 run replaced the hero eyebrow; this line survived both, in the one sentence Google shows. |
+| `/design-services/mobile-app-design` | design "that **increases engagement and app store ratings**" | An unbacked outcome claim — the exact class the 2026-11-16 honesty sweep removed everywhere else. |
+| `/contact` | "**Ready to transform your product?**" | The page this site exists to reach, opening in agency voice. Also named "Clifton, NJ" while the page itself says "New Jersey". |
+| `/blog` | "**Expert insights on** UX design, AI integration..." | Generic. The page's own line is far better and was sitting unused. |
+| `/services` | "...experiences that **drive business results**" | Outcome boilerplate. |
+| `/store` | "...templates to **accelerate your product development**" | Boilerplate; says nothing about what is actually sold. |
+
+Scan across all 66 built routes for agency-voice tells (`transform your`,
+`expert`, `drive results`, `that scale`, `increases engagement`, `app store
+ratings`, `boost`, `seamless`, `leverag`, plus the two retired strings):
+**5 descriptions hit. The other 61 were clean** — which is why this was
+invisible: the blog and case-study descriptions had all been rewritten, so the
+file read as done.
+
+Separately, **`/design-services/ux-ui-design` titled itself "UX/UI Design
+Services" while its `<h1>` said "Product Design Services"** — a snippet that
+mismatched its own page, and a second claimant for the phrase the `/services`
+hub already targets. Retitled to match the H1. The hub keeps the phrase
+deliberately: it sits higher in the tree and carries more inbound links, so it
+is the right page to win it.
+
+### What shipped (`dbf4ef4a`)
+
+Eight descriptions and one title rewritten. **Every replacement is lifted from
+the page's own current copy**, so the snippet now promises what the page
+delivers — `/contact` leads with "Tell me what you're working on and where it's
+stuck", which is the page's actual opening line and a far lower barrier than
+"Ready to transform your product?".
+
+Nothing invented: no rate, no project count, no outcome percentage. "Clifton"
+was dropped from `/contact` rather than kept, because the page says "New
+Jersey" and the 2026-11-16 run deliberately refused to guess the city for
+schema `address`. One entity, one answer.
+
+### Measured after
+
+- Descriptions with agency-boilerplate tells, all 66 built routes: **5 → 0**.
+- Retired-positioning strings (`Senior UX/Product Designer`, `AI-powered
+  platforms`) anywhere in `dist`: **0 files**.
+- All eight titles ≤ 58 chars; all eight descriptions 135–158 chars (checker
+  range is 70–160); `og:description` equals the meta description on all eight.
+- `npm run typecheck` clean — and it **earned its place this run**: the first
+  version of the `/contact` line used straight apostrophes inside a
+  single-quoted TS string and produced eight TS1005 parse errors. A bare
+  `tsc --noEmit` would have passed. `npm run build` EXIT:0.
+- **No recapture.** Head-only change; all 66 tracked snapshots in
+  `prerendered-bodies/` showed 0 modifications, which is the check rather than
+  the assumption.
+- **Verified live** on all eight routes after the Netlify build, with
+  cache-busted requests. Note: the first verification pass returned the OLD
+  `/about` description while the same script found zero occurrences of
+  `Senior UX/Product Designer` seconds later — a stale edge node caught
+  mid-propagation. Five cache-busted re-fetches all returned the new value
+  (`age: 0`, `cache-status: fwd=miss; stored`). **If a live check disagrees
+  with itself, re-fetch before believing the failure.**
+
+### Left open
+
+- **Eight blog posts ship over-length descriptions** (168–203 chars) and three
+  over-length titles (62–67), all of them the posts ported from barsky.design
+  on 2026-11-12. The checker flags all eleven. **Deliberately not fixed**, and
+  this is the reasoning rather than laziness: all eight are written *to
+  designers* ("How to Write a Case Study", "Design Hiring in 2026", "User
+  Research With No Budget"). Raising their SERP click-through amplifies exactly
+  the audience mismatch `research-log.md` identified — 49 of 66 URLs are posts
+  and most address designers, which is why Hiram's only inbound is designers
+  offering to redesign the site. Fix them in a run that also addresses who they
+  are for, not as a metadata chore.
+- **Twelve routes share `site.png` as their OG card** — the four `/services/*`
+  sub-pages and eight blog posts. Those four are the founder-facing commercial
+  pages, so a generic social card is worst exactly where it matters most.
+  Needs real rendered cards; its own run.
+- **The four `/services/*` pages and three `/design-services/*` pages have one
+  inbound internal link each** — all from the `/services` hub. The most
+  commercial pages on the site, with almost no internal signal reaching them.
+  Measured this run (0 orphans site-wide, but these seven are the floor).
+- **Sixteen of 66 sitemap entries carry no `<lastmod>`** — every non-blog
+  route, including `/`, `/about`, `/contact` and `/services`. Only a hint to
+  crawlers, but it is free and currently unused.
+- **`/about`'s "My Story" body copy still says "boost engagement, conversions"
+  and its `<h1>` reads "About Hiram Barsky - UX/UI Designer & AI Developer".**
+  FLAGGED, not touched: visible page prose, and rewriting it is Hiram's call.
+  The retired positioning is now gone from the *metadata*, but the H1 on that
+  page still carries the old framing.
+- `usePageIndexing` still injects invented `<meta name="crawl-priority">` and
+  `fetch-priority` tags on three pages and console.logs on every production
+  navigation. `seoUtils.ts` `pageIndexingConfigs` still lists seven
+  `/case-studies/*` paths that have never been routes. Both unchanged.
+- `og:image:alt` still falls back to `` `${title} preview image` ``.
+- Still no GA4 or Search Console export. Every finding above is deterministic or
+  desk research; none of it is a number about real visitors. Named as this
+  loop's highest-value unlock for three runs now.
+
 ## 2026-11-16 — UNSCHEDULED, SEVERITY-DRIVEN — the FAQ was still publishing all three FLAGGED facts, live
 
 Not a lever turn. Found while sweeping for retired-positioning strings after
