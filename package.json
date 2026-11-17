@@ -8,7 +8,7 @@
     "dev": "vite",
     "prebuild": "node scripts/generate-image-dimensions.mjs && npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts",
     "build": "vite build",
-    "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs && node scripts/check-internal-links.mjs",
+    "postbuild": "npx tsx scripts/inject-seo-html.ts && node scripts/inline-critical-css.mjs && node scripts/check-internal-links.mjs && node scripts/check-prose-integrity.mjs",
     "build:dev": "npx tsx scripts/generate-sitemap.ts && npx tsx scripts/generate-llms-txt.ts && vite build --mode development",
     "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
     "check:captions": "node scripts/check-image-captions.mjs",

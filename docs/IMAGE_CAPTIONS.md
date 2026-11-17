@@ -84,8 +84,24 @@ and the check rejects it as one:
 ```
 
 `figure`, `figcaption` and `span` are all allowlisted in
-`src/utils/htmlSanitizer.ts`. If you reach for a new tag, add it there too or
-DOMPurify will silently unwrap it.
+`src/utils/htmlSanitizer.ts`. If you reach for a new tag, add it there too.
+
+> **Corrected 2026-11-17.** This paragraph was false until that date: only
+> `span` was actually in `ALLOWED_TAGS`. `figure` and `figcaption` were not, so
+> every captioned image in a blog body shipped with its `<figcaption>` stripped
+> and the caption rendered as ordinary body copy — photo credit and all. The
+> line above said otherwise, which is presumably why nobody checked. Both tags
+> are allowlisted now, and the claim is true.
+>
+> Note also that "silently unwrap it" is only half right. DOMPurify keeps the
+> text of most disallowed elements, but HTML's table parsing rules foster-parent
+> content out of a `<table>` whose cells have been removed, so a table loses its
+> text outright. That is what happened to the comparison table in
+> `/blog/chatgpt-vs-claude-vs-gemini-for-ux`.
+>
+> `scripts/check-prose-integrity.mjs` now fails the build when rendered text
+> stops matching the source, so a missing tag shows up as a build error rather
+> than as quietly missing words.
 
 ### Cover images
 

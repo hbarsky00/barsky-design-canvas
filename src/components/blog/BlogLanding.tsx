@@ -120,7 +120,7 @@ const BlogLanding: React.FC = () => {
           {/* The buyer-facing track, first and visually dominant. */}
           <section aria-labelledby="for-builders" className="mb-20 md:mb-28">
             <div className="mb-8 md:mb-10 max-w-2xl">
-              <h2 id="for-builders" className="heading-card text-gray-900 mb-3 text-balance">
+              <h2 id="for-builders" className="heading-subsection text-gray-900 mb-3 text-balance">
                 If you&rsquo;re building something
               </h2>
               <p className="text-gray-700 leading-relaxed">
@@ -144,7 +144,7 @@ const BlogLanding: React.FC = () => {
           {/* The craft and career track. A list, not 31 more image cards. */}
           <section aria-labelledby="on-the-craft">
             <div className="mb-8 md:mb-10 max-w-2xl">
-              <h2 id="on-the-craft" className="heading-card text-gray-900 mb-3 text-balance">
+              <h2 id="on-the-craft" className="heading-subsection text-gray-900 mb-3 text-balance">
                 If you do this work
               </h2>
               <p className="text-gray-700 leading-relaxed">

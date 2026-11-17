@@ -30,7 +30,11 @@ const CAPABILITIES = [
     detail: "React, Databases, Launch",
     shortDetail: "React, Launch",
   },
-  { Icon: Sparkles, label: "AI & Emerging Tech", detail: "Gen AI, Automation" },
+  // Was "AI & Emerging Tech" / "Gen AI, Automation" — the last visible survivor
+  // of the retired AI-first positioning, and "Emerging Tech" is the kind of
+  // agency filler that describes nothing. The replacement names the actual
+  // engagement, and matches the AI Product Design service page.
+  { Icon: Sparkles, label: "AI Product Work", detail: "Model behavior, trust UX" },
   {
     Icon: Users,
     label: "15+ Years Experience",

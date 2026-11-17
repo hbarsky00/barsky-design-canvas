@@ -9,59 +9,100 @@ interface InternalLinkEnhancerProps {
 }
 
 interface LinkRule {
-  keywords: string[];
+  /** Phrases to look for in the post body, matched case-insensitively. */
+  phrases: string[];
   targetSlug: string;
-  anchorText: string;
+  /** Tooltip only. It is never used as the link text — see below. */
   title: string;
 }
 
 /**
- * SEO-optimized internal linking rules
- * Each rule defines keywords to match and the target post to link to
+ * Internal linking rules.
+ *
+ * Rewritten 2026-11-17 after finding two things wrong with this file, both
+ * live on every blog post.
+ *
+ * **1. It was rewriting Hiram's sentences.** The old implementation replaced
+ * the matched keyword with a different `anchorText` phrase. The rule for the
+ * keyword "AI" carried `anchorText: 'designing and building products'`, so this
+ * sentence shipped on /blog/the-work-is-deleting-not-generating:
+ *
+ *     "...the parts designing and building products genuinely couldn't do,
+ *      is in the Ring-Rival case study."
+ *
+ * He wrote "the parts AI genuinely couldn't do". A linker is not allowed to
+ * edit prose, and this one was doing it silently, on published pages, wherever
+ * a one-word keyword happened to land mid-sentence. The injector below now
+ * wraps the matched text and changes nothing.
+ *
+ * **2. Every rule pointed at a post written for designers** — portfolios, the
+ * UX job search, a designer's AI career, research methods. So a founder
+ * reading "Why Enterprise Tools Lose to Excel" was handed three links into
+ * design-career content, and the internal link graph — which is a strong
+ * signal about what a site is *about* — argued the site was for designers.
+ * That is the same audience problem as the /blog index, one layer down.
+ *
+ * Rules are now ordered buyer-facing first, and only three are injected per
+ * post, so the top of this list is what most posts get.
+ *
+ * Phrases are multi-word and specific on purpose. Single common words ("AI",
+ * "research", "career") matched almost every post and produced links that
+ * carried no meaning even when they did not mangle the sentence.
  */
 const getLinkingRules = (): LinkRule[] => [
-  // Was targeting 'portfolio-red-flags-no-interviews', a post that does not
-  // exist — so this rule injected a 404 link into all 18 blog bodies mentioning
-  // "portfolio" or "case study". Repointed at the live post on the same subject.
   {
-    keywords: ['portfolio', 'case study', 'case studies'],
-    targetSlug: 'everyones-portfolio-looks-good-now',
-    anchorText: 'what a portfolio proves now',
-    title: "Everyone's Portfolio Looks Good Now"
+    phrases: ['replace Excel', 'spreadsheet', 'Excel'],
+    targetSlug: 'why-enterprise-tools-lose-to-excel',
+    title: 'Why Enterprise Tools Lose to Excel'
   },
-  
-  // Link to finding first UX job
   {
-    keywords: ['job search', 'career', 'networking', 'interviews'],
-    targetSlug: 'finding-first-ux-job-guide',
-    anchorText: 'UX job search strategies',
-    title: 'Finding Your First UX Job: A Senior Designer\'s Honest Guide'
+    phrases: ['approval chain', 'compliance review', 'regulated'],
+    targetSlug: 'design-for-the-approval-gates',
+    title: 'In Regulated Work, Design for the Gates'
   },
-  
-  // Link to design systems article
   {
-    keywords: ['design system', 'design systems', 'components', 'documentation'],
+    phrases: ['the demo', 'a demo', 'happy path'],
+    targetSlug: 'demo-works-shipping-is-different',
+    title: 'The Demo Works. Shipping Is a Different Job.'
+  },
+  {
+    phrases: ['hire a designer', 'hiring a team', 'an agency', 'handoff'],
+    targetSlug: 'one-person-or-a-team',
+    title: "When One Person Should Build Your Product, and When They Shouldn't"
+  },
+  {
+    phrases: ['cold start', 'before you have the data'],
+    targetSlug: 'built-product-without-real-data',
+    title: 'Shipping an AI Feature Before You Have the Data'
+  },
+  {
+    phrases: ['scope discipline', 'what not to ship', 'prioritisation'],
+    targetSlug: 'scope-discipline-when-building-is-cheap',
+    title: 'Scope Discipline When Building Is Cheap'
+  },
+  {
+    phrases: ['trust and safety', 'trust & safety'],
+    targetSlug: 'designing-for-trust-when-the-product-is-the-risk',
+    title: 'Designing for Trust When the Product Is the Risk'
+  },
+  // Cross-audience: a design system is a thing both a buyer and a practitioner
+  // ask about, so this one stays.
+  {
+    phrases: ['design system'],
     targetSlug: 'design-systems-that-get-used',
-    anchorText: 'building effective design systems',
-    title: 'Building Design Systems That Actually Get Used'
+    title: 'Your design system now has two readers, and one of them is a model'
   },
-  
-  // Link to AI-enhanced UX article
+  // Practitioner-facing, kept last so it only fires on posts that matched
+  // nothing above.
   {
-    keywords: ['AI', 'artificial intelligence', 'future', 'technology', 'automation'],
-    targetSlug: 'ai-enhanced-ux-designer-future',
-    anchorText: 'designing and building products',
-    title: 'The AI-Enhanced UX Designer: Future-Proofing Your Career'
-  },
-  
-  // Link to user research article
-  {
-    keywords: ['user research', 'research', 'budget', 'testing', 'usability'],
+    phrases: ['user research', 'usability testing'],
     targetSlug: 'user-research-shoestring-budget',
-    anchorText: 'cost-effective user research methods',
-    title: 'User Research on a Shoestring Budget: Maximum Impact, Minimum Cost'
+    title: 'Research with no budget, when the tempting shortcut is a model'
   }
 ];
+
+/** Escape a phrase for safe use inside a RegExp. */
+const escapeRe = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /**
  * Enhanced content with strategic internal links for SEO
@@ -78,42 +119,41 @@ export const InternalLinkEnhancer: React.FC<InternalLinkEnhancerProps> = ({
   const enhanceContentWithLinks = (htmlContent: string): string => {
     let enhancedContent = htmlContent;
     let linksAdded = 0;
-    const maxLinksPerPost = 3; // SEO best practice: 2-3 internal links per post
-    
-    // Track which rules we've already used to avoid duplicate links
-    const usedRules = new Set<string>();
-    
+    const maxLinksPerPost = 3; // 2-3 internal links per post is plenty.
+
+    const usedSlugs = new Set<string>();
+
     for (const rule of availableRules) {
       if (linksAdded >= maxLinksPerPost) break;
-      if (usedRules.has(rule.targetSlug)) continue;
-      
-      // Find the first occurrence of any keyword in the content
-      for (const keyword of rule.keywords) {
-        // Create a regex that matches the keyword but not if it's already in a link
-        const keywordRegex = new RegExp(
-          `(?<!<a[^>]*>.*?)\\b${keyword}\\b(?![^<]*</a>)(?![^<]*>)`,
+      if (usedSlugs.has(rule.targetSlug)) continue;
+
+      for (const phrase of rule.phrases) {
+        // Match the phrase only in body text: not inside an existing anchor,
+        // not inside a tag, and not inside an attribute value. The negative
+        // lookahead for `</a>` without an intervening `<` is what keeps it out
+        // of link text that is already there.
+        const phraseRegex = new RegExp(
+          `\\b(${escapeRe(phrase)})\\b(?![^<]*</a>)(?![^<>]*>)`,
           'i'
         );
-        
-        if (keywordRegex.test(enhancedContent)) {
-          // Replace the first occurrence with a link
-          enhancedContent = enhancedContent.replace(
-            keywordRegex,
-            `<a href="/blog/${rule.targetSlug}" 
-               class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200"
-               title="${rule.title}"
-               rel="internal">
-               ${rule.anchorText}
-            </a>`
-          );
-          
-          usedRules.add(rule.targetSlug);
-          linksAdded++;
-          break; // Move to next rule after finding a match
-        }
+
+        if (!phraseRegex.test(enhancedContent)) continue;
+
+        // `$1` — the author's own words become the link text. The previous
+        // version substituted a different phrase here, which silently rewrote
+        // published sentences. Never do that again: a linker links, it does
+        // not edit.
+        enhancedContent = enhancedContent.replace(
+          phraseRegex,
+          `<a href="/blog/${rule.targetSlug}" class="text-blue-600 hover:text-blue-700 underline underline-offset-2 transition-colors duration-200" title="${rule.title}" rel="internal">$1</a>`
+        );
+
+        usedSlugs.add(rule.targetSlug);
+        linksAdded++;
+        break;
       }
     }
-    
+
     return enhancedContent;
   };
   

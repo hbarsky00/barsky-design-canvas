@@ -42,14 +42,14 @@ export const BlogBreadcrumbs: React.FC<BlogBreadcrumbsProps> = ({
         {/* Blog */}
         <li>
           {isOnBlogPage ? (
-            <span className="font-medium text-gray-900">UX Design Blog</span>
+            <span className="font-medium text-gray-900">Writing</span>
           ) : (
             <Link 
               to="/blog" 
               className="hover:text-blue-600 transition-colors duration-200"
               title="View all blog posts"
             >
-              UX Design Blog
+              Writing
             </Link>
           )}
         </li>
@@ -92,7 +92,7 @@ export const BlogBreadcrumbs: React.FC<BlogBreadcrumbsProps> = ({
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "UX Design Blog",
+                "name": "Writing",
                 "item": "https://barskydesign.pro/blog"
               },
               ...(currentTitle && currentSlug ? [{

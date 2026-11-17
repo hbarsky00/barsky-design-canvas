@@ -565,11 +565,117 @@ the homepage strip from the same track instead of from whatever is newest.
 
 1. **Write for the buyer.** Everything above makes 17 existing posts findable.
    It does not add one. The next posts decide whether this holds.
-2. **Animated headings serialize without spaces** (carried from the previous
-   run, still unfixed): `AnimatedText` spaces words with `mr-[0.25em]`, so the
-   prerendered `textContent` of homepage h2s reads "Fiveproductsyoucanopenrightnow".
-   That is what a crawler reads and a screen reader announces.
+2. ~~Animated headings serialize without spaces.~~ **Already fixed, and the
+   claim above was wrong.** Carrying the previous run's open item forward
+   without re-checking it was the error: `CharacterAnimation` now emits a real
+   space character between words, and production confirms it —
+   `curl https://barskydesign.pro/` returns "Five products you can open right
+   now", not "Fiveproductsyoucanopenrightnow". Another session fixed it. An
+   open item inherited from an older log is a claim, not a fact; verify it
+   before repeating it.
 3. **The hero capability pill still says "AI & Emerging Tech / Gen AI,
    Automation"** — the last visible survivor of the retired positioning.
 4. **Still no analytics.** Every finding here is desk research. GA4 and Search
    Console would turn "a founder bounces here" into a number.
+
+---
+
+## 2026-11-17 (second pass) — the linker was rewriting his sentences
+
+Found while checking whether internal links routed a founder anywhere useful.
+They did not — but that turned out to be the smaller problem.
+
+`InternalLinkEnhancer` injected internal links by **replacing** the matched
+keyword with a different phrase from its rule table. The rule for the keyword
+`AI` carried `anchorText: 'designing and building products'`. So this was live:
+
+```
+source  : "Let me just say it: AI didn't kill the entry-level job."
+rendered: "Let me just say it: designing and building products didn't kill
+           the entry-level job."
+
+source  : 'Everyone slapped "AI" on their title this year'
+rendered: 'Everyone slapped " designing and building products " on their title'
+
+source  : "...the parts AI genuinely couldn't do, is in the Ring-Rival case study."
+rendered: "...the parts designing and building products genuinely couldn't do..."
+
+source  : "Budget goes to what gets measured."
+rendered: "cost-effective user research methods goes to what gets measured."
+
+source  : "twenty articulate interviews before lunch"
+rendered: "twenty articulate UX job search strategies before lunch"
+```
+
+**30 of 48 posts**, measured, not estimated. Two more could not be located by
+the checker — a checker limitation, reported separately rather than counted as
+content findings.
+
+The rule table also pointed every link at designer-facing posts (portfolios,
+the UX job search, a designer's AI career, research methods), so a founder
+reading "Why Enterprise Tools Lose to Excel" was handed three links into
+career content — and the internal link graph, which is a strong signal about
+what a site is *about*, argued the site was for designers. Same audience
+problem as the `/blog` index, one layer down.
+
+### Fixed
+
+- The injector now wraps the matched phrase (`$1`) instead of substituting a
+  different one. A linker links; it does not edit.
+- Rules are multi-word and specific. Single common words — `AI`, `research`,
+  `career`, `budget` — matched nearly every post and were the direct cause of
+  the mangling.
+- Rules reordered buyer-facing first, since only three are injected per post.
+
+### The gate
+
+`scripts/check-prose-integrity.mjs`, wired into `postbuild`. It compares each
+post's normalised visible text in `prerendered-bodies/` against the `content`
+template literal in `blogData.ts`. Markup changes pass; a changed, added or
+dropped word fails.
+
+**It was proven to fail before it was trusted** — run against the bodies that
+were live at the time, it caught all 30. Every other gate in this repo checks
+structure: links resolve, captions differ from alt text, dates parse. None of
+them checked that the words on the page are the words in the source, which is
+why this ran for as long as it did with nobody noticing.
+
+### The gate immediately found a second thing
+
+Once `check-prose-integrity.mjs` was comparing all 49 posts (the first version
+silently covered only 42 — see below), it flagged
+`/blog/chatgpt-vs-claude-vs-gemini-for-ux`. Not the linker this time: the
+**sanitizer**.
+
+`src/utils/htmlSanitizer.ts` allowed `p`, `div`, `img`, `span` and friends, but
+not `table`, `thead`, `tr`, `th`, `td`, `figure` or `figcaption`. Two
+consequences, both live:
+
+- **Table text was deleted, not unwrapped.** DOMPurify normally keeps the text
+  of a disallowed element, but HTML's table parsing rules foster-parent content
+  out of a table whose cell elements have been removed. The comparison table in
+  that post shipped with its entire header row — "Model", "Best for", "Where it
+  pulls ahead" — simply absent from the page.
+- **Every blog image caption lost its `<figcaption>`.** The text survived as
+  ordinary body copy: same size, same weight as the paragraph above it, photo
+  credit and all. Restored, it renders at 14px in the muted tone, measured at
+  **9.64:1** against the page background.
+
+Added `figure`, `figcaption`, the full table set, plus `hr`, `small`, `sup`,
+`sub`, `del`, `ins`, and the `colspan`/`rowspan`/`scope` attributes. Every one
+is an inert, non-scriptable editorial element; `style` and `div`, already
+allowed, each carry strictly more risk.
+
+### Two corrections to this log
+
+- **The first version of the gate covered 42 of 49 posts and reported
+  success.** Seven posts build their body through a `wrap()` helper rather than
+  a bare template literal, and the parser skipped them without saying so — a
+  gate claiming to pass over partial coverage, which is the exact failure in
+  [[feedback_verify_the_checker_not_just_the_code]]. It now parses both shapes
+  and **fails** if it cannot parse a post at all.
+- **The first run also reported six false positives.** Wrapping a phrase in an
+  anchor puts a tag boundary mid-sentence, and stripping tags there leaves a
+  space: "approval chain ," against a source of "approval chain,". Identical
+  prose. The comparison now ignores whitespace entirely, which kills that whole
+  class of artifact and still catches any changed, added or dropped word.

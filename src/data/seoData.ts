@@ -168,6 +168,7 @@ export const BLOG_IMAGE_MAP: Record<string, string> = {
 // exist, so ten posts shipped an og:image that 404s. These are the generated
 // 1200x630 cards from scripts/generate-og-images.py, which is also what the
 // hardcoded og:image:width/height in inject-seo-html.ts actually describes.
+  "one-person-or-a-team": "https://barskydesign.pro/images/og/blog-one-person-or-a-team.png",
   "finding-first-ux-job-guide": "https://barskydesign.pro/images/og/blog-finding-first-ux-job-guide.png",
   "design-systems-that-get-used": "https://barskydesign.pro/images/og/blog-design-systems-that-get-used.png",
   "ai-enhanced-ux-designer-future": "https://barskydesign.pro/images/og/blog-ai-enhanced-ux-designer-future.png",
@@ -405,6 +406,12 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     description: "Polish stopped being a signal the moment it became free. What still separates a designer: live products, written-down deletions, defensible numbers.",
     published: "2026-06-15T09:00:00Z",
     modified: "2026-09-13"
+  },
+  "one-person-or-a-team": {
+    title: "When One Person Should Build Your Product, and When They Shouldn't — Barsky Design",
+    description: "A designer then a developer, an agency, or one person who does both? What the handoff actually costs, where one person genuinely wins, and four situations where it is the wrong call.",
+    published: "2026-11-17",
+    modified: "2026-11-17"
   },
   "finding-first-ux-job-guide": {
     title: "The Take-Home Test Stopped Proving Anything | Design Hiring in 2026 — Barsky Design",

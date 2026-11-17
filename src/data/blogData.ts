@@ -53,6 +53,71 @@ const wrap = (intro: string, inline: string, alt: string, body: string) => `
  * Nothing reads this directly. Consume `blogPosts` below, which is sorted.
  */
 const postsInFileOrder: BlogPost[] = [
+  {
+    id: "24",
+    title: "When One Person Should Build Your Product, and When They Shouldn't",
+    excerpt: "A designer then a developer, an agency, or one person who does both? What the handoff actually costs, where one person genuinely wins, and the four situations where hiring me would be the wrong call.",
+    author: "Hiram Barsky",
+    date: "November 17, 2026",
+    readTime: "7 min read",
+    coverImage: "/blog/one-person-or-a-team-cover.jpg",
+    coverCaption: "Five products designed, built and deployed by one person. The links go to the running software.",
+    tags: ["Hiring", "Product Development", "Scope"],
+    slug: "one-person-or-a-team",
+    content: `
+      <p>The question arrives in a few different costumes, but it is always the same question. Do I hire a designer and then a developer? Do I find an agency? Or do I find one person who does the whole thing?</p>
+
+      <p>I am obviously not a neutral party here. I am the third option. So rather than argue for it, I will tell you what the handoff actually costs, where one person genuinely wins, and the specific situations where hiring me would be the wrong call — because those exist, and finding out six weeks in is expensive for both of us.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What a Handoff Actually Costs</h2>
+
+      <p>The usual arrangement splits a product across a researcher, a designer, a front-end developer and whoever owns the deploy. Every one of those boundaries is a place where somebody restates the intent, and what gets dropped in the restating is almost never the pixel. It is the reason.</p>
+
+      <p>A designer decides a field cannot be pre-filled, because pre-filling it would make someone sign off on a value they never actually read. That decision arrives at the developer as an empty input with no default. It is implemented correctly. Then three months later somebody files a ticket complaining the form is tedious, a default gets added, and nobody involved knows what they just undid.</p>
+
+      <p>That is the cost. Not slowness — most teams are fast. The decisions arrive stripped of the thing that made them decisions, and they erode in the order of how inconvenient they are.</p>
+
+      <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">The handoff does not lose the design. It loses the argument behind the design, which is the only part that would have defended it later.</blockquote>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where One Person Is Genuinely Faster</h2>
+
+      <p>The honest mechanism is not that I type quickly. It is that the feedback loop between deciding and finding out closes in minutes instead of sprints.</p>
+
+      <p>When I designed the empty state for a screen and then built that screen, I was the one who discovered the empty state never rendered, because the query returned a row of nulls rather than no rows. In a split team that is a bug report, a triage, a clarification and a fix. For me it was one sitting — and critically, I changed the design, not just the code, because I could see that the state I had drawn was not the state the data could produce.</p>
+
+      <p>That compounds most in the unglamorous places. Error copy that has to be written against the errors the backend actually throws. Loading states sized to how slow the query really is. Permissions, where the design assumes a user can see something and the row-level policy quietly disagrees.</p>
+
+      <p>None of that is visible in a Figma file. All of it decides whether the product feels finished.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Where One Person Breaks</h2>
+
+      <p>This is the part most people in my position leave out, so here it is specifically.</p>
+
+      <p><strong>Anything that needs to happen in parallel.</strong> One person is a sequence. If you need an iOS app, an Android app and a web dashboard by the same date, you do not need a generalist, you need three people and someone coordinating them. No amount of tooling converts one person into a team that works simultaneously.</p>
+
+      <p><strong>Real backend depth.</strong> I build the front end, the database and the deploy. That covers a great deal of software. It does not cover a distributed system under genuine load, a data pipeline with compliance-grade lineage, or anything where the hard part lives in the infrastructure rather than the interface. When the difficulty is behind the API, hire for behind the API.</p>
+
+      <p><strong>Operating it afterwards.</strong> A product that needs someone on call is not a solo engagement. I will hand you code you can maintain and a deploy you control, but I am not a 24-hour operations function and you should not buy one from a single person.</p>
+
+      <p><strong>Organisational work disguised as product work.</strong> Sometimes the problem is that four departments disagree about what the tool is for, and the interface is where that disagreement is being fought. That needs someone who can sit in those rooms for months. A build does not resolve it; it just gives everyone a new surface to argue about.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">How to Tell Which One You Have</h2>
+
+      <p>Two questions get you most of the way.</p>
+
+      <p><strong>Where does the risk actually live?</strong> If the risky part is whether people will understand it, adopt it, or trust it enough to act on it, that risk sits in the interface and the decisions behind it. That is the case for one person who owns both. If the risky part is throughput, uptime or data correctness at scale, the risk is somewhere I am not the answer.</p>
+
+      <p><strong>Is this a first version or a tenth?</strong> Early on, the expensive mistake is building a coherent thing nobody wanted. A short loop between deciding and seeing is worth more than specialist depth. Later, when the product is established and the problems are narrow and deep, specialists earn their keep and a generalist starts to be the constraint.</p>
+
+      <p>The useful version of this answer admits it changes. One person is right for a stretch, and then it stops being right, and the honest thing is to say so at that point rather than keep billing.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">What I Would Ask on the Call</h2>
+
+      <p>If you are weighing this up, the fastest way through is a conversation where I try to find the reason not to do it. What breaks today. Who is working around the current tool and what they are using instead. What happens if nothing changes for a year. Whether there is an approval chain, and who in it can say no.</p>
+
+      <p>I would rather spend thirty minutes establishing that I am the wrong fit than three months proving it. If that is where it lands, I will tell you what kind of person you actually need, which is usually a more useful outcome than a proposal.</p>
+    `
+  },
   // --- Carried over from barsky.design when the two sites were consolidated.
   // These eight posts existed only on the domain that now 301s here. Text,
   // headlines and images are unchanged; only the block format was converted.
@@ -2640,6 +2705,7 @@ export const blogPosts: BlogPost[] = [...postsInFileOrder].sort(
  * only makes sense to someone with a portfolio, it belongs in the other track.
  */
 export const BUILDER_SLUGS = [
+  "one-person-or-a-team",
   "why-enterprise-tools-lose-to-excel",
   "you-dont-replace-excel-by-being-better",
   "demo-works-shipping-is-different",
@@ -2655,9 +2721,15 @@ export const BUILDER_SLUGS = [
   "beginner-or-pro-is-a-false-choice",
   "trust-is-a-design-material",
   "scope-discipline-when-building-is-cheap",
-  "the-business-case-for-design",
   "designing-ai-first-products-that-ship",
 ] as const;
+
+// Deliberately NOT in the list above, after a second read:
+// `the-business-case-for-design` ("Leaders approve what they can measure. How
+// to put a defensible number on design work.") is written to a designer who
+// has to persuade their leadership, not to the leadership. It reads as
+// buyer-adjacent because it is about money, which is exactly the kind of
+// near-miss this list exists to keep out.
 
 const builderSet: ReadonlySet<string> = new Set(BUILDER_SLUGS);
 

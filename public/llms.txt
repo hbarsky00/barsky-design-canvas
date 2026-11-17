@@ -21,6 +21,7 @@
 
 ## Blog
 
+- [When One Person Should Build Your Product, and When They Shouldn't](/blog/one-person-or-a-team): A designer then a developer, an agency, or one person who does both? What the handoff actually costs, where one person genuinely wins, and the four situations where hiring me would be the wrong call.
 - [The take-home test stopped proving anything](/blog/finding-first-ux-job-guide): Every candidate now submits work a model helped produce, which means the artefact tells you almost nothing. Here is what a design hiring process has to do instead — and what that means if you are the one applying.
 - [Your design system now has two readers, and one of them is a model](/blog/design-systems-that-get-used): Component libraries used to be written for the developer who would open the docs. Now a model reads them too, at volume, and writes code against whatever it understood. That changes what good documentation is.
 - [A case study is a record of decisions, not a record of work](/blog/case-study-writing): Most portfolio case studies describe a process — discover, define, design, deliver — and never say what was actually at stake. Here is the structure that forces the other thing out.
