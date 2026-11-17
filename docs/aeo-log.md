@@ -7,6 +7,33 @@ Levers: 1 entity hardening · 2 extractable Q&A · 3 citable resource content ·
 4 structured-data validation sweep · 5 llms.txt / cross-web consistency ·
 6 content freshness / gap-fill
 
+## Dead-run ledger — reconciled 2026-11-17
+
+Step 0 of the task prompt asks every run to reconcile the previous ones against
+the repo. Nobody had written the result down, so here it is once, in the log.
+A run that reports "succeeded" and leaves no commit **did nothing**.
+
+| run | wall clock | summary | commit in repo | verdict |
+|---|---|---|---|---|
+| 2026-11-13 14:11–15:00 UTC | 49 min | none | **none on 2026-11-13** | **DEAD RUN 2026-11-13 — blocked on permission, shipped nothing** |
+| 2026-11-14 19:34–21:35 UTC | 2 h | yes | `c588be42`, `0edced2d` | real work ✓ |
+| 2026-11-15 15:26–16:15 UTC | 49 min | none | **none on 2026-11-15** | **DEAD RUN 2026-11-15 — blocked on permission, shipped nothing** |
+| 2026-11-16 05:12–05:17 UTC | 5 min | none | `46f8a4e7` lands 05:27, *after* the run ended | **ambiguous** — three log entries and three commits exist for 2026-11-16, but the design-log records that work as a *cloud* session. The scheduled run itself almost certainly did nothing; the day was saved by a session the scheduler was not tracking. |
+
+The cause, per the task prompt, is the task launching in `default` permission
+mode instead of `auto`: the first `git log` raises a prompt, nobody is there to
+click it, the prompt times out and the session dies — then reports success.
+Two identical 49-minute no-ops are the signature.
+
+**This run (2026-11-17) was not blocked**, which is the first positive evidence
+that the permission mode is now right: every build, audit, `curl`, commit and
+push went through unprompted. The one exception was `kill <pid>` on a stale
+`vite preview` from 2026-11-16, denied by the auto-mode classifier as
+destructive. That is a reasonable denial and it cost nothing — the capture step
+was not needed this run — but **a future CRAFT or FLOW run that needs
+`capture-bodies` will fail on `--strictPort 4199` if a stale preview is still
+holding the port and it cannot clear it.** Worth an allow rule before then.
+
 ## 2026-11-17 — FINDABILITY (lever 1, entity hardening) — the search snippet was still written by an agency
 
 `PAGE_SEO_MAP` in `src/data/seoData.ts` was the last place the retired
