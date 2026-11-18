@@ -8,7 +8,10 @@ const CaseStudyContactSection: React.FC = () => {
   const { containerStyle } = useScroll3DTilt(cardRef, { maxTilt: 2.5, yDistance: 10, childParallax: 6, scaleRange: [0.996, 1, 0.998] });
   return (
     <motion.section
-      id="contact-section"
+      /* id removed 2026-11-17: StructuredCaseStudyLayout already wraps this in
+         <section id="contact-section">, so both elements carried the same id. Duplicate
+         ids are invalid HTML, and getElementById silently resolved to the
+         outer one anyway. The outer section is the anchor target. */
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

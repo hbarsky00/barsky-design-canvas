@@ -50,8 +50,11 @@ const InternalLinkingEnhancer: React.FC<InternalLinkingEnhancerProps> = ({
     return null;
   }
 
+  /* No id on the <section> below: HomepageLayout already wraps this in
+     <section id="internal-linking">, and two elements sharing an id is invalid
+     HTML. This component has no other call site. */
   return (
-    <section id="internal-linking" className={`py-8 md:py-12 relative ${className}`}>
+    <section className={`py-8 md:py-12 relative ${className}`}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

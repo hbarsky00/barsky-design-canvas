@@ -79,7 +79,10 @@ const ResearchSectionTwoCol: React.FC<ResearchSectionTwoColProps> = ({
 
   return (
     <motion.section
-      id="research"
+      /* id removed 2026-11-17: StructuredCaseStudyLayout already wraps this in
+         <section id="research">, so both elements carried the same id. Duplicate
+         ids are invalid HTML, and getElementById silently resolved to the
+         outer one anyway. The outer section is the anchor target. */
       className="py-8 scroll-mt-[calc(var(--header-height,64px)+2rem)]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

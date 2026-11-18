@@ -9,7 +9,10 @@ interface ProblemCalloutProps {
 const ProblemCallout: React.FC<ProblemCalloutProps> = ({ eyebrow, statement }) => {
   return (
     <section 
-      id="problem" 
+      /* id removed 2026-11-17: StructuredCaseStudyLayout already wraps this in
+         <section id="problem">, so both elements carried the same id. Duplicate
+         ids are invalid HTML, and getElementById silently resolved to the
+         outer one anyway. The outer section is the anchor target. */
       aria-labelledby="problem-label"
       className="w-full bg-[hsl(190_60%_96%)] section-spacing"
     >

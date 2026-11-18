@@ -76,7 +76,10 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
 
   return (
     <section 
-      id="more-work"
+      /* id removed 2026-11-17: StructuredCaseStudyLayout already wraps this in
+         <section id="more-work">, so both elements carried the same id. Duplicate
+         ids are invalid HTML, and getElementById silently resolved to the
+         outer one anyway. The outer section is the anchor target. */
       className="section-snap scroll-mt-[calc(var(--header-height,64px)+1rem)] cs-card py-8 md:py-12"
       data-section="more-work"
     >

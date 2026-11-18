@@ -1162,3 +1162,83 @@ instead. Two things that cost time and will cost it again:
 - The repo has to be attached to the session with push access before
   `git push origin main` works; a plain clone of a public repo gets a read-only
   credential and the push 403s after the work is already committed.
+
+---
+
+## 2026-11-17 (CRAFT) — five things Hiram caught on a phone
+
+All five came from him opening the site on a phone and screenshotting it. None
+of them would have surfaced from reading the code.
+
+### 1. The DAE hero was showing a different product
+
+`hero-explorer.webp` was two halves that contradicted each other. The left was
+a marketing panel whose filter chips read **Property / Commercial Auto / Claims
+/ Underwriting**. The right was the real product, searching "Diabetes" against
+SNOMED condition codes over Truven Early View, Optum EHR and a diabetes
+prevalence study.
+
+DAE is pharma and life-sciences data discovery — the older `hero.webp` settles
+it: Non-Small Cell Lung Cancer, Therapeutic Area, Oncology, Pembrolizumab,
+Bioassays. The insurance lines were never part of this product. Cropped to the
+dashboard half as `hero-dashboard.webp`, downscale-only, and repointed the
+hero, the homepage card and the OG image at it.
+
+### 2. The same crop fixed the phone
+
+The composite was 2168×725 — a 2.99 ratio. `CaseStudyHero` switches to a
+native-size swipe rail above 2.2, so a 2168px board rendered at full size on a
+375px screen: about 18% of it visible. The crop is 1.67, under the threshold,
+so it fits the column. One change, both complaints.
+
+### 3. QuickFlow lost its dashboard on mobile
+
+`mobileMedia` falls back to the inset (`find(role === "mobile") ?? inset`), so
+a phone got the 780×1688 portrait screenshot at 216px wide — and the dashboard
+carrying the "one system instead of six" claim never appeared on a phone at
+all. Gave it an explicit `role: "mobile"`.
+
+### 4. Two headlines, neither winning
+
+Selected Work's heading was 2rem/2.5rem/3rem; the case-study title directly
+beneath it is 2xl/3xl/2.5rem. Same weight, same typeface, same rail, one short
+paragraph apart. 3rem over 2.5rem is not a hierarchy — his words were "one
+header on top of another, that shit is whack". The file's own comment said "a
+chapter heading, not a second hero"; it had become the second hero. Now xl/2xl.
+
+### 5. A 96px band of nothing
+
+Every section on a case study is gated on its data **except** the Overview
+band, which rendered unconditionally — and its component returns null for any
+id with no entry. So it painted `py-12` around a single `sr-only` heading. Two
+studies carried a 96px empty stripe under the hero.
+
+Gated it and its nav item, then filled it for the five live studies:
+`dae-search`'s copy existed under the key `daesearchproject` while the study's
+id is `dae-search`, so it had never once rendered; `catchbuddy` and
+`email-creation-ai` had no entry and were assembled from each study's own copy.
+`duration` is now optional and omitted where the repo records none.
+
+### What I got wrong, and nearly shipped
+
+Auditing mobile spacing afterwards, I measured a **702px gap** between Research
+and Problem and had a screenshot that showed blank page. Both were wrong. That
+space is the Emerging themes content — Discovery Barriers, Permission
+Complexity, Context Loss — and it read as empty because the scroll-triggered
+fade had not fired when the screenshot was taken.
+
+**That is the third time in one day `whileInView` has made a screenshot lie.**
+The first two produced a blank FAQ and a blank blog list. This one would have
+had me delete real layout as "excess padding". The rule: after an instant
+scroll, wait and re-capture, and check computed opacity before concluding a
+region is empty. A measurement that disagrees with the markup is the
+measurement's problem until proven otherwise.
+
+### What the audit did legitimately find
+
+Five duplicate element ids — `research`, `problem`, `key-insights`,
+`more-work`, `contact-section` — each appearing twice, because the layout wraps
+each component in a `<section id>` and the component carried the same id again.
+Invalid HTML, and `getElementById` had been silently resolving to the outer
+one. All five components are used only inside that layout, so the inner id came
+out. Zero duplicates now, all seven anchors still resolve.

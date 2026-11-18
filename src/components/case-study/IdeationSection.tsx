@@ -10,7 +10,9 @@ interface IdeationSectionProps {
 const IdeationSection: React.FC<IdeationSectionProps> = ({ ideationData }) => {
   return (
     <section 
-      id="ideation"
+      /* id removed 2026-11-17: StructuredCaseStudyLayout already wraps this in
+         <section id="ideation">, so both elements carried the same id.
+         Duplicate ids are invalid HTML; the outer section is the anchor. */
       data-section="ideation"
       className="section-spacing scroll-mt-[calc(var(--header-height,64px)+1rem)]"
     >
