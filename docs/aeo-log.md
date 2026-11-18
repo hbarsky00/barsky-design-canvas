@@ -19,6 +19,8 @@ A run that reports "succeeded" and leaves no commit **did nothing**.
 | 2026-11-14 19:34–21:35 UTC | 2 h | yes | `c588be42`, `0edced2d` | real work ✓ |
 | 2026-11-15 15:26–16:15 UTC | 49 min | none | **none on 2026-11-15** | **DEAD RUN 2026-11-15 — blocked on permission, shipped nothing** |
 | 2026-11-16 05:12–05:17 UTC | 5 min | none | `46f8a4e7` lands 05:27, *after* the run ended | **ambiguous** — three log entries and three commits exist for 2026-11-16, but the design-log records that work as a *cloud* session. The scheduled run itself almost certainly did nothing; the day was saved by a session the scheduler was not tracking. |
+| 2026-11-17 14:11–14:27 UTC | 16 min | yes | `dbf4ef4a`, `58f72d81`, `232dbabe` | real work ✓ — FINDABILITY, the eight page meta descriptions |
+| 2026-11-18 03:37 UTC | — | this entry | `docs/` only, deliberately | **ABORTED — another agent was editing this repo live.** Not a dead run: the block was detected, recorded and reported. |
 
 The cause, per the task prompt, is the task launching in `default` permission
 mode instead of `auto`: the first `git log` raises a prompt, nobody is there to
@@ -33,6 +35,62 @@ destructive. That is a reasonable denial and it cost nothing — the capture ste
 was not needed this run — but **a future CRAFT or FLOW run that needs
 `capture-bodies` will fail on `--strictPort 4199` if a stale preview is still
 holding the port and it cannot clear it.** Worth an allow rule before then.
+
+## 2026-11-17 (evening) — NO LENS RUN, ABORTED — a second agent was working in this repo
+
+Step 0 passed: the 2026-11-17 09:11 EST run is real work, the 2026-11-16 run is
+already resolved as ambiguous in the ledger above, and **no new dead run
+appeared.** The run then stopped at the concurrency check, which is the one hard
+rule in the task prompt that says to stop rather than to work around it.
+
+### The evidence, at 22:38 EST
+
+- `vite preview --port 4199 --strictPort` started 22:29:33, still holding the
+  port.
+- Thirteen tracked files dirty plus one new untracked image, all written
+  between 22:17 and 22:38 — `src/data/structuredCaseStudies.ts`,
+  `src/data/homeCaseStudies.ts`, `src/data/caseStudyHeroes.ts`,
+  `src/data/imageDimensions.json`, two `StructuredCaseStudy*` components,
+  `VideoCaseStudiesSection.tsx`, six `prerendered-bodies/*.html`, and
+  `public/images/dae-search/hero-dashboard.webp`.
+- `src/data/imageDimensions.json` was written **27 seconds** before the check.
+  This is not a stale tree; it is a case-study media pass in progress.
+
+### Why that forbids shipping, not just committing
+
+The ship gate requires `npm run capture-bodies` whenever visible markup
+changes, and that regenerates exactly the `prerendered-bodies/*.html` the other
+agent is part-way through writing. A build would also overwrite `dist/` under
+it. So the collision is not the hypothetical catch-all `git add` this rule was
+written for — this run's own ship gate would have destroyed another agent's
+in-flight work. Aborting is the cheap outcome.
+
+The stale-preview worry recorded in this run's predecessor turns out to have a
+second edge: port 4199 being held is itself a signal that someone else is
+mid-run, so a future run should read it as *stop*, not as *something to kill*.
+
+### What this run changed
+
+Nothing on the site. One ledger row, this section, `docs/` only, staged by
+explicit path — never `git add -A`. No typecheck, no build, no recapture, no
+`capture-bodies`: all four would have written into another agent's working tree.
+
+### Left open — pick this up next run
+
+The rotation is owed **RESEARCH or CRAFT**, both last turned 2026-11-16;
+FINDABILITY and FLOW both already turned on 2026-11-17. Two concrete items are
+sitting in the logs ready to pick up:
+
+- **`og:image:alt` still falls back to `` `${title} preview image` ``** in
+  `seoBuilder.ts` — alt text that describes a file rather than an image, shipped
+  on every page. Named as open by the 2026-11-14 run and still true.
+- **`SkillsShowcase.tsx` is still bot-generated**, unchanged since it was first
+  flagged.
+
+Also worth noting for whoever reads this: the case-study media work happening
+tonight is **not** from this loop. If a later run finds case-study heroes or
+`prerendered-bodies/` changed with no line in these logs, that is why — do not
+treat it as drift and do not revert it.
 
 ## 2026-11-17 — FINDABILITY (lever 1, entity hardening) — the search snippet was still written by an agency
 
