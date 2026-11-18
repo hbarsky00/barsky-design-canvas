@@ -45,9 +45,20 @@ const WhatDidntWorkSection: React.FC<WhatDidntWorkSectionProps> = ({
       <div className="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-eyebrow text-orange-700 mb-4">
         {whatDidntWorkData.eyebrow || "WHAT DIDN'T WORK"}
       </div>
-      <h2 className="text-section-title text-foreground font-display content-rail-center mb-4">
-        {whatDidntWorkData.title}
-      </h2>
+      {/* Only when there is a title. DAE Search carries title: "" in
+          structuredCaseStudies.ts — the one study of eight that does — and this
+          rendered as a literally empty <h2> in the shipped HTML, which is
+          invalid and puts a hole in the heading outline. Nothing is lost by
+          dropping it: the section is already labelled by the sr-only
+          <h2 id="what-didnt-work-heading"> that the layout renders above this.
+
+          Not filled in with invented copy. If DAE should carry a headline here
+          like the other seven do, that is Hiram's line to write. */}
+      {whatDidntWorkData.title && (
+        <h2 className="text-section-title text-foreground font-display content-rail-center mb-4">
+          {whatDidntWorkData.title}
+        </h2>
+      )}
       
       {/* Description */}
       <div className="content-rail-left mb-8">

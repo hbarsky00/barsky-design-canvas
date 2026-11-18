@@ -166,6 +166,50 @@ async function revealLazySections(page: import("playwright").Page) {
   // Let the last batch of sections finish mounting and their images resolve.
   await page.waitForTimeout(1500);
   await page.waitForLoadState("networkidle").catch(() => {});
+  await settleViewportAnimations(page);
+}
+
+/**
+ * Freeze every whileInView element in its FINISHED state, not its initial one.
+ *
+ * Scrolling trips the IntersectionObservers, but not reliably: the page is still
+ * growing as lazy sections hydrate, so a 500px step can jump clean past an
+ * element whose observer then never fires. Whatever it skipped gets serialised
+ * carrying framer-motion's `initial` — `style="opacity: 0; transform:
+ * translateY(20px)"` — straight into the shipped HTML.
+ *
+ * A real visitor never notices, because React hydrates and plays the animation.
+ * A crawler reading the served HTML sees invisible content, and Google discounts
+ * what it finds at opacity 0. At the time this was written that was nine
+ * elements across two case studies: the "Validation & Testing", "Outcome &
+ * Impact" and "Lessons Learned" headings, and all three of DAE's result metrics
+ * (5 min retrieval, +85% accuracy, 90% found lineage valuable).
+ *
+ * It is also nondeterministic — which elements lose the race changes run to run,
+ * so the committed bodies churned without anyone touching the source.
+ *
+ * The match is deliberately narrow: inline opacity 0 AND an inline translate.
+ * That pair is framer-motion's unfired `initial` and nothing else here. Elements
+ * meant to be invisible (the SectionTransition wipe overlay animating opacity
+ * 0.22 -> 0) are aria-hidden and excluded, so nothing decorative is forced on.
+ */
+async function settleViewportAnimations(page: import("playwright").Page) {
+  const settled = await page.evaluate(() => {
+    const stuck = Array.from(
+      document.querySelectorAll<HTMLElement>('[style*="opacity"]')
+    ).filter(
+      (el) =>
+        el.style.opacity === "0" &&
+        /translate/i.test(el.style.transform) &&
+        !el.closest("[aria-hidden='true']")
+    );
+    for (const el of stuck) {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    }
+    return stuck.length;
+  });
+  if (settled) console.log(`   settled ${settled} unfired whileInView element(s)`);
 }
 
 /** Pull the inner HTML of <div id="root"> out of a full DOM dump. */

@@ -679,3 +679,71 @@ allowed, each carry strictly more risk.
   space: "approval chain ," against a source of "approval chain,". Identical
   prose. The comparison now ignores whitespace entirely, which kills that whole
   class of artifact and still catches any changed, added or dropped word.
+
+## 2026-11-18 — Nine elements were shipping at opacity 0
+
+Sweeping all 67 built routes (not the six case-study pages checked the day
+before) turned up two defects beyond the duplicate `id="contact"` I had gone in
+to fix.
+
+### Content served invisible to crawlers
+
+framer-motion writes `whileInView`'s `initial` state as an inline style. The
+prerender capture scrolls the page to trip every IntersectionObserver, but not
+reliably: the page is still growing as lazy sections hydrate, so a 500px scroll
+step can jump clean past an element whose observer then never fires. Whatever it
+skips gets serialised carrying `style="opacity: 0; transform: translateY(20px)"`
+straight into the shipped HTML.
+
+At the time of writing that was **nine elements across two case studies**:
+
+- `/project/dae-search` — the "Validation & Testing" and "Outcome & Impact"
+  headings, a video block, and **all three result metrics**: 5 min average
+  retrieval time, ↑85% search accuracy, 90% found lineage valuable.
+- `/project/business-management` — the "Lessons Learned" and "Validation &
+  Testing" headings and a video block.
+
+A visitor never notices, because React hydrates and plays the animation. A
+crawler reading the served HTML sees nothing there, and Google discounts content
+it finds at opacity 0. The three numbers hidden on DAE are the only quantified
+outcomes that study has.
+
+It is also **nondeterministic**, which is why it went unnoticed: which elements
+lose the race changes run to run. The committed bodies churned between captures
+with nobody touching the source — and the count moved from 9 to 7 to 9 across
+three runs during this session alone.
+
+Two changes: `settleViewportAnimations` in the capture script forces any unfired
+`whileInView` element to its finished state before the DOM is written, and
+`scripts/check-visible-content.mjs` fails the build if one still slips through.
+The match is deliberately narrow — inline opacity 0 **and** an inline translate,
+which is framer-motion's unfired initial and nothing else here. The
+`SectionTransition` wipe overlay animates 0.22 → 0 with a translate and would
+match, but it is `aria-hidden` and excluded, so nothing decorative is forced on.
+
+Per [[feedback_verify_the_checker_not_just_the_code]], the gate was run against
+the broken build before being trusted: it exited 1 and named both pages with
+correct counts. After the fix, 68 pages, nothing at opacity 0 — and only the
+three expected body files changed, with the other 64 byte-identical, which is
+the evidence the capture is now deterministic.
+
+### An empty `<h2>` on DAE Search
+
+`whatDidntWorkSection.title` is `""` for DAE — the one study of eight with no
+title — and `WhatDidntWorkSection` rendered it unconditionally, so the page
+shipped a literally empty heading. Now gated on the title being present. Nothing
+is lost: the section is already labelled by the `sr-only` heading the layout
+renders above it. **No copy was invented to fill it.** If DAE should carry a
+headline there like the other seven do, that is Hiram's line to write.
+
+### The thing that nearly made all of this worthless
+
+A `vite preview --port 4199 --strictPort` had been orphaned for 14½ hours,
+left over from a capture killed the day before. The capture script spawns its
+own preview on that exact port, also with `--strictPort` — so its server would
+have died on startup while the readiness probe got a clean `200` from the
+orphan, serving a **stale `dist/`**. All 67 routes would have been captured from
+the previous day's build, committed, and passed every gate.
+
+Check `lsof -ti:4199` before a capture. A killed capture does not always take
+its server with it.
