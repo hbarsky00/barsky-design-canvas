@@ -87,6 +87,30 @@ sitting in the logs ready to pick up:
 - **`SkillsShowcase.tsx` is still bot-generated**, unchanged since it was first
   flagged.
 
+### Addendum, 22:41 EST — the block cleared, and this run still held
+
+Sixty seconds after the check above, the other agent committed `dcaa1eca`
+("Fix the DAE hero, the stacked headers, and a 96px band of nothing") and
+pushed it themselves. The tree went clean. Neither side contaminated the other:
+their push carried their fourteen files, this run's carried one `docs/` file,
+and the reflog shows the two pushes four seconds apart. **The concurrency rule
+worked as written** — first confirmed instance.
+
+This run still did not start a lens pass, for two reasons worth writing down
+rather than dressing up:
+
+- Their `vite preview` on 4199 was **still running** at 22:40:46, which is what
+  verifying a just-pushed change looks like. Treating a clear tree as a green
+  light while another session is still live is how the next collision happens.
+- `dcaa1eca` is itself a **CRAFT change** — hero image, stacked headers,
+  spacing. CRAFT is one of the two lenses this rotation owed. Auditing that
+  ground sixty seconds after it moved, without having seen the intent behind
+  it, produces a critique of someone else's in-flight judgement, not an
+  improvement.
+
+So the rotation still owes **RESEARCH or CRAFT**, and a CRAFT run should now
+start by reading `dcaa1eca` rather than by re-auditing what it already fixed.
+
 Also worth noting for whoever reads this: the case-study media work happening
 tonight is **not** from this loop. If a later run finds case-study heroes or
 `prerendered-bodies/` changed with no line in these logs, that is why — do not
