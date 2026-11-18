@@ -45,8 +45,8 @@ export const caseStudies: CaseStudy[] = [
     impact: "20% ROI from Better Data Discovery",
     url: "/project/dae-search",
     images: {
-      primary: "/images/dae-search/hero-explorer.webp",
-      alt: "DAE Digital Asset Explorer: the landing screen beside the dashboard mid-search, showing recommended results"
+      primary: "/images/dae-search/hero-dashboard.webp",
+      alt: "DAE Digital Asset Explorer dashboard: a search for Diabetes returning recommended SNOMED condition terms"
     },
     layout: "side-by-side",
     variant: "productHero",

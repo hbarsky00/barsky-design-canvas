@@ -35,18 +35,31 @@ const SelectedWorkIntro: React.FC<{ count: number }> = ({ count }) => {
 
       {/* Deliberately not the hero's headline. The two lines swapped when the
           hero took "solve real problems" — both are Hiram's, and printing either
-          one twice a screen apart read as a mistake. */}
+          one twice a screen apart read as a mistake.
+
+          Sized down 2026-11-17. It was 2rem/2.5rem/3rem, against a case-study
+          title of 2xl/3xl/2.5rem directly beneath it — 3rem over 2.5rem, same
+          weight, same typeface, same left rail, one short paragraph apart. Two
+          headlines that close together do not read as a hierarchy, they read as
+          a mistake: "one header on top of another", which is what the homepage
+          was actually doing to every reader who got that far.
+
+          The file's own comment at the top says "a chapter heading, not a
+          second hero". It had become the second hero. Now the case-study title
+          is the largest text in the band by a clear margin, and this is what it
+          was always meant to be — the line that introduces the chapter. Nothing
+          was cut; both of Hiram's lines are still here. */}
       <motion.h2
         {...rise(0.06)}
-        className="mt-5 md:mt-6 font-display font-bold tracking-tight text-balance
-                   text-[2rem] md:text-[2.5rem] lg:text-[3rem] leading-[1.08] max-w-[20ch]"
+        className="mt-5 md:mt-6 font-display font-semibold tracking-tight text-balance
+                   text-xl md:text-2xl leading-snug max-w-[34ch]"
       >
         Designing complex products into simpler experiences.
       </motion.h2>
 
       <motion.p
         {...rise(0.12)}
-        className="mt-3 md:mt-4 max-w-[640px] text-base md:text-lg leading-relaxed text-muted-foreground"
+        className="mt-2 max-w-[560px] text-sm md:text-base leading-relaxed text-muted-foreground"
       >
         A selection of product design work spanning enterprise platforms, healthcare, fintech, and
         consumer products.

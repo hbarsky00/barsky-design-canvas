@@ -7,7 +7,9 @@ interface OverviewContent {
   role: string;
   responsibilities: string;
   collaborators: string;
-  duration: string;
+  /** Omitted where there is no real figure. Never guess one — the field is
+      simply not rendered, which is honest; an invented "1 year" is not. */
+  duration?: string;
 }
 
 interface StructuredCaseStudyOverviewProps {
@@ -75,7 +77,11 @@ const overviewContent: Record<string, OverviewContent> = {
     collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
-  "daesearchproject": {
+  // Renamed from "daesearchproject" on 2026-11-17. The case study's id is
+  // "dae-search" (structuredCaseStudies.ts) and this map is keyed by that id,
+  // so the two never matched and this copy has never rendered. The page showed
+  // a 96px empty band where the Overview should have been.
+  "dae-search": {
     overview: "Users struggled with traditional search interfaces that required exact keywords and couldn't understand context or intent. I designed an intelligent search platform powered by AI that predicts user needs and delivers personalized results. The vision: transform how people discover information through natural language understanding and predictive suggestions.",
     goals: [
       "Create AI-powered search with natural language processing.",
@@ -88,6 +94,43 @@ const overviewContent: Record<string, OverviewContent> = {
     collaborators: "Solo — design and front end, with AI tooling",
     duration: "1 year"
   },
+
+  // Added 2026-11-17. Both of these routed, live case studies had no entry, so
+  // StructuredCaseStudyOverview returned null and the layout still painted the
+  // band — 96px of empty page under the hero on each.
+  //
+  // Nothing below is new writing. Every line is lifted from the study's own
+  // copy in structuredCaseStudies.ts: the description, the research blurb, the
+  // "drove" column of its emerging themes, its key insights and its hero
+  // metrics. Where a field has no truthful value it is omitted rather than
+  // guessed — both of these have no `duration`, because nothing in the repo
+  // records one.
+  "catchbuddy": {
+    overview:
+      "Pickup sports are declining in urban areas, and the apps built to address that all assume you want a full season — the commitment, the fixed schedule, the regular team. What most people actually want is a game on Saturday. The blocker was never the calendar: it was getting two complete strangers to agree to meet at a park and both of them feeling comfortable about it, which is a matter of trust.",
+    goals: [
+      "Build a front door around one game on Saturday, not a season.",
+      "Ship the safety layer in v1, because every product that adds it later ends up with a settings screen nobody opens.",
+      "Keep meeting points to a curated list, so nobody can drop a pin on an address of their own choosing."
+    ],
+    role: "Sole designer and developer",
+    responsibilities: "Product design, trust & safety UX, React front end, database and deploy",
+    collaborators: "Solo \u2014 design and front end, with AI tooling"
+  },
+
+  "email-creation-ai": {
+    overview:
+      "A self-initiated concept project \u2014 a 6-step AI-assisted workflow that replaces the broken handoffs in pharma HCP email production with one platform built around real roles and approval gates.",
+    goals: [
+      "Replace the chain of handoffs across separate tools with one platform.",
+      "Design around the four real roles the work passes through, and the approval gates it is legally required to clear.",
+      "Leave the one unresolved problem visible rather than designing it away in a mock-up."
+    ],
+    role: "Sole product designer, self-initiated",
+    responsibilities: "Workflow design, AI interaction design, information architecture",
+    collaborators: "Solo \u2014 a concept project, not a client engagement"
+  },
+
 };
 
 const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = ({ projectId }) => {
@@ -153,16 +196,34 @@ const StructuredCaseStudyOverview: React.FC<StructuredCaseStudyOverviewProps> = 
             <dd className="text-muted-foreground leading-relaxed font-body">{content.collaborators}</dd>
           </div>
 
-          {/* Duration */}
-          <div>
-            <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Duration</dt>
-            <dd className="text-foreground font-medium font-body">{content.duration}</dd>
-          </div>
+          {/* Duration — only when the study actually has one. */}
+          {content.duration && (
+            <div>
+              <dt className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-2">Duration</dt>
+              <dd className="text-foreground font-medium font-body">{content.duration}</dd>
+            </div>
+          )}
         </dl>
       </div>
       </div>
     </motion.section>
   );
 };
+
+/**
+ * Whether this study has overview copy to show.
+ *
+ * The layout used to render the Overview band unconditionally while every other
+ * section was gated on its data. When this component returned null — which it
+ * does for any id with no entry above — the band still painted its `py-12`, so
+ * two live case studies carried a 96px stripe of nothing between the hero and
+ * the next section. On a phone that is most of a thumb-swipe of blank page, and
+ * it read as the page having ended.
+ *
+ * Exported so the gate lives with the data it depends on, instead of the layout
+ * guessing.
+ */
+export const hasOverview = (projectId: string): boolean =>
+  Boolean(overviewContent[projectId]);
 
 export default StructuredCaseStudyOverview;

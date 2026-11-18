@@ -713,7 +713,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     },
     sections: [],
     seoData: {
-      image: "/images/dae-search/hero-explorer.webp",
+      image: "/images/dae-search/hero-dashboard.webp",
       projectName: "DAE Search Platform: Making Enterprise Data Actually Findable",
       results: [
         "20% ROI from better data discovery",

@@ -11,7 +11,7 @@ import CaseStudyHero from "./CaseStudyHero";
 import CaseStudyBreadcrumbs from "@/components/seo/CaseStudyBreadcrumbs";
 import MaximizableImage from "@/components/project/MaximizableImage";
 import StructuredCaseStudySection from "./StructuredCaseStudySection";
-import StructuredCaseStudyOverview from "./StructuredCaseStudyOverview";
+import StructuredCaseStudyOverview, { hasOverview } from "./StructuredCaseStudyOverview";
 import ProblemCallout from "../ProblemCallout";
 import KeyInsightsRow from "../KeyInsightsRow";
 import ResearchSectionTwoCol from "../ResearchSectionTwoCol";
@@ -52,7 +52,10 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
   // Create navigation items from sections in correct order
   const navigationItems = [
     { label: "Hero", anchor: "#hero" },
-    { label: "Overview", anchor: "#overview" },
+    // Gated on the same condition as the band itself. Listed unconditionally it
+    // would point at an id that no longer exists on the two studies without
+    // overview copy.
+    ...(hasOverview(caseStudyData.id) ? [{ label: "Overview", anchor: "#overview" }] : []),
     ...(caseStudyData.researchSection ? [{ label: "Research", anchor: "#research" }] : []),
     ...(caseStudyData.problemCallout ? [{ label: "Problem", anchor: "#problem" }] : []),
     ...(caseStudyData.sprintZeroSection ? [{ label: "Sprint Zero", anchor: "#sprint-zero" }] : []),
@@ -105,13 +108,19 @@ const StructuredCaseStudyLayout: React.FC<StructuredCaseStudyLayoutProps> = ({
             </div>
           )}
 
-          {/* Overview Section - Full width band */}
-          <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
-            <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
-              <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
-              <StructuredCaseStudyOverview projectId={caseStudyData.id} />
-            </section>
-          </div>
+          {/* Overview Section - Full width band.
+              Gated like every other section on this page. It used to render
+              unconditionally, and StructuredCaseStudyOverview returns null when
+              a study has no entry — so the band still painted its py-12 and two
+              live studies carried a 96px empty stripe under the hero. */}
+          {hasOverview(caseStudyData.id) && (
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-slate-50">
+              <section id="overview" data-section="overview" aria-labelledby="overview-heading" className="section-snap py-12 scroll-mt-[calc(var(--header-height,64px)+1rem)]">
+                <HeadingHierarchy level="h2" id="overview-heading" className="sr-only">Overview Section</HeadingHierarchy>
+                <StructuredCaseStudyOverview projectId={caseStudyData.id} />
+              </section>
+            </div>
+          )}
 
           <div className="section-container bg-white">
 

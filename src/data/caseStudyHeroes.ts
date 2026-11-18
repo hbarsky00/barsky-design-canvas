@@ -77,8 +77,8 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
     ],
     media: [
       {
-        src: "/images/dae-search/hero-explorer.webp",
-        alt: "DAE Digital Asset Explorer: the landing screen beside the dashboard mid-search, showing recommended results",
+        src: "/images/dae-search/hero-dashboard.webp",
+        alt: "DAE Digital Asset Explorer dashboard: a search for Diabetes returning recommended SNOMED condition terms",
         role: "primary",
       },
     ],
@@ -182,6 +182,17 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
         src: "/images/business-management/v2/mobile-overview.webp",
         alt: "The QuickFlow operations overview: the day\u2019s sales, revenue and orders delivered on one screen",
         role: "inset",
+      },
+      // Without this, CaseStudyHero falls back to the inset as the phone image
+      // (`find(role === "mobile") ?? inset`), so a 780x1688 portrait shot was
+      // the entire hero below md: 216x467 of phone chrome, and the dashboard
+      // that actually carries the "one system instead of six" claim never
+      // appeared on a phone at all. The desktop board is 1.6:1, so it fits the
+      // column at full width and keeps the claim on screen.
+      {
+        src: "/images/business-management/v2/overview.webp",
+        alt: "The operations dashboard: today\u2019s jobs, invoice status and the task list on one screen",
+        role: "mobile",
       },
     ],
     theme: "light",
