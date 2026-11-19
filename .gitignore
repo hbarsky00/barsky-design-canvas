@@ -43,6 +43,13 @@ prerendered-bodies/* [0-9]*.html
 * [0-9].*
 **/* [0-9].*
 * [0-9]/
+
+# ...and the same shape with no extension at all. The rules above all require a
+# dot after the digit, so dotfile copies slipped through and two reached commits
+# in 9804a5b3: ".gitignore 2" (the pre-hardening copy of this very file) and
+# ".nvmrc 2" (pinned 18.18.0 while .nvmrc says 22). Match the bare shape too.
+* [0-9]
+**/* [0-9]
 **/* [0-9]/
 
 # Extensionless ones (e.g. "Makefile 2") and the .d.ts double-extension case
