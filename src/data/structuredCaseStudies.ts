@@ -1849,12 +1849,21 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description:
         "Testing with enterprise teams revealed that consolidating multiple tools into one unified platform dramatically reduced training time and operational errors.",
       eyebrow: "Validation & Testing",
-      video: {
-        src: "/images/business-management/v2/design-system.webp",
-        title: "Design System Implementation Demo",
-        caption:
-          "Unified design system streamlined user workflows and reduced learning curve across all business functions",
-      },
+      images: [
+        {
+          src: "/images/business-management/v2/final-product-phones.webp",
+          alt:
+            "Three phone screens from the operations app side by side: product management with stock and reorder levels, order management with totals and revenue, and driver management",
+          caption: "The screens teams tested: products, orders and drivers in one app.",
+        },
+        {
+          src: "/images/business-management/v2/design-system.webp",
+          alt:
+            "The design system behind the platform: shared components, type scale and colour applied across every business function",
+          caption:
+            "Unified design system streamlined user workflows and reduced learning curve across all business functions",
+        },
+      ],
       metrics: [
         { value: "90%", label: "satisfaction" },
         { value: "68%", label: "fewer errors" },
@@ -1901,6 +1910,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       eyebrow: "What Didn't Work",
       title: "Lessons Learned",
       content: "Too many customization options = decision paralysis. Smart defaults + minimal customization = win.",
+      images: [
+        {
+          src: "/images/business-management/v2/ideation-walkthrough.webp",
+          alt:
+            "Working session mapping the product catalog flow: view catalog, an add/edit/manage decision, then branches into pricing management and adding sourced or manufactured products",
+          caption: "Walking the catalog flow branch by branch, before any of it was built.",
+        },
+      ],
     },
     sections: [],
     seoData: {
