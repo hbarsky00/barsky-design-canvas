@@ -903,3 +903,82 @@ same list. Do not carry it forward again.
 3. **Still no analytics.** Third run carrying this. Every finding here is desk
    research or a deterministic check. GA4 and Search Console would turn "a
    founder bounces here" into a number.
+
+---
+
+## 2026-11-19 — Setting up the Business Profile found four contradictions first
+
+Hiram asked for the Google Business Profile. Drafting it meant reading what the
+site already asserts about who and where this business is, because Google
+cross-references a profile against the website it points at. The site did not
+agree with itself in four places.
+
+**Two phone numbers.** `index.html`'s LocalBusiness node published
+`+1-201-668-3324`. The footer and `/contact` have both shown `(201) 668-4754`
+all along. Both nodes carry `@id` `#organization`, so they merge into one
+entity — which was handing Google a phone number that appears nowhere a visitor
+can see. Hiram confirmed 668-4754 is the real one, so the structured data had a
+wrong number in it. The runtime `contactPoint` carried no phone at all and now
+carries 668-4754 too.
+
+**A broken identity link on all 67 pages.** The footer and the homepage hero
+both linked to `https://github.dev/hbarsky00`. That is not GitHub —
+`github.dev` is the VS Code web editor, and the URL 301s to
+`vscode.dev/github/hbarsky00`. Every page of the live site pointed its GitHub
+link at an editor instead of his profile, and the `sameAs` set in schema
+correctly said `github.com` while the visible markup said otherwise. Found by
+listing every outbound profile URL in the repo and counting: 35 `github.com`,
+67 `github.dev`. LinkedIn was consistent at 102 × `/in/hiram-barsky`.
+
+**`nofollow` on his own profiles.** The footer's LinkedIn and GitHub links
+carried `rel="noopener noreferrer nofollow"`. The copies on `/contact` carry no
+`nofollow`. So the site was voting both ways on the same two URLs, and telling
+Google not to follow the exact edges that consolidate the entity. Removed.
+
+**The only visible location on the site was the wrong state.** The footer said
+`Location: New York, NY` — the one location string present on every page.
+Everything else says New Jersey: `addressRegion: "NJ"` in the runtime schema,
+`addressLocality: "Clifton"` plus Clifton's geo coordinates in `index.html`,
+and "New Jersey · US Eastern (ET)" on `/contact`. A profile verified in NJ
+against a footer in New York is the mismatch that stops the two from being
+associated at all. Footer now reads `Clifton, NJ · Remote`, and the runtime
+Person `address` now carries the locality — its comment claimed the city was
+"deliberately omitted rather than guessed", but the merged entity already had
+it from `index.html`, so the omission only made two address nodes on one site
+disagree about how much they knew.
+
+**Also removed:** the LocalBusiness `slogan`, `"Your AI product, designed and
+shipped in working code."` The 2026-11-14 run stripped that retired AI-first
+positioning out of `og:site_name` across all 66 pages. This was the last place
+still publishing it, inside the business entity Google reads for the profile.
+
+**The orphan again.** A `vite preview --port 4199` had been running 21h37m with
+PPID 1. Third time this trap has appeared. The capture spawns its own preview
+with `--strictPort`, so its server dies instantly while the readiness probe
+gets a clean 200 from the orphan serving a stale `dist/` — all 67 routes would
+have captured from yesterday's build and passed every gate. `lsof -ti:4199`
+before every capture, without exception.
+
+**The deliverable:** `docs/google-business-profile.md`. Every field drafted from
+copy already on the site — name, categories, the nine service areas the schema
+already claims, a 746-character description against the 750 limit, the four
+services with their live descriptions, the photo slots mapped to files in
+`public/`. Two things are Hiram's alone: the street address for verification
+(hidden on a service-area listing) and whether the placeholder hours are real.
+
+### Still open, in priority order
+
+1. **The profile itself needs Hiram.** The document is paste-ready but account
+   creation and verification are his. Nothing on the site blocks it now.
+2. **`sameAs` is still two profiles.** LinkedIn and GitHub. The Business
+   Profile URL belongs there once it exists; any others need Hiram to name
+   them, since a `sameAs` that 404s is worse than a short one.
+3. **Hours are a placeholder, not a fact.** `index.html` deliberately omits
+   `openingHours` on the grounds that inventing hours for a remote practice is
+   worse than omitting them — correct for schema, but a profile effectively
+   requires them. Once Hiram sets real ones, mirror them into the schema.
+4. **`/services` says "we" twice** — "We don't hand off a static file. We build
+   and ship the real thing" — directly under "designed and built by one person"
+   and above a section headed "One person, end to end". Flagged, not changed:
+   it is a voice slip rather than a factual error, and the copy is settled.
+5. **Still no analytics.** Fourth run carrying this.

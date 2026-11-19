@@ -92,12 +92,20 @@ export const generateStructuredData = (seoData: SEOData) => {
       ]
     },
     // `areaServed` on the Organization says where he WORKS; nothing said where
-    // he IS. `address` is the field search engines read for place, and with GBP
-    // and the sameAs set still pending it is the cheapest entity signal left.
-    // Region and country only — the city is deliberately omitted rather than
-    // guessed from `occupationLocation`.
+    // he IS. `address` is the field search engines read for place, and with the
+    // Business Profile and the sameAs set still pending it is the cheapest
+    // entity signal left.
+    //
+    // The city is no longer omitted. The note that used to sit here said it was
+    // "deliberately omitted rather than guessed" — but index.html's
+    // LocalBusiness node already publishes addressLocality "Clifton" together
+    // with Clifton's geo coordinates, and it shares @id #organization with the
+    // Organization below, so the merged business entity carried the city either
+    // way. Leaving it off here only made the two address nodes on one site
+    // disagree about how much they knew.
     address: {
       "@type": "PostalAddress",
+      addressLocality: "Clifton",
       addressRegion: "NJ",
       addressCountry: "US"
     },
@@ -117,7 +125,14 @@ export const generateStructuredData = (seoData: SEOData) => {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "hbarsky01@gmail.com"
+      email: "hbarsky01@gmail.com",
+      // The footer and /contact have shown (201) 668-4754 all along, but this
+      // ContactPoint carried only an email and index.html's LocalBusiness node
+      // carried +1-201-668-3324 — a number that appears nowhere a visitor can
+      // see. Both nodes share @id #organization, so they merge, and the merged
+      // business entity was handing Google a phone number the site itself
+      // never shows. A Google Business Profile is matched on exactly this.
+      telephone: "+1-201-668-4754"
     },
     founder: { "@id": PERSON_ID },
     address: {

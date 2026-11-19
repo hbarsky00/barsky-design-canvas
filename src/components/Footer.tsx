@@ -77,17 +77,17 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-blue-vibrant font-medium" aria-label="Location">Location:</span>
-                <span className="text-neutral-50">New York, NY</span>
+                <span className="text-neutral-50">Clifton, NJ · Remote</span>
               </li>
             </ul>
             
             <div className="mt-6">
               <h4 className="text-lg heading-medium mb-4 text-neutral-50">Connect</h4>
               <div className="flex space-x-4" role="list">
-                <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="Connect on LinkedIn (opens in new tab)">
+                <a href="https://www.linkedin.com/in/hiram-barsky" target="_blank" rel="noopener noreferrer" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="Connect on LinkedIn (opens in new tab)">
                   <Linkedin size={24} strokeWidth={2.5} />
                 </a>
-                <a href="https://github.dev/hbarsky00" target="_blank" rel="noopener noreferrer nofollow" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="View GitHub profile (opens in new tab)">
+                <a href="https://github.com/hbarsky00" target="_blank" rel="noopener noreferrer" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 p-2 rounded focus:outline-none" aria-label="View GitHub profile (opens in new tab)">
                   <Github size={24} strokeWidth={2.5} />
                 </a>
               </div>
