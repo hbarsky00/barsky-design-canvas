@@ -871,7 +871,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     finalProductSection: {
       title: "The Final Product",
       description:
-        "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Book faster: 3× higher conversion rate",
+        "A platform where people can confidently:\n• Book verified herbalists with transparent credentials\n• Access safety information to avoid dangerous interactions\n• Track symptoms + progress over time\n• Read the field guide behind every herb a practitioner recommends",
       eyebrow: "The Result",
       images: [
         {
@@ -886,12 +886,21 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     outcomeSection: {
       title: "Outcome",
       description:
-        'Leah\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nImpact:\n• 3× booking increase\n• 85% match accuracy\n• 24hr average response time',
+        'Leah\'s feedback: "I finally found an herbalist who actually helped my fatigue. The platform made me feel safe choosing someone, and the booking was so easy."\n\nWhere it stands: the platform runs end to end — search, verified profile, booking, messaging, reviews — and HerbaLink is still recruiting its founding practitioner cohort, so there is no booking volume, match-accuracy rate or response time to report yet. The outcome is a working product with the credential gate built in, not a measured one.',
       eyebrow: "Outcomes & Impact",
       metrics: [
-        { value: "3×", label: "booking increase" },
-        { value: "85%", label: "match accuracy" },
-        { value: "24hr", label: "average response time" },
+        // Corrected 2026-11-19. These were "3× booking increase", "85% match
+        // accuracy" and "24hr average response time" — three post-launch
+        // production figures for a product that has not launched. The live
+        // site reads "We're building our founding practitioner network — join
+        // our first cohort" (verified that day), so there is no booking
+        // history, no match data and no support queue to measure. Replaced
+        // with the two facts that are true and checkable in one click.
+        // public/llms.txt already told AI consumers HerbaLink "has no
+        // practitioners signed up, which its case study states directly";
+        // until now the case study said the opposite.
+        { value: "Live", label: "herbalink.live, end to end" },
+        { value: "Pre-launch", label: "founding practitioner cohort" },
       ],
     },
     whatDidntWorkSection: {
@@ -914,9 +923,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       image: "/images/herbalink/high-fidelity-prototype.webp",
       projectName: "HerbaLink — Credential Trust for a Herbalist Marketplace | Hiram Barsky",
       results: [
-        "3× more bookings",
-        "85% match accuracy",
-        "92% completion rate",
+        // Corrected 2026-11-19, same reason as outcomeSection above: these
+        // were "3× more bookings", "85% match accuracy" and "92% completion
+        // rate", production figures for a product still recruiting its first
+        // practitioners. These feed the SEO schema, so they were being served
+        // to search engines as the project's results.
+        "credential verification gates every practitioner profile",
+        "booking, messaging and reviews shipped end to end",
+        "herb field guide alongside every recommendation",
         "safer natural healthcare with trust built in",
       ],
       technologies: ["React Native", "AI Matching", "Healthcare UX", "Mobile Design"],

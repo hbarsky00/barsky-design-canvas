@@ -106,7 +106,12 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Healthcare", "Marketplace", "GenAI"],
     title: "HerbaLink: Credential Trust for Certified Herbalists",
     description: "I built a discovery and booking platform connecting users with vetted herbalists and reliable resources. The vision centered on credibility—helping users find trusted practitioners while avoiding unverified sources and misinformation.",
-    impact: "3× Practitioner Bookings",
+    // Was "3× Practitioner Bookings". Corrected 2026-11-19: herbalink.live is
+    // still recruiting its founding practitioner cohort, so there are no
+    // bookings to multiply — and this card sits one click from a "View live"
+    // link that says so. States what shipped instead, as CatchBuddy's card
+    // does with "Safety layer shipped in v1".
+    impact: "Credential gate shipped",
     url: "/project/herbalink",
     liveUrl: "https://herbalink.live",
     images: {

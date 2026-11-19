@@ -233,14 +233,21 @@ const EditorialHero: React.FC = () => {
                   kind="Healthcare Marketplace"
                   className="absolute -top-3 right-0 scale-90 origin-top-right sm:scale-100 lg:-top-4"
                 />
-                {/* HerbaLink's own figure from its case study, not a new claim. */}
+                {/* Was "3× more bookings", on the grounds that it was
+                    HerbaLink's own case-study figure rather than a new claim.
+                    Corrected 2026-11-19: the figure was wrong at the source.
+                    herbalink.live reads "We're building our founding
+                    practitioner network — join our first cohort", so there are
+                    no bookings to multiply, and this badge sits above the fold
+                    one scroll from the "View live" link that disproves it.
+                    States what is true and checkable instead. */}
                 <span
                   className="absolute -bottom-3 right-1 inline-flex items-baseline gap-1.5 rounded-xl
                              border border-emerald-400/25 bg-emerald-950/85 px-2.5 py-1.5 sm:px-3 sm:py-2
                              backdrop-blur-sm shadow-lg shadow-black/40"
                 >
-                  <span className="text-sm font-bold text-emerald-300">3×</span>
-                  <span className="text-xs text-white/70">more bookings</span>
+                  <span className="text-sm font-bold text-emerald-300">Live</span>
+                  <span className="text-xs text-white/70">credential-gated booking</span>
                 </span>
               </figure>
 

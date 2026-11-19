@@ -92,11 +92,13 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
   herbalink: {
     eyebrow: "Healthcare · Marketplace · Trust",
     accentPhrase: "Credential Trust",
-    // outcomeSection.metrics: "3× booking increase", "85% match accuracy"
-    metrics: [
-      { value: "3×", label: "Booking increase" },
-      { value: "85%", label: "Match accuracy" },
-    ],
+    // Was "3× Booking increase" and "85% Match accuracy", copied from
+    // outcomeSection.metrics. Both removed 2026-11-19: herbalink.live is still
+    // recruiting its founding practitioner cohort ("We're building our founding
+    // practitioner network", verified live that day), so there is no booking
+    // history to triple and no match data to score. Empty array, same as
+    // CatchBuddy — the component drops the whole row.
+    metrics: [],
     media: [
       {
         src: "/images/herbalink/high-fidelity-prototype.webp",
