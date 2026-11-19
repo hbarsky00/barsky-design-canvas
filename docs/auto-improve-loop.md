@@ -4,7 +4,7 @@ Authorised by Hiram 2026-08-22: run every 2 days, **do not ask him anything**,
 publish when the work verifies. Split roughly **50/50 between SEO/AEO and
 design** — his words. Alternate the emphasis each run so neither half rots.
 
-Repo: `~/Documents/barsky-design-canvas` · Live: https://barskydesign.pro
+Repo: `~/dev/barsky-design-canvas` · Live: https://barskydesign.pro
 Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-builds.
 
 ## Each run, in order

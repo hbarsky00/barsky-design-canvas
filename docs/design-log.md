@@ -1152,7 +1152,7 @@ point — the deployed bundle behaves as measured:
 ### Note for future cloud runs
 
 This run executed in a cloud session, not on Hiram's machine, so
-`~/Documents/barsky-design-canvas` and the skill paths the playbook names were
+`~/dev/barsky-design-canvas` and the skill paths the playbook names were
 not present — the repo was cloned fresh and the lens rotation read off the logs
 instead. Two things that cost time and will cost it again:
 

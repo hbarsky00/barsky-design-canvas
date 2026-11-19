@@ -13,7 +13,7 @@ participant, not Hiram as the author.
 
 ## Where things live
 
-- Repo: `/Users/hirambarsky/Documents/barsky-design-canvas` — live at https://barskydesign.pro
+- Repo: `/Users/hirambarsky/dev/barsky-design-canvas` — live at https://barskydesign.pro
 - Case-study index (10 studies, order is the rotation order):
   `src/data/caseStudyIndex.ts` — investor-loan-app, dae-search, bz-essentials,
   business-management (QuickFlow), recast, herbalink, catchbuddy, stips,
