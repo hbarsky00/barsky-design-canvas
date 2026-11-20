@@ -1856,13 +1856,6 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
             "Three phone screens from the operations app side by side: product management with stock and reorder levels, order management with totals and revenue, and driver management",
           caption: "The screens teams tested: products, orders and drivers in one app.",
         },
-        {
-          src: "/images/business-management/v2/design-system.webp",
-          alt:
-            "The design system behind the platform: shared components, type scale and colour applied across every business function",
-          caption:
-            "Unified design system streamlined user workflows and reduced learning curve across all business functions",
-        },
       ],
       metrics: [
         { value: "90%", label: "satisfaction" },
