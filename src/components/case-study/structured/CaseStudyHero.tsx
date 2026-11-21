@@ -329,7 +329,14 @@ const CaseStudyHero: React.FC<CaseStudyHeroProps> = ({
             <motion.div
               {...rise}
               transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              /* min-w-0 is load-bearing below lg. A grid item defaults to
+                 min-width:auto, so a wideScroll board (w-auto max-w-none) made
+                 the single mobile column as wide as the image itself — 1536px
+                 on HerbaLink — and the copy column went with it: headline, pitch
+                 and both CTAs pushed off-screen, unreachable because html is
+                 overflow-x:hidden. The lg track already says minmax(0,...),
+                 which is why only phones and tablets were hit. */
+              className="relative min-w-0"
             >
               {media}
             </motion.div>

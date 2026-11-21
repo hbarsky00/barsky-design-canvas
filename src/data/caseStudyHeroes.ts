@@ -104,7 +104,12 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
         src: "/images/herbalink/high-fidelity-prototype.webp",
         alt: "HerbaLink high-fidelity prototype: the mobile flow for finding, booking and getting support, beside the desktop discovery, booking, messaging and symptom-tracking screens",
         role: "primary",
-        scrollOnMobile: true,
+        /* scrollOnMobile dropped 2026-11-20. The flag exists for 3:1 boards
+           whose screens stop being readable when squeezed into a phone column.
+           This asset is 1536x1024 — 3:2 — so it reads fine at full column
+           width, exactly like DAE's and business-management's, both of which
+           measure clean on a phone. Asking for a scroller it did not need is
+           what put it on the w-auto/max-w-none path in the first place. */
       },
     ],
     theme: "light",

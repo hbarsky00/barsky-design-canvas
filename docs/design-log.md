@@ -1242,3 +1242,151 @@ each component in a `<section id>` and the component carried the same id again.
 Invalid HTML, and `getElementById` had been silently resolving to the outer
 one. All five components are used only inside that layout, so the inner id came
 out. Zero duplicates now, all seven anchors still resolve.
+
+## 2026-11-20 — FLOW — the HerbaLink hero was 1536px wide on a 375px phone
+
+Lens rotation: FINDABILITY and CRAFT both last ran 2026-11-17, RESEARCH 11-19,
+FLOW 11-16. Took FLOW. Started where
+`docs/relationship-design-playbook.md` says to start — **R1, the cold-landing
+audit of one case study**, deferred by the last two FLOW runs — and this time
+finished it. HerbaLink, no referrer, phone first, because that is how most
+visits to a `/project/*` route actually begin.
+
+### What the audit found, before any opinion about the copy
+
+The page never got as far as a credibility question. At 375×812 the hero's
+**grid column computed to 1536px** inside a 335px grid.
+
+| | measured on production, 375×812 |
+|---|---|
+| `documentElement.scrollWidth` | 375 — looks fine |
+| `body.scrollWidth` | **1576** |
+| `grid-template-columns` | **1536px** (one column) |
+| `<h1>` width | 1536px, right edge at 1536 |
+| `maxScrollX` | **0** |
+
+`html` carries `overflow-x: hidden`, so the 1200px hanging off the right was
+not scrollable — it was gone. A founder landing cold on the flagship case study
+saw `HerbaLink: Designing Creden`, a pitch line cut at `"trust me, bro`, and a
+CTA row running off the screen, with no gesture that could recover any of it.
+The other four live studies measured clean (`body.scrollWidth` 375, h1 not
+clipped), so this was HerbaLink alone.
+
+### Root cause — two things, one of them structural
+
+1. **The grid item had no `min-w-0`.** A grid item defaults to
+   `min-width: auto`, so its min-content width is a floor the column cannot go
+   below. The hero media is `w-auto max-w-none` on small screens, so its
+   min-content is the asset's own 1536px, and the single mobile column inherited
+   that floor. The copy column, sharing the column, went with it. The `lg` track
+   is `minmax(0,45fr)_minmax(0,55fr)` — the explicit `0` is why desktop was
+   never affected and why this survived every desktop review.
+2. **`scrollOnMobile: true` was on the wrong asset.** The flag exists for 3:1
+   boards that stop being readable when squeezed into a phone column; it routes
+   the image onto the `w-auto max-w-none` path inside a horizontal scroller.
+   HerbaLink's primary is 1536×1024 — **3:2** — which reads fine at full column
+   width, like DAE's and business-management's.
+
+Worth recording: **the scroller never scrolled.** It measured 1576px wide with
+1576px of content. The affordance meant to make a wide board legible on a phone
+had been inert on this layout the whole time, and the blowout was what happened
+instead.
+
+### What changed
+
+Two files, two edits.
+
+- `CaseStudyHero.tsx` — `min-w-0` on the hero media grid item, with the reason
+  in a comment. This is the structural fix: any future `scrollOnMobile` study
+  now scrolls its board instead of dragging the headline off the page.
+- `caseStudyHeroes.ts` — dropped `scrollOnMobile: true` from HerbaLink's
+  primary media, so a 3:2 asset takes the same full-width path as every other
+  3:2 hero on the site. No image, copy or section was removed.
+
+### Measured after, on the built output at three widths
+
+| viewport | `body.scrollWidth` | grid columns | h1 clipped | hero image |
+|---|---|---|---|---|
+| 375×812 | **375** | 335px | no | 335×223, fills column |
+| 768×1024 | 761 (8px scrollbar) | 705px | no | 705×470 |
+| 1440×900 | 1433 | 518px + 634px | no | 634×422 |
+
+Headline, pitch line and all three CTAs are fully on screen at 375px. Desktop is
+byte-for-byte the same layout it was — the `minmax(0,…)` track already did what
+`min-w-0` now does below `lg`.
+
+Checked the hero image's effective opacity (1.000, chain of 1s) before trusting
+any screenshot, because `whileInView` has made a screenshot lie three times in
+this log already.
+
+### Left open
+
+- **R1 is now done as a layout audit, not as a credibility audit.** The
+  cold-landing *content* questions the playbook asks — does a stranger learn who
+  this is, what he does, and what to do next — were never reachable while the
+  headline was cut in half. They are still unanswered and should be the next
+  FLOW run, on the same route, now that the page renders.
+- **A dead Tailwind utility is still in `CaseStudyHero.tsx`.** The image class
+  is `block h-auto ${sizing}` where the `wideScroll` sizing starts `h-60`.
+  `.h-auto` is emitted after `.h-60` in the stylesheet, so `h-auto` wins and the
+  mobile height cap that the code comment describes has never applied. Left
+  alone deliberately: the only remaining consumer is ManuscriptRx's hero, which
+  measures **0×0 on mobile** for a reason this run did not establish. That is
+  its own run, and it is a real finding — a hero image rendering at zero size.
+- **`More Work` is still "the next one along, wrapping"** — sequential, not
+  relevant (playbook P1). On HerbaLink, a trust-and-booking marketplace, it
+  hands off to DAE Search, enterprise data discovery. Unchanged this run.
+- Still no analytics, so "this cost bookings" remains a hypothesis. The 1536px
+  and the `maxScrollX: 0` are measured; the lost founders are not.
+
+### The recapture tried to ship 96 hidden words, and the gate waved it through
+
+Not part of the fix, but it happened during it and the next run needs it.
+
+`npm run capture-bodies` is required whenever markup changes, and this run's
+capture came back with content at `opacity: 0` that the committed snapshot did
+not have:
+
+| body | opacity-0 before | after capture | what |
+|---|---|---|---|
+| `index.html` | 0 | **77** | 76 heading/body words — "Five products you can open right now", "Recent adventures" |
+| `contact.html` | 0 | **20** | the "If you're building something" heading |
+| `project__dae-search.html` | 0 | 2 | a `<section>` at `transform: none` |
+| `project__catchbuddy.html` | 0 | 1 | a sticky div at `transform: scale(0.987)` |
+
+**`npm run build` passed anyway — "👁 visible content: 68 pages, nothing shipped
+at opacity 0."** The gate in `scripts/check-visible-content.mjs` matches
+`opacity: 0` only when the same inline style also carries a **`translate`**:
+
+```js
+/…\bopacity:\s*0\s*;[^"]*\btransform:\s*[^";]*translate[^"]*"…/gi
+```
+
+`settleViewportAnimations` in the capture script filters identically —
+`el.style.opacity === "0" && /translate/i.test(el.style.transform)`. So both the
+settler and the gate are blind to the same three things: `transform: scale(...)`,
+`transform: none`, and a bare `opacity: 0` with no transform at all. The word
+spans are the third kind, which is why 96 of them sailed through a gate written
+precisely to stop content shipping invisible.
+
+Re-running the capture for just those four routes (the script takes route args)
+cleared dae-search but reproduced `index` and `contact` **identically** — 77 and
+20 again. That is the important part: **these are deterministic in the current
+build, not a capture race.** Some recent change gave the homepage and contact
+headings a word-reveal animation whose initial state is a bare `opacity: 0`.
+
+**Nothing was shipped.** `index.html`, `contact.html` and
+`project__catchbuddy.html` were reverted to HEAD, so this commit carries only
+the four case-study bodies that captured clean. The live homepage and contact
+page keep the good snapshot they already have.
+
+**This is the top of the queue for the next run, ahead of any lens rotation.**
+The trap is live: the next person to run `capture-bodies` for any reason gets
+these 96 words, and the build will tell them it is fine. The fix is to widen
+both predicates from "opacity 0 AND translate" to "opacity 0 AND not
+aria-hidden", in the settler and the gate together — the settler so captures
+stop producing it, the gate so it cannot pass again. Check the honest false-
+positive cost first: a deliberately-invisible decorative element with no
+`aria-hidden` would start failing the build, and `index.html` also holds one
+`<div style="opacity: 0; transform: scale(0.8)">` that needs classifying before
+the net is widened.
