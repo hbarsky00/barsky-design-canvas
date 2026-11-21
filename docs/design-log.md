@@ -1315,6 +1315,12 @@ Headline, pitch line and all three CTAs are fully on screen at 375px. Desktop is
 byte-for-byte the same layout it was — the `minmax(0,…)` track already did what
 `min-w-0` now does below `lg`.
 
+**Verified live** on https://barskydesign.pro/project/herbalink after deploy
+(`071947f2`), fetched and measured on production at 375x812, not on the local
+build: `body.scrollWidth` 375, `grid-template-columns` 335px, h1 right edge 355
+and not clipped, hero image 335x223, `maxScrollX` 0 with nothing hanging off it.
+The served HTML carries `relative min-w-0` once and zero `max-w-none sm:h-72`.
+
 Checked the hero image's effective opacity (1.000, chain of 1s) before trusting
 any screenshot, because `whileInView` has made a screenshot lie three times in
 this log already.
