@@ -188,10 +188,23 @@ async function revealLazySections(page: import("playwright").Page) {
  * It is also nondeterministic — which elements lose the race changes run to run,
  * so the committed bodies churned without anyone touching the source.
  *
- * The match is deliberately narrow: inline opacity 0 AND an inline translate.
- * That pair is framer-motion's unfired `initial` and nothing else here. Elements
- * meant to be invisible (the SectionTransition wipe overlay animating opacity
- * 0.22 -> 0) are aria-hidden and excluded, so nothing decorative is forced on.
+ * whileInView is not the only source. `SectionHeader` renders every title and
+ * subtitle on the site through `AnimatedText type="word" animation="typewriter"`,
+ * whose hidden state is `{ opacity: 0 }` with no transform at all, one span per
+ * word. Those words are not racing a scroll step: `revealLazySections` scrolls
+ * to the bottom and back to the top, so anything that mounts late ends up below
+ * the fold with the page already at scrollTop 0, and its observer has no reason
+ * to fire again. This used to match only `opacity: 0` AND an inline `translate`,
+ * so it walked straight past them — on 2026-11-20 a capture wrote 96 such words
+ * across the homepage and contact page, and check-visible-content.mjs, which
+ * matched identically, passed them.
+ *
+ * So the predicate is now opacity 0 regardless of transform, which also covers
+ * `transform: scale(...)` and `transform: none`. Elements meant to be invisible
+ * (the SectionTransition wipe overlay animating opacity 0.22 -> 0) opt out with
+ * aria-hidden, so nothing decorative is forced on. Measured when this widened,
+ * over all 67 captured bodies: zero elements newly matched, i.e. the narrow
+ * version was not protecting anything.
  */
 async function settleViewportAnimations(page: import("playwright").Page) {
   const settled = await page.evaluate(() => {
@@ -199,17 +212,23 @@ async function settleViewportAnimations(page: import("playwright").Page) {
       document.querySelectorAll<HTMLElement>('[style*="opacity"]')
     ).filter(
       (el) =>
-        el.style.opacity === "0" &&
-        /translate/i.test(el.style.transform) &&
-        !el.closest("[aria-hidden='true']")
+        // closest() tests the element itself first, so this covers both an
+        // element tagged aria-hidden and one sitting inside a hidden subtree.
+        // check-visible-content.mjs can only see the tag's own attribute, so if
+        // it ever flags something nested inside a hidden wrapper, the fix is to
+        // put aria-hidden on that element too, not to widen either predicate.
+        el.style.opacity === "0" && !el.closest("[aria-hidden='true']")
     );
     for (const el of stuck) {
       el.style.opacity = "1";
-      el.style.transform = "none";
+      // Only clear a transform that is actually there. A typewriter word span
+      // carries no transform, and writing `none` onto it would put a property
+      // in the shipped markup that the source never had.
+      if (el.style.transform) el.style.transform = "none";
     }
     return stuck.length;
   });
-  if (settled) console.log(`   settled ${settled} unfired whileInView element(s)`);
+  if (settled) console.log(`   settled ${settled} unfired reveal animation(s)`);
 }
 
 /** Pull the inner HTML of <div id="root"> out of a full DOM dump. */

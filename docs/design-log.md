@@ -1396,3 +1396,18 @@ positive cost first: a deliberately-invisible decorative element with no
 `aria-hidden` would start failing the build, and `index.html` also holds one
 `<div style="opacity: 0; transform: scale(0.8)">` that needs classifying before
 the net is widened.
+
+**CLOSED 2026-11-21 (FINDABILITY).** Both predicates were widened to "inline
+`opacity: 0`, any transform or none, `aria-hidden` the only opt-out", in the
+settler and the gate together, and the gate gained a 13-case `selfTest()` so it
+can no longer stop being able to fail unnoticed. The false-positive cost asked
+for above was measured first: over all 67 freshly captured bodies the wide
+predicate matched **0** elements the narrow one did not. The
+`transform: scale(0.8)` div needing classification turned out to be a
+**stylesheet** rule (`.hero-loading`, `index.html:32`), never an inline style,
+so it matched neither predicate before or after. The 96 words **did not
+reproduce** on this build — the blind spot was proved directly instead, by
+injecting seven stuck typewriter spans and watching the old gate ship them with
+exit 0 and the new one fail with exit 1. Full write-up in `docs/aeo-log.md`
+under 2026-11-21. **Not a lens item any more; next run resumes normal rotation**
+(CRAFT is now the longest-waiting, last run 2026-11-17).

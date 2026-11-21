@@ -36,6 +36,150 @@ was not needed this run — but **a future CRAFT or FLOW run that needs
 `capture-bodies` will fail on `--strictPort 4199` if a stale preview is still
 holding the port and it cannot clear it.** Worth an allow rule before then.
 
+## 2026-11-21 — FINDABILITY — the gate that stops invisible content shipping could not fail
+
+Step 0: the last three runs are **2026-11-21 04:02 UTC** (FLOW, commits
+`071947f2` + `d74179f5`), **2026-11-19 14:11 UTC** (RESEARCH, `2dbedbce` and
+others) and this one. Both prior runs left real commits. **No dead run to
+report** — the first clean Step 0 in this log.
+
+Lens rotation said FINDABILITY and CRAFT (both last run 2026-11-17) were
+tied for longest-waiting. Took FINDABILITY, because the 2026-11-20 entry in
+`docs/design-log.md` ends by naming this item **"the top of the queue for the
+next run, ahead of any lens rotation"** — and what it guards is exactly what a
+crawler can read.
+
+### What was wrong
+
+`scripts/check-visible-content.mjs` exists to fail the build if a page ships
+real content at `opacity: 0`, because Google discounts what it finds invisible.
+It matched inline `opacity: 0` **AND** an inline `translate`:
+
+```js
+/…\bopacity:\s*0\s*;[^"]*\btransform:\s*[^";]*translate[^"]*"…/gi
+```
+
+`settleViewportAnimations` in `scripts/capture-prerendered-bodies.ts` filtered
+identically. That pair is framer-motion's unfired `whileInView` initial — but it
+is **not** how the site's own text animation hides itself.
+
+`SectionHeader` renders every title and subtitle on the site through
+`AnimatedText type="word" animation="typewriter"`. The `typewriter` hidden state
+in `CharacterAnimationVariants.ts` is `{ opacity: 0 }` and nothing else — it was
+`display: none` until 2026-11-14, changed precisely so the words stay in the DOM.
+One `<span>` per word. A word whose `IntersectionObserver` never fires during
+capture ships as `style="opacity: 0"`, with no transform at all, and **both the
+settler and the gate walked straight past it.**
+
+Five of the eight animation variants in that file have a hidden state the narrow
+net could not see — `typewriter`, `glitch`, `blur`, `elastic`, `flip` — and
+`typewriter` is the only one the site actually uses, on every section heading.
+
+### Proof, not inference
+
+The 2026-11-20 run reported 96 such words across the homepage and contact page,
+called them deterministic, and recorded that `npm run build` passed anyway.
+**That did not reproduce today.** A full 67-route capture on this build came back
+with **zero** inline `opacity: 0` elements anywhere, and the settler reported
+only 3 settled. So the previous run's "deterministic in the current build" does
+not hold on this build; what the words depend on was not established, and the
+homepage snapshot in the repo was already clean.
+
+The blind spot itself does not depend on reproducing them, so it was proved
+directly instead. Seven word spans in exactly the shape a stuck `typewriter`
+title serialises as were injected into `prerendered-bodies/index.html` and the
+full build was run:
+
+| | old gate | new gate |
+|---|---|---|
+| hidden words baked into `dist/index.html` | 7 | 7 |
+| `npm run build` exit code | **0** | **1** |
+| what it printed | `👁 visible content: 68 pages, nothing shipped at opacity 0.` | `❌ 7 element(s) shipped at opacity 0 on 1 page(s)` |
+
+The gate reported a clean bill of health over a heading it had just shipped
+invisible. That is the whole finding.
+
+Before widening, the honest false-positive cost was **measured, not guessed**,
+as the previous run asked: the wide predicate was run over all 67 freshly
+captured bodies and matched **0** elements that the narrow one did not. The
+narrow version was not protecting anything. (The `<div style="opacity: 0;
+transform: scale(0.8)">` the previous run flagged in `index.html` for
+classification is a **stylesheet** rule — `.hero-loading` at `index.html:32`,
+not an inline style — so it never matched either predicate and still does not.)
+
+### What changed
+
+- **`scripts/check-visible-content.mjs`** — the predicate is now inline
+  `opacity: 0` whatever the transform is or whether there is one, with
+  `aria-hidden` the only opt-out. `opacity: 0.5` and `0.22` still do not read as
+  `0` (the value has to end at a `;` or the quote), and `aria-hidden="false"` is
+  still treated as content.
+- **A 13-case `selfTest()` inside the gate**, run before it reports on anything.
+  Every case is a shape this repo has shipped or deliberately relies on. This is
+  here because the gate *silently stopped being able to fail* — the same failure
+  as `tsc --noEmit` compiling nothing for months. Verified it bites: pasting the
+  old narrow regex back in makes the gate exit 1 and name all six blind spots
+  (`typewriter word`, `scale`, `transform: none`, `opacity:0` unspaced,
+  `will-change` ordering, `aria-hidden="false"`) instead of passing.
+- **`scripts/capture-prerendered-bodies.ts`** — the settler now matches the same
+  predicate, so captures stop *producing* the condition rather than only being
+  caught shipping it. It clears a transform only when one is set, so a
+  typewriter word span does not gain a `transform: none` its source never had.
+  On the recapture it settled **1 element the old settler could not touch** — the
+  `transform: scale(0.987)` sticky div on CatchBuddy that the 2026-11-20 run saw
+  and could do nothing about.
+
+### Measured
+
+| | |
+|---|---|
+| `npm run typecheck` | exit 0 (both projects) |
+| `npm run build` | exit 0 — `👁 visible content: 68 pages, nothing shipped at opacity 0 (13 self-checks passed)` |
+| internal links | 67 pages, no dead links |
+| prose integrity | 49 post bodies match source |
+| capture | 67/67 routes, then 5/5 on the targeted recapture |
+| inline `opacity: 0` in `dist/` | 0 |
+| bodies changed by the recapture | 1 — `project__catchbuddy.html` |
+
+The one body change is `min-w-0` arriving in CatchBuddy's snapshot: the
+2026-11-20 `CaseStudyHero.tsx` fix was in the source but that run reverted
+CatchBuddy's body over the opacity-0 noise, so the snapshot had been lagging its
+own source since. No image, copy or section was removed.
+
+### Also worth recording — a stale `vite preview` does not break the capture
+
+The 2026-11-17 entry above worried that a stale preview holding port 4199 would
+break a future `capture-bodies` on `--strictPort`, and that the auto-mode
+classifier denies `kill`. Both halves happened this run: a preview orphaned by
+the 04:02 run was still on 4199, and `kill` was denied as destructive. **The
+capture ran fine anyway.** The script spawns its preview but then *probes the
+origin with curl* and proceeds on any 200, so it simply reused the server that
+was already there. The one thing that has to be checked is that the orphan is
+serving the current build — `vite preview` serves `dist/` from disk, and the
+served `/` was verified byte-identical to the freshly built `dist/index.html`
+(same md5, 163,875 bytes) before the capture was trusted. **Rebuild first, then
+compare the hash; do not assume the orphan is stale, and do not assume it is
+fresh.**
+
+### Left open
+
+- **The 96 words are unexplained, not fixed.** They did not reproduce, and
+  nothing in this run establishes what made them appear twice on 2026-11-20 and
+  not at all today. They can no longer ship silently, which is the point, but if
+  a capture ever reports settling dozens of elements on `/` or `/contact`, that
+  is the same thing recurring and the cause is still unknown.
+- **The gate sees one tag at a time; the settler walks ancestors.** The settler
+  skips anything inside an `aria-hidden="true"` subtree, the gate can only read
+  the tag's own attribute. Nothing matches either way today, so this is latent —
+  if it ever fires, the fix is `aria-hidden` on the element itself, which the
+  gate's error message now says.
+- **`og:image:alt` still falls back to `` `${title} preview image` ``** in
+  `seoBuilder.ts` — a description of a file, not of an image, on every page.
+  Carried from 2026-11-17.
+- `SkillsShowcase.tsx` is still bot-generated.
+- Still no analytics, so "invisible headings cost rankings" stays a mechanism
+  with evidence behind it, not a measured loss.
+
 ## 2026-11-17 (evening) — NO LENS RUN, ABORTED — a second agent was working in this repo
 
 Step 0 passed: the 2026-11-17 09:11 EST run is real work, the 2026-11-16 run is
