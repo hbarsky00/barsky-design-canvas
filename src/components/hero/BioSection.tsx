@@ -40,26 +40,37 @@ const BioSection: React.FC = () => {
                   time-stamped claim that left the section above this one fourteen
                   months stale. Every sentence here is checkable against the rest
                   of the page. */}
+              {/* Body copy is LEFT-ALIGNED, deliberately (2026-11-23, CRAFT).
+                  Every paragraph in this section used to be text-center. At
+                  375px that was 27 consecutive lines of centred body text —
+                  6, 6, 6 and 9 — with no left edge for the eye to return to.
+                  It was also an outlier: of the 7 centred <p> elements in the
+                  whole of src/, four were in this file, and the other three
+                  are short text-xs/text-sm captions, which is what centring is
+                  for. Only the eyebrow and title above stay centred; that is
+                  the same centred-header-over-left-body pattern the "Explore
+                  More" section on this page already uses. Do not re-centre
+                  these paragraphs. */}
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
-                <p className="text-xl text-center font-medium text-gray-800">
+                <p className="text-xl font-medium text-gray-800">
                   One person does all of it. The research, the interface, the React
                   front end, the database and the launch — so there is no handoff
                   for the idea to get lost in.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                  <div className="text-center">
+                  <div>
                     <h3 className="font-semibold text-lg text-gray-900 mb-3">How a project starts</h3>
-                    <p className="text-center">
+                    <p>
                       With the thing that is actually costing you something — a
                       flow people abandon, a feature nobody found, an internal tool
                       your team works around. Not a redesign looking for a reason.
                     </p>
                   </div>
 
-                  <div className="text-center">
+                  <div>
                     <h3 className="font-semibold text-lg text-gray-900 mb-3">How it ends</h3>
-                    <p className="text-center">
+                    <p>
                       With software your users can open. 15+ years across fintech,
                       healthcare and pharma, and the production React and database
                       work to get it live — not a file for someone else to build.
@@ -67,9 +78,9 @@ const BioSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-blue-50/50 rounded-lg p-6 mt-8 text-center">
+                <div className="bg-blue-50/50 rounded-lg p-6 mt-8">
                   <h3 className="font-semibold text-lg text-gray-900 mb-3">Where AI fits</h3>
-                  <p className="text-center">
+                  <p>
                     It is how I build fast enough for one person to ship a whole
                     product. When the AI <em>is</em> the product, how it behaves
                     when it is guessing — and when it is confidently wrong — is a
