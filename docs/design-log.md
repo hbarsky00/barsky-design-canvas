@@ -1411,3 +1411,103 @@ injecting seven stuck typewriter spans and watching the old gate ship them with
 exit 0 and the new one fail with exit 1. Full write-up in `docs/aeo-log.md`
 under 2026-11-21. **Not a lens item any more; next run resumes normal rotation**
 (CRAFT is now the longest-waiting, last run 2026-11-17).
+
+## 2026-11-24 — CRAFT — the About section centred 27 lines of body copy
+
+Lens rotation: FINDABILITY ran 2026-11-21, FLOW 2026-11-20, RESEARCH
+2026-11-19, CRAFT 2026-11-17. CRAFT was the longest-waiting, as the previous
+entry predicted.
+
+### What was wrong
+
+`BioSection.tsx` — the "About Me" card on the homepage, sitting between the
+work and the contact CTA — set **every** paragraph it contains to
+`text-center`. Measured in the browser at 375px before the change:
+
+| paragraph | words | lines | width |
+|---|---|---|---|
+| "One person does all of it…" | 32 | 6 | 279px |
+| "How a project starts" body | 32 | 6 | 279px |
+| "How it ends" body | 33 | 6 | 279px |
+| "Where AI fits" body | 51 | 9 | 231px |
+
+**27 consecutive lines of centred body text on a phone**, in the one section
+whose job is to convince a founder there is a real person here. Centring is
+fine for a caption; past about three lines it removes the fixed left edge the
+eye uses to find the start of the next line, and every line start lands
+somewhere different.
+
+### It was an outlier, not the house style
+
+This mattered because it meant the fix was "rejoin the site", not "impose a
+preference". Across the whole of `src/` there were **7** centred `<p>`
+elements. **Four were in this one file.** The other three are
+`ImageErrorFallback` (`text-sm`), a `KeyInsightsRow` caption (`text-sm`) and
+`ProductCard` micro-copy (`text-xs`) — all short, all small type, all the
+legitimate use. Nothing else on the site centres a body paragraph.
+
+### What changed
+
+Removed `text-center` from the four paragraphs and the three wrapper divs. The
+`SectionHeader` (the "ABOUT ME" eyebrow and the "Product Designer & AI
+Developer" title) **stays centred** — that is deliberate, and it is the same
+centred-header-over-left-body pattern the "Explore More" section further down
+this page already uses. Each `h3` now sits left above its own paragraph rather
+than centred over left-aligned text.
+
+A comment in the file records the measurement and says not to re-centre them.
+
+### Measured after
+
+Re-measured in the browser on the rebuilt bundle at 375px: all four paragraphs
+`text-align: start`, all three `h3` `start`, the `h2` still `center`, **total
+centred body lines 0** (was 27). At 1440px the two columns now share a left
+edge, so "How a project starts" and "How it ends" read as the comparable pair
+they were written to be.
+
+### Ship gate
+
+- `npm run typecheck` → EXIT 0 (both projects, not a bare `tsc`)
+- `npm run build` → EXIT 0; internal links 67 pages no dead links, prose
+  integrity 49 bodies match, visible content 68 pages nothing at opacity 0
+  (13 self-checks passed)
+- Visible markup changed, so `npm run capture-bodies` → **67/67 routes
+  captured**, no failures, then `npm run build` again → EXIT 0
+- Verified the recaptured `prerendered-bodies/index.html` carries it: zero
+  `class="text-center"` in the bio markup, bare `<div>` and `<p>`
+- Verified live at https://barskydesign.pro/ after the Netlify build
+
+### The screenshot lied again — fourth time
+
+A programmatic `scrollIntoView()` to `#bio-section` produced a **completely
+blank screenshot**. The section's `whileInView` reveal had not fired, and
+computed style confirmed it: `opacity: 0; transform: translateY(30px)`. The
+JS measurement taken at the same moment reported correct line boxes, so the
+markup was never in doubt.
+
+This is the fourth time a `whileInView` fade has made a screenshot of this site
+lie (blank FAQ, blank blog list, the phantom 702px gap on 2026-11-17, now
+this). The working method: **scroll with real wheel events, not
+`scrollIntoView`**, wait ~3s, and when a region looks empty read computed
+opacity before believing it. A measurement that disagrees with the markup is
+the measurement's problem until proven otherwise.
+
+### Left open
+
+- **`prerendered-bodies/project__catchbuddy.html` is non-deterministic across
+  captures.** This run's recapture changed it without any source change: the
+  section-nav's active item moved from "Hero" to "The Result" and a floating
+  nav widget appeared, purely because the capture ended at a different scroll
+  position. Reverted it rather than commit unrelated churn, so only
+  `index.html` and `BioSection.tsx` are in the commit. Worth deciding whether
+  the capture should park the scroll position before snapshotting — otherwise
+  every run risks a spurious diff on this file.
+- **Measure (line length) is still long in this section at desktop.** The lead
+  paragraph runs ~95 characters per line at 1440px, against the 45-75 that
+  reads comfortably. Left-aligning does not fix that; a `max-w-prose` on the
+  text column would. Deliberately not done this run — one change per run, and
+  centring was the defect that actually hurt.
+- `/services` still says "we" twice under "designed and built by one person"
+  (flagged by the 2026-11-19 RESEARCH run, still unfixed, copy is settled).
+- The homepage FAQ is still `hidden md:block` — absent from the mobile layout.
+  Still wants its own FINDABILITY run.
