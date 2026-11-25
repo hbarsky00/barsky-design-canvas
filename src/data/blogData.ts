@@ -1,3 +1,26 @@
+// CLOSING PARAGRAPHS POINT AT THINGS THAT EXIST (2026-11-25, RESEARCH run).
+//
+// Twelve posts ended on their last paragraph by naming a case study — "the full
+// build is in the Ring-Rival case study" — and none of the twelve contained a
+// single internal link; the only hrefs in them were Unsplash photo credits. Of
+// the eight case studies named, every one is retired: /project/ring-rival,
+// /project/stips, /project/fire-lion, /project/bz-essentials, /project/recast,
+// /project/gold2crypto and /project/investor-loan-app all 301 to / in
+// public/_redirects. So a reader who finished a post was told to go and read
+// something that does not exist, with nothing to click.
+//
+// Six of those promises had a real destination and now link it: Ring Rival
+// (x3) -> ringrival.today, Stips (x2) -> stips.bet, Fire Lion -> firelion.me.
+// All three were loaded in a browser on 2026-11-25; the Fire Lion specifics
+// (sixteen worlds drawn six at a time, word-spelling evolution, a second game
+// mode) are read off firelion.me, not invented. This is also what the site's
+// own post argues under "One live link beats ten case studies".
+//
+// The other six promises are FLAGGED in docs/research-log.md, not rewritten:
+// BZ Essentials (x2), Gold2Crypto, ManuscriptRx and Recast have no verifiable
+// public destination, and the Investor Loan study is deliberately off this
+// site -- do not link it or re-register its route.
+
 // Import blog images
 import blogFindingUxJob from '@/assets/blog-finding-ux-job.jpg';
 import blogDesignSystems from '@/assets/blog-design-systems.jpg';
@@ -855,7 +878,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>So the discipline I've ended up with is the opposite of what the tools encourage. Generate freely, because it costs nothing. Then be ruthless, because the thing that costs is the shipped surface area, and that hasn't got cheaper at all.</p>
 
-<p>The full build, sprite pipeline and opponent behaviour and the parts AI genuinely couldn't do, is in the Ring-Rival case study.</p>
+<p>The full build, sprite pipeline and opponent behaviour and the parts AI genuinely couldn't do, is in <a href="https://ringrival.today" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Ring Rival</a> itself — free in a browser, and what you play is what survived the cutting.</p>
 `
   },
   {
@@ -958,7 +981,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>The unit price is for comparing. The total is for deciding. Most screens show the first and make you derive the second.</p>
 
-<p>How the board, the market page and the ticket fit together, plus two things I got wrong, is in the Stips case study.</p>
+<p>How the board, the market page and the ticket fit together is easiest to see in <a href="https://stips.bet" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Stips</a> itself: open a market and the ticket does the arithmetic in front of you, before you commit.</p>
 `
   },
   {
@@ -1204,7 +1227,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>That gap, between working and being good, is where the design job now lives, and it's exactly what a safe portfolio project is built to avoid.</p>
 
-<p>What shipped, and what I cut to get there, is in the Fire Lion case study.</p>
+<p>What shipped is <a href="https://firelion.me" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Fire Lion</a> — sixteen worlds drawn six at a time, a word-spelling evolution mechanic, and a second game mode inside it. Free in a browser, so it either holds up or it doesn't.</p>
 `
   },
   {
@@ -1542,7 +1565,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>The assumption I see people make is that because generation got cheap, checking got cheap with it. It didn't. Writing the market generator took an afternoon. Trusting the market generator took another week, and that week was almost entirely me building the checks that would tell me when it was wrong.</p>
 
       <p>That ratio is the actual shape of the work now. Less typing. The same amount of judgment, concentrated into fewer decisions that matter more.</p>
-    <p>Both of these came out of building the Stips case study.</p>
+    <p>Both of these came out of building <a href="https://stips.bet" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Stips</a>, which is live and open to anyone.</p>
     `
   },
   {
@@ -1751,7 +1774,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Ship something. Watch a real person use it. Cut what they ignored. Repeat until your instinct about what to cut starts being right before you test it.</p>
 
       <p>There's no faster path. AI compressed the build step so hard that this loop is now cheap to run, which is genuinely the best thing about the current moment. You can be wrong on Tuesday and fixed by Wednesday. What you can't do is skip being wrong.</p>
-    <p>The deletions this is drawn from are written up in the Ring-Rival case study.</p>
+    <p>The deletions this is drawn from are in <a href="https://ringrival.today" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Ring Rival</a>. What is left after them is the whole game.</p>
     `
   },
   {
@@ -2195,7 +2218,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>They don't fail because the build was bad. They fail because the problem wasn't real, or was real but shaped differently than anyone assumed. AI does nothing about that. It just gets you to the point of discovering it sooner and with less money spent, which is a genuine improvement and not a solution.</p>
 
       <p>The work is what it always was: figure out what's actually worth building, then build only that. The second half got dramatically easier. The first half didn't move.</p>
-    <p>The clearest example of the split is in the Ring-Rival case study.</p>
+    <p>The clearest example of the split is <a href="https://ringrival.today" class="text-primary underline underline-offset-2 hover:text-primary/80" target="_blank" rel="noopener noreferrer">Ring Rival</a> — the building was the easy half, and you can open it and judge the other one.</p>
     `
   },
 

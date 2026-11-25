@@ -982,3 +982,157 @@ services with their live descriptions, the photo slots mapped to files in
    and above a section headed "One person, end to end". Flagged, not changed:
    it is a voice slip rather than a factual error, and the copy is settled.
 5. **Still no analytics.** Fourth run carrying this.
+
+---
+
+## 2026-11-25 — RESEARCH — twelve posts ended by promising a page that 301s away
+
+Lens rotation: CRAFT ran 2026-11-24, FINDABILITY 2026-11-21, FLOW 2026-11-20,
+RESEARCH 2026-11-19 — longest without a turn, so RESEARCH.
+
+**Step 0 — no dead run to report.** The last three runs are 2026-11-21
+(FINDABILITY, commit `8ebbd5ba`), 2026-11-23 (CRAFT, commits `f792f3ac` +
+`85881684`) and this one. Both prior runs left commits and log entries; neither
+was a permission-blocked no-op. Tree was clean at start, `pgrep -f 'vite
+preview'` empty, `lsof -ti:4199` clear.
+
+### What this run was supposed to do, and what it found instead
+
+Open item 2 from 2026-11-17 set the task: audit the remaining own-product
+case-study numbers the way HerbaLink's were — CatchBuddy, Stips, Ring Rival and
+Fire Lion are Hiram's own, live, and checkable in a browser. Did that first.
+All five products returned 200, and all five were loaded in a real browser on
+2026-11-25 (they are client-rendered SPAs, so `curl` returns an empty body).
+
+**That audit came back clean, which is the first good news this lens has had.**
+
+- **CatchBuddy** — the case study claims capabilities, not traction: "13+ gate,
+  parent verification before a minor can post, panic button on every screen",
+  "curated meeting spots — no user-dropped pins". catchbuddy.fit's own page
+  advertises "Verified profiles, public meeting spots, and parental controls for
+  younger players" and "Age-Based Matching". Consistent. Its hero already
+  carries `metrics: []`. Nothing to fix.
+- **Stips** — "Prediction markets anyone can open. Buy Yes or No on a
+  real-world event and the price moves as people trade." stips.bet says "Buy Yes
+  or No on real-world events. A market opens at a starting price and moves as
+  people trade." Accurate.
+- **Ring Rival** — "career mode — timing-based combat, opponent AI, persistent
+  rankings." ringrival.today's menu is START CAREER / RANKINGS / SETTINGS.
+  Accurate.
+- **HerbaLink** — "with a searchable herb library behind every recommendation."
+  herbalink.live offers "Explore the herb library" and "A field guide to the
+  herbs behind every recommendation." Accurate, and the 2026-11-19 correction
+  is holding.
+
+**The one inaccuracy in that section is Fire Lion. `Confirmed`.** The blurb
+reads "Canvas arcade game. Hold to fly, procedural obstacles, score that
+survives a refresh." firelion.me is a sixteen-world endless runner where you
+grab letter tokens to spell words mid-flight and evolve Cub → Lava God in one
+run, with combo multipliers, daily missions, seven playable lions, a Cub Mode
+and a Galaga-style second game mode (Lion Wars, seven waves). Controls are
+"tap to fly upward, release to descend", not hold. So the portfolio gets the
+control scheme wrong and sells the weakest capability it has — localStorage
+persistence — as the headline. Noted, not fixed this run: a bigger defect
+turned up on the way.
+
+### The finding that took the run
+
+Chasing where else these products are described led to the blog, and to this.
+
+**F1 — twelve posts end their last paragraph by naming a case study that does
+not exist, and none of the twelve contains a single internal link.
+`Confirmed`.**
+
+Every one of these is the final `<p>` of its post:
+
+| Post | Closing promise | Destination |
+|---|---|---|
+| `the-work-is-deleting-not-generating` | "the Ring-Rival case study" | `/project/ring-rival` → 301 `/` |
+| `taste-is-the-whole-job` | "the Ring-Rival case study" | 301 `/` |
+| `what-ai-changed-and-what-it-didnt` | "the Ring-Rival case study" | 301 `/` |
+| `if-you-make-people-do-math` | "the Stips case study" | `/project/stips` → 301 `/` |
+| `two-bugs-ai-wrote-that-i-had-to-find` | "the Stips case study" | 301 `/` |
+| `a-to-do-app-doesnt-prove-anything` | "the Fire Lion case study" | `/project/fire-lion` → 301 `/` |
+| `a-filter-nobody-opens` | "the BZ Essentials case study" | `/project/bz-essentials` → 301 `/` |
+| `everyones-portfolio-looks-good-now` | "the BZ Essentials case study" | 301 `/` |
+| `beginner-or-pro-is-a-false-choice` | "the Gold2Crypto case study" | `/project/gold2crypto` → 301 `/` |
+| `design-for-the-approval-gates` | "the ManuscriptRx case study" | no route, ever |
+| `designer-who-codes-argument-is-over` | "the Recast case study" | `/project/recast` → 301 `/` |
+| `you-dont-replace-excel-by-being-better` | "the Investor Loan Platform case study" | deliberately pulled 2026-09-14 |
+
+Verified by reading `public/_redirects` rather than guessing: lines 20–45 retire
+every one of those `/project/*` paths to `/` with a 301. Three sibling posts do
+it properly and prove the pattern was intended to be links —
+`/project/catchbuddy`, `/project/dae-search` and `/project/herbalink` are
+anchored in four other posts.
+
+**Why this is the most expensive thing available.** Posts are 49 of the site's
+66 URLs and the dominant search entry surface, so the last paragraph of a post
+is where most arriving founders finish reading and decide what to do next. At
+that exact moment the site told them to go and read something that does not
+exist, and gave them nothing to click — the only `href`s in any of the twelve
+posts are Unsplash photo credits. It is the same defect class as the HerbaLink
+numbers (a claim the site cannot keep), except here the cost is a lost reader
+rather than a false number.
+
+The site already argues the fix. Its own post
+`everyones-portfolio-looks-good-now` has the heading "One live link beats ten
+case studies", and says "Case studies describe. A URL proves." Six of the
+twelve promises point at products that are live right now.
+
+### What shipped
+
+`src/data/blogData.ts` only. Six closing paragraphs now name and link a product
+that exists, keeping each sentence's information and voice:
+
+- Ring Rival ×3 → `https://ringrival.today`
+- Stips ×2 → `https://stips.bet`
+- Fire Lion ×1 → `https://firelion.me`
+
+All six use the file's existing in-prose link class plus `target="_blank"
+rel="noopener noreferrer"`, matching how `ShippedProductsSection` links the same
+five products. The Fire Lion specifics written into that sentence — sixteen
+worlds drawn six at a time, word-spelling evolution, a second game mode — were
+read off firelion.me in a browser on 2026-11-25, not invented. A header comment
+on the file records why, so a future run does not "restore" the old sentences.
+
+**No number was added anywhere.** Nothing was deleted: every sentence kept its
+claim and gained a destination.
+
+### FLAGGED — not invented, not rewritten
+
+The other six promises have no destination this loop may honestly supply, so
+they were left exactly as they are:
+
+1. **BZ Essentials ×2** (`a-filter-nobody-opens`,
+   `everyones-portfolio-looks-good-now`) — client work, the client stays
+   anonymous, route retired, no public URL.
+2. **Gold2Crypto** (`beginner-or-pro-is-a-false-choice`) — retired, no live
+   product.
+3. **ManuscriptRx** (`design-for-the-approval-gates`) — `llms.txt` states it is
+   a self-initiated concept with no client. It has never had a route.
+4. **Recast** (`designer-who-codes-argument-is-over`) — a separate project with
+   its own repo; whether it has a public URL to link is Hiram's to say, and
+   guessing one is how a `sameAs` that 404s gets published.
+5. **Investor Loan Platform** (`you-dont-replace-excel-by-being-better`) — the
+   study is deliberately off this site since 2026-09-14. **Do not link it and
+   do not re-register the route.** The dangling sentence is the price of that
+   decision, and removing the sentence is Hiram's call, not this loop's.
+
+Each of those five is a false promise sitting in a closing paragraph. Fixing
+them needs either a destination only Hiram can supply or permission to cut a
+sentence, which this loop does not have.
+
+### Still open, in priority order
+
+1. **Fire Lion's blurb in `ShippedProductsSection`** is wrong on controls
+   ("hold to fly" vs tap/release) and headlines its weakest capability. One
+   line, fully evidenced above, ready for the next CRAFT or RESEARCH run.
+2. **The five flagged promises above.** Needs Hiram for a destination or a cut.
+3. **Write for the buyer.** Carried since 2026-11-17. This run removed a
+   dead end; it still did not add a reason to call.
+4. **`/services` says "we" twice** under "designed and built by one person".
+   Flagged 2026-11-19, still unfixed, copy is settled.
+5. **Still no analytics.** Fifth run carrying this. Every finding in this log
+   is desk research or a deterministic check, because there is no other kind
+   available.
