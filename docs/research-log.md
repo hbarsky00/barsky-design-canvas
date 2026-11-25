@@ -1099,6 +1099,37 @@ on the file records why, so a future run does not "restore" the old sentences.
 **No number was added anywhere.** Nothing was deleted: every sentence kept its
 claim and gained a destination.
 
+### Measured
+
+- `npm run typecheck` **EXIT:0**.
+- First `npm run build` **EXIT:1** — and correctly so. `check-prose-integrity`
+  caught the source/snapshot mismatch while `prerendered-bodies/` still held the
+  old sentences, naming the exact post and both strings. That gate exists
+  because an SEO linker once rewrote words inside 30 live posts; this is the
+  first time it has fired on an intended change, and it behaved exactly right.
+- `npm run capture-bodies` — **67/67 routes captured, no failures.** Six bodies
+  changed, one per edited post. No spurious `project__catchbuddy` churn this
+  time, so nothing had to be reverted out of the commit.
+- Second `npm run build` **EXIT:0**, all four postbuild gates clean: SEO HTML for
+  67 routes (67 with prerendered bodies), internal links "67 pages, no dead
+  links", prose integrity "49 post bodies match their source text", visible
+  content "68 pages, nothing shipped at opacity 0".
+- **Verified live after deploy (`433fa5fc`), by request rather than by build.**
+  All six pages fetched from barskydesign.pro: each serves exactly its intended
+  link (`ringrival.today` ×3, `stips.bet` ×2, `firelion.me` ×1) and **0** of the
+  six still carry `in the <X> case study`. All three link targets returned 200.
+- Confirmed in the rendered DOM too, not just the HTML: on
+  `/blog/a-to-do-app-doesnt-prove-anything` the anchor computes to
+  `href="https://firelion.me"`, `target="_blank"`,
+  `rel="noopener noreferrer"`, text "Fire Lion", containing paragraph
+  `opacity: 1`.
+
+**The screenshot-lies note applies again, fifth instance.** `find` for "Fire
+Lion" on the live page returned *No matches* while the link was demonstrably
+present and visible. The accessibility tree had not caught up with the
+below-the-fold content. Reading computed style settled it in one call. A
+measurement that disagrees with the markup is still the measurement's problem.
+
 ### FLAGGED — not invented, not rewritten
 
 The other six promises have no destination this loop may honestly supply, so
