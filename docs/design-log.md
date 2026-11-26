@@ -1700,3 +1700,90 @@ have "fixed" them:
   integrity rather than UI/UX and was left for a findability run.
 - **`/#case-studies` still lands at the top of the homepage and jumps 561px
   ~3.6s later** — logged in full in this run's earlier FLOW entry. Unchanged.
+
+## 2026-11-26 (follow-up) — FLOW — the engagement prompt has never once appeared
+
+Hiram asked for the dormant prompt flagged earlier today to be fixed.
+
+### Why it never fired
+
+The `#hero` lookup found earlier was real but **downstream of the actual
+cause**: `LazyScrollEngagement` was imported into `HomepageLayout` and never
+placed in the tree. The component never mounted, so none of its logic — the
+prompt, the scroll maths, the localStorage memory — has ever run on this site.
+The `#hero` bug would have bitten the moment it did: the homepage's first
+section is `#intro`, and `#hero` exists only on case-study pages.
+
+Worth recording separately: **`FloatingConsultationBubble` has the same dead
+`#hero` lookup**, and it *is* rendered. Its `setIsVisible` sits inside
+`if (heroSection && contactSection)`, so it has never been called and the
+bubble has never shown either. Left dark on purpose — switching on a second
+floating CTA is a product decision, not a bug fix. Flagged for Hiram.
+
+### What changed
+
+- **Rendered it.** One line in `HomepageLayout`.
+- **Replaced the copied geometry with a DOM query.** The prompt now asks
+  whether `[data-consultation-bubble]` is on screen instead of re-deriving the
+  bubble's rule from `#hero`. A query against what is rendered cannot drift the
+  way a duplicated rule did, and it starts coordinating automatically if the
+  bubble is ever enabled.
+- **Trigger window.** Past 60% scroll, which on this page is the bio section at
+  roughly 60–67% — after the work, before the contact form at 71%. Measured
+  section positions at 375px: intro 0%, case-studies 8%, current-projects 32%,
+  adventures 51%, bio 64%, **contact 71%**, blog 77%, faq 87%. It does not fire
+  while contact is in view and steps aside when the reader reaches it.
+- **Position.** Was `bottom-4`, directly beneath the scroll-to-top button
+  (`fixed bottom-6 right-6 z-50`), which would have punched through the card at
+  a higher z-index. Now `bottom-20` plus a safe-area inset; measured clear.
+- **Accessibility and copy.** `<aside>` with an accessible name rather than an
+  anonymous div; Escape dismisses; a 44×44 close button alongside "Not now";
+  reduced motion honoured on both the entrance and the scroll-to-contact.
+  "Get Started" / "Maybe Later" → "Tell me about it" / "Not now", matching the
+  card's own sentence.
+- **Left out:** the always-on scroll progress bar this component also renders.
+  It has never been visible and nobody asked for a second piece of chrome.
+
+### The part that would have hurt: it was baked into the static HTML
+
+`capture-prerendered-bodies` walks every page to the bottom and back, which is
+exactly the gesture that triggers this card. The first capture after rendering
+it wrote the prompt into `prerendered-bodies/index.html` — **every visitor
+would have been served that card in the static HTML on load**, before any
+scrolling and regardless of the 30-day suppression that is the entire point of
+it. Caught by grepping the snapshot, not by any gate.
+
+Transient overlays now mark themselves `data-transient` and are stripped before
+the snapshot is written. Declarative on purpose: the next scroll-triggered
+overlay anyone adds is covered without touching the script. Capture now reports
+`stripped 1 transient overlay(s)`, and the prompt appears in **zero** of 67
+prerendered bodies and zero built pages.
+
+### Verified, at 375×812 on production (commit `1cf1e38f`)
+
+| case | result |
+|---|---|
+| fresh load, no scroll | not shown |
+| contact section in view | not shown |
+| 63% scroll | **shown**, 343×158, opacity 1, clear of the scroll-to-top button |
+| scrolled on to 75%, contact in view | hides itself |
+| Escape | dismisses, does not return that visit |
+| flag 5 days old | stays quiet |
+| flag 31 days old | shown again, clock restarts |
+| 1440×900 | bottom-right, 320px wide, no overlap |
+| live static HTML | 0 occurrences |
+
+Gate: `npm run typecheck` clean, `capture-bodies` 67/67 with zero failures,
+`npm run build` EXIT:0 with all five postbuild checks passing. Bundle hash on
+production matches the local build.
+
+This also closes the caveat on improvement 9 from the run above: the 30-day TTL
+is now verified end to end on production, not just as code.
+
+### Still open
+
+- **The consultation bubble is still dark** for the `#hero` reason above. One
+  line to fix; needs Hiram's word, because it makes a second floating CTA
+  appear.
+- The nine missing blog cover captions, the six stale `modified` dates, and the
+  `/#case-studies` 3.6s scroll jump are all unchanged from the entries above.
