@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { navHrefToUrl } from "./useHeaderNavigation";
 import { Briefcase, User, Mail, BookOpen, ShoppingBag, Palette } from "lucide-react";
 
 interface NavigationProps {
@@ -62,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({
         return (
           <Link
             key={link.name}
-            to={link.href}
+            to={navHrefToUrl(link.href)}
             onClick={link.href.startsWith('#') ? (e) => {
               // For contact anchor, allow native anchor behavior (no preventDefault)
               if (link.href !== '#contact') {

@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { navHrefToUrl } from "./useHeaderNavigation";
 import { Menu, X, Briefcase, User, Mail, BookOpen, ShoppingBag, Palette } from "lucide-react";
 
 interface MobileMenuProps {
@@ -80,7 +81,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 return (
                   <Link
                     key={link.name}
-                    to={link.href}
+                    to={navHrefToUrl(link.href)}
                     onClick={link.href.startsWith('#') ? (e) => {
                       // Allow native anchor for contact; prevent only for other anchors
                       if (link.href !== '#contact') {

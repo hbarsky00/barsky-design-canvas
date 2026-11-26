@@ -5,6 +5,13 @@
  *   - /blog/portfolio-red-flags-no-interviews 404'd while 8 blog posts linked it.
  *   - 9 retired /project/* slugs 301'd to the homepage, absorbing 35 links.
  * Both are trivially detectable from dist/ plus public/_redirects.
+ *
+ * It also checks FRAGMENTS, added 2026-11-26. Until then line 65 did
+ * `href.split("#")[0]` and validated only the path, so an href whose anchor
+ * does not exist on the target page passed as long as the page itself existed.
+ * That blind spot shipped the header's "Case Studies" link: `<Link to="#case-studies">`
+ * resolves against the current pathname, so on all 60-odd non-home routes it
+ * rendered a self-link to an anchor that route has no element for.
  */
 import { readdirSync, readFileSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
@@ -46,11 +53,28 @@ const matchesRedirect = (href) => {
   return null;
 };
 
-// Anchors that exist as page sections, not routes.
-const IGNORE = /^(#|mailto:|tel:|https?:|\/\/|\/assets\/|\/images\/|\/blog\/.*\.(jpg|png|webp)$)/;
+// Off-site or asset hrefs. A bare `#frag` is NOT ignored any more: it points at
+// the current page and its target is just as checkable as a cross-page one.
+const IGNORE = /^(mailto:|tel:|https?:|\/\/|\/assets\/|\/images\/|\/blog\/.*\.(jpg|png|webp)$)/;
 
 const missing = new Map();
 const viaRedirect = new Map();
+const badFragment = new Map();
+
+/** id="..." / name="..." present in a built page, indexed on first need. */
+const idCache = new Map();
+const idsOf = (pagePath) => {
+  if (idCache.has(pagePath)) return idCache.get(pagePath);
+  const file = join(DIST, pagePath === "/" ? "" : pagePath, "index.html");
+  const ids = new Set();
+  if (existsSync(file)) {
+    const html = readFileSync(file, "utf8");
+    for (const m of html.matchAll(/\sid="([^"]+)"/g)) ids.add(m[1]);
+    for (const m of html.matchAll(/<a\b[^>]*\sname="([^"]+)"/g)) ids.add(m[1]);
+  }
+  idCache.set(pagePath, ids);
+  return ids;
+};
 
 const walkPages = (dir) => {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
@@ -62,10 +86,29 @@ const walkPages = (dir) => {
     for (const m of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
       let href = m[1];
       if (IGNORE.test(href)) continue;
+      const hashAt = href.indexOf("#");
+      const frag = hashAt === -1 ? "" : href.slice(hashAt + 1);
       href = href.split("#")[0].split("?")[0];
+      // A bare `#frag` targets the page it sits on.
+      if (href === "" && frag) {
+        if (!idsOf(from || "/").has(decodeURIComponent(frag))) {
+          const key = `${from || "/"}#${frag}`;
+          if (!badFragment.has(key)) badFragment.set(key, { pages: new Set() });
+          badFragment.get(key).pages.add(from || "/");
+        }
+        continue;
+      }
       if (!href.startsWith("/")) continue;
       const norm = href.length > 1 ? href.replace(/\/$/, "") : "/";
-      if (pages.has(norm)) continue;
+      if (pages.has(norm)) {
+        // The page exists; does the anchor the href names exist on it?
+        if (frag && !idsOf(norm).has(decodeURIComponent(frag))) {
+          const key = `${norm}#${frag}`;
+          if (!badFragment.has(key)) badFragment.set(key, { pages: new Set() });
+          badFragment.get(key).pages.add(from || "/");
+        }
+        continue;
+      }
       // A 200-serving static file (sitemap.xml, llms.txt) is fine.
       if (existsSync(join(DIST, norm)) && statSync(join(DIST, norm)).isFile()) continue;
       const r = matchesRedirect(norm);
@@ -89,6 +132,12 @@ if (viaRedirect.size) {
   report("↪", viaRedirect);
 }
 
+if (badFragment.size) {
+  console.error(`\n\u274c internal links to an anchor the target page has no element for (${badFragment.size}):`);
+  report("\u2717", badFragment);
+  console.error("\nEither add the id to the target page, or point the href at one that exists.");
+}
+
 if (missing.size) {
   console.error(`\n❌ internal links to pages that do not exist (${missing.size}):`);
   report("✗", missing);
@@ -96,4 +145,8 @@ if (missing.size) {
   process.exit(1);
 }
 
-console.log(`🔗 internal links: ${pages.size} pages, no dead links.`);
+if (badFragment.size) process.exit(1);
+
+console.log(
+  `\u{1f517} internal links: ${pages.size} pages, no dead links, no dead anchors.`
+);

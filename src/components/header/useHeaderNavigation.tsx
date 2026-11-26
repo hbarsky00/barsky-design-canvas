@@ -11,6 +11,24 @@ const NAV_LINKS = [
   { name: "Contact Me", href: "/contact" },
 ];
 
+/**
+ * A bare `#section` in NAV_LINKS means "that section of the homepage".
+ *
+ * `<Link to="#case-studies">` resolves a fragment against the CURRENT
+ * pathname, so on every route but `/` it rendered
+ * `href="/project/herbalink#case-studies"` — a self-link to an anchor that
+ * route does not have. The click handler masked it on left-click (it calls
+ * `navigate('/', ...)` itself), so the visitors who actually hit the dead href
+ * were the ones who cmd-clicked to keep the case study open, copied the link,
+ * or crawled the page. Measured 2026-11-26 on production: following it landed
+ * back on the same case study at scrollY 0, no target.
+ *
+ * `link.href` stays the bare `#id` everywhere else, because `handleLinkClick`
+ * and `isLinkActive` both key off that convention.
+ */
+export const navHrefToUrl = (href: string) =>
+  href.startsWith("#") ? `/${href}` : href;
+
 export const useHeaderNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
