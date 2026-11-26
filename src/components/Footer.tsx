@@ -23,37 +23,37 @@ const Footer: React.FC = () => {
             <h4 className="text-lg heading-medium mb-6 text-neutral-50">Navigation</h4>
             <ul className="space-y-3" role="list">
               <li>
-                <Link to="/" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/#case-studies" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/#case-studies" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/services" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/store" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/store" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Store
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/blog" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/about" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <Link to="/contact" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   Contact
                 </Link>
               </li>
@@ -65,13 +65,13 @@ const Footer: React.FC = () => {
             <ul className="space-y-3" role="list">
               <li className="flex items-center gap-2">
                 <span className="text-blue-vibrant font-medium" aria-label="Email address">Email:</span>
-                <a href="mailto:hbarsky01@gmail.com" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <a href="mailto:hbarsky01@gmail.com" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   hbarsky01@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-blue-vibrant font-medium" aria-label="Phone number">Phone:</span>
-                <a href="tel:2016684754" className="text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
+                <a href="tel:2016684754" className="inline-flex min-h-11 items-center md:min-h-6 text-neutral-50 hover:text-blue-vibrant focus:text-blue-vibrant transition-colors duration-300 underline-offset-4 hover:underline focus:underline focus:outline-none rounded">
                   (201) 668-4754
                 </a>
               </li>

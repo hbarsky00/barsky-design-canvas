@@ -45,7 +45,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div className="relative">
       <button 
-        className="text-barsky-dark p-1 transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none" 
+        /* 24px icon + p-1 measured 32x32 on a phone — the primary mobile nav
+           control, 12px under the 44x44 minimum. The icon stays 24px; the hit
+           area grows around it. */
+        className="text-barsky-dark inline-flex h-11 w-11 items-center justify-center transition-colors duration-200 hover:text-[hsl(var(--blue-accent))] focus-visible:text-[hsl(var(--blue-accent))] focus-visible:outline-2 focus-visible:outline-[hsl(var(--blue-accent))] focus-visible:outline-offset-2 focus:outline-none" 
         onClick={toggleMobileMenu}
         aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isMobileMenuOpen}
