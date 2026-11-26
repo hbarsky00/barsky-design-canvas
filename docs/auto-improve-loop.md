@@ -204,6 +204,19 @@ on the task itself and reused by every future run.
 
 ## Known-open items
 
+- **AUTHORISED AND QUEUED (Hiram, 2026-11-26): finish the dead-end blog
+  endings.** The 2026-11-25 RESEARCH run found twelve posts whose final
+  paragraph names a case study that 301s away, and fixed the six with a live
+  destination. Hiram was asked whether to handle the rest and said yes, so the
+  permission this loop previously lacked now exists. **Do it on the next run
+  whatever lens comes up** — by rotation that is FLOW, and a closing paragraph
+  that leaves a reader nowhere to click is squarely a FLOW defect, so log it to
+  whichever lens runs it rather than waiting for RESEARCH to come round again.
+  The full brief, including the verified `recastvid.com` destination and the
+  reword-don't-cut decision, is open item 2 under `2026-11-25` in
+  `docs/research-log.md`. The Investor Loan carve-out still holds: reword the
+  sentence, never link the study, never re-register the route.
+
 - ~~`LazySection` gates children behind an IntersectionObserver, so anything
   inside it is absent from the prerendered HTML.~~ **Wrong — retested
   2026-11-12.** `capture-bodies` drives a real browser that scrolls the page,

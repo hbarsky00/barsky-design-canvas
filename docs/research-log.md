@@ -1159,7 +1159,37 @@ sentence, which this loop does not have.
 1. **Fire Lion's blurb in `ShippedProductsSection`** is wrong on controls
    ("hold to fly" vs tap/release) and headlines its weakest capability. One
    line, fully evidenced above, ready for the next CRAFT or RESEARCH run.
-2. **The five flagged promises above.** Needs Hiram for a destination or a cut.
+2. **The remaining flagged promises — AUTHORISED BY HIRAM 2026-11-26, do this
+   next run.** He was asked directly whether to handle the flagged dead-end
+   endings and said yes. So the next run has the permission this one lacked.
+   Two things were settled after that answer:
+
+   - **Recast is a link, not a cut.** `recastvid.com` returned **200 on
+     2026-11-26**, it is already linked from another post on this very site
+     (`<a href="https://recastvid.com">try it free</a>`, in the post at
+     `blogData.ts` ~line 1353) and it is already listed in `public/llms.txt`
+     line 91. It was flagged on 2026-11-25 only because this loop would not
+     guess a URL — it did not need guessing. So
+     `designer-who-codes-argument-is-over` gets exactly the treatment the other
+     six got: "is in the Recast case study" → the live product, linked, same
+     markup convention.
+   - **Four genuinely have no destination**: BZ Essentials ×2
+     (`a-filter-nobody-opens`, `everyones-portfolio-looks-good-now`),
+     Gold2Crypto (`beginner-or-pro-is-a-false-choice`) and ManuscriptRx
+     (`design-for-the-approval-gates`). Approach for these, decided rather than
+     left open: **reword to drop the false promise while keeping the
+     paragraph's substance**, and cut outright only where the sentence is
+     nothing but a pointer with no content of its own. Prefer rewording — these
+     are Hiram's words and the defect is the promise, not the prose.
+   - **Investor Loan is the exception and stays one.** The sentence in
+     `you-dont-replace-excel-by-being-better` gets the same reword treatment,
+     but **do not link the study, do not re-register `/project/investor-loan-app`
+     and do not re-add it to any list.** That decision stands from 2026-09-14
+     and this authorisation does not touch it.
+
+   Same ship gate as this run, and note that `check-prose-integrity` **will**
+   fail the first build until `npm run capture-bodies` has run — that is the
+   gate working, not a defect.
 3. **Write for the buyer.** Carried since 2026-11-17. This run removed a
    dead end; it still did not add a reason to call.
 4. **`/services` says "we" twice** under "designed and built by one person".
