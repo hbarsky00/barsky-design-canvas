@@ -166,6 +166,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
                     <input
                       {...field}
                       autoFocus={shouldAutoFocus}
+                      autoComplete="name"
                       placeholder="Your name"
                       className={fieldClass}
                     />
@@ -186,6 +187,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
                     <input
                       {...field}
                       type="email"
+                      autoComplete="email"
                       placeholder="your@email.com"
                       className={fieldClass}
                     />
@@ -207,6 +209,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ showHeading = true }) => {
                 <FormControl>
                   <input
                     {...field}
+                    autoComplete="off"
                     placeholder="What's this about?"
                     className={fieldClass}
                   />

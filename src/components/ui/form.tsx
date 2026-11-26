@@ -155,6 +155,12 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
+      /* An error rendered here was visible but silent: submitting the contact
+         form empty painted four red messages and announced none of them, so a
+         screen-reader user got no feedback at all. role="alert" only when this
+         is actually an error -- FormMessage also renders plain children, and
+         announcing those would be noise. */
+      role={error ? "alert" : undefined}
       className={cn("text-sm font-medium text-destructive", className)}
       {...props}
     >
