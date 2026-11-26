@@ -80,11 +80,21 @@ const HeroImage: React.FC<HeroImageProps> = ({
      phone — the hero would be nothing but one screenshot. Capped on small
      screens only; the desktop asset it swaps to is always wider than its
      column, so there is nothing to cap up there. */
+  /* Each branch owns its own height. The base class used to hardcode `h-auto`
+     in front of this, and Tailwind emits `.h-auto` after `.h-60`, so `h-auto`
+     won and the wideScroll height cap never applied — a dead utility noted on
+     2026-11-20 and the reason ManuscriptRx's hero measured 0x0 on a phone.
+     With height:auto AND width:auto AND max-w-none, inside the min-w-0 column
+     that the 2026-11-20 fix correctly introduced, there was nothing left to
+     give the image a size: the column no longer took its min-content width
+     from the board, so width resolved to 0 and the aspect ratio took the
+     height to 0 with it. A definite height restores it — width then follows
+     the 3:1 aspect to ~720px and scrolls inside the wrapper below. */
   const sizing = wideScroll
     ? "h-60 w-auto max-w-none sm:h-72 md:h-auto md:w-full"
     : portrait
-    ? "mx-auto w-full max-w-[13.5rem] sm:max-w-[16rem] md:max-w-none"
-    : "w-full";
+    ? "h-auto mx-auto w-full max-w-[13.5rem] sm:max-w-[16rem] md:max-w-none"
+    : "h-auto w-full";
 
   const img = (
     <picture>
@@ -106,7 +116,7 @@ const HeroImage: React.FC<HeroImageProps> = ({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`block h-auto ${sizing} ${chrome} ${className}`}
+        className={`block ${sizing} ${chrome} ${className}`}
         /* Cap at the source's own pixel width so nothing is ever blown up past
            native. Skipped when a class already owns max-width. */
         style={
