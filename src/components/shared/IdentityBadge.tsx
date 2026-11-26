@@ -172,7 +172,11 @@ const IdentityBadge: React.FC<IdentityBadgeProps> = React.memo(({
                 s.subtitle,
                 "inline-flex items-center rounded-full mt-1 px-2.5 py-0.5",
                 "border border-blue-500/25",
-                "bg-blue-500/10 text-blue-600"
+                /* blue-600 on this blue-500/10 wash measured 4.47:1 against a
+                   4.5 requirement — a fail by 0.03, on every page, in the one
+                   element that says what Hiram does. blue-700 is 5.80:1.
+                   Measured by scripts/contrast-walk.mjs, not eyeballed. */
+                "bg-blue-500/10 text-blue-700"
               )}
             >
               {subtitle}

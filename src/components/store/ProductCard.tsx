@@ -46,7 +46,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
           </Link>
         </Button>
-        <p className="text-center text-xs leading-relaxed text-slate-500">
+        {/* slate-500 on the card surface measured 4.44:1, needs 4.5. slate-600 clears it. */}
+        <p className="text-center text-xs leading-relaxed text-slate-600">
           Sold by request — tell me which one and I will send a payment link and the files.
         </p>
       </CardFooter>
