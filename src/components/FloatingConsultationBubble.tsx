@@ -74,6 +74,9 @@ const FloatingConsultationBubble: React.FC = () => {
           transition={{ delay: 0.2, type: "spring", stiffness: 260, damping: 20 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          /* ScrollEngagement queries this attribute to decide whether to stay
+             out of the way, instead of duplicating the geometry rule above. */
+          data-consultation-bubble=""
           className="fixed z-30
                    left-4 bottom-4
                    sm:left-6 sm:bottom-6"

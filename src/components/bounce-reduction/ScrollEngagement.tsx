@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp, MessageCircle } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { MessageCircle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 
@@ -51,112 +51,136 @@ const engagementSuppressed = (): boolean => {
 
 const ScrollEngagement: React.FC = () => {
   const location = useLocation();
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const reduceMotion = useReducedMotion();
   const [showEngagementPrompt, setShowEngagementPrompt] = useState(false);
-  const [isConsultationBubbleVisible, setIsConsultationBubbleVisible] = useState(false);
+  const dismissedThisVisit = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window === 'undefined' || typeof document === 'undefined') return;
-      
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
+    if (location.pathname !== '/') return;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
 
-      // Only show on homepage and check for consultation bubble visibility
-      if (location.pathname === "/") {
-        const heroSection = document.getElementById("hero");
-        const contactSection = document.getElementById("contact");
-        
-        // Check if consultation bubble should be visible
-        let consultationBubbleVisible = false;
-        if (heroSection && contactSection) {
-          const heroRect = heroSection.getBoundingClientRect();
-          const contactRect = contactSection.getBoundingClientRect();
-          const hasScrolledPastHero = heroRect.bottom <= 0;
-          const isInContactSection = contactRect.top <= window.innerHeight && contactRect.bottom >= 0;
-          consultationBubbleVisible = hasScrolledPastHero && !isInContactSection;
-        }
-        
-        setIsConsultationBubbleVisible(consultationBubbleVisible);
-
-        // Only show engagement prompt if consultation bubble is not visible
-        if (progress > 60 && !engagementSuppressed() && !consultationBubbleVisible) {
-          setShowEngagementPrompt(true);
-          suppressEngagement();
-        }
-        
-        // Hide engagement prompt if consultation bubble becomes visible
-        if (consultationBubbleVisible && showEngagementPrompt) {
-          setShowEngagementPrompt(false);
-        }
-      }
+    const contactInView = () => {
+      const contactSection = document.getElementById('contact');
+      if (!contactSection) return false;
+      const r = contactSection.getBoundingClientRect();
+      return r.top <= window.innerHeight && r.bottom >= 0;
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
+    const handleScroll = () => {
+      /* Already up: the moment they reach the form, the nudge has done its job
+         and should get out of the way rather than float over it. */
+      if (showEngagementPrompt) {
+        if (contactInView()) setShowEngagementPrompt(false);
+        return;
+      }
+      if (dismissedThisVisit.current) return;
+
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) return;
+      const progress = (window.scrollY / totalHeight) * 100;
+      /* On this page that lands in the bio section, roughly 60-67%: late
+         enough that they have read the work, before the contact form at 71%. */
+      if (progress <= 60) return;
+
+      /* Ask the DOM whether the consultation bubble is actually on screen
+         rather than re-deriving its rule. This component used to duplicate the
+         bubble's geometry and look up `#hero`, an id the homepage does not
+         have -- its first section is `#intro` -- so the branch never ran. A
+         query against what is rendered cannot drift out of sync the way a
+         copied rule did, and it stays correct if the bubble is ever enabled. */
+      if (document.querySelector('[data-consultation-bubble]')) return;
+
+      /* No point interrupting someone who has already reached the form. */
+      if (contactInView()) return;
+
+      if (engagementSuppressed()) return;
+
+      setShowEngagementPrompt(true);
+      suppressEngagement();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname, showEngagementPrompt]);
 
-  const scrollToContact = () => {
+  const dismiss = () => {
+    dismissedThisVisit.current = true;
     setShowEngagementPrompt(false);
+  };
+
+  useEffect(() => {
+    if (!showEngagementPrompt) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') dismiss();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showEngagementPrompt]);
+
+  const scrollToContact = () => {
+    dismiss();
     if (typeof document !== 'undefined') {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' });
+        contactSection.scrollIntoView({
+          behavior: reduceMotion ? 'auto' : 'smooth',
+        });
       }
     }
   };
 
   return (
-    <>
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-primary/20 z-50"
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: scrollProgress / 100 }}
-        style={{ transformOrigin: '0%' }}
-      >
-        <div className="h-full bg-primary" />
-      </motion.div>
-
-      {/* Engagement Prompt */}
-      <AnimatePresence>
-        {showEngagementPrompt && (
-          <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 100 }}
-            className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-white rounded-lg shadow-xl p-4 z-40 border"
+    <AnimatePresence>
+      {showEngagementPrompt && (
+        <motion.aside
+          initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: reduceMotion ? 0.15 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+          aria-label="A note from Hiram"
+          /* Removed by capture-prerendered-bodies before the snapshot is
+             written: this only exists because the visitor scrolled, and must
+             never be served in the static HTML. */
+          data-transient=""
+          /* Sits clear of the scroll-to-top button, which is fixed at
+             bottom-6 right-6 with z-50 and would otherwise punch through
+             this card. */
+          className="fixed bottom-20 left-4 right-4 z-40 rounded-md border border-border
+                     bg-white p-4 shadow-xl md:left-auto md:right-6 md:w-80"
+          style={{ bottom: 'calc(5rem + env(safe-area-inset-bottom))' }}
+        >
+          <button
+            type="button"
+            onClick={dismiss}
+            aria-label="Dismiss"
+            className="absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center
+                       rounded-sm text-muted-foreground transition-colors hover:text-foreground
+                       focus-visible:outline-2 focus-visible:outline-primary"
           >
-            <div className="flex items-start space-x-3">
-              <MessageCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-900 mb-1">
-                  Building something?
-                </h4>
-                <p className="text-sm text-gray-600 mb-3">
-                  Tell me what it is and I'll tell you if I'm the right person to build it.
-                </p>
-                <div className="flex space-x-2">
-                  <Button onClick={scrollToContact} size="sm">
-                    Get Started
-                  </Button>
-                  <Button 
-                    onClick={() => setShowEngagementPrompt(false)}
-                    variant="outline" 
-                    size="sm"
-                  >
-                    Maybe Later
-                  </Button>
-                </div>
+            <X className="h-4 w-4" />
+          </button>
+          <div className="flex items-start gap-3">
+            <MessageCircle className="mt-1 h-6 w-6 flex-shrink-0 text-primary" aria-hidden="true" />
+            <div className="flex-1">
+              <p className="mb-1 pr-7 font-semibold text-gray-900">Building something?</p>
+              <p className="mb-3 text-sm text-gray-600">
+                Tell me what it is and I'll tell you if I'm the right person to build it.
+              </p>
+              <div className="flex gap-2">
+                <Button onClick={scrollToContact} size="sm">
+                  Tell me about it
+                </Button>
+                <Button onClick={dismiss} variant="outline" size="sm">
+                  Not now
+                </Button>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          </div>
+        </motion.aside>
+      )}
+    </AnimatePresence>
   );
 };
 

@@ -131,7 +131,10 @@ const HomepageLayout: React.FC = () => {
           onExitIntent={handleExitIntent}
           disabled={metrics.timeOnPage < 10000} // Only show after 10 seconds
         />
-        
+
+        {/* Imported here since this layout was written and never rendered, so
+            the engagement prompt has never appeared on the homepage. */}
+        <LazyScrollEngagement />
       </Suspense>
     </div>
   );

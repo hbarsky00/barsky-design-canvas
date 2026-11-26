@@ -167,6 +167,30 @@ async function revealLazySections(page: import("playwright").Page) {
   await page.waitForTimeout(1500);
   await page.waitForLoadState("networkidle").catch(() => {});
   await settleViewportAnimations(page);
+  await stripTransientOverlays(page);
+}
+
+/**
+ * Drop floating UI that only exists because this crawl scrolled the page.
+ *
+ * The capture walks to the bottom and back, which is exactly the gesture that
+ * triggers scroll-driven overlays. On 2026-11-26 the engagement prompt was
+ * rendered for the first time and the very next capture baked it into
+ * prerendered-bodies/index.html — so every visitor would have been served that
+ * card in the static HTML on load, before any scrolling, and regardless of the
+ * 30-day suppression that is the whole point of it.
+ *
+ * Anything that appears in response to the visitor's own behaviour marks itself
+ * `data-transient` and is removed here. Declarative on purpose: the next
+ * scroll-triggered overlay someone adds is covered without touching this file.
+ */
+async function stripTransientOverlays(page: import("playwright").Page) {
+  const removed = await page.evaluate(() => {
+    const nodes = Array.from(document.querySelectorAll("[data-transient]"));
+    for (const n of nodes) n.remove();
+    return nodes.length;
+  });
+  if (removed) console.log(`   stripped ${removed} transient overlay(s)`);
 }
 
 /**
