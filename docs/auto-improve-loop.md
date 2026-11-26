@@ -1,8 +1,26 @@
 # Autonomous improvement loop — barskydesign.pro
 
-Authorised by Hiram 2026-08-22: run every 2 days, **do not ask him anything**,
-publish when the work verifies. Split roughly **50/50 between SEO/AEO and
-design** — his words. Alternate the emphasis each run so neither half rots.
+> **TERMS CHANGED 2026-11-26.** Hiram moved this loop to **twice every day**
+> (09:00 and 21:00), **ten UI/UX improvements per run**, and **one push per day**
+> — the morning run commits locally and does not push; the evening run commits
+> its own ten and then pushes the whole day's batch. Every change must be a
+> UI/UX change, found through four skills rather than the old four lenses:
+> `bencium-innovative-ux-designer`, `relationship-design`, `ux-writing` and
+> `ux-researcher`. The authoritative prompt is
+> `~/.claude/scheduled-tasks/barskydesign-auto-improve/SKILL.md`; where this file
+> disagrees with it, that file wins.
+>
+> What carries over unchanged: every hard rule below, the ship gate, the
+> flagged-facts list, and logging every run. What is retired: the one-substantial-
+> thing-per-run limit, the 50/50 SEO/design split, and the four-lens rotation.
+> The lens *material* below is still the best guide to what "better" means here —
+> read it as reference, not as a rotation. Cost control is no longer the cadence;
+> it is the ship gate plus one log line per improvement, so any one of twenty
+> daily changes can be found and reverted on its own.
+
+Authorised by Hiram 2026-08-22: **do not ask him anything**, publish when the
+work verifies. Original terms were every 2 days, one change, split roughly
+50/50 between SEO/AEO and design — superseded above on 2026-11-26.
 
 Repo: `~/dev/barsky-design-canvas` · Live: https://barskydesign.pro
 Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-builds.

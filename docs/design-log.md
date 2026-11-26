@@ -1511,3 +1511,118 @@ the measurement's problem until proven otherwise.
   (flagged by the 2026-11-19 RESEARCH run, still unfixed, copy is settled).
 - The homepage FAQ is still `hidden md:block` — absent from the mobile layout.
   Still wants its own FINDABILITY run.
+
+## 2026-11-26 — FLOW — the header's "Case Studies" link pointed at the page you were already on
+
+Lens rotation: CRAFT ran 2026-11-24, RESEARCH 11-25, FINDABILITY 11-21, FLOW
+11-20. Took FLOW. Picked up the item the 11-20 run left at the top of the queue:
+**R1 as a credibility read** of a cold landing on `/project/herbalink`, now that
+the hero actually renders. No referrer, phone first, because that is how most
+visits to a `/project/*` route begin.
+
+### The credibility questions, answered
+
+Contrary to the worry in `docs/relationship-design-playbook.md`, a cold landing
+does answer the basics:
+
+| Question | What a stranger gets | Verdict |
+|---|---|---|
+| Who is this? | Header: 48px avatar, "Hiram Barsky", badge "Designer & Developer" | answered |
+| What does he do? | The badge; plus `ROLE — Lead Product Designer` on the project | thin but answered |
+| What do I do next? | Page ends Outcome → More Work (1 card) → inline contact form | answered |
+
+So the relationship does not restart from zero on a case study. What is missing
+is the playbook's **stage-2** question — "I believe you can think, but can you do
+MY thing?" The affordance for that is the header's "Case Studies" link. It was
+inert.
+
+### The defect, measured on production before the fix
+
+`NAV_LINKS` stores it as a bare `"#case-studies"`, meaning "that section of the
+homepage". But `<Link to="#case-studies">` resolves a fragment against the
+**current pathname**, so on every route but `/` it rendered
+`href="/project/herbalink#case-studies"` — a self-link to an anchor that route
+has no element for.
+
+| measured on production, `/project/herbalink` | before |
+|---|---|
+| rendered nav href | `/project/herbalink#case-studies` |
+| `getElementById('case-studies')` on that page | **null** |
+| following the href | same HerbaLink page, **scrollY 0** |
+| pages shipping the dead href | **66** (every route except `/`) |
+
+**Why it survived every review:** left-click always worked. The `onClick`
+preventDefaults and calls `navigate('/', { state: { scrollTo } })` itself, so the
+handler masked the href. The people who hit the dead link were the ones who
+cmd-clicked to keep the case study open while comparing work — precisely the
+founder this link exists for — plus anyone copying the link, and every crawler.
+
+### What changed
+
+Three components, one script, no restyling.
+
+- `useHeaderNavigation.tsx` — new `navHrefToUrl()`: a bare `#id` becomes `/#id`.
+  `link.href` stays the bare `#id` everywhere else, because `handleLinkClick` and
+  `isLinkActive` both key off that convention. Fixing the render site rather than
+  the data is why the active-state and section-detection logic is untouched.
+- `Navigation.tsx` and `MobileMenu.tsx` — both render `to={navHrefToUrl(link.href)}`.
+- `scripts/check-internal-links.mjs` — **this is why nothing caught it.** The gate
+  did `href.split("#")[0]` and validated only the path, so any href whose anchor
+  does not exist on the target page passed as long as the page itself existed. It
+  now indexes `id=`/`name=` per built page and checks the fragment too, including
+  bare same-page ones.
+
+### Proved the checker can fail before trusting it
+
+Run against the **pre-fix** `dist/`: exits 1 and reports all 66, every one
+`#case-studies`, no other dead anchor anywhere on the site — so the fix had no
+collateral to clean up and the gate has no false positives to work around.
+After the fix: `internal links: 67 pages, no dead links, no dead anchors.`
+
+Gate: `npm run typecheck` clean. `npm run capture-bodies` → **67/67 routes, zero
+failures**. `npm run build` EXIT:0, all five postbuild checks passing.
+
+**Verified live** on commit `4fcdc38c`, 40s after push, fetched from production
+rather than read off the local build: the rendered href is `/#case-studies` on
+`/`, `/about`, `/services`, `/blog`, `/contact`, `/store`, `/project/herbalink`,
+`/project/dae-search` and `/design-services/ux-ui-design`, and
+`id="case-studies"` exists on the homepage.
+
+### Left open — and the top item for the next FLOW run
+
+**`/#case-studies` lands at the top of the homepage, then jumps 561px roughly
+3.6 seconds later.** Measured on production right after this deploy, sampling
+`window.scrollY` every 400ms on a cold load of `https://barskydesign.pro/#case-studies`:
+`scrollY` is 0 through t=3200ms and is 561 at t=3600ms, with the target element
+present in the DOM from t=0 (it is prerendered). The sequence appears to be:
+the browser scrolls to the fragment natively on load, React hydration replaces
+the tree and the position resets to 0, and `ScrollToTop`'s effect then fires
+seconds later and scrolls. A visitor starts reading the hero and the page yanks
+itself down mid-sentence, which is arguably worse than not scrolling at all.
+
+This is **pre-existing, not caused by this change** — the footer's "Projects"
+link has used `/#case-studies` all along, and this run only made the header
+reach the same URL instead of a dead one. It was not fixed here because it is a
+hydration/prerender interaction, not a link bug, and bolting it onto this commit
+would have made both unreviewable. It is the completion of this journey and
+should be the next FLOW run.
+
+Also still open, unchanged:
+- **`More Work` is still sequential, not relevant** (playbook P1). HerbaLink, a
+  trust-and-booking marketplace, still hands off to DAE Search, enterprise data
+  discovery.
+- **ManuscriptRx's hero measures 0×0 on mobile** — carried over from 11-20, still
+  its own run.
+- **`id="false"` appears 4× in the built HTML** of a case study, from a boolean
+  reaching an `id` prop. Harmless today, cosmetic, noted so it is not re-found.
+- Still no analytics, so "this cost bookings" remains a hypothesis.
+
+### Note on this run
+
+A second agent committed to this repo (`ccbb03fb`, docs only) ten minutes into
+this run. It did not touch these files, but it is the second time in four days —
+the concurrency rule in the playbook is not hypothetical. Also: a stale
+`vite preview --strictPort 4199` from the 11-25 run was still alive after 29
+hours; `capture-bodies` reused it rather than failing, because the script probes
+the port with curl before giving up, and it was serving the fresh `dist/`.
+Killing it was refused by the permission classifier, so it is still running.
