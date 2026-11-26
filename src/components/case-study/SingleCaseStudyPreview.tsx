@@ -23,11 +23,37 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
     (study) => study.hasDetail !== false && study.url.startsWith("/project/")
   );
 
-  // Next one along, wrapping, so each study points at a different sibling.
+  /* Hand-authored adjacency, because "the next one along" is not an answer to
+     the question a reader has at the end of a case study. They have just
+     decided he can think; what they are checking now is whether he has done
+     THEIR kind of work. Sequential order answered HerbaLink -- a two-sided
+     marketplace about trust between strangers -- with DAE Search, enterprise
+     data discovery.
+
+     Pairings are by the problem, not the industry:
+       herbalink <-> catchbuddy       trust between strangers is the product
+       dae-search -> business-management   enterprise internal tooling
+       business-management -> email-creation-ai   workflow and approval gates
+       email-creation-ai -> dae-search     large regulated org, complex data
+
+     Anything not listed falls back to the old sequential walk, so adding a
+     case study never leaves a page with no next step. */
+  const ADJACENT: Record<string, string> = {
+    herbalink: "catchbuddy",
+    catchbuddy: "herbalink",
+    "dae-search": "business-management",
+    "business-management": "email-creation-ai",
+    "email-creation-ai": "dae-search",
+  };
+
   const getRelatedCaseStudy = (currentId: string): CaseStudy | null => {
-    const here = readable.findIndex((study) => study.id === currentId);
     const others = readable.filter((study) => study.id !== currentId);
     if (others.length === 0) return null;
+
+    const preferred = others.find((study) => study.id === ADJACENT[currentId]);
+    if (preferred) return preferred;
+
+    const here = readable.findIndex((study) => study.id === currentId);
     return here === -1 ? others[0] : readable[(here + 1) % readable.length];
   };
 

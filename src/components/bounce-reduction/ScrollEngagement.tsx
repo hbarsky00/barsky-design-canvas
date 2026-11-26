@@ -4,6 +4,51 @@ import { ArrowUp, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 
+/**
+ * The one thing this site remembers about a visitor.
+ *
+ * It used to be `engagement-shown: 'true'`, written the first time the scroll
+ * prompt fired and never expiring — so the site's entire memory of a human
+ * being was "have I already interrupted this person", permanently. A founder
+ * who read a case study in January and came back in March got *less* than a
+ * first-timer, which is the opposite of how a relationship should work.
+ *
+ * Now it stores a timestamp and forgets after 30 days: long enough to not nag
+ * anyone inside one decision cycle, short enough that a genuinely returning
+ * visitor is treated as one. Legacy 'true' values are read as "suppressed,
+ * start the clock now" so nobody who already saw it gets it again immediately.
+ */
+const ENGAGEMENT_KEY = 'engagement-shown';
+const ENGAGEMENT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+
+const suppressEngagement = () => {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    localStorage.setItem(ENGAGEMENT_KEY, String(Date.now()));
+  } catch {
+    /* Safari private mode throws on setItem; the prompt is not worth a crash. */
+  }
+};
+
+const engagementSuppressed = (): boolean => {
+  if (typeof localStorage === 'undefined') return false;
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(ENGAGEMENT_KEY);
+  } catch {
+    return false;
+  }
+  if (!raw) return false;
+  // Pre-2026-11-26 value: suppress once more, but start the clock from now.
+  if (raw === 'true') {
+    suppressEngagement();
+    return true;
+  }
+  const shownAt = Number(raw);
+  if (!Number.isFinite(shownAt)) return false;
+  return Date.now() - shownAt < ENGAGEMENT_TTL_MS;
+};
+
 const ScrollEngagement: React.FC = () => {
   const location = useLocation();
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -36,9 +81,9 @@ const ScrollEngagement: React.FC = () => {
         setIsConsultationBubbleVisible(consultationBubbleVisible);
 
         // Only show engagement prompt if consultation bubble is not visible
-        if (progress > 60 && typeof localStorage !== 'undefined' && !localStorage.getItem('engagement-shown') && !consultationBubbleVisible) {
+        if (progress > 60 && !engagementSuppressed() && !consultationBubbleVisible) {
           setShowEngagementPrompt(true);
-          localStorage.setItem('engagement-shown', 'true');
+          suppressEngagement();
         }
         
         // Hide engagement prompt if consultation bubble becomes visible
