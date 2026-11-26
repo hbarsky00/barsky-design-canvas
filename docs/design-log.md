@@ -1626,3 +1626,77 @@ the concurrency rule in the playbook is not hypothetical. Also: a stale
 hours; `capture-bodies` reused it rather than failing, because the script probes
 the port with curl before giving up, and it was serving the fresh `dist/`.
 Killing it was refused by the permission classifier, so it is still running.
+
+## 2026-11-26 (second run of the day) — TEN UI/UX IMPROVEMENTS — first run under the new terms
+
+First run under the cadence Hiram set on 2026-11-26: twice daily, ten UI/UX
+improvements per run, one push a day. Run on request rather than on the 21:00
+trigger, so this is the day's push; the 21:00 run will find origin/main already
+ahead and should treat its own ten as the next batch.
+
+Lenses used: `bencium-innovative-ux-designer` (craft), `relationship-design`
+(trust across a visit), `ux-writing` (interface copy), `ux-researcher`. Found by
+measurement, not opinion: `contrast-walk.mjs`, `check:captions`,
+`check-content-dates.mjs`, `check-internal-links.mjs`, and a scripted DOM sweep
+at 375 / 768 / 1440 for zero-size images, overflow, tap targets, alt text and
+partial opacity.
+
+**Every line below was measured before and after on the built output, and
+verified on production after the push (commits `ef0ccfc3`..`555adbef`).**
+
+| # | Improvement | File(s) | Lens | Measured before → after | Live |
+|---|---|---|---|---|---|
+| 1 | Header "Designer & Developer" pill was below AA on every page | `shared/IdentityBadge.tsx` | craft | 4.47:1 → 5.80:1 (needs 4.5) | yes |
+| 2 | Store "Sold by request…" note below AA | `store/ProductCard.tsx` | craft | 4.44:1 → passes | yes |
+| 3 | ManuscriptRx hero image rendered at zero size on phones | `structured/CaseStudyHero.tsx` | craft | 0×0 → 720×240, scroller scrollWidth 740 vs client 375 | yes |
+| 4 | Header hamburger under the touch minimum | `header/MobileMenu.tsx` | craft | 32×32 → 44×44 | yes |
+| 5 | "Send message" submit button under the touch minimum | `contact/ContactForm.tsx` | craft | 40px → 44px tall | yes |
+| 6 | Nine footer nav links below even WCAG 2.5.8's 24px floor | `Footer.tsx` | craft | 20px → 44px touch / 24px desktop | yes |
+| 7 | Validation errors were visible but never announced | `ui/form.tsx` | ux-writing | 0 → 4 `role="alert"` nodes on empty submit | yes |
+| 8 | Name and email could not be autofilled (WCAG 1.3.5) | `contact/ContactForm.tsx` | ux-writing | none → `autocomplete="name"` / `"email"` | yes |
+| 9 | The site's only memory of a person never expired | `bounce-reduction/ScrollEngagement.tsx` | relationship-design | permanent flag → 30-day TTL, legacy values migrated | shipped, see caveat |
+| 10 | "More Work" handed readers the next study in array order | `case-study/SingleCaseStudyPreview.tsx` | relationship-design | HerbaLink → DAE Search → HerbaLink → CatchBuddy | yes |
+
+Contrast overall: **16 failing samples across 6 routes and 2 widths → 0.**
+`check:contrast` now prints "No text box fails AA against its real painted
+background."
+
+Gate: `npm run typecheck` clean. `npm run capture-bodies` 67/67 routes, zero
+failures. `npm run build` EXIT:0 with all five postbuild checks passing.
+
+### Two findings discarded as false positives rather than shipped
+
+Recording these because both looked like real bugs and a less careful run would
+have "fixed" them:
+
+- **The skip link is fine.** It measured 1×1 with `clip: rect(0,0,0,0)` even
+  while focused, which reads as a WCAG 2.4.7 failure. It was a test artifact:
+  `document.activeElement` was the link but `sk.matches(':focus')` was false
+  because the browser pane did not hold document focus. With real focus it
+  becomes 155×20, fixed, `clip: auto` — exactly as intended.
+- **There are no `id="false"` attributes.** A grep for `id="false"` reported 28
+  across the site. It was matching inside `aria-invalid="false"`.
+
+### Flagged, not fixed
+
+- **The scroll engagement prompt does not fire at all on the homepage**, so
+  improvement 9 is a correct change to currently dormant code and its effect is
+  not observable live. With the key cleared entirely, a full-height scroll of
+  `/` never writes `engagement-shown`. One cause is visible in the source:
+  the suppression branch calls `getElementById("hero")` and the homepage's
+  first section is `id="intro"`, so that branch has never run. Deliberately not
+  resurrected — making a popup start appearing is a visible behaviour change
+  nobody asked for. Needs Hiram, or its own run with his say-so.
+- **Nine blog posts have no `coverCaption`** and `check:captions` exits 1 on
+  them. Looked at the images rather than writing to the filenames: they are
+  decorative stock photography — a close-up of syntax-highlighted SVG, an
+  abstract building facade, a person typing at a laptop. The checker asks for a
+  caption that "says something the picture alone does not", and for a stock
+  photo that is filler by definition. The real fix is better images, which is
+  Hiram's media call. Not padded into this run's ten.
+- **Six routes declare a `modified` date older than their last content commit**
+  (five at 2026-09-13, one at 2026-09-21, all touched 2026-11-25). It feeds
+  `dateModified` and sitemap `lastmod` but renders nowhere, so it is content
+  integrity rather than UI/UX and was left for a findability run.
+- **`/#case-studies` still lands at the top of the homepage and jumps 561px
+  ~3.6s later** — logged in full in this run's earlier FLOW entry. Unchanged.
