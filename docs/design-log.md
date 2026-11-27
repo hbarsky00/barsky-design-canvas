@@ -2127,3 +2127,73 @@ Redirect statuses read without `curl -L`, so these are first-hop responses.
   while the guardrails call it retired. Not touched — needs Hiram's answer on
   whether "retired" meant the product or the page.
 - The 49:18 post-to-commercial ratio is unchanged and remains the ceiling.
+
+---
+
+## 2026-11-27, same session — differentiating the two sibling service pages
+
+Follow-on to the consolidation above. Hiram's call: **differentiate** rather
+than leave `/services/prototype-to-ship` and `/services/web-development`
+competing. Shipped and verified live.
+
+### The overlap, precisely
+
+After consolidation both pages led on the same claim — React and TypeScript
+built by the person who designed it — so both answered "who builds my React
+front end". The sharpest single collision was one sentence in
+web-development's "who this suits":
+
+> "...founders who need one person to take a product from a design to something
+> running on a domain."
+
+That is a verbatim description of prototype-to-ship.
+
+### The split, taken from what was already on the pages
+
+Not a new offering — the distinction was latent in the bodies and this re-aims
+the copy onto it:
+
+| page | buyer situation | keeps |
+|---|---|---|
+| `prototype-to-ship` | nothing exists yet, wants a live v1 | the no-handoff hook, now framed as time-boxed and hard-scoped |
+| `web-development` | finished design, shipped product, or inherited codebase | thin backend, deploy pipeline, tested access rules, prerendering, security headers |
+
+Six strings changed across `seoData.ts`, `servicesDetail.ts` and
+`serviceContent.ts`. The six-to-twelve-week window in prototype-to-ship's new
+`metaDescription` and `definition` was already in its own `shape` field, so no
+new claim was introduced. Each page now sends the wrong-fit reader to the other.
+
+Cross-references are prose, not links: `ServiceDetail` renders section bodies as
+plain paragraphs, and adding a link slot to the type for two sentences is more
+machinery than the gain justifies.
+
+### Ship gate
+
+`npm run typecheck` exit 0. `npm run build` exit 0. Visible copy changed, so
+`npm run capture-bodies` → 67/67, then rebuild → 67 with bodies, 0 head-only,
+no dead links, no dead anchors, 49 post bodies matching source, nothing at
+opacity 0. `check:contrast` exit 0. `check:captions` still exit 1 — every
+failure cites `src/data/blogData.ts`, untouched, Hiram's standing media call.
+
+Killed an orphaned `vite preview --strictPort 4199` left over from the earlier
+capture before running this one, rather than letting it serve a stale build.
+
+### Verified on production (`b17af640`)
+
+| check | result |
+|---|---|
+| meta descriptions | share no phrasing; different buyer situations |
+| web-dev → prototype-to-ship pointer | present |
+| prototype-to-ship → web-dev pointer | present |
+| old overlapping lead on web-development | **gone** (0 occurrences of both phrases) |
+| both pages | 200, self-referential canonicals |
+
+### Flagged, not fixed
+
+**Voice split.** `prototype-to-ship` says "we" and "the studio"; every
+neighbouring service page says "I". On a one-person site, inside one taxonomy,
+that reads as two different businesses. It is a real inconsistency and a wider
+editorial call than this change — worth a decision.
+
+Still open from the previous entry: `/project/business-management` indexed
+while the guardrails call it retired, and the 49:18 post-to-commercial ratio.
