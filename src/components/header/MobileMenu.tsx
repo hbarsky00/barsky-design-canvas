@@ -22,6 +22,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 }) => {
   // Show all links in one list across all breakpoints
   const menuLinks = links;
+
+  const toggleRef = React.useRef<HTMLButtonElement | null>(null);
+  const panelRef = React.useRef<HTMLDivElement | null>(null);
+
+  /* Escape had no handler at all: measured 2026-11-26 at 375px, opening the
+     menu and pressing Escape left aria-expanded="true" and the panel on screen.
+     An overlay that covers the page needs a keyboard way out (WCAG 2.1.2). */
+  React.useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      toggleMobileMenu();
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMobileMenuOpen, toggleMobileMenu]);
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
@@ -45,6 +63,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div className="relative">
       <button 
+        ref={toggleRef}
         /* 24px icon + p-1 measured 32x32 on a phone — the primary mobile nav
            control, 12px under the 44x44 minimum. The icon stays 24px; the hit
            area grows around it. */
