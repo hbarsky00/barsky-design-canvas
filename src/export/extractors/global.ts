@@ -77,7 +77,7 @@ export function extractGlobalContent(): SectionExport[] {
             formLabels: [],
             tooltips: [],
             ctas: [
-              { label: "Book A Free Consultation", url: "/contact" },
+              { label: "Book a free consultation", url: "/contact" },
               { label: "Get Started", url: "/contact" },
               { label: "Schedule Consultation", url: "/contact" }
             ],
