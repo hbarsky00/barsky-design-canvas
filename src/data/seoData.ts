@@ -221,49 +221,49 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "AI ate the entry-level job",
     description: "AI didn\u2019t kill junior designers and developers. It killed the boring tasks that used to teach them the job \u2014 and that gap shows up years later.",
     published: "2026-08-07",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "what-is-an-ai-first-product-designer": {
     title: "What is an AI-first product designer?",
     description: "An AI-first product designer owns the whole experience of a product whose core value comes from AI \u2014 including how the model behaves when it\u2019s wrong.",
     published: "2026-07-18",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "portfolio-proof-not-pictures": {
     title: "Build a portfolio for robots and humans",
     description: "By 2026 most portfolios are parsed by an AI screener before a person opens them, and the human bar moved from pretty mockups to proof you can ship.",
     published: "2026-07-11",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "designers-shipping-ai-code": {
     title: "Half of designers now ship AI code. Good.",
     description: "The State of AI in Design 2026 report says the designer-who-ships is now the norm. What separates shipped from slop is the taste layer.",
     published: "2026-07-08",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "designing-ai-first-products-that-ship": {
     title: "Designing AI-first products that ship",
     description: "Most AI features stall in the demo phase. Here\u2019s the design discipline that gets them into people\u2019s hands.",
     published: "2026-06-18",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "trust-is-a-design-material": {
     title: "Trust is a design material",
     description: "Products don\u2019t fail because they\u2019re wrong. They fail because nobody can defend acting on them. Trust is a material you design with, not a feeling.",
     published: "2026-05-02",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "solo-building-with-ai": {
     title: "Ship something small: the fastest way to grow",
     description: "The fastest way to grow as a designer or developer right now is to ship one small thing end to end \u2014 and AI just removed every excuse.",
     published: "2026-03-11",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
   "the-business-case-for-design": {
     title: "Making the business case for design",
     description: "Leaders approve what they can measure. How to put a defensible number on design work.",
     published: "2026-01-27",
-    modified: "2026-11-12"
+    modified: "2026-11-27"
   },
 
   // SERP title only — the post keeps its full headline on the page. With the
@@ -279,13 +279,13 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "A Filter Nobody Opens Isn't a Feature",
     description: "Some content is global, some regional. Put that in a filter menu and the person who most needs it never sees it, because they arrived from a link.",
     published: "2026-08-27",
-    modified: "2026-09-13"
+    modified: "2026-11-27"
   },
   "the-work-is-deleting-not-generating": {
     title: "The Work Is Deleting, Not Generating",
     description: "AI made producing screens almost free. That moved the bottleneck from making things to deciding which ones to throw away \u2014 and no model will do that part\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-11-25"
   },
   "when-trust-is-the-product": {
     title: "When Trust Is the Product, It Can't Be a Feature",
@@ -297,7 +297,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "If You Make People Do Maths, They Guess or They Leave",
     description: "A price of 67\u00a2 tells you the odds are 67%. Almost nobody works that out in their head, and the ones who try get it wrong. Do the arithmetic for them.",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-11-25"
   },
   "finding-the-data-is-half-the-job": {
     title: "Finding the Data Is Half the Job",
@@ -315,25 +315,25 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "You Don't Replace Excel by Being Better Than Excel",
     description: "A bank was running multi-million-dollar loan deals in spreadsheets. The software that replaces that has to lose to Excel on flexibility and win on the\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-11-27"
   },
   "beginner-or-pro-is-a-false-choice": {
     title: "Beginner or Pro Is a False Choice, and Both Sides Pay for It",
     description: "Easy apps hide complexity and charge for it. Pro apps expose everything and assume confidence you may not have. The split is a business decision dressed\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-11-27"
   },
   "a-to-do-app-doesnt-prove-anything": {
     title: "A To-Do App Doesn't Prove Anything",
     description: "Most “I built this with AI” portfolios pick something safe. Safe projects hide the only question worth answering: can you ship something that\u2026",
     published: "2026-08-25",
-    modified: "2026-09-13"
+    modified: "2026-11-25"
   },
   "design-for-the-approval-gates": {
     title: "In Regulated Work, Design for the Gates \u2014 Not the AI",
     description: "A pharma email takes two weeks and touches five teams in five tools. The AI's job is the work between the humans, not the work the humans are legally\u2026",
     published: "2026-08-25",
-    modified: "2026-10-02"
+    modified: "2026-11-27"
   },
   "i-just-wanted-to-send-someone-a-video": {
     title: "I Just Wanted to Send Someone a Video",
@@ -357,7 +357,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "Two Bugs AI Wrote That I Had to Find Myself",
     description: "Two real bugs from a product built with AI: a model with no clock generating expired dates, and row-level security that returns silence, not errors.",
     published: "2026-08-05T09:00:00Z",
-    modified: "2026-09-13"
+    modified: "2026-11-25"
   },
   "designing-for-trust-when-the-product-is-the-risk": {
     title: "Designing for Trust When the Product Is the Risk",
@@ -375,7 +375,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "When Generating Is Free, Taste Is the Whole Job",
     description: "AI can produce fifty screens in a minute. It won't tell you to delete four of them. What taste actually is, and how Ring-Rival got twenty seconds faster.",
     published: "2026-07-22T09:00:00Z",
-    modified: "2026-09-13"
+    modified: "2026-11-25"
   },
   "scope-discipline-when-building-is-cheap": {
     title: "Scope Discipline When Building Is Cheap",
@@ -393,7 +393,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "The Designer Who Codes Argument Is Over",
     description: "The gap between a design and a running product collapsed. What owning the build actually changes about the work, and what's genuinely worth learning.",
     published: "2026-07-09T09:00:00Z",
-    modified: "2026-09-13"
+    modified: "2026-11-27"
   },
   "shipping-got-cheap-hiring-got-harder": {
     title: "Shipping Got Cheap. Hiring Got Harder.",
@@ -405,7 +405,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
     title: "Everyone's Portfolio Looks Good Now",
     description: "Polish stopped being a signal the moment it became free. What still separates a designer: live products, written-down deletions, defensible numbers.",
     published: "2026-06-15T09:00:00Z",
-    modified: "2026-09-13"
+    modified: "2026-11-27"
   },
   "one-person-or-a-team": {
     title: "When One Person Should Build Your Product, and When They Shouldn't — Barsky Design",
@@ -520,7 +520,7 @@ export const BLOG_SEO_MAP: Record<string, { title: string; description: string; 
   "what-ai-changed-and-what-it-didnt": {
     title: "What AI Changed About Design Work, and What It Didn't",
     description: "Two years of building products solo with AI. The changes are real and specific, and so is the list of things that are exactly as hard as they always were.",
-    modified: "2026-09-21"
+    modified: "2026-11-25"
   }
 };
 
