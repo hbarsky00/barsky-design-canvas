@@ -83,13 +83,12 @@ const ScrollEngagement: React.FC = () => {
          enough that they have read the work, before the contact form at 71%. */
       if (progress <= 60) return;
 
-      /* Ask the DOM whether the consultation bubble is actually on screen
-         rather than re-deriving its rule. This component used to duplicate the
-         bubble's geometry and look up `#hero`, an id the homepage does not
-         have -- its first section is `#intro` -- so the branch never ran. A
-         query against what is rendered cannot drift out of sync the way a
-         copied rule did, and it stays correct if the bubble is ever enabled. */
-      if (document.querySelector('[data-consultation-bubble]')) return;
+      /* This used to stand down whenever the consultation bubble was on
+         screen. Now that the bubble is enabled it is on screen for most of
+         the page, which would have made this prompt unreachable again, so the
+         handoff runs the other way: this fires, and the bubble yields to it
+         via the `engagement-prompt` event below. Still only one floating CTA
+         at a time -- the rarer message wins the moment. */
 
       /* No point interrupting someone who has already reached the form. */
       if (contactInView()) return;
@@ -104,6 +103,17 @@ const ScrollEngagement: React.FC = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname, showEngagementPrompt]);
+
+  /* Tells FloatingConsultationBubble to step aside while this is up. An
+     event rather than lifted state because the bubble is eagerly rendered and
+     this component is lazy-loaded; prop-drilling across that boundary buys
+     nothing a one-line listener does not. */
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.dispatchEvent(
+      new CustomEvent('engagement-prompt', { detail: showEngagementPrompt })
+    );
+  }, [showEngagementPrompt]);
 
   const dismiss = () => {
     dismissedThisVisit.current = true;
