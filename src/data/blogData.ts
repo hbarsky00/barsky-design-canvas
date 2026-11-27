@@ -20,8 +20,14 @@
 // the authorisation Hiram gave on 2026-11-26. Recast had a real destination all
 // along -- recastvid.com, 200 on 2026-11-27, already linked from another post
 // in this file and listed in public/llms.txt line 91 -- so it is now a link
-// like the first six. BZ Essentials (x2), Gold2Crypto and ManuscriptRx
-// genuinely have no public destination, so those sentences were reworded to
+// like the first six. Gold2Crypto and ManuscriptRx have no public destination.
+// BZ Essentials is a different case and must stay unlinked for a stronger
+// reason than a missing URL: public/llms.txt line 97 does list a live one, and
+// a future run that finds it there must NOT link it from a post. The host name
+// carries the client initials, the client is anonymous on this site by
+// agreement, and that line is already the only place the anonymised name is
+// tied to it -- linking it from a post would finish the job. Those sentences
+// were reworded to
 // drop the promise while keeping every claim they already made. Nothing was
 // cut. The Investor Loan sentence got the same reword and nothing more: that
 // study is deliberately off this site since 2026-09-14 -- do not link it, do
