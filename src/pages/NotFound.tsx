@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -23,6 +24,17 @@ const EXITS = [
 
 const NotFound: React.FC = () => (
   <div className="flex flex-col min-h-screen bg-muted/30">
+    {/* The static shell already ships <title>Page not found</title>, but the
+        global UnifiedSEO resolves titles from the pathname and an unmatched
+        path falls through to the site default — so a dead URL rendered this
+        page under the homepage's title. Measured on production before this:
+        /a-stale-link-from-2024 returned 404 with
+        "Hiram Barsky — Product Designer & Front-End Developer". Helmet mounts
+        below UnifiedSEO, so it wins. */}
+    <Helmet>
+      <title>Page not found — Barsky Design</title>
+      <meta name="robots" content="noindex, follow" />
+    </Helmet>
     <Header />
     <main
       id="main-content"
