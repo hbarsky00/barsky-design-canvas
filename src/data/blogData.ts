@@ -16,10 +16,36 @@
 // mode) are read off firelion.me, not invented. This is also what the site's
 // own post argues under "One live link beats ten case studies".
 //
-// The other six promises are FLAGGED in docs/research-log.md, not rewritten:
-// BZ Essentials (x2), Gold2Crypto, ManuscriptRx and Recast have no verifiable
-// public destination, and the Investor Loan study is deliberately off this
-// site -- do not link it or re-register its route.
+// The other six were FLAGGED on 2026-11-25 and finished on 2026-11-27 under
+// the authorisation Hiram gave on 2026-11-26. Recast had a real destination all
+// along -- recastvid.com, 200 on 2026-11-27, already linked from another post
+// in this file and listed in public/llms.txt line 91 -- so it is now a link
+// like the first six. BZ Essentials (x2), Gold2Crypto and ManuscriptRx
+// genuinely have no public destination, so those sentences were reworded to
+// drop the promise while keeping every claim they already made. Nothing was
+// cut. The Investor Loan sentence got the same reword and nothing more: that
+// study is deliberately off this site since 2026-09-14 -- do not link it, do
+// not re-register /project/investor-loan-app, do not re-add it to any list.
+//
+// MARKDOWN LINKS THAT NEVER RENDERED (2026-11-27).
+//
+// Ten links across nine paragraphs were written as markdown -- [text](/path)
+// -- inside content injected with dangerouslySetInnerHTML and never passed
+// through a markdown parser. So eight live posts printed the raw brackets as
+// body text; confirmed on barskydesign.pro before the fix, not just locally.
+// check-internal-links could not see them because they were never <a> elements,
+// and check-prose-integrity could not either: source and snapshot agreed, both
+// were wrong the same way. Fixed per destination rather than by pattern:
+// /case-studies/fire-lion -> firelion.me, /case-studies/ring-rival ->
+// ringrival.today, /case-studies/dae-search -> /project/dae-search (200),
+// /services -> /services. Two had no destination to give: /case-studies/nudgeme
+// (x4) 301s to / and has no public URL, and /services#roi-calculator names an
+// anchor that does not exist on a page with no calculator anywhere in this
+// repo. Both were unwrapped to plain text with every word kept -- the same
+// treatment commit c15f7d2f gave the dead /project/* links. Whether the "I
+// eventually built a little calculator for it" claim in
+// the-business-case-for-design is still true is Hiram's to say, not this
+// loop's to rewrite.
 
 // Import blog images
 import blogFindingUxJob from '@/assets/blog-finding-ux-job.jpg';
@@ -175,7 +201,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">If you’re the junior: stop waiting to be handed reps</h2>
 
-      <p>You can’t out-argue the market. The entry-level tasks that used to teach you the job are gone and they are not coming back. So stop waiting for them and go steal the judgment instead. Ask to sit in on the ambiguous stuff, not just to clean up after the AI’s output. Volunteer for the messy client call, the underspecified ticket, the code review nobody wants to own. That’s exactly the kind of unglamorous, embarrassing-to-ask-about work that taught me how to actually ship a product instead of just describing one — the same instinct that eventually let me take [a reminder app](/case-studies/nudgeme) from a rough idea all the way to something real people used. Nobody’s going to schedule that growth for you anymore. You have to go find it and ask for it directly.</p>
+      <p>You can’t out-argue the market. The entry-level tasks that used to teach you the job are gone and they are not coming back. So stop waiting for them and go steal the judgment instead. Ask to sit in on the ambiguous stuff, not just to clean up after the AI’s output. Volunteer for the messy client call, the underspecified ticket, the code review nobody wants to own. That’s exactly the kind of unglamorous, embarrassing-to-ask-about work that taught me how to actually ship a product instead of just describing one — the same instinct that eventually let me take a reminder app from a rough idea all the way to something real people used. Nobody’s going to schedule that growth for you anymore. You have to go find it and ask for it directly.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What the boring work was actually teaching</h2>
 
@@ -235,7 +261,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Do you actually need one?</h2>
 
-      <p>Quick gut check: if the honest answer to "why is this thing worth using?" is "the AI part," then you need someone who designs the AI part — not a prettier marketing site bolted onto a model. If your demo dazzles and then people bail the first time it whiffs, congratulations, you just found the exact gap [this job exists to close](/services). It was never about nicer buttons. It’s about a product people still trust after the shiny wears off.</p>
+      <p>Quick gut check: if the honest answer to "why is this thing worth using?" is "the AI part," then you need someone who designs the AI part — not a prettier marketing site bolted onto a model. If your demo dazzles and then people bail the first time it whiffs, congratulations, you just found the exact gap <a href="/services" class="text-primary underline underline-offset-2 hover:text-primary/80">this job exists to close</a>. It was never about nicer buttons. It’s about a product people still trust after the shiny wears off.</p>
     `
   },
   {
@@ -269,7 +295,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <figure class="my-8"><img src="/blog/portfolio-proof-not-pictures-body.jpg" alt="A person working on a laptop by a window with a coffee" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
-      <p>This is the part AI made non-negotiable. When anyone can generate a gorgeous static mockup in a minute, a gorgeous static mockup proves nothing. What a model can’t fake is a working product with your judgment baked into the hard parts — the empty states, the error states, the moment the AI has no idea what the user meant. I learned how much of the job lives in those edges [building a natural-language reminder app](/case-studies/nudgeme): the clean-input demo hid everything that actually mattered.</p>
+      <p>This is the part AI made non-negotiable. When anyone can generate a gorgeous static mockup in a minute, a gorgeous static mockup proves nothing. What a model can’t fake is a working product with your judgment baked into the hard parts — the empty states, the error states, the moment the AI has no idea what the user meant. I learned how much of the job lives in those edges building a natural-language reminder app: the clean-input demo hid everything that actually mattered.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The parser and the human want opposite things</h2>
 
@@ -283,7 +309,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <p>You don’t have to rebuild everything. You have to change what your portfolio is made of. Three moves.</p>
 
-      <p>One: turn at least one case study into a link, not a picture. Take something you’ve made — even something tiny — and get it live at a URL a stranger can open. A working link beats ten polished mockups, because it can’t be faked. The smallest thing I’ve shipped is [a browser game](/case-studies/fire-lion), and it still opens more doors than any pretty screenshot I’ve ever posted.</p>
+      <p>One: turn at least one case study into a link, not a picture. Take something you’ve made — even something tiny — and get it live at a URL a stranger can open. A working link beats ten polished mockups, because it can’t be faked. The smallest thing I’ve shipped is <a href="https://firelion.me" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">a browser game</a>, and it still opens more doors than any pretty screenshot I’ve ever posted.</p>
 
       <p>Two: label the work for the machine. Say it plainly, in real text and not buried inside an image: what the problem was, what you did, what shipped. The parser can’t read your captions if they live inside a JPG. Write the sentence a screener needs, and a human will respect it too.</p>
 
@@ -307,7 +333,7 @@ const postsInFileOrder: BlogPost[] = [
     content: `
       <p>The State of AI in Design 2026 report dropped, and two numbers should stop you cold: 91% of designers now use AI for design work at least weekly — up from 54% a year ago — and half have shipped AI-generated code to production. Not prototypes. Production.</p>
 
-      <p>For years, "should designers code?" was a debate you could safely ignore. It’s over. Not because designers won the argument — because the cost of shipping fell so far the question stopped mattering. I’ve shipped many products this way, from [a reminder app](/case-studies/nudgeme) to [a boxing game](/case-studies/ring-rival). The gap between designing a thing and shipping the thing isn’t a career change anymore. It’s a Tuesday.</p>
+      <p>For years, "should designers code?" was a debate you could safely ignore. It’s over. Not because designers won the argument — because the cost of shipping fell so far the question stopped mattering. I’ve shipped many products this way, from a reminder app to <a href="https://ringrival.today" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">a boxing game</a>. The gap between designing a thing and shipping the thing isn’t a career change anymore. It’s a Tuesday.</p>
 
       <figure class="my-8">
         <img src="/blog/designers-shipping-ai-code-body.jpg" alt="Lines of code on a dark screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
@@ -359,7 +385,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">1. Design the failure, not just the magic</h2>
 
-      <p>A demo has to work once, in front of a friendly crowd. A product has to survive someone typing something half-baked at 11pm. So every AI feature needs an answer to one question before anyone writes a line of prompt: what happens when the model isn’t sure? The pattern that works is confidence tiers — high-confidence input just works, medium confidence asks exactly one follow-up, and genuinely unclear input gets told to rephrase instead of quietly doing the wrong thing. Simple contract. And it’s the whole difference between a feature people lean on and one they quietly stop trusting after a week. I learned that one the hard way [building a natural-language reminder app](/case-studies/nudgeme) — the clean-input demo hid everything that actually mattered.</p>
+      <p>A demo has to work once, in front of a friendly crowd. A product has to survive someone typing something half-baked at 11pm. So every AI feature needs an answer to one question before anyone writes a line of prompt: what happens when the model isn’t sure? The pattern that works is confidence tiers — high-confidence input just works, medium confidence asks exactly one follow-up, and genuinely unclear input gets told to rephrase instead of quietly doing the wrong thing. Simple contract. And it’s the whole difference between a feature people lean on and one they quietly stop trusting after a week. I learned that one the hard way building a natural-language reminder app — the clean-input demo hid everything that actually mattered.</p>
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">An AI feature earns trust not by being right, but by being predictable about how it handles being wrong.</blockquote>
 
@@ -411,7 +437,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">You design trust in, you don’t bolt it on</h2>
 
-      <p>The fix is never a little "trust" badge slapped on at the end. It’s making the trust signals first-class parts of the core interaction: provenance as a column, not a tooltip; verification as layered, inspectable proof instead of a lonely checkmark; ranking that weighs where information came from, not just how well it matches. When I rebuilt [an enterprise search experience](/case-studies/dae-search) around exactly this, the win wasn’t prettier results — it was analysts going from forty candidates they couldn’t vouch for to four they could defend in a meeting. That’s the bar: not "can they find it," but "can they defend it."</p>
+      <p>The fix is never a little "trust" badge slapped on at the end. It’s making the trust signals first-class parts of the core interaction: provenance as a column, not a tooltip; verification as layered, inspectable proof instead of a lonely checkmark; ranking that weighs where information came from, not just how well it matches. When I rebuilt <a href="/project/dae-search" class="text-primary underline underline-offset-2 hover:text-primary/80">an enterprise search experience</a> around exactly this, the win wasn’t prettier results — it was analysts going from forty candidates they couldn’t vouch for to four they could defend in a meeting. That’s the bar: not "can they find it," but "can they defend it."</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Trust is a budget, and every wrong answer spends it</h2>
 
@@ -451,7 +477,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Keep the scope embarrassingly small</h2>
 
-      <p>The projects that die don’t die from missing talent. They die of fog. If the core of your idea doesn’t fit in one sentence, it’s not scoped yet. A calculator for a workflow you already know. A one-loop game. A tool your team keeps wishing existed. Small isn’t a compromise — it’s the strategy. AI’s speed compounds when the vision is sharp and evaporates when you spend it wandering around in a haze. My own proof run was [a pair of tiny browser games](/case-studies/fire-lion). Nothing ambitious. Everything instructive.</p>
+      <p>The projects that die don’t die from missing talent. They die of fog. If the core of your idea doesn’t fit in one sentence, it’s not scoped yet. A calculator for a workflow you already know. A one-loop game. A tool your team keeps wishing existed. Small isn’t a compromise — it’s the strategy. AI’s speed compounds when the vision is sharp and evaporates when you spend it wandering around in a haze. My own proof run was <a href="https://firelion.me" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">a pair of tiny browser games</a>. Nothing ambitious. Everything instructive.</p>
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">AI doesn’t remove the gap between concept and shipped. It removes the excuse for not crossing it.</blockquote>
 
@@ -499,7 +525,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Model the levers, not the pixels</h2>
 
-      <p>Design’s business case lives in a handful of levers — conversion, retention, support load — and you can model them honestly with an editable projection instead of a promise. Two rules, straight from watching real budget meetings. One: a credible first estimate has to take 30 seconds, because anything that needs an afternoon never gets opened. Two: the output has to be board-ready, because a number only matters if it can travel without you in the room. This annoyed me enough that I eventually built [a little calculator for it](/services#roi-calculator) — but honestly, a napkin works. The discipline is the point, not the tool.</p>
+      <p>Design’s business case lives in a handful of levers — conversion, retention, support load — and you can model them honestly with an editable projection instead of a promise. Two rules, straight from watching real budget meetings. One: a credible first estimate has to take 30 seconds, because anything that needs an afternoon never gets opened. Two: the output has to be board-ready, because a number only matters if it can travel without you in the room. This annoyed me enough that I eventually built a little calculator for it — but honestly, a napkin works. The discipline is the point, not the tool.</p>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Build the number from what the problem already costs</h2>
 
@@ -829,7 +855,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>Any time you're about to put a scoping control in a filter menu (region, permission, team, environment, tenant), ask who gets hurt when it's wrong, and then ask whether that person ever opens filters. If the answer is no, a filter isn't the feature. It's a place to put the feature so it looks handled.</p>
 
-<p>The full build, including the information architecture and the design system it runs on, is written up in the BZ Essentials case study.</p>
+<p>The full build around that filter included the information architecture and the design system it runs on.</p>
     `,
   },
   {
@@ -1131,7 +1157,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>Match the shape of what they do now, then add the things only real software can give them. Ask them to change one thing at a time, and let the audit trail be the argument.</p>
 
-<p>How that mapped onto the actual screens is in the Investor Loan Platform case study.</p>
+<p>All of that has to survive the mapping onto actual screens.</p>
 `
   },
   {
@@ -1180,7 +1206,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>Worth knowing, because it means the constraint is commercial and can be argued with, instead of being a law of design that cannot.</p>
 
-<p>The flows and the system that came out of it are in the Gold2Crypto case study.</p>
+<p>The flows and the system that came out of it started from exactly that question.</p>
 `
   },
   {
@@ -1276,7 +1302,7 @@ const postsInFileOrder: BlogPost[] = [
 
 <p>Ask which steps exist because somebody must be accountable, and leave those alone. Everything else is fair game.</p>
 
-<p>The six-step flow and what I haven't solved are in the ManuscriptRx case study.</p>
+<p>The six-step flow I ended up with still has parts I haven't solved.</p>
 `
   },
   {
@@ -1991,7 +2017,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>What replaces it is more interesting work and more responsibility for the result. When you own it end to end, you can't say the engineers ruined it. It shipped the way you built it.</p>
 
       <p>That's a better trade than it sounds like. It's also not optional much longer.</p>
-    <p>What that looks like end to end is in the Recast case study.</p>
+    <p>What that looks like end to end is <a href="https://recastvid.com" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">Recast</a> — designed, built and shipped by one person.</p>
     `
   },
   {
@@ -2146,7 +2172,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Every claim on your site is now a question in an interview. If AI wrote a section you can't defend line by line, cut it. Getting caught not knowing your own case study is worse than having a shorter one.</p>
 
       <p>Three projects you can defend completely beats eight that look impressive from a distance. That was always true. It's just enforceable now.</p>
-    <p>The decisions behind one of these, documented from the code, are in the BZ Essentials case study.</p>
+    <p>The decisions behind mine are documented from the code.</p>
     `
   },
   {
