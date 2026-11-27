@@ -2051,3 +2051,79 @@ Handoff re-checked live at 375x812 and 1440x900: bubble up past `#intro`,
 hidden on `engagement-prompt{detail:true}`, back on `{detail:false}`.
 Screenshots at both widths show it legible in the bottom-left with the
 scroll-to-top button clear in the bottom-right -- no collision.
+
+---
+
+## 2026-11-26, late run — one service taxonomy (Hiram's call, live)
+
+Fifth firing of `barskydesign-auto-improve` on a two-slot day. Mandate A was
+already done by sibling session `09bfdc3d` (it owned the repo and pushed
+through `243ee232`), so this run did growth diagnostics instead, found the
+problem below, and Hiram chose **consolidate** when asked.
+
+### Problem (measured, not assumed)
+
+Two parallel service hierarchies with nothing separating them:
+
+| taxonomy | pages | renderer | data |
+|---|---|---|---|
+| `/services/*` | ai-product-design, design-systems, ux-strategy-research, prototype-to-ship | `ServiceLongform` | `servicesDetail.ts` |
+| `/design-services/*` | ux-ui-design, mobile-app-design, web-development | `ServiceDetail` | `serviceContent.ts` |
+
+`web-development` sat under design-services while `prototype-to-ship`, which
+also ships a React front end, sat under services. All canonicals were
+self-referential, so search engines saw seven independent pages carrying two
+duplicate-intent pairs:
+
+- `/services` vs `/design-services/ux-ui-design` — both "research to a working
+  front end from one person"
+- `/services/prototype-to-ship` vs `/design-services/web-development` — both
+  "React built by the person who designed it"
+
+That splits relevance across a commercial surface only 18 pages wide, against
+49 blog posts.
+
+### Why moved, not merged
+
+All three `/design-services/*` pages measured **769-930 words over six
+sections** — none was thin content standing in for a duplicate. Redirecting
+them into the hub would have unpublished roughly 2,500 words of Hiram's prose.
+Slugs were left identical and only the prefix changed, so each old URL maps
+one-to-one and the diff is a single variable.
+
+Residual and deliberately untouched: `prototype-to-ship` and `web-development`
+still make a similar promise. They are siblings in one taxonomy now rather than
+rival hierarchies; differentiating settled prose is an editorial call.
+
+### Ship gate
+
+`npm run typecheck` exit 0. `npm run build` exit 0. First build caught what I
+had missed — three internal links still pointing at the old paths inside the
+`/services` snapshot, and the three moved pages shipping **head-only** with no
+captured body. `npm run capture-bodies` → 67/67; rebuild → 67 with bodies, 0
+head-only, no dead links, no links pointing at a redirect, 49 post bodies
+matching source, nothing at opacity 0. `check:contrast` exit 0.
+`check:captions` still exits 1 — all failures cite `src/data/blogData.ts`,
+untouched here, Hiram's standing media call.
+
+### Verified on production
+
+Deployed ~45s after push (`4f2ea65a`).
+
+| check | result |
+|---|---|
+| `/services/{ux-ui-design,mobile-app-design,web-development}` | 200, self-referential canonical, 2216 / 2048 / 2054 words |
+| titles | unchanged from the old URLs |
+| `/design-services/*` (3) | **single-hop 301** to the matching `/services/*` |
+| legacy `/ux-ui-design`, `/mobile-app-design`, `/web-development` | **single-hop 301** straight to `/services/*` — retargeted so they don't chain through a second hop |
+| live sitemap | 67 URLs, **all 200**, 8 service URLs all under `/services/*`, zero `design-services` |
+| live `llms.txt` | zero `design-services` refs |
+
+Redirect statuses read without `curl -L`, so these are first-hop responses.
+
+### Still open
+
+- `/project/business-management` is 200, `index, follow` and in the sitemap
+  while the guardrails call it retired. Not touched — needs Hiram's answer on
+  whether "retired" meant the product or the page.
+- The 49:18 post-to-commercial ratio is unchanged and remains the ceiling.

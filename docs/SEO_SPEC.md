@@ -114,10 +114,14 @@ barskydesign.pro/
 │   └── /blog/:slug
 ├── /project
 │   └── /project/:projectId
-└── /design-services
-    ├── /design-services/ux-ui-design
-    ├── /design-services/mobile-app-design
-    └── /design-services/web-development
+└── /services
+    ├── /services/ai-product-design
+    ├── /services/design-systems
+    ├── /services/ux-strategy-research
+    ├── /services/prototype-to-ship
+    ├── /services/ux-ui-design
+    ├── /services/mobile-app-design
+    └── /services/web-development
 ```
 
 ---
@@ -168,7 +172,7 @@ All redirects MUST be 301 (permanent) and handled server-side (Netlify/`_redirec
 ```
 Homepage
 ├── links to → /services (hub)
-│   └── links to → /design-services/* (spokes)
+│   └── links to → /services/* (spokes)
 ├── links to → /blog (hub)
 │   └── links to → /blog/:slug (posts)
 │       └── Related Posts component links to other posts

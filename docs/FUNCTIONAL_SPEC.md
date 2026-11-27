@@ -25,9 +25,9 @@ Personal portfolio and design consultancy site for Hiram Barsky, Lead Product De
 | `/` | Home | `Index.tsx` | Hero, projects, services, CTA |
 | `/about` | About | `About.tsx` | Bio, experience, skills |
 | `/services` | Services | `Services.tsx` | Service categories overview |
-| `/design-services/ux-ui-design` | UX/UI Design | `UxUiDesign.tsx` | Service detail page |
-| `/design-services/mobile-app-design` | Mobile Design | `MobileAppDesign.tsx` | Service detail page |
-| `/design-services/web-development` | Web Dev | `WebDevelopment.tsx` | Service detail page |
+| `/services/ux-ui-design` | UX/UI Design | `UxUiDesign.tsx` | Service detail page |
+| `/services/mobile-app-design` | Mobile Design | `MobileAppDesign.tsx` | Service detail page |
+| `/services/web-development` | Web Dev | `WebDevelopment.tsx` | Service detail page |
 | `/contact` | Contact | `Contact.tsx` | Contact form, lead capture |
 | `/store` | Store | `Store.tsx` | Digital products |
 | `/store/success` | Purchase Success | `StoreSuccess.tsx` | Post-purchase confirmation |
@@ -50,7 +50,8 @@ Personal portfolio and design consultancy site for Hiram Barsky, Lead Product De
 | `/project/investor-loan-app` | `/` | 301 (hidden) |
 | `/project/wholesale-distribution` | `/project/business-management` | 301 |
 | `/projects` | `/#projects` | Replace |
-| `/web-development` | `/design-services/web-development` | 301 (server) |
+| `/web-development` | `/services/web-development` | 301 (server) |
+| `/design-services/*` | `/services/*` | 301 (server) |
 | `www.*` | non-www | 301 (server) |
 | Trailing slashes | Without trailing slash | 301 (server) |
 
@@ -132,7 +133,7 @@ For SEO metadata:
 ### 4.6 Services
 
 - **Hub page**: `/services` — overview of all service categories
-- **Sub-pages**: Individual service detail pages under `/design-services/*`
+- **Sub-pages**: Individual service detail pages under `/services/*`
 - **Internal linking**: Hub links to sub-pages for crawl depth
 
 ---
