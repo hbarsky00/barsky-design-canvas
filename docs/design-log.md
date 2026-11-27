@@ -1901,3 +1901,56 @@ All three looked real on the measurement and would have padded the run:
   "what I don't do" line from `docs/relationship-design-playbook.md`, and the
   slot is now designed and empty. Not written here, because the content is one
   of the three facts a run must never invent.
+
+## 2026-11-26 (run 3 of 2, off-schedule) — SHIPPED NOTHING — collision stand-down
+
+**No dead runs to report.** The day's two scheduled runs both shipped and both
+left summaries and matching commits: ten in `ef0ccfc3`..`555adbef` plus the
+engagement-prompt follow-up, then twelve in `0b3495d5`..`fd60c2f6`. 22
+improvements, all pushed, `HEAD` == `origin/main` == `59612aba`.
+
+**This run shipped nothing on purpose.** It stood down under the
+no-concurrent-agent rule, which is the one rule in the task file with two
+prior incidents behind it. All three signals were live at 22:38 EST:
+
+| Signal | Evidence |
+|---|---|
+| Session | `local_b6723708`, `isRunning: true`, same `scheduledTaskId`, started 14:46 EST, last activity 22:42:35 EST |
+| Process | PID 60008, `npm run capture-bodies`, started 22:34:35, finished ~22:40 |
+| Tree | 72 insertions uncommitted across two files, not this run's |
+
+Shipping ten on top of that would have raced a live agent's edits in files
+this run would likely have touched, and would have put the day at 32 changes
+against terms of 20.
+
+### Why there was a third run at all
+
+The cron is `0 9,21 * * *` and the 21:00 run finished at 21:50 EST; this one
+fired at 22:38. Only one task targets this repo, so the cadence config is
+fine — **the sessions are the problem: they do not terminate.** `b6723708`
+had been running eight hours; the run before it, `ae8d732a`, ran **29 hours**
+(2026-11-25 09:11 → 2026-11-26 14:57). The scheduler keeps firing into
+sessions that never ended, which is how two agents end up in this repo at
+once. Hiram approved stopping it, so `b6723708`'s turn was stopped and its
+orphaned `vite preview --strictPort 4199` (up 1h11m) was killed — that
+preview would otherwise have blocked the next run's `capture-bodies`.
+
+### Left in the tree on purpose — read this before working here
+
+`FloatingConsultationBubble.tsx` and `ScrollEngagement.tsx` are **still
+modified and uncommitted.** This is `b6723708`'s work and it was NOT reverted.
+A copy is at
+`/private/tmp/claude-501/-Users-hirambarsky-Documents/09bfdc3d-304b-4d7f-b42b-a498d116ad7c/scratchpad/orphaned-work-2026-11-26-2242.patch`
+(182 lines; the scratchpad is cleared on reboot, so the working tree is the
+real copy).
+
+It is the fix for the item the run above left under "Still open" as needing
+Hiram: the bubble looked up `#hero`, an id this homepage does not have, so it
+was never visible. The patch points it at `#intro`, adds `useReducedMotion`,
+and adds an `engagement-prompt` event so the bubble yields to
+`ScrollEngagement`'s prompt — which is what made this "needs Hiram" in the
+first place, because fixing the lookup alone puts two floating CTAs on screen.
+
+**It never passed the ship gate** — no `typecheck`, no build, never verified.
+Do not assume it is good. The next run should either finish it through the
+gate or discard it deliberately, not sweep it into an unrelated commit.
