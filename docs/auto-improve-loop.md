@@ -229,8 +229,13 @@ on the task itself and reused by every future run.
 
 ## Known-open items
 
-- **AUTHORISED AND QUEUED (Hiram, 2026-11-26): finish the dead-end blog
-  endings.** The 2026-11-25 RESEARCH run found twelve posts whose final
+- ~~**AUTHORISED AND QUEUED (Hiram, 2026-11-26): finish the dead-end blog
+  endings.**~~ **DONE 2026-11-27 morning** (`c53013ac`). All six reworded or
+  linked; Recast got `recastvid.com`, Investor Loan got the reword only. The
+  same run found a larger sibling defect — ten markdown links inside
+  `dangerouslySetInnerHTML` content that eight live posts rendered as raw
+  brackets — and fixed those too. See `docs/design-log.md` 2026-11-27.
+  Original brief kept below for the record. The 2026-11-25 RESEARCH run found twelve posts whose final
   paragraph names a case study that 301s away, and fixed the six with a live
   destination. Hiram was asked whether to handle the rest and said yes, so the
   permission this loop previously lacked now exists. **Do it on the next run
@@ -252,8 +257,11 @@ on the task itself and reused by every future run.
   What actually made those sections look missing was the run-on heading bug
   below — a grep for "Recent adventures" returned 0 because the markup said
   `Recentadventures`.
-- **The homepage FAQ is `hidden md:block`** — entirely absent from the mobile
-  layout. It is still in the DOM, so it is still indexable, but Google indexes
+- ~~**The homepage FAQ is `hidden md:block`**~~ — **resolved 2026-11-16, and
+  this entry was stale for eleven days.** `HomepageLayout.tsx:95` records the
+  removal: `SeoFaqSection` now uses native `<details>`, so it is scannable
+  closed on a phone and the answers stay in the DOM for crawlers. Verified
+  2026-11-27. Previous text, which described the live site wrongly: It is still in the DOM, so it is still indexable, but Google indexes
   mobile-first and this site's whole AEO play is extractable Q&A. Rendering it
   on mobile as a collapsed accordion is the obvious move; it changes mobile
   page length materially, so it needs its own verified FINDABILITY run rather
@@ -274,8 +282,22 @@ on the task itself and reused by every future run.
   sessions also fought over headless Chrome and `vite preview --strictPort
   4199`, which is why `/` would not capture. Check `git log` and
   `pgrep -f 'vite preview'` before starting.
-- `usePageIndexing` injects `<meta name="crawl-priority">` and
-  `<meta name="fetch-priority">` on three pages. Neither is a real meta tag.
-  It also console.logs on every navigation in production.
-- `seoUtils.ts` `pageIndexingConfigs` lists seven `/case-studies/*` paths that
-  have never existed as routes on this site.
+- ~~`usePageIndexing` injects fake `crawl-priority`/`fetch-priority` metas and
+  console.logs in production.~~ **Resolved 2026-11-12.** The hook is gone; grep
+  for `usePageIndexing`, `crawl-priority` and `fetch-priority` across `src/`
+  returns nothing but a historical comment. Verified 2026-11-27.
+- ~~`seoUtils.ts` `pageIndexingConfigs` lists seven phantom `/case-studies/*`
+  paths.~~ **Resolved 2026-11-12** — `pageIndexingConfigs`, `getPageConfig`,
+  `generateSitemapEntries` and `submitUrlForIndexing` were all deleted; the
+  file's own header documents it. Verified 2026-11-27.
+
+- **Three of the four items above were already fixed when this run read them.**
+  A known-open list that is not pruned sends the next run hunting work that does
+  not exist — this run spent four tool calls proving three entries were stale.
+  Re-verify an item against the code before working it, and strike it here the
+  moment it is closed.
+
+- **`capture-bodies` reads the built `dist/`, so it must run AFTER a build.**
+  Running it first silently recaptures stale output and the postbuild gates then
+  fail on things already fixed in source. Order is build → capture → build.
+  Cost two wasted build cycles on 2026-11-27.

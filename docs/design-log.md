@@ -2268,3 +2268,167 @@ hand off a static file". All 8 service URLs return 200.
   while the guardrails call it retired. Needs Hiram's answer.
 - The 49:18 post-to-commercial ratio, unchanged, and the ceiling on everything
   else.
+
+## 2026-11-27, morning run — the links that never rendered, and the promises finished
+
+**Step 0 — no dead run to report.** `list_task_runs` shows three runs completed
+overnight (`ae3745e6` 03:54–05:35Z, `141113e8` 03:38–04:05Z, and `42c303d1`
+which correctly stood down on a collision and shipped nothing by design). All
+three left commits and log entries. One older run of this task id shows
+"Stopped mid-step" (`b6723708`, 2026-11-26 19:46Z → 11-27 03:44Z, eight hours
+under the task's previous "every 2 days" title) — that is the
+never-terminating-run failure mode, not a permission-blocked no-op, and the work
+it was doing was finished by the runs after it.
+
+This is the **morning** slot (started 14:11Z = 09:11 ET). Committed locally,
+**not pushed**, per the run schedule. Tree was clean at start, `pgrep -f 'vite
+preview'` empty, `lsof -ti:4199` clear, no concurrent agent in the repo.
+
+### 1–6. The six flagged closing promises are finished
+
+Authorised by Hiram 2026-11-26; brief is open item 2 under `2026-11-25` in
+`docs/research-log.md`. Six posts ended by naming a case study that 301s away.
+
+- **Recast → linked.** `recastvid.com` returned **200 on 2026-11-27**. It never
+  needed guessing: it was already linked from another post in `blogData.ts` and
+  listed in `public/llms.txt` line 91. Same markup convention as the other six.
+- **BZ Essentials ×2, Gold2Crypto, ManuscriptRx → reworded.** Promise dropped,
+  every claim the sentence already made kept. Nothing cut.
+- **Investor Loan → reworded only.** No link, no route, nothing re-added to any
+  list. The 2026-09-14 decision is untouched; verified in the rendered DOM that
+  the page carries **0** links matching `investor-loan`.
+
+### 7. The defect that was hiding behind those six
+
+Chasing the closings surfaced something larger. **Ten links across nine
+paragraphs were written in markdown — `[text](/path)` — inside content injected
+with `dangerouslySetInnerHTML` and never passed through a markdown parser.** So
+eight live posts printed the raw brackets as body text.
+
+**Confirmed on production before touching anything**, not just locally:
+
+```
+/blog/ai-ate-the-junior-job        ](/case-studies/nudgeme)
+/blog/designers-shipping-ai-code   ](/case-studies/nudgeme) ](/case-studies/ring-rival)
+/blog/trust-is-a-design-material   ](/case-studies/dae-search)
+```
+
+**Why both existing gates were blind to it.** `check-internal-links` could not
+see them because they were never `<a>` elements. `check-prose-integrity` could
+not either, and this is the interesting part: source and snapshot *agreed*. Both
+were wrong in the same way, so a gate that compares them to each other has
+nothing to report. A third of the destinations did not exist either.
+
+Fixed per destination, each verified 200 on 2026-11-27 — never by pattern:
+
+| was | now |
+|---|---|
+| `/case-studies/fire-lion` ×2 | `https://firelion.me` |
+| `/case-studies/ring-rival` ×1 | `https://ringrival.today` |
+| `/case-studies/dae-search` ×1 | `/project/dae-search` (200) |
+| `/services` ×1 | `/services` |
+| `/case-studies/nudgeme` ×4 | **unwrapped to plain text** — 301s to `/`, no public URL |
+| `/services#roi-calculator` ×1 | **unwrapped to plain text** — see below |
+
+The unwraps keep every word, which is the treatment commit `c15f7d2f` already
+established here for dead `/project/*` links.
+
+**The anchor gate earned its keep.** `/services#roi-calculator` passed the
+dead-link check and failed the dead-*anchor* check: `/services` has no such id,
+and there is no ROI calculator anywhere in this repo. So the post's claim "I
+eventually built a little calculator for it" points at nothing. Unwrapped, words
+intact — whether the claim itself is still true is Hiram's to say, not this
+loop's to rewrite. Flagged.
+
+### 8. Fire Lion's blurb — and a correction to this log
+
+The 2026-11-25 entry queued this as "wrong on controls — tap/release, not hold".
+**That was wrong and I did not ship it.** `FireLionGame.tsx:4711` draws
+`'HOLD TO FLY UP'` / `'Press and hold anywhere on the screen'`, so "Hold to fly"
+was correct and stays. Read from the game's own source today, per
+`feedback_known_bug_is_not_fixed_bug` — a note is not evidence, including a note
+this log wrote.
+
+The real defect was the undersell: the blurb headlined localStorage persistence
+("score that survives a refresh"), the weakest thing the game has, and omitted
+the word-spelling evolution that is its hook (`FireLionShareCard.tsx` renders
+`WORDS SPELLED`, `BEST SPELL`, `I evolved to ${stageName}`). Now:
+"Canvas arcade game. Hold to fly, spell words mid-flight to evolve, procedural
+obstacles."
+
+### 9. Twenty stale `dateModified` values (technical SEO)
+
+`check-content-dates` flagged six routes where git was newer than the declared
+date. Its own header says a flagged route means "look at the commit", not "bump
+the date" — so I looked. All six are posts whose closing paragraph was rewritten
+on **2026-11-25**: visible copy, so they do not belong in `STYLE_ONLY` beside
+the unwrap-only commits. They had been telling Google the content had not moved
+since September.
+
+Bumped those six to 2026-11-25 and the fourteen changed today to 2026-11-27.
+These feed `BlogPosting.dateModified` and the sitemap `<lastmod>`, so
+`public/sitemap.xml` moved with them. Checker now reports **51 routes, 0 stale**.
+
+### 10. A confidentiality exposure, flagged not fixed
+
+Auditing `public/llms.txt` for the AEO surface (all 8 URLs in it return 200, no
+retired `/case-studies/*` paths) turned up line 97:
+
+```
+- BZ Essentials — https://az-essentials.netlify.app — enterprise knowledge portal prototype
+```
+
+That host returns 200 and carries the client's initials. The site writes their
+name **nowhere else** — grep for it across `src/` and `public/` returns nothing
+— so this single line on a public AI-crawler surface is the only thing tying the
+anonymised study to the client.
+
+**Not changed.** Client anonymity and public positioning copy are Hiram's call.
+But the danger is immediate and specific: a future run told that BZ Essentials
+has "no public destination" would read llms.txt, find a 200, and link it from a
+post. So the real reason is now written into the `blogData.ts` header comment
+(`1077ec8d`) rather than left as "no URL exists". Raised for decision.
+
+### Measured
+
+- `npm run typecheck` **EXIT:0** (uses `tsconfig.app.json` explicitly, not bare
+  `tsc`).
+- First `npm run build` **EXIT:1** — `check-prose-integrity` named all 14
+  changed posts while `prerendered-bodies/` still held the old text. The gate
+  working.
+- **A procedural trap worth recording:** `capture-bodies` reads the built
+  `dist/`, so it must run *after* a build. Running it first silently recaptured
+  stale output, and the anchor gate kept failing on a link I had already
+  removed. Two wasted build cycles. Order is build → capture → build.
+- `npm run capture-bodies` **67/67 routes, no failures.** 15 bodies changed: 14
+  posts + `index.html` (the Fire Lion blurb is on the homepage).
+- Final `npm run build` **EXIT:0**, all four postbuild gates clean — SEO HTML 67
+  routes (67 prerendered, 0 head-only), internal links "67 pages, no dead links,
+  no dead anchors", prose integrity "49 post bodies match their source text",
+  visible content "68 pages, nothing shipped at opacity 0".
+- `check-content-dates` **51 routes, 0 stale** (was 6).
+- **Rendered-DOM verification**, not screenshots, per `feedback_verify_what_user_sees`:
+  across the changed pages, literal `](/`occurrences are **0** (was 8 pages);
+  the Ring Rival anchor computes to `href="https://ringrival.today"`,
+  `target="_blank"`, `rel="noopener noreferrer"`, containing paragraph
+  `opacity: 1`; "a reminder app" is present as text and is **not** an anchor;
+  `/project/dae-search` is internal with no `target`; the Investor Loan page
+  carries 0 investor-loan links; the new Fire Lion blurb renders at **375px**
+  and the old string is gone. `find` returned "No matches" for plain unwrapped
+  text while the DOM had it — the accessibility tree lagging below the fold
+  again, sixth instance. Computed style settled it.
+- Whole-`dist` sweep: **0** pages with literal markdown syntax (was 8).
+
+### Still open
+
+- **Decision needed:** `public/llms.txt` line 97, above. New, highest priority.
+- **Decision needed:** `/project/business-management` is 200, `index, follow`
+  and in the sitemap while the guardrails call it retired. Fourth session.
+- **Flagged claim:** "I eventually built a little calculator for it" in
+  `the-business-case-for-design` — no calculator exists in this repo.
+- **Flagged claim:** `llms.txt` line 19 gives Business Management a hard metric
+  ("reduced manual work 60%") on a surface AI crawlers read. Unverifiable from
+  here; not invented by this loop, not changed by it either.
+- 9 blog cover images still have no `coverCaption` (`check:captions` warns, does
+  not fail). Writing them needs the images actually looked at, not guessed.
+- The 49:18 post-to-commercial ratio, unchanged.

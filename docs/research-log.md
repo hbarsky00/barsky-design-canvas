@@ -1156,11 +1156,35 @@ sentence, which this loop does not have.
 
 ### Still open, in priority order
 
-1. **Fire Lion's blurb in `ShippedProductsSection`** is wrong on controls
-   ("hold to fly" vs tap/release) and headlines its weakest capability. One
-   line, fully evidenced above, ready for the next CRAFT or RESEARCH run.
-2. **The remaining flagged promises — AUTHORISED BY HIRAM 2026-11-26, do this
-   next run.** He was asked directly whether to handle the flagged dead-end
+1. ~~**Fire Lion's blurb is wrong on controls** ("hold to fly" vs
+   tap/release)~~ — **that half was WRONG and was not shipped. Corrected
+   2026-11-27.** `FireLionGame.tsx:4711` draws `'HOLD TO FLY UP'` /
+   `'Press and hold anywhere on the screen'`, read from the game's own source.
+   "Hold to fly" was always correct and stays. The browser observation on
+   2026-11-25 that produced "tap to fly upward, release to descend" was a
+   misreading — a second game mode in that repo (`SurvivorsGame`/`ArenaGame`)
+   does use tap, which is the likeliest source of the confusion.
+   **The undersell half was real and is fixed** (`8b578b12`): the blurb
+   headlined localStorage persistence and omitted the word-spelling evolution
+   (`FireLionShareCard.tsx` renders `WORDS SPELLED`, `BEST SPELL`,
+   `I evolved to ${stageName}`). Now "Canvas arcade game. Hold to fly, spell
+   words mid-flight to evolve, procedural obstacles."
+   **Lesson, logged against this entry on purpose:** a confident browser
+   reading written into a log becomes a future run's instruction. This one would
+   have shipped a false correction to a true sentence. Check the product's
+   source, not the note.
+2. ~~**The remaining flagged promises — AUTHORISED BY HIRAM 2026-11-26**~~ —
+   **DONE 2026-11-27 morning run** (`c53013ac`, guard `1077ec8d`). All six
+   handled exactly as decided below. One correction to the decision: BZ
+   Essentials is NOT merely "no public destination" — `public/llms.txt` line 97
+   publishes `https://az-essentials.netlify.app` and it returns 200. It must
+   stay unlinked for a stronger reason: the host carries the client's initials,
+   the client is anonymous on this site, and that llms.txt line is the only
+   thing tying the two together. Raised for Hiram's decision; the real reason is
+   written into the `blogData.ts` header so no future run "fixes" it by linking.
+   The same run found and fixed a larger sibling defect — ten markdown links
+   inside `dangerouslySetInnerHTML` content that eight live posts rendered as
+   raw brackets. Original brief kept below. He was asked directly whether to handle the flagged dead-end
    endings and said yes. So the next run has the permission this one lacked.
    Two things were settled after that answer:
 
