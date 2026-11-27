@@ -54,7 +54,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/services/prototype-to-ship': {
     kind: 'page',
     title: 'Prototype to Ship | Barsky Design',
-    description: 'Design that ends in deployed software. We build the real product in React and TypeScript, so an engagement finishes with working code instead of a handoff file.'
+    description: 'From nothing to a live v1 in six to twelve weeks, designed and built by the same hands — a hard-scoped engagement that finishes with deployed software instead of a handoff file.'
   },
   '/services': {
     kind: 'page',
@@ -109,7 +109,7 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   '/services/web-development': {
     kind: 'page',
     title: 'Web Development — React & Frontend | Barsky Design',
-    description: 'React and TypeScript front ends, built by the person who designed them — including the database, the deploy and the parts nobody demos.',
+    description: 'React and TypeScript front ends and the thin backend behind them — database, deploy pipeline, and the prerendering most React sites get wrong. A new build, or a codebase you inherited.',
     image: 'https://barskydesign.pro/images/og/service-web-development.png'
   }
 };

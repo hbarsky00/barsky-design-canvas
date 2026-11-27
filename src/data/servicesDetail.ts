@@ -237,9 +237,9 @@ export const services: Service[] = [
     points: ["React / TypeScript", "Rapid prototyping", "Production frontend"],
     metaTitle: "Prototype to Ship",
     metaDescription:
-      "Design that ends in deployed software. We build the real product in React and TypeScript, so an engagement finishes with working code instead of a handoff file.",
+      "From nothing to a live v1 in six to twelve weeks, designed and built by the same hands — a hard-scoped engagement that finishes with deployed software instead of a handoff file.",
     definition:
-      "Prototype-to-ship is a design engagement that ends in deployed, working software — the studio designs the product and then builds it in production React and TypeScript, removing the handoff entirely.",
+      "Prototype-to-ship is a time-boxed design engagement that takes a product from nothing to a deployed v1 — the design and the production React and TypeScript build happen inside one engagement, by the same hands, which removes the handoff entirely.",
     problem: [
       "The last agency delivered a beautiful Figma file and you still needed to find engineers to build it.",
       "What shipped doesn’t match what was designed, and nobody can point to where it diverged.",
@@ -277,7 +277,7 @@ export const services: Service[] = [
     shape:
       "Prototype-to-ship engagements typically run six to twelve weeks to a live v1, scoped hard around what has to be true for launch. Project-based, or a retainer if you want continued iteration once real users arrive. Agencies use the same arrangement for overflow, under their brand.",
     notFor:
-      "This is the wrong fit if you need deep backend or infrastructure work \u2014 we build production frontend and the design that goes with it, not your data platform. It is also wrong if you want a designer to hand mockups to your existing team, because the whole point here is that the same hands do both and you would be paying for a benefit you are not taking. And if your requirements genuinely cannot be cut to a shippable v1, that is a scoping problem worth solving before anyone writes code.",
+      "This is the wrong fit if you need deep backend or infrastructure work \u2014 we build production frontend and the design that goes with it, not your data platform. It is also wrong if you want a designer to hand mockups to your existing team, because the whole point here is that the same hands do both and you would be paying for a benefit you are not taking. And if your requirements genuinely cannot be cut to a shippable v1, that is a scoping problem worth solving before anyone writes code. Nor is it the right page if the product already exists \u2014 a design that is finished, something already in the market, or a codebase inherited from a team that has moved on. That work is the web development engagement, which is about building and keeping a system running rather than getting a first version out of the door.",
     faqs: [
       {
         q: "Do we get code we can maintain, or a throwaway prototype?",

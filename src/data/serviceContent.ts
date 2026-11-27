@@ -201,9 +201,9 @@ export const MOBILE_APP_DESIGN: ServicePageContent = {
 export const WEB_DEVELOPMENT: ServicePageContent = {
   title: "Web Development Services",
   standfirst:
-    "React front ends, built by the person who designed them — including the database, the deploy and the parts nobody demos.",
+    "React front ends and the thin backend behind them — the database, the deploy pipeline, and the parts nobody demos. A new build, or a codebase someone else left behind.",
   answer:
-    "Web development here means the front end and the thin backend behind it: React and TypeScript, a real database, forms that actually deliver, and a deploy pipeline that runs on every push. I design and build the same product, so there is no handoff where intent gets lost between a design file and the code.",
+    "Web development here means the front end and the thin backend behind it: React and TypeScript, a real database, forms that actually deliver, and a deploy pipeline that runs on every push. It also covers what decides whether a React product is usable and indexed at all — prerendered routes, access rules tested with a signed-in user, security headers set and checked. The design may be mine, yours, or inherited from a team that has moved on; this page is about the build and keeping it running.",
   sections: [
     {
       id: "front-end",
@@ -257,7 +257,7 @@ export const WEB_DEVELOPMENT: ServicePageContent = {
       id: "who-its-for",
       heading: "Who this suits",
       body: [
-        "Teams that need a front end built properly by someone who will also make the design decisions, and founders who need one person to take a product from a design to something running on a domain.",
+        "Teams that already have a design, or a product already in the market, and need the front end and the system under it built properly — by someone who will also make the design calls that are still open. If nothing exists yet and you want the design and the build as one hard-scoped push to a first launch, that is the prototype-to-ship engagement rather than this one.",
         "It also suits inheriting a codebase someone else abandoned. That work is unglamorous and I am willing to do it: read the thing, find out what is actually load-bearing, then change it without breaking the parts nobody documented.",
       ],
     },
