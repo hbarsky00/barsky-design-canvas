@@ -145,15 +145,15 @@ const ServicePageLayout: React.FC = () => {
             </h2>
             <ul className="space-y-3">
               <li className="leading-relaxed">
-                <Link to="/design-services/ux-ui-design" className="font-semibold text-md-sys-primary underline underline-offset-2">Product design</Link>
+                <Link to="/services/ux-ui-design" className="font-semibold text-md-sys-primary underline underline-offset-2">Product design</Link>
                 <span className="text-muted-foreground"> — research, interface design, design systems, and the front end that ships them.</span>
               </li>
               <li className="leading-relaxed">
-                <Link to="/design-services/mobile-app-design" className="font-semibold text-md-sys-primary underline underline-offset-2">Mobile app design</Link>
+                <Link to="/services/mobile-app-design" className="font-semibold text-md-sys-primary underline underline-offset-2">Mobile app design</Link>
                 <span className="text-muted-foreground"> — phone-first products, and the states that make one feel finished.</span>
               </li>
               <li className="leading-relaxed">
-                <Link to="/design-services/web-development" className="font-semibold text-md-sys-primary underline underline-offset-2">Web development</Link>
+                <Link to="/services/web-development" className="font-semibold text-md-sys-primary underline underline-offset-2">Web development</Link>
                 <span className="text-muted-foreground"> — React front ends, the database behind them, and the deploy.</span>
               </li>
             </ul>

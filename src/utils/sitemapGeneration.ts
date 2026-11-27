@@ -34,19 +34,19 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     
     // Service detail pages - high priority for SEO
     {
-      url: `${BASE_URL}/design-services/ux-ui-design`,
+      url: `${BASE_URL}/services/ux-ui-design`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      url: `${BASE_URL}/design-services/mobile-app-design`,
+      url: `${BASE_URL}/services/mobile-app-design`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.9
     },
     {
-      url: `${BASE_URL}/design-services/web-development`,
+      url: `${BASE_URL}/services/web-development`,
       lastmod: currentDate,
       changefreq: 'monthly',
       priority: 0.9

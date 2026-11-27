@@ -8,7 +8,8 @@ import { getStructuredCaseStudy } from "@/data/structuredCaseStudies";
  * The long-form service page carried over from barsky.design.
  *
  * It is a different shape from the existing ServiceDetail component, which
- * renders the three /design-services pages — this one has a definition, the
+ * renders the three ServiceDetail pages (ux-ui-design, mobile-app-design,
+ * web-development) — this one has a definition, the
  * problem, what's included, the process, proof, FAQs, the engagement shape and
  * an honest "not for". Rather than flatten that into the older component and
  * lose two thirds of it, it gets its own renderer.

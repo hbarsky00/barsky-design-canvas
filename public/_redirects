@@ -3,9 +3,19 @@
 # Legacy URLs still in Google's index
 /get-started           /contact                            301
 /blog/portfolio-red-flags-no-interviews  /blog/everyones-portfolio-looks-good-now  301
-/web-development       /design-services/web-development    301
-/ux-ui-design          /design-services/ux-ui-design       301
-/mobile-app-design     /design-services/mobile-app-design  301
+/web-development       /services/web-development           301
+/ux-ui-design          /services/ux-ui-design              301
+/mobile-app-design     /services/mobile-app-design         301
+
+# The three service pages moved from /design-services/* to /services/* on
+# 2026-11-26, so the site has one service taxonomy instead of two competing for
+# the same queries. Content moved with them; nothing was rewritten or dropped.
+# These must stay: all three URLs are in Google's index and were in the sitemap.
+/design-services/ux-ui-design        /services/ux-ui-design        301
+/design-services/mobile-app-design   /services/mobile-app-design   301
+/design-services/web-development     /services/web-development     301
+/design-services                     /services                     301
+/design-services/*                   /services/:splat              301
 # Order matters: /case-studies/* also matches the bare /case-studies with an
 # empty splat, sending it to /project/ — which 404s. The exact rule has to come
 # first. /case-studies was in the pre-restore sitemap, so it is likely indexed.
@@ -56,12 +66,12 @@
 /                                                    /index.html                                          200
 /services                                            /services/index.html                                 200
 /services/                                           /services/index.html                                 200
-/design-services/ux-ui-design                        /design-services/ux-ui-design/index.html             200
-/design-services/ux-ui-design/                       /design-services/ux-ui-design/index.html             200
-/design-services/mobile-app-design                   /design-services/mobile-app-design/index.html        200
-/design-services/mobile-app-design/                  /design-services/mobile-app-design/index.html        200
-/design-services/web-development                     /design-services/web-development/index.html          200
-/design-services/web-development/                    /design-services/web-development/index.html          200
+/services/ux-ui-design                               /services/ux-ui-design/index.html                    200
+/services/ux-ui-design/                              /services/ux-ui-design/index.html                    200
+/services/mobile-app-design                          /services/mobile-app-design/index.html               200
+/services/mobile-app-design/                         /services/mobile-app-design/index.html               200
+/services/web-development                            /services/web-development/index.html                 200
+/services/web-development/                           /services/web-development/index.html                 200
 /about                                               /about/index.html                                    200
 /about/                                              /about/index.html                                    200
 /contact                                             /contact/index.html                                  200

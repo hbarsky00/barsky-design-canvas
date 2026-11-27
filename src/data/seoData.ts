@@ -94,19 +94,19 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     description: 'Templates for the two things designers keep rewriting from scratch: case-study structures and the posts that point at them. $10 each, sold by request.',
     image: 'https://barskydesign.pro/images/og/page-store.png'
   },
-  '/design-services/ux-ui-design': {
+  '/services/ux-ui-design': {
     kind: 'page',
     title: 'Product Design Services — Research to Code | Barsky Design',
     description: 'Research, interface design and a working front end — from one person who sees the decision through to production. 15+ years in fintech and healthcare.',
     image: 'https://barskydesign.pro/images/og/service-ux-ui-design.png'
   },
-  '/design-services/mobile-app-design': {
+  '/services/mobile-app-design': {
     kind: 'page',
     title: 'Mobile App Design — iOS & Android UX/UI | Barsky Design',
     description: 'Design and build for phone-first products: the interface, the interaction model and the front end. Designed at phone width first, tested on a real device.',
     image: 'https://barskydesign.pro/images/og/service-mobile-app-design.png'
   },
-  '/design-services/web-development': {
+  '/services/web-development': {
     kind: 'page',
     title: 'Web Development — React & Frontend | Barsky Design',
     description: 'React and TypeScript front ends, built by the person who designed them — including the database, the deploy and the parts nobody demos.',

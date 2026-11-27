@@ -35,9 +35,9 @@ const PREAMBLE = `# Barsky Design
 - [Home](/): Overview, hero, featured case studies, services and contact.
 - [About](/about): Background and 15+ years designing and developing software in regulated industries.
 - [Services](/services): What he designs and develops — SaaS, web apps, mobile apps, internal tools.
-- [Design Services — UX/UI](/design-services/ux-ui-design): UX research, interaction design, and UI systems.
-- [Design Services — Mobile App Design](/design-services/mobile-app-design): iOS and Android app design, plus the build to go with it.
-- [Design Services — Web Development](/design-services/web-development): React and TypeScript web apps, designed and built by the same person.
+- [Design Services — UX/UI](/services/ux-ui-design): UX research, interaction design, and UI systems.
+- [Design Services — Mobile App Design](/services/mobile-app-design): iOS and Android app design, plus the build to go with it.
+- [Design Services — Web Development](/services/web-development): React and TypeScript web apps, designed and built by the same person.
 - [Store](/store): Downloadable design templates and resources.
 - [Blog](/blog): Articles on UX, design systems, AI, and career growth.
 - [Contact](/contact): Project inquiries and consultation requests.`;

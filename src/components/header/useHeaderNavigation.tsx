@@ -192,7 +192,7 @@ export const useHeaderNavigation = () => {
     
     // For service page
     if (link === "/services") {
-      return location.pathname === "/services" || location.pathname.startsWith("/design-services");
+      return location.pathname === "/services" || location.pathname.startsWith("/services/");
     }
     
     if (link.startsWith('#')) {

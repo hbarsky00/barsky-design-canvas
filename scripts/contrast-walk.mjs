@@ -89,7 +89,7 @@ const DEFAULT_ROUTES = [
   "/contact",
   "/store",
   "/blog",
-  "/design-services/ux-ui-design",
+  "/services/ux-ui-design",
 ];
 
 // ---------------------------------------------------------------- static host

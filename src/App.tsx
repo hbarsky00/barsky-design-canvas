@@ -27,9 +27,9 @@ const Store = React.lazy(() => import("@/pages/Store"));
 const ProjectDetail = React.lazy(() => import("@/pages/ProjectDetail"));
 
 // Service page imports - lazy loaded
-const UxUiDesign = React.lazy(() => import("@/pages/design-services/UxUiDesign"));
-const MobileAppDesign = React.lazy(() => import("@/pages/design-services/MobileAppDesign"));
-const WebDevelopment = React.lazy(() => import("@/pages/design-services/WebDevelopment"));
+const UxUiDesign = React.lazy(() => import("@/pages/services/UxUiDesign"));
+const MobileAppDesign = React.lazy(() => import("@/pages/services/MobileAppDesign"));
+const WebDevelopment = React.lazy(() => import("@/pages/services/WebDevelopment"));
 
 // Structured case study imports - lazy loaded
 const StructuredHerbalinkCaseStudy = React.lazy(() => import("@/pages/StructuredHerbalinkCaseStudy"));
@@ -75,9 +75,9 @@ function AppContent() {
               <Route path="/project/:projectId" element={<ProjectDetail />} />
               
               {/* Service pages */}
-              <Route path="/design-services/ux-ui-design" element={<UxUiDesign />} />
-              <Route path="/design-services/mobile-app-design" element={<MobileAppDesign />} />
-              <Route path="/design-services/web-development" element={<WebDevelopment />} />
+              <Route path="/services/ux-ui-design" element={<UxUiDesign />} />
+              <Route path="/services/mobile-app-design" element={<MobileAppDesign />} />
+              <Route path="/services/web-development" element={<WebDevelopment />} />
               
               {/* Other routes */}
               <Route path="/projects" element={<Navigate to="/#case-studies" replace />} />

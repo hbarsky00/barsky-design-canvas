@@ -22,9 +22,9 @@ export const PAGES_LIST: PageInfo[] = [
   { id: "blog", title: "Blog", url: "/blog", type: "blog-index" },
   
   // Service detail pages
-  { id: "ux-ui-design", title: "UX/UI Design", url: "/design-services/ux-ui-design", type: "service-detail" },
-  { id: "mobile-app-design", title: "Mobile App Design", url: "/design-services/mobile-app-design", type: "service-detail" },
-  { id: "web-development", title: "Web Development", url: "/design-services/web-development", type: "service-detail" },
+  { id: "ux-ui-design", title: "UX/UI Design", url: "/services/ux-ui-design", type: "service-detail" },
+  { id: "mobile-app-design", title: "Mobile App Design", url: "/services/mobile-app-design", type: "service-detail" },
+  { id: "web-development", title: "Web Development", url: "/services/web-development", type: "service-detail" },
   
   // Structured case studies
   ...Object.keys(structuredCaseStudies).map(id => ({

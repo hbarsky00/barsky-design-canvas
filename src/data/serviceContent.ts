@@ -1,5 +1,7 @@
 /**
- * Long-form content for /services and the three /design-services/* pages.
+ * Long-form content for /services and the three ServiceDetail pages —
+ * /services/{ux-ui-design,mobile-app-design,web-development}. The four
+ * ServiceLongform pages under /services/* come from servicesDetail.ts instead.
  *
  * These four pages were 169-195 words each against an 800-word baseline, and
  * /services stuffed "design" at 10.31% density. They are the commercial-intent
@@ -273,9 +275,9 @@ export const WEB_DEVELOPMENT: ServicePageContent = {
 };
 
 export const SERVICE_PAGES: Record<string, ServicePageContent> = {
-  "/design-services/ux-ui-design": UX_UI_DESIGN,
-  "/design-services/mobile-app-design": MOBILE_APP_DESIGN,
-  "/design-services/web-development": WEB_DEVELOPMENT,
+  "/services/ux-ui-design": UX_UI_DESIGN,
+  "/services/mobile-app-design": MOBILE_APP_DESIGN,
+  "/services/web-development": WEB_DEVELOPMENT,
 };
 
 /** The /services hub. Shorter per-section than the three detail pages, but it

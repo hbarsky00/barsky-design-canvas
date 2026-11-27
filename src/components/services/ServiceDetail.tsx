@@ -7,7 +7,8 @@ import type { ServicePageContent } from "@/data/serviceContent";
 /**
  * Renders a long-form service page.
  *
- * The three /design-services/* pages were an h1, one line, and three sections of a
+ * The three pages this renders — now /services/{ux-ui-design,
+ * mobile-app-design,web-development} — were an h1, one line, and three sections of a
  * single sentence each — 169 to 182 words, against an 800-word baseline for a
  * commercial landing page. This renders the real content, including the citable
  * answer passage and the internal links those pages never had.
