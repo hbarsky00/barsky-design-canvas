@@ -297,6 +297,15 @@ on the task itself and reused by every future run.
   Re-verify an item against the code before working it, and strike it here the
   moment it is closed.
 
+- **Clear ports with a LISTEN-only filter.** On 2026-11-27 this loop cleaned up
+  a stale `vite preview` on 4199 (a real find — it would have broken the next
+  run's capture) using `lsof -ti:4197 -ti:4199` and killing everything it
+  returned. That list also contained the Claude browser pane's own CLOSED client
+  sockets, so the loop sent a kill to a Claude Helper process. No damage this
+  time — the pane recovered and kept working — but an unattended run should not
+  be shooting at the app that runs it. Use
+  `lsof -nP -iTCP:4199 -sTCP:LISTEN -t`, which returns servers only.
+
 - **`capture-bodies` reads the built `dist/`, so it must run AFTER a build.**
   Running it first silently recaptures stale output and the postbuild gates then
   fail on things already fixed in source. Order is build → capture → build.
