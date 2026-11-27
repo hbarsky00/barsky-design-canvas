@@ -31,9 +31,11 @@ const NotFound: React.FC = () => (
         /a-stale-link-from-2024 returned 404 with
         "Hiram Barsky — Product Designer & Front-End Developer". Helmet mounts
         below UnifiedSEO, so it wins. */}
+    {/* Title only. The shell already ships noindex for every path that
+        reaches this page, and `inject-seo-html.ts` carries a comment about the
+        last time two robots metas coexisted here. */}
     <Helmet>
       <title>Page not found — Barsky Design</title>
-      <meta name="robots" content="noindex, follow" />
     </Helmet>
     <Header />
     <main
