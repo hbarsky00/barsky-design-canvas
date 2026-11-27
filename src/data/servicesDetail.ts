@@ -76,16 +76,16 @@ export const services: Service[] = [
       },
     ],
     process: [
-      { step: "Frame", body: "We look at real model output at volume — hundreds of rows, not the six that made the deck. You cannot design for behavior you have not watched." },
+      { step: "Frame", body: "I look at real model output at volume — hundreds of rows, not the six that made the deck. You cannot design for behavior you have not watched." },
       { step: "Design", body: "Interaction model and interface, designed from the ugliest realistic input rather than the clean one. If it holds there, the clean case takes care of itself." },
       { step: "Ship", body: "Built in React and TypeScript, so the engagement can end in working software instead of a file someone still has to interpret." },
       { step: "Measure", body: "Watch where people hesitate, correct, or abandon. Those three moments tell you more than any satisfaction score." },
     ],
     proof: ["nudgeme", "herbalink", "stips"],
     shape:
-      "Most AI product design engagements run four to ten weeks, depending on whether we are shaping something new or repairing a product that demos well and stalls with real users. Project-based or retainer. The first thirty-minute call is free and is where scope gets defined \u2014 you leave it with a clear picture of the work whether or not you hire us.",
+      "Most AI product design engagements run four to ten weeks, depending on whether I am shaping something new or repairing a product that demos well and stalls with real users. Project-based or retainer. The first thirty-minute call is free and is where scope gets defined \u2014 you leave it with a clear picture of the work whether or not you hire me.",
     notFor:
-      "This is the wrong service if the AI in your product is genuinely incidental \u2014 a smart filter bolted onto a stable core, where the value would survive removing it. That is ordinary product design and you should pay ordinary product design prices for it. It is also wrong if what you actually need is a model that performs better; we design behavior around a model, we do not train one. And if the goal is a demo for a funding round rather than something people will use on a Tuesday, say so up front, because the work is different and cheaper.",
+      "This is the wrong service if the AI in your product is genuinely incidental \u2014 a smart filter bolted onto a stable core, where the value would survive removing it. That is ordinary product design and you should pay ordinary product design prices for it. It is also wrong if what you actually need is a model that performs better; I design behavior around a model, I do not train one. And if the goal is a demo for a funding round rather than something people will use on a Tuesday, say so up front, because the work is different and cheaper.",
     faqs: [
       {
         q: "What makes AI product design different from regular UX?",
@@ -97,7 +97,7 @@ export const services: Service[] = [
       },
       {
         q: "Can you build it, or only design it?",
-        a: "Both. We build in React and TypeScript, which is the point of the studio. The design is made by the person who has to implement it, so it accounts for real constraints — latency, failure, cost — instead of discovering them late.",
+        a: "Both. I build in React and TypeScript, which is the whole point. The design is made by the person who has to implement it, so it accounts for real constraints — latency, failure, cost — instead of discovering them late.",
       },
     ],
   },
@@ -143,11 +143,11 @@ export const services: Service[] = [
       { step: "Audit", body: "Inventory what exists across the live product. Most teams are surprised how many button variants they actually shipped." },
       { step: "Define", body: "Tokens and primitives first, in code. Names that describe intent, so they still make sense after a redesign." },
       { step: "Build", body: "Components with their real states, typed and accessible, adopted incrementally rather than in one risky sweep." },
-      { step: "Hand over", body: "Docs plus the governance rules, so the system keeps working without us in the room." },
+      { step: "Hand over", body: "Docs plus the governance rules, so the system keeps working without me in the room." },
     ],
     proof: ["dae-search", "stips"],
     shape:
-      "Design system work usually runs six to twelve weeks for an initial system, then a lighter retainer while adoption happens \u2014 because the failure mode is not building the system, it is nobody using it. We can also audit an existing system and fix what is broken rather than starting over, which is often the cheaper and better answer.",
+      "Design system work usually runs six to twelve weeks for an initial system, then a lighter retainer while adoption happens \u2014 because the failure mode is not building the system, it is nobody using it. I can also audit an existing system and fix what is broken rather than starting over, which is often the cheaper and better answer.",
     notFor:
       "You probably do not need this yet if one person builds all your UI, or if the product is still changing shape weekly. A system built on top of an unsettled product locks in decisions you are about to change, and you pay maintenance for consistency you were not going to break anyway. Define your tokens now, because those are cheap early and expensive to retrofit, and come back for the rest when a second person starts building UI and you have had your first argument about which component is correct.",
     faqs: [
@@ -157,7 +157,7 @@ export const services: Service[] = [
       },
       {
         q: "Do you build it in Figma or in code?",
-        a: "Both, but code is the source of truth. A system that lives only in Figma drifts from the product within a quarter, because the thing that ships is the code. We keep the design file as a companion, not the master copy.",
+        a: "Both, but code is the source of truth. A system that lives only in Figma drifts from the product within a quarter, because the thing that ships is the code. I keep the design file as a companion, not the master copy.",
       },
       {
         q: "What stops it from rotting after you leave?",
@@ -185,7 +185,7 @@ export const services: Service[] = [
       {
         title: "Research that answers a decision",
         body:
-          "Scoped to a question someone is waiting on, not a general survey of users. If a finding wouldn’t change what you build, we don’t spend a week gathering it.",
+          "Scoped to a question someone is waiting on, not a general survey of users. If a finding wouldn’t change what you build, I don’t spend a week gathering it.",
       },
       {
         title: "Journey and flow mapping",
@@ -207,13 +207,13 @@ export const services: Service[] = [
       { step: "Frame", body: "Agree the decision this work has to inform. Everything after gets judged against that." },
       { step: "Research", body: "Talk to real users, watch real sessions, read the support tickets nobody reads. The tickets are usually the cheapest insight in the building." },
       { step: "Synthesise", body: "Flows, findings and a roadmap — with the trade-offs stated rather than smoothed over." },
-      { step: "Measure", body: "Define the numbers up front, including the one that would prove us wrong." },
+      { step: "Measure", body: "Define the numbers up front, including the one that would prove me wrong." },
     ],
     proof: ["dae-search", "herbalink", "roicalc"],
     shape:
       "Strategy and research engagements are usually two to six weeks \u2014 long enough to talk to real users and read the evidence you already have, short enough that the answer still matters when it arrives. Delivered as flows, findings and a sequenced roadmap, plus the business case if a budget conversation is coming.",
     notFor:
-      "This is not the right service if the decision is already made and what you want is evidence to support it. That work exists, it is just not research, and we are bad at it on purpose. It is also wrong if you need a number by Friday for a deck \u2014 good research on a real question takes longer than that, and a fast answer you cannot defend is worse than no answer. If you have never read your own support tickets in bulk, start there before hiring anyone; it is free and it often reframes the question.",
+      "This is not the right service if the decision is already made and what you want is evidence to support it. That work exists, it is just not research, and I am bad at it on purpose. It is also wrong if you need a number by Friday for a deck \u2014 good research on a real question takes longer than that, and a fast answer you cannot defend is worse than no answer. If you have never read your own support tickets in bulk, start there before hiring anyone; it is free and it often reframes the question.",
     faqs: [
       {
         q: "How do you make the business case for design work?",
@@ -221,7 +221,7 @@ export const services: Service[] = [
       },
       {
         q: "How much research is enough?",
-        a: "Enough to change a decision, and not more. Five well-run sessions on a specific question beat fifty on a vague one. The failure mode we see most is research that produces a beautiful deck nobody acts on, usually because the question was never tied to a decision anyone was waiting to make.",
+        a: "Enough to change a decision, and not more. Five well-run sessions on a specific question beat fifty on a vague one. The failure mode I see most is research that produces a beautiful deck nobody acts on, usually because the question was never tied to a decision anyone was waiting to make.",
       },
       {
         q: "Can you work with what we already have?",
@@ -233,7 +233,7 @@ export const services: Service[] = [
     slug: "prototype-to-ship",
     title: "Prototype to Ship",
     blurb:
-      "We don’t hand off a static file. We build and ship the real thing with React, TypeScript, and modern AI tooling.",
+      "I don’t hand off a static file. I build and ship the real thing with React, TypeScript, and modern AI tooling.",
     points: ["React / TypeScript", "Rapid prototyping", "Production frontend"],
     metaTitle: "Prototype to Ship",
     metaDescription:
@@ -264,7 +264,7 @@ export const services: Service[] = [
       {
         title: "Handover you can maintain",
         body:
-          "Readable code, real components, and no dependency on us to keep it running.",
+          "Readable code, real components, and no dependency on me to keep it running.",
       },
     ],
     process: [
@@ -277,11 +277,11 @@ export const services: Service[] = [
     shape:
       "Prototype-to-ship engagements typically run six to twelve weeks to a live v1, scoped hard around what has to be true for launch. Project-based, or a retainer if you want continued iteration once real users arrive. Agencies use the same arrangement for overflow, under their brand.",
     notFor:
-      "This is the wrong fit if you need deep backend or infrastructure work \u2014 we build production frontend and the design that goes with it, not your data platform. It is also wrong if you want a designer to hand mockups to your existing team, because the whole point here is that the same hands do both and you would be paying for a benefit you are not taking. And if your requirements genuinely cannot be cut to a shippable v1, that is a scoping problem worth solving before anyone writes code. Nor is it the right page if the product already exists \u2014 a design that is finished, something already in the market, or a codebase inherited from a team that has moved on. That work is the web development engagement, which is about building and keeping a system running rather than getting a first version out of the door.",
+      "This is the wrong fit if you need deep backend or infrastructure work \u2014 I build production frontend and the design that goes with it, not your data platform. It is also wrong if you want a designer to hand mockups to your existing team, because the whole point here is that the same hands do both and you would be paying for a benefit you are not taking. And if your requirements genuinely cannot be cut to a shippable v1, that is a scoping problem worth solving before anyone writes code. Nor is it the right page if the product already exists \u2014 a design that is finished, something already in the market, or a codebase inherited from a team that has moved on. That work is the web development engagement, which is about building and keeping a system running rather than getting a first version out of the door.",
     faqs: [
       {
         q: "Do we get code we can maintain, or a throwaway prototype?",
-        a: "Production code. Typed React and TypeScript, real components, deployed and running — the same stack a team would keep building on. Several of the products on this site were built this way and are live today, which is the check worth making on any studio claiming this: ask for a URL you can open, not a screenshot.",
+        a: "Production code. Typed React and TypeScript, real components, deployed and running — the same stack a team would keep building on. Several of the products on this site were built this way and are live today, which is the check worth making on anyone claiming this: ask for a URL you can open, not a screenshot.",
       },
       {
         q: "How does AI fit into how you build?",
@@ -289,7 +289,7 @@ export const services: Service[] = [
       },
       {
         q: "What if we already have engineers?",
-        a: "That works well. We take a feature end to end and hand back working code your team reviews, rather than a spec they have to interpret. Agencies and dev shops use us the same way when design demand outruns capacity.",
+        a: "That works well. I take a feature end to end and hand back working code your team reviews, rather than a spec they have to interpret. Agencies and dev shops use me the same way when design demand outruns capacity.",
       },
     ],
   },
