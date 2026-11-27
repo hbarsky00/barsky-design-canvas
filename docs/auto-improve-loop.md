@@ -53,6 +53,13 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
      It carries its own Chromium, so it can measure Core Web Vitals for real
      rather than inferring them. Use it and `amazing-seo-skill` together and
      reconcile where they disagree; neither is automatically right
+   - for a scripted DOM sweep, `node_modules/playwright` is installed but
+     **its browsers are not** — `chromium.launch()` fails with "Executable
+     doesn't exist". Launch with `chromium.launch({ channel: 'chrome' })` to
+     drive the Chrome already on this machine, and serve the built site with
+     `node scripts/_srv.mjs` (static, port 4197, SPA-falls-back to
+     `dist/spa-shell.html`). Import playwright by absolute path if the script
+     lives outside the repo. Found 2026-11-26 after three failed launches.
    - for CRAFT and FLOW: build, open the preview, and actually look — at
      375px, 768px and 1440px. **This site has no dark theme and never will.**
      Do not add a toggle, do not "solve" a token for dark, and watch for any
