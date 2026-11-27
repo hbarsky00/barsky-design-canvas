@@ -65,8 +65,15 @@ const Header: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         "pointer-events-auto",
         "py-3 sm:py-4",
-        "md:translate-y-0",
         "bg-background border-b border-border shadow-sm",
+        /* The hidden state must leave the viewport, not just fade out. A stray
+           `md:translate-y-0` used to win over `-translate-y-full` at >=768px
+           while `opacity-0` had no md variant, so on the homepage the header sat
+           at top:0 fully transparent and fully hit-testable: measured 2026-11-26,
+           elementFromPoint(720, 30) returned a nav-link at 1440px and the
+           "Open navigation menu" button at 768px — invisible controls over the
+           hero, and tab stops before any content. Off-screen costs nothing
+           visually (it was already invisible) and removes both. */
         shouldShowHeader ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
