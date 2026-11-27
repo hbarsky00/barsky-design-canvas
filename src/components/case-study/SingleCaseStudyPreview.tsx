@@ -177,6 +177,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
                       className="flex items-center justify-center gap-2"
                     >
                       View live
+                      <span className="sr-only"> (opens in a new tab)</span>
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </Button>

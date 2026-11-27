@@ -125,6 +125,7 @@ const Actions: React.FC<{ project: CaseStudyFeatureProject; tone?: "light" | "da
                     }`}
       >
         View live
+        <span className="sr-only"> (opens in a new tab)</span>
         <ArrowUpRight
           className="h-4 w-4 transition-transform duration-200 motion-safe:group-hover/live:-translate-y-0.5"
           aria-hidden="true"

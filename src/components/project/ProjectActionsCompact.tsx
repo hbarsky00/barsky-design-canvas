@@ -76,6 +76,7 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
             the hero copy quotes "View live" by name, so that is the one that
             stays. Short enough that it needs no responsive variant. */}
         <span>View live</span>
+        <span className="sr-only"> (opens in a new tab)</span>
         <ExternalLink className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
       </a>
 
