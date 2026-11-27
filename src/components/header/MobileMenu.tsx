@@ -40,6 +40,41 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [isMobileMenuOpen, toggleMobileMenu]);
+
+  /* Focus walked straight out of the open panel into the page it covers.
+     Measured at 375px: twelve Tabs from the open menu reached "See My Work",
+     "Book a Call" and a case-study link — all behind the panel, none of them
+     visible. Keep the loop inside the toggle plus the panel; the toggle is the
+     close button while the menu is open, so it belongs in the cycle. */
+  React.useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const panel = panelRef.current;
+      const toggle = toggleRef.current;
+      if (!panel || !toggle) return;
+      const stops = [
+        toggle,
+        ...Array.from(
+          panel.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ),
+      ];
+      const first = stops[0];
+      const last = stops[stops.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && (active === first || !stops.includes(active as HTMLElement))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onTab);
+    return () => document.removeEventListener("keydown", onTab);
+  }, [isMobileMenuOpen]);
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
@@ -78,6 +113,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 
         {isMobileMenuOpen && (
           <div
+            ref={panelRef}
             id="mobile-navigation"
             role="menu"
             aria-label="Mobile navigation menu"
