@@ -125,11 +125,13 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({
         </div>
         
         <div className="text-center mt-8 md:mt-12">
-          <Link to="/blog">
-            <Button size="lg" variant="outline">
-              View All Posts
-            </Button>
-          </Link>
+          {/* Was <Link><Button>…</Button></Link>: a <button> inside an <a> is
+              interactive content nested in interactive content, so one action
+              took two tab stops and announced as "link, button". asChild
+              renders the anchor *as* the button — same look, one control. */}
+          <Button asChild size="lg" variant="outline">
+            <Link to="/blog">View All Posts</Link>
+          </Button>
         </div>
       </div>
     </section>
