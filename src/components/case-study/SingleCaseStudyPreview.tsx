@@ -176,7 +176,7 @@ const SingleCaseStudyPreview: React.FC<SingleCaseStudyPreviewProps> = ({ current
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"
                     >
-                      View Live Project
+                      View live
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </Button>

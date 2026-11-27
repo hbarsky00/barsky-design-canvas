@@ -68,10 +68,14 @@ const ProjectActionsCompact: React.FC<ProjectActionsCompactProps> = ({
         target="_blank"
         rel="noopener noreferrer"
         className="flex-1 inline-flex items-center justify-center rounded-full px-4 py-3 bg-primary text-primary-foreground font-medium shadow-md hover:bg-primary/90 transition-colors active:scale-[.99] min-h-[44px]"
-        aria-label="Visit live project site"
+        aria-label="View the live site"
       >
-        <span className="hidden sm:inline">Visit Live Site</span>
-        <span className="sm:hidden">Visit Site</span>
+        {/* Was "Visit Live Site" / "Visit Site" across a breakpoint. The site
+            used three labels for one action — "View live" on the homepage
+            cards, this pair here, "View Live Project" under More Work — and
+            the hero copy quotes "View live" by name, so that is the one that
+            stays. Short enough that it needs no responsive variant. */}
+        <span>View live</span>
         <ExternalLink className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
       </a>
 
