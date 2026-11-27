@@ -1970,7 +1970,7 @@ was never called, and the homepage's standing CTA was dark. Confirmed.
 
 | # | Improvement | File(s) | Lens | Measured before → after | Live |
 |---|---|---|---|---|---|
-| 1 | The consultation bubble was dark on every visit, and turning it on needed the prompt handoff to exist first | `FloatingConsultationBubble.tsx`, `bounce-reduction/ScrollEngagement.tsx` | craft + relationship-design | `#hero` never resolved → **0** sightings at any scroll position; now 222×44 at 375px / 254×44 at 1440px once past `#intro`, hidden at top, hidden while `#contact` is in view, and it stands down while the one-time prompt is up | pending |
+| 1 | The consultation bubble was dark on every visit, and turning it on needed the prompt handoff to exist first | `FloatingConsultationBubble.tsx`, `bounce-reduction/ScrollEngagement.tsx` | craft + relationship-design | `#hero` never resolved → **0** sightings at any scroll position; now 222×44 at 375px / 254×44 at 1440px once past `#intro`, hidden at top, hidden while `#contact` is in view, and it stands down while the one-time prompt is up | **yes** |
 | 2 | The admin CTA inventory still named the old title-case label | `export/extractors/global.ts` | ux-writing | `"Book A Free Consultation"` in the export's cta list vs `"Book a free consultation"` on the button → both sentence case, 0 title-case left in `src/` | n/a (admin route, not prerendered) |
 
 ### Gate
@@ -2028,3 +2028,26 @@ that is wrong. See [[feedback_verify_the_checker_not_just_the_code]].
 - `StructuredCaseStudyLayout.tsx:54` offers a `#hero` anchor and
   `CaseStudyHero.tsx:238` declares `id="hero"` — those two do match. Noted only
   because this run was in the neighbourhood; not inspected further.
+
+### Verified on production
+
+Live bundle `index-HOSNYtV_.js`, byte-identical in name to the local build, up
+60s after the push. `grep -c 'Book a free consultation'` is **0** against
+`https://barskydesign.pro/` (the static HTML) and **1** against the bundle —
+the CTA ships as behaviour, not as markup.
+
+Chrome against `https://barskydesign.pro`, 1440x900 with
+`prefers-reduced-motion: reduce`:
+
+| scroll | bubble | prompt | #contact in view |
+|---|---|---|---|
+| 0% | no | no | false |
+| 15 / 30 / 45% | **254x44** | no | false |
+| 60% | no | **YES** | false |
+| 70 / 80% | no | no | **true** |
+| 90 / 100% | **254x44** | no | false |
+
+Handoff re-checked live at 375x812 and 1440x900: bubble up past `#intro`,
+hidden on `engagement-prompt{detail:true}`, back on `{detail:false}`.
+Screenshots at both widths show it legible in the bottom-left with the
+scroll-to-top button clear in the bottom-right -- no collision.
