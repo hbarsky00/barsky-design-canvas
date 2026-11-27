@@ -743,7 +743,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       designTools: ["Figma", "Protopie"],
     },
     gradientClasses: "from-green-50 via-emerald-50 to-teal-50",
-    projectLink: "http://herbalink.live",
+    projectLink: "https://herbalink.live",
     heroVideo: {
       src: "/herbalink-card.mp4",
       poster: "/images/herbalink/card-poster-home.jpg",
