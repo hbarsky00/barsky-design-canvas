@@ -75,6 +75,25 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     document.addEventListener("keydown", onTab);
     return () => document.removeEventListener("keydown", onTab);
   }, [isMobileMenuOpen]);
+
+  /* The page kept scrolling under the open panel — measured body overflow-y
+     "auto" while open at 375px — so a flick aimed at the menu moved the page
+     behind it instead, and the panel is anchored to the header, which scrolls
+     away. Lock the document while it is open and put the scrollbar's width
+     back as padding so desktop does not shift when it is briefly open there. */
+  React.useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    const previousPadding = root.style.paddingRight;
+    const scrollbar = window.innerWidth - root.clientWidth;
+    root.style.overflow = "hidden";
+    if (scrollbar > 0) root.style.paddingRight = `${scrollbar}px`;
+    return () => {
+      root.style.overflow = previousOverflow;
+      root.style.paddingRight = previousPadding;
+    };
+  }, [isMobileMenuOpen]);
   // Function to get the appropriate icon for each link
   const getIcon = (linkName: string) => {
     switch (linkName.toLowerCase()) {
