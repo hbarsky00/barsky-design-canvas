@@ -1954,3 +1954,77 @@ first place, because fixing the lookup alone puts two floating CTAs on screen.
 **It never passed the ship gate** — no `typecheck`, no build, never verified.
 Do not assume it is good. The next run should either finish it through the
 gate or discard it deliberately, not sweep it into an unrelated commit.
+
+## 2026-11-26 (run 3, continued) — THE ORPHANED BUBBLE PATCH, FINISHED THROUGH THE GATE
+
+Hiram said finish it. The stand-down above left `b6723708`'s work uncommitted;
+this took it through the ship gate it never reached, and the diagnosis in it
+held up under checking.
+
+**Verified the premise first, rather than trusting the patch's own comment.**
+`id="intro"` is `HomepageLayout.tsx:41` and `id="contact"` is line 80;
+`id="hero"` exists **only** in `case-study/structured/CaseStudyHero.tsx`, a
+different route. So the original `getElementById("hero")` could never resolve
+on `/`, the `introSection && contactSection` guard never passed, `setIsVisible`
+was never called, and the homepage's standing CTA was dark. Confirmed.
+
+| # | Improvement | File(s) | Lens | Measured before → after | Live |
+|---|---|---|---|---|---|
+| 1 | The consultation bubble was dark on every visit, and turning it on needed the prompt handoff to exist first | `FloatingConsultationBubble.tsx`, `bounce-reduction/ScrollEngagement.tsx` | craft + relationship-design | `#hero` never resolved → **0** sightings at any scroll position; now 222×44 at 375px / 254×44 at 1440px once past `#intro`, hidden at top, hidden while `#contact` is in view, and it stands down while the one-time prompt is up | pending |
+| 2 | The admin CTA inventory still named the old title-case label | `export/extractors/global.ts` | ux-writing | `"Book A Free Consultation"` in the export's cta list vs `"Book a free consultation"` on the button → both sentence case, 0 title-case left in `src/` | n/a (admin route, not prerendered) |
+
+### Gate
+
+`npm run typecheck` exit 0 (both projects). `npm run build` exit 0 three times
+— 67 routes, no dead links, no dead anchors, 49 post bodies match source,
+nothing shipped at opacity 0. `npm run capture-bodies` 67/67, exit 0.
+
+**`capture-bodies` printed "stripped 1 transient overlay(s)".** That one line is
+double proof: the bubble now *renders* (it never did before, so nothing was
+there to strip), and `data-transient` keeps it out of the snapshot —
+`capture-prerendered-bodies.ts:189` removes `[data-transient]`.
+`prerendered-bodies/` came back **byte-identical**, and
+`grep -c 'Book a free consultation' dist/index.html` is **0**. A scroll-only
+overlay is not in the HTML every visitor receives.
+
+### Measured in a real browser, not reasoned about
+
+Chrome via `chromium.launch({ channel: 'chrome' })` against
+`node scripts/_srv.mjs` on 4197 — the incantation `59612aba` recorded, which
+saved this run the three failed launches that one spent.
+
+- **Full designed cycle** (1440×900, reduced motion): hidden at top → visible
+  15–45% → prompt fires at 60–65% with the bubble correctly **hidden** →
+  `#contact` in view 70–80%, bubble hidden → bubble returns 90–100%.
+- **Handoff contract, both viewports**: past `#intro` the bubble is up;
+  `engagement-prompt{detail:true}` hides it; `{detail:false}` brings it back.
+  Tested by dispatching the event directly, because the prompt's own 60%/TTL
+  conditions do not reproduce reliably in a scripted scroll.
+- **Touch target**: 222×44 and 254×44 settled — over the 44px floor. First pass
+  reported 25px and 4px; those were reads taken **mid-spring**, which the
+  reduced-motion column disproved. Re-measured after polling for a stable box.
+- **No fixed-overlay collision** at 375 / 768 / 1440. The one overlap the sweep
+  flagged is Sonner's empty toast `<ol>` at `z-[100]`, which carries
+  `pointer-events: none` — `elementFromPoint` at top-centre returns the page,
+  not the list. Not a finding.
+
+### Two of this run's own assertions were wrong, and the code was right
+
+Worth writing down, because both would have read as regressions:
+- *"bubble still visible at the bottom"* — `#contact` is **6th of 8** sections;
+  `#blog` and `#faq` follow it. Visible at 100% scroll is the designed rule.
+- *"bubble and prompt both visible"* — the boxes were `1x0` and `21x4`: an exit
+  transition caught in flight, not a steady state. Gone under reduced motion.
+
+A test that fails teaches nothing until you check whether the test is the thing
+that is wrong. See [[feedback_verify_the_checker_not_just_the_code]].
+
+### Still open
+
+- Unchanged from the run above: nine blog posts with no `coverCaption`
+  (`check:captions` exits 1, Hiram's media call), six routes whose `modified`
+  date predates their last content commit, and the FLAGGED "what I don't do"
+  slot on the not-found page.
+- `StructuredCaseStudyLayout.tsx:54` offers a `#hero` anchor and
+  `CaseStudyHero.tsx:238` declares `id="hero"` — those two do match. Noted only
+  because this run was in the neighbourhood; not inspected further.
