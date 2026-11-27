@@ -38,6 +38,7 @@ const StructuredBusinessManagementCaseStudy = React.lazy(() => import("@/pages/S
 // const StructuredCryptoCaseStudy = React.lazy(() => import("@/pages/StructuredCryptoCaseStudy")); // DRAFT
 const ContentExport = React.lazy(() => import("@/pages/ContentExport"));
 import ServiceLongformPage from "@/pages/ServiceLongformPage";
+import NotFound from "@/pages/NotFound";
 
 
 const queryClient = new QueryClient();
@@ -91,8 +92,12 @@ function AppContent() {
               {/* Hidden content export route */}
               <Route path="/admin/content-export-2024" element={<ContentExport />} />
               
-              {/* Catch all - redirect to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Catch all. Was <Navigate to="/" replace />, which silently
+                  teleported anyone on a dead link to the homepage and left the
+                  back button pointing at the dead URL — while Netlify was
+                  already serving these with a 404 status and the title
+                  "Page not found". Now the page says so. */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </SpatialNavigationWrapper>
