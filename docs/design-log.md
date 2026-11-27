@@ -1787,3 +1787,117 @@ is now verified end to end on production, not just as code.
   appear.
 - The nine missing blog cover captions, the six stale `modified` dates, and the
   `/#case-studies` 3.6s scroll jump are all unchanged from the entries above.
+
+## 2026-11-26 (run 2 of 2, evening) — TWELVE UI/UX IMPROVEMENTS — pushed and verified live
+
+Second run of the day under the 2026-11-26 terms, so this is the run that
+pushes. The day's first run had already pushed its own ten
+(`ef0ccfc3`..`555adbef`) plus the engagement-prompt follow-up, so
+`git log origin/main..HEAD` was empty at the start — nothing was left waiting
+and nothing needed rescuing. Twelve shipped here, in `0b3495d5`..`fd60c2f6`.
+
+**No dead runs to report.** `list_task_runs` shows the last four runs all
+succeeded with real summaries and matching commits in the repo.
+
+Lenses: `bencium-innovative-ux-designer` (craft, critique-then-fix),
+`ux-review` (heuristics, WCAG, interaction states), `ux-writing` (interface
+copy), `relationship-design` (what a cold arrival gets). Found by measurement:
+a scripted DOM sweep over 12 routes at 375 / 768 / 1440 for overflow, tap
+targets, zero-size images, upscaling, heading order, unnamed controls and
+clipped text; a keyboard walk of the contact page and the mobile menu; a
+reduced-motion pass; `check:contrast`, `check-content-dates.mjs`,
+`check-internal-links.mjs`.
+
+| # | Improvement | File(s) | Lens | Measured before → after | Live |
+|---|---|---|---|---|---|
+| 1 | The hidden homepage header was invisible but still clickable at ≥768px | `Header.tsx` | ux-review | `elementFromPoint` at top-centre returned a nav-link (1440) and "Open navigation menu" (768), 2 header hit-targets → header off-screen at `top:-97`, **0** hit-targets, 0 tab stops | yes |
+| 2 | Escape did nothing to the open mobile menu | `header/MobileMenu.tsx` | ux-review | Escape left `aria-expanded="true"`, panel on screen → closes, focus back on the toggle | yes |
+| 3 | Keyboard focus walked out of the open menu into the page it covers | `header/MobileMenu.tsx` | ux-review | 12 Tabs reached "See My Work", "Book a Call", a case-study link, all behind the panel → cycles Close → 6 links → Close, 0 escapes | yes |
+| 4 | The page scrolled behind the open menu | `header/MobileMenu.tsx` | craft | document `overflow-y: auto` while open, 600px wheel moved the page → locked at scrollY 3000, restored on close | yes |
+| 5 | The panel claimed `role="menu"` over plain links | `header/MobileMenu.tsx` | ux-review | `role="menu"` with zero `menuitem` children and no arrow-key support → role dropped, `<nav aria-label="Site navigation">` | yes |
+| 6 | Dead URLs silently teleported you to the homepage | `pages/NotFound.tsx` (new), `App.tsx` | relationship-design | `<Navigate to="/" replace />` — homepage, no explanation, back button stuck on the dead URL → own page, URL kept, 4 exits at 90–110px | yes |
+| 7 | Three "Read More" links under the touch minimum | `blog/BlogPreview.tsx` | craft | 96×**20** (WCAG 2.5.8 floor is 24, this site's own standard is 44) → 96×**44** at 375px, 106×44 at 1440px, text unmoved | yes |
+| 8 | "View All Posts" was a `<button>` inside an `<a>` | `blog/BlogPreview.tsx` | ux-review | both tabbable: **2 tab stops for one action**, announced "link, button" → 1 anchor, 343×48 at 375px, no nested button | yes |
+| 9 | Four labels for "open the live product" | `project/ProjectActionsCompact.tsx`, `case-study/SingleCaseStudyPreview.tsx` | ux-writing | "View live" / "Visit Live Site" / "Visit Site" / "View Live Project", two of them on one page → "View live" everywhere | yes |
+| 10 | Live-product links opened a new tab without saying so | `ProjectActionsCompact.tsx`, `SingleCaseStudyPreview.tsx`, `home/CaseStudyFeature.tsx` | ux-writing | 3 `target="_blank"` links, 0 notices, while `ShippedProductsSection` already had the pattern → all 3 carry the same sr-only " (opens in a new tab)" | yes |
+| 11 | The HerbaLink link was plain `http://` | `data/structuredCaseStudies.ts` | craft | `http://herbalink.live` → 301 → `https://herbalink.live/`; the site's only `http://` product link → `https://` direct, 0 extra hops | yes |
+| 12 | The 404 page wore the homepage's title | `pages/NotFound.tsx` | ux-writing | production returned 404 with `<title>Hiram Barsky — Product Designer & Front-End Developer</title>` → "Page not found — Barsky Design" | yes |
+
+### Verified on production, not just built
+
+Bundle `index-BmZpKm_X.js` confirmed live before testing. At 375×812 and
+1440×900 against https://barskydesign.pro:
+
+| check | result |
+|---|---|
+| header hit-targets at top of `/` (768, 1440) | 0, header at `top:-97` |
+| mobile menu: scroll lock | held at 3000 through a 600px wheel |
+| mobile menu: 9 Tabs | 0 escapes, cycles back to Close |
+| mobile menu: Escape | `aria-expanded="false"`, panel removed, focus on the toggle |
+| `/a-stale-link-from-2024` | HTTP **404**, URL kept, title "Page not found — Barsky Design", one `noindex, follow`, h1 "That page isn't here", exits `/#case-studies` `/services` `/blog` `/contact` |
+| "Read More" heights | 44, 44, 44 |
+| "View All Posts" | 48px, no nested button |
+| homepage "View live" links | 2, both carry the new-tab notice |
+| `/project/herbalink` outbound | `https://herbalink.live` and `https://catchbuddy.fit`, both "View live (opens in a new tab)"; no "Visit Live Site", no `http://herbalink` |
+
+Gate: `npm run typecheck` EXIT 0 (both projects). `npm run capture-bodies`
+**67/67**, zero failures. `npm run build` EXIT 0, all five postbuild checks
+passing. `check:contrast` still clean on all 7 routes × 2 widths.
+
+The snapshot diff was checked by token rather than by eye: 71 lines across 67
+files, and the only strings that left `prerendered-bodies/` were
+`md:translate-y-0`, `Visit`, `sm:inline`, `sm:hidden` and
+`http://herbalink.live`. No prose moved — `check-prose-integrity` confirms 49
+post bodies still match source. Nothing transient was baked in.
+
+A first pass at 12 added `<meta name="robots" content="noindex, follow">`
+alongside the title and shipped **two identical robots metas** — the shell
+injects one for every path that reaches this page. Harmless as directives,
+but `inject-seo-html.ts` carries a comment about the last time two robots
+tags coexisted here and the permissive one won, so the redundant one came
+straight back out rather than being left to be rediscovered.
+
+### Three findings discarded rather than shipped
+
+All three looked real on the measurement and would have padded the run:
+
+- **`/project/splittime` has a zero-height hero image (`Dashboard1st.png` at
+  295×0, 552×0) and two buttons with no accessible name.** The route still
+  builds locally but **301s on production** and is absent from the sitemap, so
+  nobody can reach it. Fixing it would have been three log lines of nothing.
+- **Dozens of "clipped text" hits** — `scrollHeight` over `clientHeight` with
+  `overflow: hidden`. Every one checked was a deliberate `line-clamp` on a blog
+  excerpt (72/144 is three lines of six) or an `sr-only` span measuring 1px.
+- **A homepage `h1 → h3` heading skip**, reported at all three widths. The h2
+  between them ("Designing complex products into simpler experiences.") exists;
+  the sweep's visibility filter rejected it mid scroll-reveal, when its opacity
+  was under 0.05. A heading walk with the animation settled shows a clean
+  H1 → H2 → H3.
+
+### Measured and found better than the log claimed
+
+- **`/#case-studies` no longer jumps 561px after 3.6s.** That entry has been
+  carried in this log since 2026-11-16. Measured now at 375px: lands at
+  scrollY 1171, settles at 1256 by ~840ms, and holds for the next five
+  seconds. An 85px correction inside one second, ending with the section 105px
+  from the top against an 89px header. Not worth a change; the open item is
+  closed.
+- **Reduced motion is clean.** Under `prefers-reduced-motion: reduce` the
+  homepage has zero elements with a running animation over 0.1s.
+- **Focus rings are clean.** 29 Tab stops through `/contact`, every one with a
+  visible outline or box-shadow.
+
+### Still open
+
+- **The consultation bubble is still dark** (`FloatingConsultationBubble`'s
+  `#hero` lookup). Unchanged from this morning — it needs Hiram, because
+  fixing it makes a second floating CTA appear.
+- **Nine blog posts have no `coverCaption`** and `check:captions` exits 1.
+  Unchanged: the images are decorative stock, and the real fix is better
+  images, which is Hiram's media call.
+- **Six routes declare a `modified` date older than their last content
+  commit.** Unchanged — it renders nowhere, so it is a findability item.
+- **FLAGGED, needs Hiram** — the not-found page is a good place for the
+  "what I don't do" line from `docs/relationship-design-playbook.md`, and the
+  slot is now designed and empty. Not written here, because the content is one
+  of the three facts a run must never invent.
