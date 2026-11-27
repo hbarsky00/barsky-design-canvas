@@ -2197,3 +2197,74 @@ editorial call than this change — worth a decision.
 
 Still open from the previous entry: `/project/business-management` indexed
 while the guardrails call it retired, and the 49:18 post-to-commercial ratio.
+
+---
+
+## 2026-11-27, same session — one voice across the service pages
+
+Hiram's call on the flag raised in the previous entry. Shipped and verified live
+(`c827a544`).
+
+### Scope was wider than the flag
+
+I raised this against `prototype-to-ship`. Checking before editing, **all four**
+`/services/:slug` longform pages said "we", "us" and "the studio" — 26
+word-bounded hits across ai-product-design, design-systems,
+ux-strategy-research and prototype-to-ship — while the three ServiceDetail
+pages beside them say "I" throughout. The split was `servicesDetail.ts` vs
+`serviceContent.ts`, not one page. Fixing only the page that got noticed would
+have relocated the inconsistency instead of removing it, so all 18 self-
+referring passages were rewritten.
+
+### The five FAQ questions are deliberately still plural
+
+> "Do we get code we can maintain, or a throwaway prototype?"
+> "What if we already have engineers?"
+> "Do we need a design system yet?"
+> "Can you work with what we already have?"
+> "Do you need our model to be finished first?"
+
+These are in the **buyer's** voice. Rewriting them to "I" would make the
+prospect sound like a sole trader and break the conceit the FAQ format rests
+on. Six word-bounded plural pronouns remain in the file and all six sit inside
+those five questions — verified by count, not by eye.
+
+### Two passages needed more than a pronoun swap
+
+| was | now |
+|---|---|
+| "which is the point of the studio" | "which is the whole point" |
+| "the check worth making on any studio claiming this" | "...on anyone claiming this" |
+
+No claim, scope, timeline or price changed. Voice only.
+
+### Ship gate
+
+`npm run typecheck` exit 0, `npm run build` exit 0. Visible copy changed, so
+`capture-bodies` → 67/67, rebuild → 67 with bodies, 0 head-only, no dead links,
+49 post bodies matching source, nothing at opacity 0. `check:contrast` exit 0.
+`check:captions` exit 1, all failures in `src/data/blogData.ts`, untouched.
+
+The services **hub** body also changed and was missed in the first bodies
+commit — it renders each service's blurb, and prototype-to-ship's blurb carried
+the rewritten line. Caught by `git status`, committed in `c827a544`.
+
+### Verified on production — all 7 service pages
+
+| page | sentences containing "we" | of those, buyer questions | "studio" |
+|---|---|---|---|
+| ai-product-design | 0 | 0 | 0 |
+| design-systems | 1 | 1 | 0 |
+| ux-strategy-research | 1 | 1 | 0 |
+| prototype-to-ship | 2 | 2 | 0 |
+| ux-ui-design / mobile-app-design / web-development | 0 | 0 | 0 |
+
+Every remaining instance is a buyer-voice question. Hub blurb live as "I don't
+hand off a static file". All 8 service URLs return 200.
+
+### Still open
+
+- `/project/business-management` is 200, `index, follow` and in the sitemap
+  while the guardrails call it retired. Needs Hiram's answer.
+- The 49:18 post-to-commercial ratio, unchanged, and the ceiling on everything
+  else.
