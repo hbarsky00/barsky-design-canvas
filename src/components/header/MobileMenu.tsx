@@ -134,11 +134,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           <div
             ref={panelRef}
             id="mobile-navigation"
-            role="menu"
-            aria-label="Mobile navigation menu"
+            /* Was role="menu" over plain <Link> children. role="menu" is the
+               application-menu widget: it promises menuitem children and
+               arrow-key navigation, neither of which exists here. This is a
+               list of page links, so it is navigation. */
             className="fixed inset-x-0 top-[var(--header-height,64px)] w-screen max-w-none rounded-none border-t border-gray-200/60 bg-white shadow-lg z-40 p-2"
           >
-            <nav className="flex flex-col space-y-1">
+            <nav aria-label="Site navigation" className="flex flex-col space-y-1">
               {menuLinks.map((link) => {
                 if (link.href.startsWith('http')) {
                   return (
