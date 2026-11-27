@@ -60,7 +60,7 @@ const products: ShippedProduct[] = [
     slug: "firelion",
     name: "Fire Lion",
     url: "https://firelion.me",
-    what: "Canvas arcade game. Hold to fly, procedural obstacles, score that survives a refresh.",
+    what: "Canvas arcade game. Hold to fly, spell words mid-flight to evolve, procedural obstacles.",
     stack: "React · Canvas · TypeScript",
   },
 ];
