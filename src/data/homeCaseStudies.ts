@@ -55,9 +55,9 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "business-management",
     tags: ["Enterprise", "Small Business", "Automation"],
-    title: "One System Instead of Six: Cutting Operation Errors by 68%",
+    title: "One System Instead of Six: Fewer Errors and Less Admin Time",
     description: "Small business owners waste 23% of their week switching between disconnected tools—leading to costly errors and mental fatigue. I designed a unified operations platform that consolidates invoicing, scheduling, and task management into one intuitive system.",
-    impact: "68% Fewer Operation Errors",
+    impact: "Fewer operation errors in testing",
     url: "/project/business-management",
     images: {
       primary: "/images/business-management/v2/hifi-end-to-end-flow.webp",

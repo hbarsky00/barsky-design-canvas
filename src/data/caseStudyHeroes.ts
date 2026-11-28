@@ -170,12 +170,14 @@ export const CASE_STUDY_HEROES: Record<string, CaseStudyHeroConfig> = {
 
   "business-management": {
     eyebrow: "B2B · Operations · Automation",
-    accentPhrase: "Cutting Operation Errors by 68%",
-    // userTestingSection.metrics "68% fewer errors"; seoData.results "35% Faster Processing"
-    metrics: [
-      { value: "68%", label: "Fewer operation errors" },
-      { value: "35%", label: "Faster processing" },
-    ],
+    accentPhrase: "Fewer Errors and Less Admin Time",
+    // Empty on purpose. The 68% / 35% / 90% figures were the FLAGGED Blue Sky
+    // numbers: unsourced, and the underlying data disagreed with itself (45% vs
+    // 35% faster processing in different files, and a 12-errors-a-week to
+    // 4-a-month detail that is a 92% reduction, not 68%). Softened to
+    // qualitative on Hiram's call, 2026-11-27. An empty array drops the whole
+    // row rather than inventing a number to fill it. Do not repopulate.
+    metrics: [],
     media: [
       // The end-to-end flow board is the better artefact but the wrong hero: at
       // half the rail its nine panes are illegible. The operations dashboard

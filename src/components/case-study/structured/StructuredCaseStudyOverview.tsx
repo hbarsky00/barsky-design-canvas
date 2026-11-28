@@ -54,7 +54,7 @@ const overviewContent: Record<string, OverviewContent> = {
     duration: "1 year"
   },
   "business-management": {
-    overview: "Small businesses struggled with scattered tools for scheduling, invoicing, and tasks. I designed a unified platform to consolidate operations into one app. The vision: reduce admin overload and free up time. The result: 35% less time spent on manual tasks.",
+    overview: "Small businesses struggled with scattered tools for scheduling, invoicing, and tasks. I designed a unified platform to consolidate operations into one app. The vision: reduce admin overload and free up time. The result: less time spent on manual tasks.",
     goals: [
       "Consolidate scheduling, invoicing, and task tracking.",
       "Save business owners hours each week.",

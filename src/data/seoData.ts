@@ -134,7 +134,7 @@ export const PROJECT_SEO_MAP: Record<string, { title: string; description: strin
   },
   "business-management": {
     title: "Enterprise Operations Platform | B2B UX Case Study — Barsky Design",
-    description: "Modular business management platform that reduced manual work 60% by centralizing inventory, workflows, and analytics with actionable insights across teams.",
+    description: "Modular business management platform that cut manual work by centralizing inventory, workflows, and analytics with actionable insights across teams.",
     image: "https://barskydesign.pro/images/og/business-management.png",
     modified: "2026-09-21"
   },

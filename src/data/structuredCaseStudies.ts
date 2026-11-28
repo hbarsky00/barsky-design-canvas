@@ -1750,7 +1750,7 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
 
   "business-management": {
     id: "business-management",
-    title: "One System Instead of Six: Cutting Operation Errors by 68%",
+    title: "One System Instead of Six: Fewer Errors and Less Admin Time",
     description: "When small businesses are drowning in tools, sometimes you need to throw them a lifeline",
     tags: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
     techStack: {
@@ -1857,16 +1857,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
           caption: "The screens teams tested: products, orders and drivers in one app.",
         },
       ],
-      metrics: [
-        { value: "90%", label: "satisfaction" },
-        { value: "68%", label: "fewer errors" },
-        { value: "5 min", label: "daily setup time" },
-      ],
+      // Emptied 2026-11-27 with the rest of the FLAGGED Blue Sky numbers. The
+      // "5 min daily setup time" went with them: same unsourced set, same row.
+      metrics: [],
     },
     finalProductSection: {
       title: "The Final Product",
       description:
-        "Unified platform with: Smart priority dashboard, Automated invoicing, Connected scheduling, Error reduction by 68%",
+        "Unified platform with: Smart priority dashboard, Automated invoicing, Connected scheduling, and fewer operation errors",
       eyebrow: "The Result",
       images: [
         {
@@ -1882,11 +1880,9 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
       description:
         "Sarah's email: \"I just realized I haven't thought about my 'admin day' in weeks. Everything just happens automatically now.\"",
       eyebrow: "Outcomes & Impact",
-      metrics: [
-        { value: "68%", label: "Fewer Errors" },
-        { value: "35%", label: "Faster Processing" },
-        { value: "90%", label: "User Satisfaction" },
-      ],
+      // Emptied 2026-11-27: see the note on the hero metrics in
+      // caseStudyHeroes.ts. Direction is supportable, magnitude was not.
+      metrics: [],
     },
     myThoughtProcessSection: {
       eyebrow: "Approach & Decision Making",
@@ -1916,11 +1912,14 @@ export const structuredCaseStudies: Record<string, StructuredCaseStudyData> = {
     seoData: {
       image:
         "/images/business-management/v2/hifi-end-to-end-flow.webp",
-      projectName: "One System Instead of Six: Cutting Operation Errors by 68%",
+      projectName: "One System Instead of Six: Fewer Errors and Less Admin Time",
       results: [
-        "68% Fewer Operation Errors",
-        "35% faster processing",
-        "90% user satisfaction",
+        // Softened from "68% Fewer Operation Errors" / "35% faster processing" /
+        // "90% user satisfaction" on 2026-11-27. These feed the SEO schema, so
+        // the unsourced figures were being published as structured data too.
+        "Fewer operation errors",
+        "Faster processing",
+        "Positive user testing feedback",
         "Unified operations platform",
       ],
       technologies: ["Enterprise", "Small Business", "Automation", "Design Thinking"],
