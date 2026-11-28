@@ -87,7 +87,19 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
     The pricing answer now says rates depend on scope. Do not put a number back.
   - WCAG credential. "WCAG 2.1 AA certified" was a credential claim; it now
     reads "I build to WCAG 2.1 AA", a practice. Do not upgrade it again.
-  - Blue Sky's numbers (45% vs 35%, and 68% vs the 92% its own detail implies).
+  - ~~Blue Sky's numbers (45% vs 35%, and 68% vs the 92% its own detail
+    implies).~~ **Resolved 2026-11-27 on Hiram's call: softened to
+    qualitative.** The business-management study no longer publishes 68% fewer
+    errors, 35% faster processing, 35% less manual time, 90% satisfaction, the
+    5-minute setup time, or the 60% in its meta description. Direction is kept
+    ("fewer operation errors", "faster processing"); magnitude is gone, because
+    the magnitude was what the source data disagreed about. Two metric rows now
+    ship as `metrics: []`, which drops the row by design rather than inventing a
+    number — the same way CatchBuddy ships. Do not repopulate them, and do not
+    "restore" the 68% to 92% either: both figures trace to data that conflicts.
+    Still unresolved on that card and deliberately untouched: "small business
+    owners waste 23% of their week", which is a market statistic rather than a
+    client outcome and may have a real external source.
   If a change needs one of these, write it in the log as FLAGGED and move on.
 - **No invented metrics of any kind.** No conversion percentages, no project
   counts, no client outcomes that do not trace to something in this repo. The
