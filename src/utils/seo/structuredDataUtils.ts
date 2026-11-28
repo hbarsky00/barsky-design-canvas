@@ -6,7 +6,7 @@ interface SEOData {
   canonicalUrl?: string;
   image?: string;
   type?: 'website' | 'article';
-  kind?: 'page' | 'post' | 'project';
+  kind?: 'page' | 'post' | 'project' | 'service' | 'home';
   publishedTime?: string;
   published?: string;
   modifiedTime?: string;
@@ -187,6 +187,30 @@ export const generateStructuredData = (seoData: SEOData) => {
       ...(seoData.image && { image: seoData.image })
     };
     schemas.push(articleSchema);
+  }
+
+  // The seven service pages are the only commercial pages on the site, and they
+  // were the only page type emitting no page-specific entity at all: just the
+  // global WebPage/Person/Organization every route carries. All 49 posts had
+  // BlogPosting. So the pages meant to answer "who designs SaaS products"
+  // described themselves to a machine as nothing in particular.
+  // Every field below already exists in seoData; nothing here is new copy.
+  if (seoData.kind === 'service') {
+    const serviceName = (seoData.title || '').split('|')[0].trim();
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": canonicalUrl ? `${canonicalUrl}#service` : undefined,
+      // seoData.title is the <title>, which carries the " | Barsky Design"
+      // suffix. That belongs in a SERP headline, not in a service's name.
+      name: serviceName,
+      description: seoData.description,
+      url: canonicalUrl,
+      provider: { "@id": ORG_ID },
+      areaServed: organizationSchema.areaServed,
+      serviceType: serviceName,
+      inLanguage: "en-US"
+    });
   }
 
   // The homepage FAQPage block was removed. Google restricted FAQ rich results to

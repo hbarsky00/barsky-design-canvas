@@ -2,7 +2,7 @@ import { SEO_CONSTANTS } from "@/utils/seoConstants";
 
 export type SEOInput = {
   path: string;               // e.g. "/project/herbalink"
-  kind: "home" | "page" | "project" | "post";
+  kind: "home" | "page" | "project" | "post" | "service";
   title?: string;
   description?: string;
   image?: string;             // absolute preferred; fallback handled here
@@ -15,6 +15,11 @@ export type SEOInput = {
 };
 
 export type BuiltSEO = {
+  // buildSEO used to drop `kind` here, so generateStructuredData never saw it.
+  // Two branches depended on it and both were dead at prerender time: case
+  // studies fell through to BlogPosting instead of Article, and the service
+  // pages matched nothing at all. Carried through rather than re-derived.
+  kind?: SEOInput["kind"];
   title: string;
   description: string;
   canonical: string;
@@ -76,6 +81,7 @@ export function buildSEO(input: SEOInput): BuiltSEO {
   const imageAbs = toAbs(input.image) ?? SEO_CONSTANTS.DEFAULT_PROFILE_IMAGE;
 
   return {
+    kind: input.kind,
     title: fitTitle(input.title ?? SEO_CONSTANTS.SITE_NAME),
     description: input.description ?? SEO_CONSTANTS.DEFAULT_DESCRIPTION,
     canonical,

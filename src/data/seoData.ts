@@ -37,22 +37,22 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
   // The four long-form service pages carried over from barsky.design. Titles
   // and descriptions are each service's own metaTitle/metaDescription.
   '/services/ai-product-design': {
-    kind: 'page',
+    kind: 'service',
     title: 'AI Product Design | Barsky Design',
     description: 'End-to-end design for AI-first products: the interaction model, the interface, and how the AI behaves when it’s confident, uncertain, or wrong.'
   },
   '/services/design-systems': {
-    kind: 'page',
+    kind: 'service',
     title: 'Design Systems | Barsky Design',
     description: 'Design systems that survive contact with a real codebase: token architecture, component libraries built in React and TypeScript, and governance that holds.'
   },
   '/services/ux-strategy-research': {
-    kind: 'page',
+    kind: 'service',
     title: 'UX Strategy & Research | Barsky Design',
     description: 'Research and strategy that ends in a decision, not a deck: user research, journey mapping, and a roadmap tied to numbers a finance team will accept.'
   },
   '/services/prototype-to-ship': {
-    kind: 'page',
+    kind: 'service',
     title: 'Prototype to Ship | Barsky Design',
     description: 'From nothing to a live v1 in six to twelve weeks, designed and built by the same hands — a hard-scoped engagement that finishes with deployed software instead of a handoff file.'
   },
@@ -95,19 +95,19 @@ export const STATIC_PAGE_SEO: Record<string, Partial<SEOInput>> = {
     image: 'https://barskydesign.pro/images/og/page-store.png'
   },
   '/services/ux-ui-design': {
-    kind: 'page',
+    kind: 'service',
     title: 'Product Design Services — Research to Code | Barsky Design',
     description: 'Research, interface design and a working front end — from one person who sees the decision through to production. 15+ years in fintech and healthcare.',
     image: 'https://barskydesign.pro/images/og/service-ux-ui-design.png'
   },
   '/services/mobile-app-design': {
-    kind: 'page',
+    kind: 'service',
     title: 'Mobile App Design — iOS & Android UX/UI | Barsky Design',
     description: 'Design and build for phone-first products: the interface, the interaction model and the front end. Designed at phone width first, tested on a real device.',
     image: 'https://barskydesign.pro/images/og/service-mobile-app-design.png'
   },
   '/services/web-development': {
-    kind: 'page',
+    kind: 'service',
     title: 'Web Development — React & Frontend | Barsky Design',
     description: 'React and TypeScript front ends and the thin backend behind them — database, deploy pipeline, and the prerendering most React sites get wrong. A new build, or a codebase you inherited.',
     image: 'https://barskydesign.pro/images/og/service-web-development.png'
