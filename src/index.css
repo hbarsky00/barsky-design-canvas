@@ -1023,6 +1023,22 @@ body {
   .section-snap {
     scroll-snap-type: none;
   }
+
+  /* Catch-all. The three reduced-motion blocks in this file each name
+     specific classes, so every animated class added since went unguarded:
+     Header's transition-all duration-500 and the case-study button's
+     duration-500 scale were both still running at 500ms under
+     prefers-reduced-motion: reduce when measured on 2026-11-27.
+     0.01ms rather than 0 so transitionend/animationend still fire for any
+     code that waits on them. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Section snap points removed for better UX */
