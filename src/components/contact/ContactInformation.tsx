@@ -22,7 +22,7 @@ const ContactInformation: React.FC = () => {
 
       <button
         onClick={openCalendly}
-        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-lg border border-primary text-primary text-sm font-semibold bg-white hover:bg-primary hover:text-primary-foreground transition-colors self-start mb-6"
+        className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 rounded-lg border border-primary text-primary text-sm font-semibold bg-white hover:bg-primary hover:text-primary-foreground transition-colors self-start mb-6"
       >
         <Calendar className="h-4 w-4" />
         Schedule a free consultation
@@ -32,7 +32,7 @@ const ContactInformation: React.FC = () => {
       <div className="space-y-4">
         <a
           href="mailto:hbarsky01@gmail.com"
-          className="flex items-center gap-3 group"
+          className="flex min-h-[44px] items-center gap-3 group"
         >
           <div className="bg-primary/10 p-2.5 rounded-lg group-hover:bg-primary/20 transition-colors">
             <Mail className="w-4 h-4 text-primary" />
@@ -64,7 +64,7 @@ const ContactInformation: React.FC = () => {
           </div>
         </div>
 
-        <a href="tel:2016684754" className="flex items-center gap-3 group">
+        <a href="tel:2016684754" className="flex min-h-[44px] items-center gap-3 group">
           <div className="bg-primary/10 p-2.5 rounded-lg group-hover:bg-primary/20 transition-colors">
             <Phone className="w-4 h-4 text-primary" />
           </div>
@@ -88,7 +88,7 @@ const ContactInformation: React.FC = () => {
             href="https://www.linkedin.com/in/hiram-barsky"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white border border-border p-2.5 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center bg-white border border-border p-2.5 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
             aria-label="LinkedIn"
           >
             <Linkedin size={18} />
@@ -97,7 +97,7 @@ const ContactInformation: React.FC = () => {
             href="https://github.com/hbarsky00"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white border border-border p-2.5 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center bg-white border border-border p-2.5 rounded-lg text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
             aria-label="GitHub"
           >
             <Github size={18} />

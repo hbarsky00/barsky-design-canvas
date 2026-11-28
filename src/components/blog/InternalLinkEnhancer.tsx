@@ -228,9 +228,13 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = ({
               ))}
             </div>
             
+            {/* Was a 17px-tall inline link — the only tappable thing in the
+                whole card, and the only way onward from the end of a post.
+                BlogPreview's identical link was given min-h-[44px] already;
+                this sibling was missed. */}
             <Link 
               to={`/blog/${post.slug}`}
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200"
+              className="inline-flex min-h-[44px] items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200"
               title={`Read more about ${post.title}`}
             >
               Read More<span className="sr-only">: {post.title}</span> →
