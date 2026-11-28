@@ -1340,3 +1340,68 @@ homepage), so the exposure is external links, search results and typed URLs.
   `seoBuilder.ts`, which is a description of a file, not of an image. Small, but
   it is alt text shipped on every page.
 - `SkillsShowcase.tsx` is still bot-generated — unchanged from the note above.
+
+---
+
+## 2026-11-27 — EVENING (FINDABILITY / growth mandate B)
+
+### The commercial pages were the only page type describing themselves as nothing
+
+Deterministic sweep of every built route's JSON-LD, counting the page-specific
+entity by page type:
+
+```
+blog      49 pages   BlogPosting 49/49   ok
+project    5 pages   Article      0/5    emitting BlogPosting instead
+services   8 pages   Service      0/8    emitting no page entity at all
+```
+
+All 49 posts were correctly typed. The seven pages meant to answer "who designs
+SaaS products" — the only commercial pages on the site — carried nothing beyond
+the global `WebPage` / `Person` / `Organization` that every route has.
+
+### Root cause: one dropped field, two dead branches — `cb4ac6fa`
+
+`buildSEO()` returns a `BuiltSEO`, and `renderHead()` hands exactly that object
+to `generateStructuredData()`. `BuiltSEO` **did not carry `kind`**. So every
+branch keyed on `kind` was dead at prerender time:
+
+- `isProject = seoData.kind === 'project'` never matched, so all five case
+  studies fell through to the `BlogPosting` branch via `type === 'article'`.
+  The comment directly above that branch reads *"A case study is not a blog
+  post"* — it had been one since that comment was written.
+- the new service branch matched nothing for the same reason.
+
+Carrying one field through fixes both. This is the `kind` of defect where the
+code, the comment and the intent all agreed and the wiring silently disagreed —
+and nothing failed, which is why it survived.
+
+### Verified on production after deploy
+
+```
+/services/*   Service 7/7       (the /services hub stays a plain page)
+/project/*    Article 5/5, BlogPosting 0/5
+/blog/*       BlogPosting unchanged, Article 0
+```
+
+All `ld+json` blocks re-parsed with `JSON.parse` after the build — 3 blocks per
+service page, no parse failures.
+
+**No new copy was written.** `name`, `description`, `provider` and `areaServed`
+are reused from `seoData` and the existing Organization entity. The
+`" | Barsky Design"` suffix is stripped for `name` / `serviceType`; it belongs
+in a SERP headline, not in a service's name. No pricing, no ratings, no reviews,
+no `aggregateRating` — none of that is verifiable from here.
+
+### Still open
+
+- **Decision needed:** `public/llms.txt` line 97 publishes
+  `BZ Essentials — https://az-essentials.netlify.app` (200), carrying the
+  client's initials. Second session raising it.
+- **Decision needed:** `/project/business-management` is 200, `index, follow`
+  and in the sitemap while the guardrails call it retired. Fifth session.
+- **Flagged claim:** `llms.txt` line 19 gives Business Management a hard metric
+  ("reduced manual work 60%"). Unverifiable from here; not invented by this
+  loop, not changed by it.
+- The 49:18 post-to-commercial ratio is unchanged. Sitemap is 49 blog, 5
+  project, 8 services, 5 other = 67.

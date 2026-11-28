@@ -229,6 +229,36 @@ on the task itself and reused by every future run.
 
 ## Known-open items
 
+- **NEW 2026-11-27 evening — decisions queued for Hiram, none taken:**
+  1. **Nine blog cover images have no caption and should probably not have
+     one.** Four are typographic title cards repeating the post's headline;
+     five are generic stock photos. A caption that "says something the picture
+     does not" cannot be written truthfully for either. The real question is
+     whether stock photography belongs on those nine posts at all — a media
+     call reserved to Hiram. `check:captions` will keep warning until decided.
+  2. **Eight posts show the same body photo twice.** Found while correcting
+     their alt text. Removing one is deleting content, so it was not done.
+  3. **`MinimalHero.tsx` is dead code** — 401 lines, never imported, absent
+     from `dist`, and it holds two stale hardcoded Calendly URLs that bypass
+     `calendlyUrl()`/`trackBookCall()`. Harmless today, a trap for the next run
+     that greps for Calendly. Recommend deleting.
+  4. **Footer nav links are `min-h-11 md:min-h-6`**, so a 768px touch tablet
+     gets 24px rows. `md:` uses width as a proxy for input type. Real but
+     narrow; deliberately not churned.
+
+- **GA4 is live and collecting — the loop just cannot read it.** Property
+  `G-VYKW0Y9K0T`, confirmed on the wire from production 2026-11-27. The private
+  growth log had carried "still no analytics" for six runs; that was wrong. The
+  gap is credentials, not instrumentation. Re-test a standing note before
+  carrying it a seventh time.
+
+- **`npm run build` returned EXIT:0 while `npm run typecheck` was failing**
+  (2026-11-27 evening, a `kind` union mismatch across three files). The build is
+  not a type gate. Run `npm run typecheck` and read *its* exit code separately —
+  and do not read an exit code through a pipe into `tail`, which reports
+  `tail`'s status, not the command's.
+
+
 - ~~**AUTHORISED AND QUEUED (Hiram, 2026-11-26): finish the dead-end blog
   endings.**~~ **DONE 2026-11-27 morning** (`c53013ac`). All six reworded or
   linked; Recast got `recastvid.com`, Investor Loan got the reword only. The

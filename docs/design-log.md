@@ -2432,3 +2432,129 @@ post. So the real reason is now written into the `blogData.ts` header comment
 - 9 blog cover images still have no `coverCaption` (`check:captions` warns, does
   not fail). Writing them needs the images actually looked at, not guessed.
 - The 49:18 post-to-commercial ratio, unchanged.
+
+---
+
+## 2026-11-27 — EVENING RUN (ten-fix cadence, v2.0 dual mandate)
+
+Second run of the day. Morning left seven commits unpushed by design; this run
+added six and pushed the whole batch of thirteen. All diagnosis was measured in
+a real Chrome (`chromium.launch({ channel: 'chrome' })`) against the built site
+on `scripts/_srv.mjs`, at 375 / 768 / 1440.
+
+**What the sweep found clean**, so no work was invented against it: zero
+horizontal overflow on any route, zero heading-level skips, zero cover images
+without dimensions, zero contrast failures, zero dead links or anchors, and
+focus indicators present on every interactive element on `/contact`.
+
+### 1. Six fabricated alt strings (a11y) — `9c929533`
+
+Eight posts insert the same body photo **twice**, and each insertion carried a
+*different* alt string. I opened all eight files. In six, the first string
+described a photograph that does not exist:
+
+| file | claimed | actually shows |
+|---|---|---|
+| `ai-ate-the-junior-job-body` | "An empty open-plan office" | two colleagues at one screen |
+| `what-is-an-ai-first-product-designer-body` | "A glowing AI chip on a green circuit board" | hand-drawn wireframes on paper |
+| `portfolio-proof-not-pictures-body` | "A laptop open on a desk in a dim room" | a person at a laptop by a window |
+| `designing-ai-first-products-that-ship-body` | "Colorful sticky notes pinned to a board" | a hand holding a phone dashboard |
+| `trust-is-a-design-material-body` | "An angular gray architectural structure" | a person at a laptop in blue light |
+| `the-business-case-for-design-body` | "People meeting in a glass-walled conference room" | a hand holding a printed chart |
+
+A screen-reader user was told about a picture that is not on the page. Each of
+the eight images now carries **one** description, written from the file.
+
+**Still open — not this loop's call.** The duplication itself remains: those
+eight posts each show the same photo twice. Removing one is deleting content,
+so it is flagged rather than done.
+
+### 2. Sixteen body images with no reserved space (CLS) — `25400e6c`
+
+Every *cover* image declares width/height; the in-body photos on those same
+eight posts declared none, so each reflowed the article on decode. Measured
+rendering at 279x186 on a 375px phone with no box held. Dimensions read with
+`sips`, not guessed.
+
+### 3. Seven controls under the 44px floor — `1b3826a2`
+
+`button.tsx` carries `min-h-[44px]` on every size variant, so anything
+hand-rolled opts out of the rule silently. Measured at 375px, then re-measured
+**on production** after deploy:
+
+| control | was | now (live) |
+|---|---|---|
+| Read More, end of every post | 88x17 | 88x44 |
+| Schedule a free consultation | 259x40 | 259x44 |
+| Email hbarsky01@gmail.com | 293x36 | 293x44 |
+| Phone (201) 668-4754 | 293x36 | 293x44 |
+| LinkedIn / GitHub, footer | 40x40 | 44x44 |
+| LinkedIn / GitHub, contact | 40x40 | 44x44 |
+
+The Read More one is a **sibling miss**: `BlogPreview.tsx` already had
+`min-h-[44px]` on its identical link; `InternalLinkEnhancer.tsx` never got it,
+and it is the only tappable thing in a related-post card — the sole onward path
+from the end of an article.
+
+**Two false positives, caught by re-measuring rather than trusting the sweep:**
+- Scroll-to-top read 35x35 while its entry animation was mid-`transform`. It is
+  44x44 once settled. Not a defect; not touched.
+- Footer nav links read 24px at 768/1440. They are `min-h-11 md:min-h-6` — 44px
+  on mobile by deliberate design. Left alone. *Minor open item:* 768px is a
+  touch tablet and `md:` treats width as a proxy for input type, so an iPad in
+  portrait gets 24px rows. Real but narrow; not worth churning working code
+  unattended.
+
+### 4. prefers-reduced-motion had three class lists and no catch-all — `cbd5ebed`
+
+`index.css` carried three `prefers-reduced-motion` blocks, each naming specific
+classes. Everything animated since went unguarded. Measured with
+`reducedMotion:'reduce'`:
+
+```
+/                   6 elements still transitioning at 500ms
+/contact            1  (the fixed header's transition-all duration-500)
+/project/herbalink  2  (header + a case-study button at duration-500)
+```
+
+After the catch-all: **clean on all three**. The probe was run before and after,
+so this is a check that was demonstrated able to fail — per
+`feedback_verify_the_checker_not_just_the_code`.
+
+`0.01ms` rather than `0` so `transitionend` / `animationend` still fire.
+
+### 5. The nine missing coverCaptions — deliberately NOT written
+
+`check:captions` has warned about nine for several runs. I opened all nine.
+**Four are typographic title cards** that render the post's own headline
+(`built-product-without-real-data`, `building-products-nobody-asked-for`,
+`beautiful-interface-doesnt-convert`, `research-without-users`). **Five are
+generic stock photographs** (a code screen, sticky notes, an office, a laptop,
+a meeting room).
+
+The checker asks for "a caption that says something the picture alone does not."
+For a title card that repeats the title, and for stock photography that
+illustrates nothing specific, there is no such sentence that is also true. The
+existing good captions on this site all describe *real* artefacts — "The
+portal's front door", "Glass Joe, the first fighter through the rig". Writing
+nine to clear a warning would be exactly the filler the operating rules forbid.
+
+**Raised for decision instead:** the real question is whether generic stock
+photography belongs on these nine posts at all. That is a media call, reserved
+to Hiram under `feedback_barskydesign_media_rules`.
+
+### Measured
+
+- `npm run typecheck` **EXIT:0** — and it **failed twice first**, correctly, on
+  the `kind` union. Caught a second union in `seoBuilder.ts` and a third in
+  `UnifiedSEO.tsx` that the build would have shipped: `npm run build` returned
+  **EXIT:0 while typecheck was failing**. Exactly the trap this log recorded.
+- `npm run build` **EXIT:0**, four postbuild gates clean.
+- `npm run capture-bodies` **67/67, no failures.** All 67 bodies changed —
+  Footer and the related-post link are on every page. Diff audited line by line
+  before committing: only `width`/`height`, the eight alt strings, `min-h-[44px]`
+  and `min-h-11 min-w-11`. **No prose changed.**
+- `check-content-dates` 51 routes, 0 stale. `check:contrast` no AA failures.
+  `check-internal-links` 67 pages, no dead links or anchors.
+- **Production, after deploy** (~60s): tap targets re-measured at 375px, all
+  PASS; 0 of the six fabricated alt strings still served across the six posts.
