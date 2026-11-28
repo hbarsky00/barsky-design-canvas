@@ -97,7 +97,16 @@ Deploy: `git push origin main` → Netlify `incredible-griffin-66e664` auto-buil
   Hiram. Adding and improving is fine. Removing is not.
 - **Five products are live**: firelion.me, catchbuddy.fit, herbalink.live,
   stips.bet, ringrival.today. Not nine. splittime.pro is dead and SplitTime is
-  hidden; business-management is retired. Verify before citing a count.
+  hidden; the Business Management product is retired. Verify before citing a
+  count.
+  This bullet is about **product counts only**. It is not an instruction about
+  any page. The three retirements behave differently on the site and that is
+  deliberate: `/project/investor-loan` is pulled (404, out of the sitemap),
+  `/project/splittime` is hidden (301, out of the sitemap), and
+  `/project/business-management` **stays published** — 200, `index, follow`, in
+  the sitemap. Hiram confirmed that on 2026-11-27 after it was raised three
+  times. The product is retired; the case study remains portfolio evidence. Do
+  not delist it and do not re-raise it.
 - **Positioning is settled**: "I design and develop SaaS, web apps, mobile apps
   and internal tools." Not "Lead UX Designer", not "AI-first products". Job
   titles stay only where they describe real history (past employers, per-project

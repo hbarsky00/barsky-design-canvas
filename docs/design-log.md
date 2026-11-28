@@ -2558,3 +2558,66 @@ to Hiram under `feedback_barskydesign_media_rules`.
   `check-internal-links` 67 pages, no dead links or anchors.
 - **Production, after deploy** (~60s): tap targets re-measured at 375px, all
   PASS; 0 of the six fabricated alt strings still served across the six posts.
+
+---
+
+## 2026-11-27 — business-management: resolved, stays published
+
+Hiram's answer to the question raised across three sessions: **"retired" meant
+the product, not the page.** `/project/business-management` stays published.
+No site change was needed — it was already 200, `index, follow`, canonical
+self-referential, in the sitemap. The work here is closing the loop so it stops
+being re-flagged, plus a verification pass now that it is officially staying.
+
+### The repo bullet was never wrong, only misreadable
+
+`docs/auto-improve-loop.md` says "business-management is retired" — but it sits
+in a bullet about **not over-claiming the live product count** (five:
+firelion, catchbuddy, herbalink, stips, ringrival). It was about the product all
+along. Clarified in place, with the three retirements spelled out so the next
+run cannot read it as a delist instruction:
+
+| route | meaning | live |
+|---|---|---|
+| `/project/investor-loan` | page pulled | 404, out of sitemap |
+| `/project/splittime` | page hidden | 301, out of sitemap |
+| `/project/business-management` | **product** retired, page kept | **200, indexed, in sitemap** |
+
+### Verification pass on the page now that it stays
+
+Measured live 2026-11-27. Healthy: 200, `index, follow`, self-referential
+canonical, ~850 words of visible copy, client anonymised in the title
+("Enterprise Operations Platform | B2B UX Case Study"), **no outbound link to
+the retired product** and **no present-tense liveness claim** — so nothing on
+the page asserts a dead product is running. That was the risk worth checking.
+
+**What it does still publish: unsourced client-outcome percentages.**
+
+- "68% fewer errors" — three times (validation section, result list, stat row)
+- "35% faster processing" and "35% less time spent on manual tasks"
+- "90% satisfaction" / "90% user satisfaction"
+
+These are the **Blue Sky numbers** on the standing FLAGGED list, beside the
+hourly rate and the WCAG credential. `docs/aeo-log.md` recorded on 2026-09-06
+that the source data disagrees with itself — 45% vs 35% faster processing in
+different files, and a "12 errors/week to 4 errors/month" detail that is a 92%
+reduction rather than the 68% claimed. **That contradicting detail is not
+rendered on this page**, so a reader sees unsourced numbers, not a visible
+contradiction. Worth stating precisely rather than overstating.
+
+**Not touched.** Stripping or recalculating them is deleting case-study
+content, which needs Hiram — the same call earlier runs made, and still the
+right one. Deciding the keep-published question does not decide this one; if
+anything it raises the stakes, since the page is now confirmed as one of only
+six case studies on an 18-page commercial surface.
+
+### Method note for future audits
+
+Strip `<style>` and `<script>` before counting percentages on this site. The
+pages inline ~25 KB of critical CSS, and a naive tag-strip reports
+`width: 100%` and `hsl(14 68% 41%)` as outcome claims. A first pass here
+surfaced twelve "metrics" that were all CSS; the real count is four. The same
+false positive is already recorded once in `docs/client-acquisition-log.md`.
+
+No build run: this entry and the clarified bullet are documentation only,
+nothing in `docs/` is compiled.
