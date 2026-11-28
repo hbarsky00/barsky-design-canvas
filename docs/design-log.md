@@ -2621,3 +2621,83 @@ false positive is already recorded once in `docs/client-acquisition-log.md`.
 
 No build run: this entry and the clarified bullet are documentation only,
 nothing in `docs/` is compiled.
+
+---
+
+## 2026-11-27 — Blue Sky numbers softened to qualitative
+
+Hiram's call, lifting a hold several earlier runs correctly refused to lift on
+their own. Live and verified (`5928a929`).
+
+Direction kept, magnitude removed — magnitude was the part
+`docs/aeo-log.md` recorded as unsupportable (45% vs 35% in different files, and
+a 12-errors-a-week to 4-a-month detail that is a 92% reduction, not 68%).
+
+| was | now |
+|---|---|
+| 68% fewer errors (×3) | "fewer operation errors" |
+| 35% faster processing | "faster processing" |
+| 35% less time on manual tasks | "less time spent on manual tasks" |
+| 90% satisfaction | "positive user testing feedback" |
+| "5 min daily setup time" | dropped with its row |
+| 60% in the meta description | "cut manual work by centralizing…" |
+
+### Six figures, not the four I reported last entry
+
+Two surfaced only on a second pass: the **60%** in `seoData.ts`
+PROJECT_SEO_MAP, which contradicted the 35% rendered on the page, and a
+**`seoData.results` array feeding SEO schema** still carrying all three
+percentages.
+
+**I missed the array because my own check was broken.** `\b68%\b` can never
+match — `%` is a non-word character, so there is no word boundary after it. The
+scan printed CLEAN while the array sat four lines inside the block it was
+scanning. Replaced with `\d+\s*%` plus a self-test that fails if the pattern
+stops matching `"68% Fewer Operation Errors"`. Same failure class as the
+`tsc --noEmit` no-op: a gate that cannot fail is not a gate.
+
+### Nothing deleted, and no invented tiles
+
+Two metric rows ship as `metrics: []` — the documented path in
+`caseStudyHeroes.ts` ("a project with no validated number simply has an empty
+array and the component drops the whole row"), the way CatchBuddy already
+ships. The homepage `impact` is now a sentence with no leading figure, which
+`splitImpact` already renders without a display number. Both renderers were
+read before the copy was written; neither needed changing. Every section, row
+and list kept its items — the numbers inside them became words.
+
+The title carried the metric in four places (structuredCaseStudies `title` and
+`projectName`, homeCaseStudies `title`, caseStudyHeroes `accentPhrase`). The
+accentPhrase must remain a verbatim substring of the title or the H1 drifts, so
+both moved together and the invariant was asserted after the edit.
+
+### Scope discipline
+
+A blind "90%" replace would have hit **dae-search**, which has its own
+`90% User Satisfaction`. Every line was mapped to its owning study first. Left
+untouched: dae-search (20% ROI, 90%), ManuscriptRx (40%), investor-loan
+(35%/40%), and **"small business owners waste 23% of their week"** on the
+business-management card — a market statistic rather than a client outcome,
+possibly with a real external source, and outside what was authorised.
+
+### Ship gate
+
+typecheck 0, build 0, `capture-bodies` 67/67, rebuild → 67 with bodies, 0
+head-only, no dead links, 49 post bodies matching source, nothing at opacity 0.
+`project__dae-search.html` changed too, legitimately — its "More Work" section
+carries the business-management card and its title.
+
+### Verified on production
+
+All six old figures gone from the live page and the homepage card; the
+qualitative copy present; meta description softened; page still 200 and in the
+sitemap. The only percentage left in the study's visible text is `40%`, which
+belongs to the ManuscriptRx card in "More Work".
+
+### Concurrency note
+
+A sibling run was editing this repo during this work — `generate-llms-txt.ts`
+at 22:56:39 against my 22:57:33, in disjoint files, and it committed `4f057e12`
+mid-flight. Only my own paths were staged. `public/llms.txt` is generator
+output and carries both changes; that is named in `fd9fec60` so the client-URL
+removal is not mistaken for mine.
