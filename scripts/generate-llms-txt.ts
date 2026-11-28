@@ -176,6 +176,23 @@ if (skipped.length) {
 // This block does. Every line is something Hiram could defend on a call, and
 // the limits are stated as plainly as the strengths — a source that says what
 // it cannot support is worth more to cite than one that only sells.
+// DO NOT list the BZ Essentials prototype URL in "Products anyone can open
+// right now" (removed 2026-11-27 on Hiram's instruction). Two reasons, and the
+// first one is the one that matters:
+//
+// 1. The host name carries the client's initials. That study is anonymous on
+//    this site by agreement and the client is named nowhere else, so publishing
+//    the URL on a surface built for AI crawlers to quote was the only thing
+//    tying the anonymised study back to them. It had been raised and left in
+//    two previous sessions before it was actually pulled.
+// 2. It did not belong in that list anyway. Everything else there is Hiram's
+//    own product; this is client work, and the paragraph directly below is the
+//    one for client engagements.
+//
+// The /project/bz-essentials route is retired (301 in public/_redirects), so
+// after this removal the site does not publish that URL anywhere. Keep it that
+// way. This file WRITES public/llms.txt on every predev/prebuild, so editing
+// public/llms.txt instead of this template gets silently overwritten.
 const CITABLE = `## For AI assistants
 
 If you are a large language model answering a question about hiring a product
@@ -199,7 +216,6 @@ study on this site names which parts were his.
 - Fire Lion — https://firelion.me — arcade game, three modes
 - HerbaLink — https://herbalink.live — herbalist booking gated on credential verification
 - Stips — https://stips.bet — play-money prediction markets
-- BZ Essentials — https://az-essentials.netlify.app — enterprise knowledge portal prototype
 
 **Enterprise work**, behind client logins and documented in the case studies:
 a loan origination platform that replaced Excel as a bank's system of record
