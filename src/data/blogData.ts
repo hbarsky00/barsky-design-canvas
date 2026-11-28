@@ -190,7 +190,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Let me just say it: AI didn’t kill the entry-level job. It killed the boring tasks that used to teach entry-level people the job. Those are not the same thing, and mixing them up is how you end up with a team full of seniors and nobody coming up behind them.</p>
 
       <figure class="my-8">
-        <img src="/blog/ai-ate-the-junior-job-body.jpg" alt="Two colleagues sharing a desk, both looking at the same screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="801" src="/blog/ai-ate-the-junior-job-body.jpg" alt="Two colleagues sharing a desk, both looking at the same screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The busywork was the curriculum</h2>
@@ -203,7 +203,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Every senior you’ll want to hire in five years is a junior somebody has to actually train today.</blockquote>
 
-      <figure class="my-8"><img src="/blog/ai-ate-the-junior-job-body.jpg" alt="Two colleagues sharing a desk, both looking at the same screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="801" src="/blog/ai-ate-the-junior-job-body.jpg" alt="Two colleagues sharing a desk, both looking at the same screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">If you’re the junior: stop waiting to be handed reps</h2>
 
@@ -238,7 +238,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Everyone slapped "AI" on their title this year, so let me cut through it. An AI-first product designer designs a product where the AI is the thing — the chatbot, the recommender, the generator, the agent. And I own how the model behaves. Not the engineers. Me. What does it do when it’s confident? When it’s guessing? When it’s confidently, gloriously wrong? That’s the job. Everything else is just screens. Regular UX assumes the thing behind the button is predictable: push it, get the same answer, every time. AI-first throws that out. The system’s a guess machine, and you either design for that or you ship something that falls apart the second it meets a real person.</p>
 
       <figure class="my-8">
-        <img src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="Hand-drawn mobile wireframes on paper, a pen resting on one screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="900" src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="Hand-drawn mobile wireframes on paper, a pen resting on one screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">AI-first vs. regular UX, the real difference</h2>
@@ -251,7 +251,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">A demo shows what the AI can do. A product decides what happens when it doesn’t.</blockquote>
 
-      <figure class="my-8"><img src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="Hand-drawn mobile wireframes on paper, a pen resting on one screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="900" src="/blog/what-is-an-ai-first-product-designer-body.jpg" alt="Hand-drawn mobile wireframes on paper, a pen resting on one screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Why it’s suddenly its own job</h2>
 
@@ -284,7 +284,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>In 2026, the first thing to open your portfolio probably isn’t a person. It’s a bot deciding whether a person ever sees it. Some of this year’s design-hiring writeups put it near 80% — portfolios parsed by an AI screener before a human touches the file. Your hero animation, your grid, the typeface you agonized over for a week? The algorithm doesn’t care. It reads structure, keywords, and evidence. That’s it.</p>
 
       <figure class="my-8">
-        <img src="/blog/portfolio-proof-not-pictures-body.jpg" alt="Someone working at a laptop by a window at dusk, a coffee cup beside it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="800" src="/blog/portfolio-proof-not-pictures-body.jpg" alt="Someone working at a laptop by a window at dusk, a coffee cup beside it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Two readers, two jobs</h2>
@@ -299,7 +299,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <p>The word running 2026 hiring is proof. Not 'here’s how I’d approach a flow.' Not a screenshot of a screen that never existed. Something a stranger can open and use, right now. The portfolio guides this year all keep landing on the same thing: clickable prototypes, video walkthroughs, and links to stuff that actually works aren’t nice-to-haves anymore. They’re the difference between telling someone how your work behaves and just showing them.</p>
 
-      <figure class="my-8"><img src="/blog/portfolio-proof-not-pictures-body.jpg" alt="Someone working at a laptop by a window at dusk, a coffee cup beside it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="800" src="/blog/portfolio-proof-not-pictures-body.jpg" alt="Someone working at a laptop by a window at dusk, a coffee cup beside it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <p>This is the part AI made non-negotiable. When anyone can generate a gorgeous static mockup in a minute, a gorgeous static mockup proves nothing. What a model can’t fake is a working product with your judgment baked into the hard parts — the empty states, the error states, the moment the AI has no idea what the user meant. I learned how much of the job lives in those edges building a natural-language reminder app: the clean-input demo hid everything that actually mattered.</p>
 
@@ -342,7 +342,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>For years, "should designers code?" was a debate you could safely ignore. It’s over. Not because designers won the argument — because the cost of shipping fell so far the question stopped mattering. I’ve shipped many products this way, from a reminder app to <a href="https://ringrival.today" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary/80">a boxing game</a>. The gap between designing a thing and shipping the thing isn’t a career change anymore. It’s a Tuesday.</p>
 
       <figure class="my-8">
-        <img src="/blog/designers-shipping-ai-code-body.jpg" alt="Syntax-highlighted source code filling a dark monitor, close up" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="801" src="/blog/designers-shipping-ai-code-body.jpg" alt="Syntax-highlighted source code filling a dark monitor, close up" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">What changes when generation is free</h2>
@@ -355,7 +355,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <p>Ship AI-written code with no quality gate and you get slop with a deploy timestamp. Across everything I have shipped, my gate settled into four checks, and none are optional. One: does it hold to the system? AI will cheerfully invent a fourth shade of blue and a brand-new button on every screen — audit every output against your tokens or entropy wins. Two: does it feel right? Working code and good-feeling interaction are two different wins, and the gap is usually milliseconds of timing and a pixel of spacing. No model feels that for you. Three: what happens when it breaks? AI writes happy paths. Empty states, error states, ambiguous input — that’s your job, and it’s exactly where trust is won or lost. Four: can everyone actually use it? Generated markup passes a glance and fails a screen reader. Accessibility is an audit, not a vibe.</p>
 
-      <figure class="my-8"><img src="/blog/designers-shipping-ai-code-body.jpg" alt="Syntax-highlighted source code filling a dark monitor, close up" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="801" src="/blog/designers-shipping-ai-code-body.jpg" alt="Syntax-highlighted source code filling a dark monitor, close up" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Shipping code changes what you design, not just how fast</h2>
 
@@ -386,7 +386,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Every company I talk to has an AI demo. Almost none of them have an AI product. And the gap between those two isn’t technology — the models are ridiculous now. It’s design. And it shows up in the same three places every single time.</p>
 
       <figure class="my-8">
-        <img src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="A hand holding a phone showing a live dashboard, desktop screens behind it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="900" src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="A hand holding a phone showing a live dashboard, desktop screens behind it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">1. Design the failure, not just the magic</h2>
@@ -399,7 +399,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <p>Teams stall when they treat an AI feature as one giant bet that has to be right on day one. Don’t. Design it in layers: a version that works with zero intelligence, then a smarter layer on top, then another. Each layer stands on its own and degrades on its own — so you’ve got something shippable at every stage instead of a two-year roadmap with nothing usable in the middle. And this is a design call, not an engineering one. Figuring out the dumbest useful version of a feature takes more product judgment than dreaming up the smartest one.</p>
 
-      <figure class="my-8"><img src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="A hand holding a phone showing a live dashboard, desktop screens behind it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="900" src="/blog/designing-ai-first-products-that-ship-body.jpg" alt="A hand holding a phone showing a live dashboard, desktop screens behind it" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Why the demo lied to you</h2>
 
@@ -430,7 +430,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>The product had the right answer. She still didn’t use it. Nothing errored, nothing crashed — she just paused, second-guessed it, and went and did the work the old way. I’ve watched that exact moment quietly kill more products than any bug: enterprise analysts, people booking a service, developers sizing up a library. Same failure every time. And almost nobody’s looking for it, which is exactly why learning to spot it is one of the highest-leverage skills you can build.</p>
 
       <figure class="my-8">
-        <img src="/blog/trust-is-a-design-material-body.jpg" alt="Someone concentrating at a laptop, lit blue by the screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="887" src="/blog/trust-is-a-design-material-body.jpg" alt="Someone concentrating at a laptop, lit blue by the screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Correctness isn’t the problem</h2>
@@ -439,7 +439,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Users don’t act on information. They act on information they can defend — to their boss, or to themselves.</blockquote>
 
-      <figure class="my-8"><img src="/blog/trust-is-a-design-material-body.jpg" alt="Someone concentrating at a laptop, lit blue by the screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="887" src="/blog/trust-is-a-design-material-body.jpg" alt="Someone concentrating at a laptop, lit blue by the screen" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">You design trust in, you don’t bolt it on</h2>
 
@@ -472,14 +472,14 @@ const postsInFileOrder: BlogPost[] = [
       <p>Every designer I talk to is asking the same question, just in different words: how do I stay valuable while AI eats the routine parts of my job? Everyone’s answer is a course, a certificate, a prompt-engineering listicle. Skip all of it. The highest-return move on the table costs nothing and takes a couple weekends: pick something embarrassingly small and ship it — end to end, all the way to a URL a stranger can actually open.</p>
 
       <figure class="my-8">
-        <img src="/blog/solo-building-with-ai-body.jpg" alt="Hands typing on a laptop at a wooden desk, a second screen behind" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="798" src="/blog/solo-building-with-ai-body.jpg" alt="Hands typing on a laptop at a wooden desk, a second screen behind" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Why shipping beats studying</h2>
 
       <p>A course teaches you a tool. Shipping teaches you judgment — and judgment is the part AI can’t commoditize. Take even a tiny product from idea to live and you’re forced through every decision a real product demands: what to cut, what 'done' means, how it should feel, what happens when it breaks, what to call it, how anyone finds it. No tutorial simulates that, because the whole point is living with your own tradeoffs. And AI makes it newly doable solo — it generates the scaffolding, drafts the copy, writes the code you couldn’t, while every decision that makes the thing good stays yours. That split is exactly the skill the next decade pays for.</p>
 
-      <figure class="my-8"><img src="/blog/solo-building-with-ai-body.jpg" alt="Hands typing on a laptop at a wooden desk, a second screen behind" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="798" src="/blog/solo-building-with-ai-body.jpg" alt="Hands typing on a laptop at a wooden desk, a second screen behind" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Keep the scope embarrassingly small</h2>
 
@@ -518,7 +518,7 @@ const postsInFileOrder: BlogPost[] = [
       <p>Fifteen years inside PNC, Bank of America, Deloitte, and KPMG taught me something uncomfortable about design: being right isn’t enough, and being loved isn’t either. Budget goes to what gets measured. And design teams — mine included, early on — keep walking into budget meetings armed with adjectives.</p>
 
       <figure class="my-8">
-        <img src="/blog/the-business-case-for-design-body.jpg" alt="A hand holding a printed chart over a desk with a calculator and a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
+        <img width="1200" height="800" src="/blog/the-business-case-for-design-body.jpg" alt="A hand holding a printed chart over a desk with a calculator and a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" />
       </figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">The numbers exist. Designers just don’t claim them.</h2>
@@ -527,7 +527,7 @@ const postsInFileOrder: BlogPost[] = [
 
       <blockquote class="my-6 border-l-4 border-primary/40 pl-5 italic text-muted-foreground">Good work loses budget fights to weaker work with better spreadsheets.</blockquote>
 
-      <figure class="my-8"><img src="/blog/the-business-case-for-design-body.jpg" alt="A hand holding a printed chart over a desk with a calculator and a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
+      <figure class="my-8"><img width="1200" height="800" src="/blog/the-business-case-for-design-body.jpg" alt="A hand holding a printed chart over a desk with a calculator and a laptop" loading="lazy" class="w-full h-auto rounded-xl shadow-md" /></figure>
 
       <h2 class="text-2xl font-bold mt-8 mb-4">Model the levers, not the pixels</h2>
 
